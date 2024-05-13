@@ -1,15 +1,18 @@
 export type MixcloudContextState = {
   collapsed: boolean;
   duration: number;
+  handleLoad: (localMcKey?: string) => void;
+  handlePlayPause: () => void;
+  handleVolumeChange: (localVolume?: number) => void;
   loaded: boolean;
   mcKey: string;
+  mcUrl: string;
   player: any;
   playing: boolean;
   progress: number;
   scriptLoaded: boolean;
-  shows: string[];
-  showIndex: number;
   showUnavailable: boolean;
+  volume: number;
   setCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
   setDuration: React.Dispatch<React.SetStateAction<number>>;
   setLoaded: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,7 +21,6 @@ export type MixcloudContextState = {
   setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   setProgress: React.Dispatch<React.SetStateAction<number>>;
   setScriptLoaded: React.Dispatch<React.SetStateAction<boolean>>;
-  setShows: React.Dispatch<React.SetStateAction<string[]>>;
-  setShowIndex: React.Dispatch<React.SetStateAction<number>>;
   setShowUnavailable: React.Dispatch<React.SetStateAction<boolean>>;
+  setVolume: React.Dispatch<React.SetStateAction<number>>;
 };

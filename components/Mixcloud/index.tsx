@@ -7,17 +7,11 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   const {
     autoPlay = true,
     url,
-    showsData,
-    listIndex = 0,
-    withExclusives = false,
-    width,
-    height,
-    showWidget,
-    style,
     children,
     onReady,
     onPlay,
     onPause,
+    onProgress,
     onBuffering,
     onEnded,
     onError,
@@ -25,15 +19,14 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
 
   const {
     collapsed,
-    duration,
+    handlePlayPause,
+    handleLoad,
+    handleVolumeChange,
     loaded,
     mcKey,
+    mcUrl,
     player,
-    playing,
-    progress,
     scriptLoaded,
-    shows,
-    showIndex,
     showUnavailable,
     setCollapsed,
     setDuration,
@@ -43,69 +36,20 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setPlaying,
     setProgress,
     setScriptLoaded,
-    setShows,
-    setShowIndex,
     setShowUnavailable,
+    setVolume,
   } = useMixcloud();
 
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const timer = useRef<any>(null);
 
   const incrementShowIndex = useCallback(() => {
-    if (showIndex !== null && showIndex < shows.length - 1) {
-      setShowIndex(showIndex + 1);
-    } else {
-      setShowIndex(0);
-    }
-  }, [showIndex, shows]);
-
-  const handlePlayPause = useCallback(() => {
-    player.togglePlay();
-  }, [player]);
-
-  const makeMixcloudUrl = (localMcKey?: string): string => {
-    const localUrl = `https://www.mixcloud.com${localMcKey || mcKey}`;
-    console.log(localUrl);
-    return `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=${autoPlay}&feed=${encodeURIComponent(
-      localUrl,
-    )}`;
-  };
-
-  const makeMixcloudCloudcastKey = (localMcKey?: string): string => {
-    return `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=${autoPlay}&feed=${encodeURIComponent(
-      `https://www.mixcloud.com/rymixxx/${localMcKey || mcKey}/`,
-    )}`;
-  };
-
-  const handleLoad = (localMcKey?: string): void => {
-    if (!localMcKey) return;
-    setMcKey(localMcKey);
-  };
+    setMcKey("/rymixxx/adventures-in-decent-music-volume-26/");
+  }, [mcKey]);
 
   useEffect(() => {
+    console.log("init");
     setMcKey("/rymixxx/my-pair-of-shoes-volume-66/");
-    setShows([
-      {
-        key: "/rymixxx/my-pair-of-shoes-volume-65-deepness/",
-        url: "https://www.mixcloud.com/rymixxx/my-pair-of-shoes-volume-65-deepness/",
-      },
-      {
-        key: "/rymixxx/my-pair-of-shoes-volume-66/",
-        url: "https://www.mixcloud.com/rymixxx/my-pair-of-shoes-volume-66/",
-      },
-      {
-        key: "/rymixxx/my-pair-of-shoes-volume-67-deep/",
-        url: "https://www.mixcloud.com/rymixxx/my-pair-of-shoes-volume-67-deep/",
-      },
-      {
-        key: "/rymixxx/my-pair-of-shoes-volume-68/",
-        url: "https://www.mixcloud.com/rymixxx/my-pair-of-shoes-volume-68/",
-      },
-      {
-        key: "/rymixxx/adventures-in-decent-music-volume-26/",
-        url: "https://www.mixcloud.com/rymixxx/adventures-in-decent-music-volume-26/",
-      },
-    ]);
   }, []);
 
   useEffect(() => {
@@ -126,6 +70,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
       setProgress(0);
 
       widget.ready.then(() => {
+        console.log("widget", widget);
         setPlayer(widget);
         widget.pause();
         onReady?.(widget);
@@ -153,22 +98,27 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
           onBuffering?.();
         });
 
+        widget.events.progress.on((prog: number) => {
+          setProgress(prog);
+          onProgress?.();
+        });
+
         widget.events.error.on((error: any) => {
           setShowUnavailable(true);
           setPlaying(false);
           onError?.(error);
         });
 
-        widget.getDuration().then(function (duration: number) {
+        widget.getDuration().then((dur: number) => {
           setLoaded(false);
-          if (!duration) {
+          if (!dur) {
             console.error("licence issue");
             setShowUnavailable(true);
             setPlaying(false);
             return;
           }
           setLoaded(true);
-          setDuration(duration);
+          setDuration(dur);
           setShowUnavailable(false);
           if (!collapsed) {
             setCollapsed(false);
@@ -200,9 +150,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             width="100%"
             height="60"
             allow="autoplay"
-            src={`https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=${autoPlay}&feed=${makeMixcloudUrl(
-              mcKey,
-            )}`}
+            src={mcUrl}
             frameBorder="0"
           />
 
@@ -226,6 +174,24 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             }}
           >
             Load 2
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              handleVolumeChange(0.25);
+            }}
+          >
+            Volume 0.25
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              handleVolumeChange(0.9);
+            }}
+          >
+            Volume 0.9
           </button>
 
           <Debug />
