@@ -1,3 +1,4 @@
+import Debug from "components/Mixcloud/Debug";
 import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
 import { useCallback, useEffect, useRef } from "react";
@@ -58,9 +59,28 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     }
   }, [showIndex, shows]);
 
-  const togglePlay = useCallback(() => {
+  const handlePlayPause = useCallback(() => {
     player.togglePlay();
   }, [player]);
+
+  const makeMixcloudUrl = (localMcKey?: string): string => {
+    const localUrl = `https://www.mixcloud.com${localMcKey || mcKey}`;
+    console.log(localUrl);
+    return `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=${autoPlay}&feed=${encodeURIComponent(
+      localUrl,
+    )}`;
+  };
+
+  const makeMixcloudCloudcastKey = (localMcKey?: string): string => {
+    return `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=${autoPlay}&feed=${encodeURIComponent(
+      `https://www.mixcloud.com/rymixxx/${localMcKey || mcKey}/`,
+    )}`;
+  };
+
+  const handleLoad = (localMcKey?: string): void => {
+    if (!localMcKey) return;
+    setMcKey(localMcKey);
+  };
 
   useEffect(() => {
     setMcKey("/rymixxx/my-pair-of-shoes-volume-66/");
@@ -166,11 +186,11 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [shows, showIndex, scriptLoaded]);
+  }, [mcKey, scriptLoaded]);
 
   return (
     <>
-      {shows.length > 0 && (
+      {mcKey && (
         <>
           <iframe
             title="mixcloud-widget"
@@ -180,19 +200,35 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             width="100%"
             height="60"
             allow="autoplay"
-            src={`https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=${autoPlay}&feed=${encodeURIComponent(
-              shows[showIndex]?.url,
+            src={`https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=${autoPlay}&feed=${makeMixcloudUrl(
+              mcKey,
             )}`}
             frameBorder="0"
           />
 
-          <button type="button" onClick={togglePlay}>
+          <button type="button" onClick={handlePlayPause}>
             Play/Pause
           </button>
 
-          <button type="button" onClick={togglePlay}>
-            Play/Pause
+          <button
+            type="button"
+            onClick={() => {
+              handleLoad("/rymixxx/adventures-in-decent-music-volume-26/");
+            }}
+          >
+            Load 1
           </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              handleLoad("/rymixxx/my-pair-of-shoes-volume-68/");
+            }}
+          >
+            Load 2
+          </button>
+
+          <Debug />
 
           {children}
         </>
