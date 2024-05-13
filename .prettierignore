@@ -1,0 +1,10 @@
+.DS_Store
+.husky
+.next
+_static
+build
+libs
+node_modules
+out
+public
+*.md

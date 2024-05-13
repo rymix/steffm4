@@ -1,0 +1,117 @@
+// contexts/mixcloud/types.ts
+
+import type { Category, Mix, Track } from "db/types";
+import type { RefObject } from "react";
+
+export type TimeoutRefs = {
+  [key: string]: ReturnType<typeof setTimeout> | undefined;
+};
+
+export type MixcloudContextState = {
+  backgroundImage: number;
+  bufferingEvent: boolean;
+  copyShareLink: () => void;
+  currentMix: Mix | null;
+  currentMixList: Mix[] | null;
+  currentTracks: Track[];
+  decreaseVolume: () => void;
+  duration: number;
+  enable3D: boolean;
+  enableAutoscroll: boolean;
+  enableEqualizer: boolean;
+  enableMixList: boolean;
+  enableTrackList: boolean;
+  endedEvent: boolean;
+  errorEvent: boolean;
+  fetchCurrentMix: () => Promise<void>;
+  fetchCurrentTracks: () => Promise<void>;
+  filterCategory: string;
+  filterName: string;
+  filterNotes: string;
+  filterTags: string;
+  filterDate: string;
+  flagVolumeUp: string;
+  flagVolumeDown: string;
+  flagSkipPrevious: string;
+  flagSkipNext: string;
+  flagPause: string;
+  flagPlay: string;
+  getDuration: () => Promise<void>;
+  hideMask: () => void;
+  iframeInitialized: boolean;
+  increaseVolume: () => void;
+  initializeWidget: boolean;
+  isScriptLoaded: boolean;
+  load: (key: string) => void;
+  loadRandomMix: (key?: string) => void;
+  lookupAllTags: string[];
+  lookupCategories: Category[];
+  maskRef: HTMLElement | null;
+  mcKey: string;
+  mixcloudWidgetRef: RefObject<HTMLIFrameElement>;
+  mixcloudWidgetElement: HTMLDivElement | null;
+  mixcloudWidgetIframeElement: HTMLDivElement | null;
+  modalCatalogueOpen: boolean;
+  modalSettingsOpen: boolean;
+  muteVolumeToggle: () => void;
+  pause: () => Promise<void>;
+  pauseEvent: boolean;
+  percentagePlayed: number;
+  play: () => Promise<void>;
+  playEvent: boolean;
+  progressEvent: number;
+  scalingFactorButton: number;
+  scalingFactorDesktop: number;
+  scalingFactorFont: number;
+  scalingFactorIcon: number;
+  scalingFactorVolume: number;
+  seek: (seconds: number) => Promise<void>;
+  selectPreviousMix: () => void;
+  selectNextMix: () => void;
+  setBackgroundImage: React.Dispatch<React.SetStateAction<number>>;
+  setBufferingEvent: React.Dispatch<React.SetStateAction<boolean>>;
+  setDuration: React.Dispatch<React.SetStateAction<number>>;
+  setEnable3D: React.Dispatch<React.SetStateAction<boolean>>;
+  setEnableAutoscroll: React.Dispatch<React.SetStateAction<boolean>>;
+  setEnableEqualizer: React.Dispatch<React.SetStateAction<boolean>>;
+  setEnableMixList: React.Dispatch<React.SetStateAction<boolean>>;
+  setEnableTrackList: React.Dispatch<React.SetStateAction<boolean>>;
+  setEndedEvent: React.Dispatch<React.SetStateAction<boolean>>;
+  setErrorEvent: React.Dispatch<React.SetStateAction<boolean>>;
+  setFilterCategory: React.Dispatch<React.SetStateAction<string>>;
+  setFilterName: React.Dispatch<React.SetStateAction<string>>;
+  setFilterNotes: React.Dispatch<React.SetStateAction<string>>;
+  setFilterTags: React.Dispatch<React.SetStateAction<string>>;
+  setFilterDate: React.Dispatch<React.SetStateAction<string>>;
+  setFlagVolumeUp: React.Dispatch<React.SetStateAction<string>>;
+  setFlagVolumeDown: React.Dispatch<React.SetStateAction<string>>;
+  setFlagSkipPrevious: React.Dispatch<React.SetStateAction<string>>;
+  setFlagSkipNext: React.Dispatch<React.SetStateAction<string>>;
+  setFlagPause: React.Dispatch<React.SetStateAction<string>>;
+  setFlagPlay: React.Dispatch<React.SetStateAction<string>>;
+  setIframeInitialized: React.Dispatch<React.SetStateAction<boolean>>;
+  setInitializeWidget: React.Dispatch<React.SetStateAction<boolean>>;
+  setLookupAllTags: React.Dispatch<React.SetStateAction<string[]>>;
+  setLookupCategories: React.Dispatch<React.SetStateAction<Category[]>>;
+  setMaskRef: React.Dispatch<React.SetStateAction<HTMLElement | null>>;
+  setMcKey: React.Dispatch<React.SetStateAction<string>>;
+  setMixcloudWidgetElement: React.Dispatch<
+    React.SetStateAction<HTMLDivElement | null>
+  >;
+  setMixcloudWidgetIframeElement: React.Dispatch<
+    React.SetStateAction<HTMLDivElement | null>
+  >;
+  setModalCatalogueOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setModalSettingsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setPauseEvent: React.Dispatch<React.SetStateAction<boolean>>;
+  setPercentagePlayed: React.Dispatch<React.SetStateAction<number>>;
+  setPlayEvent: React.Dispatch<React.SetStateAction<boolean>>;
+  setProgressEvent: React.Dispatch<React.SetStateAction<number>>;
+  setRandomMcKey: (category?: string) => Promise<void>;
+  setTemporaryTickerTapeMessage: React.Dispatch<React.SetStateAction<string>>;
+  setVolume: React.Dispatch<React.SetStateAction<number>>;
+  showMask: () => void;
+  temporaryTickerTapeMessage: string;
+  uiVolume: number;
+  volume: number;
+};
