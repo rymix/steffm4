@@ -12,25 +12,44 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [progress, setProgress] = useState(0);
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [showUnavailable, setShowUnavailable] = useState(false);
-  const [volume, setVolume] = useState(0.75);
+  const [volume, setVolume] = useState(8 / 11);
+  const [volumeIndex, setVolumeIndex] = useState(8);
 
+  /* Play / Pause Controls */
   const handlePlayPause = useCallback(() => {
     player.togglePlay();
   }, [player]);
 
+  /* Volume Controls */
   const handleVolumeChange = useCallback(
-    (localVolume: number) => {
-      setVolume(localVolume);
-      player.setVolume(localVolume);
+    (step: number) => {
+      const newVolumeIndex = Math.max(0, Math.min(11, volumeIndex + step));
+      const newVolume = newVolumeIndex / 11;
+      setVolumeIndex(newVolumeIndex);
+      setVolume(newVolume);
+      if (player) {
+        player.setVolume(newVolume);
+      }
     },
-    [player],
+    [volumeIndex, player],
   );
 
+  const handleVolumeDown = (): void => handleVolumeChange(-1);
+  const handleVolumeUp = (): void => handleVolumeChange(1);
+
+  useEffect(() => {
+    if (player) {
+      player.setVolume(volume);
+    }
+  }, [player, volume]);
+
+  /* Load Controls */
   const handleLoad = (localMcKey?: string): void => {
     if (!localMcKey) return;
     setMcKey(localMcKey);
   };
 
+  /* Set Mixcloud URL on mcKey change */
   useEffect(() => {
     const mixUrl = `https://www.mixcloud.com${mcKey}`;
     const widgetUrl = `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=${encodeURIComponent(
@@ -45,7 +64,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
     duration,
     handleLoad,
     handlePlayPause,
-    handleVolumeChange,
+    handleVolumeDown,
+    handleVolumeUp,
     loaded,
     mcKey,
     mcUrl,
@@ -55,6 +75,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     scriptLoaded,
     showUnavailable,
     volume,
+    volumeIndex,
     setCollapsed,
     setDuration,
     setLoaded,
@@ -65,6 +86,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     setScriptLoaded,
     setShowUnavailable,
     setVolume,
+    setVolumeIndex,
   };
 };
 

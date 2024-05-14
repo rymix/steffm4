@@ -12,6 +12,7 @@ export const Debug: React.FC<MixcloudProps> = () => {
     scriptLoaded,
     showUnavailable,
     volume,
+    volumeIndex,
   } = useMixcloud();
 
   return (
@@ -58,6 +59,10 @@ export const Debug: React.FC<MixcloudProps> = () => {
         <tr>
           <td>volume</td>
           <td>{volume}</td>
+        </tr>
+        <tr>
+          <td>volumeIndex</td>
+          <td>{volumeIndex}</td>
         </tr>
       </tbody>
     </table>

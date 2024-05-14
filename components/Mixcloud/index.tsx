@@ -21,7 +21,8 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     collapsed,
     handlePlayPause,
     handleLoad,
-    handleVolumeChange,
+    handleVolumeDown,
+    handleVolumeUp,
     loaded,
     mcKey,
     mcUrl,
@@ -37,7 +38,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setProgress,
     setScriptLoaded,
     setShowUnavailable,
-    setVolume,
   } = useMixcloud();
 
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -179,19 +179,19 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
           <button
             type="button"
             onClick={() => {
-              handleVolumeChange(0.25);
+              handleVolumeDown();
             }}
           >
-            Volume 0.25
+            Volume Down
           </button>
 
           <button
             type="button"
             onClick={() => {
-              handleVolumeChange(0.9);
+              handleVolumeUp();
             }}
           >
-            Volume 0.9
+            Volume Up
           </button>
 
           <Debug />
