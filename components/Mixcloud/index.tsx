@@ -49,7 +49,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   }, [mcKey]);
 
   useEffect(() => {
-    console.log("init");
     setMcKey("/rymixxx/my-pair-of-shoes-volume-66/");
   }, []);
 
@@ -71,7 +70,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
       setProgress(0);
 
       widget.ready.then(() => {
-        console.log("widget", widget);
         setPlayer(widget);
         widget.pause();
         onReady?.(widget);
