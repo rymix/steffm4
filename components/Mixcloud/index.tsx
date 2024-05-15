@@ -27,6 +27,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     mcKey,
     mcUrl,
     player,
+    playing,
     scriptLoaded,
     showUnavailable,
     setCollapsed,
@@ -155,7 +156,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
           />
 
           <button type="button" onClick={handlePlayPause}>
-            Play/Pause
+            {playing ? "Pause" : "Play"}
           </button>
 
           <button

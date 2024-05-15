@@ -68,5 +68,7 @@ export default async function handler(
     });
   }
 
+  filteredMixes = filteredMixes.sort((a, b) => a.listOrder - b.listOrder);
+
   res.status(200).json(filteredMixes);
 }

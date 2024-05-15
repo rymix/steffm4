@@ -10,5 +10,7 @@ export default async function handler(_req: any, res: any): Promise<void> {
     mix.tags.forEach((tag) => tags.add(tag));
   });
 
-  res.status(200).json([...tags]);
+  const sortedTags = [...tags].sort((a, b) => a.localeCompare(b));
+
+  res.status(200).json(sortedTags);
 }
