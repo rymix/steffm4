@@ -46,7 +46,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Load Controls */
   const handleLoad = (localMcKey?: string): void => {
     if (!localMcKey) return;
-    setMcKey(localMcKey);
+
+    const formattedMcKey = localMcKey.startsWith("/rymixxx/")
+      ? localMcKey
+      : `/rymixxx/${localMcKey}/`;
+
+    setMcKey(formattedMcKey);
   };
 
   /* Set Mixcloud URL on mcKey change */
