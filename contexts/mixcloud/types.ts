@@ -2,7 +2,9 @@ export type MixcloudContextState = {
   collapsed: boolean;
   duration: number;
   handleLoad: (localMcKey?: string) => void;
+  handleNext: () => void;
   handlePlayPause: () => void;
+  handlePrevious: () => void;
   handleVolumeDown: () => void;
   handleVolumeUp: () => void;
   loaded: boolean;

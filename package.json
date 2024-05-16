@@ -35,9 +35,10 @@
     "url": "git+https://github.com/rymix/steffm3.git"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
-    "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.15.7",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/icons-material": "^5.15.18",
+    "@mui/material": "^5.15.18",
     "@mui/styled-engine-sc": "^6.0.0-alpha.15",
     "@mui/x-data-grid": "^6.19.4",
     "@mui/x-data-grid-pro": "^6.19.4",

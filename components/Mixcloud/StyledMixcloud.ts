@@ -13,6 +13,26 @@ export const StyledMixcloudWidget = styled.iframe`
 
 export const StyledPlayer = styled.div`
   background: blue;
-  height: 20vh;
+  bottom: 0;
+  display: flex;
+  left: 0;
+  height: 30vh;
+  position: fixed;
+  text-align: center;
   width: 100%;
+`;
+
+export const StyledNothing = styled.div`
+  background: coral;
+  width: 20%;
+`;
+
+export const StyledAudioControls = styled.div`
+  background: grey;
+  width: 60%;
+`;
+
+export const StyledVolumeControls = styled.div`
+  background: cyan;
+  width: 20%;
 `;

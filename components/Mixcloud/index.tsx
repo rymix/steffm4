@@ -1,10 +1,17 @@
+import VolumeDown from "@mui/icons-material/VolumeDown";
+import VolumeUp from "@mui/icons-material/VolumeUp";
+import Slider from "@mui/material/Slider";
+import Stack from "@mui/material/Stack";
 import {
+  StyledAudioControls,
   StyledMixcloudWidget,
+  StyledNothing,
   StyledPlayer,
+  StyledVolumeControls,
 } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   const {
@@ -22,7 +29,9 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
 
   const {
     collapsed,
+    handleNext,
     handlePlayPause,
+    handlePrevious,
     handleLoad,
     handleVolumeDown,
     handleVolumeUp,
@@ -44,8 +53,14 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setShowUnavailable,
   } = useMixcloud();
 
+  const [value, setValue] = useState<number>(30);
+
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const timer = useRef<any>(null);
+
+  const handleChange = (event: Event, newValue: number | number[]) => {
+    setValue(newValue as number);
+  };
 
   const incrementShowIndex = useCallback(() => {
     setMcKey("/rymixxx/adventures-in-decent-music-volume-26/");
@@ -157,27 +172,38 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
           />
 
           <StyledPlayer>
-            <button type="button" onClick={handlePlayPause}>
-              {playing ? "Pause" : "Play"}
-            </button>
+            <StyledNothing />
 
-            <button
-              type="button"
-              onClick={() => {
-                handleVolumeDown();
-              }}
-            >
-              Volume Down
-            </button>
+            <StyledAudioControls>
+              <button type="button" onClick={handlePrevious}>
+                Previous
+              </button>
 
-            <button
-              type="button"
-              onClick={() => {
-                handleVolumeUp();
-              }}
-            >
-              Volume Up
-            </button>
+              <button type="button" onClick={handlePlayPause}>
+                {playing ? "Pause" : "Play"}
+              </button>
+
+              <button type="button" onClick={handleNext}>
+                Next
+              </button>
+            </StyledAudioControls>
+
+            <StyledVolumeControls>
+              <Stack
+                spacing={2}
+                direction="row"
+                sx={{ mb: 1 }}
+                alignItems="center"
+              >
+                <VolumeDown />
+                <Slider
+                  aria-label="Volume"
+                  value={value}
+                  onChange={handleChange}
+                />
+                <VolumeUp />
+              </Stack>
+            </StyledVolumeControls>
           </StyledPlayer>
 
           {children}

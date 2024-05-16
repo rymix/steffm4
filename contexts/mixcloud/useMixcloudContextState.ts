@@ -15,6 +15,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [volume, setVolume] = useState(8 / 11);
   const [volumeIndex, setVolumeIndex] = useState(8);
 
+  /* Navigation Controls */
+  const handlePrevious = useCallback(() => {
+    console.log("Previous");
+  }, [mcKey, player]);
+
+  const handleNext = useCallback(() => {
+    console.log("Next");
+  }, [mcKey, player]);
+
   /* Play / Pause Controls */
   const handlePlayPause = useCallback(() => {
     player.togglePlay();
@@ -68,7 +77,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
     collapsed,
     duration,
     handleLoad,
+    handleNext,
     handlePlayPause,
+    handlePrevious,
     handleVolumeDown,
     handleVolumeUp,
     loaded,
