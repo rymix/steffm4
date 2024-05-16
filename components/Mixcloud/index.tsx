@@ -1,4 +1,7 @@
-import Debug from "components/Mixcloud/Debug";
+import {
+  StyledMixcloudWidget,
+  StyledPlayer,
+} from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
 import { useCallback, useEffect, useRef } from "react";
@@ -141,7 +144,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     <>
       {mcKey && (
         <>
-          <iframe
+          <StyledMixcloudWidget
             title="mixcloud-widget"
             ref={iframeRef}
             key={mcKey}
@@ -153,47 +156,29 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             frameBorder="0"
           />
 
-          <button type="button" onClick={handlePlayPause}>
-            {playing ? "Pause" : "Play"}
-          </button>
+          <StyledPlayer>
+            <button type="button" onClick={handlePlayPause}>
+              {playing ? "Pause" : "Play"}
+            </button>
 
-          <button
-            type="button"
-            onClick={() => {
-              handleLoad("/rymixxx/adventures-in-decent-music-volume-26/");
-            }}
-          >
-            Load 1
-          </button>
+            <button
+              type="button"
+              onClick={() => {
+                handleVolumeDown();
+              }}
+            >
+              Volume Down
+            </button>
 
-          <button
-            type="button"
-            onClick={() => {
-              handleLoad("/rymixxx/my-pair-of-shoes-volume-68/");
-            }}
-          >
-            Load 2
-          </button>
-
-          <button
-            type="button"
-            onClick={() => {
-              handleVolumeDown();
-            }}
-          >
-            Volume Down
-          </button>
-
-          <button
-            type="button"
-            onClick={() => {
-              handleVolumeUp();
-            }}
-          >
-            Volume Up
-          </button>
-
-          <Debug />
+            <button
+              type="button"
+              onClick={() => {
+                handleVolumeUp();
+              }}
+            >
+              Volume Up
+            </button>
+          </StyledPlayer>
 
           {children}
         </>

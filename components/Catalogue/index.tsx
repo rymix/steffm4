@@ -1,4 +1,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
+import {
+  StyledCategories,
+  StyledFilters,
+  StyledMixList,
+  StyledTags,
+} from "components/Catalogue/StyledCatalogue";
 import type { CatalogueProps, Category, Tag } from "components/Catalogue/types";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Mix } from "db/types";
@@ -79,66 +85,74 @@ export const Catalogue: React.FC<CatalogueProps> = () => {
 
   return (
     <>
-      <h2>Selected Category: {selectedCategory}</h2>
-      <ul>
-        {categories?.map((category) => {
-          return (
-            <li
-              key={category.code}
-              onClick={() => handleCategoryClick(category.code)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  handleCategoryClick(category.code);
-                }
-              }}
-              tabIndex={0}
-              role="button"
-            >
-              {category.name}
-            </li>
-          );
-        })}
-      </ul>
-      <h2>Selected Tags: {selectedTag}</h2>
-      <ul>
-        {tags?.map((tag) => {
-          return (
-            <li
-              key={tag}
-              onClick={() => handleTagClick(tag)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  handleTagClick(tag);
-                }
-              }}
-              tabIndex={0}
-              role="button"
-            >
-              {tag}
-            </li>
-          );
-        })}
-      </ul>
-      <h2>Mixes</h2>
-      <ul>
-        {mixes?.map((mix) => {
-          return (
-            <li
-              key={mix.mixcloudKey}
-              onClick={() => handleLoad(mix.mixcloudKey)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  handleLoad(mix.mixcloudKey);
-                }
-              }}
-              tabIndex={0}
-              role="button"
-            >
-              {mix.mixcloudKey}
-            </li>
-          );
-        })}
-      </ul>
+      <StyledFilters>
+        <StyledCategories>
+          <h2>Selected Category: {selectedCategory}</h2>
+          <ul>
+            {categories?.map((category) => {
+              return (
+                <li
+                  key={category.code}
+                  onClick={() => handleCategoryClick(category.code)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      handleCategoryClick(category.code);
+                    }
+                  }}
+                  tabIndex={0}
+                  role="button"
+                >
+                  {category.name}
+                </li>
+              );
+            })}
+          </ul>
+        </StyledCategories>
+        <StyledTags>
+          <h2>Selected Tags: {selectedTag}</h2>
+          <ul>
+            {tags?.map((tag) => {
+              return (
+                <li
+                  key={tag}
+                  onClick={() => handleTagClick(tag)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      handleTagClick(tag);
+                    }
+                  }}
+                  tabIndex={0}
+                  role="button"
+                >
+                  #{tag}
+                </li>
+              );
+            })}
+          </ul>
+        </StyledTags>
+        <StyledMixList>
+          <h2>Mixes</h2>
+          <ul>
+            {mixes?.map((mix) => {
+              return (
+                <li
+                  key={mix.mixcloudKey}
+                  onClick={() => handleLoad(mix.mixcloudKey)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      handleLoad(mix.mixcloudKey);
+                    }
+                  }}
+                  tabIndex={0}
+                  role="button"
+                >
+                  {mix.mixcloudKey}
+                </li>
+              );
+            })}
+          </ul>
+        </StyledMixList>
+      </StyledFilters>
     </>
   );
 };
