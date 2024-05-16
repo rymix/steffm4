@@ -29,7 +29,18 @@ export const StyledNothing = styled.div`
 
 export const StyledAudioControls = styled.div`
   background: grey;
+  color: black;
+  font-size: 64px;
   width: 60%;
+
+  .control {
+    transition: color 0.125s;
+
+    &:hover {
+      color: red;
+      cursor: pointer;
+    }
+  }
 `;
 
 export const StyledVolumeControls = styled.div`

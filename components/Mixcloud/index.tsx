@@ -1,3 +1,7 @@
+import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
+import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
+import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import VolumeDown from "@mui/icons-material/VolumeDown";
 import VolumeUp from "@mui/icons-material/VolumeUp";
 import Slider from "@mui/material/Slider";
@@ -175,17 +179,31 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             <StyledNothing />
 
             <StyledAudioControls>
-              <button type="button" onClick={handlePrevious}>
-                Previous
-              </button>
+              <SkipPreviousIcon
+                onClick={handlePrevious}
+                fontSize="inherit"
+                className="control"
+              />
 
-              <button type="button" onClick={handlePlayPause}>
-                {playing ? "Pause" : "Play"}
-              </button>
+              {playing ? (
+                <PauseCircleOutlineIcon
+                  onClick={handlePlayPause}
+                  fontSize="inherit"
+                  className="control"
+                />
+              ) : (
+                <PlayCircleOutlineIcon
+                  onClick={handlePlayPause}
+                  fontSize="inherit"
+                  className="control"
+                />
+              )}
 
-              <button type="button" onClick={handleNext}>
-                Next
-              </button>
+              <SkipNextIcon
+                onClick={handleNext}
+                fontSize="inherit"
+                className="control"
+              />
             </StyledAudioControls>
 
             <StyledVolumeControls>
