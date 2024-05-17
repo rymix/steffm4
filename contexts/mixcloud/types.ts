@@ -1,19 +1,29 @@
+import type { Mix } from "db/types";
+
 export type MixcloudContextState = {
   collapsed: boolean;
   duration: number;
+  fetchRandomMcKey: () => Promise<string>;
   handleLoad: (localMcKey?: string) => void;
   handleNext: () => void;
   handlePlayPause: () => void;
   handlePrevious: () => void;
   handleVolumeDown: () => void;
   handleVolumeUp: () => void;
+  iframeRef: React.MutableRefObject<HTMLIFrameElement | null>;
   loaded: boolean;
   mcKey: string;
+  mcKeyNext: string;
+  mcKeyPrevious: string;
   mcUrl: string;
+  mixes: Mix[];
   player: any;
+  playerUpdated: boolean;
   playing: boolean;
   progress: number;
   scriptLoaded: boolean;
+  selectedCategory: string;
+  selectedTag: string;
   showUnavailable: boolean;
   volume: number;
   volumeIndex: number;
@@ -21,10 +31,16 @@ export type MixcloudContextState = {
   setDuration: React.Dispatch<React.SetStateAction<number>>;
   setLoaded: React.Dispatch<React.SetStateAction<boolean>>;
   setMcKey: React.Dispatch<React.SetStateAction<string>>;
+  setMcKeyNext: React.Dispatch<React.SetStateAction<string>>;
+  setMcKeyPrevious: React.Dispatch<React.SetStateAction<string>>;
+  setMixes: React.Dispatch<React.SetStateAction<Mix[]>>;
   setPlayer: React.Dispatch<React.SetStateAction<any>>;
+  setPlayerUpdated: React.Dispatch<React.SetStateAction<boolean>>;
   setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   setProgress: React.Dispatch<React.SetStateAction<number>>;
   setScriptLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+  setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+  setSelectedTag: React.Dispatch<React.SetStateAction<string>>;
   setShowUnavailable: React.Dispatch<React.SetStateAction<boolean>>;
   setVolume: React.Dispatch<React.SetStateAction<number>>;
   setVolumeIndex: React.Dispatch<React.SetStateAction<number>>;

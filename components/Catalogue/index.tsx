@@ -7,15 +7,20 @@ import {
 } from "components/Catalogue/StyledCatalogue";
 import type { CatalogueProps, Category, Tag } from "components/Catalogue/types";
 import { useMixcloud } from "contexts/mixcloud";
-import type { Mix } from "db/types";
 import { useEffect, useState } from "react";
 
 export const Catalogue: React.FC<CatalogueProps> = () => {
+  const {
+    mixes,
+    selectedCategory,
+    setMixes,
+    selectedTag,
+    setSelectedCategory,
+    setSelectedTag,
+  } = useMixcloud();
+
   const [categories, setCategories] = useState<Category[]>([]);
-  const [mixes, setMixes] = useState<Mix[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const [selectedTag, setSelectedTag] = useState("");
 
   const { handleLoad } = useMixcloud();
 
