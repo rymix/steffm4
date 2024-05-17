@@ -1,20 +1,17 @@
 import type { MixcloudContextState } from "contexts/mixcloud/types";
 import type { Mix } from "db/types";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { mcKeyFormatter, mcKeyUrlFormatter } from "utils/functions";
 
 const useMixcloudContextState = (): MixcloudContextState => {
   const [collapsed, setCollapsed] = useState(false);
   const [duration, setDuration] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [loaded, setLoaded] = useState(false);
-  const [mcKey, setMcKey] = useState(
-    "/rymixxx/adventures-in-decent-music-quarantine-mix/",
-  );
+  const [mcKey, setMcKey] = useState("");
   const [mcKeyNext, setMcKeyNext] = useState("");
   const [mcKeyPrevious, setMcKeyPrevious] = useState("");
-  const [mcUrl, setMcUrl] = useState(
-    "https://www.mixcloud.com/rymixxx/adventures-in-decent-music-quarantine-mix/",
-  );
+  const [mcUrl, setMcUrl] = useState("");
   const [mixes, setMixes] = useState<Mix[]>([]);
   const [player, setPlayer] = useState<any>();
   const [playerUpdated, setPlayerUpdated] = useState(false);
@@ -67,12 +64,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Load Controls */
   const handleLoad = async (newMcKey?: string): Promise<void> => {
     if (!newMcKey) return;
-
-    const formattedMcKey = newMcKey.startsWith("/rymixxx/")
-      ? newMcKey
-      : `/rymixxx/${newMcKey}/`;
-
-    setMcKey(formattedMcKey);
+    setMcKey(mcKeyFormatter(newMcKey));
   };
 
   /* Navigation */
@@ -107,11 +99,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Set Mixcloud URL, next and previous on mcKey change */
   useEffect(() => {
     const fetchData = async () => {
-      const mixUrl = `https://www.mixcloud.com${mcKey}`;
       const widgetUrl = `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=${encodeURIComponent(
-        mixUrl,
+        mcKeyUrlFormatter(mcKey),
       )}`;
-
       setMcUrl(widgetUrl);
     };
 

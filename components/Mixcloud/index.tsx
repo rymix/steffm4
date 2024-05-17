@@ -20,11 +20,10 @@ import { useEffect, useRef, useState } from "react";
 import Debug from "./Debug";
 
 export const Mixcloud: React.FC<MixcloudProps> = (props) => {
-  const { autoPlay = true, children } = props;
+  const { autoPlay = true, children, defaultMcKey, defaultUrl } = props;
 
   const {
     collapsed,
-    fetchRandomMcKey,
     handlePlayPause,
     handleNext,
     handlePrevious,
@@ -61,6 +60,10 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   //   };
   //   fetchData();
   // }, []);
+
+  useEffect(() => {
+    if (defaultMcKey) setMcKey(defaultMcKey);
+  }, []);
 
   useEffect(() => {
     const script = document.createElement("script");

@@ -34,3 +34,11 @@ export const debounce = (
 
 export const pxToNum = (value: string | number = 0): number =>
   Number(stripUnit(value));
+
+export const mcKeyFormatter = (mcKey: string): string => {
+  return mcKey.startsWith("/rymixxx/") ? mcKey : `/rymixxx/${mcKey}/`;
+};
+
+export const mcKeyUrlFormatter = (mcKey: string): string => {
+  return `https://www.mixcloud.com${mcKeyFormatter(mcKey)}`;
+};
