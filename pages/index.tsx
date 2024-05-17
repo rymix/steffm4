@@ -2,20 +2,17 @@ import Catalogue from "components/Catalogue";
 import Mixcloud from "components/Mixcloud";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
-import { mcKeyFormatter, mcKeyUrlFormatter } from "utils/functions";
+import { mcKeyFormatter } from "utils/functions";
 
 const Home = (): JSX.Element => {
   const { fetchRandomMcKey } = useMixcloud();
   const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
-  const [randomMcKeyUrl, setRandomMcKeyUrl] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchKey = async () => {
+    const fetchKey = async (): Promise<void> => {
       const key = await fetchRandomMcKey();
       const formattedKey = mcKeyFormatter(key);
-      const formattedUrl = mcKeyUrlFormatter(formattedKey);
       setRandomMcKey(formattedKey);
-      setRandomMcKeyUrl(formattedUrl);
     };
 
     fetchKey();
@@ -25,7 +22,7 @@ const Home = (): JSX.Element => {
     <>
       {randomMcKey && (
         <>
-          <Mixcloud defaultMcKey={randomMcKey} defaultUrl={randomMcKeyUrl} />
+          <Mixcloud defaultMcKey={randomMcKey} />
           <Catalogue />
         </>
       )}

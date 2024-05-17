@@ -35,10 +35,14 @@ export const debounce = (
 export const pxToNum = (value: string | number = 0): number =>
   Number(stripUnit(value));
 
-export const mcKeyFormatter = (mcKey: string): string => {
-  return mcKey.startsWith("/rymixxx/") ? mcKey : `/rymixxx/${mcKey}/`;
-};
+/* Mixcloud specific functions */
+export const mcKeyFormatter = (mcKey: string): string =>
+  mcKey.startsWith("/rymixxx/") ? mcKey : `/rymixxx/${mcKey}/`;
 
-export const mcKeyUrlFormatter = (mcKey: string): string => {
-  return `https://www.mixcloud.com${mcKeyFormatter(mcKey)}`;
-};
+export const mcKeyUrlFormatter = (mcKey: string): string =>
+  `https://www.mixcloud.com${mcKeyFormatter(mcKey)}`;
+
+export const mcWidgetUrlFormatter = (mcKey: string): string =>
+  `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=${encodeURIComponent(
+    mcKeyUrlFormatter(mcKey),
+  )}`;

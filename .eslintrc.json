@@ -40,8 +40,9 @@
     "unicorn"
   ],
   "rules": {
-    "@next/next/no-img-element": "off",
     "@next/next/no-document-import-in-page": "off",
+    "@next/next/no-img-element": "off",
+    "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/consistent-type-imports": [
       "error",
       { "prefer": "type-imports" }
@@ -50,6 +51,7 @@
       "error",
       { "allowExpressions": true }
     ],
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
       { "ignoreRestSiblings": true }
@@ -60,13 +62,14 @@
       { "ts": "never", "tsx": "never" }
     ],
     "import/no-cycle": "off",
+    "import/no-named-as-default": "off",
     "import/prefer-default-export": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
     "no-console": "off",
     "no-promise-executor-return": "off",
     "no-unsafe-optional-chaining": "off",
-    "react/jsx-no-useless-fragment": "off",
-    "testing-library/prefer-screen-queries": "error",
-    "testing-library/render-result-naming-convention": "error",
+    "react-hooks/exhaustive-deps": "off",
     "react/function-component-definition": "off",
     "react/jsx-filename-extension": [
       "error",
@@ -74,27 +77,26 @@
         "extensions": [".tsx"]
       }
     ],
+    "react/jsx-no-useless-fragment": "off",
     "react/jsx-props-no-spreading": "off",
     "react/require-default-props": "off",
     "simple-import-sort/exports": "error",
     "simple-import-sort/imports": "error",
     "sonarjs/cognitive-complexity": "off",
     "sonarjs/no-nested-template-literals": "off",
+    "testing-library/prefer-screen-queries": "error",
+    "testing-library/render-result-naming-convention": "error",
+    "unicorn/expiring-todo-comments": "off",
     "unicorn/filename-case": "off",
     "unicorn/import-style": "off",
     "unicorn/no-array-for-each": "off",
     "unicorn/no-array-reduce": "off",
+    "unicorn/no-null": "off",
     "unicorn/numeric-separators-style": "off",
     "unicorn/prefer-dom-node-append": "off",
     "unicorn/prefer-module": "off",
     "unicorn/prefer-node-protocol": "off",
     "unicorn/prefer-string-slice": "off",
-    "unicorn/prevent-abbreviations": "off",
-    "@typescript-eslint/ban-types": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "jsx-a11y/anchor-is-valid": "off",
-    "unicorn/no-null": "off",
-    "jsx-a11y/no-static-element-interactions": "off",
-    "unicorn/expiring-todo-comments": "off"
+    "unicorn/prevent-abbreviations": "off"
   }
 }

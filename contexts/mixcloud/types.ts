@@ -44,4 +44,5 @@ export type MixcloudContextState = {
   setShowUnavailable: React.Dispatch<React.SetStateAction<boolean>>;
   setVolume: React.Dispatch<React.SetStateAction<number>>;
   setVolumeIndex: React.Dispatch<React.SetStateAction<number>>;
+  widgetUrl: string;
 };

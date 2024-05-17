@@ -6,6 +6,7 @@ import VolumeDown from "@mui/icons-material/VolumeDown";
 import VolumeUp from "@mui/icons-material/VolumeUp";
 import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
+import Debug from "components/Mixcloud/Debug";
 import {
   StyledAudioControls,
   StyledMixcloudWidget,
@@ -17,10 +18,8 @@ import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useRef, useState } from "react";
 
-import Debug from "./Debug";
-
 export const Mixcloud: React.FC<MixcloudProps> = (props) => {
-  const { autoPlay = true, children, defaultMcKey, defaultUrl } = props;
+  const { autoPlay = true, children, defaultMcKey } = props;
 
   const {
     collapsed,
@@ -30,7 +29,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     iframeRef,
     loaded,
     mcKey,
-    mcUrl,
     playing,
     scriptLoaded,
     showUnavailable,
@@ -44,22 +42,16 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setProgress,
     setScriptLoaded,
     setShowUnavailable,
+    widgetUrl,
   } = useMixcloud();
 
   const [value, setValue] = useState<number>(30);
 
   const timer = useRef<any>(null);
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
+  const handleChange = (event: Event, newValue: number | number[]): void => {
     setValue(newValue as number);
   };
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     setMcKey(await fetchRandomMcKey());
-  //   };
-  //   fetchData();
-  // }, []);
 
   useEffect(() => {
     if (defaultMcKey) setMcKey(defaultMcKey);
@@ -74,13 +66,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log("----");
-    console.log("Inside widget init useEffect");
-    console.log("!iframeRef.current", !iframeRef.current, iframeRef.current);
-    console.log("!scriptLoaded", !scriptLoaded, scriptLoaded);
-    console.log("!mcKey", !mcKey, mcKey);
     if (!iframeRef.current || !scriptLoaded || !mcKey) return;
-    console.log("got here");
 
     const widget = (window as any).Mixcloud.PlayerWidget(iframeRef.current);
 
@@ -90,9 +76,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setProgress(0);
 
     widget.ready.then(() => {
-      console.log("Inside widget ready function");
       setPlayer(widget);
-      console.log("about to set player updated to true");
       setPlayerUpdated(true);
       widget.pause();
 
@@ -139,12 +123,14 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
         if (!collapsed) {
           setCollapsed(false);
         }
-        timer.current = setTimeout(
-          () => autoPlay === true && widget.play(),
-          200,
-        );
+        timer.current = setTimeout(() => {
+          if (autoPlay === true) {
+            widget.play();
+          }
+        }, 200);
       });
     });
+    // eslint-disable-next-line consistent-return
     return () => {
       if (timer.current) {
         clearTimeout(timer.current);
@@ -165,7 +151,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             width="100%"
             height="60"
             allow="autoplay"
-            src={mcUrl}
+            src={widgetUrl}
             frameBorder="0"
           />
 
