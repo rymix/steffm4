@@ -178,7 +178,16 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
 
           <StyledPlayer>
             <StyledProgressBar>
-              <SemiCircularProgress value={mixProgressPercent} />
+              <SemiCircularProgress
+                value={mixProgressPercent}
+                position="top"
+                start="left"
+              />
+              <SemiCircularProgress
+                value={mixProgressPercent}
+                position="bottom"
+                start="left"
+              />
 
               <LinearProgress
                 variant="determinate"

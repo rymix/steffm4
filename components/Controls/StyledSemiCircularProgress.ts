@@ -1,48 +1,63 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 
 interface StyledSemiCircularProgressProps {
   value: number;
+  position: "top" | "bottom";
+  start: "left" | "right";
 }
 
-const semicircularProgress = (value: number) => keyframes`
-  0% {
-    --percentage: 0;
+const getStartTurn = (position: "top" | "bottom", start: "left" | "right") => {
+  if (position === "top") {
+    return start === "left" ? "0.75turn" : "0.25turn";
   }
-  100% {
-    --percentage: ${value};
-  }
-`;
+  return start === "left" ? "1.25turn" : "0.75turn";
+};
 
 export const StyledSemiCircularProgress = styled.div<StyledSemiCircularProgressProps>`
   --percentage: ${(props) => props.value};
-  --primary: #ffffff;
-  --secondary: #2b256b;
+  --primary: #ffffff; /* Color used for progress */
+  --secondary: #2b256b; /* Default circle color */
   --size: 300px;
-  animation: ${(props) => semicircularProgress(props.value)} 2s 0.5s forwards;
   width: 100%;
   aspect-ratio: 2 / 1;
-  border-radius: 50% / 100% 100% 0 0;
+  border-radius: ${(props) =>
+    props.position === "top" ? "50% / 100% 100% 0 0" : "50% / 0 0 100% 100%"};
   position: relative;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  align-items: ${(props) =>
+    props.position === "top" ? "flex-end" : "flex-start"};
   justify-content: center;
+  transform: ${(props) =>
+    props.position === "bottom" ? "scaleX(-1)" : "none"};
 
   &::before {
     content: "";
     position: absolute;
-    top: 0;
+    top: ${(props) => (props.position === "top" ? "0" : "auto")};
+    bottom: ${(props) => (props.position === "bottom" ? "0" : "auto")};
     left: 0;
     width: 100%;
     height: 100%;
     background: conic-gradient(
-      from 0.75turn at 50% 100%,
+      from ${(props) => getStartTurn(props.position, props.start)} at 50%
+        ${(props) => (props.position === "top" ? "100%" : "0%")},
+      var(--primary) 0%,
       var(--primary) calc(var(--percentage) * 1% / 2),
-      var(--secondary) calc(var(--percentage) * 1% / 2 + 0.1%)
+      var(--secondary) calc(var(--percentage) * 1% / 2),
+      var(--secondary) 100%
     );
-    mask: radial-gradient(at 50% 100%, white 55%, transparent 55.5%);
+    mask: radial-gradient(
+      at 50% ${(props) => (props.position === "top" ? "100%" : "0%")},
+      white 55%,
+      transparent 55.5%
+    );
     mask-mode: alpha;
-    -webkit-mask: radial-gradient(at 50% 100%, #0000 55%, #000 55.5%);
+    -webkit-mask: radial-gradient(
+      at 50% ${(props) => (props.position === "top" ? "100%" : "0%")},
+      #0000 55%,
+      #000 55.5%
+    );
     -webkit-mask-mode: alpha;
   }
 

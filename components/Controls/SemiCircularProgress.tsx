@@ -1,14 +1,21 @@
-/* eslint-disable jsx-a11y/aria-role */
 import { StyledSemiCircularProgress } from "components/Controls/StyledSemiCircularProgress";
 import React from "react";
 
 export interface SemiCircularProgressProps {
   value: number;
+  position?: "top" | "bottom";
+  start?: "left" | "right";
 }
+
 const SemiCircularProgress: React.FC<SemiCircularProgressProps> = (props) => {
-  const { value } = props;
+  const { value, position = "top", start = "left" } = props;
   return (
-    <StyledSemiCircularProgress role="semicircularprogressbar" value={value} />
+    <StyledSemiCircularProgress
+      role="semicircularprogressbar"
+      value={value}
+      position={position}
+      start={start}
+    />
   );
 };
 
