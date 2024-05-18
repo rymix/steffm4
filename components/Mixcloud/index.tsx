@@ -4,14 +4,15 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import VolumeDown from "@mui/icons-material/VolumeDown";
 import VolumeUp from "@mui/icons-material/VolumeUp";
+import LinearProgress from "@mui/material/LinearProgress";
 import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import Debug from "components/Mixcloud/Debug";
 import {
   StyledAudioControls,
   StyledMixcloudWidget,
-  StyledNothing,
   StyledPlayer,
+  StyledProgressBar,
   StyledVolumeControls,
 } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
@@ -23,12 +24,15 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
 
   const {
     collapsed,
+    duration,
     handlePlayPause,
     handleNext,
     handlePrevious,
     iframeRef,
     loaded,
     mcKey,
+    mixProgress,
+    mixProgressPercent,
     playing,
     scriptLoaded,
     showUnavailable,
@@ -36,13 +40,18 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setDuration,
     setLoaded,
     setMcKey,
+    setMixProgress,
+    setMixProgressPercent,
     setPlayer,
     setPlayerUpdated,
     setPlaying,
-    setProgress,
     setScriptLoaded,
     setShowUnavailable,
+    setTrackProgress,
+    setTrackProgressPercent,
     setVolume,
+    trackProgress,
+    trackProgressPercent,
     volume,
     widgetUrl,
   } = useMixcloud();
@@ -76,7 +85,10 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setPlayer(null);
     setLoaded(false);
     setShowUnavailable(false);
-    setProgress(0);
+    setMixProgress(0);
+    setMixProgressPercent(0);
+    setTrackProgress(0);
+    setTrackProgressPercent(0);
 
     widget.ready.then(() => {
       setPlayer(widget);
@@ -103,7 +115,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
       });
 
       widget.events.progress.on((prog: number) => {
-        setProgress(prog);
+        setMixProgress(prog);
       });
 
       widget.events.error.on((error: any) => {
@@ -159,7 +171,12 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
           />
 
           <StyledPlayer>
-            <StyledNothing />
+            <StyledProgressBar>
+              <LinearProgress
+                variant="determinate"
+                value={mixProgressPercent}
+              />
+            </StyledProgressBar>
 
             <StyledAudioControls>
               <SkipPreviousIcon

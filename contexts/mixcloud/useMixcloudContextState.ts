@@ -26,11 +26,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [player, setPlayer] = useState<any>();
   const [playerUpdated, setPlayerUpdated] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [mixProgress, setMixProgress] = useState(0);
+  const [mixProgressPercent, setMixProgressPercent] = useState(0);
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
   const [showUnavailable, setShowUnavailable] = useState(false);
+  const [trackProgress, setTrackProgress] = useState(0);
+  const [trackProgressPercent, setTrackProgressPercent] = useState(0);
   const [volume, setVolume] = useState(0.7);
 
   const mcUrl = mcKeyUrlFormatter(mcKey);
@@ -79,6 +82,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
   }, [mcKey, mixes]);
 
+  /* Calculate Progress */
+  useEffect(() => {
+    setMixProgressPercent((mixProgress / duration) * 100);
+  }, [duration, mixProgress]);
+
+  useEffect(() => {
+    setTrackProgressPercent((mixProgress / duration) * 100);
+  }, [duration, mixProgress]);
+
   return {
     collapsed,
     duration,
@@ -94,15 +106,17 @@ const useMixcloudContextState = (): MixcloudContextState => {
     mcKeyPrevious,
     mcUrl,
     mixes,
+    mixProgress,
+    mixProgressPercent,
     player,
     playerUpdated,
     playing,
-    progress,
     scriptLoaded,
     selectedCategory,
     selectedTag,
     showUnavailable,
-    volume,
+    trackProgress,
+    trackProgressPercent,
     setCollapsed,
     setDuration,
     setLoaded,
@@ -110,16 +124,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
     setMcKeyNext,
     setMcKeyPrevious,
     setMixes,
+    setMixProgress,
+    setMixProgressPercent,
     setPlayer,
     setPlayerUpdated,
     setPlaying,
-    setProgress,
     setScriptLoaded,
     setSelectedCategory,
     setSelectedTag,
     setShowUnavailable,
+    setTrackProgress,
+    setTrackProgressPercent,
     setVolume,
     widgetUrl,
+    volume,
   };
 };
 

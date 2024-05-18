@@ -22,7 +22,7 @@ export const StyledPlayer = styled.div`
   width: 100%;
 `;
 
-export const StyledNothing = styled.div`
+export const StyledProgressBar = styled.div`
   background: coral;
   width: 20%;
 `;
