@@ -4,6 +4,7 @@ interface StyledSemiCircularProgressProps {
   value: number;
   position: "top" | "bottom";
   start: "left" | "right";
+  barWidth?: number;
 }
 
 const getStartTurn = (position: "top" | "bottom", start: "left" | "right") => {
@@ -15,9 +16,9 @@ const getStartTurn = (position: "top" | "bottom", start: "left" | "right") => {
 
 export const StyledSemiCircularProgress = styled.div<StyledSemiCircularProgressProps>`
   --percentage: ${(props) => props.value};
-  --primary: #ffffff; /* Color used for progress */
-  --secondary: #2b256b; /* Default circle color */
-  --size: 300px;
+  --primary: rgba(0.5, 0.5, 0.5, 0.8);
+  --secondary: rgba(0.5, 0.5, 0.5, 0.2);
+  --size: 400px;
   width: 100%;
   aspect-ratio: 2 / 1;
   border-radius: ${(props) =>
@@ -49,14 +50,14 @@ export const StyledSemiCircularProgress = styled.div<StyledSemiCircularProgressP
     );
     mask: radial-gradient(
       at 50% ${(props) => (props.position === "top" ? "100%" : "0%")},
-      white 55%,
-      transparent 55.5%
+      white ${(props) => 55 - (props.barWidth || 5)}%,
+      transparent ${(props) => 55 - (props.barWidth || 5) + 0.5}%
     );
     mask-mode: alpha;
     -webkit-mask: radial-gradient(
       at 50% ${(props) => (props.position === "top" ? "100%" : "0%")},
-      #0000 55%,
-      #000 55.5%
+      #0000 ${(props) => 70 - (props.barWidth || 5)}%,
+      #000 ${(props) => 70 - (props.barWidth || 5) + 0.5}%
     );
     -webkit-mask-mode: alpha;
   }

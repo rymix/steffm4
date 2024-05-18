@@ -12,19 +12,38 @@ export const StyledMixcloudWidget = styled.iframe`
 `;
 
 export const StyledPlayer = styled.div`
-  background: blue;
-  bottom: 0;
+  align-items: center;
   display: flex;
-  left: 0;
-  height: 30vh;
-  position: relative; //fixed
-  text-align: center;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  position: relative;
   width: 100%;
 `;
 
-export const StyledProgressBar = styled.div`
-  background: coral;
-  width: 20%;
+export const StyledControlPanel = styled.div`
+  align-items: center;
+  background: yellow;
+  display: flex;
+  height: 600px;
+  justify-content: center;
+  position: relative;
+  width: 400px;
+`;
+
+export const StyledProgressBar = styled.div<{ position: "top" | "bottom" }>`
+  min-height: 140px;
+  min-width: 340px;
+  transform: translateY(-300px);
+`;
+
+export const StyledAudioControlsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+  transform: translateY(20px);
+  z-index: 10;
 `;
 
 export const StyledAudioControls = styled.div`

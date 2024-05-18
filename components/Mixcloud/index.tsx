@@ -2,23 +2,18 @@ import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import VolumeDown from "@mui/icons-material/VolumeDown";
-import VolumeUp from "@mui/icons-material/VolumeUp";
-import LinearProgress from "@mui/material/LinearProgress";
-import Slider from "@mui/material/Slider";
-import Stack from "@mui/material/Stack";
 import SemiCircularProgress from "components/Controls/SemiCircularProgress";
 import Debug from "components/Mixcloud/Debug";
 import {
   StyledAudioControls,
   StyledAudioControlsInner,
+  StyledAudioControlsWrapper,
   StyledMixcloudWidget,
   StyledPlay,
   StyledPlayer,
   StyledProgressBar,
   StyledSkipNext,
   StyledSkipPrevious,
-  StyledVolumeControls,
 } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
@@ -177,61 +172,63 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
           />
 
           <StyledPlayer>
-            <StyledProgressBar>
+            <StyledAudioControlsWrapper>
+              <StyledAudioControls>
+                <StyledAudioControlsInner>
+                  <StyledSkipPrevious>
+                    <SkipPreviousIcon
+                      onClick={handlePrevious}
+                      fontSize="inherit"
+                      className="control"
+                    />
+                  </StyledSkipPrevious>
+
+                  <StyledPlay>
+                    {playing ? (
+                      <PauseIcon
+                        onClick={handlePlayPause}
+                        fontSize="inherit"
+                        className="control"
+                      />
+                    ) : (
+                      <PlayArrowIcon
+                        onClick={handlePlayPause}
+                        fontSize="inherit"
+                        className="control"
+                      />
+                    )}
+                  </StyledPlay>
+
+                  <StyledSkipNext>
+                    <SkipNextIcon
+                      onClick={handleNext}
+                      fontSize="inherit"
+                      className="control"
+                    />
+                  </StyledSkipNext>
+                </StyledAudioControlsInner>
+              </StyledAudioControls>
+            </StyledAudioControlsWrapper>
+
+            <StyledProgressBar position="top">
               <SemiCircularProgress
                 value={mixProgressPercent}
                 position="top"
                 start="left"
+                barWidth={1}
               />
+            </StyledProgressBar>
+            <StyledProgressBar position="bottom">
               <SemiCircularProgress
                 value={mixProgressPercent}
                 position="bottom"
                 start="left"
-              />
-
-              <LinearProgress
-                variant="determinate"
-                value={mixProgressPercent}
+                barWidth={1}
               />
             </StyledProgressBar>
+          </StyledPlayer>
 
-            <StyledAudioControls>
-              <StyledAudioControlsInner>
-                <StyledSkipPrevious>
-                  <SkipPreviousIcon
-                    onClick={handlePrevious}
-                    fontSize="inherit"
-                    className="control"
-                  />
-                </StyledSkipPrevious>
-
-                <StyledPlay>
-                  {playing ? (
-                    <PauseIcon
-                      onClick={handlePlayPause}
-                      fontSize="inherit"
-                      className="control"
-                    />
-                  ) : (
-                    <PlayArrowIcon
-                      onClick={handlePlayPause}
-                      fontSize="inherit"
-                      className="control"
-                    />
-                  )}
-                </StyledPlay>
-
-                <StyledSkipNext>
-                  <SkipNextIcon
-                    onClick={handleNext}
-                    fontSize="inherit"
-                    className="control"
-                  />
-                </StyledSkipNext>
-              </StyledAudioControlsInner>
-            </StyledAudioControls>
-
-            <StyledVolumeControls>
+          {/* <StyledVolumeControls>
               <Stack
                 spacing={2}
                 direction="row"
@@ -249,8 +246,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
                 />
                 <VolumeUp />
               </Stack>
-            </StyledVolumeControls>
-          </StyledPlayer>
+            </StyledVolumeControls> */}
 
           {children}
         </>
