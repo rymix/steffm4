@@ -16,7 +16,7 @@ import {
 } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   const { autoPlay = true, children, defaultMcKey } = props;
@@ -42,15 +42,18 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setProgress,
     setScriptLoaded,
     setShowUnavailable,
+    setVolume,
+    volume,
     widgetUrl,
   } = useMixcloud();
 
-  const [value, setValue] = useState<number>(30);
-
   const timer = useRef<any>(null);
 
-  const handleChange = (event: Event, newValue: number | number[]): void => {
-    setValue(newValue as number);
+  const handleVolumeChange = (
+    event: Event,
+    newValue: number | number[],
+  ): void => {
+    setVolume((newValue as number) / 100);
   };
 
   useEffect(() => {
@@ -196,8 +199,11 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
                 <VolumeDown />
                 <Slider
                   aria-label="Volume"
-                  value={value}
-                  onChange={handleChange}
+                  value={volume * 100}
+                  onChange={handleVolumeChange}
+                  defaultValue={70}
+                  min={0}
+                  max={100}
                 />
                 <VolumeUp />
               </Stack>

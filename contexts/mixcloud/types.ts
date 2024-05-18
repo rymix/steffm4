@@ -8,8 +8,6 @@ export type MixcloudContextState = {
   handleNext: () => void;
   handlePlayPause: () => void;
   handlePrevious: () => void;
-  handleVolumeDown: () => void;
-  handleVolumeUp: () => void;
   iframeRef: React.MutableRefObject<HTMLIFrameElement | null>;
   loaded: boolean;
   mcKey: string;

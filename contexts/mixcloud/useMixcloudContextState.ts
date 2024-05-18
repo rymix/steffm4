@@ -31,8 +31,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
   const [showUnavailable, setShowUnavailable] = useState(false);
-  const [volume, setVolume] = useState(8 / 11);
-  const [volumeIndex, setVolumeIndex] = useState(8);
+  const [volume, setVolume] = useState(0.7);
 
   const mcUrl = mcKeyUrlFormatter(mcKey);
   const widgetUrl = mcWidgetUrlFormatter(mcKey);
@@ -44,22 +43,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, [player, playerUpdated]);
 
   /* Volume Controls */
-  const handleVolumeChange = useCallback(
-    (step: number) => {
-      const newVolumeIndex = Math.max(0, Math.min(11, volumeIndex + step));
-      const newVolume = newVolumeIndex / 11;
-      setVolumeIndex(newVolumeIndex);
-      setVolume(newVolume);
-      if (player) {
-        player.setVolume(newVolume);
-      }
-    },
-    [volumeIndex, player],
-  );
-
-  const handleVolumeDown = (): void => handleVolumeChange(-1);
-  const handleVolumeUp = (): void => handleVolumeChange(1);
-
   useEffect(() => {
     if (player) {
       player.setVolume(volume);
@@ -104,8 +87,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     handleNext,
     handlePlayPause,
     handlePrevious,
-    handleVolumeDown,
-    handleVolumeUp,
     iframeRef,
     loaded,
     mcKey,
@@ -122,7 +103,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     selectedTag,
     showUnavailable,
     volume,
-    volumeIndex,
     setCollapsed,
     setDuration,
     setLoaded,
@@ -139,7 +119,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     setSelectedTag,
     setShowUnavailable,
     setVolume,
-    setVolumeIndex,
     widgetUrl,
   };
 };
