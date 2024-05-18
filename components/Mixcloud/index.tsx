@@ -23,37 +23,40 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   const { autoPlay = true, children, defaultMcKey } = props;
 
   const {
-    collapsed,
-    duration,
-    handlePlayPause,
-    handleNext,
-    handlePrevious,
-    iframeRef,
-    loaded,
     mcKey,
-    mixProgress,
-    mixProgressPercent,
-    playing,
-    scriptLoaded,
-    showUnavailable,
-    setCollapsed,
-    setDuration,
-    setLoaded,
     setMcKey,
-    setMixProgress,
-    setMixProgressPercent,
-    setPlayer,
-    setPlayerUpdated,
-    setPlaying,
-    setScriptLoaded,
-    setShowUnavailable,
-    setTrackProgress,
-    setTrackProgressPercent,
-    setVolume,
-    trackProgress,
-    trackProgressPercent,
-    volume,
-    widgetUrl,
+    controls: { handlePlayPause, handleNext, handlePrevious },
+    filters: { setMixes, setSelectedCategory, setSelectedTag },
+    mix: {
+      duration,
+      progress: mixProgress,
+      progressPercent: mixProgressPercent,
+      setDuration,
+      setProgress: setMixProgress,
+      setProgressPercent: setMixProgressPercent,
+      setShowUnavailable,
+      showUnavailable,
+    },
+    track: {
+      progress: trackProgress,
+      progressPercent: trackProgressPercent,
+      setProgress: setTrackProgress,
+      setProgressPercent: setTrackProgressPercent,
+    },
+    widget: {
+      iframeRef,
+      loaded,
+      playing,
+      scriptLoaded,
+      setLoaded,
+      setPlayer,
+      setPlayerUpdated,
+      setPlaying,
+      setScriptLoaded,
+      setVolume,
+      volume,
+      widgetUrl,
+    },
   } = useMixcloud();
 
   const timer = useRef<any>(null);
@@ -135,9 +138,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
         setLoaded(true);
         setDuration(dur);
         setShowUnavailable(false);
-        if (!collapsed) {
-          setCollapsed(false);
-        }
         timer.current = setTimeout(() => {
           if (autoPlay === true) {
             widget.play();

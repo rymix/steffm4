@@ -5,7 +5,10 @@ import { useEffect, useState } from "react";
 import { mcKeyFormatter } from "utils/functions";
 
 const Home = (): JSX.Element => {
-  const { fetchRandomMcKey } = useMixcloud();
+  const {
+    controls: { fetchRandomMcKey },
+  } = useMixcloud();
+
   const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
 
   useEffect(() => {

@@ -11,18 +11,19 @@ import { useEffect, useState } from "react";
 
 export const Catalogue: React.FC<CatalogueProps> = () => {
   const {
-    mixes,
-    selectedCategory,
-    setMixes,
-    selectedTag,
-    setSelectedCategory,
-    setSelectedTag,
+    controls: { handleLoad },
+    filters: {
+      mixes,
+      selectedCategory,
+      selectedTag,
+      setMixes,
+      setSelectedCategory,
+      setSelectedTag,
+    },
   } = useMixcloud();
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [tags, setTags] = useState<Tag[]>([]);
-
-  const { handleLoad } = useMixcloud();
 
   useEffect(() => {
     const fetchCategoriesAndTags = async (): Promise<void> => {
