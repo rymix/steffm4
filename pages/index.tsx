@@ -27,8 +27,8 @@ const Home = (): JSX.Element => {
       {randomMcKey && (
         <>
           <Mixcloud defaultMcKey={randomMcKey} />
-          <Catalogue />
           <MixCard />
+          <Catalogue />
         </>
       )}
     </>

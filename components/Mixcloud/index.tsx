@@ -1,5 +1,5 @@
-import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
-import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
+import PauseIcon from "@mui/icons-material/Pause";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import VolumeDown from "@mui/icons-material/VolumeDown";
@@ -7,12 +7,17 @@ import VolumeUp from "@mui/icons-material/VolumeUp";
 import LinearProgress from "@mui/material/LinearProgress";
 import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
+import SemiCircularProgress from "components/Controls/SemiCircularProgress";
 import Debug from "components/Mixcloud/Debug";
 import {
   StyledAudioControls,
+  StyledAudioControlsInner,
   StyledMixcloudWidget,
+  StyledPlay,
   StyledPlayer,
   StyledProgressBar,
+  StyledSkipNext,
+  StyledSkipPrevious,
   StyledVolumeControls,
 } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
@@ -156,6 +161,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
 
   return (
     <>
+      <Debug />
       {mcKey && (
         <>
           <StyledMixcloudWidget
@@ -172,6 +178,8 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
 
           <StyledPlayer>
             <StyledProgressBar>
+              <SemiCircularProgress value={mixProgressPercent} />
+
               <LinearProgress
                 variant="determinate"
                 value={mixProgressPercent}
@@ -179,31 +187,39 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             </StyledProgressBar>
 
             <StyledAudioControls>
-              <SkipPreviousIcon
-                onClick={handlePrevious}
-                fontSize="inherit"
-                className="control"
-              />
+              <StyledAudioControlsInner>
+                <StyledSkipPrevious>
+                  <SkipPreviousIcon
+                    onClick={handlePrevious}
+                    fontSize="inherit"
+                    className="control"
+                  />
+                </StyledSkipPrevious>
 
-              {playing ? (
-                <PauseCircleOutlineIcon
-                  onClick={handlePlayPause}
-                  fontSize="inherit"
-                  className="control"
-                />
-              ) : (
-                <PlayCircleOutlineIcon
-                  onClick={handlePlayPause}
-                  fontSize="inherit"
-                  className="control"
-                />
-              )}
+                <StyledPlay>
+                  {playing ? (
+                    <PauseIcon
+                      onClick={handlePlayPause}
+                      fontSize="inherit"
+                      className="control"
+                    />
+                  ) : (
+                    <PlayArrowIcon
+                      onClick={handlePlayPause}
+                      fontSize="inherit"
+                      className="control"
+                    />
+                  )}
+                </StyledPlay>
 
-              <SkipNextIcon
-                onClick={handleNext}
-                fontSize="inherit"
-                className="control"
-              />
+                <StyledSkipNext>
+                  <SkipNextIcon
+                    onClick={handleNext}
+                    fontSize="inherit"
+                    className="control"
+                  />
+                </StyledSkipNext>
+              </StyledAudioControlsInner>
             </StyledAudioControls>
 
             <StyledVolumeControls>
@@ -227,7 +243,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             </StyledVolumeControls>
           </StyledPlayer>
 
-          <Debug />
           {children}
         </>
       )}
