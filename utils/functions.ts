@@ -39,6 +39,9 @@ export const pxToNum = (value: string | number = 0): number =>
 export const mcKeyFormatter = (mcKey: string): string =>
   mcKey.startsWith("/rymixxx/") ? mcKey : `/rymixxx/${mcKey}/`;
 
+export const mcKeyUnformatter = (mcKey: string): string =>
+  mcKey.startsWith("/rymixxx/") ? mcKey.slice(9, -1) : mcKey;
+
 export const mcKeyUrlFormatter = (mcKey: string): string =>
   `https://www.mixcloud.com${mcKeyFormatter(mcKey)}`;
 

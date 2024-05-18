@@ -25,10 +25,10 @@ export type MixcloudContextState = {
   };
   mix: {
     duration: number;
-    details: string;
+    details: Mix | undefined;
     progress: number;
     progressPercent: number;
-    setDetails: React.Dispatch<React.SetStateAction<string>>;
+    setDetails: React.Dispatch<React.SetStateAction<Mix | undefined>>;
     setDuration: React.Dispatch<React.SetStateAction<number>>;
     setProgress: React.Dispatch<React.SetStateAction<number>>;
     setProgressPercent: React.Dispatch<React.SetStateAction<number>>;

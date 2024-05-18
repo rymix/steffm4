@@ -1,4 +1,5 @@
 import Catalogue from "components/Catalogue";
+import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
@@ -27,6 +28,7 @@ const Home = (): JSX.Element => {
         <>
           <Mixcloud defaultMcKey={randomMcKey} />
           <Catalogue />
+          <MixCard />
         </>
       )}
     </>

@@ -1,21 +1,16 @@
+/* eslint-disable unicorn/consistent-function-scoping */
 import type { MixcloudContextState } from "contexts/mixcloud/types";
 import type { Mix } from "db/types";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   mcKeyFormatter,
+  mcKeyUnformatter,
   mcKeyUrlFormatter,
   mcWidgetUrlFormatter,
 } from "utils/functions";
 
-/* Helpers */
-const fetchRandomMcKey = async (): Promise<string> => {
-  const response = await fetch("/api/random-mix");
-  const data = await response.json();
-  return data.mcKey;
-};
-
 const useMixcloudContextState = (): MixcloudContextState => {
-  const [mixDetails, setMixDetails] = useState("");
+  const [mixDetails, setMixDetails] = useState<Mix | undefined>();
   const [duration, setDuration] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [loaded, setLoaded] = useState(false);
@@ -36,8 +31,41 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [trackProgressPercent, setTrackProgressPercent] = useState(0);
   const [volume, setVolume] = useState(0.7);
 
+  /* Helpers */
   const mcUrl = mcKeyUrlFormatter(mcKey);
+
   const widgetUrl = mcWidgetUrlFormatter(mcKey);
+
+  const fetchRandomMcKey = async (): Promise<string> => {
+    const response = await fetch("/api/random-mix");
+    const data = await response.json();
+    return data.mcKey;
+  };
+
+  const fetchMixDetails = async (
+    localMcKey?: string,
+  ): Promise<Mix | undefined> => {
+    if (!mcKey && !localMcKey) return;
+
+    const lookupMcKey = localMcKey || mcKey;
+
+    const response = await fetch(
+      `/api/mix?mixcloudKey=${mcKeyUnformatter(lookupMcKey)}`,
+    );
+    const data: Mix = await response.json();
+    return data;
+  };
+
+  useEffect(() => {
+    const fetchDetails = async (): Promise<void> => {
+      const fetchedMixDetails = await fetchMixDetails();
+      setMixDetails(fetchedMixDetails);
+    };
+
+    if (mcKey) {
+      fetchDetails();
+    }
+  }, [mcKey]);
 
   /* Play / Pause Controls */
   const handlePlayPause = useCallback(() => {
@@ -60,7 +88,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Navigation */
   const handleNext = useCallback(async () => {
-    const mixIndex = mixes.findIndex((mix) => mcKey.includes(mix.mixcloudKey));
+    const mixIndex = mixes.findIndex((thisMix) =>
+      mcKey.includes(thisMix.mixcloudKey),
+    );
 
     if (!mixes || mixes.length === 0 || mixIndex === -1) {
       handleLoad(await fetchRandomMcKey());
@@ -71,7 +101,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, [mcKey, mixes]);
 
   const handlePrevious = useCallback(async () => {
-    const mixIndex = mixes.findIndex((mix) => mcKey.includes(mix.mixcloudKey));
+    const mixIndex = mixes.findIndex((thisMix) =>
+      mcKey.includes(thisMix.mixcloudKey),
+    );
 
     if (!mixes || mixes.length === 0 || mixIndex === -1) {
       handleLoad(await fetchRandomMcKey());
