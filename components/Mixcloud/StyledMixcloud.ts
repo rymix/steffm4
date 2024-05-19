@@ -4,46 +4,46 @@ export const StyledMixcloudWidget = styled.iframe`
   bottom: 0;
   left: 0;
   height: 60px;
-  opacity: 1;
+  opacity: 0;
   position: fixed;
-  // transform: translateY(60px);
+  transform: translateY(60px);
   width: 100%;
   z-index: 1;
+`;
+
+export const StyledPlayerWrapper = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const StyledPlayer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100%;
   justify-content: center;
   position: relative;
-  width: 100%;
-`;
-
-export const StyledControlPanel = styled.div`
-  align-items: center;
-  background: yellow;
-  display: flex;
-  height: 600px;
-  justify-content: center;
-  position: relative;
-  width: 400px;
+  z-index: 2;
 `;
 
 export const StyledProgressBar = styled.div<{ position: "top" | "bottom" }>`
-  min-height: 140px;
-  min-width: 340px;
-  transform: translateY(-300px);
+  position: absolute;
+  width: 340px;
+  height: 200px; // Adjusted to keep the aspect ratio for a semi-circle
+  top: ${(props) => (props.position === "top" ? "0" : "auto")};
+  bottom: ${(props) => (props.position === "bottom" ? "-30px" : "auto")};
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
 `;
 
 export const StyledAudioControlsWrapper = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 300px;
-  transform: translateY(20px);
-  z-index: 10;
+  align-items: flex-start;
+  height: 340px;
+  z-index: 3;
 `;
 
 export const StyledAudioControls = styled.div`
@@ -57,6 +57,7 @@ export const StyledAudioControls = styled.div`
   justify-content: center;
   position: relative;
   width: 300px;
+  top: 20px;
 
   .control {
     transition: color 0.125s;

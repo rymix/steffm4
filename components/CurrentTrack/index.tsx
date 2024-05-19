@@ -1,7 +1,12 @@
 import type { CatalogueProps } from "components/Catalogue/types";
 import {
+  StyledArtistName,
+  StyledCoverArt,
+  StyledCoverArtImage,
   StyledCurrentTrack,
-  StyledTrackDetail,
+  StyledPublisher,
+  StyledRemixArtistName,
+  StyledTrackName,
 } from "components/CurrentTrack/StyledCurrentTrack";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
@@ -18,21 +23,29 @@ export const CurrentTrack: React.FC<CatalogueProps> = () => {
 
   return (
     <StyledCurrentTrack>
-      <StyledTrackDetail>
-        <strong>Title:</strong> {currentTrack.trackName}
-      </StyledTrackDetail>
-      <StyledTrackDetail>
-        <strong>Artist:</strong> {currentTrack.artistName}
-      </StyledTrackDetail>
-      <StyledTrackDetail>
-        <strong>Start Time:</strong> {currentTrack.startTime}
-      </StyledTrackDetail>
-      <StyledTrackDetail>
-        <strong>Progress:</strong> {track.progress} seconds
-      </StyledTrackDetail>
-      <StyledTrackDetail>
-        <strong>Progress Percent:</strong> {track.progressPercent}%
-      </StyledTrackDetail>
+      {currentTrack.coverArtLarge && (
+        <StyledCoverArt>
+          <StyledCoverArtImage
+            src={currentTrack.coverArtLarge}
+            alt={currentTrack.trackName}
+          />
+        </StyledCoverArt>
+      )}
+      <StyledTrackName>{currentTrack.trackName}</StyledTrackName>
+
+      {currentTrack.artistName && (
+        <StyledArtistName>{currentTrack.artistName}</StyledArtistName>
+      )}
+
+      {currentTrack.remixArtistName && (
+        <StyledRemixArtistName>
+          {currentTrack.remixArtistName}
+        </StyledRemixArtistName>
+      )}
+
+      {currentTrack.publisher && (
+        <StyledPublisher>{currentTrack.publisher}</StyledPublisher>
+      )}
     </StyledCurrentTrack>
   );
 };

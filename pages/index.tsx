@@ -1,8 +1,6 @@
-import Catalogue from "components/Catalogue";
 import CurrentTrack from "components/CurrentTrack";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
-import TrackList from "components/TrackList";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 import { mcKeyFormatter } from "utils/functions";
@@ -28,11 +26,9 @@ const Home = (): JSX.Element => {
     <>
       {randomMcKey && (
         <>
-          <Mixcloud defaultMcKey={randomMcKey} />
           <CurrentTrack />
-          <TrackList />
+          <Mixcloud defaultMcKey={randomMcKey} />
           <MixCard />
-          <Catalogue />
         </>
       )}
     </>

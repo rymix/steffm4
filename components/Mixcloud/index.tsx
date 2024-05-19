@@ -10,6 +10,7 @@ import {
   StyledMixcloudWidget,
   StyledPlay,
   StyledPlayer,
+  StyledPlayerWrapper,
   StyledProgressBar,
   StyledSkipNext,
   StyledSkipPrevious,
@@ -17,8 +18,6 @@ import {
 import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useRef } from "react";
-
-import Debug from "./Debug";
 
 export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   const { autoPlay = true, children, defaultMcKey } = props;
@@ -157,8 +156,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
 
   return (
     <>
-      <Debug />
-
       {mcKey && (
         <>
           <StyledMixcloudWidget
@@ -173,44 +170,46 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             frameBorder="0"
           />
 
-          <StyledPlayer>
-            <StyledAudioControlsWrapper>
-              <StyledAudioControls>
-                <StyledAudioControlsInner>
-                  <StyledSkipPrevious>
-                    <SkipPreviousIcon
-                      onClick={handlePrevious}
-                      fontSize="inherit"
-                      className="control"
-                    />
-                  </StyledSkipPrevious>
-
-                  <StyledPlay>
-                    {playing ? (
-                      <PauseIcon
-                        onClick={handlePlayPause}
+          <StyledPlayerWrapper>
+            <StyledPlayer>
+              <StyledAudioControlsWrapper>
+                <StyledAudioControls>
+                  <StyledAudioControlsInner>
+                    <StyledSkipPrevious>
+                      <SkipPreviousIcon
+                        onClick={handlePrevious}
                         fontSize="inherit"
                         className="control"
                       />
-                    ) : (
-                      <PlayArrowIcon
-                        onClick={handlePlayPause}
+                    </StyledSkipPrevious>
+
+                    <StyledPlay>
+                      {playing ? (
+                        <PauseIcon
+                          onClick={handlePlayPause}
+                          fontSize="inherit"
+                          className="control"
+                        />
+                      ) : (
+                        <PlayArrowIcon
+                          onClick={handlePlayPause}
+                          fontSize="inherit"
+                          className="control"
+                        />
+                      )}
+                    </StyledPlay>
+
+                    <StyledSkipNext>
+                      <SkipNextIcon
+                        onClick={handleNext}
                         fontSize="inherit"
                         className="control"
                       />
-                    )}
-                  </StyledPlay>
-
-                  <StyledSkipNext>
-                    <SkipNextIcon
-                      onClick={handleNext}
-                      fontSize="inherit"
-                      className="control"
-                    />
-                  </StyledSkipNext>
-                </StyledAudioControlsInner>
-              </StyledAudioControls>
-            </StyledAudioControlsWrapper>
+                    </StyledSkipNext>
+                  </StyledAudioControlsInner>
+                </StyledAudioControls>
+              </StyledAudioControlsWrapper>
+            </StyledPlayer>
 
             <StyledProgressBar position="top">
               <SemiCircularProgress
@@ -228,27 +227,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
                 $barWidth={1}
               />
             </StyledProgressBar>
-          </StyledPlayer>
-
-          {/* <StyledVolumeControls>
-              <Stack
-                spacing={2}
-                direction="row"
-                sx={{ mb: 1 }}
-                alignItems="center"
-              >
-                <VolumeDown />
-                <Slider
-                  aria-label="Volume"
-                  value={volume * 100}
-                  onChange={handleVolumeChange}
-                  defaultValue={70}
-                  min={0}
-                  max={100}
-                />
-                <VolumeUp />
-              </Stack>
-            </StyledVolumeControls> */}
+          </StyledPlayerWrapper>
 
           {children}
         </>
