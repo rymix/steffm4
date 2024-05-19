@@ -59,7 +59,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
   useEffect(() => {
     const fetchDetails = async (): Promise<void> => {
       const fetchedMixDetails = await fetchMixDetails();
-      setMixDetails(fetchedMixDetails);
+      if (fetchedMixDetails) {
+        setMixDetails(fetchedMixDetails);
+      }
     };
 
     if (mcKey) {
@@ -157,7 +159,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setProgressPercent: setMixProgressPercent,
       setShowUnavailable,
       showUnavailable,
-      tracks: [],
     },
     track: {
       progress: trackProgress,

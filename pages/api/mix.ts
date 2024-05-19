@@ -1,6 +1,4 @@
-// pages/api/mix.ts
 import { db, initializeDb } from "db";
-import _ from "lodash";
 
 export default async function handler(req: any, res: any): Promise<void> {
   await initializeDb();
@@ -13,11 +11,12 @@ export default async function handler(req: any, res: any): Promise<void> {
       const categoryDetail = db.data?.categories.find(
         (c) => c.code.toString() === mix.category.toString(),
       );
-      const mixWithCategory = {
+      const mixWithCategoryAndTracks = {
         ...mix,
         category: categoryDetail || mix.category,
+        tracks: mix.tracks,
       };
-      res.status(200).json(_.omit(mixWithCategory, "tracks"));
+      res.status(200).json(mixWithCategoryAndTracks);
     } else {
       res.status(404).json({ message: "Mix not found" });
     }

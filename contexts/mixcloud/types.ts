@@ -1,4 +1,4 @@
-import type { Mix, Track } from "db/types";
+import type { Mix } from "db/types";
 
 export type MixcloudContextState = {
   mcKey: string;
@@ -34,7 +34,6 @@ export type MixcloudContextState = {
     setProgressPercent: React.Dispatch<React.SetStateAction<number>>;
     setShowUnavailable: React.Dispatch<React.SetStateAction<boolean>>;
     showUnavailable: boolean;
-    tracks: Track[];
   };
   track: {
     progress: number;
