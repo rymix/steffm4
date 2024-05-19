@@ -1,4 +1,5 @@
 import Catalogue from "components/Catalogue";
+import CurrentTrack from "components/CurrentTrack";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
 import TrackList from "components/TrackList";
@@ -28,6 +29,7 @@ const Home = (): JSX.Element => {
       {randomMcKey && (
         <>
           <Mixcloud defaultMcKey={randomMcKey} />
+          <CurrentTrack />
           <TrackList />
           <MixCard />
           <Catalogue />
