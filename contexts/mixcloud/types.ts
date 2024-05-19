@@ -38,8 +38,10 @@ export type MixcloudContextState = {
   track: {
     progress: number;
     progressPercent: number;
+    sectionNumber: number;
     setProgress: React.Dispatch<React.SetStateAction<number>>;
     setProgressPercent: React.Dispatch<React.SetStateAction<number>>;
+    setSectionNumber: React.Dispatch<React.SetStateAction<number>>;
   };
   widget: {
     iframeRef: React.MutableRefObject<HTMLIFrameElement | null>;

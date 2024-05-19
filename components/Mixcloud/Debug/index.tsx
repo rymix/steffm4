@@ -9,7 +9,11 @@ export const Debug: React.FC<MixcloudProps> = () => {
       progress: mixProgress,
       progressPercent: mixProgressPercent,
     },
-    track: { progress: trackProgress, progressPercent: trackProgressPercent },
+    track: {
+      progress: trackProgress,
+      progressPercent: trackProgressPercent,
+      sectionNumber: trackSectionNumber,
+    },
     widget: { loaded, playing, scriptLoaded, volume },
   } = useMixcloud();
 
@@ -53,6 +57,10 @@ export const Debug: React.FC<MixcloudProps> = () => {
         <tr>
           <td>trackProgressPercent</td>
           <td>{trackProgressPercent}</td>
+        </tr>
+        <tr>
+          <td>trackSectionNumber</td>
+          <td>{trackSectionNumber}</td>
         </tr>
         <tr>
           <td>scriptLoaded</td>

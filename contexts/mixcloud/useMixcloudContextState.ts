@@ -29,6 +29,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [showUnavailable, setShowUnavailable] = useState(false);
   const [trackProgress, setTrackProgress] = useState(0);
   const [trackProgressPercent, setTrackProgressPercent] = useState(0);
+  const [trackSectionNumber, setTrackSectionNumber] = useState(0);
   const [volume, setVolume] = useState(0.7);
 
   /* Helpers */
@@ -169,6 +170,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
       setTrackProgress(trackProgressSeconds);
       setTrackProgressPercent(trackProgressPercent);
+      setTrackSectionNumber(tracks[currentTrackIndex].sectionNumber);
     };
 
     calculateTrackProgress();
@@ -212,8 +214,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
     track: {
       progress: trackProgress,
       progressPercent: trackProgressPercent,
+      sectionNumber: trackSectionNumber,
       setProgress: setTrackProgress,
       setProgressPercent: setTrackProgressPercent,
+      setSectionNumber: setTrackSectionNumber,
     },
     widget: {
       iframeRef,
