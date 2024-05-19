@@ -3,7 +3,6 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import SemiCircularProgress from "components/Controls/SemiCircularProgress";
-import Debug from "components/Mixcloud/Debug";
 import {
   StyledAudioControls,
   StyledAudioControlsInner,
@@ -156,7 +155,8 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
 
   return (
     <>
-      <Debug />
+      {/* <Debug /> */}
+
       {mcKey && (
         <>
           <StyledMixcloudWidget
@@ -213,17 +213,17 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             <StyledProgressBar position="top">
               <SemiCircularProgress
                 value={mixProgressPercent}
-                position="top"
-                start="left"
-                barWidth={1}
+                $position="top"
+                $start="left"
+                $barWidth={1}
               />
             </StyledProgressBar>
             <StyledProgressBar position="bottom">
               <SemiCircularProgress
                 value={mixProgressPercent}
-                position="bottom"
-                start="left"
-                barWidth={1}
+                $position="bottom"
+                $start="left"
+                $barWidth={1}
               />
             </StyledProgressBar>
           </StyledPlayer>
