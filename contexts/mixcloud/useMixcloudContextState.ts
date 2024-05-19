@@ -122,8 +122,57 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, [duration, mixProgress]);
 
   useEffect(() => {
-    setTrackProgressPercent((mixProgress / duration) * 100);
-  }, [duration, mixProgress]);
+    if (!mixDetails || !mixDetails.tracks || mixDetails.tracks.length === 0) {
+      setTrackProgress(0);
+      setTrackProgressPercent(0);
+      return;
+    }
+
+    const calculateTrackProgress = () => {
+      const currentMixProgressSeconds = mixProgress;
+
+      const parseTimeToSeconds = (time: string): number => {
+        const parts = time.split(":").map(Number).reverse();
+        let seconds = 0;
+        if (parts.length > 0) seconds += parts[0]; // seconds
+        if (parts.length > 1) seconds += parts[1] * 60; // minutes
+        if (parts.length > 2) seconds += parts[2] * 3600; // hours
+        return seconds;
+      };
+
+      const tracks = mixDetails.tracks.map((track) => ({
+        ...track,
+        startTimeSeconds: parseTimeToSeconds(track.startTime),
+      }));
+
+      let currentTrackIndex = tracks.findIndex((track, index) => {
+        const nextTrack = tracks[index + 1];
+        if (!nextTrack) return true;
+        return (
+          currentMixProgressSeconds >= track.startTimeSeconds &&
+          currentMixProgressSeconds < nextTrack.startTimeSeconds
+        );
+      });
+
+      if (currentTrackIndex === -1) {
+        currentTrackIndex = tracks.length - 1; // If no match, assume last track
+      }
+
+      const currentTrack = tracks[currentTrackIndex];
+      const nextTrackStartTime =
+        tracks[currentTrackIndex + 1]?.startTimeSeconds || duration;
+      const trackProgressSeconds =
+        currentMixProgressSeconds - currentTrack.startTimeSeconds;
+      const trackDuration = nextTrackStartTime - currentTrack.startTimeSeconds;
+
+      const trackProgressPercent = (trackProgressSeconds / trackDuration) * 100;
+
+      setTrackProgress(trackProgressSeconds);
+      setTrackProgressPercent(trackProgressPercent);
+    };
+
+    calculateTrackProgress();
+  }, [mixProgress, mixDetails, duration]);
 
   return {
     mcKey,
