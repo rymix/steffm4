@@ -8,7 +8,7 @@ export const StyledCurrentTrack = styled.div`
   justify-content: center;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
   padding: 20px;
   text-align: left;
 `;

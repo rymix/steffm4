@@ -16,6 +16,7 @@ export const StyledPlayerWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 `;
 
 export const StyledPlayer = styled.div`
@@ -30,9 +31,9 @@ export const StyledPlayer = styled.div`
 export const StyledProgressBar = styled.div<{ $position: "top" | "bottom" }>`
   position: absolute;
   width: 340px;
-  height: 200px; // Adjusted to keep the aspect ratio for a semi-circle
-  top: ${(props) => (props.$position === "top" ? "0" : "auto")};
-  bottom: ${(props) => (props.$position === "bottom" ? "-30px" : "auto")};
+  height: 200px;
+  top: ${(props) => (props.$position === "top" ? "20px" : "auto")};
+  bottom: ${(props) => (props.$position === "bottom" ? "-10px" : "auto")};
   left: 50%;
   transform: translateX(-50%);
   overflow: hidden;
