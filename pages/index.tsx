@@ -1,3 +1,4 @@
+import BurgerMenu from "components/BurgerMenu";
 import CurrentTrack from "components/CurrentTrack";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
@@ -26,6 +27,7 @@ const Home = (): JSX.Element => {
     <>
       {randomMcKey && (
         <>
+          <BurgerMenu />
           <CurrentTrack />
           <Mixcloud defaultMcKey={randomMcKey} />
           <MixCard />
