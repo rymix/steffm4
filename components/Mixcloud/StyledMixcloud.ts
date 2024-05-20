@@ -120,7 +120,16 @@ export const StyledPlay = styled.div`
   width: 100px;
 `;
 
+export const StyledVolumeControlsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+`;
+
 export const StyledVolumeControls = styled.div`
-  background: cyan;
-  width: 20%;
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  width: 240px;
 `;
