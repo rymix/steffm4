@@ -1,6 +1,7 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 import type { MixcloudContextState } from "contexts/mixcloud/types";
 import type { Mix } from "db/types";
+import { throttle } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   mcKeyFormatter,
@@ -118,9 +119,25 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, [mcKey, mixes]);
 
   /* Calculate Progress */
+  const throttledSetMixProgress = useCallback(
+    throttle(() => {
+      setMixProgressPercent((mixProgress / duration) * 100);
+    }, 100),
+    [],
+  );
+
   useEffect(() => {
-    setMixProgressPercent((mixProgress / duration) * 100);
-  }, [duration, mixProgress]);
+    throttledSetMixProgress();
+  }, [duration, mixProgress, throttledSetMixProgress]);
+
+  const throttledSetTrackProgress = useCallback(
+    throttle((progress) => {
+      setTrackProgress(progress.trackProgressSeconds);
+      setTrackProgressPercent(progress.trackProgressPercent);
+      setTrackSectionNumber(progress.sectionNumber);
+    }, 100),
+    [],
+  );
 
   useEffect(() => {
     if (!mixDetails || !mixDetails.tracks || mixDetails.tracks.length === 0) {
@@ -168,13 +185,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
       const trackProgressPercent = (trackProgressSeconds / trackDuration) * 100;
 
-      setTrackProgress(trackProgressSeconds);
-      setTrackProgressPercent(trackProgressPercent);
-      setTrackSectionNumber(tracks[currentTrackIndex].sectionNumber);
+      throttledSetTrackProgress({
+        trackProgressSeconds,
+        trackProgressPercent,
+        sectionNumber: tracks[currentTrackIndex].sectionNumber,
+      });
     };
 
     calculateTrackProgress();
-  }, [mixProgress, mixDetails, duration]);
+  }, [mixProgress, mixDetails, duration, throttledSetTrackProgress]);
 
   return {
     mcKey,
