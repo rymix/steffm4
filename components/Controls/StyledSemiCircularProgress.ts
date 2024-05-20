@@ -21,7 +21,6 @@ export const StyledSemiCircularProgress = styled.div.attrs<StyledSemiCircularPro
     },
   }),
 )<StyledSemiCircularProgressProps>`
-  --percentage: ${(props) => props.$value};
   --primary: rgba(0.5, 0.5, 0.5, 0.8);
   --secondary: rgba(0.5, 0.5, 0.5, 0.2);
   --size: 400px;
@@ -69,7 +68,7 @@ export const StyledSemiCircularProgress = styled.div.attrs<StyledSemiCircularPro
   }
 
   &::after {
-    counter-reset: percentage var(--value);
+    counter-reset: percentage var(--percentage);
     content: "";
     font-family: Helvetica, Arial, sans-serif;
     font-size: calc(var(--size) / 5);

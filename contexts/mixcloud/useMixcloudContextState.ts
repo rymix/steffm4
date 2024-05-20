@@ -122,7 +122,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const throttledSetMixProgress = useCallback(
     throttle(() => {
       setMixProgressPercent((mixProgress / duration) * 100);
-    }, 100),
+    }, 1000),
     [],
   );
 
@@ -135,7 +135,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setTrackProgress(progress.trackProgressSeconds);
       setTrackProgressPercent(progress.trackProgressPercent);
       setTrackSectionNumber(progress.sectionNumber);
-    }, 100),
+    }, 1000),
     [],
   );
 
