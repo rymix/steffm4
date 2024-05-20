@@ -1,3 +1,5 @@
+import VolumeDown from "@mui/icons-material/VolumeDown";
+import VolumeUp from "@mui/icons-material/VolumeUp";
 import styled from "styled-components";
 
 export const StyledMixcloudWidget = styled.iframe`
@@ -59,15 +61,6 @@ export const StyledAudioControls = styled.div`
   position: relative;
   width: 300px;
   top: 20px;
-
-  .control {
-    transition: color 0.125s;
-
-    &:hover {
-      color: red;
-      cursor: pointer;
-    }
-  }
 `;
 
 export const StyledAudioControlsInner = styled.div`
@@ -87,12 +80,19 @@ export const StyledSkipPrevious = styled.div`
   background: lightgrey;
   border-radius: 50%;
   color: black;
+  cursor: pointer;
   display: flex;
   height: 60px;
   left: 15px;
   position: absolute;
   justify-content: center;
   width: 60px;
+
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: white;
+  }
 `;
 
 export const StyledSkipNext = styled.div`
@@ -100,12 +100,19 @@ export const StyledSkipNext = styled.div`
   background: lightgrey;
   border-radius: 50%;
   color: black;
+  cursor: pointer;
   display: flex;
   height: 60px;
   justify-content: center;
   position: absolute;
   right: 15px;
   width: 60px;
+
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: white;
+  }
 `;
 
 export const StyledPlay = styled.div`
@@ -113,11 +120,21 @@ export const StyledPlay = styled.div`
   background: white;
   border-radius: 50%;
   color: black;
+  cursor: pointer;
   display: flex;
   font-size: 72px;
   height: 100px;
   justify-content: center;
   width: 100px;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+
+  &:hover {
+    background: gray;
+    color: white;
+  }
 `;
 
 export const StyledVolumeControlsWrapper = styled.div`
@@ -132,4 +149,18 @@ export const StyledVolumeControls = styled.div`
   flex-direction: row;
   gap: 14px;
   width: 240px;
+`;
+
+export const StyledVolumeDown = styled(VolumeDown)`
+  color: black;
+  cursor: pointer;
+  font-size: 24px;
+  margin: 2px 0 0 0;
+`;
+
+export const StyledVolumeUp = styled(VolumeUp)`
+  color: black;
+  cursor: pointer;
+  font-size: 24px;
+  margin: 2px 0 0 0;
 `;

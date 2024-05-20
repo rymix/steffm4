@@ -1,26 +1,27 @@
 import styled from "styled-components";
 
 export const StyledCurrentTrack = styled.div`
+  align-items: center;
   background: #f0f0f0;
   border-radius: 10px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  display: flex;
+  font-size: 16px;
   flex-direction: column;
   gap: 14px;
+  justify-content: center;
   padding: 20px;
   text-align: left;
 `;
 
 export const StyledCoverArt = styled.div`
-  width: 140px;
   flex-shrink: 0;
+  width: 180px;
 `;
 
 export const StyledCoverArtImage = styled.img`
   border-radius: 50%;
-  width: 140px;
+  height: 180px;
+  width: 180px;
 `;
 
 export const StyledTrackName = styled.div`
@@ -28,14 +29,8 @@ export const StyledTrackName = styled.div`
   font-weight: 700;
 `;
 
-export const StyledArtistName = styled.div`
-  font-size: 16px;
-`;
+export const StyledArtistName = styled.div``;
 
-export const StyledRemixArtistName = styled.div`
-  font-size: 16px;
-`;
+export const StyledRemixArtistName = styled.div``;
 
-export const StyledPublisher = styled.div`
-  font-size: 16px;
-`;
+export const StyledPublisher = styled.div``;

@@ -17,7 +17,7 @@ export const StyledMixCard = styled.div`
 `;
 
 export const StyledCoverArt = styled.div`
-  width: 140px;
+  width: 180px;
   flex-shrink: 0;
   justify-self: center;
 
@@ -28,7 +28,8 @@ export const StyledCoverArt = styled.div`
 
 export const StyledCoverArtImage = styled.img`
   border-radius: 50%;
-  width: 140px;
+  height: 180px;
+  width: 180px;
 `;
 
 export const StyledMixInfo = styled.div`
@@ -46,13 +47,9 @@ export const StyledMixName = styled.div`
   font-weight: 700;
 `;
 
-export const StyledDuration = styled.div`
-  font-size: 16px;
-`;
+export const StyledDuration = styled.div``;
 
-export const StyledReleaseDate = styled.div`
-  font-size: 16px;
-`;
+export const StyledReleaseDate = styled.div``;
 
 export const StyledCategory = styled.div`
   font-size: 16px;
@@ -92,8 +89,10 @@ export const StyledCategoryTags = styled.div`
 `;
 
 export const StyledSubDetails = styled.div`
+  color: gray;
   display: flex;
   flex-direction: row;
+  font-size: 14px;
   gap: 10px;
 
   @media (max-width: 768px) {
