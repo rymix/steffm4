@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface StyledSemiCircularProgressProps {
-  value: number;
+  $value: number;
   $position: "top" | "bottom";
   $start: "left" | "right";
   $barWidth?: number;
@@ -14,8 +14,14 @@ const getStartTurn = (position: "top" | "bottom", start: "left" | "right") => {
   return start === "left" ? "1.25turn" : "0.75turn";
 };
 
-export const StyledSemiCircularProgress = styled.div<StyledSemiCircularProgressProps>`
-  --percentage: ${(props) => props.value};
+export const StyledSemiCircularProgress = styled.div.attrs<StyledSemiCircularProgressProps>(
+  (props) => ({
+    style: {
+      "--percentage": `${props.$value}`,
+    },
+  }),
+)<StyledSemiCircularProgressProps>`
+  --percentage: ${(props) => props.$value};
   --primary: rgba(0.5, 0.5, 0.5, 0.8);
   --secondary: rgba(0.5, 0.5, 0.5, 0.2);
   --size: 400px;

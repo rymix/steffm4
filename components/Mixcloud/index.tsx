@@ -211,17 +211,17 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
               </StyledAudioControlsWrapper>
             </StyledPlayer>
 
-            <StyledProgressBar position="top">
+            <StyledProgressBar $position="top">
               <SemiCircularProgress
-                value={trackProgressPercent}
+                $value={trackProgressPercent}
                 $position="top"
                 $start="left"
                 $barWidth={1}
               />
             </StyledProgressBar>
-            <StyledProgressBar position="bottom">
+            <StyledProgressBar $position="bottom">
               <SemiCircularProgress
-                value={mixProgressPercent}
+                $value={mixProgressPercent}
                 $position="bottom"
                 $start="left"
                 $barWidth={1}
