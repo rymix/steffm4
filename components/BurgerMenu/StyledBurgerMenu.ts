@@ -1,5 +1,6 @@
 import type {
   StyledBurgerProps,
+  StyledBurgerStripesProps,
   StyledMenuProps,
 } from "components/BurgerMenu/types";
 import styled from "styled-components";
@@ -26,25 +27,49 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: ${({ $open }) => ($open ? "#0D0C1D" : "#EFFFFA")};
+    background: ${({ $open }) => ($open ? "black" : "darkgray")};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;
     transform-origin: 1px;
 
-    :first-child {
+    &:first-child {
       transform: ${({ $open }) => ($open ? "rotate(45deg)" : "rotate(0)")};
     }
 
-    :nth-child(2) {
+    &:nth-child(2) {
       opacity: ${({ $open }) => ($open ? "0" : "1")};
       transform: ${({ $open }) =>
         $open ? "translateX(20px)" : "translateX(0)"};
     }
 
-    :nth-child(3) {
+    &:nth-child(3) {
       transform: ${({ $open }) => ($open ? "rotate(-45deg)" : "rotate(0)")};
     }
+  }
+`;
+
+export const StyledBurgerStripes = styled.div<StyledBurgerStripesProps>`
+  color: yellow;
+  width: 2rem;
+  height: 0.25rem;
+  background: ${({ $open }) => ($open ? "black" : "blue")};
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+
+  &:first-child {
+    transform: ${({ $open }) => ($open ? "rotate(45deg)" : "rotate(0)")};
+  }
+
+  &:nth-child(2) {
+    opacity: ${({ $open }) => ($open ? "0" : "1")};
+    transform: ${({ $open }) => ($open ? "translateX(20px)" : "translateX(0)")};
+  }
+
+  &:nth-child(3) {
+    transform: ${({ $open }) => ($open ? "rotate(-45deg)" : "rotate(0)")};
   }
 `;
 
@@ -52,7 +77,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: black;
+  background: grey;
   transform: ${({ $open }) => ($open ? "translateX(0)" : "translateX(-100%)")};
   height: 100vh;
   text-align: left;
@@ -67,12 +92,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
   }
 
   a {
-    font-size: 2rem;
-    text-transform: uppercase;
-    padding: 2rem 0;
-    font-weight: bold;
-    letter-spacing: 0.5rem;
-    color: #0d0c1d;
+    color: black;
     text-decoration: none;
     transition: color 0.3s linear;
 
@@ -82,7 +102,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
     }
 
     &:hover {
-      color: #343078;
+      color: lightgrey;
     }
   }
 `;

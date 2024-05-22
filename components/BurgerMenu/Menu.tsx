@@ -6,24 +6,9 @@ const Menu: React.FC = () => {
 
   return (
     <StyledMenu $open={menuOpen}>
-      <a href="/">
-        <span role="img" aria-label="about us">
-          💁🏻‍♂️
-        </span>
-        About us
-      </a>
-      <a href="/">
-        <span role="img" aria-label="price">
-          💸
-        </span>
-        Pricing
-      </a>
-      <a href="/">
-        <span role="img" aria-label="contact">
-          📩
-        </span>
-        Contact
-      </a>
+      <a href="/">About us</a>
+      <a href="/">Pricing</a>
+      <a href="/">Contact</a>
     </StyledMenu>
   );
 };
