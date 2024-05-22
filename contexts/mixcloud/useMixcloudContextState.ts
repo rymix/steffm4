@@ -47,7 +47,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const fetchMixDetails = async (
     localMcKey?: string,
   ): Promise<Mix | undefined> => {
-    if (!mcKey && !localMcKey) return;
+    if (!mcKey && !localMcKey) return undefined;
 
     const lookupMcKey = localMcKey || mcKey;
 
@@ -146,7 +146,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       return;
     }
 
-    const calculateTrackProgress = () => {
+    const calculateTrackProgress = (): void => {
       const currentMixProgressSeconds = mixProgress;
 
       const parseTimeToSeconds = (time: string): number => {
@@ -183,11 +183,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
         currentMixProgressSeconds - currentTrack.startTimeSeconds;
       const trackDuration = nextTrackStartTime - currentTrack.startTimeSeconds;
 
-      const trackProgressPercent = (trackProgressSeconds / trackDuration) * 100;
+      const localaTrackProgressPercent =
+        (trackProgressSeconds / trackDuration) * 100;
 
       throttledSetTrackProgress({
         trackProgressSeconds,
-        trackProgressPercent,
+        localaTrackProgressPercent,
         sectionNumber: tracks[currentTrackIndex].sectionNumber,
       });
     };

@@ -1,5 +1,5 @@
 import type { SessionContextState } from "contexts/session/types";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import themes from "styles/themes";
 
 const useSessionContextState = (): SessionContextState => {
@@ -8,17 +8,22 @@ const useSessionContextState = (): SessionContextState => {
   const [themeName, setThemeName] = useState("defaultTheme");
   const theme = themes[themeName] || themes.defaultTheme;
 
-  // useEffect(() => {
-  //   const listener = (event) => {
-  //     if (!ref.current || ref.current.contains(event.target)) return;
-  //     handler(event);
-  //   };
-  //   document.addEventListener("mousedown", listener);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent): void => {
+      if (
+        burgerMenuRef.current &&
+        !burgerMenuRef.current.contains(event.target as Node)
+      ) {
+        setMenuOpen(false);
+      }
+    };
 
-  //   return () => {
-  //     document.removeEventListener("mousedown", listener);
-  //   };
-  // }, [ref, handler]);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [burgerMenuRef]);
 
   return {
     burgerMenuRef,
