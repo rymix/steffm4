@@ -1,37 +1,36 @@
 import type {
   StyledBurgerProps,
-  StyledBurgerStripesProps,
   StyledMenuProps,
 } from "components/BurgerMenu/types";
 import styled from "styled-components";
 
 export const StyledBurger = styled.button<StyledBurgerProps>`
-  position: absolute;
-  top: 5%;
-  left: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 2rem;
-  height: 2rem;
   background: transparent;
   border: none;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 2rem;
+  justify-content: space-around;
+  left: 30px;
   padding: 0;
-  z-index: 10;
+  position: absolute;
+  top: 30px;
+  width: 2rem;
+  z-index: 100;
 
   &:focus {
     outline: none;
   }
 
   div {
-    width: 2rem;
-    height: 0.25rem;
     background: ${({ $open }) => ($open ? "black" : "darkgray")};
     border-radius: 10px;
-    transition: all 0.3s linear;
+    height: 0.25rem;
     position: relative;
     transform-origin: 1px;
+    transition: all 0.15s linear;
+    width: 2rem;
 
     &:first-child {
       transform: ${({ $open }) => ($open ? "rotate(45deg)" : "rotate(0)")};
@@ -47,45 +46,27 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
       transform: ${({ $open }) => ($open ? "rotate(-45deg)" : "rotate(0)")};
     }
   }
-`;
 
-export const StyledBurgerStripes = styled.div<StyledBurgerStripesProps>`
-  color: yellow;
-  width: 2rem;
-  height: 0.25rem;
-  background: ${({ $open }) => ($open ? "black" : "blue")};
-  border-radius: 10px;
-  transition: all 0.3s linear;
-  position: relative;
-  transform-origin: 1px;
-
-  &:first-child {
-    transform: ${({ $open }) => ($open ? "rotate(45deg)" : "rotate(0)")};
-  }
-
-  &:nth-child(2) {
-    opacity: ${({ $open }) => ($open ? "0" : "1")};
-    transform: ${({ $open }) => ($open ? "translateX(20px)" : "translateX(0)")};
-  }
-
-  &:nth-child(3) {
-    transform: ${({ $open }) => ($open ? "rotate(-45deg)" : "rotate(0)")};
+  &:hover > div {
+    background: ${({ $open }) => ($open ? "lightgray" : "black")};
   }
 `;
 
 export const StyledMenu = styled.nav<StyledMenuProps>`
+  background: grey;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background: grey;
-  transform: ${({ $open }) => ($open ? "translateX(0)" : "translateX(-100%)")};
+  font-size: 1.5rem;
   height: 100vh;
-  text-align: left;
-  padding: 2rem;
-  position: absolute;
-  top: 0;
+  justify-content: flex-start;
   left: 0;
-  transition: transform 0.3s ease-in-out;
+  padding: 6rem 2rem;
+  position: absolute;
+  text-align: left;
+  top: 0;
+  transform: ${({ $open }) => ($open ? "translateX(0)" : "translateX(-100%)")};
+  transition: transform 0.15s ease-in-out;
+  z-index: 99;
 
   @media (max-width: 576px) {
     width: 100%;
@@ -93,11 +74,12 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
 
   a {
     color: black;
+    cursor: pointer;
+    margin: 0 0 1rem 0;
     text-decoration: none;
-    transition: color 0.3s linear;
+    transition: color 0.15s linear;
 
     @media (max-width: 576px) {
-      font-size: 1.5rem;
       text-align: center;
     }
 

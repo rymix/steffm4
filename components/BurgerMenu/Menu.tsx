@@ -6,9 +6,9 @@ const Menu: React.FC = () => {
 
   return (
     <StyledMenu $open={menuOpen}>
-      <a href="/">About us</a>
-      <a href="/">Pricing</a>
-      <a href="/">Contact</a>
+      <a href="/">Mix List</a>
+      <a href="/">About Stef.FM</a>
+      <a href="/">Settings</a>
     </StyledMenu>
   );
 };
