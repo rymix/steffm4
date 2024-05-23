@@ -1,7 +1,6 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 import type { MixcloudContextState } from "contexts/mixcloud/types";
 import type { Mix } from "db/types";
-import { throttle } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   mcKeyFormatter,
@@ -19,6 +18,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [mcKeyNext, setMcKeyNext] = useState("");
   const [mcKeyPrevious, setMcKeyPrevious] = useState("");
   const [mixes, setMixes] = useState<Mix[]>([]);
+  const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
+    null,
+  );
+  const [lastTrackUpdateTime, setLastTrackUpdateTime] = useState<number | null>(
+    null,
+  );
   const [player, setPlayer] = useState<any>();
   const [playerUpdated, setPlayerUpdated] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -31,7 +36,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [trackProgress, setTrackProgress] = useState(0);
   const [trackProgressPercent, setTrackProgressPercent] = useState(0);
   const [trackSectionNumber, setTrackSectionNumber] = useState(0);
-  const [volume, setVolume] = useState(0.7);
+  const [volume, setVolume] = useState(0);
 
   /* Helpers */
   const mcUrl = mcKeyUrlFormatter(mcKey);
@@ -119,25 +124,22 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, [mcKey, mixes]);
 
   /* Calculate Progress */
-  const throttledSetMixProgress = useCallback(
-    throttle(() => {
-      setMixProgressPercent((mixProgress / duration) * 100);
-    }, 1000),
-    [],
-  );
-
   useEffect(() => {
-    throttledSetMixProgress();
-  }, [duration, mixProgress, throttledSetMixProgress]);
+    console.log("useEffect");
+    console.log("mixProgress", mixProgress);
+    console.log("duration", duration);
 
-  const throttledSetTrackProgress = useCallback(
-    throttle((progress) => {
-      setTrackProgress(progress.trackProgressSeconds);
-      setTrackProgressPercent(progress.trackProgressPercent);
-      setTrackSectionNumber(progress.sectionNumber);
-    }, 1000),
-    [],
-  );
+    const currentTime = Date.now();
+
+    if (mixProgress && duration) {
+      const newMixProgressPercent = (mixProgress / duration) * 100;
+
+      if (!lastMixUpdateTime || currentTime - lastMixUpdateTime >= 1000) {
+        setMixProgressPercent(newMixProgressPercent);
+        setLastMixUpdateTime(currentTime);
+      }
+    }
+  }, [duration, mixProgress, lastMixUpdateTime]);
 
   useEffect(() => {
     if (!mixDetails || !mixDetails.tracks || mixDetails.tracks.length === 0) {
@@ -183,18 +185,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
         currentMixProgressSeconds - currentTrack.startTimeSeconds;
       const trackDuration = nextTrackStartTime - currentTrack.startTimeSeconds;
 
-      const localaTrackProgressPercent =
-        (trackProgressSeconds / trackDuration) * 100;
+      const trackProgressPercent = (trackProgressSeconds / trackDuration) * 100;
 
-      throttledSetTrackProgress({
-        trackProgressSeconds,
-        localaTrackProgressPercent,
-        sectionNumber: tracks[currentTrackIndex].sectionNumber,
-      });
+      const currentTime = Date.now();
+
+      if (!lastTrackUpdateTime || currentTime - lastTrackUpdateTime >= 1000) {
+        setTrackProgress(trackProgressSeconds);
+        setTrackProgressPercent(trackProgressPercent);
+        setTrackSectionNumber(tracks[currentTrackIndex].sectionNumber);
+        setLastTrackUpdateTime(currentTime);
+      }
     };
 
     calculateTrackProgress();
-  }, [mixProgress, mixDetails, duration, throttledSetTrackProgress]);
+  }, [mixProgress, mixDetails, duration, lastTrackUpdateTime]);
 
   return {
     mcKey,

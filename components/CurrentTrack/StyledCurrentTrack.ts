@@ -20,6 +20,7 @@ export const StyledCoverArt = styled.div`
 
 export const StyledCoverArtImage = styled.img`
   border-radius: 50%;
+  box-shadow: 0px 20px 20px -10px rgba(0, 0, 0, 0.5);
   height: 180px;
   width: 180px;
 `;
