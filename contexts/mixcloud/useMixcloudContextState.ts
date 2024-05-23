@@ -125,10 +125,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Calculate Progress */
   useEffect(() => {
-    console.log("useEffect");
-    console.log("mixProgress", mixProgress);
-    console.log("duration", duration);
-
     const currentTime = Date.now();
 
     if (mixProgress && duration) {
