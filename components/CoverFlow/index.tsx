@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const CoverFlowContainer = styled.div`
@@ -44,18 +44,34 @@ const CoverFlow = ({
   precedingTracks = 1,
   followingTracks = 1,
 }) => {
+  const [previousTrackIndex, setPreviousTrackIndex] =
+    useState(initialTrackIndex);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(initialTrackIndex);
-  const [direction, setDirection] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [animationSettings, setAnimationSettings] = useState({
+    initialX: 200,
+    exitX: -200,
+  });
+
+  useEffect(() => {
+    setDirection(currentTrackIndex > previousTrackIndex ? 1 : -1);
+  }, [currentTrackIndex, previousTrackIndex]);
+
+  useEffect(() => {
+    const newInitialX = direction === 1 ? 200 : -200;
+    const newExitX = direction === 1 ? -200 : 200;
+    setAnimationSettings({ initialX: newInitialX, exitX: newExitX });
+  }, [direction]);
 
   const handleNext = () => {
-    setDirection(1);
+    setPreviousTrackIndex(currentTrackIndex);
     setCurrentTrackIndex((prevIndex) =>
       Math.min(prevIndex + 1, albumCovers.length - 1),
     );
   };
 
   const handlePrevious = () => {
-    setDirection(-1);
+    setPreviousTrackIndex(currentTrackIndex);
     setCurrentTrackIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
@@ -70,8 +86,6 @@ const CoverFlow = ({
     return coversToRender.map((cover, index) => {
       const position = index + start - currentTrackIndex;
       const isActive = position === 0;
-      const initialX = position > 0 ? 200 : -200;
-      const exitX = direction === 1 ? -200 : 200;
 
       return (
         <Cover
@@ -79,7 +93,7 @@ const CoverFlow = ({
           className={isActive ? "active" : "inactive"}
           initial={{
             opacity: 0,
-            x: initialX,
+            x: animationSettings.initialX,
             scale: 0.8,
           }}
           animate={{
@@ -89,7 +103,7 @@ const CoverFlow = ({
           }}
           exit={{
             opacity: 0,
-            x: exitX,
+            x: animationSettings.exitX,
             scale: 0.8,
             transition: { duration: 0.5 },
           }}
@@ -111,6 +125,7 @@ const CoverFlow = ({
           Next
         </button>
         <p>currentTrackIndex: {currentTrackIndex}</p>
+        <p>direction: {direction}</p>
       </ControlPanel>
       <AnimatePresence initial={false}>{renderCovers()}</AnimatePresence>
     </CoverFlowContainer>

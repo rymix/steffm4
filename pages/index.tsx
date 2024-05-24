@@ -13,7 +13,6 @@ const Home = (): JSX.Element => {
   } = useMixcloud();
 
   const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
-  const [activeIndex, setActiveIndex] = useState<number>(2);
 
   useEffect(() => {
     const fetchKey = async (): Promise<void> => {
@@ -45,7 +44,7 @@ const Home = (): JSX.Element => {
           <BurgerMenu />
           <CoverFlow
             albumCovers={albumCovers}
-            initialTrackIndex={2}
+            initialTrackIndex={0}
             precedingTracks={1}
             followingTracks={1}
           />
