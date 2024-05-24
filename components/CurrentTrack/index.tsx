@@ -1,4 +1,3 @@
-import type { CatalogueProps } from "components/Catalogue/types";
 import {
   StyledArtistName,
   StyledCoverArt,
@@ -13,7 +12,7 @@ import {
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 
-export const CurrentTrack: React.FC<CatalogueProps> = () => {
+export const CurrentTrack: React.FC = () => {
   const { mix, track } = useMixcloud();
   const tracks = mix?.details?.tracks || [];
   const currentIndex = tracks.findIndex(
