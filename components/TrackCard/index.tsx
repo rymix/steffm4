@@ -7,17 +7,17 @@ import {
   StyledRemixArtistName,
   StyledTrackContainer,
   StyledTrackName,
-} from "components/CurrentTrack/StyledCurrentTrack";
+} from "components/TrackCard/StyledTrackCard";
 import type { TrackCardProps } from "components/TrackCard/types";
 import React from "react";
 
-export const TrackCard: React.FC<TrackCardProps> = (
-  artistName: string,
-  coverArt: string,
-  publisher: string;
-  remixArtistName: string,
-  trackName: string,
-) => {
+export const TrackCard: React.FC<TrackCardProps> = ({
+  artistName,
+  coverArt,
+  publisher,
+  remixArtistName,
+  trackName,
+}) => {
   return (
     <StyledTrackContainer>
       <StyledCurrentTrack>
@@ -29,9 +29,7 @@ export const TrackCard: React.FC<TrackCardProps> = (
         {remixArtistName && (
           <StyledRemixArtistName>{remixArtistName}</StyledRemixArtistName>
         )}
-        {publisher && (
-          <StyledPublisher>{publisher}</StyledPublisher>
-        )}
+        {publisher && <StyledPublisher>{publisher}</StyledPublisher>}
       </StyledCurrentTrack>
     </StyledTrackContainer>
   );

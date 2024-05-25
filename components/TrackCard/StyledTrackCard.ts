@@ -1,14 +1,18 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const StyledTrackContainer = styled.div`
+  background: gray;
   display: flex;
   justify-content: center;
   align-items: center;
   perspective: 1000px;
   gap: 20px;
+  max-width: 300px;
+  min-width: 300px;
 `;
 
-export const StyledTrack = styled.div`
+export const StyledTrack = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;

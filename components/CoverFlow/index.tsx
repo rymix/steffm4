@@ -1,132 +1,81 @@
+import TrackCard from "components/TrackCard";
+import { useMixcloud } from "contexts/mixcloud";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import styled from "styled-components";
 
-const CoverFlowContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  width: 100%;
-  height: 400px; /* Adjust this value according to your needs */
-  position: relative;
-`;
+import { ControlPanel, CoverFlowContainer } from "./types";
 
-const Cover = styled(motion.div)`
-  position: absolute;
-  transition:
-    transform 0.5s,
-    opacity 0.5s;
-
-  &.active {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  &.inactive {
-    transform: scale(0.8);
-    opacity: 0.5;
-  }
-`;
-
-const ControlPanel = styled.div`
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-`;
-
-const CoverFlow = ({
-  albumCovers,
-  initialTrackIndex = 0,
-  precedingTracks = 1,
-  followingTracks = 1,
-}) => {
-  const [previousTrackIndex, setPreviousTrackIndex] =
-    useState(initialTrackIndex);
-  const [currentTrackIndex, setCurrentTrackIndex] = useState(initialTrackIndex);
-  const [direction, setDirection] = useState(1);
-  const [animationSettings, setAnimationSettings] = useState({
-    initialX: 200,
-    exitX: -200,
-  });
+const CoverFlow = () => {
+  const { mix, track } = useMixcloud();
+  const [tracks, setTracks] = useState<any[]>([]);
+  const [currentSectionNumber, setCurrentSectionNumber] = useState(
+    track.sectionNumber,
+  );
 
   useEffect(() => {
-    setDirection(currentTrackIndex > previousTrackIndex ? 1 : -1);
-  }, [currentTrackIndex, previousTrackIndex]);
+    console.log("mix details changed");
+    setTracks(mix?.details?.tracks || []);
+  }, [mix?.details]);
 
   useEffect(() => {
-    const newInitialX = direction === 1 ? 200 : -200;
-    const newExitX = direction === 1 ? -200 : 200;
-    setAnimationSettings({ initialX: newInitialX, exitX: newExitX });
-  }, [direction]);
+    console.log("track sectionNumber changed");
+    setCurrentSectionNumber(track.sectionNumber);
+  }, [track.sectionNumber]);
 
-  const handleNext = () => {
-    setPreviousTrackIndex(currentTrackIndex);
-    setCurrentTrackIndex((prevIndex) =>
-      Math.min(prevIndex + 1, albumCovers.length - 1),
-    );
-  };
-
-  const handlePrevious = () => {
-    setPreviousTrackIndex(currentTrackIndex);
-    setCurrentTrackIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+  const animationSettings = {
+    initialX: 300,
+    exitX: -300,
   };
 
   const renderCovers = () => {
-    const start = Math.max(0, currentTrackIndex - precedingTracks);
-    const end = Math.min(
-      albumCovers.length,
-      currentTrackIndex + followingTracks + 1,
-    );
-    const coversToRender = albumCovers.slice(start, end);
+    const start = Math.max(0, currentSectionNumber - 2);
+    const end = Math.min(tracks.length, currentSectionNumber + 1);
+    const coversToRender = tracks.slice(start, end);
 
     return coversToRender.map((cover, index) => {
-      const position = index + start - currentTrackIndex;
+      const position = start + index + 1 - currentSectionNumber;
       const isActive = position === 0;
+      const uniqueKey = `${cover.artistName}-${cover.trackName}-${
+        start + index
+      }`; // Ensure a unique key
 
       return (
-        <Cover
-          key={cover.id}
-          className={isActive ? "active" : "inactive"}
+        <motion.div
+          key={uniqueKey} // Ensure each key is unique
           initial={{
-            opacity: 0,
-            x: animationSettings.initialX,
-            scale: 0.8,
+            opacity: position === 1 ? 0.1 : 1,
+            x: position === 1 ? animationSettings.initialX : 0,
+            scale: 0.4,
           }}
           animate={{
-            opacity: 1,
-            x: position * 100,
+            opacity: isActive ? 1 : 0.6,
+            x: position * -100,
             scale: isActive ? 1 : 0.8,
           }}
           exit={{
-            opacity: 0,
+            opacity: 0.1,
             x: animationSettings.exitX,
-            scale: 0.8,
+            scale: 0.4,
             transition: { duration: 0.5 },
           }}
           transition={{ duration: 0.5 }}
         >
-          {cover.component}
-        </Cover>
+          <TrackCard
+            artistName={cover.artistName}
+            coverArt={cover.coverArtLarge}
+            publisher={cover.publisher}
+            remixArtistName={cover.remixArtistName}
+            trackName={cover.trackName}
+            className={isActive ? "active" : "inactive"}
+          />
+        </motion.div>
       );
     });
   };
 
   return (
     <CoverFlowContainer>
-      <ControlPanel>
-        <button type="button" onClick={handlePrevious}>
-          Previous
-        </button>
-        <button type="button" onClick={handleNext}>
-          Next
-        </button>
-        <p>currentTrackIndex: {currentTrackIndex}</p>
-        <p>direction: {direction}</p>
-      </ControlPanel>
+      <ControlPanel />
       <AnimatePresence initial={false}>{renderCovers()}</AnimatePresence>
     </CoverFlowContainer>
   );

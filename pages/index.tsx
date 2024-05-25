@@ -1,6 +1,5 @@
 import BurgerMenu from "components/BurgerMenu";
 import CoverFlow from "components/CoverFlow";
-import CurrentTrack from "components/CurrentTrack";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
 import { useMixcloud } from "contexts/mixcloud";
@@ -48,8 +47,6 @@ const Home = (): JSX.Element => {
             precedingTracks={1}
             followingTracks={1}
           />
-
-          <CurrentTrack />
           <Mixcloud defaultMcKey={randomMcKey} />
           <MixCard />
         </>
