@@ -1,7 +1,7 @@
 import BurgerMenu from "components/BurgerMenu";
-import CoverFlow from "components/CoverFlow";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
+import Motion from "components/Motion";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 import { mcKeyFormatter } from "utils/functions";
@@ -41,12 +41,12 @@ const Home = (): JSX.Element => {
       {randomMcKey && (
         <>
           <BurgerMenu />
-          <CoverFlow
-            albumCovers={albumCovers}
+          <Motion />
+          {/* <CoverFlow
             initialTrackIndex={0}
             precedingTracks={1}
             followingTracks={1}
-          />
+          /> */}
           <Mixcloud defaultMcKey={randomMcKey} />
           <MixCard />
         </>
