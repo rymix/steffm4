@@ -21,14 +21,14 @@ export const Motion: React.FC = () => {
     console.log("tracks", tracks);
   }, [mix?.details]);
 
-  const renderCovers = () => {
+  const renderCovers = (): JSX.Element => {
     const dummyPreviousItem: Track = {
       artistName: "dummyArtistName",
       coverArtDate: "2023-12-23T22:50:22.000Z",
       coverArtLarge:
         "https://fastly.picsum.photos/id/450/200/300.jpg?hmac=EAnz3Z3i5qXfaz54l0aegp_-5oN4HTwiZG828ZGD7GM",
       coverArtSmall:
-        "https://fastly.picsum.photos/id/450/200/300.jpg?hmac=EAnz3Z3i5qXfaz54l0aegp_-5oN4HTwiZG828ZGD7GM",
+        "https://fastly.picsum.photos/id/876/200/300.jpg?hmac=goKRzVFKqeXwTjZFK6d58HDkfv32_d-P_bPCS3Mtlf4",
       publisher: "dummyPublisher",
       remixArtistName: "dummyRemixArtistName",
       sectionNumber: -1,
@@ -40,9 +40,9 @@ export const Motion: React.FC = () => {
       artistName: "dummyArtistName",
       coverArtDate: "2023-12-23T22:50:22.000Z",
       coverArtLarge:
-        "https://fastly.picsum.photos/id/450/200/300.jpg?hmac=EAnz3Z3i5qXfaz54l0aegp_-5oN4HTwiZG828ZGD7GM",
+        "https://fastly.picsum.photos/id/572/200/300.jpg?hmac=Rt4zD8IxoA-nMVDrBQ72mgbTVRfQ6OwW3MhWy_3lpdk",
       coverArtSmall:
-        "https://fastly.picsum.photos/id/450/200/300.jpg?hmac=EAnz3Z3i5qXfaz54l0aegp_-5oN4HTwiZG828ZGD7GM",
+        "https://fastly.picsum.photos/id/400/200/300.jpg?hmac=FD74WIE42b0qUFf-QggfWsoHPJqcGgjSatRvUM9dAws",
       publisher: "dummyPublisher",
       remixArtistName: "dummyRemixArtistName",
       sectionNumber: 9999,
