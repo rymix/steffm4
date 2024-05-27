@@ -1,14 +1,15 @@
+import TrackCard from "components/TrackCard";
 import {
   StyledAnimationItem,
   StyledCovers,
-  StyledMotion,
-} from "components/Motion/StyledMotion";
+  StyledTrackFlow,
+} from "components/TrackFlow/StyledTrackFlow";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Track } from "db/types";
 import { AnimatePresence } from "framer-motion";
 import React, { useEffect, useState } from "react";
 
-export const Motion: React.FC = () => {
+export const TrackFlow: React.FC = () => {
   const [tracks, setTracks] = useState<any[]>([]);
 
   const { mcKey, mix, track } = useMixcloud();
@@ -21,14 +22,14 @@ export const Motion: React.FC = () => {
     console.log("tracks", tracks);
   }, [mix?.details]);
 
+  const albumArt = "./images/albumArt.png";
+
   const renderCovers = (): JSX.Element => {
     const dummyPreviousItem: Track = {
       artistName: "dummyArtistName",
       coverArtDate: "2023-12-23T22:50:22.000Z",
-      coverArtLarge:
-        "https://fastly.picsum.photos/id/450/200/300.jpg?hmac=EAnz3Z3i5qXfaz54l0aegp_-5oN4HTwiZG828ZGD7GM",
-      coverArtSmall:
-        "https://fastly.picsum.photos/id/876/200/300.jpg?hmac=goKRzVFKqeXwTjZFK6d58HDkfv32_d-P_bPCS3Mtlf4",
+      coverArtLarge: albumArt,
+      coverArtSmall: albumArt,
       publisher: "dummyPublisher",
       remixArtistName: "dummyRemixArtistName",
       sectionNumber: -1,
@@ -39,10 +40,8 @@ export const Motion: React.FC = () => {
     const dummyNextItem: Track = {
       artistName: "dummyArtistName",
       coverArtDate: "2023-12-23T22:50:22.000Z",
-      coverArtLarge:
-        "https://fastly.picsum.photos/id/572/200/300.jpg?hmac=Rt4zD8IxoA-nMVDrBQ72mgbTVRfQ6OwW3MhWy_3lpdk",
-      coverArtSmall:
-        "https://fastly.picsum.photos/id/400/200/300.jpg?hmac=FD74WIE42b0qUFf-QggfWsoHPJqcGgjSatRvUM9dAws",
+      coverArtLarge: albumArt,
+      coverArtSmall: albumArt,
       publisher: "dummyPublisher",
       remixArtistName: "dummyRemixArtistName",
       sectionNumber: 9999,
@@ -67,33 +66,51 @@ export const Motion: React.FC = () => {
           <AnimatePresence initial={false}>
             <StyledAnimationItem
               key={`${mcKey}${previousTrack.sectionNumber}`}
-              initial={{ opacity: 0, x: 0, scale: 0.4 }}
-              animate={{ opacity: 0.6, x: -200, scale: 0.6 }}
+              initial={{ opacity: 0, x: -100, scale: 0.4 }}
+              animate={{ opacity: 0.6, x: -300, scale: 0.6 }}
               exit={{ opacity: 0, x: -400, scale: 0.4 }}
               transition={{ duration: 0.6 }}
-              style={{ position: "absolute" }}
+              style={{ position: "absolute", zIndex: 1 }}
             >
-              {previousTrack.artistName}
+              <TrackCard
+                artistName={previousTrack.artistName}
+                coverArt={previousTrack.coverArtLarge}
+                publisher={previousTrack.publisher}
+                remixArtistName={previousTrack.remixArtistName}
+                trackName={previousTrack.trackName}
+              />
             </StyledAnimationItem>
             <StyledAnimationItem
               key={`${mcKey}${currentTrack.sectionNumber}`}
-              initial={{ opacity: 0, x: 200, scale: 0.4 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
+              initial={{ opacity: 0, x: 150, scale: 0.4 }}
+              animate={{ opacity: 1, x: -50, scale: 1 }}
               exit={{ opacity: 0, x: -200, scale: 0.4 }}
               transition={{ duration: 0.6 }}
-              style={{ position: "absolute" }}
+              style={{ position: "absolute", zIndex: 2 }}
             >
-              {currentTrack.artistName}
+              <TrackCard
+                artistName={currentTrack.artistName}
+                coverArt={currentTrack.coverArtLarge}
+                publisher={currentTrack.publisher}
+                remixArtistName={currentTrack.remixArtistName}
+                trackName={currentTrack.trackName}
+              />
             </StyledAnimationItem>
             <StyledAnimationItem
               key={`${mcKey}${nextTrack.sectionNumber}`}
-              initial={{ opacity: 0, x: 400, scale: 0.4 }}
-              animate={{ opacity: 0.6, x: 200, scale: 0.6 }}
+              initial={{ opacity: 0, x: 440, scale: 0.4 }}
+              animate={{ opacity: 0.6, x: 240, scale: 0.6 }}
               exit={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.6 }}
-              style={{ position: "absolute" }}
+              style={{ position: "absolute", zIndex: 1 }}
             >
-              {nextTrack.artistName}
+              <TrackCard
+                artistName={nextTrack.artistName}
+                coverArt={nextTrack.coverArtLarge}
+                publisher={nextTrack.publisher}
+                remixArtistName={nextTrack.remixArtistName}
+                trackName={nextTrack.trackName}
+              />
             </StyledAnimationItem>
           </AnimatePresence>
         )}
@@ -102,12 +119,12 @@ export const Motion: React.FC = () => {
   };
 
   return (
-    <StyledMotion>
+    <StyledTrackFlow>
       <StyledCovers>
         <AnimatePresence initial={false}>{renderCovers()}</AnimatePresence>
       </StyledCovers>
-    </StyledMotion>
+    </StyledTrackFlow>
   );
 };
 
-export default Motion;
+export default TrackFlow;

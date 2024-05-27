@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const StyledTrackContainer = styled.div`
-  background: gray;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,6 +33,10 @@ export const StyledCoverArt = styled.div`
 export const StyledCoverArtImage = styled.img`
   border-radius: 50%;
   width: 140px;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
 `;
 
 export const StyledTrackName = styled.div`
