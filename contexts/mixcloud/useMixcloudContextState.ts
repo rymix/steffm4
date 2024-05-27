@@ -49,6 +49,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
     return data.mcKey;
   };
 
+  const fetchRandomMcKeyByCategory = async (
+    category: string,
+  ): Promise<string> => {
+    const response = await fetch(`/api/random-mix?category=${category}`);
+    const data = await response.json();
+    return data.mcKey;
+  };
+
   const fetchMixDetails = async (
     localMcKey?: string,
   ): Promise<Mix | undefined> => {
@@ -203,6 +211,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     setMcKey,
     controls: {
       fetchRandomMcKey,
+      fetchRandomMcKeyByCategory,
       handleLoad,
       handleNext,
       handlePlayPause,

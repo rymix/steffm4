@@ -6,6 +6,7 @@ export type MixcloudContextState = {
   setMcKey: React.Dispatch<React.SetStateAction<string>>;
   controls: {
     fetchRandomMcKey: () => Promise<string>;
+    fetchRandomMcKeyByCategory: (category: string) => Promise<string>;
     handleLoad: (localMcKey?: string) => void;
     handleNext: () => void;
     handlePlayPause: () => void;
