@@ -40,7 +40,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [trackProgress, setTrackProgress] = useState(0);
   const [trackProgressPercent, setTrackProgressPercent] = useState(0);
   const [trackSectionNumber, setTrackSectionNumber] = useState(0);
-  const [volume, setVolume] = useState(0);
+  const [volume, setVolume] = usePersistedState("volume", "0.8");
 
   /* Helpers */
   const mcUrl = mcKeyUrlFormatter(mcKey);
