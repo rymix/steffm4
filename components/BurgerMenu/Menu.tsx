@@ -1,6 +1,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import AudiotrackIcon from "@mui/icons-material/Audiotrack";
-import { StyledMenu } from "components/BurgerMenu/StyledBurgerMenu";
+import {
+  StyledHeading,
+  StyledMenu,
+} from "components/BurgerMenu/StyledBurgerMenu";
 import { useMixcloud } from "contexts/mixcloud";
 import { useSession } from "contexts/session";
 import React, { useCallback, useEffect, useState } from "react";
@@ -11,6 +14,7 @@ const Menu: React.FC = () => {
     controls: { fetchRandomMcKeyByCategory, handleLoad },
     filters: { selectedCategory, setSelectedCategory },
   } = useMixcloud();
+  const { setMenuOpen } = useSession();
 
   const [links, setLinks] = useState([
     {
@@ -57,10 +61,12 @@ const Menu: React.FC = () => {
     event.preventDefault();
     setSelectedCategory(code);
     handleLoad(await fetchRandomMcKeyByCategory(code));
+    setTimeout(() => setMenuOpen(false), 500);
   };
 
   return (
     <StyledMenu $open={menuOpen}>
+      <StyledHeading>Choose Your Flavour</StyledHeading>
       <ul>
         {links.map((link) => (
           <li
@@ -82,6 +88,10 @@ const Menu: React.FC = () => {
             {link.text}
           </li>
         ))}
+      </ul>
+      <StyledHeading>Other Things</StyledHeading>
+      <ul>
+        <li>About</li>
       </ul>
     </StyledMenu>
   );

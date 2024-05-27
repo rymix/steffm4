@@ -88,3 +88,15 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
     }
   }
 `;
+
+export const StyledHeading = styled.h2`
+  color: black;
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+  text-decoration: none;
+  transition: color 0.15s linear;
+
+  @media (max-width: 576px) {
+    text-align: center;
+  }
+`;
