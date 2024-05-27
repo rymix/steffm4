@@ -11,6 +11,7 @@ import {
   StyledSocials,
   StyledSubDetails,
 } from "components/MixCard/StyledMixCard";
+import ShareLink from "components/ShareLink";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 
@@ -46,7 +47,7 @@ export const MixCard: React.FC<CatalogueProps> = () => {
         <StyledNotes>{notes}</StyledNotes>
       </StyledMixInfo>
       <StyledSocials>
-        <div>farts</div>
+        <ShareLink />
       </StyledSocials>
       {/* <StyledCategoryTags>
         <StyledTags>

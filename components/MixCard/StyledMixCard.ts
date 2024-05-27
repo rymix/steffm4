@@ -102,5 +102,5 @@ export const StyledSubDetails = styled.div`
 `;
 
 export const StyledSocials = styled.div`
-  background: green;
+  text-align: right;
 `;
