@@ -1,101 +1,108 @@
 import {
   StyledAnimationItem,
-  StyledButtons,
   StyledCovers,
   StyledMotion,
 } from "components/Motion/StyledMotion";
+import { useMixcloud } from "contexts/mixcloud";
+import type { Track } from "db/types";
 import { AnimatePresence } from "framer-motion";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export const Motion: React.FC = () => {
-  const [startItem, setStartItem] = useState(0);
+  const [tracks, setTracks] = useState<any[]>([]);
 
-  const albumCovers = [
-    { id: 0, component: <div>Album 1</div> },
-    { id: 1, component: <div>Album 2</div> },
-    { id: 2, component: <div>Album 3</div> },
-    { id: 3, component: <div>Album 4</div> },
-    { id: 4, component: <div>Album 5</div> },
-    { id: 5, component: <div>Album 6</div> },
-    { id: 6, component: <div>Album 7</div> },
-    { id: 7, component: <div>Album 8</div> },
-    { id: 8, component: <div>Album 9</div> },
-  ];
+  const { mcKey, mix, track } = useMixcloud();
+  const { sectionNumber } = track;
 
-  const handleClick = () => {
-    setStartItem((startItem + 1) % albumCovers.length);
-  };
+  useEffect(() => {
+    console.log("mix details changed");
+    console.log("mix", mix);
+    setTracks(mix?.details?.tracks || []);
+    console.log("tracks", tracks);
+  }, [mix?.details]);
 
   const renderCovers = () => {
-    const previousIndex = startItem - 1;
-    const currentIndex = startItem;
-    const nextIndex = startItem + 1;
-    const dummyPreviousItem = {
-      id: "dummyPreviousItem",
-      component: <p>DUMMY PREVIOUS ITEM</p>,
+    const dummyPreviousItem: Track = {
+      artistName: "dummyArtistName",
+      coverArtDate: "2023-12-23T22:50:22.000Z",
+      coverArtLarge:
+        "https://fastly.picsum.photos/id/450/200/300.jpg?hmac=EAnz3Z3i5qXfaz54l0aegp_-5oN4HTwiZG828ZGD7GM",
+      coverArtSmall:
+        "https://fastly.picsum.photos/id/450/200/300.jpg?hmac=EAnz3Z3i5qXfaz54l0aegp_-5oN4HTwiZG828ZGD7GM",
+      publisher: "dummyPublisher",
+      remixArtistName: "dummyRemixArtistName",
+      sectionNumber: -1,
+      startTime: "00:00",
+      trackName: "dummyTrackName",
     };
-    const dummyNextItem = {
-      id: "dummyNextItem",
-      component: <p>DUMMY NEXT ITEM</p>,
+
+    const dummyNextItem: Track = {
+      artistName: "dummyArtistName",
+      coverArtDate: "2023-12-23T22:50:22.000Z",
+      coverArtLarge:
+        "https://fastly.picsum.photos/id/450/200/300.jpg?hmac=EAnz3Z3i5qXfaz54l0aegp_-5oN4HTwiZG828ZGD7GM",
+      coverArtSmall:
+        "https://fastly.picsum.photos/id/450/200/300.jpg?hmac=EAnz3Z3i5qXfaz54l0aegp_-5oN4HTwiZG828ZGD7GM",
+      publisher: "dummyPublisher",
+      remixArtistName: "dummyRemixArtistName",
+      sectionNumber: 9999,
+      startTime: "00:00",
+      trackName: "dummyTrackName",
     };
+
+    const currentTrack =
+      tracks.find((t) => t.sectionNumber === sectionNumber) || null;
+
+    const previousTrack =
+      tracks.find((t) => t.sectionNumber === sectionNumber - 1) ||
+      dummyPreviousItem;
+
+    const nextTrack =
+      tracks.find((t) => t.sectionNumber === sectionNumber + 1) ||
+      dummyNextItem;
 
     return (
       <>
-        <AnimatePresence initial={false}>
-          <StyledAnimationItem
-            key={
-              previousIndex <= -1
-                ? dummyPreviousItem.id
-                : albumCovers[previousIndex].id
-            }
-            initial={{ opacity: 0, x: 0, scale: 0.4 }}
-            animate={{ opacity: 0.6, x: -200, scale: 0.6 }}
-            exit={{ opacity: 0, x: -400, scale: 0.4 }}
-            transition={{ duration: 1 }}
-            style={{ position: "absolute" }}
-          >
-            {previousIndex <= -1
-              ? dummyPreviousItem.component
-              : albumCovers[previousIndex].component}
-          </StyledAnimationItem>
-          <StyledAnimationItem
-            key={albumCovers[currentIndex].id}
-            initial={{ opacity: 0, x: 200, scale: 0.4 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: -200, scale: 0.4 }}
-            transition={{ duration: 1 }}
-            style={{ position: "absolute" }}
-          >
-            {albumCovers[currentIndex].component}
-          </StyledAnimationItem>
-          <StyledAnimationItem
-            key={
-              nextIndex >= albumCovers.length
-                ? dummyNextItem.id
-                : albumCovers[nextIndex].id
-            }
-            initial={{ opacity: 0, x: 400, scale: 0.4 }}
-            animate={{ opacity: 0.6, x: 200, scale: 0.6 }}
-            exit={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1 }}
-            style={{ position: "absolute" }}
-          >
-            {nextIndex >= albumCovers.length
-              ? dummyNextItem.component
-              : albumCovers[nextIndex].component}
-          </StyledAnimationItem>
-        </AnimatePresence>
+        {currentTrack && (
+          <AnimatePresence initial={false}>
+            <StyledAnimationItem
+              key={`${mcKey}${previousTrack.sectionNumber}`}
+              initial={{ opacity: 0, x: 0, scale: 0.4 }}
+              animate={{ opacity: 0.6, x: -200, scale: 0.6 }}
+              exit={{ opacity: 0, x: -400, scale: 0.4 }}
+              transition={{ duration: 0.6 }}
+              style={{ position: "absolute" }}
+            >
+              {previousTrack.artistName}
+            </StyledAnimationItem>
+            <StyledAnimationItem
+              key={`${mcKey}${currentTrack.sectionNumber}`}
+              initial={{ opacity: 0, x: 200, scale: 0.4 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -200, scale: 0.4 }}
+              transition={{ duration: 0.6 }}
+              style={{ position: "absolute" }}
+            >
+              {currentTrack.artistName}
+            </StyledAnimationItem>
+            <StyledAnimationItem
+              key={`${mcKey}${nextTrack.sectionNumber}`}
+              initial={{ opacity: 0, x: 400, scale: 0.4 }}
+              animate={{ opacity: 0.6, x: 200, scale: 0.6 }}
+              exit={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              style={{ position: "absolute" }}
+            >
+              {nextTrack.artistName}
+            </StyledAnimationItem>
+          </AnimatePresence>
+        )}
       </>
     );
   };
 
   return (
     <StyledMotion>
-      <StyledButtons>
-        <button type="button" onClick={handleClick}>
-          Next Album
-        </button>
-      </StyledButtons>
       <StyledCovers>
         <AnimatePresence initial={false}>{renderCovers()}</AnimatePresence>
       </StyledCovers>
