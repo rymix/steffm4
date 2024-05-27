@@ -29,8 +29,8 @@ export const StyledCoverArt = styled.div`
 export const StyledCoverArtImage = styled.img`
   border-radius: 50%;
   box-shadow: 0px 20px 20px -10px rgba(0, 0, 0, 0.5);
-  height: 180px;
-  width: 180px;
+  height: 140px;
+  width: 140px;
 `;
 
 export const StyledMixInfo = styled.div`
@@ -99,4 +99,8 @@ export const StyledSubDetails = styled.div`
   @media (max-width: 768px) {
     justify-content: center; // Center sub details in collapsed mode
   }
+`;
+
+export const StyledSocials = styled.div`
+  background: green;
 `;

@@ -10,6 +10,7 @@ import { mcKeyFormatter } from "utils/functions";
 
 const Home = (): JSX.Element => {
   const {
+    mcKey,
     controls: { fetchRandomMcKey, fetchRandomMcKeyByCategory },
     filters: { selectedCategory },
   } = useMixcloud();
@@ -26,16 +27,19 @@ const Home = (): JSX.Element => {
       setRandomMcKey(formattedKey);
     };
 
-    fetchKey();
-  }, []);
+    if (mcKey) {
+      setRandomMcKey(mcKey);
+    } else {
+      fetchKey();
+    }
+  }, [mcKey, selectedCategory, fetchRandomMcKey, fetchRandomMcKeyByCategory]);
 
   return (
     <>
+      <BurgerMenu />
       {randomMcKey && (
         <>
-          <BurgerMenu />
           {isMobile ? <TrackSingle /> : <TrackFlow />}
-
           <Mixcloud defaultMcKey={randomMcKey} />
           <MixCard />
         </>

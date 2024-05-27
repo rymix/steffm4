@@ -1,7 +1,5 @@
 import type { CatalogueProps } from "components/Catalogue/types";
 import {
-  StyledCategory,
-  StyledCategoryTags,
   StyledCoverArt,
   StyledCoverArtImage,
   StyledDuration,
@@ -10,9 +8,8 @@ import {
   StyledMixName,
   StyledNotes,
   StyledReleaseDate,
+  StyledSocials,
   StyledSubDetails,
-  StyledTag,
-  StyledTags,
 } from "components/MixCard/StyledMixCard";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
@@ -48,14 +45,17 @@ export const MixCard: React.FC<CatalogueProps> = () => {
         </StyledSubDetails>
         <StyledNotes>{notes}</StyledNotes>
       </StyledMixInfo>
-      <StyledCategoryTags>
+      <StyledSocials>
+        <div>farts</div>
+      </StyledSocials>
+      {/* <StyledCategoryTags>
         <StyledTags>
           {tags.map((tag) => (
             <StyledTag key={tag}>{replaceSpacesWithNbsp(`#${tag}`)}</StyledTag>
           ))}
         </StyledTags>
         <StyledCategory>{category.name}</StyledCategory>
-      </StyledCategoryTags>
+      </StyledCategoryTags> */}
     </StyledMixCard>
   );
 };
