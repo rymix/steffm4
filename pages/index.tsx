@@ -2,7 +2,9 @@ import BurgerMenu from "components/BurgerMenu";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
 import TrackFlow from "components/TrackFlow";
+import TrackSingle from "components/TrackSingle";
 import { useMixcloud } from "contexts/mixcloud";
+import { useSession } from "contexts/session";
 import { useEffect, useState } from "react";
 import { mcKeyFormatter } from "utils/functions";
 
@@ -12,6 +14,7 @@ const Home = (): JSX.Element => {
   } = useMixcloud();
 
   const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
+  const { isMobile } = useSession();
 
   useEffect(() => {
     const fetchKey = async (): Promise<void> => {
@@ -28,7 +31,8 @@ const Home = (): JSX.Element => {
       {randomMcKey && (
         <>
           <BurgerMenu />
-          <TrackFlow />
+          {isMobile ? <TrackSingle /> : <TrackFlow />}
+
           <Mixcloud defaultMcKey={randomMcKey} />
           <MixCard />
         </>
