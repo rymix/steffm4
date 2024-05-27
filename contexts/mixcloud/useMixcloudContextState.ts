@@ -181,13 +181,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
         currentMixProgressSeconds - currentTrack.startTimeSeconds;
       const trackDuration = nextTrackStartTime - currentTrack.startTimeSeconds;
 
-      const trackProgressPercent = (trackProgressSeconds / trackDuration) * 100;
+      const localTrackProgressPercent =
+        (trackProgressSeconds / trackDuration) * 100;
 
       const currentTime = Date.now();
 
       if (!lastTrackUpdateTime || currentTime - lastTrackUpdateTime >= 1000) {
         setTrackProgress(trackProgressSeconds);
-        setTrackProgressPercent(trackProgressPercent);
+        setTrackProgressPercent(localTrackProgressPercent);
         setTrackSectionNumber(tracks[currentTrackIndex].sectionNumber);
         setLastTrackUpdateTime(currentTime);
       }
