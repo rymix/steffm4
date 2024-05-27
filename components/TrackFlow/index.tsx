@@ -16,13 +16,10 @@ export const TrackFlow: React.FC = () => {
   const { sectionNumber } = track;
 
   useEffect(() => {
-    console.log("mix details changed");
-    console.log("mix", mix);
     setTracks(mix?.details?.tracks || []);
-    console.log("tracks", tracks);
   }, [mix?.details]);
 
-  const albumArt = "./images/albumArt.png";
+  const albumArt = "/images/albumArt.png";
 
   const renderCovers = (): JSX.Element => {
     const dummyPreviousItem: Track = {
