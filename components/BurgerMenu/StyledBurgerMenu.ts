@@ -72,7 +72,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
     width: 100%;
   }
 
-  a {
+  li {
     color: black;
     cursor: pointer;
     margin: 0 0 1rem 0;
