@@ -6,7 +6,7 @@ export const StyledTrackFlow = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 400px;
+  height: 200px;
 `;
 
 export const StyledCovers = styled.div`
@@ -14,7 +14,7 @@ export const StyledCovers = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 400px;
+  height: 200px;
 `;
 
 export const StyledAnimationItem = styled(motion.div)`
