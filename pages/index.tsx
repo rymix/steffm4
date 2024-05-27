@@ -10,7 +10,8 @@ import { mcKeyFormatter } from "utils/functions";
 
 const Home = (): JSX.Element => {
   const {
-    controls: { fetchRandomMcKey },
+    controls: { fetchRandomMcKey, fetchRandomMcKeyByCategory },
+    filters: { selectedCategory },
   } = useMixcloud();
 
   const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
@@ -18,7 +19,9 @@ const Home = (): JSX.Element => {
 
   useEffect(() => {
     const fetchKey = async (): Promise<void> => {
-      const key = await fetchRandomMcKey();
+      const key = selectedCategory
+        ? await fetchRandomMcKeyByCategory(selectedCategory)
+        : await fetchRandomMcKey();
       const formattedKey = mcKeyFormatter(key);
       setRandomMcKey(formattedKey);
     };

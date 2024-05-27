@@ -1,6 +1,7 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 import type { MixcloudContextState } from "contexts/mixcloud/types";
 import type { Mix } from "db/types";
+import usePersistedState from "hooks/usePersistedState";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   mcKeyFormatter,
@@ -30,7 +31,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [mixProgress, setMixProgress] = useState(0);
   const [mixProgressPercent, setMixProgressPercent] = useState(0);
   const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = usePersistedState(
+    "selectedCategory",
+    "",
+  );
   const [selectedTag, setSelectedTag] = useState("");
   const [showUnavailable, setShowUnavailable] = useState(false);
   const [trackProgress, setTrackProgress] = useState(0);
