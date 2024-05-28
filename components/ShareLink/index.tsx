@@ -13,7 +13,7 @@ export const ShareLink: React.FC = () => {
   const [showLabel, setShowLabel] = useState(false);
   const [label, setLabel] = useState("Copy sharable link");
 
-  const handleClick = () => {
+  const handleClick = (): void => {
     copyToClipboard(`http://localhost:3001/${sharableKey}`);
     setLabel("Link copied!");
     setTimeout(() => {

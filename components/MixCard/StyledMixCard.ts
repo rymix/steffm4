@@ -102,7 +102,6 @@ export const StyledSubDetails = styled.div`
 `;
 
 export const StyledSocials = styled.div`
-  background: green;
   display: flex;
   flex-direction: column;
   gap: 10px;

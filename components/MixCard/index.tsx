@@ -26,8 +26,7 @@ export const MixCard: React.FC<CatalogueProps> = () => {
     return <StyledMixCard>Loading...</StyledMixCard>;
   }
 
-  const { category, coverArtLarge, duration, name, notes, releaseDate, tags } =
-    mixDetails;
+  const { coverArtLarge, duration, name, notes, releaseDate } = mixDetails;
 
   return (
     <StyledMixCard>
