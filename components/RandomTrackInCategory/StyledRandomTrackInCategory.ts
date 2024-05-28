@@ -1,7 +1,7 @@
-import ShareIcon from "@mui/icons-material/Share";
+import ShuffleIcon from "@mui/icons-material/Shuffle";
 import styled from "styled-components";
 
-export const StyledShareLink = styled(ShareIcon)`
+export const StyledRandomTrackInCategory = styled(ShuffleIcon)`
   color: ${({ theme }) => theme.colors.socials.randomTrack};
   cursor: pointer;
   transition: color 0.3s ease;

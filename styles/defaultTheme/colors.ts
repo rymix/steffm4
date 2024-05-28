@@ -1,3 +1,4 @@
+/* eslint-disable sonarjs/no-duplicate-string */
 const colors = {
   controls: {
     outerDisc: {
@@ -34,6 +35,14 @@ const colors = {
     handle: "rgba(86, 129, 197, 0.8)",
     text: "rgba(0, 0, 0, 0.6)",
     textHover: "rgba(0, 0, 0, 1)",
+  },
+  socials: {
+    randomTrack: "rgba(0, 0, 0, 0.6)",
+    randomTrackHover: "rgba(0, 0, 0, 1)",
+    randomTrackInCategroy: "rgba(0, 0, 0, 0.6)",
+    randomTrackInCategoryHover: "rgba(0, 0, 0, 1)",
+    share: "rgba(0, 0, 0, 0.6)",
+    shareHover: "rgba(0, 0, 0, 1)",
   },
 };
 

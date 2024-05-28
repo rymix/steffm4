@@ -11,6 +11,8 @@ import {
   StyledSocials,
   StyledSubDetails,
 } from "components/MixCard/StyledMixCard";
+import { RandomTrack } from "components/RandomTrack";
+import { RandomTrackInCategory } from "components/RandomTrackInCategory";
 import ShareLink from "components/ShareLink";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
@@ -43,6 +45,8 @@ export const MixCard: React.FC<CatalogueProps> = () => {
         <StyledNotes>{notes}</StyledNotes>
       </StyledMixInfo>
       <StyledSocials>
+        <RandomTrack />
+        <RandomTrackInCategory />
         <ShareLink />
       </StyledSocials>
     </StyledMixCard>
