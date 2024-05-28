@@ -1,6 +1,7 @@
 import BurgerMenu from "components/BurgerMenu";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
+import Modal from "components/Modal";
 import TrackFlow from "components/TrackFlow";
 import TrackSingle from "components/TrackSingle";
 import { useMixcloud } from "contexts/mixcloud";
@@ -16,7 +17,7 @@ const Home = (): JSX.Element => {
   } = useMixcloud();
 
   const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
-  const { isMobile } = useSession();
+  const { isMobile, modalOpen, setModalOpen } = useSession();
 
   useEffect(() => {
     const fetchKey = async (): Promise<void> => {
@@ -37,6 +38,8 @@ const Home = (): JSX.Element => {
   return (
     <>
       <BurgerMenu />
+      <Modal />
+      <button onClick={() => setModalOpen(true)}>Open Modal</button>
       {randomMcKey && (
         <>
           {isMobile ? <TrackSingle /> : <TrackFlow />}

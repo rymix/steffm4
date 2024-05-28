@@ -93,3 +93,7 @@ export const copyToClipboard = (text) => {
     textArea.remove();
   }
 };
+
+export const replaceSpacesWithNbsp = (text: string) => {
+  return text.replaceAll(/\s/g, "\u00A0");
+};

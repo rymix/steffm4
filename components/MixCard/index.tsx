@@ -27,10 +27,6 @@ export const MixCard: React.FC<CatalogueProps> = () => {
   const { category, coverArtLarge, duration, name, notes, releaseDate, tags } =
     mixDetails;
 
-  const replaceSpacesWithNbsp = (text: string) => {
-    return text.replaceAll(/\s/g, "\u00A0");
-  };
-
   return (
     <StyledMixCard>
       {coverArtLarge && (
@@ -47,16 +43,9 @@ export const MixCard: React.FC<CatalogueProps> = () => {
         <StyledNotes>{notes}</StyledNotes>
       </StyledMixInfo>
       <StyledSocials>
+        <p>foo</p>
         <ShareLink />
       </StyledSocials>
-      {/* <StyledCategoryTags>
-        <StyledTags>
-          {tags.map((tag) => (
-            <StyledTag key={tag}>{replaceSpacesWithNbsp(`#${tag}`)}</StyledTag>
-          ))}
-        </StyledTags>
-        <StyledCategory>{category.name}</StyledCategory>
-      </StyledCategoryTags> */}
     </StyledMixCard>
   );
 };

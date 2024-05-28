@@ -6,7 +6,6 @@ import { copyToClipboard } from "utils/functions";
 export const ShareLink: React.FC = () => {
   const { mcKey } = useMixcloud();
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
-  console.log("mcKey:", mcKey);
 
   return (
     <StyledShareLink

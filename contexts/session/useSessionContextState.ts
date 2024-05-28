@@ -4,7 +4,9 @@ import themes from "styles/themes";
 
 const useSessionContextState = (): SessionContextState => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [themeName, setThemeName] = useState("defaultTheme");
   const [isMobile, setIsMobile] = useState(false);
   const theme = themes[themeName] || themes.defaultTheme;
@@ -39,8 +41,11 @@ const useSessionContextState = (): SessionContextState => {
     burgerMenuRef,
     isMobile,
     menuOpen,
+    modalOpen,
+    modalRef,
     setIsMobile,
     setMenuOpen,
+    setModalOpen,
     setThemeName,
     theme,
     themeName,
