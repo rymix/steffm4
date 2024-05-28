@@ -6,11 +6,16 @@ import {
   StyledVolumeUp,
 } from "components/Volume/StyledVolume";
 import { useMixcloud } from "contexts/mixcloud";
+import { useTheme } from "styled-components";
 
 export const Volume: React.FC = () => {
   const {
     widget: { setVolume, volume },
   } = useMixcloud();
+
+  const theme = useTheme();
+  const sliderColor = theme.colors.volume.slider;
+  const handleColor = theme.colors.volume.handle;
 
   const handleVolumeChange = (
     event: Event,
@@ -34,6 +39,12 @@ export const Volume: React.FC = () => {
           defaultValue={70}
           min={0}
           max={100}
+          sx={{
+            color: sliderColor,
+            "& .MuiSlider-thumb": {
+              backgroundColor: handleColor,
+            },
+          }}
         />
         <StyledVolumeUp
           onClick={() => {

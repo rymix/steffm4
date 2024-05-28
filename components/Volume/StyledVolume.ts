@@ -17,15 +17,25 @@ export const StyledVolumeControls = styled.div`
 `;
 
 export const StyledVolumeDown = styled(VolumeDown)`
-  color: black;
+  color: ${({ theme }) => theme.colors.volume.text};
   cursor: pointer;
   font-size: 24px;
   margin: 2px 0 0 0;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.volume.textHover};
+  }
 `;
 
 export const StyledVolumeUp = styled(VolumeUp)`
-  color: black;
+  color: ${({ theme }) => theme.colors.volume.text};
   cursor: pointer;
   font-size: 24px;
   margin: 2px 0 0 0;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.volume.textHover};
+  }
 `;
