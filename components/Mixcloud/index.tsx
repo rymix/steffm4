@@ -2,7 +2,6 @@ import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import { Slider } from "@mui/material";
 import SemiCircularProgress from "components/Controls/SemiCircularProgress";
 import {
   StyledAudioControls,
@@ -15,12 +14,9 @@ import {
   StyledProgressBar,
   StyledSkipNext,
   StyledSkipPrevious,
-  StyledVolumeControls,
-  StyledVolumeControlsWrapper,
-  StyledVolumeDown,
-  StyledVolumeUp,
 } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
+import Volume from "components/Volume";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useRef } from "react";
 
@@ -234,28 +230,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             </StyledProgressBar>
           </StyledPlayerWrapper>
 
-          <StyledVolumeControlsWrapper>
-            <StyledVolumeControls>
-              <StyledVolumeDown
-                onClick={() => {
-                  setVolume(0);
-                }}
-              />
-              <Slider
-                aria-label="Volume"
-                value={volume * 100}
-                onChange={handleVolumeChange}
-                defaultValue={70}
-                min={0}
-                max={100}
-              />
-              <StyledVolumeUp
-                onClick={() => {
-                  setVolume(1);
-                }}
-              />
-            </StyledVolumeControls>
-          </StyledVolumeControlsWrapper>
+          <Volume />
 
           {children}
         </>
