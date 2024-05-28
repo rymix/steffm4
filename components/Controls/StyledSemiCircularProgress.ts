@@ -21,8 +21,8 @@ export const StyledSemiCircularProgress = styled.div.attrs<StyledSemiCircularPro
     },
   }),
 )<StyledSemiCircularProgressProps>`
-  --primary: rgba(0.5, 0.5, 0.5, 0.8);
-  --secondary: rgba(0.5, 0.5, 0.5, 0.2);
+  --primary: ${({ theme }) => theme.colors.progress.on};
+  --secondary: ${({ theme }) => theme.colors.progress.off};
   --size: 400px;
   width: 100%;
   aspect-ratio: 2 / 1;

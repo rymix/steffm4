@@ -43,7 +43,6 @@ export const MixCard: React.FC<CatalogueProps> = () => {
         <StyledNotes>{notes}</StyledNotes>
       </StyledMixInfo>
       <StyledSocials>
-        <p>foo</p>
         <ShareLink />
       </StyledSocials>
     </StyledMixCard>

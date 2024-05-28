@@ -32,8 +32,8 @@ export const StyledPlayer = styled.div`
 
 export const StyledProgressBar = styled.div<{ $position: "top" | "bottom" }>`
   position: absolute;
-  width: 340px;
-  height: 200px;
+  height: ${({ theme }) => theme.sizes.controls.progress.height};
+  width: ${({ theme }) => theme.sizes.controls.progress.width};
   top: ${(props) => (props.$position === "top" ? "20px" : "auto")};
   bottom: ${(props) => (props.$position === "bottom" ? "-10px" : "auto")};
   left: 50%;
@@ -45,95 +45,96 @@ export const StyledAudioControlsWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: 340px;
+  height: ${({ theme }) => theme.sizes.controls.overall};
+  width: ${({ theme }) => theme.sizes.controls.overall};
   z-index: 3;
 `;
 
 export const StyledAudioControls = styled.div`
   align-items: center;
-  background: grey;
+  background: ${({ theme }) => theme.colors.controls.outerDisc.background};
   border-radius: 50%;
   color: black;
   display: flex;
   font-size: 48px;
-  height: 300px;
+  height: ${({ theme }) => theme.sizes.controls.background};
   justify-content: center;
   position: relative;
-  width: 300px;
+  width: ${({ theme }) => theme.sizes.controls.background};
   top: 20px;
 `;
 
 export const StyledAudioControlsInner = styled.div`
   align-items: center;
-  background: lightgrey;
+  background: ${({ theme }) => theme.colors.controls.innerDisc.background};
   border-radius: 50%;
   box-shadow: 0px 20px 20px -10px rgba(0, 0, 0, 0.5);
   color: black;
   display: flex;
-  height: 220px;
+  height: ${({ theme }) => theme.sizes.controls.controls};
   justify-content: center;
-  width: 220px;
+  width: ${({ theme }) => theme.sizes.controls.controls};
 `;
 
 export const StyledSkipPrevious = styled.div`
   align-items: center;
-  background: lightgrey;
+  background: ${({ theme }) => theme.colors.controls.buttons.background};
   border-radius: 50%;
-  color: black;
+  color: ${({ theme }) => theme.colors.controls.buttons.text};
   cursor: pointer;
   display: flex;
-  height: 60px;
+  height: ${({ theme }) => theme.sizes.controls.buttons};
   left: 15px;
   position: absolute;
   justify-content: center;
-  width: 60px;
+  width: ${({ theme }) => theme.sizes.controls.buttons};
 
   transition: color 0.3s ease;
 
   &:hover {
-    color: white;
+    color: ${({ theme }) => theme.colors.controls.buttons.textHover};
   }
 `;
 
 export const StyledSkipNext = styled.div`
   align-items: center;
-  background: lightgrey;
+  background: ${({ theme }) => theme.colors.controls.buttons.background};
   border-radius: 50%;
-  color: black;
+  color: ${({ theme }) => theme.colors.controls.buttons.text};
   cursor: pointer;
   display: flex;
-  height: 60px;
+  height: ${({ theme }) => theme.sizes.controls.buttons};
   justify-content: center;
   position: absolute;
   right: 15px;
-  width: 60px;
+  width: ${({ theme }) => theme.sizes.controls.buttons};
 
   transition: color 0.3s ease;
 
   &:hover {
-    color: white;
+    color: ${({ theme }) => theme.colors.controls.buttons.textHover};
   }
 `;
 
 export const StyledPlay = styled.div`
   align-items: center;
-  background: white;
+  background: ${({ theme }) => theme.colors.controls.play.background};
   border-radius: 50%;
-  color: black;
+  color: ${({ theme }) => theme.colors.controls.play.text};
   cursor: pointer;
   display: flex;
   font-size: 72px;
-  height: 100px;
+  height: ${({ theme }) => theme.sizes.controls.play};
   justify-content: center;
-  width: 100px;
+  width: ${({ theme }) => theme.sizes.controls.play};
 
   transition:
     background 0.3s ease,
     color 0.3s ease;
 
   &:hover {
-    background: gray;
-    color: white;
+    background: ${({ theme }) => theme.colors.controls.play.hover};
+    color: ${({ theme }) => theme.colors.controls.play.textHover};
   }
 `;
 
