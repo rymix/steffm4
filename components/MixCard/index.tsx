@@ -45,9 +45,9 @@ export const MixCard: React.FC<CatalogueProps> = () => {
         <StyledNotes>{notes}</StyledNotes>
       </StyledMixInfo>
       <StyledSocials>
+        <ShareLink />
         <RandomTrack />
         <RandomTrackInCategory />
-        <ShareLink />
       </StyledSocials>
     </StyledMixCard>
   );

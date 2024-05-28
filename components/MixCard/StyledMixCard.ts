@@ -102,5 +102,9 @@ export const StyledSubDetails = styled.div`
 `;
 
 export const StyledSocials = styled.div`
-  text-align: right;
+  background: green;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
 `;
