@@ -1,4 +1,3 @@
-import { AudioWave } from "components/AudioWave";
 import BurgerMenu from "components/BurgerMenu";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
@@ -7,8 +6,16 @@ import TrackFlow from "components/TrackFlow";
 import TrackSingle from "components/TrackSingle";
 import { useMixcloud } from "contexts/mixcloud";
 import { useSession } from "contexts/session";
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { mcKeyFormatter } from "utils/functions";
+
+const ShaderCanvas = dynamic(
+  () => import("components/ShaderCanvas/ShaderEffect"),
+  {
+    ssr: false,
+  },
+);
 
 const Home = (): JSX.Element => {
   const {
@@ -46,7 +53,7 @@ const Home = (): JSX.Element => {
       {randomMcKey && (
         <>
           {isMobile ? <TrackSingle /> : <TrackFlow />}
-          <AudioWave />
+          <ShaderCanvas />
           <Mixcloud defaultMcKey={randomMcKey} />
           <MixCard />
         </>
