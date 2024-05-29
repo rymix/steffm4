@@ -1,3 +1,4 @@
+import AnimatedGradientBackground from "components/Background";
 import BurgerMenu from "components/BurgerMenu";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
@@ -38,6 +39,8 @@ const Home = (): JSX.Element => {
 
   return (
     <>
+      <AnimatedGradientBackground />
+
       <Overlay />
       <BurgerMenu />
       <Modal />
