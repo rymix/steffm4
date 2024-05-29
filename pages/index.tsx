@@ -1,3 +1,4 @@
+import { AudioWave } from "components/AudioWave";
 import BurgerMenu from "components/BurgerMenu";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
@@ -39,10 +40,13 @@ const Home = (): JSX.Element => {
     <>
       <BurgerMenu />
       <Modal />
-      <button onClick={() => setModalOpen(true)}>Open Modal</button>
+      <button type="button" onClick={() => setModalOpen(true)}>
+        Open Modal
+      </button>
       {randomMcKey && (
         <>
           {isMobile ? <TrackSingle /> : <TrackFlow />}
+          <AudioWave />
           <Mixcloud defaultMcKey={randomMcKey} />
           <MixCard />
         </>
