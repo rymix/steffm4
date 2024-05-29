@@ -1,29 +1,20 @@
 import { useSession } from "contexts/session";
-import { useEffect } from "react";
+
+import { StyledModal } from "./StyledModal";
 
 const Modal = () => {
   const { modalOpen, setModalOpen, modalRef } = useSession();
 
-  const handleClickOutside = (event) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
-      setModalOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   return (
-    <div className={`modal ${modalOpen ? "modal-open" : ""}`} ref={modalRef}>
+    <StyledModal
+      className={`modal ${modalOpen ? "modal-open" : ""}`}
+      ref={modalRef}
+    >
       <div className="modal-content">
-        {/* Your modal content goes here */}
+        <div>{modalOpen ? "true" : "false"}</div>
         <button onClick={() => setModalOpen(false)}>Close</button>
       </div>
-    </div>
+    </StyledModal>
   );
 };
 

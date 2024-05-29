@@ -19,32 +19,22 @@ export const TrackFlow: React.FC = () => {
     setTracks(mix?.details?.tracks || []);
   }, [mix?.details]);
 
-  const albumArt = "/images/albumArt.png";
+  const albumArt = "/images/1x1.png";
 
   const renderCovers = (): JSX.Element => {
     const dummyPreviousItem: Track = {
-      artistName: "dummyArtistName",
-      coverArtDate: "2023-12-23T22:50:22.000Z",
+      artistName: "",
+      coverArtDate: "",
       coverArtLarge: albumArt,
       coverArtSmall: albumArt,
-      publisher: "dummyPublisher",
-      remixArtistName: "dummyRemixArtistName",
+      publisher: "",
+      remixArtistName: "",
       sectionNumber: -1,
-      startTime: "00:00",
-      trackName: "dummyTrackName",
+      startTime: "",
+      trackName: "",
     };
 
-    const dummyNextItem: Track = {
-      artistName: "dummyArtistName",
-      coverArtDate: "2023-12-23T22:50:22.000Z",
-      coverArtLarge: albumArt,
-      coverArtSmall: albumArt,
-      publisher: "dummyPublisher",
-      remixArtistName: "dummyRemixArtistName",
-      sectionNumber: 9999,
-      startTime: "00:00",
-      trackName: "dummyTrackName",
-    };
+    const dummyNextItem: Track = dummyPreviousItem;
 
     const currentTrack =
       tracks.find((t) => t.sectionNumber === sectionNumber) || null;

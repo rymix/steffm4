@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledMixCard = styled.div`
-  background: #f0f0f0;
   border-radius: 10px;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
@@ -90,7 +89,6 @@ export const StyledCategoryTags = styled.div`
 `;
 
 export const StyledSubDetails = styled.div`
-  color: gray;
   display: flex;
   flex-direction: row;
   font-size: 14px;

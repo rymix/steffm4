@@ -22,20 +22,22 @@ const useSessionContextState = (): SessionContextState => {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
-      if (
-        burgerMenuRef.current &&
-        !burgerMenuRef.current.contains(event.target as Node)
-      ) {
+      const target = event.target as Node;
+
+      if (burgerMenuRef.current && !burgerMenuRef.current.contains(target)) {
         setMenuOpen(false);
+      }
+
+      if (modalRef.current && !modalRef.current.contains(target)) {
+        setModalOpen(false);
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [burgerMenuRef]);
+  }, [burgerMenuRef, modalRef]);
 
   return {
     burgerMenuRef,
