@@ -4,9 +4,9 @@ export const StyledMixcloudWidget = styled.iframe`
   bottom: 0;
   left: 0;
   height: 60px;
-  opacity: 0;
+  opacity: 1;
   position: fixed;
-  transform: translateY(60px);
+  transform: translateY(0);
   width: 100%;
   z-index: 1;
 `;

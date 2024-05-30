@@ -1,4 +1,5 @@
 import { Container, FadeDiv } from "components/FadeSwitch/StyledFadeSwitch";
+import { useMixcloud } from "contexts/mixcloud";
 import React, { useEffect, useState } from "react";
 import type { RuleSet } from "styled-components";
 import { css, keyframes } from "styled-components";
@@ -29,6 +30,9 @@ const colorSets = [
 ];
 
 const FadeSwitch: React.FC = () => {
+  const {
+    track: { sectionNumber },
+  } = useMixcloud();
   const [isFirstGradientVisible, setIsFirstGradientVisible] = useState(true);
   const [duration1, setDuration1] = useState(0);
   const [duration2, setDuration2] = useState(0);
@@ -45,23 +49,19 @@ const FadeSwitch: React.FC = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setIsFirstGradientVisible((prev) => {
-        if (prev) {
-          setDegree2(generateRandomDegree());
-          setDuration2(generateRandomDuration());
-          setColors2(getRandomColors(colors1));
-        } else {
-          setDegree1(generateRandomDegree());
-          setDuration1(generateRandomDuration());
-          setColors1(getRandomColors(colors2));
-        }
-        return !prev;
-      });
-    }, 3000); // Switch every 3 seconds
-
-    return () => clearInterval(interval);
-  }, []);
+    setIsFirstGradientVisible((prev) => {
+      if (prev) {
+        setDegree2(generateRandomDegree());
+        setDuration2(generateRandomDuration());
+        setColors2(getRandomColors(colors1));
+      } else {
+        setDegree1(generateRandomDegree());
+        setDuration1(generateRandomDuration());
+        setColors1(getRandomColors(colors2));
+      }
+      return !prev;
+    });
+  }, [sectionNumber]);
 
   const gradientAnimation1 = keyframes`
     0% {
