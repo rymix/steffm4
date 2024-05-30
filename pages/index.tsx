@@ -1,5 +1,5 @@
-import AnimatedGradientBackground from "components/Background";
 import BurgerMenu from "components/BurgerMenu";
+import FadeSwitch from "components/FadeSwitch";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
 import Modal from "components/Modal";
@@ -39,7 +39,7 @@ const Home = (): JSX.Element => {
 
   return (
     <>
-      <AnimatedGradientBackground />
+      <FadeSwitch />
 
       <Overlay />
       <BurgerMenu />
