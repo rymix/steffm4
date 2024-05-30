@@ -40,6 +40,7 @@ const FadeSwitch: React.FC = () => {
   const [degree2, setDegree2] = useState(0);
   const [colors1, setColors1] = useState<string[]>(colorSets[0]);
   const [colors2, setColors2] = useState<string[]>(colorSets[1]);
+  const [skipFirstUpdate, setSkipFirstUpdate] = useState(true);
 
   const getRandomColors = (excludeColors: string[]): string[] => {
     const availableColors = colorSets.filter(
@@ -49,18 +50,24 @@ const FadeSwitch: React.FC = () => {
   };
 
   useEffect(() => {
-    setIsFirstGradientVisible((prev) => {
-      if (prev) {
-        setDegree2(generateRandomDegree());
-        setDuration2(generateRandomDuration());
-        setColors2(getRandomColors(colors1));
-      } else {
-        setDegree1(generateRandomDegree());
-        setDuration1(generateRandomDuration());
-        setColors1(getRandomColors(colors2));
-      }
-      return !prev;
-    });
+    if (skipFirstUpdate) {
+      // Skip the first update
+      setSkipFirstUpdate(false);
+    } else {
+      // Update gradients on sectionNumber change
+      setIsFirstGradientVisible((prev) => {
+        if (prev) {
+          setDegree2(generateRandomDegree());
+          setDuration2(generateRandomDuration());
+          setColors2(getRandomColors(colors1));
+        } else {
+          setDegree1(generateRandomDegree());
+          setDuration1(generateRandomDuration());
+          setColors1(getRandomColors(colors2));
+        }
+        return !prev;
+      });
+    }
   }, [sectionNumber]);
 
   const gradientAnimation1 = keyframes`
