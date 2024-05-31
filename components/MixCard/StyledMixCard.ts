@@ -1,10 +1,26 @@
 import styled from "styled-components";
 
+export const StyledMixCardWrapper = styled.div`
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent calc(100% - 200px),
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  min-height: 200px;
+
+  color: black;
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.2),
+    0 0 4px rgba(255, 255, 255, 0.3);
+`;
+
 export const StyledMixCard = styled.div`
-  background: yellow;
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 2fr 4fr 1fr;
   gap: 20px;
+  margin: auto;
+  max-width: 768px;
   padding: 20px;
   text-align: left;
 

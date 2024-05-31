@@ -4,6 +4,7 @@ import {
   StyledCoverArtImage,
   StyledDuration,
   StyledMixCard,
+  StyledMixCardWrapper,
   StyledMixInfo,
   StyledMixName,
   StyledNotes,
@@ -29,26 +30,28 @@ export const MixCard: React.FC<CatalogueProps> = () => {
   const { coverArtLarge, duration, name, notes, releaseDate } = mixDetails;
 
   return (
-    <StyledMixCard>
-      {coverArtLarge && (
-        <StyledCoverArt>
-          <StyledCoverArtImage src={coverArtLarge} alt={name} />
-        </StyledCoverArt>
-      )}
-      <StyledMixInfo>
-        <StyledMixName>{name}</StyledMixName>
-        <StyledSubDetails>
-          <StyledReleaseDate>{releaseDate}</StyledReleaseDate>
-          <StyledDuration>{duration}</StyledDuration>
-        </StyledSubDetails>
-        <StyledNotes>{notes}</StyledNotes>
-      </StyledMixInfo>
-      <StyledSocials>
-        <ShareLink />
-        <RandomTrack />
-        <RandomTrackInCategory />
-      </StyledSocials>
-    </StyledMixCard>
+    <StyledMixCardWrapper>
+      <StyledMixCard>
+        {coverArtLarge && (
+          <StyledCoverArt>
+            <StyledCoverArtImage src={coverArtLarge} alt={name} />
+          </StyledCoverArt>
+        )}
+        <StyledMixInfo>
+          <StyledMixName>{name}</StyledMixName>
+          <StyledSubDetails>
+            <StyledReleaseDate>{releaseDate}</StyledReleaseDate>
+            <StyledDuration>{duration}</StyledDuration>
+          </StyledSubDetails>
+          <StyledNotes>{notes}</StyledNotes>
+        </StyledMixInfo>
+        <StyledSocials>
+          <ShareLink />
+          <RandomTrack />
+          <RandomTrackInCategory />
+        </StyledSocials>
+      </StyledMixCard>
+    </StyledMixCardWrapper>
   );
 };
 

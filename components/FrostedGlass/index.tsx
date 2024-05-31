@@ -3,7 +3,7 @@ import { StyledFrostedGlass } from "components/FrostedGlass/StyledFrostedGlass";
 import React from "react";
 
 export const FrostedGlass: React.FC<CatalogueProps> = () => {
-  return <StyledFrostedGlass>farts</StyledFrostedGlass>;
+  return <StyledFrostedGlass />;
 };
 
 export default FrostedGlass;

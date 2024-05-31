@@ -7,7 +7,6 @@ import {
   StyledAudioControls,
   StyledAudioControlsInner,
   StyledAudioControlsWrapper,
-  StyledHole,
   StyledMixcloudWidget,
   StyledPlay,
   StyledPlayer,
@@ -171,9 +170,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             src={widgetUrl}
             frameBorder="0"
           />
-
-          <StyledHole>farts</StyledHole>
-
           <StyledPlayerWrapper>
             <StyledPlayer>
               <StyledAudioControlsWrapper>

@@ -3,12 +3,15 @@ import styled from "styled-components";
 
 export const StyledTrackFlow = styled.div`
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 240px;
+  min-height: 280px;
+
+  color: black;
+  text-shadow:
+    0 0 2px rgba(255, 255, 255, 0.2),
+    0 0 4px rgba(255, 255, 255, 0.3);
 `;
 
 export const StyledCovers = styled.div`
@@ -16,7 +19,6 @@ export const StyledCovers = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 240px;
 `;
 
 export const StyledAnimationItem = styled(motion.div)`

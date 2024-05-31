@@ -13,7 +13,7 @@ const useSessionContextState = (): SessionContextState => {
 
   useEffect(() => {
     const handleResize = (): void => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth <= 768);
     };
 
     window.addEventListener("resize", handleResize);
