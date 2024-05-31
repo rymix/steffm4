@@ -7,6 +7,7 @@ export const StyledMixCardWrapper = styled.div`
     transparent calc(100% - 200px),
     rgba(0, 0, 0, 0.6) 100%
   );
+  margin-top: 30px;
   min-height: 200px;
 
   color: black;
@@ -117,7 +118,7 @@ export const StyledSubDetails = styled.div`
 
 export const StyledSocials = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  justify-content: flex-start;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: flex-end;
 `;

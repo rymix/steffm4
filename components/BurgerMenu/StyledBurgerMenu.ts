@@ -24,7 +24,8 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
   }
 
   div {
-    background: ${({ $open }) => ($open ? "black" : "darkgray")};
+    background: ${({ $open }) =>
+      $open ? "rgba(0, 0, 0, 0.6)" : "rgba(0, 0, 0, 0.3)"};
     border-radius: 10px;
     height: 0.25rem;
     position: relative;
@@ -48,7 +49,8 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
   }
 
   &:hover > div {
-    background: ${({ $open }) => ($open ? "lightgray" : "black")};
+    background: ${({ $open }) =>
+      $open ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 1)"};
   }
 `;
 
