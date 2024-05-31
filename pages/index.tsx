@@ -1,6 +1,5 @@
 import BurgerMenu from "components/BurgerMenu";
 import FadeSwitch from "components/FadeSwitch";
-import FrostedGlass from "components/FrostedGlass";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
 import Modal from "components/Modal";
@@ -41,15 +40,15 @@ const Home = (): JSX.Element => {
   return (
     <>
       <FadeSwitch />
-      <FrostedGlass />
+      {/* <FrostedGlass /> */}
 
       <Overlay />
       <BurgerMenu />
       <Modal />
 
-      <button type="button" onClick={() => setModalOpen(true)}>
+      {/* <button type="button" onClick={() => setModalOpen(true)}>
         Open Modal
-      </button>
+      </button> */}
       {randomMcKey && (
         <>
           {isMobile ? <TrackSingle /> : <TrackFlow />}

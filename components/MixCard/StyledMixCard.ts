@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledMixCard = styled.div`
-  border-radius: 10px;
+  background: yellow;
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   gap: 20px;

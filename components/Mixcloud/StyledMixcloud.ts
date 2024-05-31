@@ -11,7 +11,19 @@ export const StyledMixcloudWidget = styled.iframe`
   z-index: 1;
 `;
 
+export const StyledHole = styled.div`
+  position: absolute;
+  left: calc(50% - 160px);
+  bottom: calc(50% - 158px);
+  width: 320px;
+  height: 320px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 0 0 0 9999px rgba(255, 255, 255, 0.3);
+`;
+
 export const StyledPlayerWrapper = styled.div`
+  zbackground: blue;
   position: relative;
   display: flex;
   justify-content: center;
