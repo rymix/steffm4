@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const StyledMixCardWrapper = styled.div`
-  background: linear-gradient(
+  /* background: linear-gradient(
     180deg,
     transparent 0%,
     transparent calc(100% - 200px),
     rgba(0, 0, 0, 0.6) 100%
-  );
+  ); */
   margin-top: 30px;
   min-height: 200px;
 

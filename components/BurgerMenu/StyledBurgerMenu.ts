@@ -14,7 +14,7 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
   justify-content: space-around;
   left: 30px;
   padding: 0;
-  position: absolute;
+  position: fixed;
   top: 30px;
   width: 2rem;
   z-index: 100;
@@ -63,7 +63,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
   justify-content: flex-start;
   left: 0;
   padding: 6rem 2rem;
-  position: absolute;
+  position: fixed;
   text-align: left;
   top: 0;
   transform: ${({ $open }) => ($open ? "translateX(0)" : "translateX(-100%)")};
