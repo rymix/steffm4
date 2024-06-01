@@ -81,27 +81,23 @@ const Background: React.FC = () => {
 
   const gradientAnimation1 = keyframes`
     0% {
-      background-position: 0% 50%;
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(-50%, 0);
     }
     50% {
-      background-position: 100% 50%;
+      transform: translate(-50%, -50%);
+    }
+    75% {
+      transform: translate(0, -50%);
     }
     100% {
-      background-position: 0% 50%;
+      transform: translate(0, 0);
     }
   `;
 
-  const gradientAnimation2 = keyframes`
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  `;
+  const gradientAnimation2 = gradientAnimation1;
 
   const animationRule1 = (duration: number): RuleSet<object> => css`
     ${gradientAnimation1} ${duration}s ease infinite;
