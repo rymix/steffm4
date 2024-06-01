@@ -1,5 +1,5 @@
+import Background from "components/Background";
 import BurgerMenu from "components/BurgerMenu";
-import FadeSwitch from "components/FadeSwitch";
 import FrostedGlass from "components/FrostedGlass";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
@@ -42,7 +42,7 @@ const Home = (): JSX.Element => {
   return (
     <>
       <Vignette />
-      <FadeSwitch />
+      <Background />
       <FrostedGlass />
 
       <Overlay />

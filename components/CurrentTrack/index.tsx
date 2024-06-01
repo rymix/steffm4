@@ -8,7 +8,7 @@ import {
   StyledTrack,
   StyledTrackContainer,
   StyledTrackName,
-} from "components/CurrentTrack/StyledCurrentTrack";
+} from "components/TrackCard/StyledTrackCard";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 

@@ -1,4 +1,7 @@
-import { Container, FadeDiv } from "components/FadeSwitch/StyledFadeSwitch";
+import {
+  FadeDiv,
+  StyledBackground,
+} from "components/Background/StyledBackground";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useEffect, useState } from "react";
 import type { RuleSet } from "styled-components";
@@ -32,7 +35,7 @@ const colorSets = [
   ["#11bf19", "#886ae2", "#86811b"],
 ];
 
-const FadeSwitch: React.FC = () => {
+const Background: React.FC = () => {
   const {
     track: { sectionNumber },
   } = useMixcloud();
@@ -129,7 +132,7 @@ const FadeSwitch: React.FC = () => {
   `;
 
   return (
-    <Container>
+    <StyledBackground>
       <FadeDiv
         $isVisible={isFirstGradientVisible}
         $gradient={gradient1(degree1, duration1, colors1)}
@@ -138,8 +141,8 @@ const FadeSwitch: React.FC = () => {
         $isVisible={!isFirstGradientVisible}
         $gradient={gradient2(degree2, duration2, colors2)}
       />
-    </Container>
+    </StyledBackground>
   );
 };
 
-export default FadeSwitch;
+export default Background;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const StyledBackground = styled.div`
   position: fixed;
   width: 100%;
   height: 100vh;
@@ -11,8 +11,8 @@ export const FadeDiv = styled.div<{ $isVisible: boolean; $gradient: any }>`
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 200%;
+  height: 200vh;
   ${(props) => props.$gradient};
   opacity: ${(props) => (props.$isVisible ? 1 : 0)};
   transition: opacity 1.5s ease-in-out;
