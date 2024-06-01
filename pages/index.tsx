@@ -7,6 +7,7 @@ import Modal from "components/Modal";
 import Overlay from "components/Overlay";
 import TrackFlow from "components/TrackFlow";
 import TrackSingle from "components/TrackSingle";
+import Vignette from "components/Vignette";
 import { useMixcloud } from "contexts/mixcloud";
 import { useSession } from "contexts/session";
 import { useEffect, useState } from "react";
@@ -40,6 +41,7 @@ const Home = (): JSX.Element => {
 
   return (
     <>
+      <Vignette />
       <FadeSwitch />
       <FrostedGlass />
 

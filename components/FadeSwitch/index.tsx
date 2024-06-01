@@ -2,10 +2,13 @@ import { Container, FadeDiv } from "components/FadeSwitch/StyledFadeSwitch";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useEffect, useState } from "react";
 import type { RuleSet } from "styled-components";
-import { css, keyframes } from "styled-components";
+import { css, keyframes, useTheme } from "styled-components";
 
-const generateRandomDuration = (): number => Math.floor(Math.random() * 26) + 5;
-
+const generateRandomDuration = (min: number, max: number): number => {
+  const range = max - min + 1;
+  const randomNumber = Math.floor(Math.random() * range);
+  return randomNumber + min;
+};
 const generateRandomDegree = (): number => {
   return Math.floor(Math.random() * 360) + 1;
 };
@@ -42,6 +45,9 @@ const FadeSwitch: React.FC = () => {
   const [colors2, setColors2] = useState<string[]>(colorSets[1]);
   const [skipFirstUpdate, setSkipFirstUpdate] = useState(true);
 
+  const theme = useTheme();
+  const { max, min } = theme.sizes.background.duration;
+
   const getRandomColors = (excludeColors: string[]): string[] => {
     const availableColors = colorSets.filter(
       (colorSet) => colorSet !== excludeColors,
@@ -58,11 +64,11 @@ const FadeSwitch: React.FC = () => {
       setIsFirstGradientVisible((prev) => {
         if (prev) {
           setDegree2(generateRandomDegree());
-          setDuration2(generateRandomDuration());
+          setDuration2(generateRandomDuration(min, max));
           setColors2(getRandomColors(colors1));
         } else {
           setDegree1(generateRandomDegree());
-          setDuration1(generateRandomDuration());
+          setDuration1(generateRandomDuration(min, max));
           setColors1(getRandomColors(colors2));
         }
         return !prev;

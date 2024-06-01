@@ -24,6 +24,7 @@ const GlobalStyle = createGlobalStyle`
     background: white;
     font-family: 'montserrat', sans-serif;
     font-weight: 400;
+    overscroll-behavior: none;
   }
 `;
 

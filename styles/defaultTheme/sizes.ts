@@ -11,5 +11,11 @@ const sizes = {
       width: "300px",
     },
   },
+  background: {
+    duration: {
+      max: 40,
+      min: 20,
+    },
+  },
 };
 export default sizes;

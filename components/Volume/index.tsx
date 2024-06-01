@@ -14,8 +14,7 @@ export const Volume: React.FC = () => {
   } = useMixcloud();
 
   const theme = useTheme();
-  const sliderColor = theme.colors.volume.slider;
-  const handleColor = theme.colors.volume.handle;
+  const { slider, handle } = theme.colors.volume;
 
   const handleVolumeChange = (
     event: Event,
@@ -40,9 +39,9 @@ export const Volume: React.FC = () => {
           min={0}
           max={100}
           sx={{
-            color: sliderColor,
+            color: slider,
             "& .MuiSlider-thumb": {
-              backgroundColor: handleColor,
+              backgroundColor: handle,
             },
           }}
         />
