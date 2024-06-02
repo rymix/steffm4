@@ -7,6 +7,7 @@ import {
   StyledAudioControls,
   StyledAudioControlsInner,
   StyledAudioControlsWrapper,
+  StyledHeadphonesWrapper,
   StyledMixcloudWidget,
   StyledPlay,
   StyledPlayer,
@@ -174,6 +175,23 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             <StyledPlayer>
               <StyledAudioControlsWrapper>
                 <StyledAudioControls>
+                  <StyledHeadphonesWrapper>
+                    <svg
+                      width="240"
+                      height="180"
+                      viewBox="0 0 240 180"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M 120,90 m -90,0 a 90,90 0 1,0 180,0 a 90,90 0 1,0 -180,0
+       M 30,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0
+       M 210,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0"
+                        fill="white"
+                        fill-opacity="0.4"
+                      />
+                    </svg>
+                  </StyledHeadphonesWrapper>
+
                   <StyledAudioControlsInner>
                     <StyledSkipPrevious>
                       <SkipPreviousIcon

@@ -2,32 +2,32 @@
 const colors = {
   controls: {
     outerDisc: {
-      background: "rgba(86, 129, 197, 1)",
-      hover: "rgba(86, 129, 197, 1)",
+      background: "rgba(255, 255, 255, 0.2)",
+      hover: "rgba(255, 255, 255, 0.2)",
       text: "black",
       textHover: "black",
     },
     innerDisc: {
-      background: "rgba(126, 192, 209, 1)",
-      hover: "rgba(126, 192, 209, 1)",
+      background: "rgba(255, 255, 255, 0.4)",
+      hover: "rgba(255, 255, 255, 0.4)",
       text: "black",
       textHover: "black",
     },
     buttons: {
-      background: "rgba(126, 192, 209, 1)",
-      hover: "rgba(126, 192, 209, 1)",
+      background: "rgba(255, 255, 255, 0.4)",
+      hover: "rgba(255, 255, 255, 0.4)",
       text: "black",
       textHover: "white",
     },
     play: {
-      background: "rgba(255, 255, 255, 1)",
-      hover: "rgba(255, 255, 255, 0.5)",
+      background: "rgba(255, 255, 255, 0.6)",
+      hover: "rgba(255, 255, 255, 0.8)",
       text: "rgba(0, 0, 0, 1)",
       textHover: "rgba(0, 0, 0, 1)",
     },
   },
   progress: {
-    off: "rgba(200, 200, 200, 0.5)",
+    off: "rgba(255, 255, 255, 0.1)",
     on: "rgba(86, 129, 197, 0.8)",
   },
   volume: {

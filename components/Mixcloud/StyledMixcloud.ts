@@ -23,7 +23,6 @@ export const StyledHole = styled.div`
 `;
 
 export const StyledPlayerWrapper = styled.div`
-  zbackground: blue;
   position: relative;
   display: flex;
   justify-content: center;
@@ -37,7 +36,6 @@ export const StyledPlayer = styled.div`
   flex-direction: column;
   justify-content: center;
   position: relative;
-  z-index: 2;
 `;
 
 export const StyledProgressBar = styled.div<{ $position: "top" | "bottom" }>`
@@ -52,17 +50,18 @@ export const StyledProgressBar = styled.div<{ $position: "top" | "bottom" }>`
 `;
 
 export const StyledAudioControlsWrapper = styled.div`
+  background-blend-mode: normal;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   height: ${({ theme }) => theme.sizes.controls.overall};
   width: ${({ theme }) => theme.sizes.controls.overall};
-  z-index: 3;
 `;
 
 export const StyledAudioControls = styled.div`
   align-items: center;
   background: ${({ theme }) => theme.colors.controls.outerDisc.background};
+  background-blend-mode: normal;
   border-radius: 50%;
   color: black;
   display: flex;
@@ -76,9 +75,7 @@ export const StyledAudioControls = styled.div`
 
 export const StyledAudioControlsInner = styled.div`
   align-items: center;
-  background: ${({ theme }) => theme.colors.controls.innerDisc.background};
   border-radius: 50%;
-  box-shadow: 0px 20px 20px -10px rgba(0, 0, 0, 0.5);
   color: black;
   display: flex;
   height: ${({ theme }) => theme.sizes.controls.controls};
@@ -86,9 +83,14 @@ export const StyledAudioControlsInner = styled.div`
   width: ${({ theme }) => theme.sizes.controls.controls};
 `;
 
+export const StyledHeadphonesWrapper = styled.div`
+  position: absolute;
+  top: 40px;
+  left: 10px;
+`;
+
 export const StyledSkipPrevious = styled.div`
   align-items: center;
-  background: ${({ theme }) => theme.colors.controls.buttons.background};
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.controls.buttons.text};
   cursor: pointer;
@@ -98,8 +100,8 @@ export const StyledSkipPrevious = styled.div`
   position: absolute;
   justify-content: center;
   width: ${({ theme }) => theme.sizes.controls.buttons};
-
   transition: color 0.3s ease;
+  z-index: 1;
 
   &:hover {
     color: ${({ theme }) => theme.colors.controls.buttons.textHover};
@@ -108,7 +110,6 @@ export const StyledSkipPrevious = styled.div`
 
 export const StyledSkipNext = styled.div`
   align-items: center;
-  background: ${({ theme }) => theme.colors.controls.buttons.background};
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.controls.buttons.text};
   cursor: pointer;
@@ -118,8 +119,8 @@ export const StyledSkipNext = styled.div`
   position: absolute;
   right: 15px;
   width: ${({ theme }) => theme.sizes.controls.buttons};
-
   transition: color 0.3s ease;
+  z-index: 1;
 
   &:hover {
     color: ${({ theme }) => theme.colors.controls.buttons.textHover};
@@ -129,6 +130,7 @@ export const StyledSkipNext = styled.div`
 export const StyledPlay = styled.div`
   align-items: center;
   background: ${({ theme }) => theme.colors.controls.play.background};
+  background-blend-mode: normal;
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.controls.play.text};
   cursor: pointer;
@@ -137,6 +139,7 @@ export const StyledPlay = styled.div`
   height: ${({ theme }) => theme.sizes.controls.play};
   justify-content: center;
   width: ${({ theme }) => theme.sizes.controls.play};
+  z-index: 8;
 
   transition:
     background 0.3s ease,
