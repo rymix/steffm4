@@ -6,7 +6,7 @@ import {
 } from "components/Modal/StyledModal";
 import { useSession } from "contexts/session";
 
-const Modal = () => {
+const Modal: React.FC = () => {
   const { modalOpen, setModalOpen, modalRef, modalContent } = useSession();
 
   return (
@@ -15,7 +15,7 @@ const Modal = () => {
       ref={modalRef}
     >
       <StyledModalHeader>
-        <div /> {/* Empty div to push close link to the right */}
+        <div />
         <StyledCloseLink onClick={() => setModalOpen(false)} />
       </StyledModalHeader>
       <StyledModalContent>{modalContent}</StyledModalContent>
