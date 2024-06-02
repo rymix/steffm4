@@ -1,4 +1,5 @@
 import type { SessionContextState } from "contexts/session/types";
+import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import themes from "styles/themes";
 
@@ -6,10 +7,16 @@ const useSessionContextState = (): SessionContextState => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [modalContent, setModalContent] = useState<ReactNode>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [themeName, setThemeName] = useState("defaultTheme");
   const [isMobile, setIsMobile] = useState(false);
   const theme = themes[themeName] || themes.defaultTheme;
+
+  const openModal = (content: ReactNode): void => {
+    setModalContent(content);
+    setModalOpen(true);
+  };
 
   useEffect(() => {
     const handleResize = (): void => {
@@ -43,10 +50,13 @@ const useSessionContextState = (): SessionContextState => {
     burgerMenuRef,
     isMobile,
     menuOpen,
+    modalContent,
     modalOpen,
     modalRef,
+    openModal,
     setIsMobile,
     setMenuOpen,
+    setModalContent,
     setModalOpen,
     setThemeName,
     theme,

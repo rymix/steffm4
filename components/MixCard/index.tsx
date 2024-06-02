@@ -1,4 +1,5 @@
 import type { CatalogueProps } from "components/Catalogue/types";
+import Information from "components/Information";
 import {
   StyledCoverArt,
   StyledCoverArtImage,
@@ -47,6 +48,7 @@ export const MixCard: React.FC<CatalogueProps> = () => {
         <StyledSocials>
           <ShareLink />
           <RandomTrackInCategory />
+          <Information />
         </StyledSocials>
       </StyledMixCard>
     </StyledMixCardWrapper>

@@ -37,12 +37,18 @@ const colors = {
     textHover: "rgba(0, 0, 0, 1)",
   },
   socials: {
+    information: "rgba(0, 0, 0, 0.6)",
+    informationHover: "rgba(0, 0, 0, 1)",
     randomTrack: "rgba(0, 0, 0, 0.6)",
     randomTrackHover: "rgba(0, 0, 0, 1)",
     randomTrackInCategroy: "rgba(0, 0, 0, 0.6)",
     randomTrackInCategoryHover: "rgba(0, 0, 0, 1)",
     share: "rgba(0, 0, 0, 0.6)",
     shareHover: "rgba(0, 0, 0, 1)",
+  },
+  modal: {
+    closeLink: "rgba(0, 0, 0, 0.6)",
+    closeLinkHover: "rgba(0, 0, 0, 1)",
   },
 };
 

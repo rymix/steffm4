@@ -1,15 +1,15 @@
+import CloseIcon from "@mui/icons-material/Close";
 import styled from "styled-components";
 
 export const StyledModal = styled.div`
   background: white;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 240px;
-  width: 400px;
+  justify-content: flex-start;
+  min-height: 240px;
+  min-width: 400px;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -45,23 +45,27 @@ export const StyledModal = styled.div`
     opacity: 1;
     visibility: visible;
   }
+`;
 
-  .modal-content {
-    padding: 20px;
-    text-align: center;
-  }
+export const StyledModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px;
+`;
 
-  button {
-    background: #007bff;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-  }
+export const StyledModalContent = styled.div`
+  padding: 20px;
+  text-align: center;
+  flex-grow: 1;
+`;
 
-  button:hover {
-    background: #0056b3;
+export const StyledCloseLink = styled(CloseIcon)`
+  color: ${({ theme }) => theme.colors.modal.closeLink};
+  cursor: pointer;
+  font-size: 36px;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.modal.closeLinkHover};
   }
 `;
