@@ -5,6 +5,7 @@ import themes from "styles/themes";
 
 const useSessionContextState = (): SessionContextState => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
+  const [countdown, setCountdown] = useState(0);
   const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
@@ -16,6 +17,19 @@ const useSessionContextState = (): SessionContextState => {
   const openModal = (content: ReactNode): void => {
     setModalContent(content);
     setModalOpen(true);
+  };
+
+  const startCountdown = (seconds: number): void => {
+    setCountdown(seconds);
+    const interval = setInterval(() => {
+      setCountdown((prevCountdown) => {
+        if (prevCountdown <= 1) {
+          clearInterval(interval);
+          return 0;
+        }
+        return prevCountdown - 1;
+      });
+    }, 1000);
   };
 
   useEffect(() => {
@@ -48,17 +62,20 @@ const useSessionContextState = (): SessionContextState => {
 
   return {
     burgerMenuRef,
+    countdown,
     isMobile,
     menuOpen,
     modalContent,
     modalOpen,
     modalRef,
     openModal,
+    setCountdown,
     setIsMobile,
     setMenuOpen,
     setModalContent,
     setModalOpen,
     setThemeName,
+    startCountdown,
     theme,
     themeName,
   };

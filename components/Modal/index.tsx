@@ -1,3 +1,4 @@
+import Countdown from "components/Countdown";
 import {
   StyledCloseLink,
   StyledModal,
@@ -16,6 +17,7 @@ const Modal: React.FC = () => {
     >
       <StyledModalHeader>
         <div />
+        <Countdown />
         <StyledCloseLink onClick={() => setModalOpen(false)} />
       </StyledModalHeader>
       <StyledModalContent>{modalContent}</StyledModalContent>

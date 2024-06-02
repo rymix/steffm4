@@ -8,11 +8,12 @@ export const RandomTrackInCategory: React.FC = () => {
     controls: { fetchRandomMcKeyByCategory, handleLoad },
     filters: { selectedCategory },
   } = useMixcloud();
-  const { openModal, setModalOpen } = useSession();
+  const { openModal, setModalOpen, startCountdown } = useSession();
 
   const handleClick = async (): Promise<void> => {
     handleLoad(await fetchRandomMcKeyByCategory(selectedCategory));
     openModal(<p>Playing a random {selectedCategory} track</p>);
+    startCountdown(5);
     setTimeout(() => {
       setModalOpen(false);
     }, 5000);
