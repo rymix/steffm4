@@ -84,9 +84,16 @@ export const StyledAudioControlsInner = styled.div`
 `;
 
 export const StyledHeadphonesWrapper = styled.div`
+  min-height: 200px;
+  overflow: visible;
   position: absolute;
   top: 40px;
   left: 10px;
+
+  .zshadow {
+    -webkit-filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.5));
+    filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.5));
+  }
 `;
 
 export const StyledSkipPrevious = styled.div`

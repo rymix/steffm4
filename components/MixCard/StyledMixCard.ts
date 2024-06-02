@@ -1,12 +1,6 @@
 import styled from "styled-components";
 
 export const StyledMixCardWrapper = styled.div`
-  /* background: linear-gradient(
-    180deg,
-    transparent 0%,
-    transparent calc(100% - 200px),
-    rgba(0, 0, 0, 0.6) 100%
-  ); */
   margin-top: 30px;
   min-height: 200px;
 
@@ -44,7 +38,6 @@ export const StyledCoverArt = styled.div`
 
 export const StyledCoverArtImage = styled.img`
   border-radius: 50%;
-  box-shadow: 0px 20px 20px -10px rgba(0, 0, 0, 0.5);
   height: 140px;
   width: 140px;
 `;

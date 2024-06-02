@@ -7,4 +7,5 @@ export const StyledVignette = styled.div`
   width: 100%;
   height: 100vh;
   box-shadow: 0 0 200px rgba(0, 0, 0, 0.9) inset;
+  z-index: -800;
 `;
