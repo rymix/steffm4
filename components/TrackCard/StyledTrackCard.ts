@@ -42,6 +42,7 @@ export const StyledCoverArtImage = styled.img`
 export const StyledTrackName = styled.div`
   font-size: 20px;
   font-weight: 700;
+  margin: 10px 0 0 0;
 `;
 
 export const StyledArtistName = styled.div`
