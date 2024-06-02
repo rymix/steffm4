@@ -11,12 +11,17 @@ import React, { useCallback, useEffect, useState } from "react";
 const Menu: React.FC = () => {
   const { menuOpen } = useSession();
   const {
-    controls: { fetchRandomMcKeyByCategory, handleLoad },
+    controls: { fetchRandomMcKey, fetchRandomMcKeyByCategory, handleLoad },
     filters: { selectedCategory, setSelectedCategory },
   } = useMixcloud();
   const { setMenuOpen } = useSession();
 
   const [links, setLinks] = useState([
+    {
+      key: "",
+      selected: false,
+      text: "I Love Everything!",
+    },
     {
       key: "mpos",
       selected: false,
@@ -59,8 +64,15 @@ const Menu: React.FC = () => {
     event: React.MouseEvent<HTMLAnchorElement>,
   ): Promise<void> => {
     event.preventDefault();
-    setSelectedCategory(code);
-    handleLoad(await fetchRandomMcKeyByCategory(code));
+
+    if (code === "") {
+      setSelectedCategory("");
+      handleLoad(await fetchRandomMcKey());
+    } else {
+      setSelectedCategory(code);
+      handleLoad(await fetchRandomMcKeyByCategory(code));
+    }
+
     setTimeout(() => setMenuOpen(false), 500);
   };
 
