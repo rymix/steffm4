@@ -48,8 +48,11 @@ export const StyledModal = styled.div`
 `;
 
 export const StyledModalHeader = styled.div`
+  align-items: center;
+  color: ${({ theme }) => theme.colors.modal.countdown};
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
+  justify-content: flex-end;
   width: 100%;
   padding: 10px;
 `;

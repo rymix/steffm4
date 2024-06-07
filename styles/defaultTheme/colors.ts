@@ -53,6 +53,7 @@ const colors = {
   modal: {
     closeLink: "rgba(0, 0, 0, 0.6)",
     closeLinkHover: "rgba(0, 0, 0, 1)",
+    countdown: "rgba(0, 0, 0, 0.3)",
   },
 };
 

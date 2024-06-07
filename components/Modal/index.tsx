@@ -16,7 +16,6 @@ const Modal: React.FC = () => {
       ref={modalRef}
     >
       <StyledModalHeader>
-        <div />
         <Countdown />
         <StyledCloseLink onClick={() => setModalOpen(false)} />
       </StyledModalHeader>
