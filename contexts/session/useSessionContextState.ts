@@ -11,11 +11,29 @@ const useSessionContextState = (): SessionContextState => {
   const [modalOpen, setModalOpen] = useState(false);
   const [themeName, setThemeName] = useState("defaultTheme");
   const [isMobile, setIsMobile] = useState(false);
+  const [seconds, setSeconds] = useState(5);
+  const timerRef = useRef(null);
   const theme = themes[themeName] || themes.defaultTheme;
+
+  const startTimer = () => {
+    setSeconds(5);
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => {
+      setModalOpen(false);
+      timerRef.current = null;
+    }, 5000);
+  };
+
+  const stopTimer = () => {
+    clearTimeout(timerRef.current);
+    timerRef.current = null;
+    setModalOpen(false);
+  };
 
   const openModal = useCallback((content: ReactNode): void => {
     setModalContent(content);
     setModalOpen(true);
+    startTimer();
   }, []);
 
   useEffect(() => {
@@ -38,13 +56,21 @@ const useSessionContextState = (): SessionContextState => {
       }
 
       if (modalRef.current && !modalRef.current.contains(target)) {
-        setModalOpen(false);
+        stopTimer();
+      }
+    };
+
+    const handleEscapePress = (event: KeyboardEvent): void => {
+      if (event.key === "Escape") {
+        stopTimer();
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscapePress);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscapePress);
     };
   }, [burgerMenuRef, modalRef]);
 

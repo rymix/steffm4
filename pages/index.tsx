@@ -5,7 +5,6 @@ import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
 import Modal from "components/Modal";
 import Overlay from "components/Overlay";
-import TimerDemo from "components/TimerDemo";
 import TrackFlow from "components/TrackFlow";
 import TrackSingle from "components/TrackSingle";
 import Vignette from "components/Vignette";
@@ -50,11 +49,6 @@ const Home = (): JSX.Element => {
       <BurgerMenu />
       <Modal />
 
-      <TimerDemo />
-
-      {/* <button type="button" onClick={() => setModalOpen(true)}>
-        Open Modal
-      </button> */}
       {randomMcKey && (
         <>
           {isMobile ? <TrackSingle /> : <TrackFlow />}

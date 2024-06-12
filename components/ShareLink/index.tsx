@@ -6,16 +6,12 @@ import { copyToClipboard } from "utils/functions";
 
 export const ShareLink: React.FC = () => {
   const { mcKey } = useMixcloud();
-  const { openModal, setModalOpen, startCountdown } = useSession();
+  const { openModal } = useSession();
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
 
   const handleClick = (): void => {
     copyToClipboard(`http://localhost:3001/${sharableKey}`);
     openModal(<p>Sharable link copied to clipboard</p>);
-    startCountdown(5);
-    setTimeout(() => {
-      setModalOpen(false);
-    }, 5000);
   };
 
   return <StyledShareLink onClick={handleClick} />;
