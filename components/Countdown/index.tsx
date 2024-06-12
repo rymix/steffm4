@@ -1,11 +1,11 @@
-import { StyledCountdown } from "components/Countdown/StyledCountdown";
-import { useSession } from "contexts/session";
 import React from "react";
 
-export const Countdown: React.FC = () => {
-  const { countdown } = useSession();
+interface CountdownProps {
+  seconds: number;
+}
 
-  return <StyledCountdown>{countdown}</StyledCountdown>;
+const Countdown: React.FC<CountdownProps> = ({ seconds }) => {
+  return <div>{seconds}</div>;
 };
 
 export default Countdown;

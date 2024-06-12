@@ -11,7 +11,7 @@ export const RandomTrackInCategory: React.FC = () => {
 
   const handleClick = async (): Promise<void> => {
     handleLoad(await fetchRandomMcKeyByCategory(selectedCategory));
-    openModal(<p>Playing a random {selectedCategory} track</p>, 5);
+    openModal(<p>Playing a random {selectedCategory} track</p>, 4);
   };
 
   return <StyledRandomTrackInCategory onClick={handleClick} />;

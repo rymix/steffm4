@@ -2,7 +2,6 @@ import type { SessionContextState } from "contexts/session/types";
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import themes from "styles/themes";
-import { clearTimeout } from "timers";
 
 const useSessionContextState = (): SessionContextState => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
@@ -12,20 +11,40 @@ const useSessionContextState = (): SessionContextState => {
   const [modalOpen, setModalOpen] = useState(false);
   const [themeName, setThemeName] = useState("defaultTheme");
   const [isMobile, setIsMobile] = useState(false);
+  const [secondsRemaining, setSecondsRemaining] = useState<number | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const theme = themes[themeName] || themes.defaultTheme;
 
   const startTimer = (duration: number): void => {
+    setSecondsRemaining(duration);
     clearTimeout(timerRef.current || 0);
+    clearInterval(intervalRef.current || 0);
+
     timerRef.current = setTimeout(() => {
       setModalOpen(false);
+      setSecondsRemaining(null);
+      clearInterval(intervalRef.current || 0);
       timerRef.current = null;
     }, duration * 1000);
+
+    intervalRef.current = setInterval(() => {
+      setSecondsRemaining((prev) => {
+        if (prev === null || prev <= 1) {
+          clearInterval(intervalRef.current || 0);
+          return null;
+        }
+        return prev - 1;
+      });
+    }, 1000);
   };
 
   const stopTimer = (): void => {
     clearTimeout(timerRef.current || 0);
+    clearInterval(intervalRef.current || 0);
     timerRef.current = null;
+    intervalRef.current = null;
+    setSecondsRemaining(null);
     setModalOpen(false);
   };
 
@@ -33,7 +52,9 @@ const useSessionContextState = (): SessionContextState => {
     (content: ReactNode, seconds?: number): void => {
       setModalContent(content);
       setModalOpen(true);
-      if (seconds !== undefined) {
+      if (seconds === undefined) {
+        setSecondsRemaining(null);
+      } else {
         startTimer(seconds);
       }
     },
@@ -86,6 +107,7 @@ const useSessionContextState = (): SessionContextState => {
     modalOpen,
     modalRef,
     openModal,
+    secondsRemaining,
     setIsMobile,
     setMenuOpen,
     setModalContent,

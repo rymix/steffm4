@@ -10,6 +10,7 @@ export type SessionContextState = {
   modalOpen: boolean;
   modalRef: React.MutableRefObject<HTMLDivElement | null>;
   openModal: (content: ReactNode, seconds?: number) => void;
+  secondsRemaining: number | null;
   setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
   setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setModalContent: React.Dispatch<React.SetStateAction<ReactNode | null>>;

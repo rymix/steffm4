@@ -8,7 +8,8 @@ import {
 import { useSession } from "contexts/session";
 
 const Modal: React.FC = () => {
-  const { modalOpen, setModalOpen, modalRef, modalContent } = useSession();
+  const { modalOpen, setModalOpen, modalRef, modalContent, secondsRemaining } =
+    useSession();
 
   return (
     <StyledModal
@@ -16,7 +17,7 @@ const Modal: React.FC = () => {
       ref={modalRef}
     >
       <StyledModalHeader>
-        <Countdown />
+        {secondsRemaining !== null && <Countdown seconds={secondsRemaining} />}
         <StyledCloseLink onClick={() => setModalOpen(false)} />
       </StyledModalHeader>
       <StyledModalContent>{modalContent}</StyledModalContent>
