@@ -11,17 +11,15 @@ const useSessionContextState = (): SessionContextState => {
   const [modalOpen, setModalOpen] = useState(false);
   const [themeName, setThemeName] = useState("defaultTheme");
   const [isMobile, setIsMobile] = useState(false);
-  const [seconds, setSeconds] = useState(5);
   const timerRef = useRef(null);
   const theme = themes[themeName] || themes.defaultTheme;
 
-  const startTimer = () => {
-    setSeconds(5);
+  const startTimer = (duration: number) => {
     clearTimeout(timerRef.current);
     timerRef.current = setTimeout(() => {
       setModalOpen(false);
       timerRef.current = null;
-    }, 5000);
+    }, duration * 1000);
   };
 
   const stopTimer = () => {
@@ -30,11 +28,16 @@ const useSessionContextState = (): SessionContextState => {
     setModalOpen(false);
   };
 
-  const openModal = useCallback((content: ReactNode): void => {
-    setModalContent(content);
-    setModalOpen(true);
-    startTimer();
-  }, []);
+  const openModal = useCallback(
+    (content: ReactNode, seconds?: number): void => {
+      setModalContent(content);
+      setModalOpen(true);
+      if (seconds !== undefined) {
+        startTimer(seconds);
+      }
+    },
+    [],
+  );
 
   useEffect(() => {
     const handleResize = (): void => {

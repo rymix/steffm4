@@ -11,7 +11,7 @@ export const ShareLink: React.FC = () => {
 
   const handleClick = (): void => {
     copyToClipboard(`http://localhost:3001/${sharableKey}`);
-    openModal(<p>Sharable link copied to clipboard</p>);
+    openModal(<p>Sharable link copied to clipboard</p>, 3);
   };
 
   return <StyledShareLink onClick={handleClick} />;
