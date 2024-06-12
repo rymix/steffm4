@@ -2,6 +2,7 @@ import type { SessionContextState } from "contexts/session/types";
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import themes from "styles/themes";
+import { clearTimeout } from "timers";
 
 const useSessionContextState = (): SessionContextState => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
@@ -11,19 +12,19 @@ const useSessionContextState = (): SessionContextState => {
   const [modalOpen, setModalOpen] = useState(false);
   const [themeName, setThemeName] = useState("defaultTheme");
   const [isMobile, setIsMobile] = useState(false);
-  const timerRef = useRef(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const theme = themes[themeName] || themes.defaultTheme;
 
-  const startTimer = (duration: number) => {
-    clearTimeout(timerRef.current);
+  const startTimer = (duration: number): void => {
+    clearTimeout(timerRef.current || 0);
     timerRef.current = setTimeout(() => {
       setModalOpen(false);
       timerRef.current = null;
     }, duration * 1000);
   };
 
-  const stopTimer = () => {
-    clearTimeout(timerRef.current);
+  const stopTimer = (): void => {
+    clearTimeout(timerRef.current || 0);
     timerRef.current = null;
     setModalOpen(false);
   };
