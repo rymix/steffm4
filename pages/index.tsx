@@ -21,7 +21,7 @@ const Home = (): JSX.Element => {
   } = useMixcloud();
 
   const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
-  const { isMobile, modalOpen, menuOpen, setModalOpen } = useSession();
+  const { isMobile } = useSession();
 
   useEffect(() => {
     const fetchKey = async (): Promise<void> => {

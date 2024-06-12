@@ -5,7 +5,7 @@ import CustomShaderMaterial from "./CustomShaderMaterial";
 
 extend({ CustomShaderMaterial });
 
-const ShaderEffect = () => {
+const ShaderEffect: React.FC = () => {
   const shaderRef = useRef<CustomShaderMaterial>(null);
 
   useFrame((state, delta) => {
@@ -26,7 +26,7 @@ const ShaderEffect = () => {
   );
 };
 
-const ShaderCanvas = () => {
+const ShaderCanvas: React.FC = () => {
   return (
     <Canvas>
       <ShaderEffect />

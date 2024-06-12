@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-role */
 import { StyledSemiCircularProgress } from "components/Controls/StyledSemiCircularProgress";
 import React from "react";
 

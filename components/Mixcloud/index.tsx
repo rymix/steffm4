@@ -28,26 +28,20 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     mcKey,
     setMcKey,
     controls: { handlePlayPause, handleNext, handlePrevious },
-    filters: { setMixes, setSelectedCategory, setSelectedTag },
     mix: {
-      duration,
-      progress: mixProgress,
       progressPercent: mixProgressPercent,
       setDuration,
       setProgress: setMixProgress,
       setProgressPercent: setMixProgressPercent,
       setShowUnavailable,
-      showUnavailable,
     },
     track: {
-      progress: trackProgress,
       progressPercent: trackProgressPercent,
       setProgress: setTrackProgress,
       setProgressPercent: setTrackProgressPercent,
     },
     widget: {
       iframeRef,
-      loaded,
       playing,
       scriptLoaded,
       setLoaded,
@@ -55,20 +49,11 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
       setPlayerUpdated,
       setPlaying,
       setScriptLoaded,
-      setVolume,
-      volume,
       widgetUrl,
     },
   } = useMixcloud();
 
   const timer = useRef<any>(null);
-
-  const handleVolumeChange = (
-    event: Event,
-    newValue: number | number[],
-  ): void => {
-    setVolume((newValue as number) / 100);
-  };
 
   useEffect(() => {
     if (defaultMcKey) setMcKey(defaultMcKey);

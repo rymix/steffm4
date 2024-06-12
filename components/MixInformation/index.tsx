@@ -14,7 +14,15 @@ export const MixInformation: React.FC<CatalogueProps> = () => {
 
   const { coverArtLarge, duration, name, notes, releaseDate } = mixDetails;
 
-  return <p>farts</p>;
+  return (
+    <ul>
+      <li>{coverArtLarge}</li>
+      <li>{duration}</li>
+      <li>{name}</li>
+      <li>{notes}</li>
+      <li>{releaseDate}</li>
+    </ul>
+  );
 };
 
 export default MixInformation;

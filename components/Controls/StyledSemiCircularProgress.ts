@@ -7,7 +7,10 @@ interface StyledSemiCircularProgressProps {
   $barWidth?: number;
 }
 
-const getStartTurn = (position: "top" | "bottom", start: "left" | "right") => {
+const getStartTurn = (
+  position: "top" | "bottom",
+  start: "left" | "right",
+): string => {
   if (position === "top") {
     return start === "left" ? "0.75turn" : "0.25turn";
   }
@@ -18,7 +21,7 @@ export const StyledSemiCircularProgress = styled.div.attrs<StyledSemiCircularPro
   (props) => ({
     style: {
       "--percentage": `${props.$value}`,
-    },
+    } as React.CSSProperties, // Ensure the returned style object matches React.CSSProperties
   }),
 )<StyledSemiCircularProgressProps>`
   --primary: ${({ theme }) => theme.colors.progress.on};

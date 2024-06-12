@@ -47,11 +47,6 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
       transform: ${({ $open }) => ($open ? "rotate(-45deg)" : "rotate(0)")};
     }
   }
-
-  &:hover > div {
-    background: ${({ $open }) =>
-      $open ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 1)"};
-  }
 `;
 
 export const StyledMenu = styled.nav<StyledMenuProps>`

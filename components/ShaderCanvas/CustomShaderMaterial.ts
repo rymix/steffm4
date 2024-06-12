@@ -3,6 +3,8 @@ import * as THREE from "three";
 import { ShaderMaterial } from "three";
 
 class CustomShaderMaterial extends ShaderMaterial {
+  uniforms: any;
+
   constructor() {
     super({
       uniforms: {

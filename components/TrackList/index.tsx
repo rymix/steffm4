@@ -20,8 +20,8 @@ export const TrackList: React.FC<CatalogueProps> = () => {
   return (
     <StyledTrackList>
       {mixDetails.tracks && mixDetails.tracks.length > 0 ? (
-        mixDetails.tracks.map((track, index) => (
-          <StyledTrackItem key={index}>
+        mixDetails.tracks.map((track) => (
+          <StyledTrackItem key={track.sectionNumber}>
             <StyledTrackTitle>{track.trackName}</StyledTrackTitle>
             <StyledTrackArtist>{track.artistName}</StyledTrackArtist>
           </StyledTrackItem>
