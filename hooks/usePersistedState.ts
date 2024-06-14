@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 
-const usePersistedState = (
+function usePersistedState<T>(
   key: string,
-  defaultValue: string,
-): [string, React.Dispatch<React.SetStateAction<string>>] => {
+  defaultValue: T,
+): [T, React.Dispatch<React.SetStateAction<T>>] {
   const isBrowser = typeof window !== "undefined";
 
-  const [state, setState] = useState(() => {
+  const [state, setState] = useState<T>(() => {
     if (!isBrowser) return defaultValue;
 
     const persistedState = localStorage.getItem(key);
@@ -20,6 +20,6 @@ const usePersistedState = (
   }, [key, state, isBrowser]);
 
   return [state, setState];
-};
+}
 
 export default usePersistedState;
