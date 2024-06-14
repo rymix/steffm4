@@ -8,8 +8,11 @@ export const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  max-height: 80vh;
+  max-width: 80%;
   min-height: 240px;
   min-width: 400px;
+  overflow: hidden;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -58,6 +61,8 @@ export const StyledModalHeader = styled.div`
 `;
 
 export const StyledModalContent = styled.div`
+  overflow: hidden;
+  overflow-y: scroll;
   padding: 20px;
   text-align: center;
   flex-grow: 1;
