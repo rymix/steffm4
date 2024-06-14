@@ -1,9 +1,21 @@
+/* eslint-disable @typescript-eslint/no-namespace */
+import type { ReactThreeFiber } from "@react-three/fiber";
 import { Canvas, extend, useFrame } from "@react-three/fiber";
+import CustomShaderMaterial from "components/ShaderCanvas/CustomShaderMaterial";
 import { useRef } from "react";
 
-import CustomShaderMaterial from "./CustomShaderMaterial";
-
 extend({ CustomShaderMaterial });
+
+declare module "react" {
+  namespace JSX {
+    interface IntrinsicElements {
+      customShaderMaterial: ReactThreeFiber.Object3DNode<
+        CustomShaderMaterial,
+        typeof CustomShaderMaterial
+      >;
+    }
+  }
+}
 
 const ShaderEffect: React.FC = () => {
   const shaderRef = useRef<CustomShaderMaterial>(null);
