@@ -1,4 +1,5 @@
 // pages/api/random-mix.ts
+
 import { db, initializeDb } from "db";
 
 export default async function handler(req: any, res: any): Promise<void> {
