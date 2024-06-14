@@ -22,42 +22,42 @@ jobs:
       - name: Run Tests
         run: yarn test
 
-      - name: Create wwwroot structure
-        run: |
-          mkdir -p wwwroot
-          cp -R .next/standalone/steffm3/steffm3/.next wwwroot/
-          cp -R .next/standalone/steffm3/steffm3/db wwwroot/
-          cp -R .next/standalone/steffm3/steffm3/node_modules wwwroot/
-          cp .next/standalone/steffm3/steffm3/package.json wwwroot/
-          cp -R .next/standalone/steffm3/steffm3/pages wwwroot/
-          cp -R .next/standalone/steffm3/steffm3/public wwwroot/
-          cp .next/standalone/steffm3/steffm3/server.js wwwroot/
+      # - name: Create wwwroot structure
+      #   run: |
+      #     mkdir -p wwwroot
+      #     cp -R .next/standalone/steffm4/steffm3/.next wwwroot/
+      #     cp -R .next/standalone/steffm4/steffm3/db wwwroot/
+      #     cp -R .next/standalone/steffm4/steffm3/node_modules wwwroot/
+      #     cp .next/standalone/steffm4/steffm3/package.json wwwroot/
+      #     cp -R .next/standalone/steffm4/steffm3/pages wwwroot/
+      #     cp -R .next/standalone/steffm4/steffm3/public wwwroot/
+      #     cp .next/standalone/steffm4/steffm3/server.js wwwroot/
 
-      - name: Zip wwwroot
-        run: zip -r wwwroot.zip wwwroot
+      # - name: Zip wwwroot
+      #   run: zip -r wwwroot.zip wwwroot
 
-      - name: Upload Zipped wwwroot
-        uses: actions/upload-artifact@v2
-        with:
-          name: wwwroot
-          path: wwwroot.zip
+      # - name: Upload Zipped wwwroot
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: wwwroot
+      #     path: wwwroot.zip
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: tests
-    steps:
-      - name: Download Zipped wwwroot
-        uses: actions/download-artifact@v2
-        with:
-          name: wwwroot
-          path: .
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: tests
+  #   steps:
+  #     - name: Download Zipped wwwroot
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: wwwroot
+  #         path: .
 
-      - name: Unzip wwwroot
-        run: unzip wwwroot.zip
+  #     - name: Unzip wwwroot
+  #       run: unzip wwwroot.zip
 
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: "steffm"
-          publish-profile: ${{ secrets.STEFFM_PUBLISH_PROFILE }}
-          package: wwwroot
+  #     - name: Deploy to Azure Web App
+  #       uses: azure/webapps-deploy@v2
+  #       with:
+  #         app-name: "steffm"
+  #         publish-profile: ${{ secrets.STEFFM_PUBLISH_PROFILE }}
+  #         package: wwwroot
