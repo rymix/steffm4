@@ -61,7 +61,7 @@ const Menu: React.FC = () => {
 
   const handleCategoryClick = async (
     code: string,
-    event: React.MouseEvent<HTMLAnchorElement>,
+    event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
   ): Promise<void> => {
     event.preventDefault();
 
