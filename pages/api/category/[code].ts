@@ -6,12 +6,13 @@ export default async function handler(req: any, res: any): Promise<void> {
   await initializeDb();
 
   const { code } = req.query;
+  console.log("code", code);
 
   const category = db.data?.categories.find((c) => c.code === code);
 
   if (category) {
-    res.status(200).json({ name: category.name });
+    res.status(200).json(category.name);
   } else {
-    res.status(404).json({ message: "Category not found" });
+    res.status(404).json("Category not found");
   }
 }

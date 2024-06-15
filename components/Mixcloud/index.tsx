@@ -173,7 +173,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
        M 30,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0
        M 210,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0"
                         fill="white"
-                        fill-opacity="0.4"
+                        fillOpacity="0.4"
                       />
                     </svg>
                   </StyledHeadphonesWrapper>

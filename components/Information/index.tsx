@@ -10,7 +10,6 @@ export const Information: React.FC = () => {
     mix: { details },
   } = useMixcloud();
   const name = details?.name;
-  console.log("name", name);
 
   const handleClick = (): void => {
     openModal(<MixInformation />, name);
