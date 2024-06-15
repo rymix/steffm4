@@ -52,12 +52,21 @@ export const StyledModal = styled.div`
 
 export const StyledModalHeader = styled.div`
   align-items: center;
-  color: ${({ theme }) => theme.colors.modal.countdown};
   display: flex;
   gap: 10px;
   justify-content: flex-end;
   width: 100%;
   padding: 10px;
+`;
+
+export const StyledModalTitle = styled.div`
+  font-weight: 700;
+  padding-left: 10px;
+  width: 100%;
+`;
+
+export const StyledCountdown = styled.div`
+  color: ${({ theme }) => theme.colors.modal.countdown};
 `;
 
 export const StyledModalContent = styled.div`

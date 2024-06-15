@@ -8,6 +8,7 @@ const useSessionContextState = (): SessionContextState => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
+  const [modalTitle, setModalTitle] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [themeName, setThemeName] = useState("defaultTheme");
   const [isMobile, setIsMobile] = useState(false);
@@ -49,8 +50,9 @@ const useSessionContextState = (): SessionContextState => {
   };
 
   const openModal = useCallback(
-    (content: ReactNode, seconds?: number): void => {
+    (content: ReactNode, title?: string, seconds?: number): void => {
       setModalContent(content);
+      setModalTitle(title || null);
       setModalOpen(true);
       if (seconds === undefined) {
         setSecondsRemaining(null);
@@ -106,12 +108,14 @@ const useSessionContextState = (): SessionContextState => {
     modalContent,
     modalOpen,
     modalRef,
+    modalTitle,
     openModal,
     secondsRemaining,
     setIsMobile,
     setMenuOpen,
     setModalContent,
     setModalOpen,
+    setModalTitle,
     setThemeName,
     theme,
     themeName,
