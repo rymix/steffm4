@@ -1,13 +1,19 @@
-// pages/api/random-mix.ts
+// pages/api/randomMix/[[...category]].ts
 
 import { db, initializeDb } from "db";
+import type { NextApiRequest, NextApiResponse } from "next";
 
-export default async function handler(req: any, res: any): Promise<void> {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+): Promise<void> {
   await initializeDb();
 
   const { category } = req.query;
-  const filteredMixes = category
-    ? db.data?.mixes.filter((mix) => mix.category === category)
+  const categoryParam = Array.isArray(category) ? category[0] : category;
+
+  const filteredMixes = categoryParam
+    ? db.data?.mixes.filter((mix) => mix.category === categoryParam)
     : db.data?.mixes;
 
   if (!filteredMixes || filteredMixes.length === 0) {

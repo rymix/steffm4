@@ -1,4 +1,4 @@
-// pages/api/mix.js
+// pages/api/mix/[mixcloudKey].js
 
 import { db, initializeDb } from "db";
 

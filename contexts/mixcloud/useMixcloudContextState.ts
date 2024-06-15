@@ -48,7 +48,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const widgetUrl = mcWidgetUrlFormatter(mcKey);
 
   const fetchRandomMcKey = async (): Promise<string> => {
-    const response = await fetch("/api/random-mix");
+    const response = await fetch("/api/randomMix");
     const data = await response.json();
     return data.mcKey;
   };
@@ -56,7 +56,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const fetchRandomMcKeyByCategory = async (
     category: string,
   ): Promise<string> => {
-    const response = await fetch(`/api/random-mix?category=${category}`);
+    const response = await fetch(`/api/randomMix/${category}`);
     const data = await response.json();
     return data.mcKey;
   };
@@ -68,9 +68,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     const lookupMcKey = localMcKey || mcKey;
 
-    const response = await fetch(
-      `/api/mix?mixcloudKey=${mcKeyUnformatter(lookupMcKey)}`,
-    );
+    const response = await fetch(`/api/mix/${mcKeyUnformatter(lookupMcKey)}`);
     const data: Mix = await response.json();
     return data;
   };
