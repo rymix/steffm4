@@ -1,5 +1,8 @@
 import type { CatalogueProps } from "components/Catalogue/types";
 import {
+  StyledContentWrapper,
+  StyledCoverArtWrapper,
+  StyledSectionNumberWrapper,
   StyledTrackArtist,
   StyledTrackCoverArt,
   StyledTrackCoverArtImage,
@@ -27,22 +30,27 @@ export const TrackList: React.FC<CatalogueProps> = () => {
       {mixDetails.tracks && mixDetails.tracks.length > 0 ? (
         mixDetails.tracks.map((track) => (
           <StyledTrackItem key={track.sectionNumber}>
-            {track.coverArtLarge && (
-              <StyledTrackCoverArt>
-                <StyledTrackCoverArtImage
-                  src={track.coverArtLarge}
-                  alt={track.trackName}
-                />
-              </StyledTrackCoverArt>
-            )}
-
-            <StyledTrackTitle>{track.trackName}</StyledTrackTitle>
-            <StyledTrackArtist>{track.artistName}</StyledTrackArtist>
-            <StyledTrackPublisher>{track.publisher}</StyledTrackPublisher>
-            <StyledTrackStartTime>{track.startTime}</StyledTrackStartTime>
-            <StyledTrackSectionNumber>
-              {track.sectionNumber}
-            </StyledTrackSectionNumber>
+            <StyledCoverArtWrapper>
+              {track.coverArtLarge && (
+                <StyledTrackCoverArt>
+                  <StyledTrackCoverArtImage
+                    src={track.coverArtLarge}
+                    alt={track.trackName}
+                  />
+                </StyledTrackCoverArt>
+              )}
+            </StyledCoverArtWrapper>
+            <StyledContentWrapper>
+              <StyledTrackTitle>{track.trackName}</StyledTrackTitle>
+              <StyledTrackArtist>{track.artistName}</StyledTrackArtist>
+              <StyledTrackPublisher>{track.publisher}</StyledTrackPublisher>
+              <StyledTrackStartTime>{track.startTime}</StyledTrackStartTime>
+            </StyledContentWrapper>
+            <StyledSectionNumberWrapper>
+              <StyledTrackSectionNumber>
+                {track.sectionNumber}
+              </StyledTrackSectionNumber>
+            </StyledSectionNumberWrapper>
           </StyledTrackItem>
         ))
       ) : (
