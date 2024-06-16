@@ -1,4 +1,3 @@
-import Background from "components/Background";
 import BurgerMenu from "components/BurgerMenu";
 import FrostedGlass from "components/FrostedGlass";
 import MixCard from "components/MixCard";
@@ -12,6 +11,8 @@ import { useMixcloud } from "contexts/mixcloud";
 import { useSession } from "contexts/session";
 import { useEffect, useState } from "react";
 import { mcKeyFormatter } from "utils/functions";
+
+import SlideshowBackground from "./SlideshowBackground";
 
 const MixcloudHomePage = (): JSX.Element => {
   const {
@@ -42,7 +43,7 @@ const MixcloudHomePage = (): JSX.Element => {
   return (
     <>
       <Vignette />
-      <Background />
+      <SlideshowBackground />
       <FrostedGlass />
 
       <Overlay />
