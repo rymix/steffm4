@@ -57,6 +57,11 @@ export const StyledMixName = styled.div`
   font-weight: 700;
 `;
 
+export const StyledCategoryName = styled.div`
+  font-size: 16px;
+  font-weight: 400;
+`;
+
 export const StyledDuration = styled.div``;
 
 export const StyledReleaseDate = styled.div``;
@@ -107,11 +112,4 @@ export const StyledSubDetails = styled.div`
   @media (max-width: 768px) {
     justify-content: center; // Center sub details in collapsed mode
   }
-`;
-
-export const StyledSocials = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  justify-content: flex-end;
 `;

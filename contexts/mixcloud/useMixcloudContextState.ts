@@ -3,6 +3,7 @@ import type { MixcloudContextState } from "contexts/mixcloud/types";
 import type { Mix } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { DEFAULTVOLUME } from "utils/constants";
 import {
   mcKeyFormatter,
   mcKeyUnformatter,
@@ -40,7 +41,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [trackProgress, setTrackProgress] = useState(0);
   const [trackProgressPercent, setTrackProgressPercent] = useState(0);
   const [trackSectionNumber, setTrackSectionNumber] = useState(0);
-  const [volume, setVolume] = usePersistedState<number>("volume", 0.8);
+  const [volume, setVolume] = usePersistedState<number>(
+    "volume",
+    DEFAULTVOLUME,
+  );
 
   /* Helpers */
   const mcUrl = mcKeyUrlFormatter(mcKey);

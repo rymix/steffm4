@@ -1,4 +1,5 @@
 import type { CatalogueProps } from "components/Catalogue/types";
+import MixCard from "components/MixCard";
 import { StyledMixCard } from "components/MixCard/StyledMixCard";
 import TrackList from "components/TrackList";
 import { useMixcloud } from "contexts/mixcloud";
@@ -13,17 +14,9 @@ export const MixInformation: React.FC<CatalogueProps> = () => {
     return <StyledMixCard>Loading...</StyledMixCard>;
   }
 
-  const { coverArtLarge, duration, name, notes, releaseDate } = mixDetails;
-
   return (
     <>
-      <ul>
-        <li>{coverArtLarge}</li>
-        <li>{duration}</li>
-        <li>{name}</li>
-        <li>{notes}</li>
-        <li>{releaseDate}</li>
-      </ul>
+      <MixCard category />
       <TrackList />
     </>
   );

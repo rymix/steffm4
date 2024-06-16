@@ -53,7 +53,7 @@ const Home = (): JSX.Element => {
         <>
           {isMobile ? <TrackSingle /> : <TrackFlow />}
           <Mixcloud defaultMcKey={randomMcKey} />
-          <MixCard />
+          <MixCard socials />
         </>
       )}
     </>
