@@ -1,4 +1,3 @@
-import type { CatalogueProps } from "components/Catalogue/types";
 import {
   StyledContentWrapper,
   StyledCoverArtWrapper,
@@ -16,7 +15,7 @@ import {
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 
-export const TrackList: React.FC<CatalogueProps> = () => {
+export const TrackList: React.FC = () => {
   const {
     mix: { details: mixDetails },
   } = useMixcloud();
