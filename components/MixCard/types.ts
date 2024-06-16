@@ -1,4 +1,4 @@
 export type MixCardProps = {
   socials?: boolean;
-  catregory?: boolean;
+  category?: boolean;
 };

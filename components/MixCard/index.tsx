@@ -16,9 +16,12 @@ import Socials from "components/Socials";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 
-export const MixCard: React.FC<MixCardProps> = ({ socials = false }) => {
+export const MixCard: React.FC<MixCardProps> = ({
+  socials = false,
+  category = false,
+}) => {
   const {
-    mix: { details: mixDetails },
+    mix: { categoryName, details: mixDetails },
   } = useMixcloud();
 
   if (!mixDetails) {
@@ -37,7 +40,7 @@ export const MixCard: React.FC<MixCardProps> = ({ socials = false }) => {
         )}
         <StyledMixInfo>
           <StyledMixName>{name}</StyledMixName>
-          <StyledCategoryName>{name}</StyledCategoryName>
+          {category && <StyledCategoryName>{categoryName}</StyledCategoryName>}
           <StyledSubDetails>
             <StyledReleaseDate>{releaseDate}</StyledReleaseDate>
             <StyledDuration>{duration}</StyledDuration>

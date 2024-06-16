@@ -25,6 +25,7 @@ export type MixcloudContextState = {
     setSelectedTag: React.Dispatch<React.SetStateAction<string>>;
   };
   mix: {
+    categoryName: string;
     duration: number;
     details: Mix | undefined;
     progress: number;

@@ -26,6 +26,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [lastTrackUpdateTime, setLastTrackUpdateTime] = useState<number | null>(
     null,
   );
+  const [categoryName, setCategoryName] = useState("");
   const [player, setPlayer] = useState<any>();
   const [playerUpdated, setPlayerUpdated] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -88,6 +89,21 @@ const useMixcloudContextState = (): MixcloudContextState => {
     if (mcKey) {
       fetchDetails();
     }
+  }, [mcKey]);
+
+  useEffect(() => {
+    const fetchCategoryName = async (): Promise<void> => {
+      if (!selectedCategory) {
+        setCategoryName("");
+        return;
+      }
+
+      const response = await fetch(`/api/category/${selectedCategory}`);
+      const data: string = await response.json();
+      setCategoryName(data);
+    };
+
+    fetchCategoryName();
   }, [mcKey]);
 
   /* Play / Pause Controls */
@@ -236,6 +252,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setSelectedTag,
     },
     mix: {
+      categoryName,
       duration,
       details: mixDetails,
       progress: mixProgress,
