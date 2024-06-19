@@ -136,7 +136,8 @@ export const StyledSkipNext = styled.div`
 
 export const StyledPlay = styled.div`
   align-items: center;
-  background: ${({ theme }) => theme.colors.controls.play.background};
+  background: ${({ colours, theme }) =>
+    colours?.primary || theme.colors.controls.play.background};
   background-blend-mode: normal;
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.controls.play.text};

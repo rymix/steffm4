@@ -19,6 +19,7 @@ import {
 import type { MixcloudProps } from "components/Mixcloud/types";
 import Volume from "components/Volume";
 import { useMixcloud } from "contexts/mixcloud";
+import { useSession } from "contexts/session";
 import { useEffect, useRef } from "react";
 
 export const Mixcloud: React.FC<MixcloudProps> = (props) => {
@@ -52,6 +53,8 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
       widgetUrl,
     },
   } = useMixcloud();
+
+  const { colours } = useSession();
 
   const timer = useRef<any>(null);
 
@@ -187,7 +190,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
                       />
                     </StyledSkipPrevious>
 
-                    <StyledPlay>
+                    <StyledPlay colours={colours}>
                       {playing ? (
                         <PauseIcon
                           onClick={handlePlayPause}
@@ -220,7 +223,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
                 $value={trackProgressPercent}
                 $position="top"
                 $start="left"
-                $barWidth={1}
+                $barWidth={3}
               />
             </StyledProgressBar>
             <StyledProgressBar $position="bottom">
@@ -228,7 +231,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
                 $value={mixProgressPercent}
                 $position="bottom"
                 $start="left"
-                $barWidth={1}
+                $barWidth={3}
               />
             </StyledProgressBar>
           </StyledPlayerWrapper>

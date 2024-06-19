@@ -12,26 +12,26 @@ import {
 } from "utils/functions";
 
 const useMixcloudContextState = (): MixcloudContextState => {
-  const [mixDetails, setMixDetails] = useState<Mix | undefined>();
+  const [categoryName, setCategoryName] = useState("");
   const [duration, setDuration] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [loaded, setLoaded] = useState(false);
-  const [mcKey, setMcKey] = useState("");
-  const [mcKeyNext, setMcKeyNext] = useState("");
-  const [mcKeyPrevious, setMcKeyPrevious] = useState("");
-  const [mixes, setMixes] = useState<Mix[]>([]);
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
   );
   const [lastTrackUpdateTime, setLastTrackUpdateTime] = useState<number | null>(
     null,
   );
-  const [categoryName, setCategoryName] = useState("");
+  const [loaded, setLoaded] = useState(false);
+  const [mcKey, setMcKey] = useState("");
+  const [mcKeyNext, setMcKeyNext] = useState("");
+  const [mcKeyPrevious, setMcKeyPrevious] = useState("");
+  const [mixDetails, setMixDetails] = useState<Mix | undefined>();
+  const [mixes, setMixes] = useState<Mix[]>([]);
+  const [mixProgress, setMixProgress] = useState(0);
+  const [mixProgressPercent, setMixProgressPercent] = useState(0);
   const [player, setPlayer] = useState<any>();
   const [playerUpdated, setPlayerUpdated] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [mixProgress, setMixProgress] = useState(0);
-  const [mixProgressPercent, setMixProgressPercent] = useState(0);
   const [scriptLoaded, setScriptLoaded] = useState(false);
   const [selectedCategory, setSelectedCategory] = usePersistedState(
     "selectedCategory",
