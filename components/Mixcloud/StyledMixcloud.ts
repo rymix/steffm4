@@ -23,8 +23,8 @@ export const StyledHole = styled.div`
 `;
 
 export const StyledPlayerWrapper = styled.div`
+  height: 340px;
   max-height: 340px;
-  background: pink;
   position: relative;
   display: flex;
   justify-content: center;
@@ -63,7 +63,8 @@ export const StyledAudioControlsWrapper = styled.div`
 
 export const StyledAudioControls = styled.div`
   align-items: center;
-  background: ${({ theme }) => theme.colors.controls.outerDisc.background};
+  background: ${({ colours, theme }) =>
+    colours?.secondary || theme.colors.controls.outerDisc.background};
   background-blend-mode: normal;
   border-radius: 50%;
   color: black;
@@ -92,11 +93,6 @@ export const StyledHeadphonesWrapper = styled.div`
   position: absolute;
   top: 40px;
   left: 10px;
-
-  .zshadow {
-    -webkit-filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.5));
-    filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.5));
-  }
 `;
 
 export const StyledSkipPrevious = styled.div`
@@ -143,6 +139,8 @@ export const StyledPlay = styled.div`
     colours?.primary || theme.colors.controls.play.background};
   background-blend-mode: normal;
   border-radius: 50%;
+  border: ${({ colours, theme }) =>
+    `1px solid ${colours?.tertiary || theme.colors.controls.play.background}`};
   color: ${({ theme }) => theme.colors.controls.play.text};
   cursor: pointer;
   display: flex;

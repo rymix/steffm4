@@ -8,6 +8,7 @@ export type Colours = {
   secondary: string;
   tertiary: string;
   text: string;
+  glow: string;
 };
 
 export type SessionContextState = {

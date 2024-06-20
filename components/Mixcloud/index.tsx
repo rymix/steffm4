@@ -17,7 +17,6 @@ import {
   StyledSkipPrevious,
 } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
-import Volume from "components/Volume";
 import { useMixcloud } from "contexts/mixcloud";
 import { useSession } from "contexts/session";
 import { useEffect, useRef } from "react";
@@ -162,7 +161,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
           <StyledPlayerWrapper>
             <StyledPlayer>
               <StyledAudioControlsWrapper>
-                <StyledAudioControls>
+                <StyledAudioControls colours={colours}>
                   <StyledHeadphonesWrapper>
                     <svg
                       width="240"
@@ -173,10 +172,10 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
                       <path
                         className="shadow"
                         d="M 120,90 m -90,0 a 90,90 0 1,0 180,0 a 90,90 0 1,0 -180,0
-       M 30,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0
-       M 210,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0"
-                        fill="white"
-                        fillOpacity="0.4"
+                      M 30,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0
+                      M 210,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0"
+                        fill={colours?.primary ?? "#fff"}
+                        fillOpacity="0.5"
                       />
                     </svg>
                   </StyledHeadphonesWrapper>
@@ -236,7 +235,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             </StyledProgressBar>
           </StyledPlayerWrapper>
 
-          <Volume />
+          {/* <Volume /> */}
 
           {children}
         </>
