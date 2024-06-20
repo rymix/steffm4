@@ -23,11 +23,14 @@ export const StyledHole = styled.div`
 `;
 
 export const StyledPlayerWrapper = styled.div`
+  max-height: 340px;
+  background: pink;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
+  width: 100%;
 `;
 
 export const StyledPlayer = styled.div`
