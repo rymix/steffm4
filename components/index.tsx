@@ -9,17 +9,17 @@ import TrackSingle from "components/TrackSingle";
 import Vignette from "components/Vignette";
 import { useMixcloud } from "contexts/mixcloud";
 import { useSession } from "contexts/session";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { mcKeyFormatter } from "utils/functions";
 
 const MixcloudHomePage = (): JSX.Element => {
   const {
     mcKey,
+    setMcKey,
     controls: { fetchRandomMcKey, fetchRandomMcKeyByCategory },
     filters: { selectedCategory },
   } = useMixcloud();
 
-  const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
   const { isMobile } = useSession();
 
   useEffect(() => {
@@ -28,11 +28,11 @@ const MixcloudHomePage = (): JSX.Element => {
         ? await fetchRandomMcKeyByCategory(selectedCategory)
         : await fetchRandomMcKey();
       const formattedKey = mcKeyFormatter(key);
-      setRandomMcKey(formattedKey);
+      setMcKey(formattedKey);
     };
 
     if (mcKey) {
-      setRandomMcKey(mcKey);
+      setMcKey(mcKey);
     } else {
       fetchKey();
     }
@@ -42,15 +42,14 @@ const MixcloudHomePage = (): JSX.Element => {
     <>
       <Vignette />
       <GradientBackground />
-
       <Overlay />
       <BurgerMenu />
       <Modal />
 
-      {randomMcKey && (
+      {mcKey && (
         <>
           {isMobile ? <TrackSingle /> : <TrackFlow />}
-          <Mixcloud defaultMcKey={randomMcKey} />
+          <Mixcloud defaultMcKey={mcKey} />
           <MixCard socials />
         </>
       )}
