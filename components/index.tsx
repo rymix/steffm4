@@ -1,66 +1,22 @@
 import BurgerMenu from "components/BurgerMenu";
+import GradientBackground from "components/GradientBackground";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
 import Modal from "components/Modal";
 import Overlay from "components/Overlay";
+import {
+  BottomBlock,
+  MiddleBlock,
+  StyledContainer,
+  TopBlock,
+} from "components/Styles";
 import TrackFlow from "components/TrackFlow";
 import TrackSingle from "components/TrackSingle";
 import Vignette from "components/Vignette";
 import { useMixcloud } from "contexts/mixcloud";
 import { useSession } from "contexts/session";
 import { useEffect } from "react";
-import styled from "styled-components";
 import { mcKeyFormatter } from "utils/functions";
-
-const StyledContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-`;
-
-const TopBlock = styled.div`
-  background: rgba(255, 255, 0, 0.5);
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-height: 30%;
-
-  @media (max-height: 600px) {
-    max-height: 20%;
-  }
-`;
-
-const MiddleBlock = styled.div`
-  background: rgba(255, 128, 0, 0.5);
-  flex: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  > * {
-    width: 100%;
-    height: 100%;
-    max-width: 800px;
-    max-height: 800px;
-    object-fit: contain;
-  }
-`;
-
-const BottomBlock = styled.div`
-  background: rgba(128, 128, 255, 0.5);
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-height: 30%;
-
-  @media (max-height: 600px) {
-    max-height: 20%;
-  }
-`;
 
 const MixcloudHomePage = (): JSX.Element => {
   const {
@@ -91,7 +47,7 @@ const MixcloudHomePage = (): JSX.Element => {
   return (
     <>
       <Vignette />
-      {/* <GradientBackground /> */}
+      <GradientBackground />
       <Overlay />
       <BurgerMenu />
       <Modal />
