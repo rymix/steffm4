@@ -65,6 +65,18 @@ const getGradientColors = (
   }
 };
 
+export const StyledJupiterButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 14px;
+  text-transform: uppercase;
+  height: 100px;
+  width: 54px;
+  background: yellow;
+`;
+
 export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
   background: ${(props) => getGradientColors(props.colour || "cream").normal};
   background: linear-gradient(
@@ -81,10 +93,10 @@ export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
   border-radius: 5px;
   cursor: pointer;
   height: 72px;
-  position: relative;
-  transition: all 0.1s ease-in-out;
   width: 42px;
   overflow: hidden;
+  position: relative;
+  transition: all 0.1s ease-in-out;
 
   &:hover {
     &::before {
@@ -128,4 +140,20 @@ export const StyledJupiterLed = styled.div<StyledJupiterLedProps>`
     top: 2px;
     width: 2px;
   }
+`;
+
+export const StyledJupiterLabelWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 36px;
+`;
+
+export const StyledJupiterLabel = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: green;
 `;

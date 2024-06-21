@@ -1,6 +1,8 @@
 export type JupiterButtonProps = {
   on?: boolean;
   colour?: "cream" | "yellow" | "orange" | "red" | "green" | "blue";
+  label?: string;
+  labelPosition?: "above" | "below";
 };
 
 export type StyledJupiterLedProps = {

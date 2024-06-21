@@ -1,12 +1,14 @@
-import "@fontsource/montserrat/400.css";
-import "@fontsource/montserrat/500.css";
-import "@fontsource/montserrat/600.css";
-import "@fontsource/montserrat/700.css";
-import "@fontsource/montserrat/800.css";
-
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'Microgramma';
+    src: url('/fonts/Microgramma W01 Bold Extended.woff2') format('woff2'),
+         url('/fonts/Microgramma W01 Bold Extended.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+  }
+
   html,
   *,
   *::before,
@@ -22,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     background: white;
-    font-family: 'montserrat', sans-serif;
+    font-family: 'Microgamma', sans-serif;
     font-weight: 400;
     overscroll-behavior: none;
   }
