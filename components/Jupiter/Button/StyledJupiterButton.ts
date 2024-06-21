@@ -1,12 +1,9 @@
+import type {
+  JupiterButtonColours,
+  StyledJupiterButtonProps,
+  StyledJupiterLedProps,
+} from "components/Jupiter/Button/types";
 import styled, { css } from "styled-components";
-
-type StyledJupiterLedProps = {
-  on?: boolean;
-};
-
-type StyledJupiterButtonProps = {
-  colour?: "cream" | "yellow" | "orange" | "red" | "green" | "blue";
-};
 
 const overlayStyles = css`
   content: "";
@@ -19,7 +16,9 @@ const overlayStyles = css`
   animation: fadeOverlay 0.1s ease-in-out;
 `;
 
-const getGradientColors = (color: StyledJupiterButtonProps["colour"]) => {
+const getGradientColors = (
+  color: StyledJupiterButtonProps["colour"],
+): JupiterButtonColours => {
   switch (color) {
     case "yellow": {
       return {
@@ -82,7 +81,6 @@ export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
   border-radius: 5px;
   cursor: pointer;
   height: 72px;
-  margin: 200px 0 0 100px;
   position: relative;
   transition: all 0.1s ease-in-out;
   width: 42px;
@@ -99,7 +97,7 @@ export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
   &:active {
     &::before {
       ${overlayStyles}
-      background-color: rgba(0, 0, 0, 0.05);
+      background-color: rgba(0, 0, 0, 0.1);
     }
   }
 `;
@@ -107,7 +105,7 @@ export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
 export const StyledJupiterLed = styled.div<StyledJupiterLedProps>`
   background: ${(props) =>
     props.on ? "rgba(255, 18, 49, 1)" : "rgba(111, 0, 0, 1)"};
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 50%;
   height: 12px;
   left: 12px;

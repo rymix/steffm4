@@ -2,11 +2,7 @@ import {
   StyledJupiterButton,
   StyledJupiterLed,
 } from "components/Jupiter/Button/StyledJupiterButton";
-
-type JupiterButtonProps = {
-  on?: boolean;
-  colour?: "cream" | "yellow" | "orange" | "red" | "green" | "blue";
-};
+import type { JupiterButtonProps } from "components/Jupiter/Button/types";
 
 const JupiterButton: React.FC<JupiterButtonProps> = ({
   on = false,
