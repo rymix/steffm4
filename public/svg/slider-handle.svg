@@ -1,0 +1,13 @@
+<svg width="100" height="200" viewBox="0 0 100 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Slider Handle -->
+  <rect x="35" y="50" width="30" height="100" rx="10" ry="10" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+
+  <!-- Details for the Handle -->
+  <rect x="40" y="55" width="20" height="5" fill="#FFFFFF"/>
+  <rect x="40" y="70" width="20" height="5" fill="#FFFFFF"/>
+  <rect x="40" y="85" width="20" height="5" fill="#FFFFFF"/>
+  <rect x="40" y="100" width="20" height="5" fill="#FFFFFF"/>
+  <rect x="40" y="115" width="20" height="5" fill="#FFFFFF"/>
+  <rect x="40" y="130" width="20" height="5" fill="#FFFFFF"/>
+  <rect x="40" y="145" width="20" height="5" fill="#FFFFFF"/>
+</svg>
