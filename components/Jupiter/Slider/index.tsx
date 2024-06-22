@@ -3,7 +3,7 @@ import {
   StyledJupiterSliderWrapper,
 } from "components/Jupiter/Slider/StyledJupiterSlider";
 import type { JupiterSliderProps } from "components/Jupiter/Slider/types";
-import JupiterHandle from "public/images/albumArt.png";
+import JupiterHandle from "public/svg/slider-handle.svg";
 import React from "react";
 
 console.log("JupiterHandle", JupiterHandle.src);
@@ -22,8 +22,8 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
           max={100}
           sx={{
             "& .MuiSlider-thumb": {
-              width: "24px",
-              height: "24px",
+              width: "28.8px",
+              height: "13.2px",
               borderRadius: "1px",
               background: `url(${JupiterHandle.src}) no-repeat center center`,
               backgroundSize: "cover",
@@ -31,6 +31,52 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
               "&:focus, &:hover, &:active": {
                 boxShadow: "none",
               },
+            },
+            "& .MuiSlider-track": {
+              width: "8px", // Adjust the width as needed
+              backgroundColor: "black",
+              position: "relative",
+            },
+            "& .MuiSlider-rail": {
+              width: "8px", // Adjust the width as needed
+              backgroundColor: "black",
+              opacity: 1, // Ensure it's fully opaque
+              position: "relative",
+              "&::before": {
+                content: '""',
+                position: "absolute",
+                left: "50%",
+                transform: "translateX(-50%)", // Center the lines on both sides of the track
+                width: "28.8px", // Match the thumb width
+                height: "100%",
+                background: `linear-gradient(
+                  to bottom,
+                  transparent 0%,
+                  black 2%,
+                  transparent 3%,
+                  transparent 15%,
+                  black 17%,
+                  transparent 18%,
+                  transparent 31%,
+                  black 33%,
+                  transparent 34%,
+                  transparent 49%,
+                  black 51%,
+                  transparent 52%,
+                  transparent 65%,
+                  black 67%,
+                  transparent 68%,
+                  transparent 83%,
+                  black 85%,
+                  transparent 86%,
+                  transparent 97%,
+                  black 99%,
+                  transparent 100%
+                )`,
+              },
+            },
+            "& .MuiSlider-root": {
+              padding: "0 8px", // Adjust the padding to align with the new width
             },
           }}
         />
