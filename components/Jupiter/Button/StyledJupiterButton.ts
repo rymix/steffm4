@@ -90,7 +90,7 @@ export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
   );
   border: 3px solid rgba(0, 0, 0, 0.5);
   border-radius: 5px;
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 1);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.7);
   cursor: pointer;
   height: 72px;
   width: 42px;
