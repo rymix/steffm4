@@ -74,7 +74,6 @@ export const StyledJupiterButtonWrapper = styled.div`
   text-transform: uppercase;
   height: 100px;
   width: 54px;
-  background: yellow;
 `;
 
 export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
@@ -155,5 +154,5 @@ export const StyledJupiterLabel = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  background: green;
+  text-align: center;
 `;

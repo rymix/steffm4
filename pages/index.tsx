@@ -11,7 +11,7 @@ const Home = (): JSX.Element => {
         <JupiterButton colour="cream" label="Play" />
         <JupiterButton colour="yellow" label="Pause" />
         <JupiterButton colour="orange" label="Next" />
-        <JupiterButton colour="red" label="" />
+        <JupiterButton colour="red" label="Prev Track" />
         <JupiterButton colour="green" />
         <JupiterButton colour="blue" />
       </JupiterButtonGroup>
