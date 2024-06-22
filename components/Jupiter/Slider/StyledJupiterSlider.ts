@@ -12,4 +12,9 @@ export const StyledJupiterSliderWrapper = styled.div`
   width: 54px;
 `;
 
-export const StyledJupiterSlider = styled(Slider)``;
+export const StyledJupiterSlider = styled(Slider)`
+  .MuiSlider-track {
+    background: blue;
+    display: none;
+  }
+`;

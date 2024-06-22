@@ -33,27 +33,27 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
               },
             },
             "& .MuiSlider-track": {
-              width: "8px", // Adjust the width as needed
+              width: "8px",
               backgroundColor: "black",
               position: "relative",
             },
             "& .MuiSlider-rail": {
-              width: "8px", // Adjust the width as needed
+              width: "8px",
               backgroundColor: "black",
-              opacity: 1, // Ensure it's fully opaque
+              opacity: 1,
               position: "relative",
               "&::before": {
                 content: '""',
                 position: "absolute",
                 left: "50%",
-                transform: "translateX(-50%)", // Center the lines on both sides of the track
-                width: "28.8px", // Match the thumb width
+                transform: "translateX(-50%)",
+                width: "28.8px",
                 height: "100%",
                 background: `linear-gradient(
                   to bottom,
                   transparent 0%,
-                  black 3%,
-                  transparent 4%,
+                  black 2%,
+                  transparent 3%,
                   transparent 15%,
                   black 17%,
                   transparent 18%,
@@ -73,10 +73,11 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
                   black 99%,
                   transparent 100%
                 )`,
+                pointerEvents: "none",
               },
             },
             "& .MuiSlider-root": {
-              padding: "0 8px", // Adjust the padding to align with the new width
+              padding: "0 8px",
             },
           }}
         />
