@@ -141,14 +141,14 @@ export const StyledJupiterLed = styled.div<StyledJupiterLedProps>`
   }
 `;
 
-export const StyledJupiterLabelWrapper = styled.div`
+export const StyledJupiterButtonLabelWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
   height: 36px;
 `;
 
-export const StyledJupiterLabel = styled.div`
+export const StyledJupiterButtonLabel = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: center;
