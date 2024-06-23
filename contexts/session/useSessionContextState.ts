@@ -1,11 +1,11 @@
-import type { Colours, SessionContextState } from "contexts/session/types";
+import type { Colors, SessionContextState } from "contexts/session/types";
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import themes from "styles/themes";
 
 const useSessionContextState = (): SessionContextState => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
-  const [colours, setColours] = useState<Colours | null>(null);
+  const [colors, setColors] = useState<Colors | null>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
@@ -104,7 +104,7 @@ const useSessionContextState = (): SessionContextState => {
 
   return {
     burgerMenuRef,
-    colours,
+    colors,
     isMobile,
     menuOpen,
     modalContent,
@@ -113,7 +113,7 @@ const useSessionContextState = (): SessionContextState => {
     modalTitle,
     openModal,
     secondsRemaining,
-    setColours,
+    setColors,
     setIsMobile,
     setMenuOpen,
     setModalContent,

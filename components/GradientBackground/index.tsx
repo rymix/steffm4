@@ -1,9 +1,9 @@
 import { StyledGradientBackground } from "components/GradientBackground/StyledGradientBackground";
 import { useSession } from "contexts/session";
-import type { Colours } from "contexts/session/types";
+import type { Colors } from "contexts/session/types";
 import React, { useEffect } from "react";
 
-const backgrounds: Colours[] = [
+const backgrounds: Colors[] = [
   {
     gradient:
       "linear-gradient(135deg, hsla(331, 78%, 69%, 1) 0%, hsla(238, 82%, 70%, 1) 100%)",
@@ -304,15 +304,15 @@ const randomBackground = (): number => {
 };
 
 export const GradientBackground: React.FC = () => {
-  const { colours, setColours } = useSession();
+  const { colors, setColors } = useSession();
 
   useEffect(() => {
     const random = backgrounds[randomBackground()];
     console.log("random", random);
-    setColours(random);
+    setColors(random);
   }, []);
 
-  return <StyledGradientBackground colours={colours} />;
+  return <StyledGradientBackground colors={colors} />;
 };
 
 export default GradientBackground;

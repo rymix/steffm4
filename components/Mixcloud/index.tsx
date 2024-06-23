@@ -53,7 +53,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     },
   } = useMixcloud();
 
-  const { colours } = useSession();
+  const { colors } = useSession();
 
   const timer = useRef<any>(null);
 
@@ -161,7 +161,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
           <StyledPlayerWrapper>
             <StyledPlayer>
               <StyledAudioControlsWrapper>
-                <StyledAudioControls colours={colours}>
+                <StyledAudioControls colors={colors}>
                   <StyledHeadphonesWrapper>
                     <svg
                       width="240"
@@ -174,7 +174,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
                         d="M 120,90 m -90,0 a 90,90 0 1,0 180,0 a 90,90 0 1,0 -180,0
                       M 30,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0
                       M 210,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0"
-                        fill={colours?.primary ?? "#fff"}
+                        fill={colors?.primary ?? "#fff"}
                         fillOpacity="0.5"
                       />
                     </svg>
@@ -189,7 +189,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
                       />
                     </StyledSkipPrevious>
 
-                    <StyledPlay colours={colours}>
+                    <StyledPlay colors={colors}>
                       {playing ? (
                         <PauseIcon
                           onClick={handlePlayPause}

@@ -63,8 +63,8 @@ export const StyledAudioControlsWrapper = styled.div`
 
 export const StyledAudioControls = styled.div`
   align-items: center;
-  background: ${({ colours, theme }) =>
-    colours?.secondary || theme.colors.controls.outerDisc.background};
+  background: ${({ colors, theme }) =>
+    colors?.secondary || theme.colors.controls.outerDisc.background};
   background-blend-mode: normal;
   border-radius: 50%;
   color: black;
@@ -135,12 +135,12 @@ export const StyledSkipNext = styled.div`
 
 export const StyledPlay = styled.div`
   align-items: center;
-  background: ${({ colours, theme }) =>
-    colours?.primary || theme.colors.controls.play.background};
+  background: ${({ colors, theme }) =>
+    colors?.primary || theme.colors.controls.play.background};
   background-blend-mode: normal;
   border-radius: 50%;
-  border: ${({ colours, theme }) =>
-    `1px solid ${colours?.tertiary || theme.colors.controls.play.background}`};
+  border: ${({ colors, theme }) =>
+    `1px solid ${colors?.tertiary || theme.colors.controls.play.background}`};
   color: ${({ theme }) => theme.colors.controls.play.text};
   cursor: pointer;
   display: flex;

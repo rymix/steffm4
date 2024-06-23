@@ -1,11 +1,11 @@
 export type JupiterButtonProps = {
   on?: boolean;
-  colour?: "cream" | "yellow" | "orange" | "red" | "green" | "blue";
+  color?: "cream" | "yellow" | "orange" | "red" | "green" | "blue";
   label?: string;
   labelPosition?: "above" | "below";
 };
 
-export type JupiterButtonColours = {
+export type JupiterButtonColors = {
   light: string;
   normal: string;
   dark: string;
@@ -16,5 +16,5 @@ export type StyledJupiterLedProps = {
 };
 
 export type StyledJupiterButtonProps = {
-  $colour?: "cream" | "yellow" | "orange" | "red" | "green" | "blue";
+  $color?: "cream" | "yellow" | "orange" | "red" | "green" | "blue";
 };

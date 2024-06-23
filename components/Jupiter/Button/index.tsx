@@ -8,7 +8,7 @@ import JupiterLabel from "components/Jupiter/Label";
 
 const JupiterButton: React.FC<JupiterButtonProps> = ({
   on = false,
-  colour,
+  color,
   label,
   labelPosition = "above",
 }) => {
@@ -22,7 +22,7 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
           paddingBottom={10}
         />
       )}
-      <StyledJupiterButton $colour={colour}>
+      <StyledJupiterButton $color={color}>
         <StyledJupiterLed $on={on} />
       </StyledJupiterButton>
       {labelPosition === "below" && (

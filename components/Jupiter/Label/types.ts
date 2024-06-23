@@ -6,7 +6,8 @@ export type JupiterLabelProps = {
 };
 
 export type StyledJupiterLabelProps = {
+  $color?: string;
+  $labelPosition?: string;
   $paddingBottom?: number;
   $paddingTop?: number;
-  $labelPosition?: string;
 };

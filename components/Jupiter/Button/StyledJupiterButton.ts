@@ -1,5 +1,5 @@
 import type {
-  JupiterButtonColours,
+  JupiterButtonColors,
   StyledJupiterButtonProps,
   StyledJupiterLedProps,
 } from "components/Jupiter/Button/types";
@@ -17,8 +17,8 @@ const overlayStyles = css`
 `;
 
 const getGradientColors = (
-  color: StyledJupiterButtonProps["colour"],
-): JupiterButtonColours => {
+  color: StyledJupiterButtonProps["color"],
+): JupiterButtonColors => {
   switch (color) {
     case "yellow": {
       return {
@@ -77,16 +77,16 @@ export const StyledJupiterButtonWrapper = styled.div`
 `;
 
 export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
-  background: ${(props) => getGradientColors(props.$colour || "cream").normal};
+  background: ${(props) => getGradientColors(props.$color || "cream").normal};
   background: linear-gradient(
     180deg,
-    ${(props) => getGradientColors(props.$colour || "cream").light} 0%,
-    ${(props) => getGradientColors(props.$colour || "cream").normal} 3%,
-    ${(props) => getGradientColors(props.$colour || "cream").normal} 30%,
-    ${(props) => getGradientColors(props.$colour || "cream").light} 31%,
-    ${(props) => getGradientColors(props.$colour || "cream").dark} 35%,
-    ${(props) => getGradientColors(props.$colour || "cream").normal} 72%,
-    ${(props) => getGradientColors(props.$colour || "cream").normal} 100%
+    ${(props) => getGradientColors(props.$color || "cream").light} 0%,
+    ${(props) => getGradientColors(props.$color || "cream").normal} 3%,
+    ${(props) => getGradientColors(props.$color || "cream").normal} 30%,
+    ${(props) => getGradientColors(props.$color || "cream").light} 31%,
+    ${(props) => getGradientColors(props.$color || "cream").dark} 35%,
+    ${(props) => getGradientColors(props.$color || "cream").normal} 72%,
+    ${(props) => getGradientColors(props.$color || "cream").normal} 100%
   );
   border: 3px solid rgba(0, 0, 0, 0.5);
   border-radius: 5px;

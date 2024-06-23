@@ -11,13 +11,13 @@ export interface SemiCircularProgressProps {
 }
 
 const SemiCircularProgress: React.FC<SemiCircularProgressProps> = (props) => {
-  const { colours } = useSession();
+  const { colors } = useSession();
   const { $value, $position = "top", $start = "left", $barWidth = 1 } = props;
   const validValue = Number.isNaN($value) ? 0 : $value;
 
   return (
     <StyledSemiCircularProgress
-      colours={colours}
+      colors={colors}
       role="semicircularprogressbar"
       $value={validValue}
       $position={$position}

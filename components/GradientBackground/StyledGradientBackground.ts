@@ -1,4 +1,4 @@
-import type { Colours } from "contexts/session/types";
+import type { Colors } from "contexts/session/types";
 import styled, { keyframes } from "styled-components";
 
 const gradient = keyframes`
@@ -13,8 +13,8 @@ const gradient = keyframes`
   }
 `;
 
-export const StyledGradientBackground = styled.div<{ colours: Colours }>`
-  background: ${(props) => props?.colours?.gradient ?? "black"};
+export const StyledGradientBackground = styled.div<{ colors: Colors }>`
+  background: ${(props) => props?.colors?.gradient ?? "black"};
   background-size: 400% 400%;
   height: 100vh;
   width: 100vw;

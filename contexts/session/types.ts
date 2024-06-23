@@ -2,7 +2,7 @@ import type React from "react";
 import type { ReactNode } from "react";
 import type { DefaultTheme } from "styled-components";
 
-export type Colours = {
+export type Colors = {
   gradient: string;
   primary: string;
   secondary: string;
@@ -13,8 +13,8 @@ export type Colours = {
 
 export type SessionContextState = {
   burgerMenuRef: React.MutableRefObject<HTMLDivElement | null>;
-  colours: Colours | null;
-  setColours: React.Dispatch<React.SetStateAction<Colours | null>>;
+  colors: Colors | null;
+  setColors: React.Dispatch<React.SetStateAction<Colors | null>>;
   isMobile: boolean;
   menuOpen: boolean;
   modalContent: ReactNode | null;

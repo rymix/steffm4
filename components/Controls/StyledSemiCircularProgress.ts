@@ -1,8 +1,8 @@
-import type { Colours } from "contexts/session/types";
+import type { Colors } from "contexts/session/types";
 import styled from "styled-components";
 
 interface StyledSemiCircularProgressProps {
-  $colours: Colours;
+  $colors: Colors;
   $value: number;
   $position: "top" | "bottom";
   $start: "left" | "right";
@@ -26,8 +26,8 @@ export const StyledSemiCircularProgress = styled.div.attrs<StyledSemiCircularPro
     } as React.CSSProperties, // Ensure the returned style object matches React.CSSProperties
   }),
 )<StyledSemiCircularProgressProps>`
-  --primary: ${({ colours, theme }) =>
-    colours?.primary || theme.colors.progress.on};
+  --primary: ${({ colors, theme }) =>
+    colors?.primary || theme.colors.progress.on};
   --secondary: ${({ theme }) => theme.colors.progress.off};
   --size: 400px;
   width: 100%;
