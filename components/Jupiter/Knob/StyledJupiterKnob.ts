@@ -5,11 +5,22 @@ import type {
 } from "components/Jupiter/Knob/types";
 import styled from "styled-components";
 
-export const StyledJupiterKnobWrapper = styled.div<StyledKnobWrapperProps>`
+export const StyledJupiterKnobWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 14px;
+  text-transform: uppercase;
+  height: 128px;
+  width: 54px;
+`;
+
+export const StyledJupiterOuterKnobWrapper = styled.div<StyledKnobWrapperProps>`
   display: flex;
   position: relative;
-  width: ${(props) => props.size}px;
-  height: ${(props) => props.size}px;
+  width: 100%;
+  height: 100%;
 `;
 
 export const StyledJupiterOuterKnob = styled.div<StyledOuterKnobProps>`

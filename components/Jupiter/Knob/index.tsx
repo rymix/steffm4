@@ -3,7 +3,8 @@ import {
   StyledJupiterInnerKnob,
   StyledJupiterKnobWrapper,
   StyledJupiterOuterKnob,
-} from "components/Jupiter/Knob/StyledKnob";
+  StyledJupiterOuterKnobWrapper,
+} from "components/Jupiter/Knob/StyledJupiterKnob";
 import type { JupiterKnobProps } from "components/Jupiter/Knob/types";
 import { useRef, useState } from "react";
 
@@ -19,8 +20,8 @@ const convertRange = (
   return ((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin) + newMin;
 };
 
-const Knob: React.FC<JupiterKnobProps> = ({
-  size = 150,
+const JupiterKnob: React.FC<JupiterKnobProps> = ({
+  size = 0,
   min = 10,
   max = 30,
   degrees = 270,
@@ -80,21 +81,22 @@ const Knob: React.FC<JupiterKnobProps> = ({
   };
 
   return (
-    <StyledJupiterKnobWrapper size={size}>
+    <StyledJupiterKnobWrapper>
       <JupiterLabel label={label} paddingTop={0} paddingBottom={10} />
-
-      <StyledJupiterOuterKnob
-        style={outerStyle}
-        margin={9}
-        onMouseDown={startDrag}
-        ref={knobRef}
-      >
-        <StyledJupiterInnerKnob style={innerStyle} deg={deg}>
-          <StyledJupiterGrip />
-        </StyledJupiterInnerKnob>
-      </StyledJupiterOuterKnob>
+      <StyledJupiterOuterKnobWrapper size={size}>
+        <StyledJupiterOuterKnob
+          style={outerStyle}
+          margin={9}
+          onMouseDown={startDrag}
+          ref={knobRef}
+        >
+          <StyledJupiterInnerKnob style={innerStyle} deg={deg}>
+            <StyledJupiterGrip />
+          </StyledJupiterInnerKnob>
+        </StyledJupiterOuterKnob>
+      </StyledJupiterOuterKnobWrapper>
     </StyledJupiterKnobWrapper>
   );
 };
 
-export default Knob;
+export default JupiterKnob;

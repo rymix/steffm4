@@ -72,7 +72,7 @@ export const StyledJupiterButtonWrapper = styled.div`
   justify-content: flex-start;
   font-size: 14px;
   text-transform: uppercase;
-  height: 100px;
+  height: 128px;
   width: 54px;
 `;
 
