@@ -23,7 +23,13 @@ export const StyledJupiterOuterKnobWrapper = styled.div<StyledKnobWrapperProps>`
   height: 100%;
 `;
 
-export const StyledJupiterOuterKnob = styled.div<StyledOuterKnobProps>`
+export const StyledJupiterOuterKnob = styled.div.attrs<StyledOuterKnobProps>(
+  ({ $margin }) => ({
+    style: {
+      margin: `${$margin}px`,
+    },
+  }),
+)<StyledOuterKnobProps>`
   border-radius: 50%;
   border: 3px solid rgba(0, 0, 0, 0.5);
   background-image: radial-gradient(100% 70%, #666 6%, #333 90%);
@@ -31,12 +37,16 @@ export const StyledJupiterOuterKnob = styled.div<StyledOuterKnobProps>`
     0 5px 15px 2px #333,
     0 0 5px 3px #333,
     0 0 0 6px #444;
-  margin: ${(props) => props.$margin}px;
 `;
 
-export const StyledJupiterInnerKnob = styled.div<StyledInnerKnobProps>`
+export const StyledJupiterInnerKnob = styled.div.attrs<StyledInnerKnobProps>(
+  ({ $deg }) => ({
+    style: {
+      transform: `rotate(${$deg}deg)`,
+    },
+  }),
+)<StyledInnerKnobProps>`
   border-radius: 50%;
-  transform: rotate(${(props) => props.$deg}deg);
 `;
 
 export const StyledJupiterGrip = styled.div`
