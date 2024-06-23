@@ -29,6 +29,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
   onChange,
   label,
   labelPosition = "above",
+  textColor = "white",
 }) => {
   const startAngle = (360 - degrees) / 2;
   const endAngle = startAngle + degrees;
@@ -89,6 +90,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
           labelPosition={labelPosition}
           paddingTop={0}
           paddingBottom={10}
+          textColor={textColor}
         />
       )}
       <StyledJupiterOuterKnobWrapper $size={size}>
@@ -109,6 +111,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
           labelPosition={labelPosition}
           paddingTop={0}
           paddingBottom={10}
+          textColor={textColor}
         />
       )}
     </StyledJupiterKnobWrapper>

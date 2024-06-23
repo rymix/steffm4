@@ -10,6 +10,7 @@ export const StyledJupiterLabelWrapper = styled.div`
 `;
 
 export const StyledJupiterLabel = styled.div<StyledJupiterLabelProps>`
+  color: ${(props) => props.$textColor};
   display: flex;
   align-items: ${(props) =>
     props.$labelPosition === "below" ? "flex-start" : "flex-end"};

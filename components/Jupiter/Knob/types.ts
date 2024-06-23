@@ -7,6 +7,7 @@ export type JupiterKnobProps = {
   onChange: (val: number) => void;
   label?: string;
   labelPosition?: "above" | "below";
+  textColor?: string;
 };
 
 export type StyledKnobWrapperProps = {

@@ -3,11 +3,12 @@ export type JupiterLabelProps = {
   labelPosition?: "above" | "below";
   paddingTop?: number;
   paddingBottom?: number;
+  textColor?: string;
 };
 
 export type StyledJupiterLabelProps = {
-  $color?: string;
   $labelPosition?: string;
   $paddingBottom?: number;
   $paddingTop?: number;
+  $textColor?: string;
 };

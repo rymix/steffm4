@@ -11,6 +11,7 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
   color,
   label,
   labelPosition = "above",
+  textColor = "white",
 }) => {
   return (
     <StyledJupiterButtonWrapper>
@@ -20,6 +21,7 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
           labelPosition={labelPosition}
           paddingTop={0}
           paddingBottom={10}
+          textColor={textColor}
         />
       )}
       <StyledJupiterButton $color={color}>
@@ -31,6 +33,7 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
           labelPosition={labelPosition}
           paddingTop={0}
           paddingBottom={10}
+          textColor={textColor}
         />
       )}
     </StyledJupiterButtonWrapper>

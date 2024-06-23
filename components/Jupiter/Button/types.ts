@@ -3,6 +3,7 @@ export type JupiterButtonProps = {
   color?: "cream" | "yellow" | "orange" | "red" | "green" | "blue";
   label?: string;
   labelPosition?: "above" | "below";
+  textColor?: string;
 };
 
 export type JupiterButtonColors = {
