@@ -3,7 +3,7 @@ import JupiterHandle from "public/svg/slider-handle.svg";
 import styled from "styled-components";
 
 export const StyledJupiterSliderWrapper = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;

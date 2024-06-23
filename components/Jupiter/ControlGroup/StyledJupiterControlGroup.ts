@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledJupiterButtonGroup = styled.div`
+export const StyledJupiterControlGroup = styled.div`
   display: flex;
   flex-direction: row;
 `;

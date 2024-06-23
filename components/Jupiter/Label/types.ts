@@ -8,4 +8,5 @@ export type JupiterLabelProps = {
 export type StyledJupiterLabelProps = {
   paddingBottom?: number;
   paddingTop?: number;
+  labelPosition?: string;
 };

@@ -6,7 +6,7 @@ import type {
 import styled from "styled-components";
 
 export const StyledJupiterKnobWrapper = styled.div`
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;

@@ -11,7 +11,8 @@ export const StyledJupiterLabelWrapper = styled.div`
 
 export const StyledJupiterLabel = styled.div<StyledJupiterLabelProps>`
   display: flex;
-  align-items: flex-end;
+  align-items: ${(props) =>
+    props.labelPosition === "below" ? "flex-start" : "flex-end"};
   justify-content: center;
   width: 100%;
   height: 100%;

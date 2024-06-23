@@ -12,12 +12,19 @@ console.log("JupiterHandle", JupiterHandle.src);
 const JupiterSlider: React.FC<JupiterSliderProps> = ({
   orientation = "vertical",
   label,
+  labelPosition = "above",
 }) => {
   return (
     <>
       <StyledJupiterSliderWrapper>
-        <JupiterLabel label={label} paddingTop={0} paddingBottom={10} />
-
+        {labelPosition === "above" && (
+          <JupiterLabel
+            label={label}
+            labelPosition={labelPosition}
+            paddingTop={0}
+            paddingBottom={10}
+          />
+        )}
         <StyledJupiterSlider
           aria-label="Volume"
           orientation={orientation}
@@ -25,6 +32,14 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
           min={0}
           max={100}
         />
+        {labelPosition === "below" && (
+          <JupiterLabel
+            label={label}
+            labelPosition={labelPosition}
+            paddingTop={0}
+            paddingBottom={10}
+          />
+        )}
       </StyledJupiterSliderWrapper>
     </>
   );
