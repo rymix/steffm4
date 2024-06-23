@@ -5,6 +5,7 @@ export type JupiterKnobProps = {
   degrees: number;
   value: number;
   onChange: (val: number) => void;
+  label?: string;
 };
 
 export type StyledKnobWrapperProps = {

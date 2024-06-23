@@ -12,8 +12,8 @@ const Home = (): JSX.Element => {
         min={1}
         max={11}
         value={80}
-        color
         onChange={(value) => console.log("Knob 1 value:", value)}
+        label="fff"
       />
       <JupiterButtonGroup>
         <JupiterButton />
@@ -25,7 +25,7 @@ const Home = (): JSX.Element => {
         <JupiterButton colour="green" />
         <JupiterButton colour="blue" />
       </JupiterButtonGroup>
-      <JupiterSlider />
+      <JupiterSlider label="Slider" />
     </>
   );
 };

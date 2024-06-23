@@ -7,6 +7,8 @@ import {
 import type { JupiterKnobProps } from "components/Jupiter/Knob/types";
 import { useRef, useState } from "react";
 
+import JupiterLabel from "../Label";
+
 const convertRange = (
   oldMin: number,
   oldMax: number,
@@ -24,13 +26,7 @@ const Knob: React.FC<JupiterKnobProps> = ({
   degrees = 270,
   value = 0,
   onChange,
-}: {
-  size?: number;
-  min?: number;
-  max?: number;
-  degrees?: number;
-  value?: number;
-  onChange: (val: number) => void;
+  label,
 }) => {
   const startAngle = (360 - degrees) / 2;
   const endAngle = startAngle + degrees;
@@ -85,9 +81,11 @@ const Knob: React.FC<JupiterKnobProps> = ({
 
   return (
     <StyledKnobWrapper size={size}>
+      <JupiterLabel label={label} paddingTop={0} paddingBottom={10} />
+
       <StyledOuterKnob
         style={outerStyle}
-        margin={10}
+        margin={9}
         onMouseDown={startDrag}
         ref={knobRef}
       >

@@ -1,11 +1,10 @@
 import {
   StyledJupiterButton,
-  StyledJupiterButtonLabel,
-  StyledJupiterButtonLabelWrapper,
   StyledJupiterButtonWrapper,
   StyledJupiterLed,
 } from "components/Jupiter/Button/StyledJupiterButton";
 import type { JupiterButtonProps } from "components/Jupiter/Button/types";
+import JupiterLabel from "components/Jupiter/Label";
 
 const JupiterButton: React.FC<JupiterButtonProps> = ({
   on = false,
@@ -14,9 +13,7 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
 }) => {
   return (
     <StyledJupiterButtonWrapper>
-      <StyledJupiterButtonLabelWrapper>
-        <StyledJupiterButtonLabel>{label}</StyledJupiterButtonLabel>
-      </StyledJupiterButtonLabelWrapper>
+      <JupiterLabel label={label} paddingTop={0} paddingBottom={10} />
       <StyledJupiterButton colour={colour}>
         <StyledJupiterLed on={on} />
       </StyledJupiterButton>
