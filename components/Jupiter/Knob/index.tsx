@@ -1,8 +1,8 @@
 import {
-  StyledGrip,
-  StyledInnerKnob,
-  StyledKnobWrapper,
-  StyledOuterKnob,
+  StyledJupiterGrip,
+  StyledJupiterInnerKnob,
+  StyledJupiterKnobWrapper,
+  StyledJupiterOuterKnob,
 } from "components/Jupiter/Knob/StyledKnob";
 import type { JupiterKnobProps } from "components/Jupiter/Knob/types";
 import { useRef, useState } from "react";
@@ -80,20 +80,20 @@ const Knob: React.FC<JupiterKnobProps> = ({
   };
 
   return (
-    <StyledKnobWrapper size={size}>
+    <StyledJupiterKnobWrapper size={size}>
       <JupiterLabel label={label} paddingTop={0} paddingBottom={10} />
 
-      <StyledOuterKnob
+      <StyledJupiterOuterKnob
         style={outerStyle}
         margin={9}
         onMouseDown={startDrag}
         ref={knobRef}
       >
-        <StyledInnerKnob style={innerStyle} deg={deg}>
-          <StyledGrip />
-        </StyledInnerKnob>
-      </StyledOuterKnob>
-    </StyledKnobWrapper>
+        <StyledJupiterInnerKnob style={innerStyle} deg={deg}>
+          <StyledJupiterGrip />
+        </StyledJupiterInnerKnob>
+      </StyledJupiterOuterKnob>
+    </StyledJupiterKnobWrapper>
   );
 };
 
