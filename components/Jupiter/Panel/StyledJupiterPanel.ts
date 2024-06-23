@@ -6,7 +6,7 @@ const noiseBackground = `
 `;
 
 export const StyledJupiterPanel = styled.div`
-  background: #3d3e3e;
+  background: #565555;
   background-image: url(${noiseBackground});
   background-size: cover;
   padding: 10px;

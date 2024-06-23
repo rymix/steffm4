@@ -1,4 +1,5 @@
 import { Slider } from "@mui/material";
+import type { StyledJupiterSliderProps } from "components/Jupiter/Slider/types";
 import JupiterHandle from "public/svg/slider-handle.svg";
 import styled from "styled-components";
 
@@ -13,7 +14,7 @@ export const StyledJupiterSliderWrapper = styled.div`
   width: 54px;
 `;
 
-export const StyledJupiterSlider = styled(Slider)`
+export const StyledJupiterSlider = styled(Slider)<StyledJupiterSliderProps>`
   & .MuiSlider-track {
     display: none;
   }
@@ -25,6 +26,7 @@ export const StyledJupiterSlider = styled(Slider)`
     background: url(${JupiterHandle.src}) no-repeat center center;
     background-size: cover;
     box-shadow: 0px 5px 15px -3px rgba(0, 0, 0, 0.9);
+    z-index: 2;
     &:focus,
     &:hover,
     &:active {
@@ -36,6 +38,7 @@ export const StyledJupiterSlider = styled(Slider)`
     width: 8px;
     background-color: black;
     position: relative;
+    z-index: 1;
   }
 
   & .MuiSlider-rail {
@@ -43,6 +46,8 @@ export const StyledJupiterSlider = styled(Slider)`
     background-color: black;
     opacity: 1;
     position: relative;
+    z-index: 1;
+
     &::before {
       content: "";
       position: absolute;
@@ -50,31 +55,34 @@ export const StyledJupiterSlider = styled(Slider)`
       transform: translateX(-50%);
       width: 28.8px;
       height: 100%;
+
       background: linear-gradient(
         to bottom,
         transparent 0%,
-        black 2%,
+        ${(props) => props.$lineColor || "black"} 2%,
         transparent 3%,
         transparent 15%,
-        black 17%,
+        ${(props) => props.$lineColor || "black"} 17%,
         transparent 18%,
         transparent 31%,
-        black 33%,
+        ${(props) => props.$lineColor || "black"} 33%,
         transparent 34%,
         transparent 48%,
-        black 51%,
+        ${(props) => props.$lineColor || "black"} 51%,
         transparent 52%,
         transparent 65%,
-        black 67%,
+        ${(props) => props.$lineColor || "black"} 67%,
         transparent 68%,
         transparent 81%,
-        black 83%,
+        ${(props) => props.$lineColor || "black"} 83%,
         transparent 84%,
         transparent 96%,
-        black 99%,
+        ${(props) => props.$lineColor || "black"} 99%,
         transparent 100%
       );
       pointerevents: none;
+      z-index: -1;
+      mix-blend-mode: multiply;
     }
   }
 

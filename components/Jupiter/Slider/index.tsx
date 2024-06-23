@@ -13,6 +13,8 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
   orientation = "vertical",
   label,
   labelPosition = "above",
+  lineColor = "white",
+  textColor = "white",
 }) => {
   return (
     <>
@@ -23,6 +25,7 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
             labelPosition={labelPosition}
             paddingTop={0}
             paddingBottom={10}
+            textColor={textColor}
           />
         )}
         <StyledJupiterSlider
@@ -31,6 +34,7 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
           defaultValue={70}
           min={0}
           max={100}
+          $lineColor={lineColor}
         />
         {labelPosition === "below" && (
           <JupiterLabel
@@ -38,6 +42,7 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
             labelPosition={labelPosition}
             paddingTop={0}
             paddingBottom={10}
+            textColor={textColor}
           />
         )}
       </StyledJupiterSliderWrapper>
