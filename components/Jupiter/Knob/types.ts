@@ -10,13 +10,13 @@ export type JupiterKnobProps = {
 };
 
 export type StyledKnobWrapperProps = {
-  size: number;
+  $size: number;
 };
 
 export type StyledOuterKnobProps = {
-  margin: number;
+  $margin: number;
 };
 
 export type StyledInnerKnobProps = {
-  deg: number;
+  $deg: number;
 };

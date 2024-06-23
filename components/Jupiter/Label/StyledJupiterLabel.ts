@@ -12,11 +12,11 @@ export const StyledJupiterLabelWrapper = styled.div`
 export const StyledJupiterLabel = styled.div<StyledJupiterLabelProps>`
   display: flex;
   align-items: ${(props) =>
-    props.labelPosition === "below" ? "flex-start" : "flex-end"};
+    props.$labelPosition === "below" ? "flex-start" : "flex-end"};
   justify-content: center;
   width: 100%;
   height: 100%;
   text-align: center;
-  padding-bottom: ${(props) => props.paddingBottom}px;
-  padding-top: ${(props) => props.paddingTop}px;
+  padding-bottom: ${(props) => props.$paddingBottom}px;
+  padding-top: ${(props) => props.$paddingTop}px;
 `;

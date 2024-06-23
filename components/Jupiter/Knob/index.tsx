@@ -91,14 +91,14 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
           paddingBottom={10}
         />
       )}
-      <StyledJupiterOuterKnobWrapper size={size}>
+      <StyledJupiterOuterKnobWrapper $size={size}>
         <StyledJupiterOuterKnob
           style={outerStyle}
-          margin={9}
+          $margin={9}
           onMouseDown={startDrag}
           ref={knobRef}
         >
-          <StyledJupiterInnerKnob style={innerStyle} deg={deg}>
+          <StyledJupiterInnerKnob style={innerStyle} $deg={deg}>
             <StyledJupiterGrip />
           </StyledJupiterInnerKnob>
         </StyledJupiterOuterKnob>

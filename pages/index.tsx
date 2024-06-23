@@ -22,7 +22,7 @@ const Home = (): JSX.Element => {
           min={1}
           max={11}
           value={80}
-          onChange={(value) => console.log("Knob 1 value:", value)}
+          onChange={(value) => console.log("Knob 2 value:", value)}
           label="Vol Con"
           labelPosition="below"
         />

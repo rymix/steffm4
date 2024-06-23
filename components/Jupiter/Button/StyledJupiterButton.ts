@@ -77,16 +77,16 @@ export const StyledJupiterButtonWrapper = styled.div`
 `;
 
 export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
-  background: ${(props) => getGradientColors(props.colour || "cream").normal};
+  background: ${(props) => getGradientColors(props.$colour || "cream").normal};
   background: linear-gradient(
     180deg,
-    ${(props) => getGradientColors(props.colour || "cream").light} 0%,
-    ${(props) => getGradientColors(props.colour || "cream").normal} 3%,
-    ${(props) => getGradientColors(props.colour || "cream").normal} 30%,
-    ${(props) => getGradientColors(props.colour || "cream").light} 31%,
-    ${(props) => getGradientColors(props.colour || "cream").dark} 35%,
-    ${(props) => getGradientColors(props.colour || "cream").normal} 72%,
-    ${(props) => getGradientColors(props.colour || "cream").normal} 100%
+    ${(props) => getGradientColors(props.$colour || "cream").light} 0%,
+    ${(props) => getGradientColors(props.$colour || "cream").normal} 3%,
+    ${(props) => getGradientColors(props.$colour || "cream").normal} 30%,
+    ${(props) => getGradientColors(props.$colour || "cream").light} 31%,
+    ${(props) => getGradientColors(props.$colour || "cream").dark} 35%,
+    ${(props) => getGradientColors(props.$colour || "cream").normal} 72%,
+    ${(props) => getGradientColors(props.$colour || "cream").normal} 100%
   );
   border: 3px solid rgba(0, 0, 0, 0.5);
   border-radius: 5px;
@@ -116,7 +116,7 @@ export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
 
 export const StyledJupiterLed = styled.div<StyledJupiterLedProps>`
   background: ${(props) =>
-    props.on ? "rgba(255, 18, 49, 1)" : "rgba(111, 0, 0, 1)"};
+    props.$on ? "rgba(255, 18, 49, 1)" : "rgba(111, 0, 0, 1)"};
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 50%;
   height: 12px;
@@ -127,9 +127,9 @@ export const StyledJupiterLed = styled.div<StyledJupiterLedProps>`
 
   &::before {
     background: ${(props) =>
-      props.on ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0.5)"};
+      props.$on ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0.5)"};
     ${(props) =>
-      props.on &&
+      props.$on &&
       `
         box-shadow: 0 0 6px 4px rgba(255, 18, 49, 1);
       `}

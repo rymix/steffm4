@@ -22,8 +22,8 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
           paddingBottom={10}
         />
       )}
-      <StyledJupiterButton colour={colour}>
-        <StyledJupiterLed on={on} />
+      <StyledJupiterButton $colour={colour}>
+        <StyledJupiterLed $on={on} />
       </StyledJupiterButton>
       {labelPosition === "below" && (
         <JupiterLabel

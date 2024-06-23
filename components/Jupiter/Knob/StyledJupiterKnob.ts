@@ -31,12 +31,12 @@ export const StyledJupiterOuterKnob = styled.div<StyledOuterKnobProps>`
     0 5px 15px 2px #333,
     0 0 5px 3px #333,
     0 0 0 6px #444;
-  margin: ${(props) => props.margin}px;
+  margin: ${(props) => props.$margin}px;
 `;
 
 export const StyledJupiterInnerKnob = styled.div<StyledInnerKnobProps>`
   border-radius: 50%;
-  transform: rotate(${(props) => props.deg}deg);
+  transform: rotate(${(props) => props.$deg}deg);
 `;
 
 export const StyledJupiterGrip = styled.div`
