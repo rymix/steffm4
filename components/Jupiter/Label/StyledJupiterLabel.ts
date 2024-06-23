@@ -2,10 +2,11 @@ import type { StyledJupiterLabelProps } from "components/Jupiter/Label/types";
 import styled from "styled-components";
 
 export const StyledJupiterLabelWrapper = styled.div`
+  background: green;
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  height: 36px;
+  height: 56px;
 `;
 
 export const StyledJupiterLabel = styled.div<StyledJupiterLabelProps>`
