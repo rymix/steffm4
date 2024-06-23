@@ -61,6 +61,7 @@
     "react-material-symbols": "^4.3.1",
     "react-moment": "^1.1.2",
     "react-pageflip": "^2.0.3",
+    "react-rotary-knob": "^3.0.3",
     "react-scroll": "^1.9.0",
     "react-siriwave": "^3.1.0",
     "react-switch": "^7.0.0",
