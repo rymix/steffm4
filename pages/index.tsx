@@ -7,12 +7,11 @@ const Home = (): JSX.Element => {
   return (
     <>
       <Knob
-        size={100}
-        numTicks={25}
+        size={36}
         degrees={260}
         min={1}
-        max={100}
-        value={30}
+        max={11}
+        value={80}
         color
         onChange={(value) => console.log("Knob 1 value:", value)}
       />
