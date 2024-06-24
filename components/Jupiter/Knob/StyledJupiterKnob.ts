@@ -1,5 +1,6 @@
 import type {
   StyledInnerKnobProps,
+  StyledKnobRadialLabels,
   StyledKnobWrapperProps,
   StyledOuterKnobProps,
 } from "components/Jupiter/Knob/types";
@@ -37,6 +38,20 @@ export const StyledJupiterOuterKnob = styled.div.attrs<StyledOuterKnobProps>(
     0 5px 15px 2px #333,
     0 0 5px 3px #333,
     0 0 0 6px #444;
+`;
+
+export const StyledJupiterRadialLabels = styled.div<StyledKnobRadialLabels>`
+  ${({ $file }) =>
+    $file &&
+    `
+    background-image: url("images/jupiter/${$file}.png");
+    background-position: 1px 3px;
+    background-repeat: no-repeat;
+    background-size: contain;
+  `}
+  width: 100%;
+  height: 100%;
+  position: absolute;
 `;
 
 export const StyledJupiterInnerKnob = styled.div.attrs<StyledInnerKnobProps>(

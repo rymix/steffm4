@@ -4,6 +4,7 @@ import {
   StyledJupiterKnobWrapper,
   StyledJupiterOuterKnob,
   StyledJupiterOuterKnobWrapper,
+  StyledJupiterRadialLabels,
 } from "components/Jupiter/Knob/StyledJupiterKnob";
 import type { JupiterKnobProps } from "components/Jupiter/Knob/types";
 import { useRef, useState } from "react";
@@ -94,6 +95,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
         />
       )}
       <StyledJupiterOuterKnobWrapper $size={size}>
+        <StyledJupiterRadialLabels $file="knob-volume" />
         <StyledJupiterOuterKnob
           style={outerStyle}
           $margin={9}

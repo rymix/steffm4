@@ -2,12 +2,12 @@
   <!-- Definitions for gradients -->
   <defs>
     <linearGradient id="topGradient" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#666"/>
+      <stop offset="0%" stop-color="#222"/>
       <stop offset="100%" stop-color="black"/>
     </linearGradient>
     <linearGradient id="bottomGradient" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="black"/>
-      <stop offset="100%" stop-color="#666"/>
+      <stop offset="100%" stop-color="#222"/>
     </linearGradient>
   </defs>
 
