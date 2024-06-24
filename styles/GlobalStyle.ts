@@ -9,6 +9,14 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
 
+  @font-face {
+    font-display: swap;
+    font-family: "dseg14";
+    font-style: normal;
+    font-weight: normal;
+    src: url("fonts/DSEG14Classic-Regular.woff2") format("woff2"), url("fonts/DSEG14Classic-Regular.woff") format("woff");
+  }
+
   html,
   *,
   *::before,
