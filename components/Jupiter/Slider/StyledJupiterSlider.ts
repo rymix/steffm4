@@ -25,7 +25,7 @@ export const StyledJupiterSlider = styled(Slider)<StyledJupiterSliderProps>`
     border-radius: 1px;
     background: url(${JupiterHandle.src}) no-repeat center center;
     background-size: cover;
-    box-shadow: 0px 5px 15px -3px rgba(0, 0, 0, 0.9);
+    box-shadow: 0px 2px 15px -3px rgba(0, 0, 0, 0.9);
     z-index: 2;
     &:focus,
     &:hover,

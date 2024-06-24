@@ -62,6 +62,7 @@ export const StyledJupiterInnerKnob = styled.div.attrs<StyledInnerKnobProps>(
   }),
 )<StyledInnerKnobProps>`
   border-radius: 50%;
+  cursor: pointer;
 `;
 
 export const StyledJupiterGrip = styled.div`

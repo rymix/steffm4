@@ -2,6 +2,7 @@ import JupiterButton from "components/Jupiter/Button";
 import JupiterControlGroup from "components/Jupiter/ControlGroup";
 import JupiterKnob from "components/Jupiter/Knob";
 import JupiterPanel from "components/Jupiter/Panel";
+import JupiterScreen from "components/Jupiter/Screen";
 import JupiterSlider from "components/Jupiter/Slider";
 import JupiterTitle from "components/Jupiter/Title";
 
@@ -38,9 +39,9 @@ const Home = (): JSX.Element => {
           <JupiterButton color="red" label="Prev Track" />
           <JupiterButton color="green" />
           <JupiterButton color="blue" />
-
           <JupiterSlider label="Slider" />
           <JupiterSlider label="Slider" labelPosition="below" />
+          <JupiterScreen />
         </JupiterControlGroup>
       </JupiterPanel>
     </>
