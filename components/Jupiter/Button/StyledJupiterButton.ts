@@ -95,6 +95,7 @@ export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
   overflow: hidden;
   position: relative;
   transition:
+    background-color 0.1s ease-in-out,
     box-shadow 0.1s ease-in-out,
     transform 0.1s ease-in-out;
 
@@ -125,12 +126,13 @@ export const StyledJupiterLed = styled.div<StyledJupiterLedProps>`
   top: 4px;
   transform: ${(props) => (props.$down ? "scale(0.9)" : "scale(1)")};
   transition:
+    background-color 0.1s ease-in-out,
     box-shadow 0.1s ease-in-out,
     transform 0.1s ease-in-out;
   width: 12px;
 
   &::before {
-    background: ${(props) =>
+    background-color: ${(props) =>
       props.$on ? "rgba(255, 255, 255, 0.8)" : "rgba(255, 255, 255, 0.5)"};
     ${(props) =>
       props.$on &&
