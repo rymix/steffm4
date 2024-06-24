@@ -94,7 +94,9 @@ export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
   width: 42px;
   overflow: hidden;
   position: relative;
-  transition: all 0.1s ease-in-out;
+  transition:
+    box-shadow 0.1s ease-in-out,
+    transform 0.1s ease-in-out;
 
   &:hover {
     &::before {
@@ -121,6 +123,10 @@ export const StyledJupiterLed = styled.div<StyledJupiterLedProps>`
   left: 12px;
   position: absolute;
   top: 4px;
+  transform: ${(props) => (props.$down ? "scale(0.9)" : "scale(1)")};
+  transition:
+    box-shadow 0.1s ease-in-out,
+    transform 0.1s ease-in-out;
   width: 12px;
 
   &::before {

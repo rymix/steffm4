@@ -5,6 +5,7 @@ import {
 } from "components/Jupiter/Button/StyledJupiterButton";
 import type { JupiterButtonProps } from "components/Jupiter/Button/types";
 import JupiterLabel from "components/Jupiter/Label";
+import { useState } from "react";
 
 const JupiterButton: React.FC<JupiterButtonProps> = ({
   on = false,
@@ -13,6 +14,8 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
   labelPosition = "above",
   textColor = "white",
 }) => {
+  const [down, setDown] = useState();
+
   return (
     <StyledJupiterButtonWrapper>
       {labelPosition === "above" && (
@@ -24,8 +27,13 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
           textColor={textColor}
         />
       )}
-      <StyledJupiterButton $color={color}>
-        <StyledJupiterLed $on={on} />
+      <StyledJupiterButton
+        $color={color}
+        onMouseDown={() => setDown(true)}
+        onMouseUp={() => setDown(false)}
+        onMouseLeave={() => setDown(false)}
+      >
+        <StyledJupiterLed $down={down} $on={on} />
       </StyledJupiterButton>
       {labelPosition === "below" && (
         <JupiterLabel

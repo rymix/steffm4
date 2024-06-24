@@ -13,6 +13,7 @@ export type JupiterButtonColors = {
 };
 
 export type StyledJupiterLedProps = {
+  $down?: boolean;
   $on?: boolean;
 };
 
