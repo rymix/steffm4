@@ -3,11 +3,13 @@ import JupiterControlGroup from "components/Jupiter/ControlGroup";
 import JupiterKnob from "components/Jupiter/Knob";
 import JupiterPanel from "components/Jupiter/Panel";
 import JupiterSlider from "components/Jupiter/Slider";
+import JupiterTitle from "components/Jupiter/Title";
 
 const Home = (): JSX.Element => {
   return (
     <>
       <JupiterPanel>
+        <JupiterTitle title="VCO Modulator" />
         <JupiterControlGroup>
           <JupiterKnob
             size={36}

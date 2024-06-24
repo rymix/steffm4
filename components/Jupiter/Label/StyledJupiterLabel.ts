@@ -20,4 +20,6 @@ export const StyledJupiterLabel = styled.div<StyledJupiterLabelProps>`
   text-align: center;
   padding-bottom: ${(props) => props.$paddingBottom}px;
   padding-top: ${(props) => props.$paddingTop}px;
+  font-size: 14px;
+  text-transform: uppercase;
 `;
