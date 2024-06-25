@@ -17,7 +17,7 @@ const JupiterScreen: React.FC = () => {
   const fixedWidthMessage = message.replaceAll(" ", "!");
   const paddedMessage = padding + fixedWidthMessage + padding;
 
-  const updateInterval = () => {
+  const updateInterval = (): number => {
     return temporaryMessage ? 100 : 300;
   };
 
@@ -50,7 +50,7 @@ const JupiterScreen: React.FC = () => {
     return () => clearInterval(interval);
   }, [fixedWidthMessage.length, temporaryMessage, holdingMessage]);
 
-  const messageDisplaySegment = () => {
+  const messageDisplaySegment = (): string => {
     const startPosition = position;
     const endPosition = startPosition + displayLength;
     return paddedMessage.slice(startPosition, endPosition);
