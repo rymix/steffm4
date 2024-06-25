@@ -2,115 +2,90 @@ import {
   StyledJupiterScreen,
   StyledJupiterScreenWrapper,
 } from "components/Jupiter/Screen/StyledJupiterScreen";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
-const padMessage = (message: string | undefined, pad: number) => {
-  if (!message) return "";
-  const padString = "!".repeat(pad);
-  message = message.replaceAll(" ", "!");
-  return `${padString}${message}${padString}`;
-};
+const displayLength = 15; // Number of characters to display at a time
+const padding = "!".repeat(displayLength); // Padding characters
 
-const getPaddedSegment = (message: string, start: number, length: number) => {
-  const end = start + length;
-  if (end <= message.length) {
-    return message.slice(start, end);
-  }
-  return message.slice(start, message.length);
-};
+const sampleMessages = ["Short test", "Another message", "One more example"];
+const temporaryMessages = ["Temp message 1", "Temp message 2"];
 
 const JupiterScreen: React.FC = () => {
-  const [characterCount, setCharacterCount] = useState<number>(10);
-  const [displayMessage, setDisplayMessage] = useState<string>("");
-  const [holdingMessage, setHoldingMessage] =
-    useState<string>("Holding Message");
-  const [temporaryMessage, setTemporaryMessage] =
-    useState<string>("Temporary Message");
-  const [activeMessage, setActiveMessage] = useState<string>("");
-  const [displayIndex, setDisplayIndex] = useState<number>(0);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
-  const activeMessageRef = useRef<string>(activeMessage);
-  const displayIndexRef = useRef<number>(displayIndex);
+  const [holdingMessage, setHoldingMessage] = useState("Long sample message");
+  const [message, setMessage] = useState(holdingMessage);
+  const [position, setPosition] = useState(0);
+  const [isTemporaryMessage, setIsTemporaryMessage] = useState(false);
 
-  useEffect(() => {
-    activeMessageRef.current = activeMessage;
-    displayIndexRef.current = displayIndex;
-  }, [activeMessage, displayIndex]);
+  const fixedWidthMessage = message.replaceAll(" ", "!"); // Replace spaces with !
+  const paddedMessage = padding + fixedWidthMessage + padding; // Padded message
 
-  const updateDisplayMessage = () => {
-    const message = activeMessageRef.current;
-    const index = displayIndexRef.current;
-    console.log(
-      `Updating display message: ${getPaddedSegment(
-        message,
-        index,
-        characterCount,
-      )}`,
-    );
-    setDisplayMessage(getPaddedSegment(message, index, characterCount));
-    setDisplayIndex((prevIndex) =>
-      prevIndex + 1 >= message.length ? 0 : prevIndex + 1,
-    );
-  };
-
-  const startTicker = (message: string) => {
-    console.log(`Starting ticker with message: ${message}`);
-    const paddedMessage = padMessage(message, characterCount);
-    setActiveMessage(paddedMessage);
-    setDisplayIndex(0);
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
-    intervalRef.current = setInterval(updateDisplayMessage, 300);
+  const updateInterval = () => {
+    return isTemporaryMessage ? 100 : 300;
   };
 
   useEffect(() => {
-    console.log("useEffect - Initial mount");
-    if (temporaryMessage) {
-      startTicker(temporaryMessage);
-      const tempMessageLength = temporaryMessage.length + characterCount * 2;
-      setTimeout(() => {
-        console.log(
-          "Temporary message displayed, switching to holding message",
-        );
-        startTicker(holdingMessage);
-      }, tempMessageLength * 300);
-    } else {
-      startTicker(holdingMessage);
-    }
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-      }
-    };
-  }, []);
+    setPosition(0); // Reset position when message changes
+  }, [message]);
 
   useEffect(() => {
-    console.log(
-      `Holding message or character count changed. Updating active message: ${holdingMessage}`,
-    );
-    if (activeMessage !== padMessage(holdingMessage, characterCount)) {
-      setActiveMessage(padMessage(holdingMessage, characterCount));
-    }
-  }, [holdingMessage, characterCount]);
+    const intervalSpeed = updateInterval();
+    const interval = setInterval(() => {
+      setPosition((prevPosition) => {
+        const newPosition = prevPosition + 1;
+        if (
+          isTemporaryMessage &&
+          newPosition >= fixedWidthMessage.length + displayLength
+        ) {
+          setMessage(holdingMessage);
+          setIsTemporaryMessage(false);
+          return 0;
+        }
+        return newPosition % (fixedWidthMessage.length + displayLength);
+      });
+    }, intervalSpeed);
 
-  useEffect(() => {
-    console.log(`Active message updated: ${activeMessage}`);
-    // Reset displayIndex and message when activeMessage changes
-    setDisplayIndex(0);
-    setDisplayMessage(getPaddedSegment(activeMessage, 0, characterCount));
-  }, [activeMessage]);
+    return () => clearInterval(interval);
+  }, [fixedWidthMessage.length, isTemporaryMessage, holdingMessage]);
+
+  const messageDisplaySegment = () => {
+    const startPosition = position;
+    const endPosition = startPosition + displayLength;
+    return paddedMessage.slice(startPosition, endPosition);
+  };
+
+  const setTemporaryMessage = (msg) => {
+    setMessage(msg);
+    setIsTemporaryMessage(true);
+  };
+
+  const updateHoldingMessage = (msg) => {
+    setHoldingMessage(msg);
+    if (!isTemporaryMessage) {
+      setMessage(msg);
+    }
+  };
 
   return (
     <>
-      <button onClick={() => setTemporaryMessage("Message 1")}>
-        Message 1
-      </button>
-      <button onClick={() => setTemporaryMessage("Rain Man")}>Rain Man</button>
       <StyledJupiterScreenWrapper>
-        <StyledJupiterScreen>{displayMessage}</StyledJupiterScreen>
+        <StyledJupiterScreen displayLength={displayLength}>
+          {messageDisplaySegment()}
+        </StyledJupiterScreen>
       </StyledJupiterScreenWrapper>
+      <div>
+        <h3>Holding Messages</h3>
+        {sampleMessages.map((msg, index) => (
+          <button key={index} onClick={() => updateHoldingMessage(msg)}>
+            Set Holding Message {index + 1}
+          </button>
+        ))}
+        <h3>Temporary Messages</h3>
+        {temporaryMessages.map((msg, index) => (
+          <button key={index} onClick={() => setTemporaryMessage(msg)}>
+            Set Temporary Message {index + 1}
+          </button>
+        ))}
+      </div>
     </>
   );
 };

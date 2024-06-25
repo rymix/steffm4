@@ -13,12 +13,13 @@ export const StyledJupiterScreenWrapper = styled.div`
   width: 500px;
 `;
 
-export const StyledJupiterScreen = styled.div`
+export const StyledJupiterScreen = styled.div<{ displayLength: number }>`
   display: flex;
   justify-content: flex-end;
+  position: relative;
 
   &:before {
-    content: "~~~~~~~~~~";
+    content: "${(props) => "~".repeat(props.displayLength)}";
     display: block;
     opacity: 0.2;
     position: absolute;
