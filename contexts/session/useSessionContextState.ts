@@ -6,6 +6,7 @@ import themes from "styles/themes";
 const useSessionContextState = (): SessionContextState => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const [colors, setColors] = useState<Colors | null>(null);
+  const [holdingMessage, setHoldingMessage] = useState("Long sample message");
   const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
@@ -14,6 +15,7 @@ const useSessionContextState = (): SessionContextState => {
   const [themeName, setThemeName] = useState("defaultTheme");
   const [isMobile, setIsMobile] = useState(false);
   const [secondsRemaining, setSecondsRemaining] = useState<number | null>(null);
+  const [temporaryMessage, setTemporaryMessage] = useState("");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const theme = themes[themeName] || themes.defaultTheme;
@@ -105,6 +107,7 @@ const useSessionContextState = (): SessionContextState => {
   return {
     burgerMenuRef,
     colors,
+    holdingMessage,
     isMobile,
     menuOpen,
     modalContent,
@@ -114,12 +117,15 @@ const useSessionContextState = (): SessionContextState => {
     openModal,
     secondsRemaining,
     setColors,
+    setHoldingMessage,
     setIsMobile,
     setMenuOpen,
     setModalContent,
     setModalOpen,
     setModalTitle,
+    setTemporaryMessage,
     setThemeName,
+    temporaryMessage,
     theme,
     themeName,
   };

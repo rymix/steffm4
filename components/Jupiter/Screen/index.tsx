@@ -2,27 +2,33 @@ import {
   StyledJupiterScreen,
   StyledJupiterScreenWrapper,
 } from "components/Jupiter/Screen/StyledJupiterScreen";
+import { useSession } from "contexts/session";
 import { useEffect, useState } from "react";
 
 const displayLength = 15;
 const padding = "!".repeat(displayLength);
 
 const JupiterScreen: React.FC = () => {
-  const [holdingMessage, setHoldingMessage] = useState("Long sample message");
+  const { holdingMessage, temporaryMessage, setTemporaryMessage } =
+    useSession();
   const [message, setMessage] = useState(holdingMessage);
   const [position, setPosition] = useState(0);
-  const [isTemporaryMessage, setIsTemporaryMessage] = useState(false);
 
   const fixedWidthMessage = message.replaceAll(" ", "!");
   const paddedMessage = padding + fixedWidthMessage + padding;
 
-  const updateInterval = (): number => {
-    return isTemporaryMessage ? 100 : 300;
+  const updateInterval = () => {
+    return temporaryMessage ? 100 : 300;
   };
 
   useEffect(() => {
     setPosition(0);
-  }, [message]);
+    if (temporaryMessage) {
+      setMessage(temporaryMessage);
+    } else {
+      setMessage(holdingMessage);
+    }
+  }, [temporaryMessage, holdingMessage]);
 
   useEffect(() => {
     const intervalSpeed = updateInterval();
@@ -30,11 +36,11 @@ const JupiterScreen: React.FC = () => {
       setPosition((prevPosition) => {
         const newPosition = prevPosition + 1;
         if (
-          isTemporaryMessage &&
+          temporaryMessage &&
           newPosition >= fixedWidthMessage.length + displayLength
         ) {
+          setTemporaryMessage(""); // Clear the temporary message
           setMessage(holdingMessage);
-          setIsTemporaryMessage(false);
           return 0;
         }
         return newPosition % (fixedWidthMessage.length + displayLength);
@@ -42,9 +48,9 @@ const JupiterScreen: React.FC = () => {
     }, intervalSpeed);
 
     return () => clearInterval(interval);
-  }, [fixedWidthMessage.length, isTemporaryMessage, holdingMessage]);
+  }, [fixedWidthMessage.length, temporaryMessage, holdingMessage]);
 
-  const messageDisplaySegment = (): string => {
+  const messageDisplaySegment = () => {
     const startPosition = position;
     const endPosition = startPosition + displayLength;
     return paddedMessage.slice(startPosition, endPosition);
