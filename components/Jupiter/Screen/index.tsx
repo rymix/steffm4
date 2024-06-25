@@ -103,9 +103,15 @@ const JupiterScreen: React.FC = () => {
   }, [activeMessage]);
 
   return (
-    <StyledJupiterScreenWrapper>
-      <StyledJupiterScreen>{displayMessage}</StyledJupiterScreen>
-    </StyledJupiterScreenWrapper>
+    <>
+      <button onClick={() => setTemporaryMessage("Message 1")}>
+        Message 1
+      </button>
+      <button onClick={() => setTemporaryMessage("Rain Man")}>Rain Man</button>
+      <StyledJupiterScreenWrapper>
+        <StyledJupiterScreen>{displayMessage}</StyledJupiterScreen>
+      </StyledJupiterScreenWrapper>
+    </>
   );
 };
 
