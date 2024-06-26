@@ -15,6 +15,9 @@ export const StyledJupiterControlGroup = styled.div<StyledJupiterControlGroupPro
           case "right": {
             return "padding-right: 20px;";
           }
+          case "rightBig": {
+            return "padding-right: 40px;";
+          }
           case "both": {
             return "padding-left: 20px; padding-right: 20px;";
           }

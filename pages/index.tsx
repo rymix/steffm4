@@ -24,7 +24,7 @@ const Home = (): JSX.Element => {
         </JupiterControlGroup>
       </JupiterPanel>
       <JupiterPanel title="Controls">
-        <JupiterControlGroup pad="right">
+        <JupiterControlGroup pad="rightBig">
           <JupiterKnob
             size={64}
             degrees={200}

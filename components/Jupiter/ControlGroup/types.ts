@@ -4,5 +4,5 @@ export type JupiterControlGroupProps = {
 };
 
 export type StyledJupiterControlGroupProps = {
-  $pad?: "left" | "right" | "both";
+  $pad?: "left" | "right" | "rightBig" | "both";
 };
