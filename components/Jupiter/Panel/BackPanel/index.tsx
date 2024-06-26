@@ -1,10 +1,9 @@
 import {
   StyledJupiterBackPanel,
   StyledJupiterBackPanelWrapper,
-} from "components/Jupiter/BackPanel/StyledJupiterBackPanel";
-import type { JupiterCaseProps } from "components/Jupiter/Case/types";
+} from "components/Jupiter/Panel/BackPanel/StyledJupiterBackPanel";
 
-const JupiterBackPanel: React.FC<JupiterCaseProps> = () => {
+const JupiterBackPanel: React.FC = () => {
   return (
     <StyledJupiterBackPanelWrapper>
       <StyledJupiterBackPanel />

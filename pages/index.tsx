@@ -1,10 +1,11 @@
-import JupiterBackPanel from "components/Jupiter/BackPanel";
 import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
 import JupiterControlGroup from "components/Jupiter/ControlGroup";
 import JupiterHeader from "components/Jupiter/Header";
 import JupiterKnob from "components/Jupiter/Knob";
 import JupiterPanel from "components/Jupiter/Panel";
+import JupiterBackPanel from "components/Jupiter/Panel/BackPanel";
+import JupiterFrontPanel from "components/Jupiter/Panel/FrontPanel";
 import JupiterScreen from "components/Jupiter/Screen";
 import JupiterSlider from "components/Jupiter/Slider";
 
@@ -56,6 +57,9 @@ const Home = (): JSX.Element => {
           <JupiterSlider label="Slider" />
           <JupiterSlider label="Slider" labelPosition="below" />
         </JupiterControlGroup>
+      </JupiterPanel>
+      <JupiterPanel padding="0" background={false}>
+        <JupiterFrontPanel />
       </JupiterPanel>
     </JupiterCase>
   );
