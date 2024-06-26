@@ -4,7 +4,7 @@ import type {
   StyledKnobWrapperProps,
   StyledOuterKnobProps,
 } from "components/Jupiter/Knob/types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const StyledJupiterKnobWrapper = styled.div`
   display: inline-flex;
@@ -63,6 +63,11 @@ export const StyledJupiterInnerKnob = styled.div.attrs<StyledInnerKnobProps>(
 )<StyledInnerKnobProps>`
   border-radius: 50%;
   cursor: pointer;
+  ${({ $snap }) =>
+    $snap &&
+    css`
+      transition: transform 0.15s ease-in-out;
+    `}
 `;
 
 export const StyledJupiterGrip = styled.div`

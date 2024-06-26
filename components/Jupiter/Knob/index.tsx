@@ -13,10 +13,10 @@ import JupiterLabel from "../Label";
 
 const JupiterKnob: React.FC<JupiterKnobProps> = ({
   size = 0,
-  min = 10,
-  max = 30,
-  degrees = 270,
-  value = 0,
+  min = 1,
+  max = 4,
+  degrees = 260,
+  value = 1,
   onChange,
   label,
   labelPosition = "above",
@@ -36,20 +36,19 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
     oldValue: number,
   ): number => {
     if (steps) {
-      const valueRange = newMax - newMin + 1;
-      const stepSizeDegrees = degrees / (valueRange - 1);
-      return Math.round(
-        ((oldValue - startAngle) * (valueRange - 1)) / degrees + newMin,
+      const valueRange = oldMax - oldMin;
+      const stepSizeDegrees = degrees / valueRange;
+      const stepNumber = Math.round(
+        (oldValue - oldMin) * (valueRange / degrees),
       );
+      return stepNumber * stepSizeDegrees + startAngle;
     }
     return (
       ((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin) + newMin
     );
   };
 
-  const initialDeg = Math.floor(
-    convertRange(min, max, startAngle, endAngle, value),
-  );
+  const initialDeg = convertRange(min, max, startAngle, endAngle, value);
   const [deg, setDeg] = useState(initialDeg);
 
   const getDeg = (
@@ -57,17 +56,11 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
     cY: number,
     pts: { x: number; y: number },
   ): number => {
-    const x = cX - pts.x;
-    const y = cY - pts.y;
-    let localDeg: number = (Math.atan(y / x) * 180) / Math.PI;
-    localDeg += (x < 0 && y >= 0) || (x < 0 && y < 0) ? 90 : 270;
-
-    if (steps) {
-      const valueRange = max - min + 1;
-      const stepSizeDegrees = degrees / (valueRange - 1);
-      localDeg = Math.round(localDeg / stepSizeDegrees) * stepSizeDegrees;
-    }
-
+    const x = pts.x - cX;
+    const y = pts.y - cY;
+    let localDeg: number = (Math.atan2(y, x) * 180) / Math.PI;
+    localDeg += 90;
+    if (localDeg < 0) localDeg += 360;
     return Math.min(Math.max(startAngle, localDeg), endAngle);
   };
 
@@ -82,15 +75,25 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
     };
 
     const moveHandler = (mouseEvent: MouseEvent): void => {
-      const newDeg = getDeg(mouseEvent.clientX, mouseEvent.clientY, pts);
+      let newDeg = getDeg(mouseEvent.clientX, mouseEvent.clientY, pts);
+      if (steps) {
+        const valueRange = max - min;
+        const stepSizeDegrees = degrees / valueRange;
+        newDeg =
+          Math.round((newDeg - startAngle) / stepSizeDegrees) *
+            stepSizeDegrees +
+          startAngle;
+      }
       setDeg(newDeg);
+
+      // Convert the degrees back to the value
       const newValue = Math.round(
-        convertRange(startAngle, endAngle, min, max, newDeg),
+        ((newDeg - startAngle) * (max - min)) / degrees + min,
       );
 
       if (newValue !== prevValueRef.current) {
         prevValueRef.current = newValue;
-        onChange(newValue);
+        onChange(newValue); // Correctly pass the value
       }
     };
 
@@ -129,7 +132,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
           onMouseDown={startDrag}
           ref={knobRef}
         >
-          <StyledJupiterInnerKnob style={innerStyle} $deg={deg}>
+          <StyledJupiterInnerKnob style={innerStyle} $deg={deg} $snap={steps}>
             <StyledJupiterGrip />
           </StyledJupiterInnerKnob>
         </StyledJupiterOuterKnob>

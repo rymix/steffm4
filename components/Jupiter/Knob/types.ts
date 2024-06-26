@@ -21,6 +21,7 @@ export type StyledOuterKnobProps = {
 
 export type StyledInnerKnobProps = {
   $deg: number;
+  $snap?: number;
 };
 
 export type StyledKnobRadialLabels = {

@@ -27,7 +27,7 @@ const Home = (): JSX.Element => {
         <JupiterControlGroup pad="right">
           <JupiterKnob
             size={64}
-            degrees={260}
+            degrees={200}
             min={1}
             max={4}
             value={80}
