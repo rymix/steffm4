@@ -46,8 +46,12 @@ const Home = (): JSX.Element => {
         <JupiterControlGroup pad="right">
           <JupiterButton color="blue" label="Rand" />
         </JupiterControlGroup>
-        <JupiterControlGroup>
+        <JupiterControlGroup pad="right">
           <JupiterSlider label="Volume" />
+        </JupiterControlGroup>
+        <JupiterControlGroup>
+          <JupiterButton color="orange" label="Info" />
+          <JupiterButton color="orange" label="Share" />
         </JupiterControlGroup>
       </JupiterPanel>
       <JupiterPanel padding="0" background={false}>
