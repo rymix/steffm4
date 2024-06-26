@@ -26,6 +26,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
   const startAngle = (360 - degrees) / 2;
   const endAngle = startAngle + degrees;
   const knobRef = useRef<HTMLDivElement>(null);
+  const prevValueRef = useRef(value);
 
   const convertRange = (
     oldMin: number,
@@ -36,11 +37,9 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
   ): number => {
     if (steps) {
       const valueRange = newMax - newMin + 1;
-      const stepSizeDegrees = degrees / valueRange;
-      const snappedDeg =
-        Math.round(oldValue / stepSizeDegrees) * stepSizeDegrees;
+      const stepSizeDegrees = degrees / (valueRange - 1);
       return Math.round(
-        ((snappedDeg - startAngle) * (newMax - newMin)) / degrees + newMin,
+        ((oldValue - startAngle) * (valueRange - 1)) / degrees + newMin,
       );
     }
     return (
@@ -65,7 +64,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
 
     if (steps) {
       const valueRange = max - min + 1;
-      const stepSizeDegrees = degrees / valueRange;
+      const stepSizeDegrees = degrees / (valueRange - 1);
       localDeg = Math.round(localDeg / stepSizeDegrees) * stepSizeDegrees;
     }
 
@@ -81,18 +80,27 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
       x: knob.left + knob.width / 2,
       y: knob.top + knob.height / 2,
     };
+
     const moveHandler = (mouseEvent: MouseEvent): void => {
       const newDeg = getDeg(mouseEvent.clientX, mouseEvent.clientY, pts);
       setDeg(newDeg);
-      const newValue = Math.floor(
+      const newValue = Math.round(
         convertRange(startAngle, endAngle, min, max, newDeg),
       );
-      onChange(newValue);
+
+      if (newValue !== prevValueRef.current) {
+        prevValueRef.current = newValue;
+        onChange(newValue);
+      }
     };
-    document.addEventListener("mousemove", moveHandler);
-    document.addEventListener("mouseup", () => {
+
+    const stopDrag = (): void => {
       document.removeEventListener("mousemove", moveHandler);
-    });
+      document.removeEventListener("mouseup", stopDrag);
+    };
+
+    document.addEventListener("mousemove", moveHandler);
+    document.addEventListener("mouseup", stopDrag);
   };
 
   const outerStyle = { width: size, height: size };
