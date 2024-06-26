@@ -24,7 +24,7 @@ const Home = (): JSX.Element => {
         </JupiterControlGroup>
       </JupiterPanel>
       <JupiterPanel title="Controls">
-        <JupiterControlGroup>
+        <JupiterControlGroup pad="right">
           <JupiterKnob
             size={64}
             degrees={260}
@@ -34,15 +34,15 @@ const Home = (): JSX.Element => {
             onChange={(value) => console.log("Knob 1 value:", value)}
           />
         </JupiterControlGroup>
-        <JupiterControlGroup>
+        <JupiterControlGroup pad="both">
           <JupiterButton color="red" label="Stop" />
           <JupiterButton color="green" label="Play" />
         </JupiterControlGroup>
-        <JupiterControlGroup>
+        <JupiterControlGroup pad="right">
           <JupiterButton color="cream" label="Prev" />
           <JupiterButton color="cream" label="Next" />
         </JupiterControlGroup>
-        <JupiterControlGroup>
+        <JupiterControlGroup pad="right">
           <JupiterButton color="blue" label="Rand" />
         </JupiterControlGroup>
         <JupiterControlGroup>
