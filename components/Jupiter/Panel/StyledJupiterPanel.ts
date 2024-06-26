@@ -1,16 +1,16 @@
-import type { StyledJupiterPanelItemsProps } from "components/Jupiter/Panel/types";
+import type {
+  StyledJupiterPanelItemsProps,
+  StyledJupiterPanelProps,
+} from "components/Jupiter/Panel/types";
 import styled from "styled-components";
+import { NOISE_BACKGROUND } from "utils/constants";
 
-const noiseBackground = `
-  data:image/png;base64,
-  iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAn8CBG0xnoYAAAAASUVORK5CYII=
-`;
-
-export const StyledJupiterPanel = styled.div`
-  background: #3c3c3b;
-  background-image: url(${noiseBackground});
-  background-size: cover;
-  padding: 10px;
+export const StyledJupiterPanel = styled.div<StyledJupiterPanelProps>`
+  background: ${(props) =>
+    props.$background
+      ? `#3c3c3b; background-image: url(${NOISE_BACKGROUND}); background-size: cover;`
+      : "none"};
+  padding: ${(props) => props.$padding ?? "10px"};
 `;
 
 export const StyledJupiterPanelItems = styled.div<StyledJupiterPanelItemsProps>`

@@ -1,14 +1,10 @@
 import styled from "styled-components";
-
-const noiseBackground = `
-  data:image/png;base64,
-  iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAn8CBG0xnoYAAAAASUVORK5CYII=
-`;
+import { NOISE_BACKGROUND } from "utils/constants";
 
 export const StyledJupiterTitleWrapper = styled.div`
   align-items: center;
   background: #e23e2e;
-  background-image: url(${noiseBackground});
+  background-image: url(${NOISE_BACKGROUND});
   background-size: cover;
   border-radius: 4px;
   display: flex;
@@ -22,7 +18,7 @@ export const StyledJupiterTitleWrapper = styled.div`
 export const StyledJupiterTitle = styled.div`
   align-items: center;
   background: #565555;
-  background-image: url(${noiseBackground});
+  background-image: url(${NOISE_BACKGROUND});
   background-size: cover;
   border-radius: 4px;
   color: white;

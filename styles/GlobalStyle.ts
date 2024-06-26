@@ -43,6 +43,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Microgamma', sans-serif;
     font-weight: 400;
     overscroll-behavior: none;
+    perspective: 100px;
   }
 `;
 

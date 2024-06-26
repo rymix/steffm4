@@ -9,9 +9,11 @@ const JupiterPanel: React.FC<JupiterPanelProps> = ({
   children,
   title,
   align,
+  padding,
+  background = true,
 }) => {
   return (
-    <StyledJupiterPanel>
+    <StyledJupiterPanel $padding={padding} $background={background}>
       {title && <JupiterTitle title={title} />}
       <StyledJupiterPanelItems $align={align}>
         {children}

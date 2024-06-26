@@ -1,4 +1,6 @@
+import JupiterBackPanel from "components/Jupiter/BackPanel";
 import JupiterButton from "components/Jupiter/Button";
+import JupiterCase from "components/Jupiter/Case";
 import JupiterControlGroup from "components/Jupiter/ControlGroup";
 import JupiterHeader from "components/Jupiter/Header";
 import JupiterKnob from "components/Jupiter/Knob";
@@ -8,7 +10,10 @@ import JupiterSlider from "components/Jupiter/Slider";
 
 const Home = (): JSX.Element => {
   return (
-    <>
+    <JupiterCase>
+      <JupiterPanel padding="0" background={false}>
+        <JupiterBackPanel />
+      </JupiterPanel>
       <JupiterPanel align="right">
         <JupiterHeader />
       </JupiterPanel>
@@ -52,7 +57,7 @@ const Home = (): JSX.Element => {
           <JupiterSlider label="Slider" labelPosition="below" />
         </JupiterControlGroup>
       </JupiterPanel>
-    </>
+    </JupiterCase>
   );
 };
 

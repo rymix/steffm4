@@ -2,7 +2,7 @@ import {
   StyledJupiterHeaderWrapper,
   StyledJupiterSlats,
   StyledJupiterTitle,
-} from "./StyledJupiterHeader";
+} from "components/Jupiter/Header/StyledJupiterHeader";
 
 const JupiterHeader: React.FC = () => {
   return (
