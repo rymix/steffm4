@@ -9,7 +9,7 @@ export const StyledJupiterSlats = styled.div`
   background-image: url("images/jupiter/slat2.png");
   background-repeat: repeat-x;
   background-position: left;
-  width: 100%;
+  width: 100vw;
 `;
 
 export const StyledJupiterTitle = styled.div`

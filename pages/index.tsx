@@ -5,22 +5,19 @@ import JupiterKnob from "components/Jupiter/Knob";
 import JupiterPanel from "components/Jupiter/Panel";
 import JupiterScreen from "components/Jupiter/Screen";
 import JupiterSlider from "components/Jupiter/Slider";
-import JupiterTitle from "components/Jupiter/Title";
 
 const Home = (): JSX.Element => {
   return (
     <>
-      <JupiterPanel>
+      <JupiterPanel align="right">
         <JupiterHeader />
       </JupiterPanel>
-      <JupiterPanel>
-        <JupiterTitle title="Screen" />
+      <JupiterPanel title="Screen">
         <JupiterControlGroup>
           <JupiterScreen />
         </JupiterControlGroup>
       </JupiterPanel>
-      <JupiterPanel>
-        <JupiterTitle title="VCO Modulator" />
+      <JupiterPanel title="Controls">
         <JupiterControlGroup>
           <JupiterKnob
             size={36}

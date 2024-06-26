@@ -1,3 +1,4 @@
+import type { StyledJupiterPanelItemsProps } from "components/Jupiter/Panel/types";
 import styled from "styled-components";
 
 const noiseBackground = `
@@ -10,4 +11,9 @@ export const StyledJupiterPanel = styled.div`
   background-image: url(${noiseBackground});
   background-size: cover;
   padding: 10px;
+`;
+
+export const StyledJupiterPanelItems = styled.div<StyledJupiterPanelItemsProps>`
+  display: flex;
+  justify-content: ${(props) => props.$align ?? "center"};
 `;
