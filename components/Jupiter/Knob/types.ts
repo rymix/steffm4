@@ -8,6 +8,7 @@ export type JupiterKnobProps = {
   label?: string;
   labelPosition?: "above" | "below";
   textColor?: string;
+  steps?: boolean;
 };
 
 export type StyledKnobWrapperProps = {

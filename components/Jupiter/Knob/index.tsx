@@ -11,16 +11,6 @@ import { useRef, useState } from "react";
 
 import JupiterLabel from "../Label";
 
-const convertRange = (
-  oldMin: number,
-  oldMax: number,
-  newMin: number,
-  newMax: number,
-  oldValue: number,
-): number => {
-  return ((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin) + newMin;
-};
-
 const JupiterKnob: React.FC<JupiterKnobProps> = ({
   size = 0,
   min = 10,
@@ -31,10 +21,32 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
   label,
   labelPosition = "above",
   textColor = "white",
+  steps = false,
 }) => {
   const startAngle = (360 - degrees) / 2;
   const endAngle = startAngle + degrees;
   const knobRef = useRef<HTMLDivElement>(null);
+
+  const convertRange = (
+    oldMin: number,
+    oldMax: number,
+    newMin: number,
+    newMax: number,
+    oldValue: number,
+  ): number => {
+    if (steps) {
+      const valueRange = newMax - newMin + 1;
+      const stepSizeDegrees = degrees / valueRange;
+      const snappedDeg =
+        Math.round(oldValue / stepSizeDegrees) * stepSizeDegrees;
+      return Math.round(
+        ((snappedDeg - startAngle) * (newMax - newMin)) / degrees + newMin,
+      );
+    }
+    return (
+      ((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin) + newMin
+    );
+  };
 
   const initialDeg = Math.floor(
     convertRange(min, max, startAngle, endAngle, value),
@@ -50,6 +62,13 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
     const y = cY - pts.y;
     let localDeg: number = (Math.atan(y / x) * 180) / Math.PI;
     localDeg += (x < 0 && y >= 0) || (x < 0 && y < 0) ? 90 : 270;
+
+    if (steps) {
+      const valueRange = max - min + 1;
+      const stepSizeDegrees = degrees / valueRange;
+      localDeg = Math.round(localDeg / stepSizeDegrees) * stepSizeDegrees;
+    }
+
     return Math.min(Math.max(startAngle, localDeg), endAngle);
   };
 

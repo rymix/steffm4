@@ -29,9 +29,10 @@ const Home = (): JSX.Element => {
             size={64}
             degrees={260}
             min={1}
-            max={11}
+            max={4}
             value={80}
             onChange={(value) => console.log("Knob 1 value:", value)}
+            steps
           />
         </JupiterControlGroup>
         <JupiterControlGroup pad="both">
