@@ -1,9 +1,14 @@
-import { StyledJupiterHeaderWrapper } from "./StyledJupiterHeader";
+import {
+  StyledJupiterHeaderWrapper,
+  StyledJupiterSlats,
+  StyledJupiterTitle,
+} from "./StyledJupiterHeader";
 
 const JupiterHeader: React.FC = () => {
   return (
     <StyledJupiterHeaderWrapper>
-      <h1>Stef.FM</h1>
+      <StyledJupiterSlats />
+      <StyledJupiterTitle>Stef.FM</StyledJupiterTitle>
     </StyledJupiterHeaderWrapper>
   );
 };
