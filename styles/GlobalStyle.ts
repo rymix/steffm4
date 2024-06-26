@@ -10,6 +10,14 @@ const GlobalStyle = createGlobalStyle`
   }
 
   @font-face {
+    font-family: 'Sforzando';
+    src: url('/fonts/Sforzando W00.woff2') format('woff2'),
+         url('Sforzando W00.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
     font-display: swap;
     font-family: "dseg14";
     font-style: normal;

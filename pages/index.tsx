@@ -1,5 +1,6 @@
 import JupiterButton from "components/Jupiter/Button";
 import JupiterControlGroup from "components/Jupiter/ControlGroup";
+import JupiterHeader from "components/Jupiter/Header";
 import JupiterKnob from "components/Jupiter/Knob";
 import JupiterPanel from "components/Jupiter/Panel";
 import JupiterScreen from "components/Jupiter/Screen";
@@ -9,6 +10,9 @@ import JupiterTitle from "components/Jupiter/Title";
 const Home = (): JSX.Element => {
   return (
     <>
+      <JupiterPanel>
+        <JupiterHeader />
+      </JupiterPanel>
       <JupiterPanel>
         <JupiterTitle title="Screen" />
         <JupiterScreen />
