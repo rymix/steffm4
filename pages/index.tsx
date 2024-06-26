@@ -15,7 +15,9 @@ const Home = (): JSX.Element => {
       </JupiterPanel>
       <JupiterPanel>
         <JupiterTitle title="Screen" />
-        <JupiterScreen />
+        <JupiterControlGroup>
+          <JupiterScreen />
+        </JupiterControlGroup>
       </JupiterPanel>
       <JupiterPanel>
         <JupiterTitle title="VCO Modulator" />
@@ -39,6 +41,8 @@ const Home = (): JSX.Element => {
             label="Vol Con"
             labelPosition="below"
           />
+        </JupiterControlGroup>
+        <JupiterControlGroup>
           <JupiterButton />
           <JupiterButton on />
           <JupiterButton color="cream" label="Play" labelPosition="below" />
