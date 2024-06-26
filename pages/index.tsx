@@ -26,36 +26,27 @@ const Home = (): JSX.Element => {
       <JupiterPanel title="Controls">
         <JupiterControlGroup>
           <JupiterKnob
-            size={36}
+            size={64}
             degrees={260}
             min={1}
             max={11}
             value={80}
             onChange={(value) => console.log("Knob 1 value:", value)}
-            label="Vol Con"
-          />
-          <JupiterKnob
-            size={36}
-            degrees={260}
-            min={1}
-            max={11}
-            value={80}
-            onChange={(value) => console.log("Knob 2 value:", value)}
-            label="Vol Con"
-            labelPosition="below"
           />
         </JupiterControlGroup>
         <JupiterControlGroup>
-          <JupiterButton />
-          <JupiterButton on />
-          <JupiterButton color="cream" label="Play" labelPosition="below" />
-          <JupiterButton color="yellow" label="Pause" />
-          <JupiterButton color="orange" label="Next" />
-          <JupiterButton color="red" label="Prev Track" />
-          <JupiterButton color="green" />
-          <JupiterButton color="blue" />
-          <JupiterSlider label="Slider" />
-          <JupiterSlider label="Slider" labelPosition="below" />
+          <JupiterButton color="red" label="Stop" />
+          <JupiterButton color="green" label="Play" />
+        </JupiterControlGroup>
+        <JupiterControlGroup>
+          <JupiterButton color="cream" label="Prev" />
+          <JupiterButton color="cream" label="Next" />
+        </JupiterControlGroup>
+        <JupiterControlGroup>
+          <JupiterButton color="blue" label="Rand" />
+        </JupiterControlGroup>
+        <JupiterControlGroup>
+          <JupiterSlider label="Volume" />
         </JupiterControlGroup>
       </JupiterPanel>
       <JupiterPanel padding="0" background={false}>
