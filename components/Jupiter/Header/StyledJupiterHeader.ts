@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledJupiterHeaderWrapper = styled.div`
   display: flex;
+  height: 80px;
   justify-content: space-between;
   align-items: center;
   width: 100%;
