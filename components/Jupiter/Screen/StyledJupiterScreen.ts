@@ -5,11 +5,12 @@ export const StyledJupiterScreenWrapper = styled.div`
   background: #024;
   background-image: linear-gradient(170deg, #0007, transparent 50%),
     linear-gradient(to bottom, transparent, #fff1 95%, #fff4 100%);
+  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   font-family: "dseg14";
   font-size: 40px;
   font-weight: bold;
-  height: 100px;
+  height: 90px;
   justify-content: flex-end;
   width: 500px;
 `;
