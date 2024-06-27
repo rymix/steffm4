@@ -1,9 +1,18 @@
 import {
   StyledJupiterPanel,
+  StyledJupiterPanelBorder,
+  StyledJupiterPanelContent,
   StyledJupiterPanelItems,
 } from "components/Jupiter/Panel/StyledJupiterPanel";
-import type { JupiterPanelProps } from "components/Jupiter/Panel/types";
+import type {
+  JupiterPanelContentProps,
+  JupiterPanelProps,
+} from "components/Jupiter/Panel/types";
 import JupiterTitle from "components/Jupiter/Title";
+
+const JupiterPanelContent: React.FC<JupiterPanelContentProps> = ({
+  children,
+}) => <StyledJupiterPanelContent>{children}</StyledJupiterPanelContent>;
 
 const JupiterPanel: React.FC<JupiterPanelProps> = ({
   children,
@@ -14,10 +23,14 @@ const JupiterPanel: React.FC<JupiterPanelProps> = ({
 }) => {
   return (
     <StyledJupiterPanel $padding={padding} $background={background}>
-      {title && <JupiterTitle title={title} />}
-      <StyledJupiterPanelItems $align={align}>
-        {children}
-      </StyledJupiterPanelItems>
+      <StyledJupiterPanelBorder />
+      <JupiterPanelContent>
+        {title && <JupiterTitle title={title} />}
+        <StyledJupiterPanelItems $align={align}>
+          {children}
+        </StyledJupiterPanelItems>
+      </JupiterPanelContent>
+      <StyledJupiterPanelBorder />
     </StyledJupiterPanel>
   );
 };
