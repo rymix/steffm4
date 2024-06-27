@@ -5,15 +5,12 @@ import type {
   StyledJupiterPanelWrapperProps,
 } from "components/Jupiter/Panel/types";
 import styled from "styled-components";
-import { NOISE_BACKGROUND } from "utils/constants";
 
 export const StyledJupiterPanelWrapper = styled.div<StyledJupiterPanelWrapperProps>`
   background: ${(props) =>
-    props.$background === "panel"
-      ? `#3c3c3b; background-image: url(${NOISE_BACKGROUND}); background-size: cover;`
-      : "none"};
-
-  zpadding: ${(props) => props.$padding ?? "10px"};
+    props.$background === "panel" ? "#1c1c1b" : "none"};
+  background-image: ${(props) =>
+    props.$background === "panel" ? `url(textures/white-sand.png)` : "none"};
   overflow: hidden;
 
   ${(props) =>

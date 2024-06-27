@@ -25,4 +25,5 @@ export const StyledJupiterTitle = styled.div`
   width: 300px;
   flex-shrink: 0;
   text-align: right;
+  opacity: 0.9;
 `;
