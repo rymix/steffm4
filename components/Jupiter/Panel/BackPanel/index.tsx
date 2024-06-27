@@ -1,13 +1,12 @@
-import {
-  StyledJupiterBackPanel,
-  StyledJupiterBackPanelWrapper,
-} from "components/Jupiter/Panel/BackPanel/StyledJupiterBackPanel";
-
 const JupiterBackPanel: React.FC = () => {
   return (
-    <StyledJupiterBackPanelWrapper>
-      <StyledJupiterBackPanel />
-    </StyledJupiterBackPanelWrapper>
+    <p>farts</p>
+
+    // <StyledJupiterBackPanelWrapper>
+    //   <StyledJupiterPanelBorder $position="left" />
+    //   <StyledJupiterBackPanel />
+    //   <StyledJupiterPanelBorder $position="right" />
+    // </StyledJupiterBackPanelWrapper>
   );
 };
 

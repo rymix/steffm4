@@ -10,6 +10,9 @@ export const StyledJupiterBackPanelWrapper = styled.div`
   overflow: hidden;
   perspective: 300px;
   width: 100%;
+
+  display: flex;
+  flex-direction: row;
 `;
 
 export const StyledJupiterBackPanel = styled.div`

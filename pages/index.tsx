@@ -14,7 +14,7 @@ const Home = (): JSX.Element => {
   return (
     <JupiterTable>
       <JupiterCase>
-        <JupiterPanel padding="0" background={false}>
+        <JupiterPanel padding="0" background="rear">
           <JupiterBackPanel />
         </JupiterPanel>
         <JupiterPanel align="right">
@@ -57,7 +57,7 @@ const Home = (): JSX.Element => {
             <JupiterButton color="orange" label="Share" />
           </JupiterControlGroup>
         </JupiterPanel>
-        <JupiterPanel padding="0" background={false}>
+        <JupiterPanel padding="0" background="front">
           <JupiterFrontPanel />
         </JupiterPanel>
       </JupiterCase>

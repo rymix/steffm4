@@ -1,37 +1,33 @@
+import JupiterPanelContent from "components/Jupiter/Panel/JupiterPanelContent";
 import {
   StyledJupiterPanel,
   StyledJupiterPanelBorder,
-  StyledJupiterPanelContent,
   StyledJupiterPanelItems,
+  StyledJupiterPanelWrapper,
 } from "components/Jupiter/Panel/StyledJupiterPanel";
-import type {
-  JupiterPanelContentProps,
-  JupiterPanelProps,
-} from "components/Jupiter/Panel/types";
+import type { JupiterPanelProps } from "components/Jupiter/Panel/types";
 import JupiterTitle from "components/Jupiter/Title";
-
-const JupiterPanelContent: React.FC<JupiterPanelContentProps> = ({
-  children,
-}) => <StyledJupiterPanelContent>{children}</StyledJupiterPanelContent>;
 
 const JupiterPanel: React.FC<JupiterPanelProps> = ({
   children,
   title,
   align,
   padding,
-  background = true,
+  background = "panel",
 }) => {
   return (
-    <StyledJupiterPanel $padding={padding} $background={background}>
-      <StyledJupiterPanelBorder />
-      <JupiterPanelContent>
-        {title && <JupiterTitle title={title} />}
-        <StyledJupiterPanelItems $align={align}>
-          {children}
-        </StyledJupiterPanelItems>
-      </JupiterPanelContent>
-      <StyledJupiterPanelBorder />
-    </StyledJupiterPanel>
+    <StyledJupiterPanelWrapper $padding={padding} $background={background}>
+      <StyledJupiterPanel $background={background}>
+        <StyledJupiterPanelBorder $position="left" />
+        <JupiterPanelContent>
+          {title && <JupiterTitle title={title} />}
+          <StyledJupiterPanelItems $align={align}>
+            {children}
+          </StyledJupiterPanelItems>
+        </JupiterPanelContent>
+        <StyledJupiterPanelBorder $position="right" />
+      </StyledJupiterPanel>
+    </StyledJupiterPanelWrapper>
   );
 };
 

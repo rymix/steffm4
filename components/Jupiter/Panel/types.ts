@@ -3,7 +3,7 @@ export type JupiterPanelProps = {
   title?: string;
   align?: "center" | "left" | "right";
   padding?: string;
-  background?: boolean;
+  background?: "none" | "panel" | "rear" | "front";
 };
 
 export type JupiterPanelContentProps = {
@@ -14,9 +14,13 @@ export type StyledJupiterPanelContent = {
   $position?: "left" | "right";
 };
 
-export type StyledJupiterPanelProps = {
+export type StyledJupiterPanelWrapperProps = {
   $padding?: string;
-  $background?: boolean;
+  $background?: "none" | "panel" | "rear" | "front";
+};
+
+export type StyledJupiterPanelProps = {
+  $background?: "none" | "panel" | "rear" | "front";
 };
 
 export type StyledJupiterPanelBorderProps = {
