@@ -1,6 +1,7 @@
 export type JupiterControlGroupProps = {
   children?: React.ReactNode;
-  pad?: "left" | "right" | "both";
+  pad?: "left" | "right" | "rightBig" | "both";
+  label?: boolean;
 };
 
 export type StyledJupiterControlGroupProps = {

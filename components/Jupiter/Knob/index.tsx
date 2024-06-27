@@ -20,6 +20,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
   onChange,
   label,
   labelPosition = "above",
+  labelVisible = true,
   textColor = "white",
   steps = false,
 }) => {
@@ -115,7 +116,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
 
   return (
     <StyledJupiterKnobWrapper>
-      {labelPosition === "above" && (
+      {labelVisible && labelPosition === "above" && (
         <JupiterLabel
           label={label}
           labelPosition={labelPosition}
@@ -137,7 +138,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
           </StyledJupiterInnerKnob>
         </StyledJupiterOuterKnob>
       </StyledJupiterOuterKnobWrapper>
-      {labelPosition === "below" && (
+      {labelVisible && labelPosition === "below" && (
         <JupiterLabel
           label={label}
           labelPosition={labelPosition}

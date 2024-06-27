@@ -28,13 +28,14 @@ const Home = (): JSX.Element => {
         <JupiterPanel title="Controls">
           <JupiterControlGroup pad="rightBig">
             <JupiterKnob
-              size={64}
-              degrees={200}
+              size={92}
+              degrees={220}
               min={1}
-              max={4}
-              value={80}
+              max={5}
+              value={1}
               onChange={(value) => console.log("Knob 1 value:", value)}
               steps
+              labelVisible={false}
             />
           </JupiterControlGroup>
           <JupiterControlGroup pad="both">

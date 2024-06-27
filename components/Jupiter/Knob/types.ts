@@ -7,6 +7,7 @@ export type JupiterKnobProps = {
   onChange: (val: number) => void;
   label?: string;
   labelPosition?: "above" | "below";
+  labelVisible?: boolean;
   textColor?: string;
   steps?: boolean;
 };

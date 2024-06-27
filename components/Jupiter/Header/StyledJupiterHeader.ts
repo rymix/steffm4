@@ -11,9 +11,10 @@ export const StyledJupiterHeaderWrapper = styled.div`
 export const StyledJupiterSlats = styled.div`
   background-image: url("images/jupiter/slat2.png");
   background-repeat: repeat-x;
-  background-position: center;
+  background-position: left;
   flex-grow: 1;
   height: 100%;
+  margin-left: 20px;
 `;
 
 export const StyledJupiterTitle = styled.div`
