@@ -1,13 +1,7 @@
-const JupiterBackPanel: React.FC = () => {
-  return (
-    <p>farts</p>
+import { StyledJupiterBackPanel } from "./StyledJupiterBackPanel";
 
-    // <StyledJupiterBackPanelWrapper>
-    //   <StyledJupiterPanelBorder $position="left" />
-    //   <StyledJupiterBackPanel />
-    //   <StyledJupiterPanelBorder $position="right" />
-    // </StyledJupiterBackPanelWrapper>
-  );
+const JupiterBackPanel: React.FC = () => {
+  return <StyledJupiterBackPanel>&nbsp;</StyledJupiterBackPanel>;
 };
 
 export default JupiterBackPanel;

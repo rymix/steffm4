@@ -1,14 +1,7 @@
-import {
-  StyledJupiterFrontPanel,
-  StyledJupiterFrontPanelWrapper,
-} from "components/Jupiter/Panel/FrontPanel/StyledJupiterFrontPanel";
+import { StyledJupiterFrontPanel } from "components/Jupiter/Panel/FrontPanel/StyledJupiterFrontPanel";
 
 const JupiterFrontPanel: React.FC = () => {
-  return (
-    <StyledJupiterFrontPanelWrapper>
-      <StyledJupiterFrontPanel />
-    </StyledJupiterFrontPanelWrapper>
-  );
+  return <StyledJupiterFrontPanel>&nbsp;</StyledJupiterFrontPanel>;
 };
 
 export default JupiterFrontPanel;

@@ -15,7 +15,19 @@ export const StyledJupiterPanelWrapper = styled.div<StyledJupiterPanelWrapperPro
 
   zpadding: ${(props) => props.$padding ?? "10px"};
   overflow: hidden;
-  perspective: 300px;
+
+  ${(props) =>
+    props.$background === "rear" &&
+    `
+    perspective: 300px;
+  `}
+
+  ${(props) =>
+    props.$background === "front" &&
+    `
+    perspective: 1000px;
+  `}
+
   display: flex;
   flex-direction: row;
 `;
