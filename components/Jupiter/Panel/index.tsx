@@ -19,7 +19,7 @@ const JupiterPanel: React.FC<JupiterPanelProps> = ({
     <StyledJupiterPanelWrapper $padding={padding} $background={background}>
       <StyledJupiterPanel $background={background}>
         <StyledJupiterPanelBorder $position="left" />
-        <JupiterPanelContent>
+        <JupiterPanelContent padding={padding}>
           {title && <JupiterTitle title={title} />}
           <StyledJupiterPanelItems $align={align}>
             {children}

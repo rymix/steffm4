@@ -1,9 +1,11 @@
 import type {
   StyledJupiterPanelBorderProps,
+  StyledJupiterPanelContentProps,
   StyledJupiterPanelItemsProps,
   StyledJupiterPanelProps,
   StyledJupiterPanelWrapperProps,
 } from "components/Jupiter/Panel/types";
+import { padding } from "polished";
 import styled from "styled-components";
 
 export const StyledJupiterPanelWrapper = styled.div<StyledJupiterPanelWrapperProps>`
@@ -83,7 +85,12 @@ export const StyledJupiterPanelBorder = styled.div<StyledJupiterPanelBorderProps
   width: 12px;
 `;
 
-export const StyledJupiterPanelContent = styled.div`
-  padding: 12px;
+export const StyledJupiterPanelContent = styled.div<StyledJupiterPanelContentProps>`
+  ${({ $padding }) =>
+    $padding &&
+    `
+    padding: ${padding}
+  `}
+
   width: 100%;
 `;
