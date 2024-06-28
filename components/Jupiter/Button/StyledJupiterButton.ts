@@ -86,7 +86,7 @@ export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
     ${(props) => getGradientColors(props.$color || "cream").normal} 72%,
     ${(props) => getGradientColors(props.$color || "cream").normal} 100%
   );
-  border: 3px solid rgba(0, 0, 0, 0.5);
+  border: 3px solid rgba(0, 0, 0, 0.7);
   border-radius: 5px;
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.7);
   cursor: pointer;
