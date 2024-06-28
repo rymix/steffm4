@@ -45,12 +45,14 @@ export const StyledJupiterRadialLabels = styled.div<StyledKnobRadialLabels>`
     $file &&
     `
     background-image: url("images/jupiter/${$file}.png");
-    background-position: 1px 3px;
+    background-position: -40px -46px;
     background-repeat: no-repeat;
     background-size: contain;
+    transform: scale(0.9);
   `}
-  width: 100%;
-  height: 100%;
+  width: 313px;
+  height: 313px;
+  overflow: visible;
   position: absolute;
 `;
 

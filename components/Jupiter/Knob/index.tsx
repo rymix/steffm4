@@ -126,7 +126,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
         />
       )}
       <StyledJupiterOuterKnobWrapper $size={size}>
-        <StyledJupiterRadialLabels $file="knob-volume" />
+        <StyledJupiterRadialLabels $file="92knob" />
         <StyledJupiterOuterKnob
           style={outerStyle}
           $margin={9}
