@@ -54,16 +54,36 @@ export const StyledJupiterPanelItems = styled.div<StyledJupiterPanelItemsProps>`
 `;
 
 export const StyledJupiterPanelBorder = styled.div<StyledJupiterPanelBorderProps>`
-  background: linear-gradient(
-    to right,
-    white 0%,
-    #c9c9c7 10%,
-    #c9c9c7 90%,
-    black 100%
-  );
+  ${({ $position }) =>
+    $position === "left" &&
+    `
+    background: linear-gradient(
+      to right,
+      white 0%,
+      #c9c9c7 10%,
+      #c9c9c7 90%,
+      black 100%
+    );
+    box-shadow: 10px 0 8px  rgba(0, 0, 0, 0.3);
+  `}
+
+  ${({ $position }) =>
+    $position === "right" &&
+    `
+    background: linear-gradient(
+      to right,
+      white 0%,
+      #c9c9c7 10%,
+      #c9c9c7 90%,
+      black 100%
+    );
+    box-shadow: -10px 0 8px  rgba(0, 0, 0, 0.3);
+  `}
+
   width: 12px;
 `;
 
 export const StyledJupiterPanelContent = styled.div`
+  padding: 12px;
   width: 100%;
 `;
