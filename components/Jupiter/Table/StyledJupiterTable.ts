@@ -10,5 +10,5 @@ export const StyledJupiterTable = styled.div`
 
   background-color: #795141;
   background-image: url("table/wood-pattern6.png");
-  background-size: 1000px;
+  background-size: 600px;
 `;
