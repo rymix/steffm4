@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledJupiterTitleWrapper = styled.div`
   align-items: center;
   background: #e23e2e;
-  background-image: url(textures/billie-holliday.png);
+  background-image: url(textures/zbillie-holiday.png);
   border-radius: 4px;
   display: flex;
   flex-direction: row;

@@ -28,3 +28,8 @@ export type StyledInnerKnobProps = {
 export type StyledKnobRadialLabels = {
   $file: string;
 };
+
+export type StyledJupiterKnobMarkerProps = {
+  $x: number;
+  $y: number;
+};

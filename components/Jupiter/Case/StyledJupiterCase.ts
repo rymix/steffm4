@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
 export const StyledJupiterCase = styled.div`
-  width: 700px;
+  width: 760px;
 `;

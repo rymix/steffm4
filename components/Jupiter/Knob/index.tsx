@@ -1,6 +1,7 @@
 import {
   StyledJupiterGrip,
   StyledJupiterInnerKnob,
+  StyledJupiterKnobMarker,
   StyledJupiterKnobWrapper,
   StyledJupiterOuterKnob,
   StyledJupiterOuterKnobWrapper,
@@ -126,6 +127,22 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
         />
       )}
       <StyledJupiterOuterKnobWrapper $size={size}>
+        <StyledJupiterKnobMarker $x={-24} $y={72}>
+          ADV
+        </StyledJupiterKnobMarker>
+        <StyledJupiterKnobMarker $x={-40} $y={18}>
+          SHOES
+        </StyledJupiterKnobMarker>
+        <StyledJupiterKnobMarker $x={38} $y={-12}>
+          SPEC
+        </StyledJupiterKnobMarker>
+        <StyledJupiterKnobMarker $x={100} $y={18}>
+          COCK
+        </StyledJupiterKnobMarker>
+        <StyledJupiterKnobMarker $x={103} $y={72}>
+          ALL
+        </StyledJupiterKnobMarker>
+
         <StyledJupiterRadialLabels $file="92knob" />
         <StyledJupiterOuterKnob
           style={outerStyle}

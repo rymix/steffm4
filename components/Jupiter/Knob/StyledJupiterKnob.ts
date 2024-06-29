@@ -1,5 +1,6 @@
 import type {
   StyledInnerKnobProps,
+  StyledJupiterKnobMarkerProps,
   StyledKnobRadialLabels,
   StyledKnobWrapperProps,
   StyledOuterKnobProps,
@@ -44,14 +45,14 @@ export const StyledJupiterRadialLabels = styled.div<StyledKnobRadialLabels>`
   ${({ $file }) =>
     $file &&
     `
-    background-image: url("images/jupiter/${$file}.png");
-    background-position: -40px -46px;
+    background-image: url("2images/jupiter/${$file}.png");
+    background-position: -20px -3px;
     background-repeat: no-repeat;
     background-size: contain;
-    transform: scale(0.9);
+    ztransform: scale(1);
   `}
-  width: 313px;
-  height: 313px;
+  width: 148.5px;
+  height: 84px;
   overflow: visible;
   position: absolute;
 `;
@@ -82,4 +83,11 @@ export const StyledJupiterGrip = styled.div`
   border-radius: 50%;
   background: #e43728;
   box-shadow: 0 0 3px 1px black;
+`;
+
+export const StyledJupiterKnobMarker = styled.div<StyledJupiterKnobMarkerProps>`
+  color: white;
+  position: absolute;
+  left: ${({ $x }) => $x}px;
+  top: ${({ $y }) => $y}px;
 `;
