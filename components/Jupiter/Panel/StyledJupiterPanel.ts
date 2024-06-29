@@ -39,7 +39,7 @@ export const StyledJupiterPanel = styled.div<StyledJupiterPanelProps>`
     props.$background === "rear" &&
     `
     transform: rotateX(65deg);
-    transform-origin: bottom;
+    transform-origin: 0 56px;
   `}
 
   ${(props) =>
