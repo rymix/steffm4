@@ -5,7 +5,6 @@ import type {
   StyledJupiterPanelProps,
   StyledJupiterPanelWrapperProps,
 } from "components/Jupiter/Panel/types";
-import { padding } from "polished";
 import styled from "styled-components";
 
 export const StyledJupiterPanelWrapper = styled.div<StyledJupiterPanelWrapperProps>`
@@ -89,7 +88,7 @@ export const StyledJupiterPanelContent = styled.div<StyledJupiterPanelContentPro
   ${({ $padding }) =>
     $padding &&
     `
-    padding: ${padding}
+    padding: ${$padding}px;
   `}
 
   width: 100%;

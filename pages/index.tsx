@@ -17,15 +17,15 @@ const Home = (): JSX.Element => {
         <JupiterPanel padding="0" background="rear">
           <JupiterBackPanel />
         </JupiterPanel>
-        <JupiterPanel align="right">
+        <JupiterPanel align="right" padding="12">
           <JupiterHeader />
         </JupiterPanel>
-        <JupiterPanel title="Screen">
+        <JupiterPanel padding="24">
           <JupiterControlGroup>
             <JupiterScreen />
           </JupiterControlGroup>
         </JupiterPanel>
-        <JupiterPanel title="Controls">
+        <JupiterPanel title="Controls" padding="12">
           <JupiterControlGroup pad="rightBig">
             <JupiterKnob
               size={92}
