@@ -4,11 +4,11 @@ export const StyledMixcloudWidget = styled.iframe`
   bottom: 0;
   left: 0;
   height: 60px;
-  opacity: 0;
-  position: fixed;
-  transform: translateY(60px);
+  opacity: 1;
+  position: relative;
+  ztransform: translateY(60px);
   width: 100%;
-  z-index: 1;
+  z-index: 1000;
 `;
 
 export const StyledHole = styled.div`

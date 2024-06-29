@@ -1,5 +1,5 @@
 export const DEBUG = false;
-export const DEFAULTVOLUME = 0;
+export const DEFAULTVOLUME = 1;
 export const NOISE_BACKGROUND_LOW = `
   data:image/png;base64,
   iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAn8CBG0xnoYAAAAASUVORK5CYII=

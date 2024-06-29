@@ -4,6 +4,7 @@ export type JupiterButtonProps = {
   label?: string;
   labelPosition?: "above" | "below";
   textColor?: string;
+  onClick?: () => void;
 };
 
 export type JupiterButtonColors = {

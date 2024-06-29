@@ -18,7 +18,7 @@ const JupiterScreen: React.FC = () => {
   const paddedMessage = padding + fixedWidthMessage + padding;
 
   const updateInterval = (): number => {
-    return temporaryMessage ? 100 : 300;
+    return temporaryMessage ? 100 : 250;
   };
 
   useEffect(() => {

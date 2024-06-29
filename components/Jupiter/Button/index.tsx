@@ -13,6 +13,7 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
   label,
   labelPosition = "above",
   textColor = "white",
+  onClick,
 }) => {
   const [down, setDown] = useState();
 
@@ -32,6 +33,7 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
         onMouseDown={() => setDown(true)}
         onMouseUp={() => setDown(false)}
         onMouseLeave={() => setDown(false)}
+        onClick={onClick}
       >
         <StyledJupiterLed $down={down} $on={on} />
       </StyledJupiterButton>

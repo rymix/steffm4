@@ -15,7 +15,6 @@ const JupiterPanel: React.FC<JupiterPanelProps> = ({
   padding,
   background = "panel",
 }) => {
-  console.log("padding", padding);
   return (
     <StyledJupiterPanelWrapper $padding={padding} $background={background}>
       <StyledJupiterPanel $background={background}>

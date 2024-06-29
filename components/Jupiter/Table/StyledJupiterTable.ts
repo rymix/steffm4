@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledJupiterTable = styled.div`
-  align-items: center;
+  /* align-items: center;
   background: green;
   display: flex;
   height: 100vh;
@@ -11,4 +11,6 @@ export const StyledJupiterTable = styled.div`
   background-color: #795141;
   background-image: url("table/wood-pattern6.png");
   background-size: 600px;
+
+  z-index: -999; */
 `;

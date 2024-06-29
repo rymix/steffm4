@@ -6,7 +6,9 @@ import themes from "styles/themes";
 const useSessionContextState = (): SessionContextState => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const [colors, setColors] = useState<Colors | null>(null);
-  const [holdingMessage, setHoldingMessage] = useState("Long sample message");
+  const [holdingMessage, setHoldingMessage] = useState(
+    "Stef FM - Funky House Coming In Your Ears",
+  );
   const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);

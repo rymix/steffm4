@@ -1,25 +1,10 @@
-import PauseIcon from "@mui/icons-material/Pause";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
-import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import SemiCircularProgress from "components/Controls/SemiCircularProgress";
-import {
-  StyledAudioControls,
-  StyledAudioControlsInner,
-  StyledAudioControlsWrapper,
-  StyledHeadphonesWrapper,
-  StyledMixcloudWidget,
-  StyledPlay,
-  StyledPlayer,
-  StyledPlayerWrapper,
-  StyledProgressBar,
-  StyledSkipNext,
-  StyledSkipPrevious,
-} from "components/Mixcloud/StyledMixcloud";
+import { StyledMixcloudWidget } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
 import { useSession } from "contexts/session";
 import { useEffect, useRef } from "react";
+
+import Debug from "./Debug";
 
 export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   const { autoPlay = true, children, defaultMcKey } = props;
@@ -83,6 +68,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setTrackProgressPercent(0);
 
     widget.ready.then(() => {
+      console.log("widget ready");
       setPlayer(widget);
       setPlayerUpdated(true);
       widget.pause();
@@ -158,7 +144,8 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             src={widgetUrl}
             frameBorder="0"
           />
-          <StyledPlayerWrapper>
+          <Debug />
+          {/* <StyledPlayerWrapper>
             <StyledPlayer>
               <StyledAudioControlsWrapper>
                 <StyledAudioControls colors={colors}>
@@ -233,7 +220,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
                 $barWidth={3}
               />
             </StyledProgressBar>
-          </StyledPlayerWrapper>
+          </StyledPlayerWrapper> */}
 
           {/* <Volume /> */}
 

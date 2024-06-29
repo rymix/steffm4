@@ -112,6 +112,16 @@ const useMixcloudContextState = (): MixcloudContextState => {
     setPlayerUpdated(false);
   }, [player, playerUpdated]);
 
+  const handlePlay = useCallback(() => {
+    player?.play();
+    setPlayerUpdated(false);
+  }, [player, playerUpdated]);
+
+  const handlePause = useCallback(() => {
+    player?.pause();
+    setPlayerUpdated(false);
+  }, [player, playerUpdated]);
+
   /* Volume Controls */
   useEffect(() => {
     if (player) {
@@ -236,6 +246,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
       fetchRandomMcKeyByCategory,
       handleLoad,
       handleNext,
+      handlePause,
+      handlePlay,
       handlePlayPause,
       handlePrevious,
       mcKeyNext,

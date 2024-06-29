@@ -9,6 +9,8 @@ export type MixcloudContextState = {
     fetchRandomMcKeyByCategory: (category: string) => Promise<string>;
     handleLoad: (localMcKey?: string) => void;
     handleNext: () => void;
+    handlePause: () => void;
+    handlePlay: () => void;
     handlePlayPause: () => void;
     handlePrevious: () => void;
     mcKeyNext: string;

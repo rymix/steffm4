@@ -1,9 +1,5 @@
-import BurgerMenu from "components/BurgerMenu";
-import GradientBackground from "components/GradientBackground";
 import MixCard from "components/MixCard";
 import Mixcloud from "components/Mixcloud";
-import Modal from "components/Modal";
-import Overlay from "components/Overlay";
 import {
   BottomBlock,
   MiddleBlock,
@@ -12,7 +8,6 @@ import {
 } from "components/Styles";
 import TrackFlow from "components/TrackFlow";
 import TrackSingle from "components/TrackSingle";
-import Vignette from "components/Vignette";
 import { useMixcloud } from "contexts/mixcloud";
 import { useSession } from "contexts/session";
 import { useEffect } from "react";
@@ -46,11 +41,11 @@ const MixcloudHomePage = (): JSX.Element => {
 
   return (
     <>
-      <Vignette />
+      {/* <Vignette />
       <GradientBackground />
       <Overlay />
       <BurgerMenu />
-      <Modal />
+      <Modal /> */}
 
       {mcKey && (
         <StyledContainer>
