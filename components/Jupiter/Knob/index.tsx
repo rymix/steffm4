@@ -8,14 +8,14 @@ import {
 } from "components/Jupiter/Knob/StyledJupiterKnob";
 import type { JupiterKnobProps } from "components/Jupiter/Knob/types";
 import JupiterLabel from "components/Jupiter/Label";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const JupiterKnob: React.FC<JupiterKnobProps> = ({
   size = 0,
   min = 1,
   max = 4,
   degrees = 260,
-  value = 1,
+  value = 5,
   onChange = () => {},
   label,
   labelPosition = "above",
@@ -42,21 +42,19 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
     newMax: number,
     oldValue: number,
   ): number => {
-    if (steps) {
-      const valueRange = oldMax - oldMin;
-      const stepSizeDegrees = degrees / valueRange;
-      const stepNumber = Math.round(
-        (oldValue - oldMin) * (valueRange / degrees),
-      );
-      return stepNumber * stepSizeDegrees + startAngle;
-    }
     return (
       ((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin) + newMin
     );
   };
 
-  const initialDeg = convertRange(min, max, startAngle, endAngle, value);
-  const [deg, setDeg] = useState(initialDeg);
+  const [deg, setDeg] = useState(() =>
+    convertRange(min, max, startAngle, endAngle, value),
+  );
+
+  useEffect(() => {
+    const newDeg = convertRange(min, max, startAngle, endAngle, value);
+    setDeg(newDeg);
+  }, [value, min, max, startAngle, endAngle]);
 
   const getDeg = (
     cX: number,

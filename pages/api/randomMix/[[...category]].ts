@@ -12,8 +12,11 @@ export default async function handler(
   const { category } = req.query;
   const categoryParam = Array.isArray(category) ? category[0] : category;
 
-  const filteredMixes = categoryParam
-    ? db.data?.mixes.filter((mix) => mix.category === categoryParam)
+  // Nullify the category if it is 'all'
+  const effectiveCategory = categoryParam === "all" ? null : categoryParam;
+
+  const filteredMixes = effectiveCategory
+    ? db.data?.mixes.filter((mix) => mix.category === effectiveCategory)
     : db.data?.mixes;
 
   if (!filteredMixes || filteredMixes.length === 0) {

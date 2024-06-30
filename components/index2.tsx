@@ -1,23 +1,27 @@
+import JupiterButton from "components/Jupiter/Button";
+import JupiterCase from "components/Jupiter/Case";
+import JupiterControlGroup from "components/Jupiter/ControlGroup";
+import JupiterHeader from "components/Jupiter/Header";
+import JupiterKnob from "components/Jupiter/Knob";
+import JupiterPanel from "components/Jupiter/Panel";
+import JupiterBackPanel from "components/Jupiter/Panel/BackPanel";
+import JupiterFrontPanel from "components/Jupiter/Panel/FrontPanel";
+import JupiterScreen from "components/Jupiter/Screen";
+import JupiterSlider from "components/Jupiter/Slider";
+import JupiterTable from "components/Jupiter/Table";
 import Mixcloud from "components/Mixcloud";
+import MixInformation from "components/MixInformation";
+import Modal from "components/Modal";
+import Overlay from "components/Overlay";
 import { useMixcloud } from "contexts/mixcloud";
 import { useSession } from "contexts/session";
 import { useEffect, useState } from "react";
 import { copyToClipboard, mcKeyFormatter } from "utils/functions";
 
-import JupiterButton from "./Jupiter/Button";
-import JupiterCase from "./Jupiter/Case";
-import JupiterControlGroup from "./Jupiter/ControlGroup";
-import JupiterHeader from "./Jupiter/Header";
-import JupiterKnob from "./Jupiter/Knob";
-import JupiterPanel from "./Jupiter/Panel";
-import JupiterBackPanel from "./Jupiter/Panel/BackPanel";
-import JupiterFrontPanel from "./Jupiter/Panel/FrontPanel";
-import JupiterScreen from "./Jupiter/Screen";
-import JupiterSlider from "./Jupiter/Slider";
-import JupiterTable from "./Jupiter/Table";
-import MixInformation from "./MixInformation";
-import Modal from "./Modal";
-import Overlay from "./Overlay";
+const getCategoryIndex = (categories, selectedCategory) => {
+  const category = categories.find((cat) => cat.code === selectedCategory);
+  return category ? category.index : 1; // Default to 1 if not found
+};
 
 const Jupiter = (): JSX.Element => {
   const {
@@ -75,6 +79,8 @@ const Jupiter = (): JSX.Element => {
     }
   }, [mcKey, selectedCategory, fetchRandomMcKey, fetchRandomMcKeyByCategory]);
 
+  const initialKnobValue = getCategoryIndex(categories, selectedCategory);
+
   return (
     <>
       <Overlay />
@@ -104,7 +110,7 @@ const Jupiter = (): JSX.Element => {
                 degrees={220}
                 min={1}
                 max={5}
-                value={1}
+                value={initialKnobValue}
                 steps
                 labelVisible={false}
                 categories={categories}
