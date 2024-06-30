@@ -1,4 +1,5 @@
 export const DEBUG = false;
+export const DEFAULT_LOCALE = "en-GB";
 export const DEFAULTVOLUME = 1;
 export const NOISE_BACKGROUND_LOW = `
   data:image/png;base64,
