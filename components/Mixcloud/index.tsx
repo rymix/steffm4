@@ -97,12 +97,12 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
 
       widget.getDuration().then((dur: number) => {
         setLoaded(false);
-        if (!dur) {
-          console.error("licence issue");
-          setShowUnavailable(true);
-          setPlaying(false);
-          return;
-        }
+        // if (!dur) {
+        //   console.error("licence issue");
+        //   setShowUnavailable(true);
+        //   setPlaying(false);
+        //   return;
+        // }
         setLoaded(true);
         setDuration(dur);
         setShowUnavailable(false);
