@@ -1,4 +1,4 @@
-import type { Mix } from "db/types";
+import type { Category, Mix } from "db/types";
 
 export type MixcloudContextState = {
   mcKey: string;
@@ -6,9 +6,11 @@ export type MixcloudContextState = {
   setMcKey: React.Dispatch<React.SetStateAction<string>>;
   controls: {
     fetchRandomMcKey: () => Promise<string>;
-    fetchRandomMcKeyByCategory: (category: string) => Promise<string>;
+    fetchRandomMcKeyByCategory: (category: string | null) => Promise<string>;
     handleLoad: (localMcKey?: string) => void;
     handleNext: () => void;
+    handlePause: () => void;
+    handlePlay: () => void;
     handlePlayPause: () => void;
     handlePrevious: () => void;
     mcKeyNext: string;
@@ -18,13 +20,16 @@ export type MixcloudContextState = {
   };
   filters: {
     mixes: Mix[];
-    selectedCategory: string;
+    categories: Category[] | undefined;
+    selectedCategory: string | null;
     selectedTag: string;
     setMixes: React.Dispatch<React.SetStateAction<Mix[]>>;
-    setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+    setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>;
     setSelectedTag: React.Dispatch<React.SetStateAction<string>>;
+    updateSelectedCategory: (index: number) => void;
   };
   mix: {
+    categoryName: string;
     duration: number;
     details: Mix | undefined;
     progress: number;

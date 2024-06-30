@@ -1,6 +1,5 @@
-import type { CatalogueProps } from "components/Catalogue/types";
-import Information from "components/Information";
 import {
+  StyledCategoryName,
   StyledCoverArt,
   StyledCoverArtImage,
   StyledDuration,
@@ -10,17 +9,19 @@ import {
   StyledMixName,
   StyledNotes,
   StyledReleaseDate,
-  StyledSocials,
   StyledSubDetails,
 } from "components/MixCard/StyledMixCard";
-import { RandomTrackInCategory } from "components/RandomTrackInCategory";
-import ShareLink from "components/ShareLink";
+import type { MixCardProps } from "components/MixCard/types";
+import Socials from "components/Socials";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 
-export const MixCard: React.FC<CatalogueProps> = () => {
+export const MixCard: React.FC<MixCardProps> = ({
+  socials = false,
+  category = false,
+}) => {
   const {
-    mix: { details: mixDetails },
+    mix: { categoryName, details: mixDetails },
   } = useMixcloud();
 
   if (!mixDetails) {
@@ -39,17 +40,14 @@ export const MixCard: React.FC<CatalogueProps> = () => {
         )}
         <StyledMixInfo>
           <StyledMixName>{name}</StyledMixName>
+          {category && <StyledCategoryName>{categoryName}</StyledCategoryName>}
           <StyledSubDetails>
             <StyledReleaseDate>{releaseDate}</StyledReleaseDate>
             <StyledDuration>{duration}</StyledDuration>
           </StyledSubDetails>
           <StyledNotes>{notes}</StyledNotes>
         </StyledMixInfo>
-        <StyledSocials>
-          <ShareLink />
-          <RandomTrackInCategory />
-          <Information />
-        </StyledSocials>
+        {socials && <Socials />}
       </StyledMixCard>
     </StyledMixCardWrapper>
   );

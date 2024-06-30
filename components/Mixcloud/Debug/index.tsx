@@ -9,6 +9,7 @@ export const Debug: React.FC<MixcloudProps> = () => {
       progress: mixProgress,
       progressPercent: mixProgressPercent,
     },
+    filters: { selectedCategory },
     track: {
       progress: trackProgress,
       progressPercent: trackProgressPercent,
@@ -69,6 +70,10 @@ export const Debug: React.FC<MixcloudProps> = () => {
         <tr>
           <td>volume</td>
           <td>{volume}</td>
+        </tr>
+        <tr>
+          <td>selectedCategory</td>
+          <td>{selectedCategory}</td>
         </tr>
       </tbody>
     </table>

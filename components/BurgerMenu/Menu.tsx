@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
 import AudiotrackIcon from "@mui/icons-material/Audiotrack";
+import About from "components/About";
 import {
   StyledHeading,
   StyledMenu,
@@ -9,7 +10,7 @@ import { useSession } from "contexts/session";
 import React, { useCallback, useEffect, useState } from "react";
 
 const Menu: React.FC = () => {
-  const { menuOpen } = useSession();
+  const { menuOpen, openModal } = useSession();
   const {
     controls: { fetchRandomMcKey, fetchRandomMcKeyByCategory, handleLoad },
     filters: { selectedCategory, setSelectedCategory },
@@ -56,7 +57,7 @@ const Menu: React.FC = () => {
   );
 
   useEffect(() => {
-    updateLinks(selectedCategory);
+    updateLinks(selectedCategory || "");
   }, [selectedCategory]);
 
   const handleCategoryClick = async (
@@ -73,6 +74,14 @@ const Menu: React.FC = () => {
       handleLoad(await fetchRandomMcKeyByCategory(code));
     }
 
+    setTimeout(() => setMenuOpen(false), 500);
+  };
+
+  const handleAboutClick = (
+    event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
+  ): void => {
+    event.preventDefault();
+    openModal(<About />, "About Stef.FM");
     setTimeout(() => setMenuOpen(false), 500);
   };
 
@@ -103,7 +112,18 @@ const Menu: React.FC = () => {
       </ul>
       <StyledHeading>Other Things</StyledHeading>
       <ul>
-        <li>About</li>
+        <li
+          onClick={(event) => handleAboutClick(event)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleAboutClick(e);
+            }
+          }}
+          tabIndex={0}
+          role="button"
+        >
+          About
+        </li>
       </ul>
     </StyledMenu>
   );

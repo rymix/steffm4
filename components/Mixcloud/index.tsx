@@ -1,23 +1,6 @@
-import PauseIcon from "@mui/icons-material/Pause";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
-import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import SemiCircularProgress from "components/Controls/SemiCircularProgress";
-import {
-  StyledAudioControls,
-  StyledAudioControlsInner,
-  StyledAudioControlsWrapper,
-  StyledHeadphonesWrapper,
-  StyledMixcloudWidget,
-  StyledPlay,
-  StyledPlayer,
-  StyledPlayerWrapper,
-  StyledProgressBar,
-  StyledSkipNext,
-  StyledSkipPrevious,
-} from "components/Mixcloud/StyledMixcloud";
+import Debug from "components/Mixcloud/Debug";
+import { StyledMixcloudWidget } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
-import Volume from "components/Volume";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useRef } from "react";
 
@@ -27,22 +10,19 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   const {
     mcKey,
     setMcKey,
-    controls: { handlePlayPause, handleNext, handlePrevious },
+    controls: { handleNext },
     mix: {
-      progressPercent: mixProgressPercent,
       setDuration,
       setProgress: setMixProgress,
       setProgressPercent: setMixProgressPercent,
       setShowUnavailable,
     },
     track: {
-      progressPercent: trackProgressPercent,
       setProgress: setTrackProgress,
       setProgressPercent: setTrackProgressPercent,
     },
     widget: {
       iframeRef,
-      playing,
       scriptLoaded,
       setLoaded,
       setPlayer,
@@ -81,6 +61,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setTrackProgressPercent(0);
 
     widget.ready.then(() => {
+      console.log("widget ready");
       setPlayer(widget);
       setPlayerUpdated(true);
       widget.pause();
@@ -156,84 +137,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             src={widgetUrl}
             frameBorder="0"
           />
-          <StyledPlayerWrapper>
-            <StyledPlayer>
-              <StyledAudioControlsWrapper>
-                <StyledAudioControls>
-                  <StyledHeadphonesWrapper>
-                    <svg
-                      width="240"
-                      height="180"
-                      viewBox="0 0 240 180"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        className="shadow"
-                        d="M 120,90 m -90,0 a 90,90 0 1,0 180,0 a 90,90 0 1,0 -180,0
-       M 30,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0
-       M 210,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0"
-                        fill="white"
-                        fill-opacity="0.4"
-                      />
-                    </svg>
-                  </StyledHeadphonesWrapper>
-
-                  <StyledAudioControlsInner>
-                    <StyledSkipPrevious>
-                      <SkipPreviousIcon
-                        onClick={handlePrevious}
-                        fontSize="inherit"
-                        className="control"
-                      />
-                    </StyledSkipPrevious>
-
-                    <StyledPlay>
-                      {playing ? (
-                        <PauseIcon
-                          onClick={handlePlayPause}
-                          fontSize="inherit"
-                          className="control"
-                        />
-                      ) : (
-                        <PlayArrowIcon
-                          onClick={handlePlayPause}
-                          fontSize="inherit"
-                          className="control"
-                        />
-                      )}
-                    </StyledPlay>
-
-                    <StyledSkipNext>
-                      <SkipNextIcon
-                        onClick={handleNext}
-                        fontSize="inherit"
-                        className="control"
-                      />
-                    </StyledSkipNext>
-                  </StyledAudioControlsInner>
-                </StyledAudioControls>
-              </StyledAudioControlsWrapper>
-            </StyledPlayer>
-
-            <StyledProgressBar $position="top">
-              <SemiCircularProgress
-                $value={trackProgressPercent}
-                $position="top"
-                $start="left"
-                $barWidth={1}
-              />
-            </StyledProgressBar>
-            <StyledProgressBar $position="bottom">
-              <SemiCircularProgress
-                $value={mixProgressPercent}
-                $position="bottom"
-                $start="left"
-                $barWidth={1}
-              />
-            </StyledProgressBar>
-          </StyledPlayerWrapper>
-
-          <Volume />
+          <Debug />
 
           {children}
         </>

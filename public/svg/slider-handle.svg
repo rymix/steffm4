@@ -1,0 +1,29 @@
+<svg width="24" height="11" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions for gradients -->
+  <defs>
+    <linearGradient id="topGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#222"/>
+      <stop offset="100%" stop-color="black"/>
+    </linearGradient>
+    <linearGradient id="bottomGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="black"/>
+      <stop offset="100%" stop-color="#222"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Rectangle with border radius -->
+  <rect x="0" y="0" width="24" height="11" fill="black" rx="3" ry="3"/>
+
+  <!-- Top three rows with gradient -->
+  <rect x="0" y="0" width="24" height="5" fill="url(#topGradient)"/>
+
+  <!-- Bottom three rows with gradient -->
+  <rect x="0" y="6" width="24" height="5" fill="url(#bottomGradient)"/>
+
+  <!-- Central white row -->
+  <rect x="0" y="5" width="24" height="1" fill="white"/>
+
+  <!-- Medium grey rows above and below the central row -->
+  <rect x="0" y="4" width="24" height="1" fill="grey"/>
+  <rect x="0" y="6" width="24" height="1" fill="grey"/>
+</svg>

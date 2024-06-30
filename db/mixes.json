@@ -1,9 +1,45 @@
 {
   "categories": [
-    { "code": "aidm", "name": "Adventures in Decent Music" },
-    { "code": "mpos", "name": "My Pair of Shoes" },
-    { "code": "special", "name": "Special" },
-    { "code": "cocksoup", "name": "Cocksoup" }
+    {
+      "index": 1,
+      "code": "aidm",
+      "name": "Adventures in Decent Music",
+      "shortName": "ADV",
+      "x": -24,
+      "y": 72
+    },
+    {
+      "index": 2,
+      "code": "mpos",
+      "name": "My Pair of Shoes",
+      "shortName": "SHOES",
+      "x": -40,
+      "y": 18
+    },
+    {
+      "index": 3,
+      "code": "special",
+      "name": "Special",
+      "shortName": "SPEC",
+      "x": 40,
+      "y": -12
+    },
+    {
+      "index": 4,
+      "code": "cocksoup",
+      "name": "Cocksoup",
+      "shortName": "COCK",
+      "x": 100,
+      "y": 18
+    },
+    {
+      "index": 5,
+      "code": "all",
+      "name": "All",
+      "shortName": "ALL",
+      "x": 103,
+      "y": 72
+    }
   ],
   "mixes": [
     {
@@ -6351,7 +6387,7 @@
       "listOrder": 1,
       "mixcloudKey": "cocksoup-dj-collective-ultra-yacht-rock-volume-1",
       "name": "Cocksoup DJ Collective - Ultra Yacht Rock - Volume 1",
-      "notes": "3 hours mix of easy-going, AOR/MOR, West Coast grooves that make you want to drop the top, pull down the wayfarers and roll up the sleeves on your pastel-coloured jacket and head on out to the coast.",
+      "notes": "3 hours mix of easy-going, AOR/MOR, West Coast grooves that make you want to drop the top, pull down the wayfarers and roll up the sleeves on your pastel-colored jacket and head on out to the coast.",
       "releaseDate": "26 July 2018",
       "shortName": "Cocksoup - Ultra Yacht Rock - Volume 1",
       "tags": [
@@ -12826,7 +12862,7 @@
           "coverArtDate": "2023-12-23T22:34:45.765Z",
           "coverArtLarge": "https://i.discogs.com/t2FnSC7zvSutaDHthnAcIYHgvKYTwWmcPFbIdsBn49U/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4NjY5/NzktMTMwNDczNDkz/Mi5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/bE5R4iiOBkRTYt2oM1-GepFsW98n-NtdQUsLGLrL9QU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4NjY5/NzktMTMwNDczNDkz/Mi5qcGVn.jpeg",
-          "publisher": "RFB Colours",
+          "publisher": "RFB Colors",
           "remixArtistName": "",
           "sectionNumber": 10,
           "startTime": "54:58",
@@ -21206,7 +21242,7 @@
           "remixArtistName": "Original Mix",
           "sectionNumber": 3,
           "startTime": "08:08",
-          "trackName": "Colourblind"
+          "trackName": "Colorblind"
         },
         {
           "artistName": "Chris Malinchak feat. Mikky Ekko",

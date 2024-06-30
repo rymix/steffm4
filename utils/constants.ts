@@ -1,19 +1,15 @@
 export const DEBUG = false;
-export const HIDEMASK = false;
-export const ENABLE_3D = true;
-export const ENABLE_AUTOSCROLL = true;
-export const ENABLE_EQUALIZER = true;
-export const ENABLE_MIXLIST = true;
-export const ENABLE_TRACKLIST = true;
-export const ALTERNATELOADTYPE = true;
-export const IFRAMEPREFIX =
-  "https://www.mixcloud.com/widget/iframe/?feed=%2Frymixxx%2F";
-export const IFRAMESUFFIX =
-  "%2F&hide_cover=1&light=0&hide_tracklist=1&mini=1&hide_artwork=1";
 export const DEFAULT_LOCALE = "en-GB";
-export const FLAG_VOLUMEUP = "VOL+";
-export const FLAG_VOLUMEDOWN = "VOL-";
-export const FLAG_SKIPPREVIOUS = "PREV";
-export const FLAG_SKIPNEXT = "NEXT";
-export const FLAG_PAUSE = "PAUSE";
-export const FLAG_PLAY = "PLAY";
+export const DEFAULTVOLUME = 1;
+export const NOISE_BACKGROUND_LOW = `
+  data:image/png;base64,
+  iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAn8CBG0xnoYAAAAASUVORK5CYII=
+`;
+export const NOISE_BACKGROUND_MEDIUM = `
+  data:image/png;base64,
+  iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAn8CBG0xnoYAAAAASUVORK5CYII=
+`;
+
+export const NOISE_BACKGROUND_HIGH = `
+  data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1HAwCAAAAY0lEQVR42mJ89uzZfwYKAAD8nH8cDZycnJSUlIyNjWXX0+Tl5U1NTY2BgYG8uXL5+vv7w9/fj6e3t9fT0/P3+vpaWlhYWFtDZ2cnDw8N3d3evw8HAwMDB+fn5PT09HR0dVVVV5cXFyUlJS+fwcPCAQWYA+YGAAAAAElFTkSuQmCC
+`;

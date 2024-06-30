@@ -16,7 +16,6 @@ const DynamicRoute = (): null => {
       const cleanedMcKey = mcKey.replaceAll(/^\/+|\/+$/g, "");
 
       setMcKey(cleanedMcKey);
-      console.log("mcKey:", cleanedMcKey);
 
       // Use replace to avoid adding a new history entry
       router
@@ -27,8 +26,6 @@ const DynamicRoute = (): null => {
         .catch((error) => {
           console.error("Failed to redirect:", error);
         });
-    } else {
-      console.log("hello");
     }
   }, [router.isReady, router.query, setMcKey, router]);
 

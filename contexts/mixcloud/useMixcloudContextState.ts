@@ -1,8 +1,9 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 import type { MixcloudContextState } from "contexts/mixcloud/types";
-import type { Mix } from "db/types";
+import type { Category, Mix } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { DEFAULTVOLUME } from "utils/constants";
 import {
   mcKeyFormatter,
   mcKeyUnformatter,
@@ -11,36 +12,40 @@ import {
 } from "utils/functions";
 
 const useMixcloudContextState = (): MixcloudContextState => {
-  const [mixDetails, setMixDetails] = useState<Mix | undefined>();
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [categoryName, setCategoryName] = useState("");
   const [duration, setDuration] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [loaded, setLoaded] = useState(false);
-  const [mcKey, setMcKey] = useState("");
-  const [mcKeyNext, setMcKeyNext] = useState("");
-  const [mcKeyPrevious, setMcKeyPrevious] = useState("");
-  const [mixes, setMixes] = useState<Mix[]>([]);
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
   );
   const [lastTrackUpdateTime, setLastTrackUpdateTime] = useState<number | null>(
     null,
   );
+  const [loaded, setLoaded] = useState(false);
+  const [mcKey, setMcKey] = useState("");
+  const [mcKeyNext, setMcKeyNext] = useState("");
+  const [mcKeyPrevious, setMcKeyPrevious] = useState("");
+  const [mixDetails, setMixDetails] = useState<Mix | undefined>();
+  const [mixes, setMixes] = useState<Mix[]>([]);
+  const [mixProgress, setMixProgress] = useState(0);
+  const [mixProgressPercent, setMixProgressPercent] = useState(0);
   const [player, setPlayer] = useState<any>();
   const [playerUpdated, setPlayerUpdated] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [mixProgress, setMixProgress] = useState(0);
-  const [mixProgressPercent, setMixProgressPercent] = useState(0);
   const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [selectedCategory, setSelectedCategory] = usePersistedState(
-    "selectedCategory",
-    "",
-  );
+  const [selectedCategory, setSelectedCategory] = usePersistedState<
+    string | null
+  >("selectedCategory", null);
   const [selectedTag, setSelectedTag] = useState("");
   const [showUnavailable, setShowUnavailable] = useState(false);
   const [trackProgress, setTrackProgress] = useState(0);
   const [trackProgressPercent, setTrackProgressPercent] = useState(0);
   const [trackSectionNumber, setTrackSectionNumber] = useState(0);
-  const [volume, setVolume] = usePersistedState<number>("volume", 0.8);
+  const [volume, setVolume] = usePersistedState<number>(
+    "volume",
+    DEFAULTVOLUME,
+  );
 
   /* Helpers */
   const mcUrl = mcKeyUrlFormatter(mcKey);
@@ -48,15 +53,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const widgetUrl = mcWidgetUrlFormatter(mcKey);
 
   const fetchRandomMcKey = async (): Promise<string> => {
-    const response = await fetch("/api/random-mix");
+    const response = await fetch("/api/randomMix");
     const data = await response.json();
     return data.mcKey;
   };
 
   const fetchRandomMcKeyByCategory = async (
-    category: string,
+    category: string | null,
   ): Promise<string> => {
-    const response = await fetch(`/api/random-mix?category=${category}`);
+    const response = await fetch(`/api/randomMix/${category}`);
     const data = await response.json();
     return data.mcKey;
   };
@@ -68,11 +73,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     const lookupMcKey = localMcKey || mcKey;
 
-    const response = await fetch(
-      `/api/mix?mixcloudKey=${mcKeyUnformatter(lookupMcKey)}`,
-    );
+    const response = await fetch(`/api/mix/${mcKeyUnformatter(lookupMcKey)}`);
     const data: Mix = await response.json();
     return data;
+  };
+
+  const updateSelectedCategory = (index: number): void => {
+    const category =
+      categories.find((cat) => cat.index === index)?.code || null;
+    setSelectedCategory(category);
   };
 
   useEffect(() => {
@@ -88,9 +97,34 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
   }, [mcKey]);
 
+  useEffect(() => {
+    const fetchCategoryName = async (): Promise<void> => {
+      if (!selectedCategory) {
+        setCategoryName("");
+        return;
+      }
+
+      const response = await fetch(`/api/category/${selectedCategory}`);
+      const data: string = await response.json();
+      setCategoryName(data);
+    };
+
+    fetchCategoryName();
+  }, [mcKey]);
+
   /* Play / Pause Controls */
   const handlePlayPause = useCallback(() => {
     player?.togglePlay();
+    setPlayerUpdated(false);
+  }, [player, playerUpdated]);
+
+  const handlePlay = useCallback(() => {
+    player?.play();
+    setPlayerUpdated(false);
+  }, [player, playerUpdated]);
+
+  const handlePause = useCallback(() => {
+    player?.pause();
     setPlayerUpdated(false);
   }, [player, playerUpdated]);
 
@@ -209,6 +243,23 @@ const useMixcloudContextState = (): MixcloudContextState => {
     calculateTrackProgress();
   }, [mixProgress, mixDetails, duration, lastTrackUpdateTime]);
 
+  /* Fetch Categories */
+  useEffect(() => {
+    const fetchCategories = async (): Promise<void> => {
+      try {
+        const response = await fetch("/api/categories");
+        if (!response.ok) throw new Error("Failed to fetch categories");
+
+        const categoriesData = await response.json();
+        setCategories(categoriesData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   return {
     mcKey,
     mcUrl,
@@ -218,6 +269,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
       fetchRandomMcKeyByCategory,
       handleLoad,
       handleNext,
+      handlePause,
+      handlePlay,
       handlePlayPause,
       handlePrevious,
       mcKeyNext,
@@ -226,14 +279,17 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setMcKeyPrevious,
     },
     filters: {
+      categories,
       mixes,
       selectedCategory,
       selectedTag,
       setMixes,
       setSelectedCategory,
       setSelectedTag,
+      updateSelectedCategory,
     },
     mix: {
+      categoryName,
       duration,
       details: mixDetails,
       progress: mixProgress,

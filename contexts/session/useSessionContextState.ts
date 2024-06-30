@@ -1,17 +1,23 @@
-import type { SessionContextState } from "contexts/session/types";
+import type { Colors, SessionContextState } from "contexts/session/types";
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import themes from "styles/themes";
 
 const useSessionContextState = (): SessionContextState => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
+  const [colors, setColors] = useState<Colors | null>(null);
+  const [holdingMessage, setHoldingMessage] = useState(
+    "Stef FM - Funky House Coming In Your Ears",
+  );
   const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
+  const [modalTitle, setModalTitle] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [themeName, setThemeName] = useState("defaultTheme");
   const [isMobile, setIsMobile] = useState(false);
   const [secondsRemaining, setSecondsRemaining] = useState<number | null>(null);
+  const [temporaryMessage, setTemporaryMessage] = useState("");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const theme = themes[themeName] || themes.defaultTheme;
@@ -49,8 +55,9 @@ const useSessionContextState = (): SessionContextState => {
   };
 
   const openModal = useCallback(
-    (content: ReactNode, seconds?: number): void => {
+    (content: ReactNode, title?: string | null, seconds?: number): void => {
       setModalContent(content);
+      setModalTitle(title ?? null);
       setModalOpen(true);
       if (seconds === undefined) {
         setSecondsRemaining(null);
@@ -101,18 +108,26 @@ const useSessionContextState = (): SessionContextState => {
 
   return {
     burgerMenuRef,
+    colors,
+    holdingMessage,
     isMobile,
     menuOpen,
     modalContent,
     modalOpen,
     modalRef,
+    modalTitle,
     openModal,
     secondsRemaining,
+    setColors,
+    setHoldingMessage,
     setIsMobile,
     setMenuOpen,
     setModalContent,
     setModalOpen,
+    setModalTitle,
+    setTemporaryMessage,
     setThemeName,
+    temporaryMessage,
     theme,
     themeName,
   };

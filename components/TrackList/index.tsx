@@ -1,14 +1,21 @@
-import type { CatalogueProps } from "components/Catalogue/types";
 import {
+  StyledContentWrapper,
+  StyledCoverArtWrapper,
+  StyledSectionNumberWrapper,
   StyledTrackArtist,
+  StyledTrackCoverArt,
+  StyledTrackCoverArtImage,
   StyledTrackItem,
   StyledTrackList,
+  StyledTrackPublisher,
+  StyledTrackSectionNumber,
+  StyledTrackStartTime,
   StyledTrackTitle,
 } from "components/TrackList/StyledTrackList";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 
-export const TrackList: React.FC<CatalogueProps> = () => {
+export const TrackList: React.FC = () => {
   const {
     mix: { details: mixDetails },
   } = useMixcloud();
@@ -22,8 +29,27 @@ export const TrackList: React.FC<CatalogueProps> = () => {
       {mixDetails.tracks && mixDetails.tracks.length > 0 ? (
         mixDetails.tracks.map((track) => (
           <StyledTrackItem key={track.sectionNumber}>
-            <StyledTrackTitle>{track.trackName}</StyledTrackTitle>
-            <StyledTrackArtist>{track.artistName}</StyledTrackArtist>
+            <StyledCoverArtWrapper>
+              {track.coverArtLarge && (
+                <StyledTrackCoverArt>
+                  <StyledTrackCoverArtImage
+                    src={track.coverArtLarge}
+                    alt={track.trackName}
+                  />
+                </StyledTrackCoverArt>
+              )}
+            </StyledCoverArtWrapper>
+            <StyledContentWrapper>
+              <StyledTrackTitle>{track.trackName}</StyledTrackTitle>
+              <StyledTrackArtist>{track.artistName}</StyledTrackArtist>
+              <StyledTrackPublisher>{track.publisher}</StyledTrackPublisher>
+              <StyledTrackStartTime>{track.startTime}</StyledTrackStartTime>
+            </StyledContentWrapper>
+            <StyledSectionNumberWrapper>
+              <StyledTrackSectionNumber>
+                {track.sectionNumber}
+              </StyledTrackSectionNumber>
+            </StyledSectionNumberWrapper>
           </StyledTrackItem>
         ))
       ) : (

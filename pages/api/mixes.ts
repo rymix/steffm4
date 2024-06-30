@@ -19,8 +19,12 @@ export default async function handler(
       (c) => c.code === mix.category.toString(),
     );
     const fallbackCategory: Category = {
-      code: "special",
-      name: "Special",
+      index: 5,
+      code: "all",
+      name: "All",
+      shortName: "ALL",
+      x: 103,
+      y: 72,
     };
     return {
       ...mix,

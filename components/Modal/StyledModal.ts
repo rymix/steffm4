@@ -8,8 +8,11 @@ export const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  max-height: 80vh;
+  max-width: 80%;
   min-height: 240px;
   min-width: 400px;
+  overflow: hidden;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -49,7 +52,6 @@ export const StyledModal = styled.div`
 
 export const StyledModalHeader = styled.div`
   align-items: center;
-  color: ${({ theme }) => theme.colors.modal.countdown};
   display: flex;
   gap: 10px;
   justify-content: flex-end;
@@ -57,7 +59,19 @@ export const StyledModalHeader = styled.div`
   padding: 10px;
 `;
 
+export const StyledModalTitle = styled.div`
+  font-weight: 700;
+  padding-left: 10px;
+  width: 100%;
+`;
+
+export const StyledCountdown = styled.div`
+  color: ${({ theme }) => theme.colors.modal.countdown};
+`;
+
 export const StyledModalContent = styled.div`
+  overflow: hidden;
+  overflow-y: scroll;
   padding: 20px;
   text-align: center;
   flex-grow: 1;
