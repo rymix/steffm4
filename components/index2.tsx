@@ -35,6 +35,7 @@ const Jupiter = (): JSX.Element => {
     },
     filters: { selectedCategory },
     mix: { categoryName, details },
+    widget: { playing },
   } = useMixcloud();
   const { openModal } = useSession();
 
@@ -109,8 +110,18 @@ const Jupiter = (): JSX.Element => {
               />
             </JupiterControlGroup>
             <JupiterControlGroup pad="both">
-              <JupiterButton color="red" label="Stop" onClick={handlePause} />
-              <JupiterButton color="green" label="Play" onClick={handlePlay} />
+              <JupiterButton
+                color="red"
+                label="Stop"
+                onClick={handlePause}
+                on={playing === false}
+              />
+              <JupiterButton
+                color="green"
+                label="Play"
+                onClick={handlePlay}
+                on={playing === true}
+              />
             </JupiterControlGroup>
             <JupiterControlGroup pad="right">
               <JupiterButton

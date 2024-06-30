@@ -117,7 +117,7 @@ export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
 
 export const StyledJupiterLed = styled.div<StyledJupiterLedProps>`
   background: ${(props) =>
-    props.$on ? "rgba(255, 18, 49, 1)" : "rgba(111, 0, 0, 1)"};
+    props.$on || props.$down ? "rgba(255, 18, 49, 1)" : "rgba(111, 0, 0, 1)"};
   border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 50%;
   height: 12px;

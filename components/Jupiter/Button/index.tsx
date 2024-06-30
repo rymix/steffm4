@@ -15,7 +15,7 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
   textColor = "white",
   onClick,
 }) => {
-  const [down, setDown] = useState();
+  const [down, setDown] = useState<boolean>(false);
 
   return (
     <StyledJupiterButtonWrapper>
