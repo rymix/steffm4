@@ -17,9 +17,13 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
   lineColor = "white",
   textColor = "white",
 }) => {
-  const handleChange = (event: React.ChangeEvent<{}>, value: number): void => {
+  const handleChange = (event: Event, value: number | number[]): void => {
     if (onChange) {
-      onChange(value);
+      if (Array.isArray(value)) {
+        onChange(value[0]);
+      } else {
+        onChange(value);
+      }
     }
   };
 
