@@ -1,3 +1,5 @@
+import type { Category } from "db/types";
+
 export type JupiterKnobProps = {
   size: number;
   min: number;
@@ -5,13 +7,13 @@ export type JupiterKnobProps = {
   degrees: number;
   value: number;
   onChange: (val: number) => void;
-  onCategoryChange: (val: string) => void;
+  onCategoryChange: (val: number) => void;
   label?: string;
   labelPosition?: "above" | "below";
   labelVisible?: boolean;
   textColor?: string;
   steps?: boolean;
-  categories: string[];
+  categories: Category[];
 };
 
 export type StyledKnobWrapperProps = {

@@ -21,7 +21,7 @@
       "code": "special",
       "name": "Special",
       "shortName": "SPEC",
-      "x": -38,
+      "x": 40,
       "y": -12
     },
     {
@@ -34,7 +34,7 @@
     },
     {
       "index": 5,
-      "code": "all",
+      "code": "",
       "name": "All",
       "shortName": "ALL",
       "x": 103,

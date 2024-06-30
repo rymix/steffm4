@@ -5,7 +5,6 @@ import {
   StyledJupiterKnobWrapper,
   StyledJupiterOuterKnob,
   StyledJupiterOuterKnobWrapper,
-  StyledJupiterRadialLabels,
 } from "components/Jupiter/Knob/StyledJupiterKnob";
 import type { JupiterKnobProps } from "components/Jupiter/Knob/types";
 import JupiterLabel from "components/Jupiter/Label";
@@ -17,21 +16,21 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
   max = 4,
   degrees = 260,
   value = 1,
-  onChange,
+  onChange = () => {},
   label,
   labelPosition = "above",
   labelVisible = true,
   textColor = "white",
   steps = false,
   categories = [],
-  onCategoryChange,
+  onCategoryChange = () => {},
 }) => {
   const startAngle = (360 - degrees) / 2;
   const endAngle = startAngle + degrees;
   const knobRef = useRef<HTMLDivElement>(null);
   const prevValueRef = useRef(value);
 
-  const handleKnobChange = (newValue) => {
+  const handleKnobChange = (newValue: number): void => {
     onChange(newValue);
     onCategoryChange(newValue);
   };
@@ -134,19 +133,22 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
       )}
       <StyledJupiterOuterKnobWrapper $size={size}>
         {categories.map((category, index) => (
+          // eslint-disable-next-line react/no-array-index-key
           <StyledJupiterKnobMarker key={index} $x={category.x} $y={category.y}>
             {category.shortName}
           </StyledJupiterKnobMarker>
         ))}
-
-        <StyledJupiterRadialLabels />
         <StyledJupiterOuterKnob
           style={outerStyle}
           $margin={9}
           onMouseDown={startDrag}
           ref={knobRef}
         >
-          <StyledJupiterInnerKnob style={innerStyle} $deg={deg} $snap={steps}>
+          <StyledJupiterInnerKnob
+            style={innerStyle}
+            $deg={deg}
+            $snap={steps ? 1 : 0}
+          >
             <StyledJupiterGrip />
           </StyledJupiterInnerKnob>
         </StyledJupiterOuterKnob>

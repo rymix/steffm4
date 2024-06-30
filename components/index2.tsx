@@ -105,7 +105,6 @@ const Jupiter = (): JSX.Element => {
                 min={1}
                 max={5}
                 value={1}
-                onChange={(value) => console.log("Knob 1 value:", value)}
                 steps
                 labelVisible={false}
                 categories={categories}
