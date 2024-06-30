@@ -34,10 +34,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [playerUpdated, setPlayerUpdated] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [selectedCategory, setSelectedCategory] = usePersistedState(
-    "selectedCategory",
-    "",
-  );
+  const [selectedCategory, setSelectedCategory] = usePersistedState<
+    string | null
+  >("selectedCategory", null);
   const [selectedTag, setSelectedTag] = useState("");
   const [showUnavailable, setShowUnavailable] = useState(false);
   const [trackProgress, setTrackProgress] = useState(0);
@@ -60,7 +59,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
 
   const fetchRandomMcKeyByCategory = async (
-    category: string,
+    category: string | null,
   ): Promise<string> => {
     const response = await fetch(`/api/randomMix/${category}`);
     const data = await response.json();
@@ -80,7 +79,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
 
   const updateSelectedCategory = (index: number): void => {
-    const category = categories.find((cat) => cat.index === index)?.code || "";
+    const category =
+      categories.find((cat) => cat.index === index)?.code || null;
     setSelectedCategory(category);
   };
 

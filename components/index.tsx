@@ -21,7 +21,7 @@ import { copyToClipboard, mcKeyFormatter } from "utils/functions";
 
 const getCategoryIndex = (
   categories: Category[],
-  selectedCategory: string,
+  selectedCategory: string | null,
 ): number => {
   const category = categories.find(
     (cat: Category) => cat.code === selectedCategory,
@@ -62,7 +62,10 @@ const Jupiter = (): JSX.Element => {
   };
 
   const handleRandomClick = async (): Promise<void> => {
-    handleLoad(await fetchRandomMcKeyByCategory(selectedCategory));
+    const randomKey = await fetchRandomMcKeyByCategory(selectedCategory);
+    if (randomKey) {
+      handleLoad(randomKey);
+    }
   };
 
   useEffect(() => {
