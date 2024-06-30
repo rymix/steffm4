@@ -1,9 +1,45 @@
 {
   "categories": [
-    { "code": "aidm", "name": "Adventures in Decent Music" },
-    { "code": "mpos", "name": "My Pair of Shoes" },
-    { "code": "special", "name": "Special" },
-    { "code": "cocksoup", "name": "Cocksoup" }
+    {
+      "index": 1,
+      "code": "aidm",
+      "name": "Adventures in Decent Music",
+      "shortName": "ADV",
+      "x": -24,
+      "y": 72
+    },
+    {
+      "index": 2,
+      "code": "mpos",
+      "name": "My Pair of Shoes",
+      "shortName": "SHOES",
+      "x": -40,
+      "y": 18
+    },
+    {
+      "index": 3,
+      "code": "special",
+      "name": "Special",
+      "shortName": "SPEC",
+      "x": -38,
+      "y": -12
+    },
+    {
+      "index": 4,
+      "code": "cocksoup",
+      "name": "Cocksoup",
+      "shortName": "COCK",
+      "x": 100,
+      "y": 18
+    },
+    {
+      "index": 5,
+      "code": "all",
+      "name": "All",
+      "shortName": "ALL",
+      "x": 103,
+      "y": 72
+    }
   ],
   "mixes": [
     {

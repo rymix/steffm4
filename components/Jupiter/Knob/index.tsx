@@ -8,9 +8,8 @@ import {
   StyledJupiterRadialLabels,
 } from "components/Jupiter/Knob/StyledJupiterKnob";
 import type { JupiterKnobProps } from "components/Jupiter/Knob/types";
+import JupiterLabel from "components/Jupiter/Label";
 import { useRef, useState } from "react";
-
-import JupiterLabel from "../Label";
 
 const JupiterKnob: React.FC<JupiterKnobProps> = ({
   size = 0,
@@ -24,11 +23,18 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
   labelVisible = true,
   textColor = "white",
   steps = false,
+  categories = [],
+  onCategoryChange,
 }) => {
   const startAngle = (360 - degrees) / 2;
   const endAngle = startAngle + degrees;
   const knobRef = useRef<HTMLDivElement>(null);
   const prevValueRef = useRef(value);
+
+  const handleKnobChange = (newValue) => {
+    onChange(newValue);
+    onCategoryChange(newValue);
+  };
 
   const convertRange = (
     oldMin: number,
@@ -95,7 +101,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
 
       if (newValue !== prevValueRef.current) {
         prevValueRef.current = newValue;
-        onChange(newValue); // Correctly pass the value
+        handleKnobChange(newValue); // Correctly pass the value
       }
     };
 
@@ -127,23 +133,13 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
         />
       )}
       <StyledJupiterOuterKnobWrapper $size={size}>
-        <StyledJupiterKnobMarker $x={-24} $y={72}>
-          ADV
-        </StyledJupiterKnobMarker>
-        <StyledJupiterKnobMarker $x={-40} $y={18}>
-          SHOES
-        </StyledJupiterKnobMarker>
-        <StyledJupiterKnobMarker $x={38} $y={-12}>
-          SPEC
-        </StyledJupiterKnobMarker>
-        <StyledJupiterKnobMarker $x={100} $y={18}>
-          COCK
-        </StyledJupiterKnobMarker>
-        <StyledJupiterKnobMarker $x={103} $y={72}>
-          ALL
-        </StyledJupiterKnobMarker>
+        {categories.map((category, index) => (
+          <StyledJupiterKnobMarker key={index} $x={category.x} $y={category.y}>
+            {category.shortName}
+          </StyledJupiterKnobMarker>
+        ))}
 
-        <StyledJupiterRadialLabels $file="92knob" />
+        <StyledJupiterRadialLabels />
         <StyledJupiterOuterKnob
           style={outerStyle}
           $margin={9}

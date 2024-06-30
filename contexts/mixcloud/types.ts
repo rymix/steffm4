@@ -20,11 +20,13 @@ export type MixcloudContextState = {
   };
   filters: {
     mixes: Mix[];
+    categories: string[] | undefined;
     selectedCategory: string;
     selectedTag: string;
     setMixes: React.Dispatch<React.SetStateAction<Mix[]>>;
     setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
     setSelectedTag: React.Dispatch<React.SetStateAction<string>>;
+    updateSelectedCategory: (index: number) => void;
   };
   mix: {
     categoryName: string;

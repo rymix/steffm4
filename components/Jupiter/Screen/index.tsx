@@ -59,7 +59,7 @@ const JupiterScreen: React.FC = () => {
   return (
     <>
       <StyledJupiterScreenWrapper>
-        <StyledJupiterScreen displayLength={displayLength}>
+        <StyledJupiterScreen $displayLength={displayLength}>
           {messageDisplaySegment()}
         </StyledJupiterScreen>
       </StyledJupiterScreenWrapper>

@@ -11,8 +11,12 @@ export type Track = {
 };
 
 export type Category = {
+  index: number;
   code: string;
   name: string;
+  shortName: string;
+  x: number;
+  y: number;
 };
 
 export type Mix = {

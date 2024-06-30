@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import type { StyledJupiterScreenProps } from "./types";
+
 export const StyledJupiterScreenWrapper = styled.div`
   align-items: center;
   background: #024;
@@ -15,7 +17,7 @@ export const StyledJupiterScreenWrapper = styled.div`
   width: 500px;
 `;
 
-export const StyledJupiterScreen = styled.div<{ displayLength: number }>`
+export const StyledJupiterScreen = styled.div<StyledJupiterScreenProps>`
   color: #3af;
   display: flex;
   justify-content: flex-end;
@@ -23,7 +25,7 @@ export const StyledJupiterScreen = styled.div<{ displayLength: number }>`
   text-shadow: 0 0 0.25em #3af;
 
   &:before {
-    content: "${(props) => "~".repeat(props.displayLength)}";
+    content: "${(props) => "~".repeat(props.$displayLength)}";
     display: block;
     opacity: 0.1;
     position: absolute;

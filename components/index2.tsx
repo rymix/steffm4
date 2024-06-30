@@ -33,7 +33,7 @@ const Jupiter = (): JSX.Element => {
       fetchRandomMcKey,
       fetchRandomMcKeyByCategory,
     },
-    filters: { selectedCategory },
+    filters: { categories, selectedCategory, updateSelectedCategory },
     mix: { categoryName, details },
     widget: { playing, volume, setVolume },
   } = useMixcloud();
@@ -63,6 +63,7 @@ const Jupiter = (): JSX.Element => {
       const key = selectedCategory
         ? await fetchRandomMcKeyByCategory(selectedCategory)
         : await fetchRandomMcKey();
+      console.log("key", key);
       const formattedKey = mcKeyFormatter(key);
       setRandomMcKey(formattedKey);
     };
@@ -107,6 +108,8 @@ const Jupiter = (): JSX.Element => {
                 onChange={(value) => console.log("Knob 1 value:", value)}
                 steps
                 labelVisible={false}
+                categories={categories}
+                onCategoryChange={updateSelectedCategory}
               />
             </JupiterControlGroup>
             <JupiterControlGroup pad="both">

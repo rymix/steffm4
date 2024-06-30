@@ -12,6 +12,7 @@ import {
 } from "utils/functions";
 
 const useMixcloudContextState = (): MixcloudContextState => {
+  const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState("");
   const [duration, setDuration] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -76,6 +77,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const response = await fetch(`/api/mix/${mcKeyUnformatter(lookupMcKey)}`);
     const data: Mix = await response.json();
     return data;
+  };
+
+  const updateSelectedCategory = (index: number): void => {
+    const category =
+      categories.find((cat) => cat.index === index)?.code || null;
+    setSelectedCategory(category);
   };
 
   useEffect(() => {
@@ -237,6 +244,23 @@ const useMixcloudContextState = (): MixcloudContextState => {
     calculateTrackProgress();
   }, [mixProgress, mixDetails, duration, lastTrackUpdateTime]);
 
+  /* Fetch Categories */
+  useEffect(() => {
+    const fetchCategories = async (): Promise<void> => {
+      try {
+        const response = await fetch("/api/categories");
+        if (!response.ok) throw new Error("Failed to fetch categories");
+
+        const categoriesData = await response.json();
+        setCategories(categoriesData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
   return {
     mcKey,
     mcUrl,
@@ -256,12 +280,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setMcKeyPrevious,
     },
     filters: {
+      categories,
       mixes,
       selectedCategory,
       selectedTag,
       setMixes,
       setSelectedCategory,
       setSelectedTag,
+      updateSelectedCategory,
     },
     mix: {
       categoryName,

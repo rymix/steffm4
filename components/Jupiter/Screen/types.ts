@@ -12,3 +12,7 @@ export type StyledJupiterLabelProps = {
   $paddingTop?: number;
   $textColor?: string;
 };
+
+export type StyledJupiterScreenProps = {
+  $displayLength: number;
+};
