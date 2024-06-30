@@ -55,9 +55,9 @@ const useSessionContextState = (): SessionContextState => {
   };
 
   const openModal = useCallback(
-    (content: ReactNode, title?: string, seconds?: number): void => {
+    (content: ReactNode, title?: string | null, seconds?: number): void => {
       setModalContent(content);
-      setModalTitle(title || null);
+      setModalTitle(title ?? null);
       setModalOpen(true);
       if (seconds === undefined) {
         setSecondsRemaining(null);
