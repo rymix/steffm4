@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 import type { MixcloudContextState } from "contexts/mixcloud/types";
-import type { Mix } from "db/types";
+import type { Category, Mix } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { DEFAULTVOLUME } from "utils/constants";
@@ -12,7 +12,7 @@ import {
 } from "utils/functions";
 
 const useMixcloudContextState = (): MixcloudContextState => {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
   const [categoryName, setCategoryName] = useState("");
   const [duration, setDuration] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -80,8 +80,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
 
   const updateSelectedCategory = (index: number): void => {
-    const category =
-      categories.find((cat) => cat.index === index)?.code || null;
+    const category = categories.find((cat) => cat.index === index)?.code || "";
     setSelectedCategory(category);
   };
 

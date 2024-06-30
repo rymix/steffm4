@@ -21,7 +21,7 @@ export type MixcloudContextState = {
   filters: {
     mixes: Mix[];
     categories: Category[] | undefined;
-    selectedCategory: string;
+    selectedCategory: string | null;
     selectedTag: string;
     setMixes: React.Dispatch<React.SetStateAction<Mix[]>>;
     setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
