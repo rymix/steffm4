@@ -1,6 +1,7 @@
 // pages/api/randomMix/[[...category]].ts
 
 import { db, initializeDb } from "db";
+import type { Mix } from "db/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -16,7 +17,9 @@ export default async function handler(
   const effectiveCategory = categoryParam === "all" ? null : categoryParam;
 
   const filteredMixes = effectiveCategory
-    ? db.data?.mixes.filter((mix) => mix.category === effectiveCategory)
+    ? db.data?.mixes.filter(
+        (mix: Mix) => mix.category.code === effectiveCategory,
+      )
     : db.data?.mixes;
 
   if (!filteredMixes || filteredMixes.length === 0) {
