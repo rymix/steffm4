@@ -1,4 +1,5 @@
 export type JupiterSliderProps = {
+  onChange: (val: number) => void;
   orientation?: "horizontal" | "vertical";
   label?: string;
   labelPosition?: "above" | "below";

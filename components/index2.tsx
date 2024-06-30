@@ -35,7 +35,7 @@ const Jupiter = (): JSX.Element => {
     },
     filters: { selectedCategory },
     mix: { categoryName, details },
-    widget: { playing },
+    widget: { playing, volume, setVolume },
   } = useMixcloud();
   const { openModal } = useSession();
 
@@ -139,7 +139,10 @@ const Jupiter = (): JSX.Element => {
               />
             </JupiterControlGroup>
             <JupiterControlGroup pad="right">
-              <JupiterSlider label="Volume" />
+              <JupiterSlider
+                label="Volume"
+                onChange={(value) => setVolume(value / 100)}
+              />
             </JupiterControlGroup>
             <JupiterControlGroup>
               <JupiterButton

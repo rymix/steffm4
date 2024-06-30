@@ -10,12 +10,19 @@ import React from "react";
 console.log("JupiterHandle", JupiterHandle.src);
 
 const JupiterSlider: React.FC<JupiterSliderProps> = ({
+  onChange,
   orientation = "vertical",
   label,
   labelPosition = "above",
   lineColor = "white",
   textColor = "white",
 }) => {
+  const handleChange = (event: React.ChangeEvent<{}>, value: number): void => {
+    if (onChange) {
+      onChange(value);
+    }
+  };
+
   return (
     <>
       <StyledJupiterSliderWrapper>
@@ -35,6 +42,7 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
           min={0}
           max={100}
           $lineColor={lineColor}
+          onChange={handleChange}
         />
         {labelPosition === "below" && (
           <JupiterLabel
