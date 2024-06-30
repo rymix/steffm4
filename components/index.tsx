@@ -73,7 +73,6 @@ const Jupiter = (): JSX.Element => {
       const key = selectedCategory
         ? await fetchRandomMcKeyByCategory(selectedCategory)
         : await fetchRandomMcKey();
-      console.log("key", key);
       const formattedKey = mcKeyFormatter(key);
       setRandomMcKey(formattedKey);
     };

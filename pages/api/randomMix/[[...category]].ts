@@ -17,9 +17,7 @@ export default async function handler(
   const effectiveCategory = categoryParam === "all" ? null : categoryParam;
 
   const filteredMixes = effectiveCategory
-    ? db.data?.mixes.filter(
-        (mix: Mix) => mix.category.code === effectiveCategory,
-      )
+    ? db.data?.mixes.filter((mix: Mix) => mix.category === effectiveCategory)
     : db.data?.mixes;
 
   if (!filteredMixes || filteredMixes.length === 0) {
