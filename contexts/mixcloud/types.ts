@@ -1,4 +1,4 @@
-import type { Mix } from "db/types";
+import type { Category, Mix } from "db/types";
 
 export type MixcloudContextState = {
   mcKey: string;
@@ -20,7 +20,7 @@ export type MixcloudContextState = {
   };
   filters: {
     mixes: Mix[];
-    categories: string[] | undefined;
+    categories: Category[] | undefined;
     selectedCategory: string;
     selectedTag: string;
     setMixes: React.Dispatch<React.SetStateAction<Mix[]>>;

@@ -15,36 +15,39 @@ import Modal from "components/Modal";
 import Overlay from "components/Overlay";
 import { useMixcloud } from "contexts/mixcloud";
 import { useSession } from "contexts/session";
+import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import { copyToClipboard, mcKeyFormatter } from "utils/functions";
 
-const getCategoryIndex = (categories, selectedCategory) => {
-  const category = categories.find((cat) => cat.code === selectedCategory);
+const getCategoryIndex = (
+  categories: Category[],
+  selectedCategory: string,
+): number => {
+  const category = categories.find(
+    (cat: Category) => cat.code === selectedCategory,
+  );
   return category ? category.index : 1; // Default to 1 if not found
 };
 
 const Jupiter = (): JSX.Element => {
   const {
     mcKey,
-    setMcKey,
     controls: {
       handleLoad,
       handlePause,
       handlePlay,
-      handlePlayPause,
       handleNext,
       handlePrevious,
       fetchRandomMcKey,
       fetchRandomMcKeyByCategory,
     },
-    filters: { categories, selectedCategory, updateSelectedCategory },
-    mix: { categoryName, details },
-    widget: { playing, volume, setVolume },
+    filters: { categories = [], selectedCategory, updateSelectedCategory },
+    mix: { details },
+    widget: { playing, setVolume },
   } = useMixcloud();
   const { openModal } = useSession();
 
   const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
-  const { isMobile, modalOpen, menuOpen, setModalOpen } = useSession();
 
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
   const name = details?.name;
@@ -115,6 +118,7 @@ const Jupiter = (): JSX.Element => {
                 labelVisible={false}
                 categories={categories}
                 onCategoryChange={updateSelectedCategory}
+                onChange={() => {}}
               />
             </JupiterControlGroup>
             <JupiterControlGroup pad="both">
