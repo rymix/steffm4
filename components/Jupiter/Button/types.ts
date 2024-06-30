@@ -8,6 +8,7 @@ export type JupiterButtonProps = {
 };
 
 export type JupiterButtonColors = {
+  color: "cream" | "yellow" | "orange" | "red" | "green" | "blue";
   light: string;
   normal: string;
   dark: string;

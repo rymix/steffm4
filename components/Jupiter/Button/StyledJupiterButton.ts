@@ -17,8 +17,8 @@ const overlayStyles = css`
 `;
 
 const getGradientColors = (
-  color: StyledJupiterButtonProps["color"],
-): JupiterButtonColors => {
+  color: "cream" | "yellow" | "orange" | "red" | "green" | "blue",
+): Omit<JupiterButtonColors, "color"> => {
   switch (color) {
     case "yellow": {
       return {
