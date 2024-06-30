@@ -57,7 +57,7 @@ const Menu: React.FC = () => {
   );
 
   useEffect(() => {
-    updateLinks(selectedCategory);
+    updateLinks(selectedCategory || "");
   }, [selectedCategory]);
 
   const handleCategoryClick = async (
