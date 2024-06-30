@@ -1,10 +1,8 @@
+import Debug from "components/Mixcloud/Debug";
 import { StyledMixcloudWidget } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
-import { useSession } from "contexts/session";
 import { useEffect, useRef } from "react";
-
-import Debug from "./Debug";
 
 export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   const { autoPlay = true, children, defaultMcKey } = props;
@@ -12,22 +10,19 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   const {
     mcKey,
     setMcKey,
-    controls: { handlePlayPause, handleNext, handlePrevious },
+    controls: { handleNext },
     mix: {
-      progressPercent: mixProgressPercent,
       setDuration,
       setProgress: setMixProgress,
       setProgressPercent: setMixProgressPercent,
       setShowUnavailable,
     },
     track: {
-      progressPercent: trackProgressPercent,
       setProgress: setTrackProgress,
       setProgressPercent: setTrackProgressPercent,
     },
     widget: {
       iframeRef,
-      playing,
       scriptLoaded,
       setLoaded,
       setPlayer,
@@ -37,8 +32,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
       widgetUrl,
     },
   } = useMixcloud();
-
-  const { colors } = useSession();
 
   const timer = useRef<any>(null);
 
@@ -145,84 +138,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             frameBorder="0"
           />
           <Debug />
-          {/* <StyledPlayerWrapper>
-            <StyledPlayer>
-              <StyledAudioControlsWrapper>
-                <StyledAudioControls colors={colors}>
-                  <StyledHeadphonesWrapper>
-                    <svg
-                      width="240"
-                      height="180"
-                      viewBox="0 0 240 180"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        className="shadow"
-                        d="M 120,90 m -90,0 a 90,90 0 1,0 180,0 a 90,90 0 1,0 -180,0
-                      M 30,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0
-                      M 210,90 m -30,0 a 30,30 0 1,0 60,0 a 30,30 0 1,0 -60,0"
-                        fill={colors?.primary ?? "#fff"}
-                        fillOpacity="0.5"
-                      />
-                    </svg>
-                  </StyledHeadphonesWrapper>
-
-                  <StyledAudioControlsInner>
-                    <StyledSkipPrevious>
-                      <SkipPreviousIcon
-                        onClick={handlePrevious}
-                        fontSize="inherit"
-                        className="control"
-                      />
-                    </StyledSkipPrevious>
-
-                    <StyledPlay colors={colors}>
-                      {playing ? (
-                        <PauseIcon
-                          onClick={handlePlayPause}
-                          fontSize="inherit"
-                          className="control"
-                        />
-                      ) : (
-                        <PlayArrowIcon
-                          onClick={handlePlayPause}
-                          fontSize="inherit"
-                          className="control"
-                        />
-                      )}
-                    </StyledPlay>
-
-                    <StyledSkipNext>
-                      <SkipNextIcon
-                        onClick={handleNext}
-                        fontSize="inherit"
-                        className="control"
-                      />
-                    </StyledSkipNext>
-                  </StyledAudioControlsInner>
-                </StyledAudioControls>
-              </StyledAudioControlsWrapper>
-            </StyledPlayer>
-
-            <StyledProgressBar $position="top">
-              <SemiCircularProgress
-                $value={trackProgressPercent}
-                $position="top"
-                $start="left"
-                $barWidth={3}
-              />
-            </StyledProgressBar>
-            <StyledProgressBar $position="bottom">
-              <SemiCircularProgress
-                $value={mixProgressPercent}
-                $position="bottom"
-                $start="left"
-                $barWidth={3}
-              />
-            </StyledProgressBar>
-          </StyledPlayerWrapper> */}
-
-          {/* <Volume /> */}
 
           {children}
         </>

@@ -1,4 +1,4 @@
-import Jupiter from "components/index2";
+import Jupiter from "components";
 
 const Home = (): JSX.Element => <Jupiter />;
 

@@ -10,6 +10,16 @@ import type { JupiterKnobProps } from "components/Jupiter/Knob/types";
 import JupiterLabel from "components/Jupiter/Label";
 import { useEffect, useRef, useState } from "react";
 
+const convertRange = (
+  oldMin: number,
+  oldMax: number,
+  newMin: number,
+  newMax: number,
+  oldValue: number,
+): number => {
+  return ((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin) + newMin;
+};
+
 const JupiterKnob: React.FC<JupiterKnobProps> = ({
   size = 0,
   min = 1,
@@ -33,18 +43,6 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
   const handleKnobChange = (newValue: number): void => {
     onChange(newValue);
     onCategoryChange(newValue);
-  };
-
-  const convertRange = (
-    oldMin: number,
-    oldMax: number,
-    newMin: number,
-    newMax: number,
-    oldValue: number,
-  ): number => {
-    return (
-      ((oldValue - oldMin) * (newMax - newMin)) / (oldMax - oldMin) + newMin
-    );
   };
 
   const [deg, setDeg] = useState(() =>
