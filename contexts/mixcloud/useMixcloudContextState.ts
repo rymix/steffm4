@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 import type { MixcloudContextState } from "contexts/mixcloud/types";
-import type { Category, Mix } from "db/types";
+import type { Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { DEFAULTVOLUME } from "utils/constants";
@@ -16,6 +16,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [categoryName, setCategoryName] = useState("");
   const [duration, setDuration] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [initialized, setInitialized] = useState(false);
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
   );
@@ -39,6 +40,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   >("selectedCategory", null);
   const [selectedTag, setSelectedTag] = useState("");
   const [showUnavailable, setShowUnavailable] = useState(false);
+  const [trackDetails, setTrackDetails] = useState<Track | undefined>();
   const [trackProgress, setTrackProgress] = useState(0);
   const [trackProgressPercent, setTrackProgressPercent] = useState(0);
   const [trackSectionNumber, setTrackSectionNumber] = useState(0);
@@ -247,6 +249,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
         setTrackProgress(trackProgressSeconds);
         setTrackProgressPercent(localTrackProgressPercent);
         setTrackSectionNumber(tracks[currentTrackIndex].sectionNumber);
+        setTrackDetails(tracks[currentTrackIndex]);
         setLastTrackUpdateTime(currentTime);
       }
     };
@@ -271,9 +274,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    setInitialized(true);
+  }, []);
+
   return {
+    initialized,
     mcKey,
     mcUrl,
+    setInitialized,
     setMcKey,
     controls: {
       fetchRandomMcKey,
@@ -313,6 +322,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       showUnavailable,
     },
     track: {
+      details: trackDetails,
       progress: trackProgress,
       progressPercent: trackProgressPercent,
       sectionNumber: trackSectionNumber,

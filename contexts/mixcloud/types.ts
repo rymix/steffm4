@@ -1,8 +1,10 @@
-import type { Category, Mix } from "db/types";
+import type { Category, Mix, Track } from "db/types";
 
 export type MixcloudContextState = {
+  initialized: boolean;
   mcKey: string;
   mcUrl: string;
+  setInitialized: React.Dispatch<React.SetStateAction<boolean>>;
   setMcKey: React.Dispatch<React.SetStateAction<string>>;
   controls: {
     fetchRandomMcKey: () => Promise<string>;
@@ -42,6 +44,7 @@ export type MixcloudContextState = {
     showUnavailable: boolean;
   };
   track: {
+    details: Track | undefined;
     progress: number;
     progressPercent: number;
     sectionNumber: number;
