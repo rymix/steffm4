@@ -2,15 +2,16 @@ import {
   StyledJupiterScreen,
   StyledJupiterScreenWrapper,
 } from "components/Jupiter/Screen/StyledJupiterScreen";
-import { useSession } from "contexts/session";
+import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 
 const displayLength = 15;
 const padding = "!".repeat(displayLength);
 
 const JupiterScreen: React.FC = () => {
-  const { holdingMessage, temporaryMessage, setTemporaryMessage } =
-    useSession();
+  const {
+    session: { holdingMessage, temporaryMessage, setTemporaryMessage },
+  } = useMixcloud();
   const [message, setMessage] = useState(holdingMessage);
   const [position, setPosition] = useState(0);
 

@@ -6,16 +6,14 @@ import {
   StyledMenu,
 } from "components/BurgerMenu/StyledBurgerMenu";
 import { useMixcloud } from "contexts/mixcloud";
-import { useSession } from "contexts/session";
 import React, { useCallback, useEffect, useState } from "react";
 
 const Menu: React.FC = () => {
-  const { menuOpen, openModal } = useSession();
   const {
     controls: { fetchRandomMcKey, fetchRandomMcKeyByCategory, handleLoad },
     filters: { selectedCategory, setSelectedCategory },
+    session: { menuOpen, openModal, setMenuOpen },
   } = useMixcloud();
-  const { setMenuOpen } = useSession();
 
   const [links, setLinks] = useState([
     {

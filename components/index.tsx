@@ -14,7 +14,6 @@ import MixInformation from "components/MixInformation";
 import Modal from "components/Modal";
 import Overlay from "components/Overlay";
 import { useMixcloud } from "contexts/mixcloud";
-import { useSession } from "contexts/session";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import { copyToClipboard, mcKeyFormatter } from "utils/functions";
@@ -43,9 +42,9 @@ const Jupiter = (): JSX.Element => {
     },
     filters: { categories = [], selectedCategory, updateSelectedCategory },
     mix: { details },
+    session: { openModal },
     widget: { playing, setVolume, volume },
   } = useMixcloud();
-  const { openModal } = useSession();
   const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
   const [sliderValue, setSliderValue] = useState(volume * 100);
   const [isMounted, setIsMounted] = useState(false);

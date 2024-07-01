@@ -1,4 +1,6 @@
 import type { Category, Mix, Track } from "db/types";
+import type { ReactNode } from "react";
+import type { DefaultTheme } from "styled-components";
 
 export type MixcloudContextState = {
   initialized: boolean;
@@ -42,6 +44,33 @@ export type MixcloudContextState = {
     setProgressPercent: React.Dispatch<React.SetStateAction<number>>;
     setShowUnavailable: React.Dispatch<React.SetStateAction<boolean>>;
     showUnavailable: boolean;
+  };
+  session: {
+    burgerMenuRef: React.MutableRefObject<HTMLDivElement | null>;
+    holdingMessage: string;
+    isMobile: boolean;
+    menuOpen: boolean;
+    modalContent: ReactNode | null;
+    modalOpen: boolean;
+    modalRef: React.MutableRefObject<HTMLDivElement | null>;
+    modalTitle: string | null;
+    openModal: (
+      content: ReactNode,
+      title?: string | null,
+      seconds?: number,
+    ) => void;
+    secondsRemaining: number | null;
+    setHoldingMessage: React.Dispatch<React.SetStateAction<string>>;
+    setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
+    setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setModalContent: React.Dispatch<React.SetStateAction<ReactNode | null>>;
+    setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setModalTitle: React.Dispatch<React.SetStateAction<string | null>>;
+    setTemporaryMessage: React.Dispatch<React.SetStateAction<string>>;
+    setThemeName: React.Dispatch<React.SetStateAction<string>>;
+    temporaryMessage: string;
+    theme: DefaultTheme;
+    themeName: string;
   };
   track: {
     details: Track | undefined;
