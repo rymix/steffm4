@@ -18,7 +18,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [categoryName, setCategoryName] = useState("");
   const [duration, setDuration] = useState(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [initialized, setInitialized] = useState(false);
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
   );
@@ -70,18 +69,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Screen Messages in Session Context State */
   useEffect(() => {
-    console.log("mix or initialized changed");
-    if (initialized) {
-      setHoldingMessage(mixDetails?.name || "farts");
+    if (mixDetails?.name) {
+      setHoldingMessage(mixDetails.name);
+    } else {
+      setHoldingMessage("farts");
     }
-  }, [mixDetails, initialized]);
+  }, [mixDetails?.name]);
 
   useEffect(() => {
-    console.log("track or initialized changed");
-    if (initialized) {
-      setTemporaryMessage(trackDetails?.trackName || "New Track");
+    if (trackDetails?.trackName) {
+      setTemporaryMessage(trackDetails.trackName);
+    } else {
+      setTemporaryMessage("New Track");
     }
-  }, [trackDetails, initialized]);
+  }, [trackDetails?.trackName]);
 
   /* Timer for Modal auto-close */
   const startTimer = (timerDuration: number): void => {
@@ -395,15 +396,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchCategories();
   }, []);
 
-  useEffect(() => {
-    setInitialized(true);
-  }, []);
-
   return {
-    initialized,
     mcKey,
     mcUrl,
-    setInitialized,
     setMcKey,
     controls: {
       fetchRandomMcKey,
