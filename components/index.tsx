@@ -43,14 +43,20 @@ const Jupiter = (): JSX.Element => {
     },
     filters: { categories = [], selectedCategory, updateSelectedCategory },
     mix: { details },
-    widget: { playing, setVolume },
+    widget: { playing, setVolume, volume },
   } = useMixcloud();
   const { openModal } = useSession();
-
   const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
-
+  const [sliderValue, setSliderValue] = useState(volume * 100);
+  const [isMounted, setIsMounted] = useState(false);
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
   const name = details?.name;
+  const initialKnobValue = getCategoryIndex(categories, selectedCategory);
+
+  const handleSliderChange = (value: number): void => {
+    setSliderValue(value);
+    setVolume(value / 100);
+  };
 
   const handleInfoClick = (): void => {
     openModal(<MixInformation />, name);
@@ -84,7 +90,13 @@ const Jupiter = (): JSX.Element => {
     }
   }, [mcKey, selectedCategory, fetchRandomMcKey, fetchRandomMcKeyByCategory]);
 
-  const initialKnobValue = getCategoryIndex(categories, selectedCategory);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    setSliderValue(volume * 100);
+  }, [volume]);
 
   return (
     <>
@@ -153,10 +165,13 @@ const Jupiter = (): JSX.Element => {
               />
             </JupiterControlGroup>
             <JupiterControlGroup pad="right">
-              <JupiterSlider
-                label="Volume"
-                onChange={(value) => setVolume(value / 100)}
-              />
+              {isMounted && (
+                <JupiterSlider
+                  label="Volume"
+                  volume={sliderValue}
+                  onChange={handleSliderChange}
+                />
+              )}
             </JupiterControlGroup>
             <JupiterControlGroup>
               <JupiterButton
