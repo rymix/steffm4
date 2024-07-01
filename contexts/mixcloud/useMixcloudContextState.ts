@@ -85,6 +85,17 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
 
   useEffect(() => {
+    const fetchRandomMcKeyForCategory = async (): Promise<void> => {
+      if (selectedCategory) {
+        const randomMcKey = await fetchRandomMcKeyByCategory(selectedCategory);
+        setMcKey(randomMcKey);
+      }
+    };
+
+    fetchRandomMcKeyForCategory();
+  }, [selectedCategory]);
+
+  useEffect(() => {
     const fetchDetails = async (): Promise<void> => {
       const fetchedMixDetails = await fetchMixDetails();
       if (fetchedMixDetails) {
