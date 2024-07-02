@@ -37,7 +37,7 @@ const JupiterScreen: React.FC = () => {
   useEffect(() => {
     const intervalSpeed = updateInterval();
 
-    const clearExistingInterval = () => {
+    const clearExistingInterval = (): void => {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
         intervalRef.current = null;
