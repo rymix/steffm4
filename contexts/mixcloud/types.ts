@@ -43,9 +43,14 @@ export type MixcloudContextState = {
     setShowUnavailable: React.Dispatch<React.SetStateAction<boolean>>;
     showUnavailable: boolean;
   };
+  screen: {
+    clearExistingScreenInterval: () => void;
+    screenIntervalRef: React.MutableRefObject<NodeJS.Timeout | null>;
+    screenMessage: string;
+    screenPosition: number;
+  };
   session: {
     burgerMenuRef: React.MutableRefObject<HTMLDivElement | null>;
-    holdingMessage: string;
     isMobile: boolean;
     menuOpen: boolean;
     modalContent: ReactNode | null;
@@ -58,15 +63,12 @@ export type MixcloudContextState = {
       seconds?: number,
     ) => void;
     secondsRemaining: number | null;
-    setHoldingMessage: React.Dispatch<React.SetStateAction<string>>;
     setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
     setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setModalContent: React.Dispatch<React.SetStateAction<ReactNode | null>>;
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setModalTitle: React.Dispatch<React.SetStateAction<string | null>>;
-    setTemporaryMessage: React.Dispatch<React.SetStateAction<string>>;
     setThemeName: React.Dispatch<React.SetStateAction<string>>;
-    temporaryMessage: string;
     theme: DefaultTheme;
     themeName: string;
   };

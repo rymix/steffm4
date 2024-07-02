@@ -5,7 +5,7 @@ import usePersistedState from "hooks/usePersistedState";
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import themes from "styles/themes";
-import { DEFAULTVOLUME } from "utils/constants";
+import { DEFAULTVOLUME, DISPLAY_LENGTH } from "utils/constants";
 import {
   mcKeyFormatter,
   mcKeyUnformatter,
@@ -53,7 +53,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Session */
   const defaultMessage = "Stef FM - Funky House Coming In Your Ears";
   const burgerMenuRef = useRef<HTMLDivElement>(null);
-  const [holdingMessage, setHoldingMessage] = useState(defaultMessage);
   const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
@@ -62,27 +61,85 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [themeName, setThemeName] = useState("defaultTheme");
   const [isMobile, setIsMobile] = useState(false);
   const [secondsRemaining, setSecondsRemaining] = useState<number | null>(null);
-  const [temporaryMessage, setTemporaryMessage] = useState("");
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const theme = themes[themeName] || themes.defaultTheme;
 
+  /* Screen */
+  const screenIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [screenMessage, setScreenMessage] = useState<string>(defaultMessage);
+  const [screenPosition, setScreenPosition] = useState(0);
+  const [nextHoldingMessage, setNextHoldingMessage] = useState<string>("");
+  const [isTemporaryMessageActive, setIsTemporaryMessageActive] =
+    useState(false);
+
   /* Screen Messages in Session Context State */
-  useEffect(() => {
-    if (mixDetails?.name) {
-      setHoldingMessage(mixDetails.name);
-    } else {
-      setHoldingMessage("farts");
+  const clearExistingScreenInterval = useCallback((): void => {
+    if (screenIntervalRef.current) {
+      clearInterval(screenIntervalRef.current);
+      screenIntervalRef.current = null;
     }
-  }, [mixDetails?.name]);
+  }, []);
+
+  const startScreenInterval = useCallback(
+    (message: string, interval: number) => {
+      clearExistingScreenInterval();
+      screenIntervalRef.current = setInterval(() => {
+        setScreenPosition((prevPosition) => {
+          const newPosition = prevPosition + 1;
+          return newPosition % (message.length + DISPLAY_LENGTH);
+        });
+      }, interval);
+    },
+    [clearExistingScreenInterval],
+  );
+
+  const setScreenMessageWithInterval = useCallback(
+    (message: string, interval: number) => {
+      setScreenMessage(message);
+      setScreenPosition(0);
+      startScreenInterval(message, interval);
+    },
+    [startScreenInterval],
+  );
+
+  const showTemporaryMessage = useCallback(
+    (message: string) => {
+      setIsTemporaryMessageActive(true);
+      setScreenMessageWithInterval(message, 100);
+
+      const messageLength = message.replaceAll(" ", "!").length;
+      const temporaryMessageDuration = (messageLength + DISPLAY_LENGTH) * 100;
+
+      setTimeout(() => {
+        setIsTemporaryMessageActive(false);
+        if (nextHoldingMessage) {
+          setScreenMessageWithInterval(nextHoldingMessage, 250);
+        }
+      }, temporaryMessageDuration);
+    },
+    [nextHoldingMessage, setScreenMessageWithInterval],
+  );
 
   useEffect(() => {
-    if (trackDetails?.trackName) {
-      setTemporaryMessage(trackDetails.trackName);
-    } else {
-      setTemporaryMessage("New Track");
+    if (loaded && mixDetails?.name) {
+      setNextHoldingMessage(mixDetails.name);
+      if (!isTemporaryMessageActive) {
+        setScreenMessageWithInterval(mixDetails.name, 250);
+      }
     }
-  }, [trackDetails?.trackName]);
+  }, [
+    loaded,
+    mixDetails?.name,
+    isTemporaryMessageActive,
+    setScreenMessageWithInterval,
+  ]);
+
+  useEffect(() => {
+    if (loaded && trackDetails?.trackName) {
+      showTemporaryMessage(trackDetails.trackName);
+    }
+  }, [loaded, trackDetails?.trackName, showTemporaryMessage]);
 
   /* Timer for Modal auto-close */
   const startTimer = (timerDuration: number): void => {
@@ -437,9 +494,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setShowUnavailable,
       showUnavailable,
     },
+    screen: {
+      clearExistingScreenInterval,
+      screenIntervalRef,
+      screenMessage,
+      screenPosition,
+    },
     session: {
       burgerMenuRef,
-      holdingMessage,
       isMobile,
       menuOpen,
       modalContent,
@@ -448,15 +510,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
       modalTitle,
       openModal,
       secondsRemaining,
-      setHoldingMessage,
       setIsMobile,
       setMenuOpen,
       setModalContent,
       setModalOpen,
       setModalTitle,
-      setTemporaryMessage,
       setThemeName,
-      temporaryMessage,
       theme,
       themeName,
     },
