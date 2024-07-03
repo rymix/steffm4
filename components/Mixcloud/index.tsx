@@ -1,4 +1,3 @@
-import Debug from "components/Mixcloud/Debug";
 import { StyledMixcloudWidget } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
@@ -137,8 +136,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             src={widgetUrl}
             frameBorder="0"
           />
-          <Debug />
-
           {children}
         </>
       )}

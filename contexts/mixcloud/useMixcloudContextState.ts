@@ -75,7 +75,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   useEffect(() => {
     const formatDuration = (durationString: string): string => {
-      return `${durationString.replace(":", "h ").replace(":", "m ")}s`;
+      return `${durationString.replace(":", "h!").replace(":", "m!")}s`;
     };
 
     const mixMessage = [
