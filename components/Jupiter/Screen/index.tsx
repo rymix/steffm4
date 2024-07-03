@@ -59,7 +59,14 @@ const JupiterScreen: React.FC = () => {
       screenIntervalRef.current = setInterval(() => {
         setScreenPosition((prevPosition) => {
           const newPosition = prevPosition + 1;
-          console.log("newPosition", newPosition);
+
+          if (!message) return prevPosition;
+
+          if (newPosition === message.length + DISPLAY_LENGTH) {
+            // eslint-disable-next-line no-use-before-define
+            startHoldingMessage();
+          }
+
           return (
             newPosition %
             (message?.length ? message.length + DISPLAY_LENGTH : 0)
@@ -70,29 +77,34 @@ const JupiterScreen: React.FC = () => {
     [clearExistingScreenInterval],
   );
 
+  const startHoldingMessage = (): void => {
+    setPreviousHoldingMessage(holdingMessage);
+    setScreenMessage(messageFormatter(holdingMessage));
+    setHoldingMessageIsPLaying(true);
+    setScreenPosition(0);
+    setScreenMessage(messageFormatter(holdingMessage));
+    startScreenInterval(holdingMessage, 250);
+  };
+
+  const startTemporaryMessage = (): void => {
+    setPreviousTemporaryMessage(temporaryMessage);
+    setHoldingMessageIsPLaying(false);
+    setTemporaryMessageIsPLaying(true);
+    setScreenPosition(0);
+    setScreenMessage(messageFormatter(temporaryMessage));
+    startScreenInterval(temporaryMessage, 100);
+  };
+
   useEffect(() => {
     console.log("holdingMessage or temporaryMessage changed");
     if (holdingMessage !== previousHoldingMessage) {
-      setPreviousHoldingMessage(holdingMessage);
-
-      if (!temporaryMessageIsPlaying) {
-        console.log("!temporaryMessageIsPlaying");
-        setHoldingMessageIsPLaying(true);
-        setScreenPosition(0);
-        setScreenMessage(messageFormatter(holdingMessage));
-        startScreenInterval(holdingMessage, 250);
-      }
+      startHoldingMessage();
     }
 
     if (temporaryMessage !== previousTemporaryMessage) {
-      setPreviousTemporaryMessage(temporaryMessage);
-      setHoldingMessageIsPLaying(false);
-      setTemporaryMessageIsPLaying(true);
-      setScreenPosition(0);
-      setScreenMessage(messageFormatter(temporaryMessage));
-      startScreenInterval(temporaryMessage, 100);
+      startTemporaryMessage();
     }
-  }, [holdingMessage, temporaryMessage]);
+  }, [holdingMessage, temporaryMessage, temporaryMessageIsPlaying]);
 
   useEffect(() => {
     setTruncatedMessage(
