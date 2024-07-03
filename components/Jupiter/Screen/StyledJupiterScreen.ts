@@ -32,3 +32,16 @@ export const StyledJupiterScreen = styled.div<StyledJupiterScreenProps>`
     text-shadow: none;
   }
 `;
+
+export const StyledScreenDebug = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 500px;
+  height: 300px;
+  background: white;
+
+  dd {
+    margin-left: 20px;
+  }
+`;

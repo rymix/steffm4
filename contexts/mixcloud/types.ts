@@ -44,10 +44,12 @@ export type MixcloudContextState = {
     showUnavailable: boolean;
   };
   screen: {
-    clearExistingScreenInterval: () => void;
-    screenIntervalRef: React.MutableRefObject<NodeJS.Timeout | null>;
-    screenMessage: string;
-    screenPosition: number;
+    holdingMessage: string | undefined;
+    setHoldingMessage: React.Dispatch<React.SetStateAction<string | undefined>>;
+    setTemporaryMessage: React.Dispatch<
+      React.SetStateAction<string | undefined>
+    >;
+    temporaryMessage: string | undefined;
   };
   session: {
     burgerMenuRef: React.MutableRefObject<HTMLDivElement | null>;
