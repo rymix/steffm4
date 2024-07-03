@@ -74,11 +74,31 @@ const useMixcloudContextState = (): MixcloudContextState => {
   >();
 
   useEffect(() => {
-    setHoldingMessage(mixDetails?.name || defaultMessage);
+    const formatDuration = (durationString: string): string => {
+      return `${durationString.replace(":", "h ").replace(":", "m ")}s`;
+    };
+
+    const mixMessage = [
+      mixDetails?.name,
+      mixDetails?.notes,
+      mixDetails?.releaseDate,
+      mixDetails?.duration ? formatDuration(mixDetails.duration) : undefined,
+    ]
+      .filter(Boolean)
+      .join(" - ");
+    setHoldingMessage(mixMessage);
   }, [mixDetails?.name]);
 
   useEffect(() => {
-    setTemporaryMessage(trackDetails?.trackName || "");
+    const trackMessage = [
+      trackDetails?.trackName,
+      trackDetails?.artistName,
+      trackDetails?.remixArtistName,
+      trackDetails?.publisher,
+    ]
+      .filter(Boolean)
+      .join(" - ");
+    setTemporaryMessage(trackMessage);
   }, [trackDetails?.trackName]);
 
   /* Timer for Modal auto-close */
@@ -266,6 +286,32 @@ const useMixcloudContextState = (): MixcloudContextState => {
       player.setVolume(volume);
     }
   }, [player, volume]);
+
+  useEffect(() => {
+    if (volume === 0) {
+      const minVolumeText = [
+        "It's oh so quiet",
+        "The Sound of Silence",
+        "Silent night, holy night",
+        "Don't Stop the Music",
+        "Enjoy the Silence",
+        "So Quiet In Here",
+      ];
+      const randomIndex = Math.floor(Math.random() * minVolumeText.length);
+      setTemporaryMessage(minVolumeText[randomIndex]);
+    } else if (volume === 1) {
+      const maxVolumeText = [
+        "Up to 11",
+        "Let's get loud, let's get loud",
+        "Pump up the volume",
+        "I Love It Loud",
+        "Shout, Shout, Let It All Out",
+        "Bring the Noise",
+      ];
+      const randomIndex = Math.floor(Math.random() * maxVolumeText.length);
+      setTemporaryMessage(maxVolumeText[randomIndex]);
+    }
+  }, [volume]);
 
   /* Load Controls */
   const handleLoad = async (newMcKey?: string): Promise<void> => {

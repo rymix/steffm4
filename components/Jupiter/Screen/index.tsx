@@ -12,8 +12,9 @@ const messageFormatter = (message: string | undefined): string => {
   const padding = "!".repeat(DISPLAY_LENGTH);
   const formattedMessage = message
     .replaceAll(" ", "!")
+    .replaceAll("...", " - ")
     .replaceAll(".", "")
-    .replaceAll("'", "");
+    .replaceAll(":", "-");
   return padding + formattedMessage + padding;
 };
 
@@ -76,7 +77,7 @@ const JupiterScreen: React.FC = () => {
     setHoldingMessageIsPlaying(true);
     setTemporaryMessageIsPlaying(false);
     setScreenPosition(0);
-    startScreenInterval(holdingMessage, 250);
+    startScreenInterval(holdingMessage, 200);
   };
 
   const startTemporaryMessage = (): void => {
@@ -85,11 +86,10 @@ const JupiterScreen: React.FC = () => {
     setTemporaryMessageIsPlaying(true);
     setHoldingMessageIsPlaying(false);
     setScreenPosition(0);
-    startScreenInterval(temporaryMessage, 100);
+    startScreenInterval(temporaryMessage, 150);
   };
 
   useEffect(() => {
-    console.log("holdingMessage or temporaryMessage changed");
     if (holdingMessage !== previousHoldingMessage) {
       startHoldingMessage();
     }
@@ -106,8 +106,7 @@ const JupiterScreen: React.FC = () => {
   }, [screenPosition, screenMessage]);
 
   useEffect(() => {
-    console.log("initialising screenInterval");
-    startScreenInterval(holdingMessage, 250);
+    startScreenInterval(holdingMessage, 200);
   }, []);
 
   return (

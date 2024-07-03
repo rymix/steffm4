@@ -42,6 +42,7 @@ const Jupiter = (): JSX.Element => {
     },
     filters: { categories = [], selectedCategory, updateSelectedCategory },
     mix: { details },
+    screen: { setTemporaryMessage },
     session: { openModal },
     widget: { playing, setVolume, volume },
   } = useMixcloud();
@@ -63,7 +64,7 @@ const Jupiter = (): JSX.Element => {
 
   const handleShareClick = (): void => {
     copyToClipboard(`http://localhost:3001/${sharableKey}`);
-    openModal(<p>Sharable link copied to clipboard</p>, null, 4);
+    setTemporaryMessage("Sharable link copied to clipboard");
   };
 
   const handleRandomClick = async (): Promise<void> => {
