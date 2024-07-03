@@ -66,8 +66,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const theme = themes[themeName] || themes.defaultTheme;
 
   /* Screen */
-  const [holdingMessage, setHoldingMessage] = useState<string>(defaultMessage);
-  const [temporaryMessage, setTemporaryMessage] = useState<string>();
+  const [holdingMessage, setHoldingMessage] = useState<string | undefined>(
+    defaultMessage,
+  );
+  const [temporaryMessage, setTemporaryMessage] = useState<
+    string | undefined
+  >();
+
+  useEffect(() => {
+    setHoldingMessage(mixDetails?.name || defaultMessage);
+  }, [mixDetails?.name]);
+
+  useEffect(() => {
+    setTemporaryMessage(trackDetails?.trackName || "");
+  }, [trackDetails?.trackName]);
 
   /* Timer for Modal auto-close */
   const startTimer = (timerDuration: number): void => {

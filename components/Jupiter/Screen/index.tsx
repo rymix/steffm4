@@ -1,7 +1,6 @@
 import {
   StyledJupiterScreen,
   StyledJupiterScreenWrapper,
-  StyledScreenDebug,
 } from "components/Jupiter/Screen/StyledJupiterScreen";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useCallback, useEffect, useRef, useState } from "react";
@@ -20,16 +19,10 @@ const messageFormatter = (message: string | undefined): string => {
 
 const JupiterScreen: React.FC = () => {
   const {
-    screen: {
-      holdingMessage,
-      setHoldingMessage,
-      setTemporaryMessage,
-      temporaryMessage,
-    },
+    screen: { holdingMessage, temporaryMessage },
   } = useMixcloud();
-  const [holdingMessageIsPlaying, setHoldingMessageIsPLaying] =
-    useState<boolean>(false);
-  const [temporaryMessageIsPlaying, setTemporaryMessageIsPLaying] =
+  const [, setHoldingMessageIsPlaying] = useState<boolean>(false);
+  const [temporaryMessageIsPlaying, setTemporaryMessageIsPlaying] =
     useState<boolean>(false);
   const [previousHoldingMessage, setPreviousHoldingMessage] = useState<
     string | undefined
@@ -80,18 +73,18 @@ const JupiterScreen: React.FC = () => {
   const startHoldingMessage = (): void => {
     setPreviousHoldingMessage(holdingMessage);
     setScreenMessage(messageFormatter(holdingMessage));
-    setHoldingMessageIsPLaying(true);
+    setHoldingMessageIsPlaying(true);
+    setTemporaryMessageIsPlaying(false);
     setScreenPosition(0);
-    setScreenMessage(messageFormatter(holdingMessage));
     startScreenInterval(holdingMessage, 250);
   };
 
   const startTemporaryMessage = (): void => {
     setPreviousTemporaryMessage(temporaryMessage);
-    setHoldingMessageIsPLaying(false);
-    setTemporaryMessageIsPLaying(true);
-    setScreenPosition(0);
     setScreenMessage(messageFormatter(temporaryMessage));
+    setTemporaryMessageIsPlaying(true);
+    setHoldingMessageIsPlaying(false);
+    setScreenPosition(0);
     startScreenInterval(temporaryMessage, 100);
   };
 
@@ -118,65 +111,11 @@ const JupiterScreen: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <StyledScreenDebug>
-        <dl>
-          <dt>holdingMessage</dt>
-          <dd>{holdingMessage}</dd>
-          <dt>previousHoldingMessage</dt>
-          <dd>{previousHoldingMessage}</dd>
-          <dt>temporaryMessage</dt>
-          <dd>{temporaryMessage}</dd>
-          <dt>previousTemporaryMessage</dt>
-          <dd>{previousTemporaryMessage}</dd>
-          <dt>holdingMessageIsPlaying</dt>
-          <dd>{holdingMessageIsPlaying ? "true" : "false"}</dd>
-          <dt>temporaryMessageIsPlaying</dt>
-          <dd>{temporaryMessageIsPlaying ? "true" : "false"}</dd>
-          <dt>screenPosition</dt>
-          <dd>{screenPosition}</dd>
-          <dt>screenMessage</dt>
-          <dd>{screenMessage}</dd>
-        </dl>
-        <button
-          type="button"
-          onClick={() => {
-            setHoldingMessage("Holding Message 1");
-          }}
-        >
-          Holding Message 1
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            setHoldingMessage("Eat My Shorts");
-          }}
-        >
-          Holding Message 2
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            setTemporaryMessage("Temporary Message 1");
-          }}
-        >
-          Temporary Message 1
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            setTemporaryMessage("Big Farts");
-          }}
-        >
-          Temporary Message 2
-        </button>
-      </StyledScreenDebug>
-      <StyledJupiterScreenWrapper>
-        <StyledJupiterScreen $displayLength={DISPLAY_LENGTH}>
-          {truncatedMessage}
-        </StyledJupiterScreen>
-      </StyledJupiterScreenWrapper>
-    </>
+    <StyledJupiterScreenWrapper>
+      <StyledJupiterScreen $displayLength={DISPLAY_LENGTH}>
+        {truncatedMessage}
+      </StyledJupiterScreen>
+    </StyledJupiterScreenWrapper>
   );
 };
 
