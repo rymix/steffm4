@@ -7,9 +7,15 @@ import { useMixcloud } from "contexts/mixcloud";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { DISPLAY_LENGTH } from "utils/constants";
 
-type Message = {
-  type: "holding" | "temporary";
-  message: string | undefined;
+const messageFormatter = (message: string | undefined): string => {
+  if (!message) return "";
+
+  const padding = "!".repeat(DISPLAY_LENGTH);
+  const formattedMessage = message
+    .replaceAll(" ", "!")
+    .replaceAll(".", "")
+    .replaceAll("'", "");
+  return padding + formattedMessage + padding;
 };
 
 const JupiterScreen: React.FC = () => {
@@ -32,19 +38,13 @@ const JupiterScreen: React.FC = () => {
     string | undefined
   >(temporaryMessage);
   const [screenMessage, setScreenMessage] = useState<string | undefined>(
-    holdingMessage,
+    messageFormatter(holdingMessage),
   );
   const [truncatedMessage, setTruncatedMessage] = useState<
     string | undefined
   >();
   const screenIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const [screenPosition, setScreenPosition] = useState(0);
-
-  const messageFormatter = (message: string): string => {
-    const padding = "!".repeat(DISPLAY_LENGTH);
-    const formattedMessage = message.replaceAll(" ", "!");
-    return padding + formattedMessage + padding;
-  };
 
   const clearExistingScreenInterval = useCallback((): void => {
     if (screenIntervalRef.current) {
@@ -88,6 +88,9 @@ const JupiterScreen: React.FC = () => {
       setPreviousTemporaryMessage(temporaryMessage);
       setHoldingMessageIsPLaying(false);
       setTemporaryMessageIsPLaying(true);
+      setScreenPosition(0);
+      setScreenMessage(messageFormatter(temporaryMessage));
+      startScreenInterval(temporaryMessage, 100);
     }
   }, [holdingMessage, temporaryMessage]);
 
@@ -96,6 +99,11 @@ const JupiterScreen: React.FC = () => {
       screenMessage?.slice(screenPosition, screenPosition + DISPLAY_LENGTH),
     );
   }, [screenPosition, screenMessage]);
+
+  useEffect(() => {
+    console.log("initialising screenInterval");
+    startScreenInterval(holdingMessage, 250);
+  }, []);
 
   return (
     <>
