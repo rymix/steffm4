@@ -120,70 +120,82 @@ const Jupiter = (): JSX.Element => {
               <JupiterScreen />
             </JupiterControlGroup>
           </JupiterPanel>
-          <JupiterPanel title="Controls" padding="12">
-            <JupiterControlGroup pad="rightBig">
-              <JupiterKnob
-                size={92}
-                degrees={220}
-                min={1}
-                max={5}
-                value={initialKnobValue}
-                steps
-                labelVisible={false}
-                categories={categories}
-                onCategoryChange={updateSelectedCategory}
-                onChange={() => {}}
-              />
-            </JupiterControlGroup>
-            <JupiterControlGroup pad="both">
-              <JupiterButton
-                color="red"
-                label="Stop"
-                onClick={handlePause}
-                on={playing === false}
-              />
-              <JupiterButton
-                color="green"
-                label="Play"
-                onClick={handlePlay}
-                on={playing === true}
-              />
-            </JupiterControlGroup>
-            <JupiterControlGroup pad="right">
-              <JupiterButton
-                color="cream"
-                label="Prev"
-                onClick={handlePrevious}
-              />
-              <JupiterButton color="cream" label="Next" onClick={handleNext} />
-            </JupiterControlGroup>
-            <JupiterControlGroup pad="right">
-              <JupiterButton
-                color="blue"
-                label="Rand"
-                onClick={handleRandomClick}
-              />
-            </JupiterControlGroup>
-            <JupiterControlGroup pad="right">
-              {isMounted && (
-                <JupiterSlider
-                  label="Volume"
-                  volume={sliderValue}
-                  onChange={handleSliderChange}
+          <JupiterPanel padding="12">
+            <JupiterControlGroup direction="column">
+              <JupiterControlGroup pad="rightBig">
+                <JupiterKnob
+                  size={92}
+                  degrees={220}
+                  min={1}
+                  max={5}
+                  value={initialKnobValue}
+                  steps
+                  labelVisible={false}
+                  categories={categories}
+                  onCategoryChange={updateSelectedCategory}
+                  onChange={() => {}}
                 />
-              )}
+              </JupiterControlGroup>
             </JupiterControlGroup>
-            <JupiterControlGroup>
-              <JupiterButton
-                color="orange"
-                label="Info"
-                onClick={handleInfoClick}
-              />
-              <JupiterButton
-                color="orange"
-                label="Share"
-                onClick={handleShareClick}
-              />
+
+            <JupiterControlGroup direction="column">
+              <JupiterControlGroup pad="both">
+                <JupiterButton
+                  color="red"
+                  label="Stop"
+                  onClick={handlePause}
+                  on={playing === false}
+                />
+                <JupiterButton
+                  color="green"
+                  label="Play"
+                  onClick={handlePlay}
+                  on={playing === true}
+                />
+              </JupiterControlGroup>
+              <JupiterControlGroup pad="right">
+                <JupiterButton
+                  color="cream"
+                  label="Prev"
+                  onClick={handlePrevious}
+                />
+                <JupiterButton
+                  color="cream"
+                  label="Next"
+                  onClick={handleNext}
+                />
+              </JupiterControlGroup>
+              <JupiterControlGroup pad="right">
+                <JupiterButton
+                  color="blue"
+                  label="Rand"
+                  onClick={handleRandomClick}
+                />
+              </JupiterControlGroup>
+            </JupiterControlGroup>
+
+            <JupiterControlGroup direction="column">
+              <JupiterControlGroup pad="right">
+                {isMounted && (
+                  <JupiterSlider
+                    label="Volume"
+                    volume={sliderValue}
+                    onChange={handleSliderChange}
+                  />
+                )}
+              </JupiterControlGroup>
+              <JupiterControlGroup>
+                <JupiterButton
+                  color="orange"
+                  label="Info"
+                  onClick={handleInfoClick}
+                />
+                <JupiterButton
+                  color="orange"
+                  label="Share"
+                  onClick={handleShareClick}
+                />
+              </JupiterControlGroup>
             </JupiterControlGroup>
           </JupiterPanel>
           <JupiterPanel padding="0" background="front">

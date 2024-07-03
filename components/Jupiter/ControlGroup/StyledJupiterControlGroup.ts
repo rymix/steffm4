@@ -2,8 +2,9 @@ import type { StyledJupiterControlGroupProps } from "components/Jupiter/ControlG
 import styled from "styled-components";
 
 export const StyledJupiterControlGroup = styled.div<StyledJupiterControlGroupProps>`
+  border: 5px solid red;
   display: flex;
-  flex-direction: row;
+  flex-direction: ${(props) => props.$direction ?? "row"};
   ${(props) =>
     props.$pad &&
     `
