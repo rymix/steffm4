@@ -4,24 +4,25 @@ import {
 } from "components/Jupiter/Screen/StyledJupiterScreen";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { DISPLAY_LENGTH } from "utils/constants";
-
-const messageFormatter = (message: string | undefined): string => {
-  if (!message) return "";
-
-  const padding = "!".repeat(DISPLAY_LENGTH);
-  const formattedMessage = message
-    .replaceAll(" ", "!")
-    .replaceAll("...", " - ")
-    .replaceAll(".", "")
-    .replaceAll(":", "-");
-  return padding + formattedMessage + padding;
-};
 
 const JupiterScreen: React.FC = () => {
   const {
     screen: { holdingMessage, temporaryMessage },
+    session: { displayLength },
   } = useMixcloud();
+
+  const messageFormatter = (message: string | undefined): string => {
+    if (!message) return "";
+
+    const padding = "!".repeat(displayLength);
+    const formattedMessage = message
+      .replaceAll(" ", "!")
+      .replaceAll("...", " - ")
+      .replaceAll(".", "")
+      .replaceAll(":", "-");
+    return padding + formattedMessage + padding;
+  };
+
   const [, setHoldingMessageIsPlaying] = useState<boolean>(false);
   const [temporaryMessageIsPlaying, setTemporaryMessageIsPlaying] =
     useState<boolean>(false);
@@ -56,14 +57,13 @@ const JupiterScreen: React.FC = () => {
 
           if (!message) return prevPosition;
 
-          if (newPosition === message.length + DISPLAY_LENGTH) {
+          if (newPosition === message.length + displayLength) {
             // eslint-disable-next-line no-use-before-define
             startHoldingMessage();
           }
 
           return (
-            newPosition %
-            (message?.length ? message.length + DISPLAY_LENGTH : 0)
+            newPosition % (message?.length ? message.length + displayLength : 0)
           );
         });
       }, interval);
@@ -101,7 +101,7 @@ const JupiterScreen: React.FC = () => {
 
   useEffect(() => {
     setTruncatedMessage(
-      screenMessage?.slice(screenPosition, screenPosition + DISPLAY_LENGTH),
+      screenMessage?.slice(screenPosition, screenPosition + displayLength),
     );
   }, [screenPosition, screenMessage]);
 
@@ -110,8 +110,8 @@ const JupiterScreen: React.FC = () => {
   }, []);
 
   return (
-    <StyledJupiterScreenWrapper>
-      <StyledJupiterScreen $displayLength={DISPLAY_LENGTH}>
+    <StyledJupiterScreenWrapper $displayLength={displayLength}>
+      <StyledJupiterScreen $displayLength={displayLength}>
         {truncatedMessage}
       </StyledJupiterScreen>
     </StyledJupiterScreenWrapper>

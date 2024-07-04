@@ -5,7 +5,7 @@ import usePersistedState from "hooks/usePersistedState";
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import themes from "styles/themes";
-import { DEFAULTVOLUME } from "utils/constants";
+import { DEFAULTVOLUME, DISPLAY_LENGTH } from "utils/constants";
 import {
   mcKeyFormatter,
   mcKeyUnformatter,
@@ -52,6 +52,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Session */
   const defaultMessage = "Stef FM - Funky House Coming In Your Ears";
+  const [displayLength, setDisplayLength] = useState(DISPLAY_LENGTH);
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -151,10 +152,25 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Set isMobile if small screen */
   useEffect(() => {
     const handleResize = (): void => {
-      setIsMobile(window.innerWidth <= 768);
+      const windowWidth = window.innerWidth;
+      setIsMobile(windowWidth <= 768);
+
+      if (windowWidth < 610) {
+        const reduction = Math.min(
+          Math.floor((720 - windowWidth) / 33),
+          DISPLAY_LENGTH,
+        );
+        setDisplayLength(DISPLAY_LENGTH - reduction);
+      } else {
+        setDisplayLength(DISPLAY_LENGTH);
+      }
     };
 
     window.addEventListener("resize", handleResize);
+
+    // Call handleResize initially to set the state based on the initial window size
+    handleResize();
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -488,6 +504,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     },
     session: {
       burgerMenuRef,
+      displayLength,
       isMobile,
       menuOpen,
       modalContent,
@@ -496,6 +513,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       modalTitle,
       openModal,
       secondsRemaining,
+      setDisplayLength,
       setIsMobile,
       setMenuOpen,
       setModalContent,

@@ -1,8 +1,10 @@
+import type {
+  StyledJupiterScreenProps,
+  StyledJupiterScreenWrapperProps,
+} from "components/Jupiter/Screen/types";
 import styled from "styled-components";
 
-import type { StyledJupiterScreenProps } from "./types";
-
-export const StyledJupiterScreenWrapper = styled.div`
+export const StyledJupiterScreenWrapper = styled.div<StyledJupiterScreenWrapperProps>`
   align-items: center;
   background: #024;
   background-image: linear-gradient(170deg, #0007, transparent 50%),
@@ -14,7 +16,7 @@ export const StyledJupiterScreenWrapper = styled.div`
   font-weight: bold;
   height: 90px;
   justify-content: flex-end;
-  width: 500px;
+  width: ${(props) => props.$displayLength * 33}px;
 `;
 
 export const StyledJupiterScreen = styled.div<StyledJupiterScreenProps>`

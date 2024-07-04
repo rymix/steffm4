@@ -53,6 +53,7 @@ export type MixcloudContextState = {
   };
   session: {
     burgerMenuRef: React.MutableRefObject<HTMLDivElement | null>;
+    displayLength: number;
     isMobile: boolean;
     menuOpen: boolean;
     modalContent: ReactNode | null;
@@ -65,6 +66,7 @@ export type MixcloudContextState = {
       seconds?: number,
     ) => void;
     secondsRemaining: number | null;
+    setDisplayLength: React.Dispatch<React.SetStateAction<number>>;
     setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
     setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setModalContent: React.Dispatch<React.SetStateAction<ReactNode | null>>;
