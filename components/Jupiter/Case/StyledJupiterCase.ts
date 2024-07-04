@@ -5,6 +5,7 @@ export const StyledJupiterCase = styled.div`
   max-width: 960px;
   min-width: 960px;
   width: 960px;
+  z-index: 2;
 
   @media (max-width: 1000px) {
     max-width: 700px;

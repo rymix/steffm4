@@ -29,7 +29,7 @@ export const StyledJupiterTitle = styled.div`
   width: 300px;
   flex-shrink: 0;
   text-align: right;
-  opacity: 0.9;
+  opacity: 0.8;
 
   @media (max-width: 550px) {
     font-size: 84px;

@@ -8,6 +8,7 @@ import JupiterFrontPanel from "components/Jupiter/Panel/FrontPanel";
 import JupiterScreen from "components/Jupiter/Screen";
 import JupiterSlider from "components/Jupiter/Slider";
 import JupiterTable from "components/Jupiter/Table";
+import JupiterTitle from "components/Jupiter/Title";
 import Mixcloud from "components/Mixcloud";
 import MixInformation from "components/MixInformation";
 import Modal from "components/Modal";
@@ -18,12 +19,11 @@ import {
   StyledItem,
   StyledItems,
 } from "components/Styled";
+import Vignette from "components/Vignette";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import { copyToClipboard, mcKeyFormatter } from "utils/functions";
-
-import JupiterTitle from "./Jupiter/Title";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -107,6 +107,7 @@ const Jupiter = (): JSX.Element => {
 
   return (
     <>
+      <Vignette />
       <Overlay />
       <Modal />
       {randomMcKey && (
