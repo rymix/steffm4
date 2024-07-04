@@ -24,7 +24,7 @@ import Vignette from "components/Vignette";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
-import { copyToClipboard, mcKeyFormatter } from "utils/functions";
+import { copyToClipboard } from "utils/functions";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -39,6 +39,7 @@ const getCategoryIndex = (
 const Jupiter = (): JSX.Element => {
   const {
     mcKey,
+    setMcKey,
     controls: {
       handleLoad,
       handlePause,
@@ -54,7 +55,6 @@ const Jupiter = (): JSX.Element => {
     session: { isMobile, openModal },
     widget: { playing, setVolume, volume },
   } = useMixcloud();
-  const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
   const [sliderValue, setSliderValue] = useState(volume * 100);
   const [isMounted, setIsMounted] = useState(false);
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
@@ -83,22 +83,13 @@ const Jupiter = (): JSX.Element => {
   };
 
   useEffect(() => {
-    const fetchKey = async (): Promise<void> => {
-      const key = selectedCategory
-        ? await fetchRandomMcKeyByCategory(selectedCategory)
-        : await fetchRandomMcKey();
-      const formattedKey = mcKeyFormatter(key);
-      setRandomMcKey(formattedKey);
-    };
+    console.log("Jupiter mounted", mcKey);
 
-    if (mcKey) {
-      setRandomMcKey(mcKey);
-    } else {
-      fetchKey();
+    if (!mcKey) {
+      console.log("Going to load random mix");
+      fetchRandomMcKey().then((randomKey) => setMcKey(randomKey));
     }
-  }, [mcKey, selectedCategory, fetchRandomMcKey, fetchRandomMcKeyByCategory]);
 
-  useEffect(() => {
     setIsMounted(true);
   }, []);
 
@@ -111,9 +102,9 @@ const Jupiter = (): JSX.Element => {
       <Vignette />
       <Overlay />
       <Modal />
-      {randomMcKey && (
+      {mcKey && (
         <>
-          <Mixcloud defaultMcKey={randomMcKey} />
+          <Mixcloud defaultMcKey={mcKey} />
         </>
       )}
       <JupiterTable>

@@ -14,14 +14,14 @@ const DynamicRoute = (): null => {
     if (mcKey && typeof mcKey === "string") {
       // Remove leading and trailing slashes
       const cleanedMcKey = mcKey.replaceAll(/^\/+|\/+$/g, "");
-
+      console.log("Setting mcKey:", cleanedMcKey);
       setMcKey(cleanedMcKey);
 
       // Use replace to avoid adding a new history entry
       router
         .replace("/")
         .then(() => {
-          console.log("Redirected to home page");
+          console.log("Redirected to home page", cleanedMcKey);
         })
         .catch((error) => {
           console.error("Failed to redirect:", error);
