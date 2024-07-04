@@ -3,8 +3,6 @@ import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useRef } from "react";
 
-import Debug from "./Debug";
-
 export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   const { autoPlay = true, children, defaultMcKey } = props;
 
@@ -117,7 +115,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
 
   return (
     <>
-      <Debug />
       {mcKey && (
         <>
           <StyledMixcloudWidget

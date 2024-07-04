@@ -1,4 +1,4 @@
-import { StyledJupiterBackPanel } from "./StyledJupiterBackPanel";
+import { StyledJupiterBackPanel } from "components/Jupiter/Panel/BackPanel/StyledJupiterBackPanel";
 
 const JupiterBackPanel: React.FC = () => {
   return <StyledJupiterBackPanel>&nbsp;</StyledJupiterBackPanel>;

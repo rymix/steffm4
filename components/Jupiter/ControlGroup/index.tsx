@@ -1,7 +1,6 @@
 import { StyledJupiterControlGroup } from "components/Jupiter/ControlGroup/StyledJupiterControlGroup";
 import type { JupiterControlGroupProps } from "components/Jupiter/ControlGroup/types";
-
-import JupiterTitle from "../Title";
+import JupiterTitle from "components/Jupiter/Title";
 
 const JupiterControlGroup: React.FC<JupiterControlGroupProps> = ({
   children,
