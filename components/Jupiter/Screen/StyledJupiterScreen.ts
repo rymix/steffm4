@@ -9,14 +9,20 @@ export const StyledJupiterScreenWrapper = styled.div<StyledJupiterScreenWrapperP
   background: #024;
   background-image: linear-gradient(170deg, #0007, transparent 50%),
     linear-gradient(to bottom, transparent, #fff1 95%, #fff4 100%);
-  box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.2);
+  box-shadow:
+    inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 2px solid #333;
+  border-radius: 10px;
+  padding: 10px;
   display: flex;
   font-family: "dseg14";
   font-size: 40px;
   font-weight: bold;
   height: 90px;
   justify-content: flex-end;
-  width: ${(props) => props.$displayLength * 33}px;
+  width: ${(props) => props.$displayLength * 34}px;
 `;
 
 export const StyledJupiterScreen = styled.div<StyledJupiterScreenProps>`
