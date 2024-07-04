@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StyledJupiterTitleWrapper = styled.div`
   align-items: center;
   background: #e23e2e;
-  background-image: url(textures/billie-holiday.png);
+  background-image: url(textures/dark-wall.png);
   border-radius: 4px;
   display: flex;
   flex-direction: row;
@@ -16,7 +16,7 @@ export const StyledJupiterTitleWrapper = styled.div`
 export const StyledJupiterTitle = styled.div`
   align-items: center;
   background: #1c1c1b;
-  background-image: url(textures/white-sand.png);
+  background-image: url(textures/dark-wall.png);
   border-radius: 4px;
   color: white;
   display: flex;

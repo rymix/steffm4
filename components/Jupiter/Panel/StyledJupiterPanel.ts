@@ -11,7 +11,7 @@ export const StyledJupiterPanelWrapper = styled.div<StyledJupiterPanelWrapperPro
   background: ${(props) =>
     props.$background === "panel" ? "#1c1c1b" : "none"};
   background-image: ${(props) =>
-    props.$background === "panel" ? `url(textures/white-sand.png)` : "none"};
+    props.$background === "panel" ? `url(textures/dark-wall.png)` : "none"};
   overflow: hidden;
 
   ${(props) =>
