@@ -4,6 +4,7 @@ import {
 } from "components/Jupiter/Screen/StyledJupiterScreen";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { SCREEN_SPEED_HOLDING, SCREEN_SPEED_TEMPORARY } from "utils/constants";
 
 const JupiterScreen: React.FC = () => {
   const {
@@ -77,7 +78,7 @@ const JupiterScreen: React.FC = () => {
     setHoldingMessageIsPlaying(true);
     setTemporaryMessageIsPlaying(false);
     setScreenPosition(0);
-    startScreenInterval(holdingMessage, 200);
+    startScreenInterval(holdingMessage, SCREEN_SPEED_HOLDING);
   };
 
   const startTemporaryMessage = (): void => {
@@ -86,7 +87,7 @@ const JupiterScreen: React.FC = () => {
     setTemporaryMessageIsPlaying(true);
     setHoldingMessageIsPlaying(false);
     setScreenPosition(0);
-    startScreenInterval(temporaryMessage, 150);
+    startScreenInterval(temporaryMessage, SCREEN_SPEED_TEMPORARY);
   };
 
   useEffect(() => {
@@ -106,7 +107,7 @@ const JupiterScreen: React.FC = () => {
   }, [screenPosition, screenMessage]);
 
   useEffect(() => {
-    startScreenInterval(holdingMessage, 200);
+    startScreenInterval(holdingMessage, SCREEN_SPEED_HOLDING);
   }, []);
 
   return (

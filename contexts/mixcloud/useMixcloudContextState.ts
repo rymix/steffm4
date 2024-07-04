@@ -5,7 +5,12 @@ import usePersistedState from "hooks/usePersistedState";
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import themes from "styles/themes";
-import { DEFAULT_VOLUME, DISPLAY_LENGTH } from "utils/constants";
+import {
+  DEFAULT_MESSAGE,
+  DEFAULT_VOLUME,
+  DISPLAY_LENGTH,
+  SCREEN_WIDTH_LIMIT,
+} from "utils/constants";
 import {
   mcKeyFormatter,
   mcKeyUnformatter,
@@ -51,7 +56,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   );
 
   /* Session */
-  const defaultMessage = "Stef FM - Funky House Coming In Your Ears";
   const [displayLength, setDisplayLength] = useState(DISPLAY_LENGTH);
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -68,7 +72,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Screen */
   const [holdingMessage, setHoldingMessage] = useState<string | undefined>(
-    defaultMessage,
+    DEFAULT_MESSAGE,
   );
   const [temporaryMessage, setTemporaryMessage] = useState<
     string | undefined
@@ -155,9 +159,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const windowWidth = window.innerWidth;
       setIsMobile(windowWidth <= 768);
 
-      if (windowWidth < 610) {
+      if (windowWidth < SCREEN_WIDTH_LIMIT) {
         const reduction = Math.min(
-          Math.floor((720 - windowWidth) / 33),
+          Math.floor((SCREEN_WIDTH_LIMIT - windowWidth) / 33),
           DISPLAY_LENGTH,
         );
         setDisplayLength(DISPLAY_LENGTH - reduction);

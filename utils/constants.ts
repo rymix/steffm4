@@ -1,5 +1,6 @@
 export const DEBUG = false;
 export const DEFAULT_LOCALE = "en-GB";
+export const DEFAULT_MESSAGE = "Stef FM - Funky House Coming In Your Ears";
 export const DEFAULT_VOLUME = 1;
 export const DISPLAY_LENGTH = 20;
 export const NOISE_BACKGROUND_LOW = `
@@ -14,3 +15,6 @@ export const NOISE_BACKGROUND_MEDIUM = `
 export const NOISE_BACKGROUND_HIGH = `
   data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1HAwCAAAAY0lEQVR42mJ89uzZfwYKAAD8nH8cDZycnJSUlIyNjWXX0+Tl5U1NTY2BgYG8uXL5+vv7w9/fj6e3t9fT0/P3+vpaWlhYWFtDZ2cnDw8N3d3evw8HAwMDB+fn5PT09HR0dVVVV5cXFyUlJS+fwcPCAQWYA+YGAAAAAElFTkSuQmCC
 `;
+export const SCREEN_SPEED_HOLDING = 200;
+export const SCREEN_SPEED_TEMPORARY = 120;
+export const SCREEN_WIDTH_LIMIT = 720;
