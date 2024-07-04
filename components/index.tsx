@@ -5,6 +5,7 @@ import JupiterKnob from "components/Jupiter/Knob";
 import JupiterPanel from "components/Jupiter/Panel";
 import JupiterBackPanel from "components/Jupiter/Panel/BackPanel";
 import JupiterFrontPanel from "components/Jupiter/Panel/FrontPanel";
+import JupiterProgressLeds from "components/Jupiter/ProgressLeds";
 import JupiterScreen from "components/Jupiter/Screen";
 import JupiterSlider from "components/Jupiter/Slider";
 import JupiterTable from "components/Jupiter/Table";
@@ -129,6 +130,9 @@ const Jupiter = (): JSX.Element => {
                 <JupiterScreen />
               </JupiterPanel>
               <JupiterPanel padding="0">
+                <JupiterProgressLeds />
+              </JupiterPanel>
+              <JupiterPanel padding="0">
                 <StyledGridWrapper>
                   <StyledColumn>
                     <StyledItems>
@@ -213,7 +217,9 @@ const Jupiter = (): JSX.Element => {
               <JupiterPanel padding="24">
                 <JupiterScreen />
               </JupiterPanel>
-
+              <JupiterPanel padding="0">
+                <JupiterProgressLeds />
+              </JupiterPanel>
               <JupiterPanel padding="12">
                 <StyledGridWrapper>
                   <StyledColumn>
