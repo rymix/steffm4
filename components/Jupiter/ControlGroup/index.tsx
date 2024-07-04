@@ -8,9 +8,10 @@ const JupiterControlGroup: React.FC<JupiterControlGroupProps> = ({
   pad,
   title,
   direction = "row",
+  grow = 0,
 }) => {
   return (
-    <StyledJupiterControlGroup $pad={pad} $direction={direction}>
+    <StyledJupiterControlGroup $pad={pad} $direction={direction} $grow={grow}>
       {title && <JupiterTitle title={title} />}
       {children}
     </StyledJupiterControlGroup>
