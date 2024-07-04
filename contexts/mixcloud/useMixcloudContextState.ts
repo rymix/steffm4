@@ -5,7 +5,7 @@ import usePersistedState from "hooks/usePersistedState";
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import themes from "styles/themes";
-import { DEFAULTVOLUME, DISPLAY_LENGTH } from "utils/constants";
+import { DEFAULT_VOLUME, DISPLAY_LENGTH } from "utils/constants";
 import {
   mcKeyFormatter,
   mcKeyUnformatter,
@@ -47,7 +47,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [trackSectionNumber, setTrackSectionNumber] = useState(0);
   const [volume, setVolume] = usePersistedState<number>(
     "volume",
-    DEFAULTVOLUME,
+    DEFAULT_VOLUME,
   );
 
   /* Session */
