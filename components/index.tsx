@@ -181,7 +181,18 @@ const Jupiter = (): JSX.Element => {
                 <JupiterTitle title="Option" />
                 <StyledItems>
                   <StyledItem>
-                    {" "}
+                    <JupiterButton
+                      color="orange"
+                      label="Info"
+                      onClick={handleInfoClick}
+                    />
+                    <JupiterButton
+                      color="orange"
+                      label="Share"
+                      onClick={handleShareClick}
+                    />
+                  </StyledItem>
+                  <StyledItem>
                     <JupiterButton
                       color="blue"
                       label="Rand"
@@ -194,19 +205,6 @@ const Jupiter = (): JSX.Element => {
                         onChange={handleSliderChange}
                       />
                     )}
-                  </StyledItem>
-                  <StyledItem>
-                    {" "}
-                    <JupiterButton
-                      color="orange"
-                      label="Info"
-                      onClick={handleInfoClick}
-                    />
-                    <JupiterButton
-                      color="orange"
-                      label="Share"
-                      onClick={handleShareClick}
-                    />
                   </StyledItem>
                 </StyledItems>
               </StyledColumn>

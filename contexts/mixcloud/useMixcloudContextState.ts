@@ -9,7 +9,6 @@ import {
   DEFAULT_MESSAGE,
   DEFAULT_VOLUME,
   DISPLAY_LENGTH,
-  SCREEN_WIDTH_LIMIT,
 } from "utils/constants";
 import {
   mcKeyFormatter,
@@ -155,18 +154,26 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Set isMobile if small screen */
   useEffect(() => {
+    const screenLimits = [
+      { width: 440, displayLength: 6 },
+      { width: 550, displayLength: 9 },
+      { width: 640, displayLength: 12 },
+      { width: 768, displayLength: 15 },
+      { width: 1000, displayLength: 18 },
+    ];
+
     const handleResize = (): void => {
       const windowWidth = window.innerWidth;
       setIsMobile(windowWidth <= 768);
 
-      if (windowWidth < SCREEN_WIDTH_LIMIT) {
-        const reduction = Math.min(
-          Math.floor((SCREEN_WIDTH_LIMIT - windowWidth) / 33),
-          DISPLAY_LENGTH,
-        );
-        setDisplayLength(DISPLAY_LENGTH - reduction);
+      const limit = screenLimits.find((limit) => windowWidth <= limit.width);
+
+      if (windowWidth <= 440) {
+        setDisplayLength(6);
+      } else if (windowWidth >= 1000) {
+        setDisplayLength(20);
       } else {
-        setDisplayLength(DISPLAY_LENGTH);
+        setDisplayLength(limit ? limit.displayLength : 20);
       }
     };
 

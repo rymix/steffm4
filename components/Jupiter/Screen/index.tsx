@@ -91,6 +91,10 @@ const JupiterScreen: React.FC = () => {
   };
 
   useEffect(() => {
+    startHoldingMessage();
+  }, [displayLength]);
+
+  useEffect(() => {
     if (holdingMessage !== previousHoldingMessage) {
       startHoldingMessage();
     }

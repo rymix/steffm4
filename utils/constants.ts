@@ -17,4 +17,3 @@ export const NOISE_BACKGROUND_HIGH = `
 `;
 export const SCREEN_SPEED_HOLDING = 200;
 export const SCREEN_SPEED_TEMPORARY = 120;
-export const SCREEN_WIDTH_LIMIT = 720;

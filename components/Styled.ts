@@ -33,5 +33,4 @@ export const StyledItem = styled.div`
   flex: 1 0 30%;
   justify-content: center;
   box-sizing: border-box;
-  width: 75px;
 `;
