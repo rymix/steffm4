@@ -11,6 +11,7 @@ import {
   DISPLAY_LENGTH,
 } from "utils/constants";
 import {
+  convertTimeToSeconds,
   mcKeyFormatter,
   mcKeyUnformatter,
   mcKeyUrlFormatter,
@@ -394,24 +395,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
     if (!mixDetails || !mixDetails.tracks || mixDetails.tracks.length === 0) {
       setTrackProgress(0);
       setTrackProgressPercent(0);
+      setDuration(0);
       return;
     }
+
+    const calculateMixProgress = (): void => {
+      setDuration(convertTimeToSeconds(mixDetails.duration));
+    };
 
     const calculateTrackProgress = (): void => {
       const currentMixProgressSeconds = mixProgress;
 
-      const parseTimeToSeconds = (time: string): number => {
-        const parts = time.split(":").map(Number).reverse();
-        let seconds = 0;
-        if (parts.length > 0) seconds += parts[0]; // seconds
-        if (parts.length > 1) seconds += parts[1] * 60; // minutes
-        if (parts.length > 2) seconds += parts[2] * 3600; // hours
-        return seconds;
-      };
-
       const tracks = mixDetails.tracks.map((track) => ({
         ...track,
-        startTimeSeconds: parseTimeToSeconds(track.startTime),
+        startTimeSeconds: convertTimeToSeconds(track.startTime),
       }));
 
       let currentTrackIndex = tracks.findIndex((track, index) => {
@@ -449,6 +446,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     };
 
     calculateTrackProgress();
+    calculateMixProgress();
   }, [mixProgress, mixDetails, duration, lastTrackUpdateTime]);
 
   /* Fetch Categories */
