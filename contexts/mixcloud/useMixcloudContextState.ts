@@ -166,7 +166,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const windowWidth = window.innerWidth;
       setIsMobile(windowWidth <= 768);
 
-      const limit = screenLimits.find((limit) => windowWidth <= limit.width);
+      const limit = screenLimits.find(
+        (localLimit) => windowWidth <= localLimit.width,
+      );
 
       if (windowWidth <= 440) {
         setDisplayLength(6);
