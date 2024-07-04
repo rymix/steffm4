@@ -13,7 +13,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setMcKey,
     controls: { handleNext },
     mix: {
-      setDuration,
       setProgress: setMixProgress,
       setProgressPercent: setMixProgressPercent,
       setShowUnavailable,
@@ -96,14 +95,8 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
         setPlaying(false);
       });
 
-      widget.getDuration().then((dur: number) => {
+      widget.getDuration().then(() => {
         setLoaded(false);
-        // if (!dur) {
-        //   console.error("licence issue");
-        //   setShowUnavailable(true);
-        //   setPlaying(false);
-        //   return;
-        // }
         setLoaded(true);
         setShowUnavailable(false);
         timer.current = setTimeout(() => {
