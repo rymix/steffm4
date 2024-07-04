@@ -22,15 +22,13 @@ export const Grid: React.FC = () => {
         <StyledItems>
           <StyledItem>Item 2</StyledItem>
           <StyledItem>Item 3</StyledItem>
-          <StyledItem>Item 4</StyledItem>
         </StyledItems>
       </StyledColumn>
       <StyledColumn>
         <StyledTitle>Title 3</StyledTitle>
         <StyledItems>
+          <StyledItem>Item 4</StyledItem>
           <StyledItem>Item 5</StyledItem>
-          <StyledItem>Item 6</StyledItem>
-          <StyledItem>Item 7</StyledItem>
         </StyledItems>
       </StyledColumn>
     </StyledGridWrapper>

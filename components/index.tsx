@@ -18,6 +18,14 @@ import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import { copyToClipboard, mcKeyFormatter } from "utils/functions";
 
+import {
+  StyledColumn,
+  StyledGridWrapper,
+  StyledItem,
+  StyledItems,
+  StyledTitle,
+} from "./Grid/StyledGrid";
+
 const getCategoryIndex = (
   categories: Category[],
   selectedCategory: string | null,
@@ -120,59 +128,91 @@ const Jupiter = (): JSX.Element => {
             <JupiterScreen />
           </JupiterPanel>
           <JupiterPanel padding="12">
-            <JupiterKnob
-              size={92}
-              degrees={220}
-              min={1}
-              max={5}
-              value={initialKnobValue}
-              steps
-              labelVisible={false}
-              categories={categories}
-              onCategoryChange={updateSelectedCategory}
-              onChange={() => {}}
-            />
-
-            <JupiterButton
-              color="red"
-              label="Stop"
-              onClick={handlePause}
-              on={playing === false}
-            />
-            <JupiterButton
-              color="green"
-              label="Play"
-              onClick={handlePlay}
-              on={playing === true}
-            />
-            <JupiterButton
-              color="cream"
-              label="Prev"
-              onClick={handlePrevious}
-            />
-            <JupiterButton color="cream" label="Next" onClick={handleNext} />
-            <JupiterButton
-              color="blue"
-              label="Rand"
-              onClick={handleRandomClick}
-            />
-            {isMounted && (
-              <JupiterSlider
-                label="Volume"
-                volume={sliderValue}
-                onChange={handleSliderChange}
-              />
-            )}
-            <JupiterButton
-              color="orange"
-              label="Info"
-              onClick={handleInfoClick}
-            />
-            <JupiterButton
-              color="orange"
-              label="Share"
-              onClick={handleShareClick}
-            />
+            <StyledGridWrapper>
+              <StyledColumn>
+                <StyledTitle>Title 1</StyledTitle>
+                <StyledItems>
+                  <StyledItem>
+                    <JupiterKnob
+                      size={92}
+                      degrees={220}
+                      min={1}
+                      max={5}
+                      value={initialKnobValue}
+                      steps
+                      labelVisible={false}
+                      categories={categories}
+                      onCategoryChange={updateSelectedCategory}
+                      onChange={() => {}}
+                    />
+                  </StyledItem>
+                </StyledItems>
+              </StyledColumn>
+              <StyledColumn>
+                <StyledTitle>Title 2</StyledTitle>
+                <StyledItems>
+                  <StyledItem>
+                    <JupiterButton
+                      color="red"
+                      label="Stop"
+                      onClick={handlePause}
+                      on={playing === false}
+                    />
+                    <JupiterButton
+                      color="green"
+                      label="Play"
+                      onClick={handlePlay}
+                      on={playing === true}
+                    />
+                  </StyledItem>
+                  <StyledItem>
+                    <JupiterButton
+                      color="cream"
+                      label="Prev"
+                      onClick={handlePrevious}
+                    />
+                    <JupiterButton
+                      color="cream"
+                      label="Next"
+                      onClick={handleNext}
+                    />
+                  </StyledItem>
+                </StyledItems>
+              </StyledColumn>
+              <StyledColumn>
+                <StyledTitle>Title 3</StyledTitle>
+                <StyledItems>
+                  <StyledItem>
+                    {" "}
+                    <JupiterButton
+                      color="blue"
+                      label="Rand"
+                      onClick={handleRandomClick}
+                    />
+                    {isMounted && (
+                      <JupiterSlider
+                        label="Volume"
+                        volume={sliderValue}
+                        onChange={handleSliderChange}
+                      />
+                    )}
+                  </StyledItem>
+                  <StyledItem>
+                    {" "}
+                    <JupiterButton
+                      color="orange"
+                      label="Info"
+                      onClick={handleInfoClick}
+                    />
+                    <JupiterButton
+                      color="orange"
+                      label="Share"
+                      onClick={handleShareClick}
+                    />
+                  </StyledItem>
+                </StyledItems>
+              </StyledColumn>
+            </StyledGridWrapper>
           </JupiterPanel>
           <JupiterPanel padding="0" background="front">
             <JupiterFrontPanel />

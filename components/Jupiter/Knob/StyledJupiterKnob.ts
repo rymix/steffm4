@@ -15,14 +15,13 @@ export const StyledJupiterKnobWrapper = styled.div`
   font-size: 14px;
   text-transform: uppercase;
   height: 128px;
-  width: 54px;
+  width: 194px;
+  padding-top: 20px;
 `;
 
 export const StyledJupiterOuterKnobWrapper = styled.div<StyledKnobWrapperProps>`
   display: flex;
   position: relative;
-  width: 100%;
-  height: 100%;
 `;
 
 export const StyledJupiterOuterKnob = styled.div.attrs<StyledOuterKnobProps>(
