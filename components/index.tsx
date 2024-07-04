@@ -50,7 +50,7 @@ const Jupiter = (): JSX.Element => {
     filters: { categories = [], selectedCategory, updateSelectedCategory },
     mix: { details },
     screen: { setTemporaryMessage },
-    session: { openModal },
+    session: { isMobile, openModal },
     widget: { playing, setVolume, volume },
   } = useMixcloud();
   const [randomMcKey, setRandomMcKey] = useState<string | null>(null);
@@ -125,91 +125,173 @@ const Jupiter = (): JSX.Element => {
           <JupiterPanel padding="24">
             <JupiterScreen />
           </JupiterPanel>
-          <JupiterPanel padding="12">
-            <StyledGridWrapper>
-              <StyledColumn>
-                <JupiterTitle title="Select" />
-                <StyledItems>
-                  <StyledItem>
-                    <JupiterKnob
-                      size={92}
-                      degrees={220}
-                      min={1}
-                      max={5}
-                      value={initialKnobValue}
-                      steps
-                      labelVisible={false}
-                      categories={categories}
-                      onCategoryChange={updateSelectedCategory}
-                      onChange={() => {}}
-                    />
-                  </StyledItem>
-                </StyledItems>
-              </StyledColumn>
-              <StyledColumn>
-                <JupiterTitle title="Control" />
-                <StyledItems>
-                  <StyledItem>
-                    <JupiterButton
-                      color="red"
-                      label="Stop"
-                      onClick={handlePause}
-                      on={playing === false}
-                    />
-                    <JupiterButton
-                      color="green"
-                      label="Play"
-                      onClick={handlePlay}
-                      on={playing === true}
-                    />
-                  </StyledItem>
-                  <StyledItem>
-                    <JupiterButton
-                      color="cream"
-                      label="Prev"
-                      onClick={handlePrevious}
-                    />
-                    <JupiterButton
-                      color="cream"
-                      label="Next"
-                      onClick={handleNext}
-                    />
-                  </StyledItem>
-                </StyledItems>
-              </StyledColumn>
-              <StyledColumn>
-                <JupiterTitle title="Option" />
-                <StyledItems>
-                  <StyledItem>
-                    <JupiterButton
-                      color="orange"
-                      label="Info"
-                      onClick={handleInfoClick}
-                    />
-                    <JupiterButton
-                      color="orange"
-                      label="Share"
-                      onClick={handleShareClick}
-                    />
-                  </StyledItem>
-                  <StyledItem>
-                    <JupiterButton
-                      color="blue"
-                      label="Rand"
-                      onClick={handleRandomClick}
-                    />
-                    {isMounted && (
-                      <JupiterSlider
-                        label="Volume"
-                        volume={sliderValue}
-                        onChange={handleSliderChange}
+          {isMobile && (
+            <JupiterPanel padding="0">
+              <StyledGridWrapper>
+                <StyledColumn>
+                  <StyledItems>
+                    <StyledItem>
+                      <JupiterButton
+                        color="red"
+                        label="Stop"
+                        onClick={handlePause}
+                        on={playing === false}
                       />
-                    )}
-                  </StyledItem>
-                </StyledItems>
-              </StyledColumn>
-            </StyledGridWrapper>
-          </JupiterPanel>
+                      <JupiterButton
+                        color="green"
+                        label="Play"
+                        onClick={handlePlay}
+                        on={playing === true}
+                      />
+                      <JupiterButton
+                        color="cream"
+                        label="Prev"
+                        onClick={handlePrevious}
+                      />
+                      <JupiterButton
+                        color="cream"
+                        label="Next"
+                        onClick={handleNext}
+                      />
+                    </StyledItem>
+                  </StyledItems>
+                </StyledColumn>
+                <StyledColumn>
+                  <StyledItems>
+                    <StyledItem>
+                      <JupiterButton
+                        color="orange"
+                        label="Info"
+                        onClick={handleInfoClick}
+                      />
+                      <JupiterButton
+                        color="orange"
+                        label="Share"
+                        onClick={handleShareClick}
+                      />
+                      <JupiterButton
+                        color="blue"
+                        label="Rand"
+                        onClick={handleRandomClick}
+                      />
+                      {isMounted && (
+                        <JupiterSlider
+                          label="Volume"
+                          volume={sliderValue}
+                          onChange={handleSliderChange}
+                        />
+                      )}
+                    </StyledItem>
+                  </StyledItems>
+                </StyledColumn>
+                <StyledColumn>
+                  <StyledItems>
+                    <StyledItem>
+                      <JupiterKnob
+                        size={92}
+                        degrees={220}
+                        min={1}
+                        max={5}
+                        value={initialKnobValue}
+                        steps
+                        labelVisible={false}
+                        categories={categories}
+                        onCategoryChange={updateSelectedCategory}
+                        onChange={() => {}}
+                      />
+                    </StyledItem>
+                  </StyledItems>
+                </StyledColumn>
+              </StyledGridWrapper>
+            </JupiterPanel>
+          )}
+          {!isMobile && (
+            <JupiterPanel padding="12">
+              <StyledGridWrapper>
+                <StyledColumn>
+                  <JupiterTitle title="Select" />
+                  <StyledItems>
+                    <StyledItem>
+                      <JupiterKnob
+                        size={92}
+                        degrees={220}
+                        min={1}
+                        max={5}
+                        value={initialKnobValue}
+                        steps
+                        labelVisible={false}
+                        categories={categories}
+                        onCategoryChange={updateSelectedCategory}
+                        onChange={() => {}}
+                      />
+                    </StyledItem>
+                  </StyledItems>
+                </StyledColumn>
+                <StyledColumn>
+                  <JupiterTitle title="Control" />
+                  <StyledItems>
+                    <StyledItem>
+                      <JupiterButton
+                        color="red"
+                        label="Stop"
+                        onClick={handlePause}
+                        on={playing === false}
+                      />
+                      <JupiterButton
+                        color="green"
+                        label="Play"
+                        onClick={handlePlay}
+                        on={playing === true}
+                      />
+                    </StyledItem>
+                    <StyledItem>
+                      <JupiterButton
+                        color="cream"
+                        label="Prev"
+                        onClick={handlePrevious}
+                      />
+                      <JupiterButton
+                        color="cream"
+                        label="Next"
+                        onClick={handleNext}
+                      />
+                    </StyledItem>
+                  </StyledItems>
+                </StyledColumn>
+                <StyledColumn>
+                  <JupiterTitle title="Option" />
+                  <StyledItems>
+                    <StyledItem>
+                      <JupiterButton
+                        color="orange"
+                        label="Info"
+                        onClick={handleInfoClick}
+                      />
+                      <JupiterButton
+                        color="orange"
+                        label="Share"
+                        onClick={handleShareClick}
+                      />
+                    </StyledItem>
+                    <StyledItem>
+                      <JupiterButton
+                        color="blue"
+                        label="Rand"
+                        onClick={handleRandomClick}
+                      />
+                      {isMounted && (
+                        <JupiterSlider
+                          label="Volume"
+                          volume={sliderValue}
+                          onChange={handleSliderChange}
+                        />
+                      )}
+                    </StyledItem>
+                  </StyledItems>
+                </StyledColumn>
+              </StyledGridWrapper>
+            </JupiterPanel>
+          )}
           <JupiterPanel padding="0" background="front">
             <JupiterFrontPanel />
           </JupiterPanel>

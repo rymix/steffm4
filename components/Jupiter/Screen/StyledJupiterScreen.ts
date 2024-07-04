@@ -22,7 +22,7 @@ export const StyledJupiterScreenWrapper = styled.div<StyledJupiterScreenWrapperP
   font-weight: bold;
   height: 90px;
   justify-content: flex-end;
-  width: ${(props) => props.$displayLength * 34}px;
+  width: ${(props) => props.$displayLength * 35}px;
 `;
 
 export const StyledJupiterScreen = styled.div<StyledJupiterScreenProps>`
