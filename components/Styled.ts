@@ -34,8 +34,4 @@ export const StyledItem = styled.div`
   justify-content: center;
   box-sizing: border-box;
   width: 75px;
-
-  @media (max-width: 768px) {
-    zflex: 1 0 100%;
-  }
 `;
