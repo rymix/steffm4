@@ -67,7 +67,11 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
     return Math.min(Math.max(startAngle, localDeg), endAngle);
   };
 
-  const startDrag = (dragEvent: React.MouseEvent<HTMLDivElement>): void => {
+  const startDrag = (
+    dragEvent:
+      | React.MouseEvent<HTMLDivElement>
+      | React.TouchEvent<HTMLDivElement>,
+  ): void => {
     dragEvent.preventDefault();
     if (!knobRef?.current) return;
 
@@ -77,8 +81,16 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
       y: knob.top + knob.height / 2,
     };
 
-    const moveHandler = (mouseEvent: MouseEvent): void => {
-      let newDeg = getDeg(mouseEvent.clientX, mouseEvent.clientY, pts);
+    const moveHandler = (moveEvent: MouseEvent | TouchEvent): void => {
+      const clientX =
+        moveEvent instanceof MouseEvent
+          ? moveEvent.clientX
+          : moveEvent.touches[0].clientX;
+      const clientY =
+        moveEvent instanceof MouseEvent
+          ? moveEvent.clientY
+          : moveEvent.touches[0].clientY;
+      let newDeg = getDeg(clientX, clientY, pts);
       if (steps) {
         const valueRange = max - min;
         const stepSizeDegrees = degrees / valueRange;
@@ -103,10 +115,14 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
     const stopDrag = (): void => {
       document.removeEventListener("mousemove", moveHandler);
       document.removeEventListener("mouseup", stopDrag);
+      document.removeEventListener("touchmove", moveHandler);
+      document.removeEventListener("touchend", stopDrag);
     };
 
     document.addEventListener("mousemove", moveHandler);
     document.addEventListener("mouseup", stopDrag);
+    document.addEventListener("touchmove", moveHandler);
+    document.addEventListener("touchend", stopDrag);
   };
 
   const outerStyle = { width: size, height: size };
@@ -138,6 +154,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
           style={outerStyle}
           $margin={9}
           onMouseDown={startDrag}
+          onTouchStart={startDrag}
           ref={knobRef}
         >
           <StyledJupiterInnerKnob
