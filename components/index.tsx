@@ -1,4 +1,3 @@
-import { Grid } from "components/Grid";
 import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
 import JupiterHeader from "components/Jupiter/Header";
@@ -13,18 +12,18 @@ import Mixcloud from "components/Mixcloud";
 import MixInformation from "components/MixInformation";
 import Modal from "components/Modal";
 import Overlay from "components/Overlay";
-import { useMixcloud } from "contexts/mixcloud";
-import type { Category } from "db/types";
-import { useEffect, useState } from "react";
-import { copyToClipboard, mcKeyFormatter } from "utils/functions";
-
 import {
   StyledColumn,
   StyledGridWrapper,
   StyledItem,
   StyledItems,
-  StyledTitle,
-} from "./Grid/StyledGrid";
+} from "components/Styled";
+import { useMixcloud } from "contexts/mixcloud";
+import type { Category } from "db/types";
+import { useEffect, useState } from "react";
+import { copyToClipboard, mcKeyFormatter } from "utils/functions";
+
+import JupiterTitle from "./Jupiter/Title";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -108,7 +107,6 @@ const Jupiter = (): JSX.Element => {
 
   return (
     <>
-      <Grid />
       <Overlay />
       <Modal />
       {randomMcKey && (
@@ -130,7 +128,7 @@ const Jupiter = (): JSX.Element => {
           <JupiterPanel padding="12">
             <StyledGridWrapper>
               <StyledColumn>
-                <StyledTitle>Title 1</StyledTitle>
+                <JupiterTitle title="Select" />
                 <StyledItems>
                   <StyledItem>
                     <JupiterKnob
@@ -149,7 +147,7 @@ const Jupiter = (): JSX.Element => {
                 </StyledItems>
               </StyledColumn>
               <StyledColumn>
-                <StyledTitle>Title 2</StyledTitle>
+                <JupiterTitle title="Control" />
                 <StyledItems>
                   <StyledItem>
                     <JupiterButton
@@ -180,7 +178,7 @@ const Jupiter = (): JSX.Element => {
                 </StyledItems>
               </StyledColumn>
               <StyledColumn>
-                <StyledTitle>Title 3</StyledTitle>
+                <JupiterTitle title="Option" />
                 <StyledItems>
                   <StyledItem>
                     {" "}
