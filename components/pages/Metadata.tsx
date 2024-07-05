@@ -37,6 +37,12 @@ const Metadata = (): JSX.Element => {
         property="og:image"
         content="https://stef.fm/backgrounds/stefmasters-s.png"
       />
+      <meta
+        name="twitter:card"
+        content="https://stef.fm/backgrounds/stefmasters-s.png"
+      />
+      <meta name="twitter:site" content="@fm_stef" />
+      <meta name="twitter:creator" content="@fm_stef" />
       <title>{title}</title>
     </Head>
   );
