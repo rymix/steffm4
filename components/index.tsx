@@ -92,7 +92,7 @@ const Jupiter = (): JSX.Element => {
   };
 
   const handleShareClick = (): void => {
-    copyToClipboard(`http://localhost:3001/${sharableKey}`);
+    copyToClipboard(`https://stef.fm/${sharableKey}`);
     setTemporaryMessage("Sharable link copied to clipboard");
 
     ReactGA.event({
