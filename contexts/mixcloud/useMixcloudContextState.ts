@@ -172,10 +172,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
       if (windowWidth <= 440) {
         setDisplayLength(6);
-      } else if (windowWidth >= 1000) {
+      } else if (windowWidth >= 1200) {
         setDisplayLength(20);
       } else {
-        setDisplayLength(limit ? limit.displayLength : 20);
+        setDisplayLength(limit ? limit.displayLength : 18);
       }
     };
 
