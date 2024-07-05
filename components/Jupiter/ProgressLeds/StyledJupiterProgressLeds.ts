@@ -14,13 +14,13 @@ export const StyledJupiterProgressLed = styled.div<StyledJupiterProgressLedProps
     props.$on ? "rgba(51, 170, 255, 0.8)" : "rgba(0, 34, 68, 1)"};
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
-  height: 8px;
+  height: 10px;
   position: relative;
   transition:
     background-color 0.1s ease-in-out,
     box-shadow 0.1s ease-in-out,
     transform 0.1s ease-in-out;
-  width: 8px;
+  width: 10px;
 
   &::before {
     background-color: ${(props) =>

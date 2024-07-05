@@ -117,7 +117,7 @@ const Jupiter = (): JSX.Element => {
           </JupiterPanel>
           {isMobile && (
             <>
-              <JupiterPanel padding="0">
+              <JupiterPanel padding="6">
                 <JupiterScreen />
               </JupiterPanel>
               <JupiterPanel padding="0">
