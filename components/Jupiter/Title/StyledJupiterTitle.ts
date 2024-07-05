@@ -18,7 +18,7 @@ export const StyledJupiterTitle = styled.div`
   background: #1c1c1b;
   background-image: url(textures/dark-wall.png);
   border-radius: 4px;
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
   display: flex;
   flex-direction: row;
   justify-content: center;

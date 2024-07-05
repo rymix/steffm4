@@ -173,7 +173,7 @@ const Jupiter = (): JSX.Element => {
                         />
                         {isMounted && (
                           <JupiterSlider
-                            label="Volume"
+                            label="Vol"
                             volume={sliderValue}
                             onChange={handleSliderChange}
                           />
@@ -286,7 +286,7 @@ const Jupiter = (): JSX.Element => {
                         />
                         {isMounted && (
                           <JupiterSlider
-                            label="Volume"
+                            label="Vol"
                             volume={sliderValue}
                             onChange={handleSliderChange}
                           />
