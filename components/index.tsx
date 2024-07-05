@@ -119,7 +119,6 @@ const Jupiter = (): JSX.Element => {
     console.log("Jupiter mounted", mcKey);
 
     if (!mcKey) {
-      console.log("Going to load random mix");
       fetchRandomMcKey().then((randomKey) => setMcKey(randomKey));
     }
 
