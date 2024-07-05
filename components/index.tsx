@@ -50,7 +50,6 @@ const Jupiter = (): JSX.Element => {
       fetchRandomMcKeyByCategory,
     },
     filters: { categories = [], selectedCategory, updateSelectedCategory },
-    mix: { details },
     screen: { setTemporaryMessage },
     session: { isMobile, openModal },
     widget: { playing, setVolume, volume },
@@ -58,7 +57,6 @@ const Jupiter = (): JSX.Element => {
   const [sliderValue, setSliderValue] = useState(volume * 100);
   const [isMounted, setIsMounted] = useState(false);
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
-  const name = details?.name;
   const initialKnobValue = getCategoryIndex(categories, selectedCategory);
 
   const handleSliderChange = (value: number): void => {
@@ -67,7 +65,7 @@ const Jupiter = (): JSX.Element => {
   };
 
   const handleInfoClick = (): void => {
-    openModal(<MixInformation />, name);
+    openModal(<MixInformation />, null);
   };
 
   const handleShareClick = (): void => {

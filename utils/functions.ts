@@ -15,6 +15,26 @@ export const convertTimeToSeconds = (timeString: string): number => {
   return seconds;
 };
 
+export const convertTimeToHumanReadable = (
+  durationString: string,
+  delimiter: string = " ",
+): string => {
+  const parts = durationString.split(":");
+
+  if (parts.length === 2) {
+    // Format mm:ss
+    const [minutes, seconds] = parts;
+    return `${minutes}m${delimiter}${seconds}s`;
+  }
+  if (parts.length === 3) {
+    // Format hh:mm:ss
+    const [hours, minutes, seconds] = parts;
+    return `${hours}h${delimiter}${minutes}m${delimiter}${seconds}s`;
+  }
+  // If format is incorrect or unexpected, return the original string
+  return durationString;
+};
+
 export const veryShortName = (shortName: string): string => {
   const parts = shortName.split(" - ");
   return parts[1] ?? shortName;

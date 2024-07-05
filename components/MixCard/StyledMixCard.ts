@@ -1,29 +1,10 @@
 import styled from "styled-components";
 
-export const StyledMixCardWrapper = styled.div`
-  margin-top: 30px;
-  min-height: 200px;
-
-  color: black;
-  text-shadow:
-    0 0 2px rgba(255, 255, 255, 0.2),
-    0 0 4px rgba(255, 255, 255, 0.3);
-`;
+export const StyledMixCardWrapper = styled.div``;
 
 export const StyledMixCard = styled.div`
-  display: grid;
-  grid-template-columns: 2fr 4fr 1fr;
-  gap: 20px;
-  margin: auto;
-  max-width: 768px;
-  padding: 20px;
-  text-align: left;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-    text-align: center; // Center text in collapsed mode
-    align-items: center; // Center all items vertically
-  }
+  display: flex;
+  flex-direction: row;
 `;
 
 export const StyledCoverArt = styled.div`
@@ -32,7 +13,7 @@ export const StyledCoverArt = styled.div`
   justify-self: center;
 
   @media (max-width: 768px) {
-    justify-self: center; // Center the image in collapsed mode
+    width: 100px;
   }
 `;
 
@@ -40,20 +21,23 @@ export const StyledCoverArtImage = styled.img`
   border-radius: 50%;
   height: 140px;
   width: 140px;
+
+  @media (max-width: 768px) {
+    height: 80px;
+    width: 80px;
+  }
 `;
 
 export const StyledMixInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  flex: 1;
+  text-align: left;
 
   @media (max-width: 768px) {
-    align-items: center; // Center mix info in collapsed mode
   }
 `;
 
 export const StyledMixName = styled.div`
-  font-size: 20px;
+  font-size: 26px;
   font-weight: 700;
 `;
 
@@ -74,7 +58,7 @@ export const StyledTags = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: center; // Center tags in collapsed mode
+  justify-content: left;
 `;
 
 export const StyledTag = styled.div`
@@ -89,7 +73,6 @@ export const StyledNotes = styled.div`
   font-size: 16px;
 
   @media (max-width: 768px) {
-    text-align: center; // Center notes text in collapsed mode
   }
 `;
 
@@ -99,17 +82,17 @@ export const StyledCategoryTags = styled.div`
   gap: 14px;
 
   @media (max-width: 768px) {
-    align-items: center; // Center category and tags in collapsed mode
   }
 `;
 
 export const StyledSubDetails = styled.div`
+  color: rgba(0, 0, 0, 0.6);
   display: flex;
   flex-direction: row;
   font-size: 14px;
   gap: 10px;
+  margin: 10px 0;
 
   @media (max-width: 768px) {
-    justify-content: center; // Center sub details in collapsed mode
   }
 `;

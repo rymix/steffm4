@@ -11,6 +11,7 @@ import {
   DISPLAY_LENGTH,
 } from "utils/constants";
 import {
+  convertTimeToHumanReadable,
   convertTimeToSeconds,
   mcKeyFormatter,
   mcKeyUnformatter,
@@ -79,15 +80,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
   >();
 
   useEffect(() => {
-    const formatDuration = (durationString: string): string => {
-      return `${durationString.replace(":", "h!").replace(":", "m!")}s`;
-    };
-
     const mixMessage = [
       mixDetails?.name,
       mixDetails?.notes,
       mixDetails?.releaseDate,
-      mixDetails?.duration ? formatDuration(mixDetails.duration) : undefined,
+      mixDetails?.duration
+        ? convertTimeToHumanReadable(mixDetails.duration, "!")
+        : undefined,
     ]
       .filter(Boolean)
       .join(" - ");

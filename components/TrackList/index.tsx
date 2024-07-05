@@ -1,12 +1,12 @@
 import {
   StyledContentWrapper,
-  StyledCoverArtWrapper,
   StyledSectionNumberWrapper,
   StyledTrackArtist,
   StyledTrackCoverArt,
   StyledTrackCoverArtImage,
   StyledTrackItem,
   StyledTrackList,
+  StyledTrackListWrapper,
   StyledTrackPublisher,
   StyledTrackSectionNumber,
   StyledTrackStartTime,
@@ -14,6 +14,7 @@ import {
 } from "components/TrackList/StyledTrackList";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
+import { convertTimeToHumanReadable } from "utils/functions";
 
 export const TrackList: React.FC = () => {
   const {
@@ -25,11 +26,11 @@ export const TrackList: React.FC = () => {
   }
 
   return (
-    <StyledTrackList>
-      {mixDetails.tracks && mixDetails.tracks.length > 0 ? (
-        mixDetails.tracks.map((track) => (
-          <StyledTrackItem key={track.sectionNumber}>
-            <StyledCoverArtWrapper>
+    <StyledTrackListWrapper>
+      <StyledTrackList>
+        {mixDetails.tracks && mixDetails.tracks.length > 0 ? (
+          mixDetails.tracks.map((track) => (
+            <StyledTrackItem key={track.sectionNumber}>
               {track.coverArtLarge && (
                 <StyledTrackCoverArt>
                   <StyledTrackCoverArtImage
@@ -38,24 +39,26 @@ export const TrackList: React.FC = () => {
                   />
                 </StyledTrackCoverArt>
               )}
-            </StyledCoverArtWrapper>
-            <StyledContentWrapper>
-              <StyledTrackTitle>{track.trackName}</StyledTrackTitle>
-              <StyledTrackArtist>{track.artistName}</StyledTrackArtist>
-              <StyledTrackPublisher>{track.publisher}</StyledTrackPublisher>
-              <StyledTrackStartTime>{track.startTime}</StyledTrackStartTime>
-            </StyledContentWrapper>
-            <StyledSectionNumberWrapper>
-              <StyledTrackSectionNumber>
-                {track.sectionNumber}
-              </StyledTrackSectionNumber>
-            </StyledSectionNumberWrapper>
-          </StyledTrackItem>
-        ))
-      ) : (
-        <div>No tracks available.</div>
-      )}
-    </StyledTrackList>
+              <StyledContentWrapper>
+                <StyledTrackTitle>{track.trackName}</StyledTrackTitle>
+                <StyledTrackArtist>{track.artistName}</StyledTrackArtist>
+                <StyledTrackPublisher>{track.publisher}</StyledTrackPublisher>
+                <StyledTrackStartTime>
+                  {convertTimeToHumanReadable(track.startTime)}
+                </StyledTrackStartTime>
+              </StyledContentWrapper>
+              <StyledSectionNumberWrapper>
+                <StyledTrackSectionNumber>
+                  {track.sectionNumber}
+                </StyledTrackSectionNumber>
+              </StyledSectionNumberWrapper>
+            </StyledTrackItem>
+          ))
+        ) : (
+          <div>No tracks available.</div>
+        )}
+      </StyledTrackList>
+    </StyledTrackListWrapper>
   );
 };
 
