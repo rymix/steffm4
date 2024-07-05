@@ -13,8 +13,8 @@ export const StyledTrackItem = styled.div<StyledTrackItemProps>`
   flex-direction: row;
   margin: 24px 0;
 
-  ${({ $on }) =>
-    $on &&
+  ${(props) =>
+    props.$on &&
     `
       border-left: 12px solid #3af;
     `}

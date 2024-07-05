@@ -1,3 +1,3 @@
 export type StyledTrackItemProps = {
-  on?: boolean;
+  $on?: boolean;
 };
