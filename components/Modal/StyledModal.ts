@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const StyledModal = styled.div`
   background: #f6f4ef;
-  background-image: url(textures/rice-paper-2.png);
+  background-image: url("textures/rice-paper-2.png");
 
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

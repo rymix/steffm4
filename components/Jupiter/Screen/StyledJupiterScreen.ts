@@ -32,7 +32,7 @@ export const StyledJupiterScreen = styled.div<StyledJupiterScreenProps>`
   position: relative;
   text-shadow: 0 0 0.25em #3af;
 
-  &:before {
+  &::before {
     content: "${(props) => "~".repeat(props.$displayLength)}";
     display: block;
     opacity: 0.1;
