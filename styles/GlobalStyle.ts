@@ -45,6 +45,12 @@ const GlobalStyle = createGlobalStyle`
     overscroll-behavior: none;
     perspective: 100px;
   }
+
+  html, body {
+    overscroll-behavior: none;
+    overflow: hidden;
+
+  }
 `;
 
 export default GlobalStyle;
