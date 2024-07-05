@@ -30,7 +30,7 @@ export const StyledJupiterProgressLed = styled.div<StyledJupiterProgressLedProps
       `
         box-shadow: 0 0 6px 4px rgba(51, 170, 255, 0.2);
       `}
-    content: "sss";
+    content: "";
     height: 1px;
     left: 2px;
     position: absolute;
