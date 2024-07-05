@@ -1,3 +1,4 @@
+import type { StyledTrackItemProps } from "components/TrackList/types";
 import styled from "styled-components";
 
 export const StyledTrackListWrapper = styled.div`
@@ -6,10 +7,17 @@ export const StyledTrackListWrapper = styled.div`
 
 export const StyledTrackList = styled.div``;
 
-export const StyledTrackItem = styled.div`
+export const StyledTrackItem = styled.div<StyledTrackItemProps>`
+  border-left: 12px solid transparent;
   display: flex;
   flex-direction: row;
   margin: 24px 0;
+
+  ${({ $on }) =>
+    $on &&
+    `
+      border-left: 12px solid #3af;
+    `}
 `;
 
 export const StyledTrackCoverArt = styled.div`

@@ -19,6 +19,7 @@ import { convertTimeToHumanReadable } from "utils/functions";
 export const TrackList: React.FC = () => {
   const {
     mix: { details: mixDetails },
+    track: { sectionNumber },
   } = useMixcloud();
 
   if (!mixDetails || !mixDetails.tracks) {
@@ -30,7 +31,10 @@ export const TrackList: React.FC = () => {
       <StyledTrackList>
         {mixDetails.tracks && mixDetails.tracks.length > 0 ? (
           mixDetails.tracks.map((track) => (
-            <StyledTrackItem key={track.sectionNumber}>
+            <StyledTrackItem
+              key={track.sectionNumber}
+              $on={sectionNumber === track.sectionNumber}
+            >
               {track.coverArtLarge && (
                 <StyledTrackCoverArt>
                   <StyledTrackCoverArtImage
