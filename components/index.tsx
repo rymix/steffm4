@@ -1,3 +1,4 @@
+import About from "components/About";
 import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
 import JupiterHeader from "components/Jupiter/Header";
@@ -65,7 +66,7 @@ const Jupiter = (): JSX.Element => {
   };
 
   const handleAboutClick = (): void => {
-    openModal(<p>About</p>, null);
+    openModal(<About />, null);
   };
 
   const handleInfoClick = (): void => {
