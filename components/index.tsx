@@ -25,6 +25,7 @@ import Vignette from "components/Vignette";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
+import ReactGA from "react-ga4";
 import { copyToClipboard } from "utils/functions";
 
 const getCategoryIndex = (
@@ -63,25 +64,55 @@ const Jupiter = (): JSX.Element => {
   const handleSliderChange = (value: number): void => {
     setSliderValue(value);
     setVolume(value / 100);
+
+    ReactGA.event({
+      category: "Option",
+      action: "Slide",
+      label: "Change Volume",
+    });
   };
 
   const handleAboutClick = (): void => {
     openModal(<About />, null);
+
+    ReactGA.event({
+      category: "Option",
+      action: "Click",
+      label: "About",
+    });
   };
 
   const handleInfoClick = (): void => {
     openModal(<MixInformation />, null);
+
+    ReactGA.event({
+      category: "Option",
+      action: "Click",
+      label: "Mix Information",
+    });
   };
 
   const handleShareClick = (): void => {
     copyToClipboard(`http://localhost:3001/${sharableKey}`);
     setTemporaryMessage("Sharable link copied to clipboard");
+
+    ReactGA.event({
+      category: "Option",
+      action: "Click",
+      label: "Share Link",
+    });
   };
 
   const handleRandomClick = async (): Promise<void> => {
     const randomKey = await fetchRandomMcKeyByCategory(selectedCategory);
     if (randomKey) {
       handleLoad(randomKey);
+
+      ReactGA.event({
+        category: "Option",
+        action: "Click",
+        label: "Random Mix",
+      });
     }
   };
 

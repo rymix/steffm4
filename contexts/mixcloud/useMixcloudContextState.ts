@@ -4,6 +4,7 @@ import type { Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
 import type { ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import ReactGA from "react-ga4";
 import themes from "styles/themes";
 import {
   DEFAULT_MESSAGE,
@@ -252,6 +253,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const category =
       categories.find((cat) => cat.index === index)?.code || null;
     setSelectedCategory(category);
+
+    ReactGA.event({
+      category: "Select",
+      action: "Rotate Knob",
+      label: category || "All",
+    });
   };
 
   useEffect(() => {
@@ -286,16 +293,34 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const handlePlayPause = useCallback(() => {
     player?.togglePlay();
     setPlayerUpdated(false);
+
+    ReactGA.event({
+      category: "Control",
+      action: "Click",
+      label: "Play / Pause",
+    });
   }, [player, playerUpdated]);
 
   const handlePlay = useCallback(() => {
     player?.play();
     setPlayerUpdated(false);
+
+    ReactGA.event({
+      category: "Control",
+      action: "Click",
+      label: "Play",
+    });
   }, [player, playerUpdated]);
 
   const handlePause = useCallback(() => {
     player?.pause();
     setPlayerUpdated(false);
+
+    ReactGA.event({
+      category: "Control",
+      action: "Click",
+      label: "Stop",
+    });
   }, [player, playerUpdated]);
 
   /* Volume Controls */
@@ -349,6 +374,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const nextIndex = (mixIndex + 1) % mixes.length;
       handleLoad(mixes[nextIndex].mixcloudKey);
     }
+
+    ReactGA.event({
+      category: "Control",
+      action: "Click",
+      label: "Next",
+    });
   }, [mcKey, mixes]);
 
   const handlePrevious = useCallback(async () => {
@@ -363,6 +394,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
         mixes[mixIndex === 0 ? mixes.length - 1 : mixIndex - 1].mixcloudKey,
       );
     }
+
+    ReactGA.event({
+      category: "Control",
+      action: "Click",
+      label: "Previous",
+    });
   }, [mcKey, mixes]);
 
   /* Calculate Progress */
