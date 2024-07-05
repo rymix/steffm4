@@ -12,7 +12,7 @@ export const StyledJupiterProgressLedsWrapper = styled.div<StyledJupiterProgress
 export const StyledJupiterProgressLed = styled.div<StyledJupiterProgressLedProps>`
   background: ${(props) =>
     props.$on ? "rgba(51, 170, 255, 0.8)" : "rgba(0, 34, 68, 1)"};
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 2px solid rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   height: 10px;
   position: relative;
