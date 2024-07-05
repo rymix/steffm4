@@ -64,6 +64,10 @@ const Jupiter = (): JSX.Element => {
     setVolume(value / 100);
   };
 
+  const handleAboutClick = (): void => {
+    openModal(<p>About</p>, null);
+  };
+
   const handleInfoClick = (): void => {
     openModal(<MixInformation />, null);
   };
@@ -148,6 +152,11 @@ const Jupiter = (): JSX.Element => {
                           label="Next"
                           onClick={handleNext}
                         />
+                        <JupiterButton
+                          color="blue"
+                          label="Rand"
+                          onClick={handleRandomClick}
+                        />
                       </StyledItem>
                     </StyledItems>
                   </StyledColumn>
@@ -156,18 +165,18 @@ const Jupiter = (): JSX.Element => {
                       <StyledItem>
                         <JupiterButton
                           color="orange"
+                          label="Share"
+                          onClick={handleShareClick}
+                        />
+                        <JupiterButton
+                          color="orange"
                           label="Info"
                           onClick={handleInfoClick}
                         />
                         <JupiterButton
                           color="orange"
-                          label="Share"
-                          onClick={handleShareClick}
-                        />
-                        <JupiterButton
-                          color="blue"
-                          label="Rand"
-                          onClick={handleRandomClick}
+                          label="About"
+                          onClick={handleAboutClick}
                         />
                         {isMounted && (
                           <JupiterSlider
@@ -258,6 +267,11 @@ const Jupiter = (): JSX.Element => {
                           label="Next"
                           onClick={handleNext}
                         />
+                        <JupiterButton
+                          color="blue"
+                          label="Rand"
+                          onClick={handleRandomClick}
+                        />
                       </StyledItem>
                     </StyledItems>
                   </StyledColumn>
@@ -267,21 +281,21 @@ const Jupiter = (): JSX.Element => {
                       <StyledItem>
                         <JupiterButton
                           color="orange"
+                          label="Share"
+                          onClick={handleShareClick}
+                        />
+                        <JupiterButton
+                          color="orange"
                           label="Info"
                           onClick={handleInfoClick}
                         />
                         <JupiterButton
                           color="orange"
-                          label="Share"
-                          onClick={handleShareClick}
+                          label="About"
+                          onClick={handleAboutClick}
                         />
                       </StyledItem>
                       <StyledItem>
-                        <JupiterButton
-                          color="blue"
-                          label="Rand"
-                          onClick={handleRandomClick}
-                        />
                         {isMounted && (
                           <JupiterSlider
                             label="Vol"

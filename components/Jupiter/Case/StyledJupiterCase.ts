@@ -2,15 +2,15 @@ import styled from "styled-components";
 
 export const StyledJupiterCase = styled.div`
   margin: 20px;
-  max-width: 960px;
-  min-width: 960px;
-  width: 960px;
+  max-width: 1100px;
+  min-width: 1100px;
+  width: 1100px;
   z-index: 2;
 
-  @media (max-width: 1000px) {
-    max-width: 700px;
-    min-width: 700px;
-    width: 700px;
+  @media (max-width: 1200px) {
+    max-width: 720px;
+    min-width: 720px;
+    width: 720px;
   }
 
   @media (max-width: 768px) {
