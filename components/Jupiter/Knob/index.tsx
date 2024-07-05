@@ -78,6 +78,10 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
 
     if (!knobRef?.current) return;
 
+    const preventDefault = (event: TouchEvent): void => {
+      event.preventDefault();
+    };
+
     const knob = knobRef.current.getBoundingClientRect();
     const pts = {
       x: knob.left + knob.width / 2,
@@ -120,12 +124,14 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
       document.removeEventListener("mouseup", stopDrag);
       document.removeEventListener("touchmove", moveHandler);
       document.removeEventListener("touchend", stopDrag);
+      document.removeEventListener("touchmove", preventDefault);
     };
 
     document.addEventListener("mousemove", moveHandler);
     document.addEventListener("mouseup", stopDrag);
     document.addEventListener("touchmove", moveHandler, { passive: false });
     document.addEventListener("touchend", stopDrag, { passive: false });
+    document.addEventListener("touchmove", preventDefault, { passive: false });
   };
 
   const outerStyle = { width: size, height: size };
