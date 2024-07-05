@@ -1,10 +1,12 @@
 import Burger from "components/BurgerMenu/Burger";
 import Menu from "components/BurgerMenu/Menu";
-import { useSession } from "contexts/session";
+import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 
 export const BurgerMenu: React.FC = () => {
-  const { burgerMenuRef } = useSession();
+  const {
+    session: { burgerMenuRef },
+  } = useMixcloud();
 
   return (
     <div ref={burgerMenuRef}>

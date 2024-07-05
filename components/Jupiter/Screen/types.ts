@@ -6,6 +6,10 @@ export type JupiterLabelProps = {
   textColor?: string;
 };
 
+export type StyledJupiterScreenWrapperProps = {
+  $displayLength: number;
+};
+
 export type StyledJupiterLabelProps = {
   $labelPosition?: string;
   $paddingBottom?: number;

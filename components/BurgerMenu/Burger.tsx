@@ -1,8 +1,10 @@
 import { StyledBurger } from "components/BurgerMenu/StyledBurgerMenu";
-import { useSession } from "contexts/session";
+import { useMixcloud } from "contexts/mixcloud";
 
 const Burger: React.FC = () => {
-  const { menuOpen, setMenuOpen } = useSession();
+  const {
+    session: { menuOpen, setMenuOpen },
+  } = useMixcloud();
 
   return (
     <StyledBurger $open={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>

@@ -11,7 +11,7 @@ export const StyledJupiterPanelWrapper = styled.div<StyledJupiterPanelWrapperPro
   background: ${(props) =>
     props.$background === "panel" ? "#1c1c1b" : "none"};
   background-image: ${(props) =>
-    props.$background === "panel" ? `url(textures/white-sand.png)` : "none"};
+    props.$background === "panel" ? `url(textures/dark-wall.png)` : "none"};
   overflow: hidden;
 
   ${(props) =>
@@ -38,7 +38,7 @@ export const StyledJupiterPanel = styled.div<StyledJupiterPanelProps>`
     props.$background === "rear" &&
     `
     transform: rotateX(65deg);
-    transform-origin: 0 56px;
+    transform-origin: 0 54px;
   `}
 
   ${(props) =>

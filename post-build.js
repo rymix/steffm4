@@ -4,7 +4,7 @@ const path = require("path");
 const staticSrcPath = path.join(__dirname, ".next/static");
 const staticDestPath = path.join(
   __dirname,
-  ".next/standalone/steffm3/steffm3/.next/static",
+  ".next/standalone/steffm4/steffm4/.next/static",
 );
 
 fs.copy(staticSrcPath, staticDestPath)
@@ -14,7 +14,7 @@ fs.copy(staticSrcPath, staticDestPath)
 const publicSrcPath = path.join(__dirname, "public");
 const publicDestPath = path.join(
   __dirname,
-  ".next/standalone/steffm3/steffm3/public",
+  ".next/standalone/steffm4/steffm4/public",
 );
 
 fs.copy(publicSrcPath, publicDestPath)

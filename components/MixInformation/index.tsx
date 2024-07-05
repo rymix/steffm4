@@ -4,6 +4,8 @@ import TrackList from "components/TrackList";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 
+import { StyledTrackListTitle } from "./StyledMixInformation";
+
 export const MixInformation: React.FC = () => {
   const {
     mix: { details: mixDetails },
@@ -16,6 +18,7 @@ export const MixInformation: React.FC = () => {
   return (
     <>
       <MixCard category />
+      <StyledTrackListTitle />
       <TrackList />
     </>
   );

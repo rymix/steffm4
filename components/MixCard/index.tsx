@@ -15,6 +15,7 @@ import type { MixCardProps } from "components/MixCard/types";
 import Socials from "components/Socials";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
+import { convertTimeToHumanReadable } from "utils/functions";
 
 export const MixCard: React.FC<MixCardProps> = ({
   socials = false,
@@ -40,10 +41,16 @@ export const MixCard: React.FC<MixCardProps> = ({
         )}
         <StyledMixInfo>
           <StyledMixName>{name}</StyledMixName>
-          {category && <StyledCategoryName>{categoryName}</StyledCategoryName>}
+          {category && (
+            <StyledCategoryName>
+              {categoryName === "All" ? "All Categories" : categoryName}
+            </StyledCategoryName>
+          )}
           <StyledSubDetails>
             <StyledReleaseDate>{releaseDate}</StyledReleaseDate>
-            <StyledDuration>{duration}</StyledDuration>
+            <StyledDuration>
+              {convertTimeToHumanReadable(duration)}
+            </StyledDuration>
           </StyledSubDetails>
           <StyledNotes>{notes}</StyledNotes>
         </StyledMixInfo>

@@ -1,8 +1,10 @@
 import { StyledOverlay } from "components/Overlay/StyledOverlay";
-import { useSession } from "contexts/session";
+import { useMixcloud } from "contexts/mixcloud";
 
 const Overlay: React.FC = () => {
-  const { menuOpen, modalOpen } = useSession();
+  const {
+    session: { menuOpen, modalOpen },
+  } = useMixcloud();
 
   return <StyledOverlay className={modalOpen || menuOpen ? "visible" : ""} />;
 };

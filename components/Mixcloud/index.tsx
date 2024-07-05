@@ -1,4 +1,3 @@
-import Debug from "components/Mixcloud/Debug";
 import { StyledMixcloudWidget } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
@@ -12,7 +11,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setMcKey,
     controls: { handleNext },
     mix: {
-      setDuration,
       setProgress: setMixProgress,
       setProgressPercent: setMixProgressPercent,
       setShowUnavailable,
@@ -95,16 +93,9 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
         setPlaying(false);
       });
 
-      widget.getDuration().then((dur: number) => {
+      widget.getDuration().then(() => {
         setLoaded(false);
-        if (!dur) {
-          console.error("licence issue");
-          setShowUnavailable(true);
-          setPlaying(false);
-          return;
-        }
         setLoaded(true);
-        setDuration(dur);
         setShowUnavailable(false);
         timer.current = setTimeout(() => {
           if (autoPlay === true) {
@@ -137,8 +128,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
             src={widgetUrl}
             frameBorder="0"
           />
-          <Debug />
-
           {children}
         </>
       )}

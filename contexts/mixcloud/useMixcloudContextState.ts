@@ -1,10 +1,19 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 import type { MixcloudContextState } from "contexts/mixcloud/types";
-import type { Category, Mix } from "db/types";
+import type { Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
+import type { ReactNode } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { DEFAULTVOLUME } from "utils/constants";
+import ReactGA from "react-ga4";
+import themes from "styles/themes";
 import {
+  DEFAULT_MESSAGE,
+  DEFAULT_VOLUME,
+  DISPLAY_LENGTH,
+} from "utils/constants";
+import {
+  convertTimeToHumanReadable,
+  convertTimeToSeconds,
   mcKeyFormatter,
   mcKeyUnformatter,
   mcKeyUrlFormatter,
@@ -39,13 +48,175 @@ const useMixcloudContextState = (): MixcloudContextState => {
   >("selectedCategory", null);
   const [selectedTag, setSelectedTag] = useState("");
   const [showUnavailable, setShowUnavailable] = useState(false);
+  const [trackDetails, setTrackDetails] = useState<Track | undefined>();
   const [trackProgress, setTrackProgress] = useState(0);
   const [trackProgressPercent, setTrackProgressPercent] = useState(0);
   const [trackSectionNumber, setTrackSectionNumber] = useState(0);
   const [volume, setVolume] = usePersistedState<number>(
     "volume",
-    DEFAULTVOLUME,
+    DEFAULT_VOLUME,
   );
+
+  /* Session */
+  const [displayLength, setDisplayLength] = useState(DISPLAY_LENGTH);
+  const burgerMenuRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [modalContent, setModalContent] = useState<ReactNode>(null);
+  const [modalTitle, setModalTitle] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [themeName, setThemeName] = useState("defaultTheme");
+  const [isMobile, setIsMobile] = useState(false);
+  const [secondsRemaining, setSecondsRemaining] = useState<number | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const theme = themes[themeName] || themes.defaultTheme;
+
+  /* Screen */
+  const [holdingMessage, setHoldingMessage] = useState<string | undefined>(
+    DEFAULT_MESSAGE,
+  );
+  const [temporaryMessage, setTemporaryMessage] = useState<
+    string | undefined
+  >();
+
+  useEffect(() => {
+    const mixMessage = [
+      mixDetails?.name,
+      mixDetails?.notes,
+      mixDetails?.releaseDate,
+      mixDetails?.duration
+        ? convertTimeToHumanReadable(mixDetails.duration, "!")
+        : undefined,
+    ]
+      .filter(Boolean)
+      .join(" - ");
+    setHoldingMessage(mixMessage);
+  }, [mixDetails?.name]);
+
+  useEffect(() => {
+    const trackMessage = [
+      trackDetails?.trackName,
+      trackDetails?.artistName,
+      trackDetails?.remixArtistName,
+      trackDetails?.publisher,
+    ]
+      .filter(Boolean)
+      .join(" - ");
+    setTemporaryMessage(trackMessage);
+  }, [trackDetails?.trackName]);
+
+  /* Timer for Modal auto-close */
+  const startTimer = (timerDuration: number): void => {
+    setSecondsRemaining(timerDuration);
+    clearTimeout(timerRef.current || 0);
+    clearInterval(intervalRef.current || 0);
+
+    timerRef.current = setTimeout(() => {
+      setModalOpen(false);
+      setSecondsRemaining(null);
+      clearInterval(intervalRef.current || 0);
+      timerRef.current = null;
+    }, timerDuration * 1000);
+
+    intervalRef.current = setInterval(() => {
+      setSecondsRemaining((prev) => {
+        if (prev === null || prev <= 1) {
+          clearInterval(intervalRef.current || 0);
+          return null;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+  };
+
+  const stopTimer = (): void => {
+    clearTimeout(timerRef.current || 0);
+    clearInterval(intervalRef.current || 0);
+    timerRef.current = null;
+    intervalRef.current = null;
+    setSecondsRemaining(null);
+    setModalOpen(false);
+  };
+
+  const openModal = useCallback(
+    (content: ReactNode, title?: string | null, seconds?: number): void => {
+      setModalContent(content);
+      setModalTitle(title ?? null);
+      setModalOpen(true);
+      if (seconds === undefined) {
+        setSecondsRemaining(null);
+      } else {
+        startTimer(seconds);
+      }
+    },
+    [],
+  );
+
+  /* Set isMobile if small screen */
+  useEffect(() => {
+    const screenLimits = [
+      { width: 440, displayLength: 6 },
+      { width: 550, displayLength: 9 },
+      { width: 640, displayLength: 12 },
+      { width: 768, displayLength: 15 },
+      { width: 1000, displayLength: 18 },
+    ];
+
+    const handleResize = (): void => {
+      const windowWidth = window.innerWidth;
+      setIsMobile(windowWidth <= 768);
+
+      const limit = screenLimits.find(
+        (localLimit) => windowWidth <= localLimit.width,
+      );
+
+      if (windowWidth <= 440) {
+        setDisplayLength(6);
+      } else if (windowWidth >= 1200) {
+        setDisplayLength(20);
+      } else {
+        setDisplayLength(limit ? limit.displayLength : 18);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Call handleResize initially to set the state based on the initial window size
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  /* Cancel timers and close Modals and Menus */
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent): void => {
+      const target = event.target as Node;
+
+      if (burgerMenuRef.current && !burgerMenuRef.current.contains(target)) {
+        setMenuOpen(false);
+      }
+
+      if (modalRef.current && !modalRef.current.contains(target)) {
+        stopTimer();
+      }
+    };
+
+    const handleEscapePress = (event: KeyboardEvent): void => {
+      if (event.key === "Escape") {
+        stopTimer();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscapePress);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscapePress);
+    };
+  }, [burgerMenuRef, modalRef]);
 
   /* Helpers */
   const mcUrl = mcKeyUrlFormatter(mcKey);
@@ -82,6 +253,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const category =
       categories.find((cat) => cat.index === index)?.code || null;
     setSelectedCategory(category);
+
+    ReactGA.event({
+      category: "Select",
+      action: "Rotate Knob",
+      label: category || "All",
+    });
   };
 
   useEffect(() => {
@@ -116,16 +293,34 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const handlePlayPause = useCallback(() => {
     player?.togglePlay();
     setPlayerUpdated(false);
+
+    ReactGA.event({
+      category: "Control",
+      action: "Click",
+      label: "Play / Pause",
+    });
   }, [player, playerUpdated]);
 
   const handlePlay = useCallback(() => {
     player?.play();
     setPlayerUpdated(false);
+
+    ReactGA.event({
+      category: "Control",
+      action: "Click",
+      label: "Play",
+    });
   }, [player, playerUpdated]);
 
   const handlePause = useCallback(() => {
     player?.pause();
     setPlayerUpdated(false);
+
+    ReactGA.event({
+      category: "Control",
+      action: "Click",
+      label: "Stop",
+    });
   }, [player, playerUpdated]);
 
   /* Volume Controls */
@@ -134,6 +329,32 @@ const useMixcloudContextState = (): MixcloudContextState => {
       player.setVolume(volume);
     }
   }, [player, volume]);
+
+  useEffect(() => {
+    if (volume === 0) {
+      const minVolumeText = [
+        "It's oh so quiet",
+        "The Sound of Silence",
+        "Silent night, holy night",
+        "Don't Stop the Music",
+        "Enjoy the Silence",
+        "So Quiet In Here",
+      ];
+      const randomIndex = Math.floor(Math.random() * minVolumeText.length);
+      setTemporaryMessage(minVolumeText[randomIndex]);
+    } else if (volume === 1) {
+      const maxVolumeText = [
+        "Up to 11",
+        "Let's get loud, let's get loud",
+        "Pump up the volume",
+        "I Love It Loud",
+        "Shout, Shout, Let It All Out",
+        "Bring the Noise",
+      ];
+      const randomIndex = Math.floor(Math.random() * maxVolumeText.length);
+      setTemporaryMessage(maxVolumeText[randomIndex]);
+    }
+  }, [volume]);
 
   /* Load Controls */
   const handleLoad = async (newMcKey?: string): Promise<void> => {
@@ -153,6 +374,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const nextIndex = (mixIndex + 1) % mixes.length;
       handleLoad(mixes[nextIndex].mixcloudKey);
     }
+
+    ReactGA.event({
+      category: "Control",
+      action: "Click",
+      label: "Next",
+    });
   }, [mcKey, mixes]);
 
   const handlePrevious = useCallback(async () => {
@@ -167,6 +394,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
         mixes[mixIndex === 0 ? mixes.length - 1 : mixIndex - 1].mixcloudKey,
       );
     }
+
+    ReactGA.event({
+      category: "Control",
+      action: "Click",
+      label: "Previous",
+    });
   }, [mcKey, mixes]);
 
   /* Calculate Progress */
@@ -187,24 +420,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
     if (!mixDetails || !mixDetails.tracks || mixDetails.tracks.length === 0) {
       setTrackProgress(0);
       setTrackProgressPercent(0);
+      setDuration(0);
       return;
     }
+
+    const calculateMixProgress = (): void => {
+      setDuration(convertTimeToSeconds(mixDetails.duration));
+    };
 
     const calculateTrackProgress = (): void => {
       const currentMixProgressSeconds = mixProgress;
 
-      const parseTimeToSeconds = (time: string): number => {
-        const parts = time.split(":").map(Number).reverse();
-        let seconds = 0;
-        if (parts.length > 0) seconds += parts[0]; // seconds
-        if (parts.length > 1) seconds += parts[1] * 60; // minutes
-        if (parts.length > 2) seconds += parts[2] * 3600; // hours
-        return seconds;
-      };
-
       const tracks = mixDetails.tracks.map((track) => ({
         ...track,
-        startTimeSeconds: parseTimeToSeconds(track.startTime),
+        startTimeSeconds: convertTimeToSeconds(track.startTime),
       }));
 
       let currentTrackIndex = tracks.findIndex((track, index) => {
@@ -236,11 +465,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
         setTrackProgress(trackProgressSeconds);
         setTrackProgressPercent(localTrackProgressPercent);
         setTrackSectionNumber(tracks[currentTrackIndex].sectionNumber);
+        setTrackDetails(tracks[currentTrackIndex]);
         setLastTrackUpdateTime(currentTime);
       }
     };
 
     calculateTrackProgress();
+    calculateMixProgress();
   }, [mixProgress, mixDetails, duration, lastTrackUpdateTime]);
 
   /* Fetch Categories */
@@ -301,7 +532,35 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setShowUnavailable,
       showUnavailable,
     },
+    screen: {
+      holdingMessage,
+      setHoldingMessage,
+      setTemporaryMessage,
+      temporaryMessage,
+    },
+    session: {
+      burgerMenuRef,
+      displayLength,
+      isMobile,
+      menuOpen,
+      modalContent,
+      modalOpen,
+      modalRef,
+      modalTitle,
+      openModal,
+      secondsRemaining,
+      setDisplayLength,
+      setIsMobile,
+      setMenuOpen,
+      setModalContent,
+      setModalOpen,
+      setModalTitle,
+      setThemeName,
+      theme,
+      themeName,
+    },
     track: {
+      details: trackDetails,
       progress: trackProgress,
       progressPercent: trackProgressPercent,
       sectionNumber: trackSectionNumber,

@@ -4,10 +4,7 @@ import {
   StyledJupiterSliderWrapper,
 } from "components/Jupiter/Slider/StyledJupiterSlider";
 import type { JupiterSliderProps } from "components/Jupiter/Slider/types";
-import JupiterHandle from "public/svg/slider-handle.svg";
 import React from "react";
-
-console.log("JupiterHandle", JupiterHandle.src);
 
 const JupiterSlider: React.FC<JupiterSliderProps> = ({
   onChange,
@@ -16,6 +13,7 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
   labelPosition = "above",
   lineColor = "white",
   textColor = "white",
+  volume = 70,
 }) => {
   const handleChange = (event: Event, value: number | number[]): void => {
     if (onChange) {
@@ -42,7 +40,7 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
         <StyledJupiterSlider
           aria-label="Volume"
           orientation={orientation}
-          defaultValue={70}
+          value={volume}
           min={0}
           max={100}
           $lineColor={lineColor}

@@ -5,6 +5,7 @@ export type JupiterSliderProps = {
   labelPosition?: "above" | "below";
   lineColor?: string;
   textColor?: string;
+  volume: number;
 };
 
 export type StyledJupiterSliderProps = {

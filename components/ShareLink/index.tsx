@@ -1,12 +1,13 @@
 import { StyledShareLink } from "components/ShareLink/StyledShareLink";
 import { useMixcloud } from "contexts/mixcloud";
-import { useSession } from "contexts/session";
 import React from "react";
 import { copyToClipboard } from "utils/functions";
 
 export const ShareLink: React.FC = () => {
-  const { mcKey } = useMixcloud();
-  const { openModal } = useSession();
+  const {
+    mcKey,
+    session: { openModal },
+  } = useMixcloud();
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
 
   const handleClick = (): void => {

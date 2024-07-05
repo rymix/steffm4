@@ -2,68 +2,124 @@ import {
   StyledJupiterScreen,
   StyledJupiterScreenWrapper,
 } from "components/Jupiter/Screen/StyledJupiterScreen";
-import { useSession } from "contexts/session";
-import { useEffect, useState } from "react";
-
-const displayLength = 15;
-const padding = "!".repeat(displayLength);
+import { useMixcloud } from "contexts/mixcloud";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { SCREEN_SPEED_HOLDING, SCREEN_SPEED_TEMPORARY } from "utils/constants";
 
 const JupiterScreen: React.FC = () => {
-  const { holdingMessage, temporaryMessage, setTemporaryMessage } =
-    useSession();
-  const [message, setMessage] = useState(holdingMessage);
-  const [position, setPosition] = useState(0);
+  const {
+    screen: { holdingMessage, temporaryMessage },
+    session: { displayLength },
+  } = useMixcloud();
 
-  const fixedWidthMessage = message.replaceAll(" ", "!");
-  const paddedMessage = padding + fixedWidthMessage + padding;
+  const messageFormatter = (message: string | undefined): string => {
+    if (!message) return "";
 
-  const updateInterval = (): number => {
-    return temporaryMessage ? 100 : 250;
+    const padding = "!".repeat(displayLength);
+    const formattedMessage = message
+      .replaceAll(" ", "!")
+      .replaceAll("...", " - ")
+      .replaceAll(".", "")
+      .replaceAll(":", "-");
+    return padding + formattedMessage + padding;
   };
 
-  useEffect(() => {
-    setPosition(0);
-    if (temporaryMessage) {
-      setMessage(temporaryMessage);
-    } else {
-      setMessage(holdingMessage);
+  const [, setHoldingMessageIsPlaying] = useState<boolean>(false);
+  const [temporaryMessageIsPlaying, setTemporaryMessageIsPlaying] =
+    useState<boolean>(false);
+  const [previousHoldingMessage, setPreviousHoldingMessage] = useState<
+    string | undefined
+  >(holdingMessage);
+  const [previousTemporaryMessage, setPreviousTemporaryMessage] = useState<
+    string | undefined
+  >(temporaryMessage);
+  const [screenMessage, setScreenMessage] = useState<string | undefined>(
+    messageFormatter(holdingMessage),
+  );
+  const [truncatedMessage, setTruncatedMessage] = useState<
+    string | undefined
+  >();
+  const screenIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [screenPosition, setScreenPosition] = useState(0);
+
+  const clearExistingScreenInterval = useCallback((): void => {
+    if (screenIntervalRef.current) {
+      clearInterval(screenIntervalRef.current);
+      screenIntervalRef.current = null;
     }
-  }, [temporaryMessage, holdingMessage]);
+  }, []);
+
+  const startScreenInterval = useCallback(
+    (message: string | undefined, interval: number) => {
+      clearExistingScreenInterval();
+      screenIntervalRef.current = setInterval(() => {
+        setScreenPosition((prevPosition) => {
+          const newPosition = prevPosition + 1;
+
+          if (!message) return prevPosition;
+
+          if (newPosition === message.length + displayLength) {
+            // eslint-disable-next-line no-use-before-define
+            startHoldingMessage();
+          }
+
+          return (
+            newPosition % (message?.length ? message.length + displayLength : 0)
+          );
+        });
+      }, interval);
+    },
+    [clearExistingScreenInterval],
+  );
+
+  const startHoldingMessage = (): void => {
+    setPreviousHoldingMessage(holdingMessage);
+    setScreenMessage(messageFormatter(holdingMessage));
+    setHoldingMessageIsPlaying(true);
+    setTemporaryMessageIsPlaying(false);
+    setScreenPosition(0);
+    startScreenInterval(holdingMessage, SCREEN_SPEED_HOLDING);
+  };
+
+  const startTemporaryMessage = (): void => {
+    setPreviousTemporaryMessage(temporaryMessage);
+    setScreenMessage(messageFormatter(temporaryMessage));
+    setTemporaryMessageIsPlaying(true);
+    setHoldingMessageIsPlaying(false);
+    setScreenPosition(0);
+    startScreenInterval(temporaryMessage, SCREEN_SPEED_TEMPORARY);
+  };
 
   useEffect(() => {
-    const intervalSpeed = updateInterval();
-    const interval = setInterval(() => {
-      setPosition((prevPosition) => {
-        const newPosition = prevPosition + 1;
-        if (
-          temporaryMessage &&
-          newPosition >= fixedWidthMessage.length + displayLength
-        ) {
-          setTemporaryMessage(""); // Clear the temporary message
-          setMessage(holdingMessage);
-          return 0;
-        }
-        return newPosition % (fixedWidthMessage.length + displayLength);
-      });
-    }, intervalSpeed);
+    startHoldingMessage();
+  }, [displayLength]);
 
-    return () => clearInterval(interval);
-  }, [fixedWidthMessage.length, temporaryMessage, holdingMessage]);
+  useEffect(() => {
+    if (holdingMessage !== previousHoldingMessage) {
+      startHoldingMessage();
+    }
 
-  const messageDisplaySegment = (): string => {
-    const startPosition = position;
-    const endPosition = startPosition + displayLength;
-    return paddedMessage.slice(startPosition, endPosition);
-  };
+    if (temporaryMessage !== previousTemporaryMessage) {
+      startTemporaryMessage();
+    }
+  }, [holdingMessage, temporaryMessage, temporaryMessageIsPlaying]);
+
+  useEffect(() => {
+    setTruncatedMessage(
+      screenMessage?.slice(screenPosition, screenPosition + displayLength),
+    );
+  }, [screenPosition, screenMessage]);
+
+  useEffect(() => {
+    startScreenInterval(holdingMessage, SCREEN_SPEED_HOLDING);
+  }, []);
 
   return (
-    <>
-      <StyledJupiterScreenWrapper>
-        <StyledJupiterScreen $displayLength={displayLength}>
-          {messageDisplaySegment()}
-        </StyledJupiterScreen>
-      </StyledJupiterScreenWrapper>
-    </>
+    <StyledJupiterScreenWrapper $displayLength={displayLength}>
+      <StyledJupiterScreen $displayLength={displayLength}>
+        {truncatedMessage}
+      </StyledJupiterScreen>
+    </StyledJupiterScreenWrapper>
   );
 };
 

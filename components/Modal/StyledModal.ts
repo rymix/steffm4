@@ -2,7 +2,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import styled from "styled-components";
 
 export const StyledModal = styled.div`
-  background: white;
+  background: #f6f4ef;
+  background-image: url("textures/rice-paper-2.png");
+
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;

@@ -15,14 +15,13 @@ export const StyledJupiterKnobWrapper = styled.div`
   font-size: 14px;
   text-transform: uppercase;
   height: 128px;
-  width: 54px;
+  width: 194px;
+  padding-top: 20px;
 `;
 
 export const StyledJupiterOuterKnobWrapper = styled.div<StyledKnobWrapperProps>`
   display: flex;
   position: relative;
-  width: 100%;
-  height: 100%;
 `;
 
 export const StyledJupiterOuterKnob = styled.div.attrs<StyledOuterKnobProps>(
@@ -42,15 +41,7 @@ export const StyledJupiterOuterKnob = styled.div.attrs<StyledOuterKnobProps>(
 `;
 
 export const StyledJupiterRadialLabels = styled.div<StyledKnobRadialLabels>`
-  ${({ $file }) =>
-    $file &&
-    `
-    background-image: url("2images/jupiter/${$file}.png");
-    background-position: -20px -3px;
-    background-repeat: no-repeat;
-    background-size: contain;
-    ztransform: scale(1);
-  `}
+  color: rgba(255, 255, 255, 0.8)
   width: 148.5px;
   height: 84px;
   overflow: visible;
@@ -86,7 +77,7 @@ export const StyledJupiterGrip = styled.div`
 `;
 
 export const StyledJupiterKnobMarker = styled.div<StyledJupiterKnobMarkerProps>`
-  color: white;
+  color: rgba(255, 255, 255, 0.8);
   position: absolute;
   left: ${({ $x }) => $x}px;
   top: ${({ $y }) => $y}px;

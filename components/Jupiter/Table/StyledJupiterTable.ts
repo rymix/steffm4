@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledJupiterTable = styled.div`
-  /* align-items: center;
+  align-items: center;
   background: green;
   display: flex;
   height: 100vh;
@@ -12,5 +12,22 @@ export const StyledJupiterTable = styled.div`
   background-image: url("table/wood-pattern6.png");
   background-size: 600px;
 
-  z-index: -999; */
+  z-index: -999;
+
+  &::after {
+    background-color: rgba(255, 255, 255, 0);
+    background-image: radial-gradient(
+      circle farthest-side at 50% 70%,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+  }
 `;
