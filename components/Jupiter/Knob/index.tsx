@@ -78,6 +78,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
 
     if (!knobRef?.current) return;
 
+    // eslint-disable-next-line unicorn/consistent-function-scoping
     const preventDefault = (event: TouchEvent): void => {
       event.preventDefault();
     };
