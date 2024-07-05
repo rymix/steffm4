@@ -72,7 +72,10 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
       | React.MouseEvent<HTMLDivElement>
       | React.TouchEvent<HTMLDivElement>,
   ): void => {
-    dragEvent.preventDefault();
+    if (dragEvent instanceof MouseEvent) {
+      dragEvent.preventDefault();
+    }
+
     if (!knobRef?.current) return;
 
     const knob = knobRef.current.getBoundingClientRect();
@@ -121,8 +124,8 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
 
     document.addEventListener("mousemove", moveHandler);
     document.addEventListener("mouseup", stopDrag);
-    document.addEventListener("touchmove", moveHandler);
-    document.addEventListener("touchend", stopDrag);
+    document.addEventListener("touchmove", moveHandler, { passive: false });
+    document.addEventListener("touchend", stopDrag, { passive: false });
   };
 
   const outerStyle = { width: size, height: size };

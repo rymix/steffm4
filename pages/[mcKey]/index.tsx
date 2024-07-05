@@ -1,6 +1,8 @@
 import { useMixcloud } from "contexts/mixcloud";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import ReactGA from "react-ga4";
+import { GOOGLE_TRACKING_ID } from "utils/constants";
 
 const DynamicRoute = (): null => {
   const router = useRouter();
@@ -22,6 +24,20 @@ const DynamicRoute = (): null => {
         .replace("/")
         .then(() => {
           console.log("Redirected to home page", cleanedMcKey);
+
+          // Initialize GA4 if not already initialized
+          if (!ReactGA.isInitialized) {
+            ReactGA.initialize(GOOGLE_TRACKING_ID);
+          }
+
+          // Send GA4 event
+          ReactGA.event({
+            category: "User",
+            action: "Dynamic Route Redirect",
+            label: cleanedMcKey,
+          });
+
+          console.log("GA4 Event Sent: Dynamic Route Redirect");
         })
         .catch((error) => {
           console.error("Failed to redirect:", error);

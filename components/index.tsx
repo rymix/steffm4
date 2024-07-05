@@ -21,7 +21,6 @@ import {
   StyledItem,
   StyledItems,
 } from "components/Styled";
-import Vignette from "components/Vignette";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
@@ -120,7 +119,6 @@ const Jupiter = (): JSX.Element => {
     console.log("Jupiter mounted", mcKey);
 
     if (!mcKey) {
-      console.log("Going to load random mix");
       fetchRandomMcKey().then((randomKey) => setMcKey(randomKey));
     }
 
@@ -133,7 +131,6 @@ const Jupiter = (): JSX.Element => {
 
   return (
     <>
-      <Vignette />
       <Overlay />
       <Modal />
       {mcKey && (

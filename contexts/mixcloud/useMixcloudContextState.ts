@@ -491,6 +491,17 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchCategories();
   }, []);
 
+  /* Lead Random Mix by Category */
+  useEffect(() => {
+    const fetchRandomMix = async (): Promise<void> => {
+      const randomKey = await fetchRandomMcKeyByCategory(selectedCategory);
+      if (randomKey) {
+        handleLoad(randomKey);
+      }
+    };
+    fetchRandomMix();
+  }, [selectedCategory]);
+
   return {
     mcKey,
     mcUrl,
