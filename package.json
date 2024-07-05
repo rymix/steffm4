@@ -1,5 +1,5 @@
 {
-  "name": "steffm3",
+  "name": "steffm4",
   "version": "1.0.0",
   "description": "Stef.FM - Funky House Coming In Your Ears!",
   "author": "Steve Arnott",
@@ -15,7 +15,7 @@
     "export": "next export -o _static",
     "prepare": "husky install",
     "prettier": "prettier --write .",
-    "start": "PORT=8080 node .next/standalone/node/steffm3/server.js",
+    "start": "PORT=8080 node .next/standalone/node/steffm4/server.js",
     "startwin": "set PORT=8080&&node .next/standalone/server.js",
     "startnext": "node_modules/next/dist/bin/next start",
     "stylelint": "stylelint --formatter=verbose **/*.ts*",
@@ -32,7 +32,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rymix/steffm3.git"
+    "url": "git+https://github.com/rymix/steffm4.git"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
