@@ -11,7 +11,7 @@ export const ShareLink: React.FC = () => {
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
 
   const handleClick = (): void => {
-    copyToClipboard(`http://localhost:3001/${sharableKey}`);
+    copyToClipboard(`https://stef.fm/${sharableKey}`);
     openModal(<p>Sharable link copied to clipboard</p>, null, 4);
   };
 
