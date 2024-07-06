@@ -16,7 +16,7 @@ import {
 import TrackListMini from "components/MixList/TrackListMini";
 import type { MixRowProps } from "components/MixList/types";
 import { useMixcloud } from "contexts/mixcloud";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
   const {
@@ -39,16 +39,6 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
       handlePlay();
     }
   };
-
-  useEffect(() => {
-    console.log(
-      "mix.mixcloudKey",
-      mix.mixcloudKey,
-      "mcKey",
-      mcKey,
-      mix.mixcloudKey === mcKey,
-    );
-  }, []);
 
   return (
     <>
