@@ -300,8 +300,6 @@ const Jupiter = (): JSX.Element => {
                           onClick={handlePlay}
                           on={playing === true}
                         />
-                      </StyledItem>
-                      <StyledItem>
                         <JupiterButton
                           color="cream"
                           label="Prev"
@@ -344,8 +342,6 @@ const Jupiter = (): JSX.Element => {
                           label="About"
                           onClick={handleAboutClick}
                         />
-                      </StyledItem>
-                      <StyledItem>
                         {isMounted && (
                           <JupiterSlider
                             label="Vol"

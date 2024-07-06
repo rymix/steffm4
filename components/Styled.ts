@@ -33,7 +33,6 @@ export const StyledItems = styled.div`
 
 export const StyledItem = styled.div`
   display: flex;
-  padding: 8px;
   flex: 1 0 30%;
   justify-content: center;
   box-sizing: border-box;
