@@ -13,6 +13,7 @@ import JupiterTable from "components/Jupiter/Table";
 import JupiterTitle from "components/Jupiter/Title";
 import Mixcloud from "components/Mixcloud";
 import MixInformation from "components/MixInformation";
+import MixList from "components/MixList";
 import Modal from "components/Modal";
 import Overlay from "components/Overlay";
 import {
@@ -78,6 +79,16 @@ const Jupiter = (): JSX.Element => {
       category: "Option",
       action: "Click",
       label: "About",
+    });
+  };
+
+  const handleListClick = (): void => {
+    openModal(<MixList />, null);
+
+    ReactGA.event({
+      category: "Option",
+      action: "Click",
+      label: "Mix List",
     });
   };
 
@@ -204,6 +215,11 @@ const Jupiter = (): JSX.Element => {
                         />
                         <JupiterButton
                           color="orange"
+                          label="List"
+                          onClick={handleListClick}
+                        />
+                        <JupiterButton
+                          color="orange"
                           label="About"
                           onClick={handleAboutClick}
                         />
@@ -317,6 +333,11 @@ const Jupiter = (): JSX.Element => {
                           color="orange"
                           label="Info"
                           onClick={handleInfoClick}
+                        />
+                        <JupiterButton
+                          color="orange"
+                          label="List"
+                          onClick={handleListClick}
                         />
                         <JupiterButton
                           color="orange"
