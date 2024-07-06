@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-at */
 /* eslint-disable unicorn/consistent-function-scoping */
 import type { MixcloudContextState } from "contexts/mixcloud/types";
 import type { Category, Mix, Track } from "db/types";
@@ -162,27 +163,40 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Set isMobile if small screen */
   useEffect(() => {
     const screenLimits = [
-      { width: 440, displayLength: 6 },
-      { width: 550, displayLength: 9 },
-      { width: 640, displayLength: 12 },
+      { width: 320, displayLength: 6 },
+      { width: 440, displayLength: 7 },
+      { width: 550, displayLength: 12 },
       { width: 768, displayLength: 15 },
-      { width: 1000, displayLength: 18 },
+      { width: 1024, displayLength: 18 },
+      { width: 1300, displayLength: 24 },
     ];
 
     const handleResize = (): void => {
       const windowWidth = window.innerWidth;
       setIsMobile(windowWidth <= 768);
 
-      const limit = screenLimits.find(
-        (localLimit) => windowWidth <= localLimit.width,
-      );
+      let limit;
+      for (let i = 0; i < screenLimits.length - 1; i++) {
+        if (
+          windowWidth >= screenLimits[i].width &&
+          windowWidth < screenLimits[i + 1].width
+        ) {
+          limit = screenLimits[i];
+          break;
+        }
+      }
 
-      if (windowWidth <= 440) {
-        setDisplayLength(6);
-      } else if (windowWidth >= 1200) {
-        setDisplayLength(20);
+      if (windowWidth <= screenLimits[0].width) {
+        console.log("min");
+        setDisplayLength(screenLimits[0].displayLength);
+      } else if (windowWidth >= screenLimits[screenLimits.length - 1].width) {
+        setDisplayLength(screenLimits[screenLimits.length - 1].displayLength);
       } else {
-        setDisplayLength(limit ? limit.displayLength : 18);
+        setDisplayLength(
+          limit
+            ? limit.displayLength
+            : screenLimits[screenLimits.length - 1].displayLength,
+        );
       }
     };
 
