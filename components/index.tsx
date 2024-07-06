@@ -1,16 +1,12 @@
 import About from "components/About";
-import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
 import JupiterHeader from "components/Jupiter/Header";
-import JupiterKnob from "components/Jupiter/Knob";
 import JupiterPanel from "components/Jupiter/Panel";
 import JupiterBackPanel from "components/Jupiter/Panel/BackPanel";
 import JupiterFrontPanel from "components/Jupiter/Panel/FrontPanel";
 import JupiterProgressLeds from "components/Jupiter/ProgressLeds";
 import JupiterScreen from "components/Jupiter/Screen";
-import JupiterSlider from "components/Jupiter/Slider";
 import JupiterTable from "components/Jupiter/Table";
-import JupiterTitle from "components/Jupiter/Title";
 import Mixcloud from "components/Mixcloud";
 import MixInformation from "components/MixInformation";
 import MixList from "components/MixList";
@@ -27,6 +23,11 @@ import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { copyToClipboard } from "utils/functions";
+
+import JupiterButton from "./Jupiter/Button";
+import JupiterKnob from "./Jupiter/Knob";
+import JupiterSlider from "./Jupiter/Slider";
+import JupiterTitle from "./Jupiter/Title";
 
 const getCategoryIndex = (
   categories: Category[],

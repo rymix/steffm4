@@ -162,40 +162,54 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Set isMobile if small screen */
   useEffect(() => {
-    const screenLimits = [
-      { width: 320, displayLength: 6 },
-      { width: 440, displayLength: 7 },
-      { width: 550, displayLength: 12 },
-      { width: 768, displayLength: 15 },
-      { width: 1024, displayLength: 18 },
-      { width: 1300, displayLength: 24 },
-    ];
+    const screenLimits = {
+      landscape: [
+        { width: 320, displayLength: 6 },
+        { width: 440, displayLength: 7 },
+        { width: 550, displayLength: 12 },
+        { width: 768, displayLength: 15 },
+        { width: 1024, displayLength: 18 },
+        { width: 1300, displayLength: 24 },
+      ],
+      portrait: [
+        { width: 320, displayLength: 6 },
+        { width: 440, displayLength: 7 },
+        { width: 550, displayLength: 8 },
+        { width: 768, displayLength: 12 },
+        { width: 1024, displayLength: 14 },
+        { width: 1300, displayLength: 18 },
+      ],
+    };
 
     const handleResize = (): void => {
       const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const isPortrait = windowHeight > windowWidth;
+      const limits = isPortrait
+        ? screenLimits.portrait
+        : screenLimits.landscape;
+
       setIsMobile(windowWidth <= 768);
 
       let limit;
-      for (let i = 0; i < screenLimits.length - 1; i++) {
+      for (let i = 0; i < limits.length - 1; i++) {
         if (
-          windowWidth >= screenLimits[i].width &&
-          windowWidth < screenLimits[i + 1].width
+          windowWidth >= limits[i].width &&
+          windowWidth < limits[i + 1].width
         ) {
-          limit = screenLimits[i];
+          limit = limits[i];
           break;
         }
       }
 
-      if (windowWidth <= screenLimits[0].width) {
+      if (windowWidth <= limits[0].width) {
         console.log("min");
-        setDisplayLength(screenLimits[0].displayLength);
-      } else if (windowWidth >= screenLimits[screenLimits.length - 1].width) {
-        setDisplayLength(screenLimits[screenLimits.length - 1].displayLength);
+        setDisplayLength(limits[0].displayLength);
+      } else if (windowWidth >= limits[limits.length - 1].width) {
+        setDisplayLength(limits[limits.length - 1].displayLength);
       } else {
         setDisplayLength(
-          limit
-            ? limit.displayLength
-            : screenLimits[screenLimits.length - 1].displayLength,
+          limit ? limit.displayLength : limits[limits.length - 1].displayLength,
         );
       }
     };

@@ -32,15 +32,15 @@ export const StyledJupiterCase = styled.div`
   }
 
   @media screen and (orientation: landscape) and (max-width: 440px) {
-    max-width: 300px;
-    min-width: 300px;
-    width: 300px;
+    max-width: 320px;
+    min-width: 320px;
+    width: 320px;
   }
 
-  @media screen and (max-width: 319px) {
-    max-width: 300px;
-    min-width: 300px;
-    width: 300px;
+  @media screen and (max-width: 323px) {
+    max-width: 322px;
+    min-width: 322px;
+    width: 322px;
   }
 
   @media screen and (orientation: portrait) and (max-width: 1300px) {
@@ -68,14 +68,14 @@ export const StyledJupiterCase = styled.div`
   }
 
   @media screen and (orientation: portrait) and (max-width: 440px) {
-    max-width: 300px;
-    min-width: 300px;
-    width: 300px;
+    max-width: 322px;
+    min-width: 322px;
+    width: 322px;
   }
 
-  @media screen and (max-width: 319px) {
-    max-width: 300px;
-    min-width: 300px;
-    width: 300px;
+  @media screen and (max-width: 323px) {
+    max-width: 322px;
+    min-width: 322px;
+    width: 322px;
   }
 `;

@@ -6,6 +6,11 @@ export const StyledGridWrapper = styled.div`
   gap: 16px;
   padding: 16px;
   width: 100%;
+
+  @media (max-width: 440px) {
+    gap: 0;
+    padding: 0;
+  }
 `;
 
 export const StyledColumn = styled.div`
@@ -20,6 +25,10 @@ export const StyledItems = styled.div`
 
   @media (max-width: 768px) {
     justify-content: center;
+  }
+
+  @media (max-width: 440px) {
+    gap: 0;
   }
 `;
 

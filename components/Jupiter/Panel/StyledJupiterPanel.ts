@@ -92,4 +92,8 @@ export const StyledJupiterPanelContent = styled.div<StyledJupiterPanelContentPro
   `}
 
   width: 100%;
+
+  @media (max-width: 440px) {
+    padding: 0;
+  }
 `;
