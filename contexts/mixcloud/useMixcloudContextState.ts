@@ -508,19 +508,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchRandomMix();
   }, [selectedCategory]);
 
-  /* Prevent iOS from scrolling when playing */
-  // useEffect(() => {
-  //   const preventDefault = (event: TouchEvent): void => {
-  //     event.preventDefault();
-  //   };
-
-  //   document.addEventListener("touchmove", preventDefault, { passive: false });
-
-  //   return () => {
-  //     document.removeEventListener("touchmove", preventDefault);
-  //   };
-  // }, []);
-
   return {
     mcKey,
     mcUrl,

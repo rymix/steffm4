@@ -6,14 +6,6 @@ export const StyledGridWrapper = styled.div`
   gap: 16px;
   padding: 16px;
   width: 100%;
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-
-  @media (max-width: 440px) {
-    padding: 0;
-  }
 `;
 
 export const StyledColumn = styled.div`
