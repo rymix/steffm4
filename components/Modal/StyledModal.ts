@@ -11,9 +11,8 @@ export const StyledModal = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   max-height: 80vh;
-  max-width: 80%;
   min-height: 240px;
-  min-width: 400px;
+  min-width: 320px;
   overflow: hidden;
   position: fixed;
   top: 50%;
@@ -25,6 +24,7 @@ export const StyledModal = styled.div`
   transition:
     opacity 0.3s ease,
     visibility 0.3s ease;
+  width: clamp(320px, 80%, 60vw);
 
   &.modal-open {
     opacity: 1;

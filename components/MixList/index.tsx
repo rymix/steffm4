@@ -13,7 +13,9 @@ export const MixList: React.FC = () => {
         const mixesResponse = await fetch(`/api/mixes`);
         if (!mixesResponse.ok) throw new Error("Data fetch failed");
         let mixesData = await mixesResponse.json();
-        mixesData = mixesData.sort((a, b) => a.name.localeCompare(b.name));
+        mixesData = mixesData.sort((a: any, b: any) =>
+          a.name.localeCompare(b.name),
+        );
         setMixes(mixesData);
       } catch (error) {
         console.error(error);

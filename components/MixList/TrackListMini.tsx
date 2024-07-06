@@ -20,10 +20,7 @@ import { convertTimeToHumanReadable } from "utils/functions";
 export const TrackListMini: React.FC<TrackListMiniProps> = ({ mix }) => {
   const {
     mcKey,
-    setMcKey,
-    controls: { handlePause, handlePlay },
     track: { sectionNumber },
-    widget: { playing },
   } = useMixcloud();
   const [isLoading, setIsLoading] = useState(true);
   const [tracks, setTracks] = useState([]);
@@ -35,7 +32,7 @@ export const TrackListMini: React.FC<TrackListMiniProps> = ({ mix }) => {
         if (!tracksResponse.ok) throw new Error("Data fetch failed");
         let tracksData = await tracksResponse.json();
         tracksData = tracksData.sort(
-          (a, b) => a.sectionNumber - b.sectionNumber,
+          (a: any, b: any) => a.sectionNumber - b.sectionNumber,
         );
         setTracks(tracksData);
       } catch (error) {
