@@ -106,6 +106,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
     setTemporaryMessage(trackMessage);
   }, [trackDetails?.trackName]);
 
+  /* Modal */
+  const handleCloseModal = (): void => {
+    setModalContent(null);
+    setModalOpen(false);
+  };
+
   /* Timer for Modal auto-close */
   const startTimer = (timerDuration: number): void => {
     setSecondsRemaining(timerDuration);
@@ -113,7 +119,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     clearInterval(intervalRef.current || 0);
 
     timerRef.current = setTimeout(() => {
-      setModalOpen(false);
+      handleCloseModal();
       setSecondsRemaining(null);
       clearInterval(intervalRef.current || 0);
       timerRef.current = null;
@@ -136,7 +142,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     timerRef.current = null;
     intervalRef.current = null;
     setSecondsRemaining(null);
-    setModalOpen(false);
+    handleCloseModal();
   };
 
   const openModal = useCallback(
@@ -565,6 +571,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     session: {
       burgerMenuRef,
       displayLength,
+      handleCloseModal,
       isMobile,
       menuOpen,
       modalContent,

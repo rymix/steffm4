@@ -12,8 +12,8 @@ import { useMixcloud } from "contexts/mixcloud";
 const Modal: React.FC = () => {
   const {
     session: {
+      handleCloseModal,
       modalOpen,
-      setModalOpen,
       modalRef,
       modalContent,
       modalTitle,
@@ -33,7 +33,7 @@ const Modal: React.FC = () => {
             <Countdown seconds={secondsRemaining} />
           </StyledCountdown>
         )}
-        <StyledCloseLink onClick={() => setModalOpen(false)} />
+        <StyledCloseLink onClick={handleCloseModal} />
       </StyledModalHeader>
       <StyledModalContent>{modalContent}</StyledModalContent>
     </StyledModal>
