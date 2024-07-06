@@ -7,11 +7,8 @@ export const StyledGridWrapper = styled.div`
   padding: 16px;
   width: 100%;
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-
   @media (max-width: 440px) {
+    gap: 0;
     padding: 0;
   }
 `;
@@ -29,11 +26,14 @@ export const StyledItems = styled.div`
   @media (max-width: 768px) {
     justify-content: center;
   }
+
+  @media (max-width: 440px) {
+    gap: 0;
+  }
 `;
 
 export const StyledItem = styled.div`
   display: flex;
-  padding: 8px;
   flex: 1 0 30%;
   justify-content: center;
   box-sizing: border-box;

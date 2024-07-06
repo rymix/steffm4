@@ -7,33 +7,75 @@ export const StyledJupiterCase = styled.div`
   width: 1100px;
   z-index: 2;
 
-  @media (max-width: 1200px) {
-    max-width: 720px;
-    min-width: 720px;
-    width: 720px;
+  @media screen and (orientation: landscape) and (max-width: 1300px) {
+    max-width: 900px;
+    min-width: 900px;
+    width: 900px;
   }
 
-  @media (max-width: 768px) {
-    max-width: 600px;
-    min-width: 600px;
-    width: 600px;
+  @media screen and (orientation: landscape) and (max-width: 1024px) {
+    max-width: 760px;
+    min-width: 760px;
+    width: 760px;
   }
 
-  @media (max-width: 640px) {
+  @media screen and (orientation: landscape) and (max-width: 768px) {
     max-width: 500px;
     min-width: 500px;
     width: 500px;
   }
 
-  @media (max-width: 550px) {
+  @media screen and (orientation: landscape) and (max-width: 550px) {
     max-width: 400px;
     min-width: 400px;
     width: 400px;
   }
 
-  @media (max-width: 440px) {
-    max-width: 300px;
-    min-width: 300px;
-    width: 300px;
+  @media screen and (orientation: landscape) and (max-width: 440px) {
+    max-width: 320px;
+    min-width: 320px;
+    width: 320px;
+  }
+
+  @media screen and (max-width: 323px) {
+    max-width: 322px;
+    min-width: 322px;
+    width: 322px;
+  }
+
+  @media screen and (orientation: portrait) and (max-width: 1300px) {
+    max-width: 900px;
+    min-width: 900px;
+    width: 900px;
+  }
+
+  @media screen and (orientation: portrait) and (max-width: 1024px) {
+    max-width: 760px;
+    min-width: 760px;
+    width: 760px;
+  }
+
+  @media screen and (orientation: portrait) and (max-width: 768px) {
+    max-width: 400px;
+    min-width: 400px;
+    width: 400px;
+  }
+
+  @media screen and (orientation: portrait) and (max-width: 550px) {
+    max-width: 400px;
+    min-width: 400px;
+    width: 400px;
+  }
+
+  @media screen and (orientation: portrait) and (max-width: 440px) {
+    max-width: 322px;
+    min-width: 322px;
+    width: 322px;
+  }
+
+  @media screen and (max-width: 323px) {
+    max-width: 322px;
+    min-width: 322px;
+    width: 322px;
   }
 `;

@@ -11,6 +11,10 @@ export const StyledJupiterTitleWrapper = styled.div`
   padding: 8px 12px;
   margin-bottom: 12px;
   letter-spacing: 0.05rem;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const StyledJupiterTitle = styled.div`

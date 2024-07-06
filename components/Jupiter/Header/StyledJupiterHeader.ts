@@ -16,7 +16,7 @@ export const StyledJupiterSlats = styled.div`
   height: 100%;
   margin-left: 20px;
 
-  @media (max-width: 550px) {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
@@ -30,7 +30,7 @@ export const StyledJupiterTitle = styled.div`
   flex-shrink: 0;
   text-align: right;
 
-  @media (max-width: 550px) {
+  @media (max-width: 768px) {
     font-size: 84px;
     margin: 0;
     text-align: center;

@@ -72,7 +72,7 @@ export default async function handler(
     });
   }
 
-  finalMixes = finalMixes.sort((a, b) => a.listOrder - b.listOrder);
+  finalMixes = finalMixes.sort((a: any, b: any) => a.listOrder - b.listOrder);
 
   res.status(200).json(finalMixes);
 }

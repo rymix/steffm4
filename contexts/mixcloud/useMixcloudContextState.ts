@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-at */
 /* eslint-disable unicorn/consistent-function-scoping */
 import type { MixcloudContextState } from "contexts/mixcloud/types";
 import type { Category, Mix, Track } from "db/types";
@@ -106,6 +107,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
     setTemporaryMessage(trackMessage);
   }, [trackDetails?.trackName]);
 
+  /* Modal */
+  const handleCloseModal = (): void => {
+    setModalContent(null);
+    setModalOpen(false);
+  };
+
   /* Timer for Modal auto-close */
   const startTimer = (timerDuration: number): void => {
     setSecondsRemaining(timerDuration);
@@ -113,7 +120,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     clearInterval(intervalRef.current || 0);
 
     timerRef.current = setTimeout(() => {
-      setModalOpen(false);
+      handleCloseModal();
       setSecondsRemaining(null);
       clearInterval(intervalRef.current || 0);
       timerRef.current = null;
@@ -136,7 +143,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     timerRef.current = null;
     intervalRef.current = null;
     setSecondsRemaining(null);
-    setModalOpen(false);
+    handleCloseModal();
   };
 
   const openModal = useCallback(
@@ -155,28 +162,55 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Set isMobile if small screen */
   useEffect(() => {
-    const screenLimits = [
-      { width: 440, displayLength: 6 },
-      { width: 550, displayLength: 9 },
-      { width: 640, displayLength: 12 },
-      { width: 768, displayLength: 15 },
-      { width: 1000, displayLength: 18 },
-    ];
+    const screenLimits = {
+      landscape: [
+        { width: 320, displayLength: 6 },
+        { width: 440, displayLength: 7 },
+        { width: 550, displayLength: 12 },
+        { width: 768, displayLength: 15 },
+        { width: 1024, displayLength: 18 },
+        { width: 1300, displayLength: 24 },
+      ],
+      portrait: [
+        { width: 320, displayLength: 6 },
+        { width: 440, displayLength: 7 },
+        { width: 550, displayLength: 8 },
+        { width: 768, displayLength: 12 },
+        { width: 1024, displayLength: 14 },
+        { width: 1300, displayLength: 18 },
+      ],
+    };
 
     const handleResize = (): void => {
       const windowWidth = window.innerWidth;
+      const windowHeight = window.innerHeight;
+      const isPortrait = windowHeight > windowWidth;
+      const limits = isPortrait
+        ? screenLimits.portrait
+        : screenLimits.landscape;
+
       setIsMobile(windowWidth <= 768);
 
-      const limit = screenLimits.find(
-        (localLimit) => windowWidth <= localLimit.width,
-      );
+      let limit;
+      for (let i = 0; i < limits.length - 1; i++) {
+        if (
+          windowWidth >= limits[i].width &&
+          windowWidth < limits[i + 1].width
+        ) {
+          limit = limits[i];
+          break;
+        }
+      }
 
-      if (windowWidth <= 440) {
-        setDisplayLength(6);
-      } else if (windowWidth >= 1200) {
-        setDisplayLength(20);
+      if (windowWidth <= limits[0].width) {
+        console.log("min");
+        setDisplayLength(limits[0].displayLength);
+      } else if (windowWidth >= limits[limits.length - 1].width) {
+        setDisplayLength(limits[limits.length - 1].displayLength);
       } else {
-        setDisplayLength(limit ? limit.displayLength : 18);
+        setDisplayLength(
+          limit ? limit.displayLength : limits[limits.length - 1].displayLength,
+        );
       }
     };
 
@@ -502,19 +536,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchRandomMix();
   }, [selectedCategory]);
 
-  /* Prevent iOS from scrolling when playing */
-  // useEffect(() => {
-  //   const preventDefault = (event: TouchEvent): void => {
-  //     event.preventDefault();
-  //   };
-
-  //   document.addEventListener("touchmove", preventDefault, { passive: false });
-
-  //   return () => {
-  //     document.removeEventListener("touchmove", preventDefault);
-  //   };
-  // }, []);
-
   return {
     mcKey,
     mcUrl,
@@ -565,6 +586,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     session: {
       burgerMenuRef,
       displayLength,
+      handleCloseModal,
       isMobile,
       menuOpen,
       modalContent,
