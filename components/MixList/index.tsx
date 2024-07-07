@@ -47,7 +47,7 @@ export const MixList: React.FC = () => {
 
       if (filterCategory) {
         mixesData = mixesData.filter(
-          (mix) => mix.category.code === filterCategory,
+          (mix) => (mix.category as any).code === filterCategory,
         );
       }
 
