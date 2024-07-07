@@ -6277,6 +6277,11 @@ slice-ansi@^7.0.0:
     ansi-styles "^6.2.1"
     is-fullwidth-code-point "^5.0.0"
 
+sort-objects-array@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/sort-objects-array/-/sort-objects-array-3.0.1.tgz#2574407c157263e3bc8f2aa58cf900430e3dac42"
+  integrity sha512-zsNS3I53ueui+ioFKcJ5t7UVc+4DGBfYAKKFN2bS4cHDPpIb1NGOpte1Y1X0xqg0hHNXo3wlYNprA8/Ezb5BjA==
+
 source-map-js@^1.0.1, source-map-js@^1.0.2, source-map-js@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.0.tgz#16b809c162517b5b8c3e7dcd315a2a5c2612b2af"
