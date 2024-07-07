@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import { FilterAlt, FilterAltOff } from "@mui/icons-material";
+import FilterAlt from "@mui/icons-material/FilterAlt";
+import FilterAltOff from "@mui/icons-material/FilterAltOff";
 import { CircularProgress } from "@mui/material";
 import MixRow from "components/MixList/MixRow";
 import {
