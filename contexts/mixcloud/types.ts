@@ -66,6 +66,7 @@ export type MixcloudContextState = {
       title?: string | null,
       seconds?: number,
     ) => void;
+    scale: number;
     secondsRemaining: number | null;
     setDisplayLength: React.Dispatch<React.SetStateAction<number>>;
     setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
@@ -73,6 +74,7 @@ export type MixcloudContextState = {
     setModalContent: React.Dispatch<React.SetStateAction<ReactNode | null>>;
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setModalTitle: React.Dispatch<React.SetStateAction<string | null>>;
+    setScale: React.Dispatch<React.SetStateAction<number>>;
     setThemeName: React.Dispatch<React.SetStateAction<string>>;
     theme: DefaultTheme;
     themeName: string;

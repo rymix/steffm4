@@ -23,8 +23,8 @@ import {
 
 const useMixcloudContextState = (): MixcloudContextState => {
   const [categories, setCategories] = useState<Category[]>([]);
-  const [categoryName, setCategoryName] = useState("");
-  const [duration, setDuration] = useState(0);
+  const [categoryName, setCategoryName] = useState<string>("");
+  const [duration, setDuration] = useState<number>(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
@@ -32,42 +32,43 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [lastTrackUpdateTime, setLastTrackUpdateTime] = useState<number | null>(
     null,
   );
-  const [loaded, setLoaded] = useState(false);
-  const [mcKey, setMcKey] = useState("");
-  const [mcKeyNext, setMcKeyNext] = useState("");
-  const [mcKeyPrevious, setMcKeyPrevious] = useState("");
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const [mcKey, setMcKey] = useState<string>("");
+  const [mcKeyNext, setMcKeyNext] = useState<string>("");
+  const [mcKeyPrevious, setMcKeyPrevious] = useState<string>("");
   const [mixDetails, setMixDetails] = useState<Mix | undefined>();
   const [mixes, setMixes] = useState<Mix[]>([]);
-  const [mixProgress, setMixProgress] = useState(0);
-  const [mixProgressPercent, setMixProgressPercent] = useState(0);
+  const [mixProgress, setMixProgress] = useState<number>(0);
+  const [mixProgressPercent, setMixProgressPercent] = useState<number>(0);
   const [player, setPlayer] = useState<any>();
-  const [playerUpdated, setPlayerUpdated] = useState(false);
-  const [playing, setPlaying] = useState(false);
-  const [scriptLoaded, setScriptLoaded] = useState(false);
+  const [playerUpdated, setPlayerUpdated] = useState<boolean>(false);
+  const [playing, setPlaying] = useState<boolean>(false);
+  const [scale, setScale] = useState<number>(1);
+  const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = usePersistedState<
     string | null
   >("selectedCategory", null);
-  const [selectedTag, setSelectedTag] = useState("");
-  const [showUnavailable, setShowUnavailable] = useState(false);
+  const [selectedTag, setSelectedTag] = useState<string>("");
+  const [showUnavailable, setShowUnavailable] = useState<boolean>(false);
   const [trackDetails, setTrackDetails] = useState<Track | undefined>();
-  const [trackProgress, setTrackProgress] = useState(0);
-  const [trackProgressPercent, setTrackProgressPercent] = useState(0);
-  const [trackSectionNumber, setTrackSectionNumber] = useState(0);
+  const [trackProgress, setTrackProgress] = useState<number>(0);
+  const [trackProgressPercent, setTrackProgressPercent] = useState<number>(0);
+  const [trackSectionNumber, setTrackSectionNumber] = useState<number>(0);
   const [volume, setVolume] = usePersistedState<number>(
     "volume",
     DEFAULT_VOLUME,
   );
 
   /* Session */
-  const [displayLength, setDisplayLength] = useState(DISPLAY_LENGTH);
+  const [displayLength, setDisplayLength] = useState<number>(DISPLAY_LENGTH);
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
   const [modalTitle, setModalTitle] = useState<string | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [themeName, setThemeName] = useState("defaultTheme");
-  const [isMobile, setIsMobile] = useState(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [themeName, setThemeName] = useState<string>("defaultTheme");
+  const [isMobile, setIsMobile] = useState<boolean>(false);
   const [secondsRemaining, setSecondsRemaining] = useState<number | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -192,7 +193,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setIsMobile(windowWidth <= 768);
 
       let limit;
-      for (let i = 0; i < limits.length - 1; i++) {
+      for (let i = 0; i < limits.length - 1; i += 1) {
         if (
           windowWidth >= limits[i].width &&
           windowWidth < limits[i + 1].width
@@ -211,6 +212,31 @@ const useMixcloudContextState = (): MixcloudContextState => {
         setDisplayLength(
           limit ? limit.displayLength : limits[limits.length - 1].displayLength,
         );
+      }
+
+      // Calculate and set the scale factor
+      const minScale = 0.4;
+      const maxScale = 1;
+      const minHeight = 375;
+      const maxHeight = 570;
+
+      if (isPortrait) {
+        setScale(1);
+      } else {
+        let localScale;
+        if (windowHeight <= minHeight) {
+          localScale = minScale;
+        } else if (windowHeight >= maxHeight) {
+          localScale = maxScale;
+        } else {
+          localScale =
+            minScale +
+            ((windowHeight - minHeight) / (maxHeight - minHeight)) *
+              (maxScale - minScale);
+        }
+
+        console.log("localScale", localScale);
+        setScale(localScale);
       }
     };
 
@@ -594,6 +620,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       modalRef,
       modalTitle,
       openModal,
+      scale,
       secondsRemaining,
       setDisplayLength,
       setIsMobile,
@@ -601,6 +628,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setModalContent,
       setModalOpen,
       setModalTitle,
+      setScale,
       setThemeName,
       theme,
       themeName,
