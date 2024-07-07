@@ -17,6 +17,10 @@ export const StyledMixRow = styled.div<StyledMixRowProps>`
     `
       border-left: 12px solid #3af;
     `}
+
+  @media screen and (orientation: portrait) and (max-width: 440px) {
+    grid-template-columns: 20px 50px 1fr 20px;
+  }
 `;
 
 export const StyledMixPlay = styled.div`
@@ -64,6 +68,10 @@ export const StyledMixExpand = styled.div`
 export const StyledMixNotes = styled.div`
   margin: 0 0 0 122px;
   text-align: left;
+
+  @media screen and (orientation: portrait) and (max-width: 440px) {
+    margin: 0 0 0 80px;
+  }
 `;
 
 export const StyledTrackListMiniTitle = styled.div`
@@ -82,6 +90,10 @@ export const StyledTrackListMini = styled.div<StyledTrackListMiniProps>`
     `
       border-left: 12px solid #3af;
     `}
+
+  @media screen and (orientation: portrait) and (max-width: 440px) {
+    grid-template-columns: 20px 50px 1fr 20px;
+  }
 `;
 
 export const StyledTrackListMiniSectionNumber = styled.div`
