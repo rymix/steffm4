@@ -204,7 +204,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
       }
 
       if (windowWidth <= limits[0].width) {
-        console.log("min");
         setDisplayLength(limits[0].displayLength);
       } else if (windowWidth >= limits[limits.length - 1].width) {
         setDisplayLength(limits[limits.length - 1].displayLength);
@@ -235,7 +234,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
               (maxScale - minScale);
         }
 
-        console.log("localScale", localScale);
         setScale(localScale);
       }
     };
