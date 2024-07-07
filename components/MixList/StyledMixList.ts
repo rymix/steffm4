@@ -29,7 +29,9 @@ export const StyledMixPlay = styled.div`
   }
 `;
 
-export const StyledMixCoverArt = styled.div``;
+export const StyledMixCoverArt = styled.div`
+  cursor: pointer;
+`;
 
 export const StyledMixCoverArtImage = styled.img`
   border-radius: 50%;
@@ -38,6 +40,7 @@ export const StyledMixCoverArtImage = styled.img`
 `;
 
 export const StyledMixInfoBlock = styled.div`
+  cursor: pointer;
   text-align: left;
 `;
 

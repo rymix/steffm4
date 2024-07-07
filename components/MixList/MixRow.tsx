@@ -50,10 +50,10 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
             <PlayArrowIcon />
           )}
         </StyledMixPlay>
-        <StyledMixCoverArt>
+        <StyledMixCoverArt onClick={handleExpandToggle}>
           <StyledMixCoverArtImage src={mix.coverArtSmall} />
         </StyledMixCoverArt>
-        <StyledMixInfoBlock>
+        <StyledMixInfoBlock onClick={handleExpandToggle}>
           <StyledMixName>{mix.name}</StyledMixName>
           <StyledMixDetails>
             {mix.releaseDate} {mix.duration}

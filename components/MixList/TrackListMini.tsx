@@ -14,6 +14,7 @@ import {
 import type { TrackListMiniProps } from "components/MixList/types";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Track } from "db/types";
+import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { convertTimeToHumanReadable } from "utils/functions";
 
@@ -31,9 +32,9 @@ export const TrackListMini: React.FC<TrackListMiniProps> = ({ mix }) => {
         const tracksResponse = await fetch(`/api/tracks/${mix.mixcloudKey}`);
         if (!tracksResponse.ok) throw new Error("Data fetch failed");
         let tracksData = await tracksResponse.json();
-        tracksData = tracksData.sort(
-          (a: any, b: any) => a.sectionNumber - b.sectionNumber,
-        );
+
+        tracksData = _.orderBy(tracksData, ["sectionNumber"], ["asc"]);
+
         setTracks(tracksData);
       } catch (error) {
         console.error(error);
