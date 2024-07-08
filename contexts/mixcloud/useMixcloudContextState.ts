@@ -26,6 +26,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [categoryName, setCategoryName] = useState<string>("");
   const [duration, setDuration] = useState<number>(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [initialMcKey, setInitialMcKey] = useState<string>("");
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
   );
@@ -561,8 +562,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, [selectedCategory]);
 
   return {
+    initialMcKey,
     mcKey,
     mcUrl,
+    setInitialMcKey,
     setMcKey,
     controls: {
       fetchRandomMcKey,

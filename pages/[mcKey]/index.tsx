@@ -6,7 +6,7 @@ import { GOOGLE_TRACKING_ID } from "utils/constants";
 
 const DynamicRoute = (): null => {
   const router = useRouter();
-  const { setMcKey } = useMixcloud();
+  const { setInitialMcKey } = useMixcloud();
 
   useEffect(() => {
     if (!router.isReady) return; // Wait until router is ready
@@ -16,7 +16,8 @@ const DynamicRoute = (): null => {
     if (mcKey && typeof mcKey === "string") {
       // Remove leading and trailing slashes
       const cleanedMcKey = mcKey.replaceAll(/^\/+|\/+$/g, "");
-      setMcKey(cleanedMcKey);
+      console.log("redirect mcKey:", cleanedMcKey);
+      setInitialMcKey(cleanedMcKey);
 
       // Use replace to avoid adding a new history entry
       router
@@ -38,7 +39,7 @@ const DynamicRoute = (): null => {
           console.error("Failed to redirect:", error);
         });
     }
-  }, [router.isReady, router.query, setMcKey, router]);
+  }, [router.isReady, router.query, setInitialMcKey, router]);
 
   return null;
 };

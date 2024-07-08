@@ -40,6 +40,7 @@ const getCategoryIndex = (
 
 const Jupiter = (): JSX.Element => {
   const {
+    initialMcKey,
     mcKey,
     setMcKey,
     controls: {
@@ -127,7 +128,9 @@ const Jupiter = (): JSX.Element => {
   };
 
   useEffect(() => {
-    if (!mcKey) {
+    if (initialMcKey) {
+      handleLoad(initialMcKey);
+    } else if (!mcKey) {
       fetchRandomMcKey().then((randomKey) => setMcKey(randomKey));
     }
 
