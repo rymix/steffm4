@@ -15,3 +15,7 @@ export type TrackListMiniProps = {
 export type StyledTrackListMiniProps = {
   $on: boolean;
 };
+
+export type StyledMixListCategoryProps = {
+  $on: boolean;
+};

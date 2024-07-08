@@ -127,8 +127,6 @@ const Jupiter = (): JSX.Element => {
   };
 
   useEffect(() => {
-    console.log("Jupiter mounted", mcKey);
-
     if (!mcKey) {
       fetchRandomMcKey().then((randomKey) => setMcKey(randomKey));
     }

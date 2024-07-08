@@ -8,7 +8,7 @@ const JupiterHeader: React.FC = () => {
   return (
     <StyledJupiterHeaderWrapper>
       <StyledJupiterSlats />
-      <StyledJupiterTitle>Stef.FM</StyledJupiterTitle>
+      <StyledJupiterTitle>Stef.fM</StyledJupiterTitle>
     </StyledJupiterHeaderWrapper>
   );
 };

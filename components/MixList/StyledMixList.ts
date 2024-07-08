@@ -1,4 +1,5 @@
 import type {
+  StyledMixListCategoryProps,
   StyledMixRowProps,
   StyledTrackListMiniProps,
 } from "components/MixList/types";
@@ -17,6 +18,10 @@ export const StyledMixRow = styled.div<StyledMixRowProps>`
     `
       border-left: 12px solid #3af;
     `}
+
+  @media screen and (orientation: portrait) and (max-width: 440px) {
+    grid-template-columns: 20px 50px 1fr 20px;
+  }
 `;
 
 export const StyledMixPlay = styled.div`
@@ -29,7 +34,9 @@ export const StyledMixPlay = styled.div`
   }
 `;
 
-export const StyledMixCoverArt = styled.div``;
+export const StyledMixCoverArt = styled.div`
+  cursor: pointer;
+`;
 
 export const StyledMixCoverArtImage = styled.img`
   border-radius: 50%;
@@ -38,6 +45,7 @@ export const StyledMixCoverArtImage = styled.img`
 `;
 
 export const StyledMixInfoBlock = styled.div`
+  cursor: pointer;
   text-align: left;
 `;
 
@@ -61,6 +69,10 @@ export const StyledMixExpand = styled.div`
 export const StyledMixNotes = styled.div`
   margin: 0 0 0 122px;
   text-align: left;
+
+  @media screen and (orientation: portrait) and (max-width: 440px) {
+    margin: 0 0 0 80px;
+  }
 `;
 
 export const StyledTrackListMiniTitle = styled.div`
@@ -79,6 +91,10 @@ export const StyledTrackListMini = styled.div<StyledTrackListMiniProps>`
     `
       border-left: 12px solid #3af;
     `}
+
+  @media screen and (orientation: portrait) and (max-width: 440px) {
+    grid-template-columns: 20px 50px 1fr 20px;
+  }
 `;
 
 export const StyledTrackListMiniSectionNumber = styled.div`
@@ -112,4 +128,47 @@ export const StyledTrackListMiniTrackStartTime = styled.div`
   color: rgba(0, 0, 0, 0.6);
   font-size: 14px;
   text-align: left;
+`;
+
+export const StyledFilterToggle = styled.div`
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  margin: 0 0 20px 0;
+
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: rgba(0, 0, 0, 1);
+  }
+`;
+
+export const StyledMixListCategories = styled.ul`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0 40px 0;
+  width: 100%;
+`;
+
+export const StyledMixListCategory = styled.li<StyledMixListCategoryProps>`
+  background: #e4dbcd;
+  border: 1px solid #e4dbcd;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 8px;
+  padding: 8px;
+  transition: background 0.2s ease-in-out;
+  width: 50%;
+
+  ${(props) =>
+    props.$on &&
+    `
+      border: 1px solid #c5baa8;
+      background: #ddd1be;
+    `}
+
+  &:hover {
+    background: #ddd1be;
+  }
 `;

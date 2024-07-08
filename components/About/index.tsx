@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { StyledAbout, StyledImage } from "components/About/StyledAbout";
 import React from "react";
+import ReactGA from "react-ga4";
 
 export const About: React.FC = () => {
   return (
@@ -139,6 +140,47 @@ export const About: React.FC = () => {
         src="/about/inimitable-stef-fm.png"
         alt="The Inimitable Stef.FM"
       />
+      <h3>Credits and Thanks</h3>
+      <ul>
+        <li>
+          Dustin Brett and his generous&nbsp;
+          <a
+            href="https://www.youtube.com/@DustinBrett"
+            target="_blank"
+            onClick={() => {
+              ReactGA.event({
+                category: "Outbound",
+                action: "Link",
+                label: "Dustin Brett",
+              });
+            }}
+          >
+            YouTube tutorials
+          </a>
+          &nbsp;on React and general website development. I learned so much
+          having followed your channel for several years. And you've been
+          generous with your time, humouring my daft questions
+        </li>
+        <li>
+          Lewis Hunt and his terrific&nbsp;
+          <a
+            href="https://github.com/lewhunt/mixmotion"
+            target="_blank"
+            onClick={() => {
+              ReactGA.event({
+                category: "Outbound",
+                action: "Link",
+                label: "Lewis Hunt",
+              });
+            }}
+          >
+            Mixmotion library for Mixcloud
+          </a>
+          . You solved a lot of the hard problems I could not fathom with the
+          Mixcloud API. And your generosity in answering my questions will
+          always be appreciated.
+        </li>
+      </ul>
     </StyledAbout>
   );
 };

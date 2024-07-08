@@ -1,11 +1,20 @@
+import type { StyledJupiterCaseProps } from "components/Jupiter/Case/types";
 import styled from "styled-components";
 
-export const StyledJupiterCase = styled.div`
+export const StyledJupiterCase = styled.div<StyledJupiterCaseProps>`
   margin: 20px;
   max-width: 1100px;
   min-width: 1100px;
   width: 1100px;
   z-index: 2;
+
+  ${(props) =>
+    props.$scale &&
+    props.$scale !== 1 &&
+    `
+        transform: scale(${props.$scale});
+
+    `}
 
   @media screen and (orientation: landscape) and (max-width: 1300px) {
     max-width: 900px;

@@ -22,6 +22,15 @@ export const StyledAbout = styled.div`
     line-height: 1.6;
     margin: 0 0 20px 0;
   }
+
+  ul {
+    margin: 0 0 0 20px;
+  }
+
+  li {
+    list-style-type: disc;
+    margin: 0 0 20px 0;
+  }
 `;
 
 export const StyledImage = styled.img`
