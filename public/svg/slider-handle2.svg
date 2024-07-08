@@ -1,0 +1,15 @@
+<svg width="30" height="15" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with border radius and more pronounced bevel effect -->
+  <rect x="0" y="0" width="30" height="15" rx="2" ry="2" fill="#c4d1b2"/>
+  <!-- More pronounced highlight on the top right -->
+  <line x1="2" y1="0" x2="28" y2="0" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+  <line x1="29" y1="1" x2="29" y2="14" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+  <!-- More pronounced shadow on the bottom left -->
+  <line x1="0" y1="1" x2="0" y2="14" stroke="#000000" stroke-width="1" opacity="0.2"/>
+  <line x1="1" y1="15" x2="28" y2="15" stroke="#000000" stroke-width="1" opacity="0.2"/>
+  <!-- Orange rectangles with more pronounced shadow at the top, centrally aligned -->
+  <rect x="1" y="6" width="10" height="3" fill="#e16915"/>
+  <line x1="1" y1="6" x2="11" y2="6" stroke="#000000" stroke-width="1" opacity="0.3"/>
+  <rect x="19" y="6" width="10" height="3" fill="#e16915"/>
+  <line x1="19" y1="6" x2="29" y2="6" stroke="#000000" stroke-width="1" opacity="0.3"/>
+</svg>
