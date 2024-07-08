@@ -11,6 +11,7 @@
     "function-no-unknown": null,
     "max-nesting-depth": null,
     "no-descending-specificity": null,
+    "no-missing-end-of-source-newline": null,
     "property-no-unknown": null,
     "property-no-vendor-prefix": null,
     "selector-max-compound-selectors": null,
@@ -18,7 +19,6 @@
     "selector-no-qualifying-type": null,
     "shorthand-property-no-redundant-values": null,
     "value-keyword-case": null,
-    "font-family-no-missing-generic-family-keyword": null,
-    "no-missing-end-of-source-newline": null
+    "font-family-no-missing-generic-family-keyword": null
   }
 }
