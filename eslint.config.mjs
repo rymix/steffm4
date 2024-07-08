@@ -90,6 +90,14 @@ const config = [
     },
 
     rules: {
+      "prettier/prettier": [
+        "error",
+        {
+          endOfLine: "crlf",
+          trailingComma: "all",
+          singleQuote: false,
+        },
+      ],
       "@next/next/no-document-import-in-page": "off",
       "@next/next/no-img-element": "off",
       "@typescript-eslint/ban-types": "off",
