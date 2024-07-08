@@ -1,4 +1,4 @@
-export type StyledJupiterProgressLedsWrapperProps = {
+export type StyledJupiterProgressLedsItemsWrapperProps = {
   $displayLength: number;
 };
 
