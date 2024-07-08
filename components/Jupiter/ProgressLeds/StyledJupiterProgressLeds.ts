@@ -1,10 +1,12 @@
 import type {
   StyledJupiterProgressLedProps,
-  StyledJupiterProgressLedsWrapperProps,
+  StyledJupiterProgressLedsItemsWrapperProps,
 } from "components/Jupiter/ProgressLeds/types";
 import styled from "styled-components";
 
-export const StyledJupiterProgressLedsWrapper = styled.div<StyledJupiterProgressLedsWrapperProps>`
+export const StyledJupiterProgressLedsWrapper = styled.div``;
+
+export const StyledJupiterProgressLedsItemsWrapper = styled.div<StyledJupiterProgressLedsItemsWrapperProps>`
   display: flex;
   gap: 10px;
 `;
@@ -36,5 +38,41 @@ export const StyledJupiterProgressLed = styled.div<StyledJupiterProgressLedProps
     position: absolute;
     top: 2px;
     width: 1px;
+  }
+`;
+
+export const StyledJupiterProgressLedsLabels = styled.div`
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  position: relative;
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+
+  div {
+    position: absolute;
+    bottom: 0;
+    transform: translateX(-50%);
+  }
+
+  div:nth-child(1) {
+    left: 0%;
+  }
+
+  div:nth-child(2) {
+    left: 25%;
+  }
+
+  div:nth-child(3) {
+    left: 50%;
+  }
+
+  div:nth-child(4) {
+    left: 75%;
+  }
+
+  div:nth-child(5) {
+    left: 100%;
   }
 `;

@@ -1,6 +1,6 @@
 import { Slider } from "@mui/material";
 import type { StyledJupiterSliderProps } from "components/Jupiter/Slider/types";
-import JupiterHandle from "public/svg/slider-handle.svg";
+import JupiterHandle from "public/svg/slider-handle2.svg";
 import styled from "styled-components";
 
 export const StyledJupiterSliderWrapper = styled.div`
@@ -20,8 +20,8 @@ export const StyledJupiterSlider = styled(Slider)<StyledJupiterSliderProps>`
   }
 
   & .MuiSlider-thumb {
-    width: 28.8px;
-    height: 13.2px;
+    width: 30px;
+    height: 15px;
     border-radius: 1px;
     background: url(${JupiterHandle.src}) no-repeat center center;
     background-size: cover;

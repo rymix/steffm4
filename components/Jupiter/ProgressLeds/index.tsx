@@ -1,5 +1,7 @@
 import {
   StyledJupiterProgressLed,
+  StyledJupiterProgressLedsItemsWrapper,
+  StyledJupiterProgressLedsLabels,
   StyledJupiterProgressLedsWrapper,
 } from "components/Jupiter/ProgressLeds/StyledJupiterProgressLeds";
 import { useMixcloud } from "contexts/mixcloud";
@@ -25,10 +27,19 @@ const JupiterProgressLeds: React.FC = () => {
   }
 
   return (
-    <StyledJupiterProgressLedsWrapper $displayLength={displayLength}>
-      {Array.from({ length: displayLength }, (_, i) => (
-        <StyledJupiterProgressLed key={i} $on={i < numLedsOn} />
-      ))}
+    <StyledJupiterProgressLedsWrapper>
+      <StyledJupiterProgressLedsItemsWrapper $displayLength={displayLength}>
+        {Array.from({ length: displayLength }, (_, i) => (
+          <StyledJupiterProgressLed key={i} $on={i < numLedsOn} />
+        ))}
+      </StyledJupiterProgressLedsItemsWrapper>
+      <StyledJupiterProgressLedsLabels>
+        <div>0</div>
+        <div>25</div>
+        <div>50</div>
+        <div>75</div>
+        <div>100</div>
+      </StyledJupiterProgressLedsLabels>
     </StyledJupiterProgressLedsWrapper>
   );
 };
