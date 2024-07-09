@@ -17,10 +17,6 @@ export type MixcloudContextState = {
     handlePlay: () => void;
     handlePlayPause: () => void;
     handlePrevious: () => void;
-    mcKeyNext: string;
-    mcKeyPrevious: string;
-    setMcKeyNext: React.Dispatch<React.SetStateAction<string>>;
-    setMcKeyPrevious: React.Dispatch<React.SetStateAction<string>>;
   };
   filters: {
     mixes: Mix[];

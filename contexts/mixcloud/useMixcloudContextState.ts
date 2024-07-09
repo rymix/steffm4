@@ -35,8 +35,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   );
   const [loaded, setLoaded] = useState<boolean>(false);
   const [mcKey, setMcKey] = useState<string>("");
-  const [mcKeyNext, setMcKeyNext] = useState<string>("");
-  const [mcKeyPrevious, setMcKeyPrevious] = useState<string>("");
   const [mixDetails, setMixDetails] = useState<Mix | undefined>();
   const [mixes, setMixes] = useState<Mix[]>([]);
   const [mixProgress, setMixProgress] = useState<number>(0);
@@ -550,17 +548,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchCategories();
   }, []);
 
-  /* Lead Random Mix by Category */
-  useEffect(() => {
-    const fetchRandomMix = async (): Promise<void> => {
-      const randomKey = await fetchRandomMcKeyByCategory(selectedCategory);
-      if (randomKey) {
-        handleLoad(randomKey);
-      }
-    };
-    fetchRandomMix();
-  }, [selectedCategory]);
-
   return {
     initialMcKey,
     mcKey,
@@ -576,10 +563,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
       handlePlay,
       handlePlayPause,
       handlePrevious,
-      mcKeyNext,
-      mcKeyPrevious,
-      setMcKeyNext,
-      setMcKeyPrevious,
     },
     filters: {
       categories,
