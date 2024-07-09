@@ -21,7 +21,6 @@ import React, { useState } from "react";
 export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
   const {
     mcKey,
-    setMcKey,
     controls: { handlePause, handlePlay },
     widget: { playing },
   } = useMixcloud();
@@ -32,7 +31,8 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
   };
 
   const handleClickPlay = (newMcKey: string): void => {
-    setMcKey(newMcKey);
+    // handleLoad here
+
     if (playing) {
       handlePause();
     } else {

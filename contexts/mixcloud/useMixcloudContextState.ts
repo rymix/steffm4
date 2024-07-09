@@ -553,7 +553,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     mcKey,
     mcUrl,
     setInitialMcKey,
-    setMcKey,
     controls: {
       fetchRandomMcKey,
       fetchRandomMcKeyByCategory,
