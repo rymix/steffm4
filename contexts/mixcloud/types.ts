@@ -7,7 +7,6 @@ export type MixcloudContextState = {
   mcKey: string;
   mcUrl: string;
   setInitialMcKey: React.Dispatch<React.SetStateAction<string>>;
-  setMcKey: React.Dispatch<React.SetStateAction<string>>;
   controls: {
     fetchRandomMcKey: () => Promise<string>;
     fetchRandomMcKeyByCategory: (category: string | null) => Promise<string>;
