@@ -565,7 +565,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Initial load */
   useEffect(() => {
     const handleInitialLoad = async (): Promise<void> => {
-      if (!mcKey && selectedCategory && selectedCategory !== "all") {
+      if (mcKey) {
+        handleLoad(await fetchRandomMcKey());
+      } else if (selectedCategory && selectedCategory !== "all") {
         handleLoad(await fetchRandomMcKeyByCategory(selectedCategory));
       } else {
         handleLoad(await fetchRandomMcKey());
