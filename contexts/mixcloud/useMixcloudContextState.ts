@@ -548,6 +548,16 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchCategories();
   }, []);
 
+  useEffect(() => {
+    const handleInitialLoad = async (): Promise<void> => {
+      if (!mcKey) {
+        handleLoad(await fetchRandomMcKey());
+      }
+    };
+
+    handleInitialLoad();
+  }, []);
+
   return {
     initialMcKey,
     mcKey,
