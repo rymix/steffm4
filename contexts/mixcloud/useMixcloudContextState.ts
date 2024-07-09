@@ -27,6 +27,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [duration, setDuration] = useState<number>(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [initialMcKey, setInitialMcKey] = useState<string>("");
+  const [isReady, setIsReady] = useState<boolean>(false);
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
   );
@@ -35,8 +36,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   );
   const [loaded, setLoaded] = useState<boolean>(false);
   const [mcKey, setMcKey] = useState<string>("");
-  const [mcKeyNext, setMcKeyNext] = useState<string>("");
-  const [mcKeyPrevious, setMcKeyPrevious] = useState<string>("");
   const [mixDetails, setMixDetails] = useState<Mix | undefined>();
   const [mixes, setMixes] = useState<Mix[]>([]);
   const [mixProgress, setMixProgress] = useState<number>(0);
@@ -550,23 +549,39 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchCategories();
   }, []);
 
-  /* Lead Random Mix by Category */
+  /* Load if selectedCategory changes */
   useEffect(() => {
-    const fetchRandomMix = async (): Promise<void> => {
-      const randomKey = await fetchRandomMcKeyByCategory(selectedCategory);
-      if (randomKey) {
-        handleLoad(randomKey);
+    const handleSelectedCategoryChange = async (): Promise<void> => {
+      if (selectedCategory && selectedCategory !== "all") {
+        handleLoad(await fetchRandomMcKeyByCategory(selectedCategory));
+      } else {
+        handleLoad(await fetchRandomMcKey());
       }
     };
-    fetchRandomMix();
+
+    handleSelectedCategoryChange();
   }, [selectedCategory]);
+
+  /* Initial load */
+  useEffect(() => {
+    const handleInitialLoad = async (): Promise<void> => {
+      if (!mcKey && selectedCategory && selectedCategory !== "all") {
+        handleLoad(await fetchRandomMcKeyByCategory(selectedCategory));
+      } else {
+        handleLoad(await fetchRandomMcKey());
+      }
+    };
+
+    handleInitialLoad();
+    setIsReady(true);
+  }, []);
 
   return {
     initialMcKey,
+    isReady,
     mcKey,
     mcUrl,
     setInitialMcKey,
-    setMcKey,
     controls: {
       fetchRandomMcKey,
       fetchRandomMcKeyByCategory,
@@ -576,10 +591,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
       handlePlay,
       handlePlayPause,
       handlePrevious,
-      mcKeyNext,
-      mcKeyPrevious,
-      setMcKeyNext,
-      setMcKeyPrevious,
     },
     filters: {
       categories,

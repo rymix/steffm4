@@ -4,10 +4,10 @@ import type { DefaultTheme } from "styled-components";
 
 export type MixcloudContextState = {
   initialMcKey: string;
+  isReady: boolean;
   mcKey: string;
   mcUrl: string;
   setInitialMcKey: React.Dispatch<React.SetStateAction<string>>;
-  setMcKey: React.Dispatch<React.SetStateAction<string>>;
   controls: {
     fetchRandomMcKey: () => Promise<string>;
     fetchRandomMcKeyByCategory: (category: string | null) => Promise<string>;
@@ -17,10 +17,6 @@ export type MixcloudContextState = {
     handlePlay: () => void;
     handlePlayPause: () => void;
     handlePrevious: () => void;
-    mcKeyNext: string;
-    mcKeyPrevious: string;
-    setMcKeyNext: React.Dispatch<React.SetStateAction<string>>;
-    setMcKeyPrevious: React.Dispatch<React.SetStateAction<string>>;
   };
   filters: {
     mixes: Mix[];

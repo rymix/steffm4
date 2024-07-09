@@ -4,11 +4,10 @@ import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useRef } from "react";
 
 export const Mixcloud: React.FC<MixcloudProps> = (props) => {
-  const { autoPlay = true, children, defaultMcKey } = props;
+  const { autoPlay = true, children } = props;
 
   const {
     mcKey,
-    setMcKey,
     controls: { handleNext },
     mix: {
       setProgress: setMixProgress,
@@ -32,10 +31,6 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   } = useMixcloud();
 
   const timer = useRef<any>(null);
-
-  useEffect(() => {
-    if (defaultMcKey) setMcKey(defaultMcKey);
-  }, []);
 
   useEffect(() => {
     const script = document.createElement("script");
