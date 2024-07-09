@@ -40,6 +40,7 @@ const getCategoryIndex = (
 
 const Jupiter = (): JSX.Element => {
   const {
+    isReady,
     mcKey,
     controls: {
       handleLoad,
@@ -55,7 +56,6 @@ const Jupiter = (): JSX.Element => {
     widget: { playing, setVolume, volume },
   } = useMixcloud();
   const [sliderValue, setSliderValue] = useState(volume * 100);
-  const [isMounted] = useState(false);
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
   const initialKnobValue = getCategoryIndex(categories, selectedCategory);
 
@@ -230,7 +230,7 @@ const Jupiter = (): JSX.Element => {
                       label="About"
                       onClick={handleAboutClick}
                     />
-                    {isMounted && (
+                    {isReady && (
                       <JupiterSlider
                         label="Vol"
                         volume={sliderValue}

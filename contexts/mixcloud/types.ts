@@ -4,6 +4,7 @@ import type { DefaultTheme } from "styled-components";
 
 export type MixcloudContextState = {
   initialMcKey: string;
+  isReady: boolean;
   mcKey: string;
   mcUrl: string;
   setInitialMcKey: React.Dispatch<React.SetStateAction<string>>;
