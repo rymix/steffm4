@@ -12,7 +12,6 @@ import {
   StyledSubDetails,
 } from "components/MixCard/StyledMixCard";
 import type { MixCardProps } from "components/MixCard/types";
-import Socials from "components/Socials";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 import { convertTimeToHumanReadable } from "utils/functions";
@@ -54,7 +53,6 @@ export const MixCard: React.FC<MixCardProps> = ({
           </StyledSubDetails>
           <StyledNotes>{notes}</StyledNotes>
         </StyledMixInfo>
-        {socials && <Socials />}
       </StyledMixCard>
     </StyledMixCardWrapper>
   );
