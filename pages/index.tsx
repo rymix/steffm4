@@ -5,10 +5,7 @@ import { GOOGLE_TRACKING_ID } from "utils/constants";
 
 const Home = (): JSX.Element => {
   useEffect(() => {
-    if (!ReactGA.isInitialized) {
-      ReactGA.initialize(GOOGLE_TRACKING_ID);
-    }
-
+    ReactGA.initialize(GOOGLE_TRACKING_ID);
     ReactGA.send({
       hitType: "pageview",
       page: "/",

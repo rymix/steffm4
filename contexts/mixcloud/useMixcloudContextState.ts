@@ -21,12 +21,13 @@ import {
   mcWidgetUrlFormatter,
 } from "utils/functions";
 
-const useMixcloudContextState = (): MixcloudContextState => {
+const useMixcloudContextState = (
+  initialMcKey?: string,
+): MixcloudContextState => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [duration, setDuration] = useState<number>(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [initialMcKey, setInitialMcKey] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
@@ -416,6 +417,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Load Controls */
   const handleLoad = async (newMcKey?: string): Promise<void> => {
+    console.log("Loading new mix", newMcKey);
     if (!newMcKey) return;
     setMcKey(mcKeyFormatter(newMcKey));
   };
@@ -549,41 +551,32 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchCategories();
   }, []);
 
-  /* Load if selectedCategory changes */
-  useEffect(() => {
-    const handleSelectedCategoryChange = async (): Promise<void> => {
-      if (selectedCategory && selectedCategory !== "all") {
-        handleLoad(await fetchRandomMcKeyByCategory(selectedCategory));
-      } else {
-        handleLoad(await fetchRandomMcKey());
-      }
-    };
-
-    handleSelectedCategoryChange();
-  }, [selectedCategory]);
-
   /* Initial load */
   useEffect(() => {
+    console.log("initial load", initialMcKey);
     const handleInitialLoad = async (): Promise<void> => {
-      if (mcKey) {
-        handleLoad(await fetchRandomMcKey());
+      if (initialMcKey) {
+        console.log("Initial mcKey from query:", initialMcKey);
+        handleLoad(initialMcKey);
       } else if (selectedCategory && selectedCategory !== "all") {
+        console.log("Selected category:", selectedCategory);
         handleLoad(await fetchRandomMcKeyByCategory(selectedCategory));
       } else {
+        console.log(
+          "No initial mcKey or selected category, loading random mix",
+        );
         handleLoad(await fetchRandomMcKey());
       }
     };
 
     handleInitialLoad();
     setIsReady(true);
-  }, []);
+  }, [initialMcKey]);
 
   return {
-    initialMcKey,
     isReady,
     mcKey,
     mcUrl,
-    setInitialMcKey,
     controls: {
       fetchRandomMcKey,
       fetchRandomMcKeyByCategory,

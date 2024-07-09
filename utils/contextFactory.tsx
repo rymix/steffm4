@@ -2,10 +2,11 @@ import { createContext, useContext } from "react";
 
 type ProcessProviderProps = {
   children: React.ReactNode;
+  initialMcKey?: string;
 };
 
 const contextFactory = <T,>(
-  useContextState: () => T,
+  useContextState: (initialMcKey?: string) => T,
   ContextComponent?: React.ComponentType,
 ): {
   Consumer: React.Consumer<T>;
@@ -13,8 +14,11 @@ const contextFactory = <T,>(
   useContext: () => T;
 } => {
   const Context = createContext<T>({} as T);
-  const ProcessProvider = ({ children }: ProcessProviderProps): JSX.Element => (
-    <Context.Provider value={useContextState()}>
+  const ProcessProvider = ({
+    children,
+    initialMcKey,
+  }: ProcessProviderProps): JSX.Element => (
+    <Context.Provider value={useContextState(initialMcKey)}>
       {children}
       {ContextComponent ? <ContextComponent /> : <></>}
     </Context.Provider>
