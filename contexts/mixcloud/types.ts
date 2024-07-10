@@ -16,6 +16,7 @@ export type MixcloudContextState = {
     fetchRandomMcKeyByCategory: (category: string | null) => Promise<string>;
     handleLoad: (localMcKey?: string) => void;
     handleLoadRandom: (category?: string) => void;
+    handleLoadRandomFavourite: () => void;
     handleNext: () => void;
     handlePause: () => void;
     handlePlay: () => void;
@@ -34,7 +35,7 @@ export type MixcloudContextState = {
   filters: {
     mixes: Mix[];
     categories: Category[] | undefined;
-    selectedCategory: string | null;
+    selectedCategory: string | undefined;
     selectedTag: string;
     setMixes: React.Dispatch<React.SetStateAction<Mix[]>>;
     setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>;

@@ -450,6 +450,18 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
   };
 
+  const handleLoadRandomFavourite = async (): Promise<void> => {
+    if (favouritesList.length === 0) {
+      console.log("No favourites to load");
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * favouritesList.length);
+    const randomFavourite = favouritesList[randomIndex];
+    console.log("Loading random favourite mix", randomFavourite.mcKey);
+    handleLoad(randomFavourite.mcKey);
+  };
+
   /* Navigation */
   const handleNext = useCallback(async () => {
     const mixIndex = mixes.findIndex((thisMix) =>
@@ -589,6 +601,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       fetchRandomMcKeyByCategory,
       handleLoad,
       handleLoadRandom,
+      handleLoadRandomFavourite,
       handleNext,
       handlePause,
       handlePlay,

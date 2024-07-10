@@ -30,7 +30,7 @@ import { copyToClipboard } from "utils/functions";
 
 const getCategoryIndex = (
   categories: Category[],
-  selectedCategory: string | null,
+  selectedCategory: string | undefined,
 ): number => {
   const category = categories.find(
     (cat: Category) => cat.code === selectedCategory,
@@ -43,13 +43,12 @@ const Jupiter = (): JSX.Element => {
     isReady,
     mcKey,
     controls: {
-      handleLoad,
       handleLoadRandom,
+      handleLoadRandomFavourite,
       handlePause,
       handlePlay,
       handleNext,
       handlePrevious,
-      fetchRandomMcKeyByCategory,
     },
     filters: { categories = [], selectedCategory, setSelectedCategory },
     screen: { setTemporaryMessage },
@@ -76,7 +75,12 @@ const Jupiter = (): JSX.Element => {
     const categoryLookup =
       categories.find((cat) => cat.index === index)?.code || "all";
 
-    handleLoadRandom(categoryLookup);
+    if (categoryLookup === "fav") {
+      handleLoadRandomFavourite();
+    } else {
+      handleLoadRandom(categoryLookup);
+    }
+
     setSelectedCategory(categoryLookup);
 
     ReactGA.event({
@@ -128,16 +132,17 @@ const Jupiter = (): JSX.Element => {
   };
 
   const handleRandomClick = async (): Promise<void> => {
-    const randomKey = await fetchRandomMcKeyByCategory(selectedCategory);
-    if (randomKey) {
-      handleLoad(randomKey);
-
-      ReactGA.event({
-        category: "Option",
-        action: "Click",
-        label: "Random Mix",
-      });
+    if (selectedCategory === "fav") {
+      handleLoadRandomFavourite();
+    } else {
+      handleLoadRandom(selectedCategory);
     }
+
+    ReactGA.event({
+      category: "Option",
+      action: "Click",
+      label: "Random Mix",
+    });
   };
 
   useEffect(() => {
