@@ -21,9 +21,7 @@ import {
   mcWidgetUrlFormatter,
 } from "utils/functions";
 
-const useMixcloudContextState = (
-  initialMcKey?: string,
-): MixcloudContextState => {
+const useMixcloudContextState = (): MixcloudContextState => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [duration, setDuration] = useState<number>(0);
@@ -312,12 +310,6 @@ const useMixcloudContextState = (
     const category =
       categories.find((cat) => cat.index === index)?.code || null;
     setSelectedCategory(category);
-
-    ReactGA.event({
-      category: "Select",
-      action: "Rotate Knob",
-      label: category || "All",
-    });
   };
 
   useEffect(() => {
@@ -420,6 +412,16 @@ const useMixcloudContextState = (
     console.log("Loading new mix", newMcKey);
     if (!newMcKey) return;
     setMcKey(mcKeyFormatter(newMcKey));
+  };
+
+  const handleLoadRandom = async (category?: string): Promise<void> => {
+    if (category && category !== "all") {
+      console.log("Loading new random mix by category", category);
+      handleLoad(await fetchRandomMcKeyByCategory(category));
+    } else {
+      console.log("Loading new random mix");
+      handleLoad(await fetchRandomMcKey());
+    }
   };
 
   /* Navigation */
@@ -551,36 +553,16 @@ const useMixcloudContextState = (
     fetchCategories();
   }, []);
 
-  /* Initial load */
-  useEffect(() => {
-    console.log("initial load", initialMcKey);
-    const handleInitialLoad = async (): Promise<void> => {
-      if (initialMcKey) {
-        console.log("Initial mcKey from query:", initialMcKey);
-        handleLoad(initialMcKey);
-      } else if (selectedCategory && selectedCategory !== "all") {
-        console.log("Selected category:", selectedCategory);
-        handleLoad(await fetchRandomMcKeyByCategory(selectedCategory));
-      } else {
-        console.log(
-          "No initial mcKey or selected category, loading random mix",
-        );
-        handleLoad(await fetchRandomMcKey());
-      }
-    };
-
-    handleInitialLoad();
-    setIsReady(true);
-  }, [initialMcKey]);
-
   return {
     isReady,
     mcKey,
     mcUrl,
+    setIsReady,
     controls: {
       fetchRandomMcKey,
       fetchRandomMcKeyByCategory,
       handleLoad,
+      handleLoadRandom,
       handleNext,
       handlePause,
       handlePlay,

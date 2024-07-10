@@ -44,13 +44,14 @@ const Jupiter = (): JSX.Element => {
     mcKey,
     controls: {
       handleLoad,
+      handleLoadRandom,
       handlePause,
       handlePlay,
       handleNext,
       handlePrevious,
       fetchRandomMcKeyByCategory,
     },
-    filters: { categories = [], selectedCategory, updateSelectedCategory },
+    filters: { categories = [], selectedCategory },
     screen: { setTemporaryMessage },
     session: { openModal },
     widget: { playing, setVolume, volume },
@@ -67,6 +68,19 @@ const Jupiter = (): JSX.Element => {
       category: "Option",
       action: "Slide",
       label: "Change Volume",
+    });
+  };
+
+  const handleKnobChange = (index: number): void => {
+    const categoryLookup =
+      categories.find((cat) => cat.index === index)?.code || "all";
+
+    handleLoadRandom(categoryLookup);
+
+    ReactGA.event({
+      category: "Select",
+      action: "Knob",
+      label: `Change Category ${categoryLookup}`,
     });
   };
 
@@ -101,7 +115,7 @@ const Jupiter = (): JSX.Element => {
   };
 
   const handleShareClick = (): void => {
-    copyToClipboard(`https://stef.fm/?mcKey=${sharableKey}`);
+    copyToClipboard(`https://stef.fm/${sharableKey}`);
     setTemporaryMessage("Sharable link copied to clipboard");
 
     ReactGA.event({
@@ -166,7 +180,7 @@ const Jupiter = (): JSX.Element => {
                       steps
                       labelVisible={false}
                       categories={categories}
-                      onCategoryChange={updateSelectedCategory}
+                      onCategoryChange={handleKnobChange}
                       onChange={() => {}}
                     />
                   </StyledItem>

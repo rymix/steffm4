@@ -21,7 +21,7 @@ import React, { useState } from "react";
 export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
   const {
     mcKey,
-    controls: { handlePause, handlePlay },
+    controls: { handleLoad, handlePause, handlePlay },
     widget: { playing },
   } = useMixcloud();
   const [isExpanded, setIsExpanded] = useState(false);
@@ -31,12 +31,12 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
   };
 
   const handleClickPlay = (newMcKey: string): void => {
-    // handleLoad here
-
-    if (playing) {
+    if (mcKey.includes(mix.mixcloudKey) && playing) {
       handlePause();
-    } else {
+    } else if (mcKey.includes(mix.mixcloudKey)) {
       handlePlay();
+    } else {
+      handleLoad(newMcKey);
     }
   };
 
@@ -44,7 +44,7 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
     <>
       <StyledMixRow $on={mcKey.includes(mix.mixcloudKey)}>
         <StyledMixPlay onClick={() => handleClickPlay(mix.mixcloudKey)}>
-          {mix.mixcloudKey === mcKey && playing ? (
+          {mcKey.includes(mix.mixcloudKey) && playing ? (
             <PauseIcon />
           ) : (
             <PlayArrowIcon />
