@@ -28,17 +28,17 @@ export type MixcloudContextState = {
     favouritesList: Favourite[];
     isFavourite: (localMcKey: string) => boolean;
     removeFavourite: (localMcKey: string) => void;
-    setFavouritesList: React.Dispatch<
-      React.SetStateAction<Favourite[] | undefined>
-    >;
+    setFavouritesList: React.Dispatch<React.SetStateAction<Favourite[]>>;
   };
   filters: {
     mixes: Mix[];
     categories: Category[] | undefined;
-    selectedCategory: string | undefined;
+    selectedCategory: string | null | undefined;
     selectedTag: string;
     setMixes: React.Dispatch<React.SetStateAction<Mix[]>>;
-    setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>;
+    setSelectedCategory: React.Dispatch<
+      React.SetStateAction<string | null | undefined>
+    >;
     setSelectedTag: React.Dispatch<React.SetStateAction<string>>;
     updateSelectedCategory: (index: number) => void;
   };

@@ -1,10 +1,8 @@
-/* eslint-disable unicorn/prefer-at */
 /* eslint-disable unicorn/consistent-function-scoping */
 import type { Favourite, MixcloudContextState } from "contexts/mixcloud/types";
 import type { Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
-import type { ReactNode } from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import ReactGA from "react-ga4";
 import themes from "styles/themes";
 import {
@@ -45,7 +43,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [scale, setScale] = useState<number>(1);
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = usePersistedState<
-    string | null
+    string | null | undefined
   >("selectedCategory", null);
   const [selectedTag, setSelectedTag] = useState<string>("");
   const [showUnavailable, setShowUnavailable] = useState<boolean>(false);
@@ -228,38 +226,17 @@ const useMixcloudContextState = (): MixcloudContextState => {
         }
       }
 
-      if (windowWidth <= limits[0].width) {
-        setDisplayLength(limits[0].displayLength);
-      } else if (windowWidth >= limits[limits.length - 1].width) {
-        setDisplayLength(limits[limits.length - 1].displayLength);
-      } else {
-        setDisplayLength(
-          limit ? limit.displayLength : limits[limits.length - 1].displayLength,
-        );
-      }
-
-      // Calculate and set the scale factor
-      const minScale = 0.4;
-      const maxScale = 1;
-      const minHeight = 375;
-      const maxHeight = 570;
-
-      if (isPortrait) {
-        setScale(1);
-      } else {
-        let localScale;
-        if (windowHeight <= minHeight) {
-          localScale = minScale;
-        } else if (windowHeight >= maxHeight) {
-          localScale = maxScale;
+      if (limits.length > 0) {
+        if (windowWidth <= limits[0].width) {
+          setDisplayLength(limits[0].displayLength);
         } else {
-          localScale =
-            minScale +
-            ((windowHeight - minHeight) / (maxHeight - minHeight)) *
-              (maxScale - minScale);
+          const lastLimit = limits.at(-1);
+          if (lastLimit && windowWidth >= lastLimit.width) {
+            setDisplayLength(lastLimit.displayLength);
+          } else if (limit) {
+            setDisplayLength(limit.displayLength);
+          }
         }
-
-        setScale(localScale);
       }
     };
 

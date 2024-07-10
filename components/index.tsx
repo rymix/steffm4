@@ -30,7 +30,7 @@ import { copyToClipboard } from "utils/functions";
 
 const getCategoryIndex = (
   categories: Category[],
-  selectedCategory: string | undefined,
+  selectedCategory: string | null,
 ): number => {
   const category = categories.find(
     (cat: Category) => cat.code === selectedCategory,
@@ -57,7 +57,10 @@ const Jupiter = (): JSX.Element => {
   } = useMixcloud();
   const [sliderValue, setSliderValue] = useState(volume * 100);
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
-  const initialKnobValue = getCategoryIndex(categories, selectedCategory);
+
+  const initialKnobValue = selectedCategory
+    ? getCategoryIndex(categories, selectedCategory)
+    : 6;
 
   const handleSliderChange = (value: number): void => {
     setSliderValue(value);
@@ -133,8 +136,10 @@ const Jupiter = (): JSX.Element => {
   const handleRandomClick = async (): Promise<void> => {
     if (selectedCategory === "fav") {
       handleLoadRandomFavourite();
-    } else {
+    } else if (selectedCategory) {
       handleLoadRandom(selectedCategory);
+    } else {
+      handleLoadRandom();
     }
 
     ReactGA.event({
