@@ -16,10 +16,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 import { convertTimeToHumanReadable } from "utils/functions";
 
-export const MixCard: React.FC<MixCardProps> = ({
-  socials = false,
-  category = false,
-}) => {
+export const MixCard: React.FC<MixCardProps> = ({ category = false }) => {
   const {
     mix: { categoryName, details: mixDetails },
   } = useMixcloud();

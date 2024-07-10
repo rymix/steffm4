@@ -3,15 +3,15 @@ import type { ReactNode } from "react";
 import type { DefaultTheme } from "styled-components";
 
 export type MixcloudContextState = {
-  initialMcKey: string;
   isReady: boolean;
   mcKey: string;
   mcUrl: string;
-  setInitialMcKey: React.Dispatch<React.SetStateAction<string>>;
+  setIsReady: React.Dispatch<React.SetStateAction<boolean>>;
   controls: {
     fetchRandomMcKey: () => Promise<string>;
     fetchRandomMcKeyByCategory: (category: string | null) => Promise<string>;
     handleLoad: (localMcKey?: string) => void;
+    handleLoadRandom: (category?: string) => void;
     handleNext: () => void;
     handlePause: () => void;
     handlePlay: () => void;

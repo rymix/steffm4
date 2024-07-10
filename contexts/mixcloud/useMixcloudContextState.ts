@@ -26,7 +26,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [categoryName, setCategoryName] = useState<string>("");
   const [duration, setDuration] = useState<number>(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [initialMcKey, setInitialMcKey] = useState<string>("");
   const [isReady, setIsReady] = useState<boolean>(false);
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
@@ -311,12 +310,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const category =
       categories.find((cat) => cat.index === index)?.code || null;
     setSelectedCategory(category);
-
-    ReactGA.event({
-      category: "Select",
-      action: "Rotate Knob",
-      label: category || "All",
-    });
   };
 
   useEffect(() => {
@@ -416,8 +409,19 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Load Controls */
   const handleLoad = async (newMcKey?: string): Promise<void> => {
+    console.log("Loading new mix", newMcKey);
     if (!newMcKey) return;
     setMcKey(mcKeyFormatter(newMcKey));
+  };
+
+  const handleLoadRandom = async (category?: string): Promise<void> => {
+    if (category && category !== "all") {
+      console.log("Loading new random mix by category", category);
+      handleLoad(await fetchRandomMcKeyByCategory(category));
+    } else {
+      console.log("Loading new random mix");
+      handleLoad(await fetchRandomMcKey());
+    }
   };
 
   /* Navigation */
@@ -549,45 +553,16 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchCategories();
   }, []);
 
-  /* Load if selectedCategory changes */
-  useEffect(() => {
-    const handleSelectedCategoryChange = async (): Promise<void> => {
-      if (selectedCategory && selectedCategory !== "all") {
-        handleLoad(await fetchRandomMcKeyByCategory(selectedCategory));
-      } else {
-        handleLoad(await fetchRandomMcKey());
-      }
-    };
-
-    handleSelectedCategoryChange();
-  }, [selectedCategory]);
-
-  /* Initial load */
-  useEffect(() => {
-    const handleInitialLoad = async (): Promise<void> => {
-      if (mcKey) {
-        handleLoad(await fetchRandomMcKey());
-      } else if (selectedCategory && selectedCategory !== "all") {
-        handleLoad(await fetchRandomMcKeyByCategory(selectedCategory));
-      } else {
-        handleLoad(await fetchRandomMcKey());
-      }
-    };
-
-    handleInitialLoad();
-    setIsReady(true);
-  }, []);
-
   return {
-    initialMcKey,
     isReady,
     mcKey,
     mcUrl,
-    setInitialMcKey,
+    setIsReady,
     controls: {
       fetchRandomMcKey,
       fetchRandomMcKeyByCategory,
       handleLoad,
+      handleLoadRandom,
       handleNext,
       handlePause,
       handlePlay,
