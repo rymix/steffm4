@@ -435,17 +435,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Load Controls */
   const handleLoad = async (newMcKey?: string): Promise<void> => {
-    console.log("Loading new mix", newMcKey);
     if (!newMcKey) return;
     setMcKey(mcKeyFormatter(newMcKey));
   };
 
   const handleLoadRandom = async (category?: string): Promise<void> => {
     if (category && category !== "all") {
-      console.log("Loading new random mix by category", category);
       handleLoad(await fetchRandomMcKeyByCategory(category));
     } else {
-      console.log("Loading new random mix");
       handleLoad(await fetchRandomMcKey());
     }
   };
@@ -458,7 +455,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     const randomIndex = Math.floor(Math.random() * favouritesList.length);
     const randomFavourite = favouritesList[randomIndex];
-    console.log("Loading random favourite mix", randomFavourite.mcKey);
     handleLoad(randomFavourite.mcKey);
   };
 

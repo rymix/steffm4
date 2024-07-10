@@ -71,7 +71,6 @@ const Jupiter = (): JSX.Element => {
   };
 
   const handleKnobChange = (index: number): void => {
-    console.log("index", index);
     const categoryLookup =
       categories.find((cat) => cat.index === index)?.code || "all";
 
