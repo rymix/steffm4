@@ -13,27 +13,35 @@
       "code": "mpos",
       "name": "My Pair of Shoes",
       "shortName": "SHOES",
-      "x": -50,
-      "y": 16
+      "x": -56,
+      "y": 26
     },
     {
       "index": 3,
       "code": "special",
       "name": "Special",
       "shortName": "SPEC",
-      "x": 40,
-      "y": -20
+      "x": -12,
+      "y": -14
     },
     {
       "index": 4,
       "code": "cocksoup",
       "name": "Cocksoup",
       "shortName": "COCK",
-      "x": 110,
-      "y": 16
+      "x": 82,
+      "y": -14
     },
     {
       "index": 5,
+      "code": "fav",
+      "name": "Favourites",
+      "shortName": "FAV",
+      "x": 116,
+      "y": 26
+    },
+    {
+      "index": 6,
       "code": "all",
       "name": "All",
       "shortName": "ALL",

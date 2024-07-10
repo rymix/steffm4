@@ -2,6 +2,10 @@ import type { Category, Mix, Track } from "db/types";
 import type { ReactNode } from "react";
 import type { DefaultTheme } from "styled-components";
 
+export type Favourite = {
+  mcKey: string;
+};
+
 export type MixcloudContextState = {
   isReady: boolean;
   mcKey: string;
@@ -17,6 +21,15 @@ export type MixcloudContextState = {
     handlePlay: () => void;
     handlePlayPause: () => void;
     handlePrevious: () => void;
+  };
+  favourites: {
+    addFavourite: (localMcKey: string) => void;
+    favouritesList: Favourite[];
+    isFavourite: (localMcKey: string) => boolean;
+    removeFavourite: (localMcKey: string) => void;
+    setFavouritesList: React.Dispatch<
+      React.SetStateAction<Favourite[] | undefined>
+    >;
   };
   filters: {
     mixes: Mix[];

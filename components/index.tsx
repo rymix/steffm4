@@ -51,7 +51,7 @@ const Jupiter = (): JSX.Element => {
       handlePrevious,
       fetchRandomMcKeyByCategory,
     },
-    filters: { categories = [], selectedCategory },
+    filters: { categories = [], selectedCategory, setSelectedCategory },
     screen: { setTemporaryMessage },
     session: { openModal },
     widget: { playing, setVolume, volume },
@@ -72,10 +72,12 @@ const Jupiter = (): JSX.Element => {
   };
 
   const handleKnobChange = (index: number): void => {
+    console.log("index", index);
     const categoryLookup =
       categories.find((cat) => cat.index === index)?.code || "all";
 
     handleLoadRandom(categoryLookup);
+    setSelectedCategory(categoryLookup);
 
     ReactGA.event({
       category: "Select",
@@ -175,7 +177,7 @@ const Jupiter = (): JSX.Element => {
                       size={92}
                       degrees={220}
                       min={1}
-                      max={5}
+                      max={6}
                       value={initialKnobValue}
                       steps
                       labelVisible={false}

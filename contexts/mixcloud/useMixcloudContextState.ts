@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/prefer-at */
 /* eslint-disable unicorn/consistent-function-scoping */
-import type { MixcloudContextState } from "contexts/mixcloud/types";
+import type { Favourite, MixcloudContextState } from "contexts/mixcloud/types";
 import type { Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
 import type { ReactNode } from "react";
@@ -81,6 +81,32 @@ const useMixcloudContextState = (): MixcloudContextState => {
     string | undefined
   >();
 
+  /* Favourites */
+  const [favouritesList, setFavouritesList] = usePersistedState<Favourite[]>(
+    "favourites",
+    [],
+  );
+
+  /* FUNCTIONS -------------------- */
+
+  /* Favourites */
+  const addFavourite = (mcKey: string): void => {
+    const newFavouritesList = [...favouritesList, { mcKey }];
+    setFavouritesList(newFavouritesList);
+  };
+
+  const removeFavourite = (mcKey: string): void => {
+    const newFavouritesList = favouritesList.filter(
+      (fav) => fav.mcKey !== mcKey,
+    );
+    setFavouritesList(newFavouritesList);
+  };
+
+  const isFavourite = (mcKey: string): boolean => {
+    return favouritesList.some((fav) => fav.mcKey === mcKey);
+  };
+
+  /* Screen */
   useEffect(() => {
     const mixMessage = [
       mixDetails?.name,
@@ -568,6 +594,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
       handlePlay,
       handlePlayPause,
       handlePrevious,
+    },
+    favourites: {
+      addFavourite,
+      favouritesList,
+      isFavourite,
+      removeFavourite,
+      setFavouritesList,
     },
     filters: {
       categories,
