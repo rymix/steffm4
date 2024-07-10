@@ -90,20 +90,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* FUNCTIONS -------------------- */
 
   /* Favourites */
-  const addFavourite = (mcKey: string): void => {
-    const newFavouritesList = [...favouritesList, { mcKey }];
+  const addFavourite = (localMcKey: string): void => {
+    const newFavouritesList = [...favouritesList, { mcKey: localMcKey }];
     setFavouritesList(newFavouritesList);
   };
 
-  const removeFavourite = (mcKey: string): void => {
+  const removeFavourite = (localMcKey: string): void => {
     const newFavouritesList = favouritesList.filter(
-      (fav) => fav.mcKey !== mcKey,
+      (fav) => fav.mcKey !== localMcKey,
     );
     setFavouritesList(newFavouritesList);
   };
 
-  const isFavourite = (mcKey: string): boolean => {
-    return favouritesList.some((fav) => fav.mcKey === mcKey);
+  const isFavourite = (localMcKey: string): boolean => {
+    return favouritesList.some((fav) => fav.mcKey === localMcKey);
   };
 
   /* Screen */
