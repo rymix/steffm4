@@ -8,7 +8,7 @@ const Home = (): JSX.Element => {
   const {
     mcKey,
     setIsReady,
-    controls: { handleLoad, handleLoadRandom },
+    controls: { handleLoad, handleLoadRandom, handleLoadRandomFavourite },
     filters: { selectedCategory },
   } = useMixcloud();
 
@@ -17,6 +17,8 @@ const Home = (): JSX.Element => {
     const handleInitialLoad = async (): Promise<void> => {
       if (mcKey) {
         handleLoad(mcKey);
+      } else if (selectedCategory && selectedCategory === "fav") {
+        handleLoadRandomFavourite();
       } else if (selectedCategory && selectedCategory !== "all") {
         handleLoadRandom(selectedCategory);
       } else {

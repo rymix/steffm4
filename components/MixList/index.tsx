@@ -16,6 +16,7 @@ import React, { useEffect, useState } from "react";
 
 export const MixList: React.FC = () => {
   const {
+    favourites: { favouritesList },
     filters: { categories },
   } = useMixcloud();
   const [filterCategory, setFilterCategory] = useState<string | undefined>();
@@ -40,25 +41,52 @@ export const MixList: React.FC = () => {
     setShowFilters(!showFilters);
   };
 
-  const fetchMixes = async (): Promise<void> => {
+  const fetchFavouriteMixes = async (): Promise<Mix[]> => {
     try {
-      const mixesResponse = await fetch(`/api/mixes`);
-      if (!mixesResponse.ok) throw new Error("Data fetch failed");
-      let mixesData: Mix[] = await mixesResponse.json();
-
-      if (filterCategory) {
-        mixesData = mixesData.filter(
-          (mix) => (mix.category as any).code === filterCategory,
-        );
+      if (favouritesList.length === 0) {
+        return [];
       }
 
-      mixesData = _.orderBy(
-        mixesData,
-        ["category.code", "listOrder"],
-        ["asc", "asc"],
+      const mixPromises = favouritesList.map((favourite) =>
+        fetch(`/api/mix/${favourite.mcKey}`).then((response) => {
+          if (!response.ok) throw new Error("Data fetch failed");
+          return response.json();
+        }),
       );
 
-      setMixes(mixesData);
+      const favouriteMixes = await Promise.all(mixPromises);
+      return favouriteMixes;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  };
+
+  const fetchMixes = async (): Promise<void> => {
+    try {
+      setIsLoading(true);
+      if (filterCategory === "fav") {
+        const favouriteMixes = await fetchFavouriteMixes();
+        setMixes(favouriteMixes);
+      } else {
+        const mixesResponse = await fetch(`/api/mixes`);
+        if (!mixesResponse.ok) throw new Error("Data fetch failed");
+        let mixesData: Mix[] = await mixesResponse.json();
+
+        if (filterCategory) {
+          mixesData = mixesData.filter(
+            (mix) => (mix.category as any).code === filterCategory,
+          );
+        }
+
+        mixesData = _.orderBy(
+          mixesData,
+          ["category.code", "listOrder"],
+          ["asc", "asc"],
+        );
+
+        setMixes(mixesData);
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -100,7 +128,12 @@ export const MixList: React.FC = () => {
           )}
         </>
       )}
-      {mixes?.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)}
+      {!isLoading &&
+        filterCategory !== "fav" &&
+        mixes?.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)}
+      {!isLoading &&
+        filterCategory === "fav" &&
+        mixes?.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)}
     </>
   );
 };

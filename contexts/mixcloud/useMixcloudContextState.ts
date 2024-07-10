@@ -1,10 +1,8 @@
-/* eslint-disable unicorn/prefer-at */
 /* eslint-disable unicorn/consistent-function-scoping */
-import type { MixcloudContextState } from "contexts/mixcloud/types";
+import type { Favourite, MixcloudContextState } from "contexts/mixcloud/types";
 import type { Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
-import type { ReactNode } from "react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import ReactGA from "react-ga4";
 import themes from "styles/themes";
 import {
@@ -45,7 +43,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [scale, setScale] = useState<number>(1);
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = usePersistedState<
-    string | null
+    string | null | undefined
   >("selectedCategory", null);
   const [selectedTag, setSelectedTag] = useState<string>("");
   const [showUnavailable, setShowUnavailable] = useState<boolean>(false);
@@ -81,6 +79,32 @@ const useMixcloudContextState = (): MixcloudContextState => {
     string | undefined
   >();
 
+  /* Favourites */
+  const [favouritesList, setFavouritesList] = usePersistedState<Favourite[]>(
+    "favourites",
+    [],
+  );
+
+  /* FUNCTIONS -------------------- */
+
+  /* Favourites */
+  const addFavourite = (localMcKey: string): void => {
+    const newFavouritesList = [...favouritesList, { mcKey: localMcKey }];
+    setFavouritesList(newFavouritesList);
+  };
+
+  const removeFavourite = (localMcKey: string): void => {
+    const newFavouritesList = favouritesList.filter(
+      (fav) => fav.mcKey !== localMcKey,
+    );
+    setFavouritesList(newFavouritesList);
+  };
+
+  const isFavourite = (localMcKey: string): boolean => {
+    return favouritesList.some((fav) => fav.mcKey === localMcKey);
+  };
+
+  /* Screen */
   useEffect(() => {
     const mixMessage = [
       mixDetails?.name,
@@ -202,38 +226,17 @@ const useMixcloudContextState = (): MixcloudContextState => {
         }
       }
 
-      if (windowWidth <= limits[0].width) {
-        setDisplayLength(limits[0].displayLength);
-      } else if (windowWidth >= limits[limits.length - 1].width) {
-        setDisplayLength(limits[limits.length - 1].displayLength);
-      } else {
-        setDisplayLength(
-          limit ? limit.displayLength : limits[limits.length - 1].displayLength,
-        );
-      }
-
-      // Calculate and set the scale factor
-      const minScale = 0.4;
-      const maxScale = 1;
-      const minHeight = 375;
-      const maxHeight = 570;
-
-      if (isPortrait) {
-        setScale(1);
-      } else {
-        let localScale;
-        if (windowHeight <= minHeight) {
-          localScale = minScale;
-        } else if (windowHeight >= maxHeight) {
-          localScale = maxScale;
+      if (limits.length > 0) {
+        if (windowWidth <= limits[0].width) {
+          setDisplayLength(limits[0].displayLength);
         } else {
-          localScale =
-            minScale +
-            ((windowHeight - minHeight) / (maxHeight - minHeight)) *
-              (maxScale - minScale);
+          const lastLimit = limits.at(-1);
+          if (lastLimit && windowWidth >= lastLimit.width) {
+            setDisplayLength(lastLimit.displayLength);
+          } else if (limit) {
+            setDisplayLength(limit.displayLength);
+          }
         }
-
-        setScale(localScale);
       }
     };
 
@@ -409,19 +412,27 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Load Controls */
   const handleLoad = async (newMcKey?: string): Promise<void> => {
-    console.log("Loading new mix", newMcKey);
     if (!newMcKey) return;
     setMcKey(mcKeyFormatter(newMcKey));
   };
 
   const handleLoadRandom = async (category?: string): Promise<void> => {
     if (category && category !== "all") {
-      console.log("Loading new random mix by category", category);
       handleLoad(await fetchRandomMcKeyByCategory(category));
     } else {
-      console.log("Loading new random mix");
       handleLoad(await fetchRandomMcKey());
     }
+  };
+
+  const handleLoadRandomFavourite = async (): Promise<void> => {
+    if (favouritesList.length === 0) {
+      console.log("No favourites to load");
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * favouritesList.length);
+    const randomFavourite = favouritesList[randomIndex];
+    handleLoad(randomFavourite.mcKey);
   };
 
   /* Navigation */
@@ -563,11 +574,19 @@ const useMixcloudContextState = (): MixcloudContextState => {
       fetchRandomMcKeyByCategory,
       handleLoad,
       handleLoadRandom,
+      handleLoadRandomFavourite,
       handleNext,
       handlePause,
       handlePlay,
       handlePlayPause,
       handlePrevious,
+    },
+    favourites: {
+      addFavourite,
+      favouritesList,
+      isFavourite,
+      removeFavourite,
+      setFavouritesList,
     },
     filters: {
       categories,

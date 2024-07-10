@@ -41,7 +41,7 @@ export const StyledJupiterOuterKnob = styled.div.attrs<StyledOuterKnobProps>(
 `;
 
 export const StyledJupiterRadialLabels = styled.div<StyledKnobRadialLabels>`
-  color: rgba(255, 255, 255, 0.8)
+  color: rgba(255, 255, 255, 0.8);
   width: 148.5px;
   height: 84px;
   overflow: visible;
@@ -67,7 +67,7 @@ export const StyledJupiterInnerKnob = styled.div.attrs<StyledInnerKnobProps>(
 export const StyledJupiterGrip = styled.div`
   position: absolute;
   width: 3px;
-  height: 10px;
+  height: 16px;
   bottom: 2%;
   left: 50%;
   transform: translateX(-50%);

@@ -10,7 +10,7 @@ export const StyledMixList = styled.div``;
 export const StyledMixRow = styled.div<StyledMixRowProps>`
   border-left: 12px solid transparent;
   display: grid;
-  grid-template-columns: 40px 70px 1fr 40px;
+  grid-template-columns: 40px 40px 70px 1fr 40px;
   margin-bottom: 20px;
 
   ${(props) =>
@@ -20,7 +20,17 @@ export const StyledMixRow = styled.div<StyledMixRowProps>`
     `}
 
   @media screen and (orientation: portrait) and (max-width: 440px) {
-    grid-template-columns: 20px 50px 1fr 20px;
+    grid-template-columns: 20px 20px 50px 1fr 20px;
+  }
+`;
+
+export const StyledMixFavourite = styled.div`
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: rgba(0, 0, 0, 1);
   }
 `;
 
@@ -164,8 +174,8 @@ export const StyledMixListCategory = styled.li<StyledMixListCategoryProps>`
   ${(props) =>
     props.$on &&
     `
-      border: 1px solid #c5baa8;
-      background: #ddd1be;
+      border: 1px solid #a59a88;
+      background: #cdc1ae;
     `}
 
   &:hover {

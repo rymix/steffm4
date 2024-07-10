@@ -2,6 +2,10 @@ import type { Category, Mix, Track } from "db/types";
 import type { ReactNode } from "react";
 import type { DefaultTheme } from "styled-components";
 
+export type Favourite = {
+  mcKey: string;
+};
+
 export type MixcloudContextState = {
   isReady: boolean;
   mcKey: string;
@@ -12,19 +16,29 @@ export type MixcloudContextState = {
     fetchRandomMcKeyByCategory: (category: string | null) => Promise<string>;
     handleLoad: (localMcKey?: string) => void;
     handleLoadRandom: (category?: string) => void;
+    handleLoadRandomFavourite: () => void;
     handleNext: () => void;
     handlePause: () => void;
     handlePlay: () => void;
     handlePlayPause: () => void;
     handlePrevious: () => void;
   };
+  favourites: {
+    addFavourite: (localMcKey: string) => void;
+    favouritesList: Favourite[];
+    isFavourite: (localMcKey: string) => boolean;
+    removeFavourite: (localMcKey: string) => void;
+    setFavouritesList: React.Dispatch<React.SetStateAction<Favourite[]>>;
+  };
   filters: {
     mixes: Mix[];
     categories: Category[] | undefined;
-    selectedCategory: string | null;
+    selectedCategory: string | null | undefined;
     selectedTag: string;
     setMixes: React.Dispatch<React.SetStateAction<Mix[]>>;
-    setSelectedCategory: React.Dispatch<React.SetStateAction<string | null>>;
+    setSelectedCategory: React.Dispatch<
+      React.SetStateAction<string | null | undefined>
+    >;
     setSelectedTag: React.Dispatch<React.SetStateAction<string>>;
     updateSelectedCategory: (index: number) => void;
   };

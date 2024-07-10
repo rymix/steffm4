@@ -43,22 +43,24 @@ const Jupiter = (): JSX.Element => {
     isReady,
     mcKey,
     controls: {
-      handleLoad,
       handleLoadRandom,
+      handleLoadRandomFavourite,
       handlePause,
       handlePlay,
       handleNext,
       handlePrevious,
-      fetchRandomMcKeyByCategory,
     },
-    filters: { categories = [], selectedCategory },
+    filters: { categories = [], selectedCategory, setSelectedCategory },
     screen: { setTemporaryMessage },
     session: { openModal },
     widget: { playing, setVolume, volume },
   } = useMixcloud();
   const [sliderValue, setSliderValue] = useState(volume * 100);
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
-  const initialKnobValue = getCategoryIndex(categories, selectedCategory);
+
+  const initialKnobValue = selectedCategory
+    ? getCategoryIndex(categories, selectedCategory)
+    : 6;
 
   const handleSliderChange = (value: number): void => {
     setSliderValue(value);
@@ -75,7 +77,13 @@ const Jupiter = (): JSX.Element => {
     const categoryLookup =
       categories.find((cat) => cat.index === index)?.code || "all";
 
-    handleLoadRandom(categoryLookup);
+    if (categoryLookup === "fav") {
+      handleLoadRandomFavourite();
+    } else {
+      handleLoadRandom(categoryLookup);
+    }
+
+    setSelectedCategory(categoryLookup);
 
     ReactGA.event({
       category: "Select",
@@ -126,16 +134,19 @@ const Jupiter = (): JSX.Element => {
   };
 
   const handleRandomClick = async (): Promise<void> => {
-    const randomKey = await fetchRandomMcKeyByCategory(selectedCategory);
-    if (randomKey) {
-      handleLoad(randomKey);
-
-      ReactGA.event({
-        category: "Option",
-        action: "Click",
-        label: "Random Mix",
-      });
+    if (selectedCategory === "fav") {
+      handleLoadRandomFavourite();
+    } else if (selectedCategory) {
+      handleLoadRandom(selectedCategory);
+    } else {
+      handleLoadRandom();
     }
+
+    ReactGA.event({
+      category: "Option",
+      action: "Click",
+      label: "Random Mix",
+    });
   };
 
   useEffect(() => {
@@ -175,7 +186,7 @@ const Jupiter = (): JSX.Element => {
                       size={92}
                       degrees={220}
                       min={1}
-                      max={5}
+                      max={6}
                       value={initialKnobValue}
                       steps
                       labelVisible={false}
