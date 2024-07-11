@@ -13,6 +13,7 @@ import {
 import {
   convertTimeToHumanReadable,
   convertTimeToSeconds,
+  copyToClipboard,
   mcKeyFormatter,
   mcKeyUnformatter,
   mcKeyUrlFormatter,
@@ -87,6 +88,19 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [mixIsFavourite, setMixIsFavourite] = useState<boolean>(false);
 
   /* FUNCTIONS -------------------- */
+
+  /* Sharable Link */
+  const copySharableLink = (): void => {
+    const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
+    copyToClipboard(`https://stef.fm/${sharableKey}`);
+    setTemporaryMessage("Sharable link copied to clipboard");
+
+    ReactGA.event({
+      category: "Option",
+      action: "Click",
+      label: "Share Link",
+    });
+  };
 
   /* Favourites */
   const addFavourite = (localMcKey: string): void => {
@@ -651,6 +665,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     },
     mix: {
       categoryName,
+      copySharableLink,
       duration,
       details: mixDetails,
       favourite: mixIsFavourite,

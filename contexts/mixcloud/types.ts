@@ -44,6 +44,7 @@ export type MixcloudContextState = {
   };
   mix: {
     categoryName: string;
+    copySharableLink: () => void;
     duration: number;
     details: Mix | undefined;
     favourite: boolean | undefined;

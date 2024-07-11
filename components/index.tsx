@@ -26,7 +26,6 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-import { copyToClipboard } from "utils/functions";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -52,14 +51,11 @@ const Jupiter = (): JSX.Element => {
     },
     favourites: { addFavourite, isFavourite, removeFavourite },
     filters: { categories = [], selectedCategory, setSelectedCategory },
-    mix: { favourite },
-    screen: { setTemporaryMessage },
+    mix: { copySharableLink, favourite },
     session: { openModal },
     widget: { playing, setVolume, volume },
   } = useMixcloud();
   const [sliderValue, setSliderValue] = useState<number>(volume * 100);
-
-  const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
 
   const initialKnobValue = selectedCategory
     ? getCategoryIndex(categories, selectedCategory)
@@ -122,17 +118,6 @@ const Jupiter = (): JSX.Element => {
       category: "Option",
       action: "Click",
       label: "Mix Information",
-    });
-  };
-
-  const handleShareClick = (): void => {
-    copyToClipboard(`https://stef.fm/${sharableKey}`);
-    setTemporaryMessage("Sharable link copied to clipboard");
-
-    ReactGA.event({
-      category: "Option",
-      action: "Click",
-      label: "Share Link",
     });
   };
 
@@ -267,7 +252,7 @@ const Jupiter = (): JSX.Element => {
                     <JupiterButton
                       color="orange"
                       label="Share"
-                      onClick={handleShareClick}
+                      onClick={copySharableLink}
                     />
                     <JupiterButton
                       color="orange"
