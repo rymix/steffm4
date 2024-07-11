@@ -89,19 +89,29 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Favourites */
   const addFavourite = (localMcKey: string): void => {
-    const newFavouritesList = [...favouritesList, { mcKey: localMcKey }];
+    console.log("addFavourite", localMcKey);
+    const newFavouritesList = [
+      ...favouritesList,
+      { mcKey: mcKeyUnformatter(localMcKey) },
+    ];
     setFavouritesList(newFavouritesList);
   };
 
   const removeFavourite = (localMcKey: string): void => {
+    console.log("removeFavourite", localMcKey);
     const newFavouritesList = favouritesList.filter(
-      (fav) => fav.mcKey !== localMcKey,
+      (fav) => fav.mcKey !== mcKeyUnformatter(localMcKey),
     );
     setFavouritesList(newFavouritesList);
   };
 
   const isFavourite = (localMcKey: string): boolean => {
-    return favouritesList.some((fav) => fav.mcKey === localMcKey);
+    console.log("Inside isFavourite", localMcKey);
+    const localIsFavourite = favouritesList.some((fav) =>
+      localMcKey.includes(fav.mcKey),
+    );
+    console.log("localIsFavourite", localIsFavourite);
+    return localIsFavourite;
   };
 
   /* Screen */

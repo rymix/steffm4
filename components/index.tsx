@@ -50,12 +50,16 @@ const Jupiter = (): JSX.Element => {
       handleNext,
       handlePrevious,
     },
+    favourites: { addFavourite, isFavourite, removeFavourite },
     filters: { categories = [], selectedCategory, setSelectedCategory },
     screen: { setTemporaryMessage },
     session: { openModal },
     widget: { playing, setVolume, volume },
   } = useMixcloud();
-  const [sliderValue, setSliderValue] = useState(volume * 100);
+  const [sliderValue, setSliderValue] = useState<number>(volume * 100);
+  const [isMixFavourite, setIsMixFavourite] = useState<boolean | undefined>(
+    false,
+  );
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
 
   const initialKnobValue = selectedCategory
@@ -149,9 +153,28 @@ const Jupiter = (): JSX.Element => {
     });
   };
 
+  const handleFavouriteClick = async (): Promise<void> => {
+    console.log("isFavourite(mcKey)", isFavourite(mcKey), mcKey);
+    if (isFavourite(mcKey)) {
+      removeFavourite(mcKey);
+    } else {
+      addFavourite(mcKey);
+    }
+
+    ReactGA.event({
+      category: "Option",
+      action: "Click",
+      label: "Random Mix",
+    });
+  };
+
   useEffect(() => {
     setSliderValue(volume * 100);
   }, [volume]);
+
+  useEffect(() => {
+    setIsMixFavourite(isFavourite(mcKey));
+  }, [handleFavouriteClick, mcKey]);
 
   return (
     <>
@@ -227,6 +250,12 @@ const Jupiter = (): JSX.Element => {
                       color="blue"
                       label="Rand"
                       onClick={handleRandomClick}
+                    />
+                    <JupiterButton
+                      color="yellow"
+                      label="Fav"
+                      onClick={handleFavouriteClick}
+                      on={isMixFavourite}
                     />
                   </StyledItem>
                 </StyledItems>
