@@ -154,7 +154,6 @@ const Jupiter = (): JSX.Element => {
   };
 
   const handleFavouriteClick = async (): Promise<void> => {
-    console.log("isFavourite(mcKey)", isFavourite(mcKey), mcKey);
     if (isFavourite(mcKey)) {
       removeFavourite(mcKey);
     } else {

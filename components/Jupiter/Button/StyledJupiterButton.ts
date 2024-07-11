@@ -72,6 +72,10 @@ export const StyledJupiterButtonWrapper = styled.div`
   justify-content: flex-start;
   height: 128px;
   width: 54px;
+
+  @media screen and (orientation: portrait) and (max-width: 440px) {
+    width: 44px;
+  }
 `;
 
 export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`

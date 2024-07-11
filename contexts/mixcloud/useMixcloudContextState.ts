@@ -89,7 +89,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Favourites */
   const addFavourite = (localMcKey: string): void => {
-    console.log("addFavourite", localMcKey);
     const newFavouritesList = [
       ...favouritesList,
       { mcKey: mcKeyUnformatter(localMcKey) },
@@ -98,7 +97,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
 
   const removeFavourite = (localMcKey: string): void => {
-    console.log("removeFavourite", localMcKey);
     const newFavouritesList = favouritesList.filter(
       (fav) => fav.mcKey !== mcKeyUnformatter(localMcKey),
     );
@@ -106,7 +104,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
 
   const isFavourite = (localMcKey: string): boolean => {
-    console.log("Inside isFavourite", localMcKey);
     const localIsFavourite = favouritesList.some((fav) =>
       localMcKey.includes(fav.mcKey),
     );
