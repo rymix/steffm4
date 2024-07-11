@@ -90,15 +90,21 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* FUNCTIONS -------------------- */
 
   /* Sharable Link */
-  const copySharableLink = (): void => {
-    const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
+  const copySharableLink = (localMix?: Mix): void => {
+    let sharableKey = mcKey;
+
+    if (localMix) {
+      sharableKey = localMix.mixcloudKey;
+    }
+
+    sharableKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
     copyToClipboard(`https://stef.fm/${sharableKey}`);
     setTemporaryMessage("Sharable link copied to clipboard");
 
     ReactGA.event({
       category: "Option",
       action: "Click",
-      label: "Share Link",
+      label: `Share Link ${sharableKey}`,
     });
   };
 

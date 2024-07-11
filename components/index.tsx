@@ -157,6 +157,10 @@ const Jupiter = (): JSX.Element => {
     }
   };
 
+  const handleShareClick = (): void => {
+    copySharableLink();
+  };
+
   useEffect(() => {
     setSliderValue(volume * 100);
   }, [volume]);
@@ -252,7 +256,7 @@ const Jupiter = (): JSX.Element => {
                     <JupiterButton
                       color="orange"
                       label="Share"
-                      onClick={copySharableLink}
+                      onClick={handleShareClick}
                     />
                     <JupiterButton
                       color="orange"

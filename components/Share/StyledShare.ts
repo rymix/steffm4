@@ -14,7 +14,7 @@ export const TooltipContainer = styled.div`
   position: absolute;
   top: 0;
   right: -200px;
-  transform: translateY(calc(-100% - 10px));
+  transform: translateY(-40px);
   z-index: 101;
 `;
 

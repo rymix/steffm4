@@ -16,6 +16,7 @@ import {
 } from "components/MixList/StyledMixList";
 import TrackListMini from "components/MixList/TrackListMini";
 import type { MixRowProps } from "components/MixList/types";
+import Share from "components/Share";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useState } from "react";
 
@@ -44,7 +45,6 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
   return (
     <>
       <StyledMixRow $on={mcKey.includes(mix.mixcloudKey)}>
-        <Favourite mix={mix} />
         <StyledMixPlay onClick={() => handleClickPlay(mix.mixcloudKey)}>
           {mcKey.includes(mix.mixcloudKey) && playing ? (
             <PauseIcon />
@@ -52,6 +52,8 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
             <PlayArrowIcon />
           )}
         </StyledMixPlay>
+        <Favourite mix={mix} />
+        <Share mix={mix} />
         <StyledMixCoverArt onClick={handleExpandToggle}>
           <StyledMixCoverArtImage src={mix.coverArtSmall} />
         </StyledMixCoverArt>

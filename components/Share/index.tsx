@@ -15,8 +15,13 @@ export const Share: React.FC<ShareProps> = ({ mix }) => {
   const [visible, setVisible] = useState(false);
   const [fading, setFading] = useState(false);
 
-  const handleClickShare = () => {
-    copySharableLink();
+  const handleClickShare = (): void => {
+    if (mix) {
+      copySharableLink(mix);
+    } else {
+      copySharableLink();
+    }
+
     setVisible(true);
     setFading(true);
     setTimeout(() => {
