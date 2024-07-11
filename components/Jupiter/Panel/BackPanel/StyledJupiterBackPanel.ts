@@ -12,14 +12,15 @@ export const StyledJupiterBackPanel = styled.div`
 
 export const StyledJupiterBackPanelPowerButton = styled.div`
   background: rgba(252, 121, 31, 0.9);
+  border: 5px solid rgba(0, 0, 0, 0.7);
   border-radius: 3px;
   bottom: 16px;
   display: block;
   height: 24px;
   position: absolute;
-  right: 26px;
-  width: 54px;
-  box-shadow: 0 0 10px 5px rgba(252, 121, 31, 0.5); /* Outer glow */
+  right: 34px;
+  width: 34px;
+  sbox-shadow: 0 0 5px 5px rgba(252, 121, 31, 0.5);
 
   &::before {
     content: "";
@@ -30,10 +31,10 @@ export const StyledJupiterBackPanelPowerButton = styled.div`
     bottom: 0;
     border-radius: 3px;
     background: radial-gradient(
-      circle at center,
-      rgba(255, 255, 255, 0.8) 0%,
+      circle at bottom,
+      rgba(236, 169, 122, 0.8) 0%,
       rgba(255, 255, 255, 0.2) 50%,
       transparent 70%
-    ); /* Inset glow */
+    );
   }
 `;
