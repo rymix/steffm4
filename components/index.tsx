@@ -52,14 +52,13 @@ const Jupiter = (): JSX.Element => {
     },
     favourites: { addFavourite, isFavourite, removeFavourite },
     filters: { categories = [], selectedCategory, setSelectedCategory },
+    mix: { favourite },
     screen: { setTemporaryMessage },
     session: { openModal },
     widget: { playing, setVolume, volume },
   } = useMixcloud();
   const [sliderValue, setSliderValue] = useState<number>(volume * 100);
-  const [isMixFavourite, setIsMixFavourite] = useState<boolean | undefined>(
-    false,
-  );
+
   const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
 
   const initialKnobValue = selectedCategory
@@ -156,7 +155,6 @@ const Jupiter = (): JSX.Element => {
   const handleFavouriteClick = async (): Promise<void> => {
     if (isFavourite(mcKey)) {
       removeFavourite(mcKey);
-      setIsMixFavourite(false);
 
       ReactGA.event({
         category: "Option",
@@ -165,7 +163,6 @@ const Jupiter = (): JSX.Element => {
       });
     } else {
       addFavourite(mcKey);
-      setIsMixFavourite(true);
 
       ReactGA.event({
         category: "Option",
@@ -178,10 +175,6 @@ const Jupiter = (): JSX.Element => {
   useEffect(() => {
     setSliderValue(volume * 100);
   }, [volume]);
-
-  useEffect(() => {
-    setIsMixFavourite(isFavourite(mcKey));
-  }, [mcKey]);
 
   return (
     <>
@@ -262,7 +255,7 @@ const Jupiter = (): JSX.Element => {
                       color="yellow"
                       label="Fav"
                       onClick={handleFavouriteClick}
-                      on={isMixFavourite}
+                      on={favourite}
                     />
                   </StyledItem>
                 </StyledItems>

@@ -84,6 +84,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     "favourites",
     [],
   );
+  const [mixIsFavourite, setMixIsFavourite] = useState<boolean>(false);
 
   /* FUNCTIONS -------------------- */
 
@@ -107,9 +108,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const localIsFavourite = favouritesList.some((fav) =>
       localMcKey.includes(fav.mcKey),
     );
-    console.log("localIsFavourite", localIsFavourite);
     return localIsFavourite;
   };
+
+  useEffect(() => {
+    setMixIsFavourite(isFavourite(mcKey));
+  }, [favouritesList]);
 
   /* Screen */
   useEffect(() => {
@@ -649,6 +653,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       categoryName,
       duration,
       details: mixDetails,
+      favourite: mixIsFavourite,
       progress: mixProgress,
       progressPercent: mixProgressPercent,
       setDetails: setMixDetails,

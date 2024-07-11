@@ -46,6 +46,7 @@ export type MixcloudContextState = {
     categoryName: string;
     duration: number;
     details: Mix | undefined;
+    favourite: boolean | undefined;
     progress: number;
     progressPercent: number;
     setDetails: React.Dispatch<React.SetStateAction<Mix | undefined>>;
