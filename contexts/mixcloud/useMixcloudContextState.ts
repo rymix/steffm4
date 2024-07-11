@@ -89,19 +89,26 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Favourites */
   const addFavourite = (localMcKey: string): void => {
-    const newFavouritesList = [...favouritesList, { mcKey: localMcKey }];
+    const newFavouritesList = [
+      ...favouritesList,
+      { mcKey: mcKeyUnformatter(localMcKey) },
+    ];
     setFavouritesList(newFavouritesList);
   };
 
   const removeFavourite = (localMcKey: string): void => {
     const newFavouritesList = favouritesList.filter(
-      (fav) => fav.mcKey !== localMcKey,
+      (fav) => fav.mcKey !== mcKeyUnformatter(localMcKey),
     );
     setFavouritesList(newFavouritesList);
   };
 
   const isFavourite = (localMcKey: string): boolean => {
-    return favouritesList.some((fav) => fav.mcKey === localMcKey);
+    const localIsFavourite = favouritesList.some((fav) =>
+      localMcKey.includes(fav.mcKey),
+    );
+    console.log("localIsFavourite", localIsFavourite);
+    return localIsFavourite;
   };
 
   /* Screen */
@@ -546,6 +553,46 @@ const useMixcloudContextState = (): MixcloudContextState => {
     calculateTrackProgress();
     calculateMixProgress();
   }, [mixProgress, mixDetails, duration, lastTrackUpdateTime]);
+
+  /* Media Controls */
+  useEffect(() => {
+    if ("mediaSession" in navigator) {
+      navigator.mediaSession.metadata = new window.MediaMetadata({
+        title: mixDetails?.name || "Unknown Title",
+        artist: trackDetails?.artistName || "Unknown Artist",
+        album: mixDetails?.notes || "Unknown Album",
+        artwork: [
+          {
+            src: mixDetails?.coverArtSmall || "",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      });
+
+      navigator.mediaSession.setActionHandler("play", handlePlay);
+      navigator.mediaSession.setActionHandler("pause", handlePause);
+      navigator.mediaSession.setActionHandler("previoustrack", handlePrevious);
+      navigator.mediaSession.setActionHandler("nexttrack", handleNext);
+    }
+
+    return () => {
+      if ("mediaSession" in navigator) {
+        navigator.mediaSession.setActionHandler("play", null);
+        navigator.mediaSession.setActionHandler("pause", null);
+        navigator.mediaSession.setActionHandler("previoustrack", null);
+        navigator.mediaSession.setActionHandler("nexttrack", null);
+      }
+    };
+  }, [
+    mixDetails,
+    trackDetails,
+    handlePlay,
+    handlePause,
+    handlePrevious,
+    handleNext,
+    handlePlayPause,
+  ]);
 
   /* Fetch Categories */
   useEffect(() => {
