@@ -554,6 +554,46 @@ const useMixcloudContextState = (): MixcloudContextState => {
     calculateMixProgress();
   }, [mixProgress, mixDetails, duration, lastTrackUpdateTime]);
 
+  /* Media Controls */
+  useEffect(() => {
+    if ("mediaSession" in navigator) {
+      navigator.mediaSession.metadata = new window.MediaMetadata({
+        title: mixDetails?.name || "Unknown Title",
+        artist: trackDetails?.artistName || "Unknown Artist",
+        album: mixDetails?.notes || "Unknown Album",
+        artwork: [
+          {
+            src: mixDetails?.coverArtSmall || "",
+            sizes: "512x512",
+            type: "image/png",
+          },
+        ],
+      });
+
+      navigator.mediaSession.setActionHandler("play", handlePlay);
+      navigator.mediaSession.setActionHandler("pause", handlePause);
+      navigator.mediaSession.setActionHandler("previoustrack", handlePrevious);
+      navigator.mediaSession.setActionHandler("nexttrack", handleNext);
+    }
+
+    return () => {
+      if ("mediaSession" in navigator) {
+        navigator.mediaSession.setActionHandler("play", null);
+        navigator.mediaSession.setActionHandler("pause", null);
+        navigator.mediaSession.setActionHandler("previoustrack", null);
+        navigator.mediaSession.setActionHandler("nexttrack", null);
+      }
+    };
+  }, [
+    mixDetails,
+    trackDetails,
+    handlePlay,
+    handlePause,
+    handlePrevious,
+    handleNext,
+    handlePlayPause,
+  ]);
+
   /* Fetch Categories */
   useEffect(() => {
     const fetchCategories = async (): Promise<void> => {
