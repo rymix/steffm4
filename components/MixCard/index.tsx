@@ -21,7 +21,6 @@ import { convertTimeToHumanReadable } from "utils/functions";
 
 export const MixCard: React.FC<MixCardProps> = ({ category = false }) => {
   const {
-    mcKey,
     mix: { categoryName, details: mixDetails },
   } = useMixcloud();
 
