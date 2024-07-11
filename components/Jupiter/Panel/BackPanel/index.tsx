@@ -1,7 +1,14 @@
-import { StyledJupiterBackPanel } from "components/Jupiter/Panel/BackPanel/StyledJupiterBackPanel";
+import {
+  StyledJupiterBackPanel,
+  StyledJupiterBackPanelPowerButton,
+} from "components/Jupiter/Panel/BackPanel/StyledJupiterBackPanel";
 
 const JupiterBackPanel: React.FC = () => {
-  return <StyledJupiterBackPanel>&nbsp;</StyledJupiterBackPanel>;
+  return (
+    <StyledJupiterBackPanel>
+      <StyledJupiterBackPanelPowerButton />
+    </StyledJupiterBackPanel>
+  );
 };
 
 export default JupiterBackPanel;
