@@ -26,7 +26,6 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-import { copyToClipboard } from "utils/functions";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -52,15 +51,11 @@ const Jupiter = (): JSX.Element => {
     },
     favourites: { addFavourite, isFavourite, removeFavourite },
     filters: { categories = [], selectedCategory, setSelectedCategory },
-    screen: { setTemporaryMessage },
+    mix: { copySharableLink, favourite },
     session: { openModal },
     widget: { playing, setVolume, volume },
   } = useMixcloud();
   const [sliderValue, setSliderValue] = useState<number>(volume * 100);
-  const [isMixFavourite, setIsMixFavourite] = useState<boolean | undefined>(
-    false,
-  );
-  const sharableKey = mcKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
 
   const initialKnobValue = selectedCategory
     ? getCategoryIndex(categories, selectedCategory)
@@ -126,17 +121,6 @@ const Jupiter = (): JSX.Element => {
     });
   };
 
-  const handleShareClick = (): void => {
-    copyToClipboard(`https://stef.fm/${sharableKey}`);
-    setTemporaryMessage("Sharable link copied to clipboard");
-
-    ReactGA.event({
-      category: "Option",
-      action: "Click",
-      label: "Share Link",
-    });
-  };
-
   const handleRandomClick = async (): Promise<void> => {
     if (selectedCategory === "fav") {
       handleLoadRandomFavourite();
@@ -156,7 +140,6 @@ const Jupiter = (): JSX.Element => {
   const handleFavouriteClick = async (): Promise<void> => {
     if (isFavourite(mcKey)) {
       removeFavourite(mcKey);
-      setIsMixFavourite(false);
 
       ReactGA.event({
         category: "Option",
@@ -165,7 +148,6 @@ const Jupiter = (): JSX.Element => {
       });
     } else {
       addFavourite(mcKey);
-      setIsMixFavourite(true);
 
       ReactGA.event({
         category: "Option",
@@ -175,13 +157,13 @@ const Jupiter = (): JSX.Element => {
     }
   };
 
+  const handleShareClick = (): void => {
+    copySharableLink();
+  };
+
   useEffect(() => {
     setSliderValue(volume * 100);
   }, [volume]);
-
-  useEffect(() => {
-    setIsMixFavourite(isFavourite(mcKey));
-  }, [mcKey]);
 
   return (
     <>
@@ -262,7 +244,7 @@ const Jupiter = (): JSX.Element => {
                       color="yellow"
                       label="Fav"
                       onClick={handleFavouriteClick}
-                      on={isMixFavourite}
+                      on={favourite}
                     />
                   </StyledItem>
                 </StyledItems>

@@ -1,8 +1,10 @@
+import Favourite from "components/Favourite";
 import {
   StyledCategoryName,
   StyledCoverArt,
   StyledCoverArtImage,
   StyledDuration,
+  StyledInteractionsWrapper,
   StyledMixCard,
   StyledMixCardWrapper,
   StyledMixInfo,
@@ -12,6 +14,7 @@ import {
   StyledSubDetails,
 } from "components/MixCard/StyledMixCard";
 import type { MixCardProps } from "components/MixCard/types";
+import Share from "components/Share";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 import { convertTimeToHumanReadable } from "utils/functions";
@@ -49,6 +52,10 @@ export const MixCard: React.FC<MixCardProps> = ({ category = false }) => {
             </StyledDuration>
           </StyledSubDetails>
           <StyledNotes>{notes}</StyledNotes>
+          <StyledInteractionsWrapper>
+            <Favourite mix={mixDetails} />
+            <Share />
+          </StyledInteractionsWrapper>
         </StyledMixInfo>
       </StyledMixCard>
     </StyledMixCardWrapper>

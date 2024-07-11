@@ -44,8 +44,10 @@ export type MixcloudContextState = {
   };
   mix: {
     categoryName: string;
+    copySharableLink: (localMix?: Mix) => void;
     duration: number;
     details: Mix | undefined;
+    favourite: boolean | undefined;
     progress: number;
     progressPercent: number;
     setDetails: React.Dispatch<React.SetStateAction<Mix | undefined>>;

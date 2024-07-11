@@ -1,15 +1,13 @@
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import Favourite from "components/Favourite";
 import {
   StyledMixCoverArt,
   StyledMixCoverArtImage,
   StyledMixDetails,
   StyledMixExpand,
-  StyledMixFavourite,
   StyledMixInfoBlock,
   StyledMixName,
   StyledMixNotes,
@@ -18,13 +16,13 @@ import {
 } from "components/MixList/StyledMixList";
 import TrackListMini from "components/MixList/TrackListMini";
 import type { MixRowProps } from "components/MixList/types";
+import Share from "components/Share";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useState } from "react";
 
 export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
   const {
     mcKey,
-    favourites: { addFavourite, isFavourite, removeFavourite },
     controls: { handleLoad, handlePause, handlePlay },
     widget: { playing },
   } = useMixcloud();
@@ -44,24 +42,9 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
     }
   };
 
-  const handleToggleFavourite = (): void => {
-    if (isFavourite(mix.mixcloudKey)) {
-      removeFavourite(mix.mixcloudKey);
-    } else {
-      addFavourite(mix.mixcloudKey);
-    }
-  };
-
   return (
     <>
       <StyledMixRow $on={mcKey.includes(mix.mixcloudKey)}>
-        <StyledMixFavourite onClick={handleToggleFavourite}>
-          {isFavourite(mix.mixcloudKey) ? (
-            <FavoriteIcon />
-          ) : (
-            <FavoriteBorderIcon />
-          )}
-        </StyledMixFavourite>
         <StyledMixPlay onClick={() => handleClickPlay(mix.mixcloudKey)}>
           {mcKey.includes(mix.mixcloudKey) && playing ? (
             <PauseIcon />
@@ -69,6 +52,8 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
             <PlayArrowIcon />
           )}
         </StyledMixPlay>
+        <Favourite mix={mix} />
+        <Share mix={mix} />
         <StyledMixCoverArt onClick={handleExpandToggle}>
           <StyledMixCoverArtImage src={mix.coverArtSmall} />
         </StyledMixCoverArt>

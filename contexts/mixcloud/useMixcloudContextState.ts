@@ -13,6 +13,7 @@ import {
 import {
   convertTimeToHumanReadable,
   convertTimeToSeconds,
+  copyToClipboard,
   mcKeyFormatter,
   mcKeyUnformatter,
   mcKeyUrlFormatter,
@@ -84,8 +85,28 @@ const useMixcloudContextState = (): MixcloudContextState => {
     "favourites",
     [],
   );
+  const [mixIsFavourite, setMixIsFavourite] = useState<boolean>(false);
 
   /* FUNCTIONS -------------------- */
+
+  /* Sharable Link */
+  const copySharableLink = (localMix?: Mix): void => {
+    let sharableKey = mcKey;
+
+    if (localMix) {
+      sharableKey = localMix.mixcloudKey;
+    }
+
+    sharableKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
+    copyToClipboard(`https://stef.fm/${sharableKey}`);
+    setTemporaryMessage("Sharable link copied to clipboard");
+
+    ReactGA.event({
+      category: "Option",
+      action: "Click",
+      label: `Share Link ${sharableKey}`,
+    });
+  };
 
   /* Favourites */
   const addFavourite = (localMcKey: string): void => {
@@ -107,9 +128,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const localIsFavourite = favouritesList.some((fav) =>
       localMcKey.includes(fav.mcKey),
     );
-    console.log("localIsFavourite", localIsFavourite);
     return localIsFavourite;
   };
+
+  useEffect(() => {
+    setMixIsFavourite(isFavourite(mcKey));
+  }, [favouritesList]);
 
   /* Screen */
   useEffect(() => {
@@ -647,8 +671,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
     },
     mix: {
       categoryName,
+      copySharableLink,
       duration,
       details: mixDetails,
+      favourite: mixIsFavourite,
       progress: mixProgress,
       progressPercent: mixProgressPercent,
       setDetails: setMixDetails,

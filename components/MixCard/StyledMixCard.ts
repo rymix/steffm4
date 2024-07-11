@@ -96,3 +96,10 @@ export const StyledSubDetails = styled.div`
   @media (max-width: 768px) {
   }
 `;
+
+export const StyledInteractionsWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  margin-top: 20px;
+`;
