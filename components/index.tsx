@@ -156,15 +156,23 @@ const Jupiter = (): JSX.Element => {
   const handleFavouriteClick = async (): Promise<void> => {
     if (isFavourite(mcKey)) {
       removeFavourite(mcKey);
+      setIsMixFavourite(false);
+
+      ReactGA.event({
+        category: "Option",
+        action: "Click",
+        label: `Favourite Remove ${mcKey}`,
+      });
     } else {
       addFavourite(mcKey);
-    }
+      setIsMixFavourite(true);
 
-    ReactGA.event({
-      category: "Option",
-      action: "Click",
-      label: "Random Mix",
-    });
+      ReactGA.event({
+        category: "Option",
+        action: "Click",
+        label: `Favourite Add ${mcKey}`,
+      });
+    }
   };
 
   useEffect(() => {
@@ -173,7 +181,7 @@ const Jupiter = (): JSX.Element => {
 
   useEffect(() => {
     setIsMixFavourite(isFavourite(mcKey));
-  }, [handleFavouriteClick, mcKey]);
+  }, [mcKey]);
 
   return (
     <>
