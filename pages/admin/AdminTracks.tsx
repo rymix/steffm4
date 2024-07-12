@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-globals */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from "axios";
 import { Mix, Track } from "db/types";
 import { useRouter } from "next/router";
@@ -124,7 +122,12 @@ const AdminTracks = (): JSX.Element => {
     try {
       const response = await axios.post(
         "/api/updateTrackCoverArt",
-        { artistName: track.artistName, trackName: track.trackName },
+        {
+          artistName: track.artistName,
+          trackName: track.trackName,
+          mixcloudKey: mix?.mixcloudKey,
+          sectionNumber: track.sectionNumber,
+        },
         { headers: { Authorization: token } },
       );
       if (response.status === 200) {
@@ -137,10 +140,47 @@ const AdminTracks = (): JSX.Element => {
         const updatedTracks = tracks.map((t) =>
           t.sectionNumber === track.sectionNumber ? updatedTrack : t,
         );
-        setTracks(updatedTracks);
+        setTracks([...updatedTracks]); // Ensure new array reference
       }
     } catch (error) {
       console.error("Failed to fetch cover art:", error);
+    }
+  };
+
+  const handleFetchAllCoverArt = async (): Promise<void> => {
+    const token = localStorage.getItem("token");
+    const updatedTracks = [...tracks]; // Create a new array reference
+
+    for (let i = 0; i < updatedTracks.length; i++) {
+      const track = updatedTracks[i];
+      try {
+        const response = await axios.post(
+          "/api/updateTrackCoverArt",
+          {
+            artistName: track.artistName,
+            trackName: track.trackName,
+            mixcloudKey: mix?.mixcloudKey,
+            sectionNumber: track.sectionNumber,
+          },
+          { headers: { Authorization: token } },
+        );
+        if (response.status === 200) {
+          updatedTracks[i] = {
+            ...track,
+            coverArtDate: response.data.coverArtDate,
+            coverArtLarge: response.data.coverArtLarge,
+            coverArtSmall: response.data.coverArtSmall,
+          };
+          setTracks([...updatedTracks]); // Ensure new array reference
+        }
+        // Delay between requests to avoid rate limiting
+        await new Promise((resolve) => setTimeout(resolve, 500));
+      } catch (error) {
+        console.error(
+          `Failed to fetch cover art for track ${track.trackName}:`,
+          error,
+        );
+      }
     }
   };
 
@@ -153,6 +193,9 @@ const AdminTracks = (): JSX.Element => {
           <h2>{mix.name}</h2>
           <StyledAdminButton onClick={handleAddNew}>
             Add New Track
+          </StyledAdminButton>
+          <StyledAdminButton onClick={handleFetchAllCoverArt}>
+            Fetch All Cover Art
           </StyledAdminButton>
           <StyledAdminTable>
             <thead>
