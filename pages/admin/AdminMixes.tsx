@@ -18,6 +18,7 @@ const AdminMixes = (): JSX.Element => {
   const [selectedMix, setSelectedMix] = useState<Mix | null>(null);
   const [formData, setFormData] = useState<Mix | null>(null);
   const [originalTracks, setOriginalTracks] = useState<Track[]>([]);
+  const [categoryCode, setCategoryCode] = useState<string>("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,9 +33,11 @@ const AdminMixes = (): JSX.Element => {
   }, []);
 
   const handleEdit = (mix: Mix): void => {
+    console.log("Editing mix:", mix);
     setSelectedMix(mix);
-    setFormData(mix);
+    setFormData({ ...mix, category: mix.category.code });
     setOriginalTracks(mix.tracks || []);
+    setCategoryCode(mix.category); // Set the category code
   };
 
   const handleDelete = async (): Promise<void> => {
@@ -90,19 +93,10 @@ const AdminMixes = (): JSX.Element => {
         [name]: value,
       };
     });
-  };
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setFormData((prevFormData) => {
-      if (prevFormData === null) {
-        return null;
-      }
-      return {
-        ...prevFormData,
-        category: value,
-      };
-    });
+    if (name === "category") {
+      setCategoryCode(value); // Update the category code
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
@@ -111,8 +105,10 @@ const AdminMixes = (): JSX.Element => {
       const token = localStorage.getItem("token");
       const updatedFormData = {
         ...formData,
+        category: categoryCode, // Ensure category code is used
         tracks: originalTracks, // Ensure tracks are preserved
       };
+      console.log("Submitting form data:", updatedFormData);
       await axios.post("/api/updateMix", updatedFormData, {
         headers: { Authorization: token },
       });
@@ -201,7 +197,7 @@ const AdminMixes = (): JSX.Element => {
                 type="text"
                 name="category"
                 value={formData.category}
-                onChange={handleCategoryChange}
+                onChange={handleChange}
               />
             </div>
             <div>

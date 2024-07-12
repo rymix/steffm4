@@ -18,6 +18,7 @@ const AdminTracks = (): JSX.Element => {
   const [mix, setMix] = useState<Mix | null>(null);
   const [tracks, setTracks] = useState<Track[]>([]);
   const [formData, setFormData] = useState<Track | null>(null);
+  const [categoryCode, setCategoryCode] = useState<string>("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,6 +33,7 @@ const AdminTracks = (): JSX.Element => {
             console.log("Mix Data:", mixData); // Debugging: Check mix data
             setMix(mixData);
             setTracks(mixData.tracks || []);
+            setCategoryCode(mixData.category); // Set category code
           } else {
             router.push("/admin/mixes");
           }
@@ -60,6 +62,22 @@ const AdminTracks = (): JSX.Element => {
     });
   };
 
+  const handleDelete = async (sectionNumber: number): Promise<void> => {
+    if (mix) {
+      const token = localStorage.getItem("token");
+      await axios.post(
+        "/api/deleteTrack",
+        { mixcloudKey: mix.mixcloudKey, sectionNumber },
+        { headers: { Authorization: token } },
+      );
+      const updatedTracks = tracks.filter(
+        (track) => track.sectionNumber !== sectionNumber,
+      );
+      setTracks(updatedTracks);
+      setFormData(null);
+    }
+  };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ): void => {
@@ -85,7 +103,11 @@ const AdminTracks = (): JSX.Element => {
             )
           : [...tracks, formData];
 
-      const updatedMix = { ...mix, tracks: updatedTracks };
+      const updatedMix = {
+        ...mix,
+        tracks: updatedTracks,
+        category: categoryCode, // Ensure category code is used
+      };
       const token = localStorage.getItem("token");
       await axios.post("/api/updateMix", updatedMix, {
         headers: { Authorization: token },
@@ -127,6 +149,17 @@ const AdminTracks = (): JSX.Element => {
                   <td>
                     <StyledAdminButton onClick={() => handleEdit(track)}>
                       Edit
+                    </StyledAdminButton>
+                    <StyledAdminButton
+                      onClick={() => {
+                        if (
+                          confirm("Are you sure you want to delete this track?")
+                        ) {
+                          handleDelete(track.sectionNumber);
+                        }
+                      }}
+                    >
+                      Delete
                     </StyledAdminButton>
                   </td>
                   <td>{track.artistName}</td>

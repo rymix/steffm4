@@ -21,16 +21,17 @@ const handler = async (
       releaseDate,
       shortName,
       tags,
+      tracks, // Include tracks in the request body
     } = req.body;
 
     const mixIndex = db.data?.mixes.findIndex(
-      (mix) => mix.fileName === fileName,
+      (mix) => mix.mixcloudKey === mixcloudKey,
     );
 
     if (mixIndex !== -1 && mixIndex !== undefined) {
       // Update existing mix
       db.data.mixes[mixIndex] = {
-        category,
+        category: category.code, // Use category code only
         coverArtDate,
         coverArtLarge,
         coverArtSmall,
@@ -43,11 +44,12 @@ const handler = async (
         releaseDate,
         shortName,
         tags,
+        tracks, // Ensure tracks are updated
       };
     } else {
       // Create new mix
       db.data.mixes.push({
-        category,
+        category: category.code, // Use category code only
         coverArtDate,
         coverArtLarge,
         coverArtSmall,
@@ -60,6 +62,7 @@ const handler = async (
         releaseDate,
         shortName,
         tags,
+        tracks, // Ensure tracks are added
       });
     }
 
