@@ -53,6 +53,8 @@ const AdminTracks = (): JSX.Element => {
       coverArtDate: "",
       coverArtLarge: "",
       coverArtSmall: "",
+      localCoverArtLarge: "",
+      localCoverArtSmall: "",
       publisher: "",
       remixArtistName: "",
       sectionNumber: tracks.length + 1,
@@ -136,11 +138,13 @@ const AdminTracks = (): JSX.Element => {
           coverArtDate: response.data.coverArtDate,
           coverArtLarge: response.data.coverArtLarge,
           coverArtSmall: response.data.coverArtSmall,
+          localCoverArtLarge: response.data.localCoverArtLarge,
+          localCoverArtSmall: response.data.localCoverArtSmall,
         };
         const updatedTracks = tracks.map((t) =>
           t.sectionNumber === track.sectionNumber ? updatedTrack : t,
         );
-        setTracks([...updatedTracks]); // Ensure new array reference
+        setTracks(updatedTracks);
       }
     } catch (error) {
       console.error("Failed to fetch cover art:", error);
@@ -149,10 +153,8 @@ const AdminTracks = (): JSX.Element => {
 
   const handleFetchAllCoverArt = async (): Promise<void> => {
     const token = localStorage.getItem("token");
-    const updatedTracks = [...tracks]; // Create a new array reference
-
-    for (let i = 0; i < updatedTracks.length; i++) {
-      const track = updatedTracks[i];
+    for (let i = 0; i < tracks.length; i++) {
+      const track = tracks[i];
       try {
         const response = await axios.post(
           "/api/updateTrackCoverArt",
@@ -165,13 +167,18 @@ const AdminTracks = (): JSX.Element => {
           { headers: { Authorization: token } },
         );
         if (response.status === 200) {
-          updatedTracks[i] = {
+          const updatedTrack = {
             ...track,
             coverArtDate: response.data.coverArtDate,
             coverArtLarge: response.data.coverArtLarge,
             coverArtSmall: response.data.coverArtSmall,
+            localCoverArtLarge: response.data.localCoverArtLarge,
+            localCoverArtSmall: response.data.localCoverArtSmall,
           };
-          setTracks([...updatedTracks]); // Ensure new array reference
+          const updatedTracks = tracks.map((t) =>
+            t.sectionNumber === track.sectionNumber ? updatedTrack : t,
+          );
+          setTracks(updatedTracks);
         }
         // Delay between requests to avoid rate limiting
         await new Promise((resolve) => setTimeout(resolve, 500));
@@ -206,6 +213,8 @@ const AdminTracks = (): JSX.Element => {
                 <th>Cover Art Date</th>
                 <th>Cover Art Large</th>
                 <th>Cover Art Small</th>
+                <th>Local Cover Art Large</th>
+                <th>Local Cover Art Small</th>
                 <th>Publisher</th>
                 <th>Remix Artist Name</th>
                 <th>Start Time</th>
@@ -249,6 +258,18 @@ const AdminTracks = (): JSX.Element => {
                     <StyledAdminCoverArtImage
                       src={track.coverArtSmall}
                       alt={track.coverArtSmall}
+                    />
+                  </td>
+                  <td>
+                    <StyledAdminCoverArtImage
+                      src={track.localCoverArtLarge}
+                      alt={track.localCoverArtLarge}
+                    />
+                  </td>
+                  <td>
+                    <StyledAdminCoverArtImage
+                      src={track.localCoverArtSmall}
+                      alt={track.localCoverArtSmall}
                     />
                   </td>
                   <td>{track.publisher}</td>
@@ -305,6 +326,30 @@ const AdminTracks = (): JSX.Element => {
                     type="text"
                     name="coverArtSmall"
                     value={formData.coverArtSmall}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="local-cover-art-large">
+                    Local Cover Art Large
+                  </label>
+                  <input
+                    id="local-cover-art-large"
+                    type="text"
+                    name="localCoverArtLarge"
+                    value={formData.localCoverArtLarge}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="local-cover-art-small">
+                    Local Cover Art Small
+                  </label>
+                  <input
+                    id="local-cover-art-small"
+                    type="text"
+                    name="localCoverArtSmall"
+                    value={formData.localCoverArtSmall}
                     onChange={handleChange}
                   />
                 </div>

@@ -24,6 +24,8 @@ export type Mix = {
   coverArtDate: string;
   coverArtLarge: string;
   coverArtSmall: string;
+  localCoverArtLarge: string;
+  localCoverArtSmall: string;
   duration: string;
   fileName: string;
   listOrder: number;

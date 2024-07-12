@@ -1,6 +1,8 @@
 import axios from "axios";
 import { db, initializeDb } from "db";
+import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
+import path from "path";
 
 const handler = async (
   req: NextApiRequest,
@@ -17,18 +19,41 @@ const handler = async (
       const response = await axios.get(url);
 
       let coverArt;
-      coverArt =
-        response.data.results && response.data.results.length > 0
-          ? {
-              coverArtDate: new Date().toISOString(),
-              coverArtLarge: response.data.results[0].cover_image,
-              coverArtSmall: response.data.results[0].thumb,
-            }
-          : {
-              coverArtDate: new Date().toISOString(),
-              coverArtLarge: "/images/tracklist-placeholder.png",
-              coverArtSmall: "/images/tracklist-placeholder.png",
-            };
+      if (response.data.results && response.data.results.length > 0) {
+        const coverArtDate = new Date().toISOString();
+        const coverArtLarge = response.data.results[0].cover_image;
+        const coverArtSmall = response.data.results[0].thumb;
+
+        // Save images locally
+        const localCoverArtLarge = await saveImageLocally(
+          coverArtLarge,
+          artistName,
+          trackName,
+          "large",
+        );
+        const localCoverArtSmall = await saveImageLocally(
+          coverArtSmall,
+          artistName,
+          trackName,
+          "small",
+        );
+
+        coverArt = {
+          coverArtDate,
+          coverArtLarge,
+          coverArtSmall,
+          localCoverArtLarge,
+          localCoverArtSmall,
+        };
+      } else {
+        coverArt = {
+          coverArtDate: new Date().toISOString(),
+          coverArtLarge: "/images/tracklist-placeholder.png",
+          coverArtSmall: "/images/tracklist-placeholder.png",
+          localCoverArtLarge: "/images/tracklist-placeholder.png",
+          localCoverArtSmall: "/images/tracklist-placeholder.png",
+        };
+      }
 
       const mixIndex = db.data?.mixes.findIndex(
         (mix) => mix.mixcloudKey === mixcloudKey,
@@ -62,6 +87,44 @@ const handler = async (
     }
   } else {
     res.status(405).json({ message: "Method not allowed" });
+  }
+};
+
+const saveImageLocally = async (
+  url: string,
+  artistName: string,
+  trackName: string,
+  size: string,
+): Promise<string> => {
+  try {
+    const response = await axios({
+      url,
+      method: "GET",
+      responseType: "arraybuffer",
+      headers: {
+        "User-Agent": "DiscogsClient/1.0",
+      },
+    });
+    const buffer = Buffer.from(response.data, "binary");
+
+    // Generate a unique filename
+    const fileName = `${artistName}-${trackName}-${size}.jpg`
+      .replaceAll(/[^\da-z]/gi, "_")
+      .toLowerCase();
+    const filePath = path.join(process.cwd(), "public", "trackart", fileName);
+
+    // Ensure the directory exists
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+
+    // Write the file
+    fs.writeFileSync(filePath, buffer);
+
+    return `/trackart/${fileName}`;
+  } catch (error) {
+    console.error(`Error saving image locally: ${error}`);
+    return size === "large"
+      ? "/images/tracklist-placeholder.png"
+      : "/images/tracklist-placeholder.png";
   }
 };
 
