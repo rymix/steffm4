@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import AdminMenu from "pages/admin/AdminMenu";
 import {
   StyledAdminButton,
+  StyledAdminCoverArtImage,
   StyledAdminFormElements,
   StyledAdminTable,
   StyledAdminWrapper,
@@ -137,15 +138,15 @@ const AdminMixes = (): JSX.Element => {
           <tr>
             <th>Actions</th>
             <th>Category Code</th>
+            <th>Name</th>
+            <th>Mixcloud Key</th>
+            <th>Notes</th>
             <th>Cover Art Date</th>
             <th>Cover Art Large</th>
             <th>Cover Art Small</th>
             <th>Duration</th>
             <th>File Name</th>
             <th>List Order</th>
-            <th>Mixcloud Key</th>
-            <th>Name</th>
-            <th>Notes</th>
             <th>Release Date</th>
             <th>Short Name</th>
             <th>Tags</th>
@@ -169,15 +170,25 @@ const AdminMixes = (): JSX.Element => {
                 </StyledAdminButton>
               </td>
               <td>{mix.category.code}</td>
+              <td>{mix.name}</td>
               <td>{mix.coverArtDate}</td>
-              <td>{mix.coverArtLarge}</td>
-              <td>{mix.coverArtSmall}</td>
+              <td>{mix.mixcloudKey}</td>
+              <td>{mix.notes}</td>
+              <td>
+                <StyledAdminCoverArtImage
+                  src={mix.coverArtLarge}
+                  alt={mix.coverArtLarge}
+                />
+              </td>
+              <td>
+                <StyledAdminCoverArtImage
+                  src={mix.coverArtSmall}
+                  alt={mix.coverArtSmall}
+                />
+              </td>
               <td>{mix.duration}</td>
               <td>{mix.fileName}</td>
               <td>{mix.listOrder}</td>
-              <td>{mix.mixcloudKey}</td>
-              <td>{mix.name}</td>
-              <td>{mix.notes}</td>
               <td>{mix.releaseDate}</td>
               <td>{mix.shortName}</td>
               <td>{mix.tags.join(", ")}</td>

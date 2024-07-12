@@ -49,3 +49,8 @@ export const StyledAdminFormElements = styled.div`
     padding: 4px;
   }
 `;
+
+export const StyledAdminCoverArtImage = styled.img`
+  height: 70px;
+  width: 70px;
+`;

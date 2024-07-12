@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import AdminMenu from "pages/admin/AdminMenu";
 import {
   StyledAdminButton,
+  StyledAdminCoverArtImage,
   StyledAdminFormElements,
   StyledAdminTable,
   StyledAdminWrapper,
@@ -132,13 +133,13 @@ const AdminTracks = (): JSX.Element => {
             <thead>
               <tr>
                 <th>Actions</th>
+                <th>Section Number</th>
                 <th>Artist Name</th>
                 <th>Cover Art Date</th>
                 <th>Cover Art Large</th>
                 <th>Cover Art Small</th>
                 <th>Publisher</th>
                 <th>Remix Artist Name</th>
-                <th>Section Number</th>
                 <th>Start Time</th>
                 <th>Track Name</th>
               </tr>
@@ -162,13 +163,23 @@ const AdminTracks = (): JSX.Element => {
                       Delete
                     </StyledAdminButton>
                   </td>
+                  <td>{track.sectionNumber}</td>
                   <td>{track.artistName}</td>
                   <td>{track.coverArtDate}</td>
-                  <td>{track.coverArtLarge}</td>
-                  <td>{track.coverArtSmall}</td>
+                  <td>
+                    <StyledAdminCoverArtImage
+                      src={track.coverArtLarge}
+                      alt={track.coverArtLarge}
+                    />
+                  </td>
+                  <td>
+                    <StyledAdminCoverArtImage
+                      src={track.coverArtSmall}
+                      alt={track.coverArtSmall}
+                    />
+                  </td>
                   <td>{track.publisher}</td>
                   <td>{track.remixArtistName}</td>
-                  <td>{track.sectionNumber}</td>
                   <td>{track.startTime}</td>
                   <td>{track.trackName}</td>
                 </tr>
