@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import {
   StyledAdminButton,
   StyledAdminButtonBlock,
-  StyledAdminForm,
+  StyledAdminFormElements,
   StyledAdminTable,
 } from "pages/admin/StyledAdmin";
 import { useEffect, useState } from "react";
@@ -140,63 +140,65 @@ const AdminPage = () => {
       </StyledAdminTable>
 
       {formData && (
-        <StyledAdminForm onSubmit={handleSubmit}>
-          <h3>{selectedCategory ? "Edit Category" : "Add Category"}</h3>
-          <div>
-            <label>Index</label>
-            <input
-              type="number"
-              name="index"
-              value={formData?.index}
-              onChange={handleChange}
-              readOnly={!!selectedCategory}
-            />
-          </div>
-          <div>
-            <label>Code</label>
-            <input
-              type="text"
-              name="code"
-              value={formData?.code}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Name</label>
-            <input
-              type="text"
-              name="name"
-              value={formData?.name}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Short Name</label>
-            <input
-              type="text"
-              name="shortName"
-              value={formData?.shortName}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>X</label>
-            <input
-              type="number"
-              name="x"
-              value={formData?.x}
-              onChange={handleChange}
-            />
-          </div>
-          <div>
-            <label>Y</label>
-            <input
-              type="number"
-              name="y"
-              value={formData?.y}
-              onChange={handleChange}
-            />
-          </div>
+        <form onSubmit={handleSubmit}>
+          <StyledAdminFormElements>
+            <h3>{selectedCategory ? "Edit Category" : "Add Category"}</h3>
+            <div>
+              <label>Index</label>
+              <input
+                type="number"
+                name="index"
+                value={formData?.index}
+                onChange={handleChange}
+                readOnly={!!selectedCategory}
+              />
+            </div>
+            <div>
+              <label>Code</label>
+              <input
+                type="text"
+                name="code"
+                value={formData?.code}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Name</label>
+              <input
+                type="text"
+                name="name"
+                value={formData?.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Short Name</label>
+              <input
+                type="text"
+                name="shortName"
+                value={formData?.shortName}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>X</label>
+              <input
+                type="number"
+                name="x"
+                value={formData?.x}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label>Y</label>
+              <input
+                type="number"
+                name="y"
+                value={formData?.y}
+                onChange={handleChange}
+              />
+            </div>
+          </StyledAdminFormElements>
           <StyledAdminButtonBlock>
             <StyledAdminButton type="submit">Save</StyledAdminButton>
             <StyledAdminButton
@@ -223,7 +225,7 @@ const AdminPage = () => {
               </StyledAdminButton>
             )}
           </StyledAdminButtonBlock>
-        </StyledAdminForm>
+        </form>
       )}
     </div>
   );

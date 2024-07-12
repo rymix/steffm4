@@ -10,11 +10,12 @@ export const StyledAdminTable = styled.table`
   }
 `;
 
-export const StyledAdminButtonBlock = styled.table`
+export const StyledAdminButtonBlock = styled.div`
   display: flex;
+  margin: 20px;
 `;
 
-export const StyledAdminButton = styled.table`
+export const StyledAdminButton = styled.button`
   background: lightgrey;
   border: 1px solid grey;
   cursor: pointer;
@@ -26,7 +27,7 @@ export const StyledAdminButton = styled.table`
   }
 `;
 
-export const StyledAdminForm = styled.form`
+export const StyledAdminFormElements = styled.div`
   margin: 20px;
 
   div {
