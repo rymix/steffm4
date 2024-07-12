@@ -4966,9 +4966,9 @@
     },
     {
       "category": "special",
-      "coverArtDate": "2024-04-15T20:26:30.368Z",
-      "coverArtLarge": "https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/a/3/0/3/b4fe-c81c-4095-9fee-f54c3954872e",
-      "coverArtSmall": "https://thumbnailer.mixcloud.com/unsafe/100x100/extaudio/a/3/0/3/b4fe-c81c-4095-9fee-f54c3954872e",
+      "coverArtDate": "2024-07-12T21:14:20.901Z",
+      "coverArtLarge": "https://thumbnailer.mixcloud.com/unsafe/600x600/extaudio/a/3/0/3/b4fe-c81c-4095-9fee-f54c3954872e",
+      "coverArtSmall": "https://thumbnailer.mixcloud.com/unsafe/50x50/extaudio/a/3/0/3/b4fe-c81c-4095-9fee-f54c3954872e",
       "duration": "02:05:00",
       "fileName": "Bluey_On_Solar_Radio_02._June_2007_hifi.mp3",
       "listOrder": 6,
@@ -4988,385 +4988,453 @@
       "tracks": [
         {
           "artistName": "Ronnie Laws & Pressure",
-          "coverArtDate": "2023-12-23T22:16:51.834Z",
+          "coverArtDate": "2024-07-12T21:14:25.432Z",
           "coverArtLarge": "https://i.discogs.com/e-ItDVH16LqpEHI48u4KVSlPotHwS69em-Iv7M3Tjr4/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyMzUy/MzY4LTE2NDYxNzk3/OTctNzk4MS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/D0CsDj6ZscfwaZRq7KwqnyDsPT4IjFB80C5Ur2gjU9g/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyMzUy/MzY4LTE2NDYxNzk3/OTctNzk4MS5qcGVn.jpeg",
           "publisher": "Blue Note",
           "remixArtistName": "",
           "sectionNumber": 1,
           "startTime": "00:57",
-          "trackName": "Always There"
+          "trackName": "Always There",
+          "localCoverArtLarge": "/trackart/ronnie_laws___pressure_always_there_large_jpg",
+          "localCoverArtSmall": "/trackart/ronnie_laws___pressure_always_there_small_jpg"
         },
         {
           "artistName": "Incognito",
-          "coverArtDate": "2023-12-23T22:16:53.497Z",
+          "coverArtDate": "2024-07-12T21:14:26.612Z",
           "coverArtLarge": "https://i.discogs.com/tix8MKCdqULfYKPuIakP5Umlv1Z03lkCmIfs4S6nUg4/rs:fit/g:sm/q:90/h:532/w:520/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNjM1/LTE1ODc2NTgzODct/NjA0NS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/1S6MD8emI31j7IfT_0MPujK1RArm_EYRVWpKIylIUOI/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNjM1/LTE1ODc2NTgzODct/NjA0NS5qcGVn.jpeg",
           "publisher": "in-akustik",
           "remixArtistName": "Live in London - The 30th Anniversary Concert",
           "sectionNumber": 2,
           "startTime": "04:29",
-          "trackName": "Always There"
+          "trackName": "Always There",
+          "localCoverArtLarge": "/trackart/incognito_always_there_large_jpg",
+          "localCoverArtSmall": "/trackart/incognito_always_there_small_jpg"
         },
         {
           "artistName": "Bluey Chat",
-          "coverArtDate": "2023-12-23T22:16:54.881Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:27.458Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Solar Radio",
           "remixArtistName": "",
           "sectionNumber": 3,
           "startTime": "09:56",
-          "trackName": "Solar Radio"
+          "trackName": "Solar Radio",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Donnie",
-          "coverArtDate": "2023-12-23T22:16:56.267Z",
+          "coverArtDate": "2024-07-12T21:14:28.291Z",
           "coverArtLarge": "https://i.discogs.com/V-R9ck_h8ptkS020xQqno1cqMgVArxlZrLYEfQk4GPE/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1NTQz/MTktMTMyNzA5MTk2/NS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/NOWE2fP0Kj7mmecnVPKLswRCl9vPn_yi43VKvU9nbiU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1NTQz/MTktMTMyNzA5MTk2/NS5qcGVn.jpeg",
           "publisher": "Dome Records",
           "remixArtistName": "",
           "sectionNumber": 4,
           "startTime": "11:16",
-          "trackName": "Impatient People"
+          "trackName": "Impatient People",
+          "localCoverArtLarge": "/trackart/donnie_impatient_people_large_jpg",
+          "localCoverArtSmall": "/trackart/donnie_impatient_people_small_jpg"
         },
         {
           "artistName": "Bluey Chat",
-          "coverArtDate": "2023-12-23T22:16:57.610Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:29.120Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Solar Radio",
           "remixArtistName": "",
           "sectionNumber": 5,
           "startTime": "14:56",
-          "trackName": "Solar Radio"
+          "trackName": "Solar Radio",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Roy Ayres",
-          "coverArtDate": "2023-12-23T22:16:59.120Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:29.905Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Universal",
           "remixArtistName": "",
           "sectionNumber": 6,
           "startTime": "17:06",
-          "trackName": "Don't Stop the Feeling"
+          "trackName": "Don't Stop the Feeling",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Quincy Jones",
-          "coverArtDate": "2023-12-23T22:17:00.748Z",
+          "coverArtDate": "2024-07-12T21:14:30.864Z",
           "coverArtLarge": "https://i.discogs.com/Ycf77DGNeTFmNxZ79vaj1uxNqdadM8hTuhUjWqqjGYQ/rs:fit/g:sm/q:90/h:645/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg0NjMz/MTYtMTQ2MjExMTU2/Ny00MzIxLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/t42kv5Vqz3e8lQja9x4rHmp_ZsrIPJXe_Awm_SJQkXw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg0NjMz/MTYtMTQ2MjExMTU2/Ny00MzIxLmpwZWc.jpeg",
           "publisher": "A&M",
           "remixArtistName": "",
           "sectionNumber": 7,
           "startTime": "21:57",
-          "trackName": "Midnight Soul Patrol"
+          "trackName": "Midnight Soul Patrol",
+          "localCoverArtLarge": "/trackart/quincy_jones_midnight_soul_patrol_large_jpg",
+          "localCoverArtSmall": "/trackart/quincy_jones_midnight_soul_patrol_small_jpg"
         },
         {
           "artistName": "Bluey Chat",
-          "coverArtDate": "2023-12-23T22:17:02.113Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:31.676Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Solar Radio",
           "remixArtistName": "",
           "sectionNumber": 8,
           "startTime": "25:50",
-          "trackName": "Solar Radio"
+          "trackName": "Solar Radio",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Push",
-          "coverArtDate": "2023-12-23T22:17:03.753Z",
+          "coverArtDate": "2024-07-12T21:14:32.618Z",
           "coverArtLarge": "https://i.discogs.com/e9Ycp8RKlGgPGMoDLKe5AMW32ObujjYm_pGqXvI_cd4/rs:fit/g:sm/q:90/h:547/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIxMjQx/ODItMTMzNzgwOTU4/OC03MzU3LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/Kjsa3Tcx5HzrNhuBlx6UErQhhjocUMuxSmT4KhMXKYg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIxMjQx/ODItMTMzNzgwOTU4/OC03MzU3LmpwZWc.jpeg",
           "publisher": "Push Records",
           "remixArtistName": "",
           "sectionNumber": 9,
           "startTime": "27:02",
-          "trackName": "Fight It"
+          "trackName": "Fight It",
+          "localCoverArtLarge": "/trackart/push_fight_it_large_jpg",
+          "localCoverArtSmall": "/trackart/push_fight_it_small_jpg"
         },
         {
           "artistName": "Gilberto Gil",
-          "coverArtDate": "2023-12-23T22:17:05.385Z",
+          "coverArtDate": "2024-07-12T21:14:33.833Z",
           "coverArtLarge": "https://i.discogs.com/o_qtmgXDeZQGOwyIe6_-zyK2Vy6E79OxG2XY52aFhqI/rs:fit/g:sm/q:90/h:599/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNTE0/NTE0LTE1Mzc4MjY1/MjktMzczNS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/w6f3qb_0mnY3xO_QlQsLfYM4PiHBMH2WO0ZfmFgz6y8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNTE0/NTE0LTE1Mzc4MjY1/MjktMzczNS5qcGVn.jpeg",
           "publisher": "WM Brazil",
           "remixArtistName": "",
           "sectionNumber": 10,
           "startTime": "31:23",
-          "trackName": "Nos Barracos Da Cidade"
+          "trackName": "Nos Barracos Da Cidade",
+          "localCoverArtLarge": "/trackart/gilberto_gil_nos_barracos_da_cidade_large_jpg",
+          "localCoverArtSmall": "/trackart/gilberto_gil_nos_barracos_da_cidade_small_jpg"
         },
         {
           "artistName": "Bluey Chat",
-          "coverArtDate": "2023-12-23T22:17:06.708Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:34.651Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Solar Radio",
           "remixArtistName": "",
           "sectionNumber": 11,
           "startTime": "35:12",
-          "trackName": "Solar Radio"
+          "trackName": "Solar Radio",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Diplomats of Soul",
-          "coverArtDate": "2023-12-23T22:17:08.219Z",
+          "coverArtDate": "2024-07-12T21:14:35.459Z",
           "coverArtLarge": "https://i.discogs.com/Zq3UPC--Wp3SNFBMKzadK-MTJpC4ObMO5gHHKcdXnKY/rs:fit/g:sm/q:90/h:608/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc0ODQz/Ni0xNDM5ODQyNzY0/LTQ3ODMuanBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/ZSlFV5Tnaumk_XI0MvthFhLaG0aWSPj8nDBPSaCvCfg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc0ODQz/Ni0xNDM5ODQyNzY0/LTQ3ODMuanBlZw.jpeg",
           "publisher": "Expansion Records",
           "remixArtistName": "",
           "sectionNumber": 12,
           "startTime": "37:52",
-          "trackName": "Someday (We'll All be Free)"
+          "trackName": "Someday (We'll All be Free)",
+          "localCoverArtLarge": "/trackart/diplomats_of_soul_someday__we_ll_all_be_free__large_jpg",
+          "localCoverArtSmall": "/trackart/diplomats_of_soul_someday__we_ll_all_be_free__small_jpg"
         },
         {
           "artistName": "Bluey Chat",
-          "coverArtDate": "2023-12-23T22:17:09.544Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:36.266Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Solar Radio",
           "remixArtistName": "",
           "sectionNumber": 13,
           "startTime": "42:00",
-          "trackName": "Solar Radio"
+          "trackName": "Solar Radio",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Lupe Fiaso",
-          "coverArtDate": "2023-12-23T22:17:10.986Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:37.017Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Atlantic Records",
           "remixArtistName": "",
           "sectionNumber": 14,
           "startTime": "46:37",
-          "trackName": "Kick, Push"
+          "trackName": "Kick, Push",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Leela James",
-          "coverArtDate": "2023-12-23T22:17:13.345Z",
+          "coverArtDate": "2024-07-12T21:14:38.177Z",
           "coverArtLarge": "https://i.discogs.com/lPpyc3uRKxP3Zcq8EqCB6cwNImuVxOMUy4ftciTDLBs/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYxMDM3/NzItMTU0NzU4NDc1/OC01MjExLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/K_cJavePmFJCsGISJHMljmMbC3GRzLOPyYaLxm08dfc/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYxMDM3/NzItMTU0NzU4NDc1/OC01MjExLmpwZWc.jpeg",
           "publisher": "Warner Records",
           "remixArtistName": "",
           "sectionNumber": 15,
           "startTime": "50:48",
-          "trackName": "Good Time"
+          "trackName": "Good Time",
+          "localCoverArtLarge": "/trackart/leela_james_good_time_large_jpg",
+          "localCoverArtSmall": "/trackart/leela_james_good_time_small_jpg"
         },
         {
           "artistName": "Bluey Chat",
-          "coverArtDate": "2023-12-23T22:17:14.657Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:38.990Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Solar Radio",
           "remixArtistName": "",
           "sectionNumber": 16,
           "startTime": "53:25",
-          "trackName": "Solar Radio"
+          "trackName": "Solar Radio",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Philip Bailey",
-          "coverArtDate": "2023-12-23T22:17:16.382Z",
+          "coverArtDate": "2024-07-12T21:14:39.872Z",
           "coverArtLarge": "https://i.discogs.com/DN5wKqGPrMohXcPd8ING7UfRAGBBD2OmSBZAEfVGjFE/rs:fit/g:sm/q:90/h:520/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyODUw/NTItMTIwNjM5Mjcy/MC5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/xJybaPnzmglzwJyeOcwz7MP1ZG3MXHzSsthfDYSWE7A/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyODUw/NTItMTIwNjM5Mjcy/MC5qcGVn.jpeg",
           "publisher": "Rhythm Republic",
           "remixArtistName": "",
           "sectionNumber": 17,
           "startTime": "55:01",
-          "trackName": "How Can I Rely On You"
+          "trackName": "How Can I Rely On You",
+          "localCoverArtLarge": "/trackart/philip_bailey_how_can_i_rely_on_you_large_jpg",
+          "localCoverArtSmall": "/trackart/philip_bailey_how_can_i_rely_on_you_small_jpg"
         },
         {
           "artistName": "Joe Sample",
-          "coverArtDate": "2023-12-23T22:17:17.929Z",
+          "coverArtDate": "2024-07-12T21:14:40.974Z",
           "coverArtLarge": "https://i.discogs.com/ampGth4gFqIAohkmkj3UPWFyCRO0kgGZz8CbzWWL_e4/rs:fit/g:sm/q:90/h:232/w:233/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI3NDY3/NDMtMTI5OTE4NzY0/MC5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/0KqFr4DulkYcY6g-gEudJpkAEV25oKjKObKJt8K_A-M/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI3NDY3/NDMtMTI5OTE4NzY0/MC5qcGVn.jpeg",
           "publisher": "Blue Thumb",
           "remixArtistName": "",
           "sectionNumber": 18,
           "startTime": "1:02:03",
-          "trackName": "There Are Many Stops Along The Way"
+          "trackName": "There Are Many Stops Along The Way",
+          "localCoverArtLarge": "/trackart/joe_sample_there_are_many_stops_along_the_way_large_jpg",
+          "localCoverArtSmall": "/trackart/joe_sample_there_are_many_stops_along_the_way_small_jpg"
         },
         {
           "artistName": "Bluey Chat",
-          "coverArtDate": "2023-12-23T22:17:19.436Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:41.772Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Solar Radio",
           "remixArtistName": "",
           "sectionNumber": 19,
           "startTime": "1:07:44",
-          "trackName": "Solar Radio"
+          "trackName": "Solar Radio",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Johnny 'Guitar' Watson",
-          "coverArtDate": "2023-12-23T22:17:21.144Z",
+          "coverArtDate": "2024-07-12T21:14:43.010Z",
           "coverArtLarge": "https://i.discogs.com/H39lUvDSXdPI5m-ob9dJ7MGTZauAeA4MTBMumdxSOFI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTczNTU4/OS0xMjk4MDA5MjEw/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/99VjqUZomHMSk2iV_RXK9SK02sChs_VLpCiCONEn1tM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTczNTU4/OS0xMjk4MDA5MjEw/LmpwZWc.jpeg",
           "publisher": "Charly Records",
           "remixArtistName": "",
           "sectionNumber": 20,
           "startTime": "1:09:30",
-          "trackName": "Ain't That A Bitch"
+          "trackName": "Ain't That A Bitch",
+          "localCoverArtLarge": "/trackart/johnny__guitar__watson_ain_t_that_a_bitch_large_jpg",
+          "localCoverArtSmall": "/trackart/johnny__guitar__watson_ain_t_that_a_bitch_small_jpg"
         },
         {
           "artistName": "Raheem DeVaughan",
-          "coverArtDate": "2023-12-23T22:17:22.672Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:43.863Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Jive",
           "remixArtistName": "",
           "sectionNumber": 21,
           "startTime": "1:15:55",
-          "trackName": "Cadillac"
+          "trackName": "Cadillac",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Bluey Chat",
-          "coverArtDate": "2023-12-23T22:17:24.136Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:44.587Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Solar Radio",
           "remixArtistName": "",
           "sectionNumber": 22,
           "startTime": "1:20:12",
-          "trackName": "Solar Radio"
+          "trackName": "Solar Radio",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Jair Oliveira",
-          "coverArtDate": "2023-12-23T22:17:25.731Z",
+          "coverArtDate": "2024-07-12T21:14:45.464Z",
           "coverArtLarge": "https://i.discogs.com/raMpd-rTgfTwhJXwiHbIZr4V4m0Ormvz5QjnmS2JZHE/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzNDEz/Ni0xNDg0MTQxMzAy/LTc3ODQuanBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/0FdruktEQS-g5O5a6v8TxBshjfvshqFbQHie5_wLNPY/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzNDEz/Ni0xNDg0MTQxMzAy/LTc3ODQuanBlZw.jpeg",
           "publisher": "Trama",
           "remixArtistName": "",
           "sectionNumber": 23,
           "startTime": "1:21:09",
-          "trackName": "Sou Teu Nêgo"
+          "trackName": "Sou Teu Nêgo",
+          "localCoverArtLarge": "/trackart/jair_oliveira_sou_teu_n_go_large_jpg",
+          "localCoverArtSmall": "/trackart/jair_oliveira_sou_teu_n_go_small_jpg"
         },
         {
           "artistName": "Bluey Chat",
-          "coverArtDate": "2023-12-23T22:17:27.073Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:46.320Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Solar Radio",
           "remixArtistName": "",
           "sectionNumber": 24,
           "startTime": "1:24:24",
-          "trackName": "Solar Radio"
+          "trackName": "Solar Radio",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "George Benson",
-          "coverArtDate": "2023-12-23T22:17:28.612Z",
+          "coverArtDate": "2024-07-12T21:14:47.421Z",
           "coverArtLarge": "https://i.discogs.com/WgbnivhD8fc1sRqMNigmPUXP71f3HClLkWaEPsAQeBw/rs:fit/g:sm/q:90/h:598/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0OTE2/MjItMTUwNzM3MzMx/MC0yMDg0LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/2gCGmwuoETbAMbaFfX3CZO1Y2ugEuo5JNFqQzmopyGQ/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0OTE2/MjItMTUwNzM3MzMx/MC0yMDg0LmpwZWc.jpeg",
           "publisher": "GRP",
           "remixArtistName": "",
           "sectionNumber": 25,
           "startTime": "1:25:43",
-          "trackName": "When Love Comes Calling"
+          "trackName": "When Love Comes Calling",
+          "localCoverArtLarge": "/trackart/george_benson_when_love_comes_calling_large_jpg",
+          "localCoverArtSmall": "/trackart/george_benson_when_love_comes_calling_small_jpg"
         },
         {
           "artistName": "Incognito",
-          "coverArtDate": "2023-12-23T22:17:30.138Z",
+          "coverArtDate": "2024-07-12T21:14:48.358Z",
           "coverArtLarge": "https://i.discogs.com/mdyy1iezpI13EIbyQ9B6GnVWgbDYyWWIRDaJe45XT0w/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4NDI4/ODAtMTM3MTQ1OTAz/MS00NTUxLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/PoB2jVzPa_1zY9Sn1D-C_d2qGvN7GeRjB6ufepLujEg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4NDI4/ODAtMTM3MTQ1OTAz/MS00NTUxLmpwZWc.jpeg",
           "publisher": "Dome Records",
           "remixArtistName": "",
           "sectionNumber": 26,
           "startTime": "1:33:02",
-          "trackName": "Mindin' My Business"
+          "trackName": "Mindin' My Business",
+          "localCoverArtLarge": "/trackart/incognito_mindin__my_business_large_jpg",
+          "localCoverArtSmall": "/trackart/incognito_mindin__my_business_small_jpg"
         },
         {
           "artistName": "Bluey Chat",
-          "coverArtDate": "2023-12-23T22:17:31.468Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:49.179Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Solar Radio",
           "remixArtistName": "",
           "sectionNumber": 27,
           "startTime": "1:38:40",
-          "trackName": "Solar Radio"
+          "trackName": "Solar Radio",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Keo One",
-          "coverArtDate": "2023-12-23T22:17:32.834Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:49.957Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Plug Label",
           "remixArtistName": "",
           "sectionNumber": 28,
           "startTime": "1:41:35",
-          "trackName": "In All The Wrong Places"
+          "trackName": "In All The Wrong Places",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Bluey Chat",
-          "coverArtDate": "2023-12-23T22:17:34.140Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:50.682Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Solar Radio",
           "remixArtistName": "",
           "sectionNumber": 29,
           "startTime": "1:44:52",
-          "trackName": "Solar Radio"
+          "trackName": "Solar Radio",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Fania All Stars",
-          "coverArtDate": "2023-12-23T22:17:35.770Z",
+          "coverArtDate": "2024-07-12T21:14:51.631Z",
           "coverArtLarge": "https://i.discogs.com/xqdXqWTXRe_lmgkiYrs-sDJw37M0ej-SxQywbR_Qi7g/rs:fit/g:sm/q:90/h:594/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU4NzEx/MTQtMTQwNTAwMzQw/Ny01MzQzLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/RTf0fwaE3L1W88syuo07R11W5fvaOg4t4MPkF0Zt5Nk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU4NzEx/MTQtMTQwNTAwMzQw/Ny01MzQzLmpwZWc.jpeg",
           "publisher": "Discophon",
           "remixArtistName": "",
           "sectionNumber": 30,
           "startTime": "1:46:02",
-          "trackName": "Que Pasa?"
+          "trackName": "Que Pasa?",
+          "localCoverArtLarge": "/trackart/fania_all_stars_que_pasa__large_jpg",
+          "localCoverArtSmall": "/trackart/fania_all_stars_que_pasa__small_jpg"
         },
         {
           "artistName": "Bluey Chat",
-          "coverArtDate": "2023-12-23T22:17:37.097Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:14:52.440Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Solar Radio",
           "remixArtistName": "",
           "sectionNumber": 31,
           "startTime": "1:51:15",
-          "trackName": "Solar Radio"
+          "trackName": "Solar Radio",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Tower of Power",
-          "coverArtDate": "2023-12-23T22:17:38.798Z",
+          "coverArtDate": "2024-07-12T21:14:53.389Z",
           "coverArtLarge": "https://i.discogs.com/t6GS6E8zlVwtWU47T2la0JzX388xkuLcWtLnRMflkXI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5ODgx/NzYtMTQ0OTQzNTMx/NC01MjIxLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/nD5w9ZsNvFCbewtchVXIdPSH9qb1VLZPrxXXSfbVyP8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5ODgx/NzYtMTQ0OTQzNTMx/NC01MjIxLmpwZWc.jpeg",
           "publisher": "Warner Records",
           "remixArtistName": "",
           "sectionNumber": 32,
           "startTime": "1:54:19",
-          "trackName": "Only So Much Oil in the Ground"
+          "trackName": "Only So Much Oil in the Ground",
+          "localCoverArtLarge": "/trackart/tower_of_power_only_so_much_oil_in_the_ground_large_jpg",
+          "localCoverArtSmall": "/trackart/tower_of_power_only_so_much_oil_in_the_ground_small_jpg"
         },
         {
           "artistName": "Incognito",
-          "coverArtDate": "2023-12-23T22:17:40.419Z",
+          "coverArtDate": "2024-07-12T21:14:54.468Z",
           "coverArtLarge": "https://i.discogs.com/_nMMT7JGOIvs5WROHrXaLyLTWBGASNFZYpD24tuSUF8/rs:fit/g:sm/q:90/h:600/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM5Mjg5/LTEyMTUxNTIzNDYu/anBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/kmQFG8V7Y3ungQ-wQx-CdhxfEKrX81t_Cx0vglEPzHA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM5Mjg5/LTEyMTUxNTIzNDYu/anBlZw.jpeg",
           "publisher": "in-akustik",
           "remixArtistName": "",
           "sectionNumber": 33,
           "startTime": "1:58:00",
-          "trackName": "Talkin' Loud"
+          "trackName": "Talkin' Loud",
+          "localCoverArtLarge": "/trackart/incognito_talkin__loud_large_jpg",
+          "localCoverArtSmall": "/trackart/incognito_talkin__loud_small_jpg"
         },
         {
           "artistName": "Wagon Cookin",
-          "coverArtDate": "2023-12-23T22:17:41.884Z",
+          "coverArtDate": "2024-07-12T21:14:55.355Z",
           "coverArtLarge": "https://i.discogs.com/I7NehrzH1ZZFswWVWlnTNh7yL6-WIUeTp9C1vcLjHpc/rs:fit/g:sm/q:90/h:512/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzODYw/NzktMTIxNTE2OTQ1/MS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/U-GstvKZqirp5FJHs7xymzbGVTuiOoPyMD9PegIacUU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzODYw/NzktMTIxNTE2OTQ1/MS5qcGVn.jpeg",
           "publisher": "Compost Records",
           "remixArtistName": "",
           "sectionNumber": 34,
           "startTime": "2:02:19",
-          "trackName": "Ridin' On The Wind"
+          "trackName": "Ridin' On The Wind",
+          "localCoverArtLarge": "/trackart/wagon_cookin_ridin__on_the_wind_large_jpg",
+          "localCoverArtSmall": "/trackart/wagon_cookin_ridin__on_the_wind_small_jpg"
         }
       ]
     },
     {
       "category": "cocksoup",
-      "coverArtDate": "2024-04-15T20:26:31.645Z",
-      "coverArtLarge": "https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/d/a/3/5/ebf8-f6c5-41c0-8755-3a45331ee466",
-      "coverArtSmall": "https://thumbnailer.mixcloud.com/unsafe/100x100/extaudio/d/a/3/5/ebf8-f6c5-41c0-8755-3a45331ee466",
+      "coverArtDate": "2024-07-12T21:15:03.093Z",
+      "coverArtLarge": "https://thumbnailer.mixcloud.com/unsafe/600x600/extaudio/d/a/3/5/ebf8-f6c5-41c0-8755-3a45331ee466",
+      "coverArtSmall": "https://thumbnailer.mixcloud.com/unsafe/50x50/extaudio/d/a/3/5/ebf8-f6c5-41c0-8755-3a45331ee466",
       "duration": "03:41:25",
       "fileName": "Cocksoup DJ Collective - Ultra Fusion.mp3",
       "listOrder": 6,
@@ -5386,440 +5454,518 @@
       "tracks": [
         {
           "artistName": "Koinonia",
-          "coverArtDate": "2023-12-23T22:17:43.618Z",
+          "coverArtDate": "2024-07-12T21:15:06.483Z",
           "coverArtLarge": "https://i.discogs.com/7TUPm18U9q4JTUNXOw9HzUTJkdiEpQDFQp8IRK6V0Ss/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgxOTY0/MS0xMTYyMDY0MTI3/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/BBkKruXCH1QCZKFW1rLDdLJd8f1v9lyv1LJGYkCTfJA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgxOTY0/MS0xMTYyMDY0MTI3/LmpwZWc.jpeg",
           "publisher": "Breaker",
           "remixArtistName": "",
           "sectionNumber": 1,
           "startTime": "00:00",
-          "trackName": "Give Your Love"
+          "trackName": "Give Your Love",
+          "localCoverArtLarge": "/trackart/koinonia_give_your_love_large_jpg",
+          "localCoverArtSmall": "/trackart/koinonia_give_your_love_small_jpg"
         },
         {
           "artistName": "Jeff Lorber",
-          "coverArtDate": "2023-12-23T22:17:45.064Z",
+          "coverArtDate": "2024-07-12T21:15:07.459Z",
           "coverArtLarge": "https://i.discogs.com/VHqt8dF9G_qUw1Vqxz1ptipNfGv8o1-r7hB-oAFHCAw/rs:fit/g:sm/q:90/h:499/w:488/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDUw/MTMtMTE4MzEwMzM3/Ny5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/Wph0EIhvMjdNXPU615tt0tD3-Ptsz8ElaOHONvDMnuo/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDUw/MTMtMTE4MzEwMzM3/Ny5qcGVn.jpeg",
           "publisher": "Blue Note",
           "remixArtistName": "",
           "sectionNumber": 2,
           "startTime": "05:14",
-          "trackName": "He Had a Hat"
+          "trackName": "He Had a Hat",
+          "localCoverArtLarge": "/trackart/jeff_lorber_he_had_a_hat_large_jpg",
+          "localCoverArtSmall": "/trackart/jeff_lorber_he_had_a_hat_small_jpg"
         },
         {
           "artistName": "Tom Browne",
-          "coverArtDate": "2023-12-23T22:17:46.656Z",
+          "coverArtDate": "2024-07-12T21:15:08.544Z",
           "coverArtLarge": "https://i.discogs.com/IgeGfau3_ex7Gs9T47BBi6PF_4TQ-Cc000BfOIDySLM/rs:fit/g:sm/q:90/h:640/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExMjc4/MDUtMTQ4OTcxOTcz/MC02Mzg0LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/xX_GvVvgsvmk_aDtI-eYfUw38hDz3Ic09PnmkMoGJd8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExMjc4/MDUtMTQ4OTcxOTcz/MC02Mzg0LmpwZWc.jpeg",
           "publisher": "Arista",
           "remixArtistName": "",
           "sectionNumber": 3,
           "startTime": "09:37",
-          "trackName": "I Never Was a Cowboy"
+          "trackName": "I Never Was a Cowboy",
+          "localCoverArtLarge": "/trackart/tom_browne_i_never_was_a_cowboy_large_jpg",
+          "localCoverArtSmall": "/trackart/tom_browne_i_never_was_a_cowboy_small_jpg"
         },
         {
           "artistName": "Fuse One",
-          "coverArtDate": "2023-12-23T22:17:48.284Z",
+          "coverArtDate": "2024-07-12T21:15:09.646Z",
           "coverArtLarge": "https://i.discogs.com/h40swDFGxpsGwR2WMHOCkQA8Eo8yBOInPimekpJr4D0/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMTk0/ODktMTE4NDc0MTIw/Mi5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/6A-iQP9eOw9km8cns2KVh8mbGn_0JaBoaG4nW-QQ-9M/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMTk0/ODktMTE4NDc0MTIw/Mi5qcGVn.jpeg",
           "publisher": "Limelight",
           "remixArtistName": "",
           "sectionNumber": 4,
           "startTime": "13:17",
-          "trackName": "Silk"
+          "trackName": "Silk",
+          "localCoverArtLarge": "/trackart/fuse_one_silk_large_jpg",
+          "localCoverArtSmall": "/trackart/fuse_one_silk_small_jpg"
         },
         {
           "artistName": "Caisiopea",
-          "coverArtDate": "2023-12-23T22:17:49.637Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:15:10.511Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Alfa",
           "remixArtistName": "",
           "sectionNumber": 5,
           "startTime": "20:57",
-          "trackName": "Take Me"
+          "trackName": "Take Me",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Grover Washington, Jr.",
-          "coverArtDate": "2023-12-23T22:17:51.456Z",
+          "coverArtDate": "2024-07-12T21:15:11.450Z",
           "coverArtLarge": "https://i.discogs.com/Tyvyec06QdvE5qGErFxUgtwws6fWykAUyKVYrT8PTBw/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMyNDA5/MTctMTQ4NzA2OTAw/Mi03NjAzLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/k3yFbDUFDt2AjualTgAPhDmeov0I2Bcw5E-0vktUIXY/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMyNDA5/MTctMTQ4NzA2OTAw/Mi03NjAzLmpwZWc.jpeg",
           "publisher": "Elektra",
           "remixArtistName": "",
           "sectionNumber": 6,
           "startTime": "25:46",
-          "trackName": "Winelight"
+          "trackName": "Winelight",
+          "localCoverArtLarge": "/trackart/grover_washington__jr__winelight_large_jpg",
+          "localCoverArtSmall": "/trackart/grover_washington__jr__winelight_small_jpg"
         },
         {
           "artistName": "Spyro Gyra",
-          "coverArtDate": "2023-12-23T22:17:53.200Z",
-          "coverArtLarge": "https://i.discogs.com/dB4LnGG4b3tBptgAUzKOco5WitVrlsDd-VxU1Q8jdaQ/rs:fit/g:sm/q:90/h:197/w:200/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3NTQ4/OTktMTI0MTIzNzUz/Ni5qcGVn.jpeg",
-          "coverArtSmall": "https://i.discogs.com/mfqmB5jDXhnVoJ3gt0kilNg8Ww8vr5hxizq_D-bA7WM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3NTQ4/OTktMTI0MTIzNzUz/Ni5qcGVn.jpeg",
+          "coverArtDate": "2024-07-12T21:15:12.635Z",
+          "coverArtLarge": "https://i.discogs.com/ywVo_mIaNHPojK9U4lb32q1DxeoFk5-gEQfV4WRgrjs/rs:fit/g:sm/q:90/h:194/w:200/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3NTYx/NjctMTI0MTMyMDQy/Mi5qcGVn.jpeg",
+          "coverArtSmall": "https://i.discogs.com/d9YzUz8Nh6MoIYGu4JbBSEN8Pczk7iEeiUnc9lsu7AU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3NTYx/NjctMTI0MTMyMDQy/Mi5qcGVn.jpeg",
           "publisher": "MCA",
           "remixArtistName": "",
           "sectionNumber": 7,
           "startTime": "33:10",
-          "trackName": "Islands in the Sky"
+          "trackName": "Islands in the Sky",
+          "localCoverArtLarge": "/trackart/spyro_gyra_islands_in_the_sky_large_jpg",
+          "localCoverArtSmall": "/trackart/spyro_gyra_islands_in_the_sky_small_jpg"
         },
         {
           "artistName": "B. Baker Chocolate Company",
-          "coverArtDate": "2023-12-23T22:17:54.722Z",
+          "coverArtDate": "2024-07-12T21:15:13.683Z",
           "coverArtLarge": "https://i.discogs.com/ooclwmYrlIA9dv5k-bdKM5-Sivd2hjDSeV59OtvvnEA/rs:fit/g:sm/q:90/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ2Nzg2/NS0xMzI5NTk0NzYz/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/ntmp6rcVmus4g24mBwRZjEUBTn49LkI33oj0BJsW01Q/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ2Nzg2/NS0xMzI5NTk0NzYz/LmpwZWc.jpeg",
           "publisher": "The Orchard Music",
           "remixArtistName": "",
           "sectionNumber": 8,
           "startTime": "39:38",
-          "trackName": "Snowblower"
+          "trackName": "Snowblower",
+          "localCoverArtLarge": "/trackart/b__baker_chocolate_company_snowblower_large_jpg",
+          "localCoverArtSmall": "/trackart/b__baker_chocolate_company_snowblower_small_jpg"
         },
         {
           "artistName": "Hiromasa Suzuki",
-          "coverArtDate": "2023-12-23T22:17:56.248Z",
+          "coverArtDate": "2024-07-12T21:15:14.574Z",
           "coverArtLarge": "https://i.discogs.com/4hID3DAeVivgjuspNXVY-6ar1LWRlkBE1wYxpUMLSYs/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg1ODcw/MjMtMTY5MDE2Mzcy/MC04MTYxLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/Z462BsKrXCiySdiWpFtaAqibzSizBwqW0exvZK-Lbm8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg1ODcw/MjMtMTY5MDE2Mzcy/MC04MTYxLmpwZWc.jpeg",
           "publisher": "Columbia",
           "remixArtistName": "",
           "sectionNumber": 9,
           "startTime": "46:18",
-          "trackName": "Smash"
+          "trackName": "Smash",
+          "localCoverArtLarge": "/trackart/hiromasa_suzuki_smash_large_jpg",
+          "localCoverArtSmall": "/trackart/hiromasa_suzuki_smash_small_jpg"
         },
         {
           "artistName": "Patrice Rushen",
-          "coverArtDate": "2023-12-23T22:17:57.888Z",
+          "coverArtDate": "2024-07-12T21:15:15.586Z",
           "coverArtLarge": "https://i.discogs.com/Rrv2fV79Q4zuZVvGxROAv4eC_spdN8nNUrnM9_iwycU/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTk0Njkx/MS0xMjMyNTk5NzE3/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/39f6g2Gd0gr7Att2ei0gzYjUQBH7SXiq4ARzms2rjtk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTk0Njkx/MS0xMjMyNTk5NzE3/LmpwZWc.jpeg",
           "publisher": "",
           "remixArtistName": "",
           "sectionNumber": 10,
           "startTime": "51:03",
-          "trackName": "Music of the Earth"
+          "trackName": "Music of the Earth",
+          "localCoverArtLarge": "/trackart/patrice_rushen_music_of_the_earth_large_jpg",
+          "localCoverArtSmall": "/trackart/patrice_rushen_music_of_the_earth_small_jpg"
         },
         {
           "artistName": "Dave Grusin",
-          "coverArtDate": "2023-12-23T22:17:59.400Z",
+          "coverArtDate": "2024-07-12T21:15:16.522Z",
           "coverArtLarge": "https://i.discogs.com/jcwTGpQ9aR2s1OS1UJIkfmGvu7ffR12-dt3i-iiEcTg/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3NjAz/MDYtMTM5MzM1ODk5/Mi03NDY3LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/k9OwsGLwqdoD3JwIM3CUGUPFexEUxFHSoYBDa7KPGL8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3NjAz/MDYtMTM5MzM1ODk5/Mi03NDY3LmpwZWc.jpeg",
           "publisher": "",
           "remixArtistName": "",
           "sectionNumber": 11,
           "startTime": "54:23",
-          "trackName": "Friends and Strangers"
+          "trackName": "Friends and Strangers",
+          "localCoverArtLarge": "/trackart/dave_grusin_friends_and_strangers_large_jpg",
+          "localCoverArtSmall": "/trackart/dave_grusin_friends_and_strangers_small_jpg"
         },
         {
           "artistName": "Hidefumi Toki & Naoya Matsuoka",
-          "coverArtDate": "2023-12-23T22:18:00.918Z",
+          "coverArtDate": "2024-07-12T21:15:17.458Z",
           "coverArtLarge": "https://i.discogs.com/9MsCRuY0FUbTEvu2wiREIdnR55sO57-6frRGSsfA9jE/rs:fit/g:sm/q:90/h:567/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyNTM4/NzQtMTYwNTg2Njgz/OC0yMzMzLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/ID4ZADRBszce3gAZ5vhVFMN5_F3LGa0bnzIkItccWfA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyNTM4/NzQtMTYwNTg2Njgz/OC0yMzMzLmpwZWc.jpeg",
           "publisher": "Discomate",
           "remixArtistName": "",
           "sectionNumber": 12,
           "startTime": "59:58",
-          "trackName": "In The Morning"
+          "trackName": "In The Morning",
+          "localCoverArtLarge": "/trackart/hidefumi_toki___naoya_matsuoka_in_the_morning_large_jpg",
+          "localCoverArtSmall": "/trackart/hidefumi_toki___naoya_matsuoka_in_the_morning_small_jpg"
         },
         {
           "artistName": "Donald Byrd",
-          "coverArtDate": "2023-12-23T22:18:02.570Z",
+          "coverArtDate": "2024-07-12T21:15:18.971Z",
           "coverArtLarge": "https://i.discogs.com/YbkFBX4zKRNJXq7WMs-RKu9-m0cPyhe401jdUMH25jw/rs:fit/g:sm/q:90/h:582/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MTk3/MDUyLTE2Njg3MjM2/MjAtNTk2Ni5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/ZHvVuHVvBWjDkhE1fGK1DfdrGd_Lmwee2fna49pHeKw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MTk3/MDUyLTE2Njg3MjM2/MjAtNTk2Ni5qcGVn.jpeg",
           "publisher": "Blue Note",
           "remixArtistName": "",
           "sectionNumber": 13,
           "startTime": "1:07:43",
-          "trackName": "Think Twice"
+          "trackName": "Think Twice",
+          "localCoverArtLarge": "/trackart/donald_byrd_think_twice_large_jpg",
+          "localCoverArtSmall": "/trackart/donald_byrd_think_twice_small_jpg"
         },
         {
           "artistName": "Sea Wind",
-          "coverArtDate": "2023-12-23T22:18:04.374Z",
+          "coverArtDate": "2024-07-12T21:15:20.053Z",
           "coverArtLarge": "https://i.discogs.com/zZM-3Tj76qcOpQWna3uMAqOpEBG69jm3Ej0VnLSIP5k/rs:fit/g:sm/q:90/h:589/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU2MTMw/MDgtMTY1NDEyMTI2/My00ODM3LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/5uVQy-31c4kaR49qneaEMEPhcEWdzrs4UbsRQYhIpXU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU2MTMw/MDgtMTY1NDEyMTI2/My00ODM3LmpwZWc.jpeg",
           "publisher": "SouldMusic Records",
           "remixArtistName": "",
           "sectionNumber": 14,
           "startTime": "1:13:43",
-          "trackName": "Pra Vose"
+          "trackName": "Pra Vose",
+          "localCoverArtLarge": "/trackart/sea_wind_pra_vose_large_jpg",
+          "localCoverArtSmall": "/trackart/sea_wind_pra_vose_small_jpg"
         },
         {
           "artistName": "Billy Cobham",
-          "coverArtDate": "2023-12-23T22:18:06.279Z",
+          "coverArtDate": "2024-07-12T21:15:21.367Z",
           "coverArtLarge": "https://i.discogs.com/P1MpfHhegJXN187EodnFxK5TIyBHkjW0om127x3d9Ew/rs:fit/g:sm/q:90/h:586/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwODY1/ODUtMTMyOTY1NjA0/MC5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/BXna0SKNS3FsV1xPG49tKIFOL_xxrVcrBz46swtjxoY/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwODY1/ODUtMTMyOTY1NjA0/MC5qcGVn.jpeg",
           "publisher": "Atlantic",
           "remixArtistName": "",
           "sectionNumber": 15,
           "startTime": "1:17:52",
-          "trackName": "Hip Pockets"
+          "trackName": "Hip Pockets",
+          "localCoverArtLarge": "/trackart/billy_cobham_hip_pockets_large_jpg",
+          "localCoverArtSmall": "/trackart/billy_cobham_hip_pockets_small_jpg"
         },
         {
           "artistName": "Dennis Coffey",
-          "coverArtDate": "2023-12-23T22:18:07.958Z",
+          "coverArtDate": "2024-07-12T21:15:22.604Z",
           "coverArtLarge": "https://i.discogs.com/e15b7lw_FlALsrwmmV18W7_JZDSVrkNu_HXQu9RSoF4/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzcw/My0xMjg3MjU2MDAw/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/Ckj_KXvDs639O9akaEVY14gF-fm0CCbEXgm5znaWmeg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyNzcw/My0xMjg3MjU2MDAw/LmpwZWc.jpeg",
           "publisher": "Westbound Records",
           "remixArtistName": "",
           "sectionNumber": 16,
           "startTime": "1:22:36",
-          "trackName": "Boogie Magic"
+          "trackName": "Boogie Magic",
+          "localCoverArtLarge": "/trackart/dennis_coffey_boogie_magic_large_jpg",
+          "localCoverArtSmall": "/trackart/dennis_coffey_boogie_magic_small_jpg"
         },
         {
           "artistName": "The Crusaders",
-          "coverArtDate": "2023-12-23T22:18:09.593Z",
+          "coverArtDate": "2024-07-12T21:15:23.616Z",
           "coverArtLarge": "https://i.discogs.com/RyvbyqSLiF5Icd4mcUThzxfAjgY3nZ0XafwkMsVKgmY/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MTQ3/NDEtMTIxNzcyMjE2/MS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/rhsIw5Olfh_4ChFnrocUCpN6-O1NSMIbIUVc3Z5ptm4/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MTQ3/NDEtMTIxNzcyMjE2/MS5qcGVn.jpeg",
           "publisher": "MCA",
           "remixArtistName": "",
           "sectionNumber": 17,
           "startTime": "1:28:18",
-          "trackName": "Sunshine in Your Eyes"
+          "trackName": "Sunshine in Your Eyes",
+          "localCoverArtLarge": "/trackart/the_crusaders_sunshine_in_your_eyes_large_jpg",
+          "localCoverArtSmall": "/trackart/the_crusaders_sunshine_in_your_eyes_small_jpg"
         },
         {
           "artistName": "Lee Ritenour",
-          "coverArtDate": "2023-12-23T22:18:14.631Z",
+          "coverArtDate": "2024-07-12T21:15:24.800Z",
           "coverArtLarge": "https://i.discogs.com/6pc5K7-2zpJbiTNe04cxKASt5DASsC9ritsaEDIUkJo/rs:fit/g:sm/q:90/h:600/w:598/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkyMDk0/OC0xMTczMDAxMDM4/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/tmcLAMqCQOh1OTfdZfkGA1GInoFkTVPLo0f3-Hqj8lA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkyMDk0/OC0xMTczMDAxMDM4/LmpwZWc.jpeg",
           "publisher": "Elektra",
           "remixArtistName": "",
           "sectionNumber": 18,
           "startTime": "1:34:16",
-          "trackName": "A Little Bit of This and a Little Bit of That"
+          "trackName": "A Little Bit of This and a Little Bit of That",
+          "localCoverArtLarge": "/trackart/lee_ritenour_a_little_bit_of_this_and_a_little_bit_of_that_large_jpg",
+          "localCoverArtSmall": "/trackart/lee_ritenour_a_little_bit_of_this_and_a_little_bit_of_that_small_jpg"
         },
         {
           "artistName": "Ralph MacDonald",
-          "coverArtDate": "2023-12-23T22:18:16.322Z",
+          "coverArtDate": "2024-07-12T21:15:26.061Z",
           "coverArtLarge": "https://i.discogs.com/SC-sEQfj1ULWumKSpWBJdVydo-Woe7ReIhKcCXbstY4/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMTU2/ODQtMTIwMTM1MzY4/NC5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/ecqzCsrQ7HBdwdRrnakMYFd2uoUgy2tE0ZO5AsQKt9w/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMTU2/ODQtMTIwMTM1MzY4/NC5qcGVn.jpeg",
           "publisher": "Marlin",
           "remixArtistName": "",
           "sectionNumber": 19,
           "startTime": "1:40:21",
-          "trackName": "Jam on the Groove"
+          "trackName": "Jam on the Groove",
+          "localCoverArtLarge": "/trackart/ralph_macdonald_jam_on_the_groove_large_jpg",
+          "localCoverArtSmall": "/trackart/ralph_macdonald_jam_on_the_groove_small_jpg"
         },
         {
           "artistName": "Unknown",
-          "coverArtDate": "2023-12-23T22:18:18.001Z",
-          "coverArtLarge": "https://st.discogs.com/1ba52d0927f78fe14def253484ff5789460a3a6d/images/spacer.gif",
+          "coverArtDate": "2024-07-12T21:15:27.474Z",
+          "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
           "coverArtSmall": "",
           "publisher": "Unknown",
           "remixArtistName": "",
           "sectionNumber": 20,
           "startTime": "1:45:56",
-          "trackName": "Unknown"
+          "trackName": "Unknown",
+          "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+          "localCoverArtSmall": "/trackart/unknown_unknown_small_jpg"
         },
         {
           "artistName": "Yellowjackets",
-          "coverArtDate": "2023-12-23T22:18:19.457Z",
+          "coverArtDate": "2024-07-12T21:15:28.561Z",
           "coverArtLarge": "https://i.discogs.com/y8u8-_Hp5S0M4pHt47ThDBVJCFnQ-GZLch1rHkSMV1E/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExMjM3/NjItMTMwMDMzMjk3/Ny5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/FWiuUGVeBcVIyEKr_UEJ2I2iIjFDNA4PakPMknaD3SM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExMjM3/NjItMTMwMDMzMjk3/Ny5qcGVn.jpeg",
           "publisher": "Warner Bros. Records",
           "remixArtistName": "",
           "sectionNumber": 21,
           "startTime": "1:53:17",
-          "trackName": "Sittin' In It"
+          "trackName": "Sittin' In It",
+          "localCoverArtLarge": "/trackart/yellowjackets_sittin__in_it_large_jpg",
+          "localCoverArtSmall": "/trackart/yellowjackets_sittin__in_it_small_jpg"
         },
         {
           "artistName": "Alphonse Mouzon",
-          "coverArtDate": "2023-12-23T22:18:21.050Z",
+          "coverArtDate": "2024-07-12T21:15:29.755Z",
           "coverArtLarge": "https://i.discogs.com/a_Up2jbcVJOJga6SQmk0vtk6FtzVXExxy5Y8hR3ektg/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNTc2/NjktMTIwMTcxMzAy/OC5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/erHWdxQD6IzH__OUwV6vmNx597xHxm0lNM5E_MH8aI4/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNTc2/NjktMTIwMTcxMzAy/OC5qcGVn.jpeg",
           "publisher": "MPS",
           "remixArtistName": "",
           "sectionNumber": 22,
           "startTime": "1:57:46",
-          "trackName": "By All Means"
+          "trackName": "By All Means",
+          "localCoverArtLarge": "/trackart/alphonse_mouzon_by_all_means_large_jpg",
+          "localCoverArtSmall": "/trackart/alphonse_mouzon_by_all_means_small_jpg"
         },
         {
           "artistName": "Ronnie Laws",
-          "coverArtDate": "2023-12-23T22:18:23.486Z",
+          "coverArtDate": "2024-07-12T21:15:30.872Z",
           "coverArtLarge": "https://i.discogs.com/dpH5gzOM8FZzX-5sWpMNBcl61prcbzzQVzWMgc2v8Mc/rs:fit/g:sm/q:90/h:600/w:597/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzNDM1/ODEtMTM2NzU3MzE1/Mi0xOTQxLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/2zxtPxBkO-8Dz5wEhMjaESEwWqeUK41YGI_xaIcsvEw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzNDM1/ODEtMTM2NzU3MzE1/Mi0xOTQxLmpwZWc.jpeg",
           "publisher": "Liberty",
           "remixArtistName": "",
           "sectionNumber": 23,
           "startTime": "2:11:01",
-          "trackName": "O.T.B.A. (Outta Be A Law)"
+          "trackName": "O.T.B.A. (Outta Be A Law)",
+          "localCoverArtLarge": "/trackart/ronnie_laws_o_t_b_a___outta_be_a_law__large_jpg",
+          "localCoverArtSmall": "/trackart/ronnie_laws_o_t_b_a___outta_be_a_law__small_jpg"
         },
         {
           "artistName": "Joe Sample",
-          "coverArtDate": "2023-12-23T22:18:24.821Z",
+          "coverArtDate": "2024-07-12T21:15:31.692Z",
           "coverArtLarge": "https://i.discogs.com/ampGth4gFqIAohkmkj3UPWFyCRO0kgGZz8CbzWWL_e4/rs:fit/g:sm/q:90/h:232/w:233/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI3NDY3/NDMtMTI5OTE4NzY0/MC5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/0KqFr4DulkYcY6g-gEudJpkAEV25oKjKObKJt8K_A-M/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI3NDY3/NDMtMTI5OTE4NzY0/MC5qcGVn.jpeg",
           "publisher": "ABC",
           "remixArtistName": "",
           "sectionNumber": 24,
           "startTime": "2:15:38",
-          "trackName": "There Are Many Stops Along The Way"
+          "trackName": "There Are Many Stops Along The Way",
+          "localCoverArtLarge": "/trackart/joe_sample_there_are_many_stops_along_the_way_large_jpg",
+          "localCoverArtSmall": "/trackart/joe_sample_there_are_many_stops_along_the_way_small_jpg"
         },
         {
           "artistName": "Jeff Lorber Fusion",
-          "coverArtDate": "2023-12-23T22:18:26.515Z",
+          "coverArtDate": "2024-07-12T21:15:32.781Z",
           "coverArtLarge": "https://i.discogs.com/eGiaAmELMGhzz9szqZz9A8uXZbGxeL39lIoZVEQEKgA/rs:fit/g:sm/q:90/h:613/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1NjEw/NzMtMTY2OTM3Mjc3/Ni05NjE4LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/h6ddENg7KzoWpkU5KJfbr7mZ1FS70sIQw7-ExHNMMss/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1NjEw/NzMtMTY2OTM3Mjc3/Ni05NjE4LmpwZWc.jpeg",
           "publisher": "Inner City Records",
           "remixArtistName": "",
           "sectionNumber": 25,
           "startTime": "2:21:30",
-          "trackName": "City"
+          "trackName": "City",
+          "localCoverArtLarge": "/trackart/jeff_lorber_fusion_city_large_jpg",
+          "localCoverArtSmall": "/trackart/jeff_lorber_fusion_city_small_jpg"
         },
         {
           "artistName": "Unknown",
-          "coverArtDate": "2023-12-23T22:18:27.861Z",
-          "coverArtLarge": "https://st.discogs.com/1ba52d0927f78fe14def253484ff5789460a3a6d/images/spacer.gif",
+          "coverArtDate": "2024-07-12T21:15:34.606Z",
+          "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
           "coverArtSmall": "",
           "publisher": "Unknown",
           "remixArtistName": "",
           "sectionNumber": 26,
           "startTime": "2:25:56",
-          "trackName": "Unknown"
+          "trackName": "Unknown",
+          "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+          "localCoverArtSmall": "/trackart/unknown_unknown_small_jpg"
         },
         {
           "artistName": "Jeff Lorber",
-          "coverArtDate": "2023-12-23T22:18:29.428Z",
+          "coverArtDate": "2024-07-12T21:15:35.599Z",
           "coverArtLarge": "https://i.discogs.com/8yROKWgX5sNWls_iondZ8KnkorC66tAmCYnqZDoj7hY/rs:fit/g:sm/q:90/h:599/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0ODg4/NzAtMTM2MjQwNTIy/MS04NTMyLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/0-qmKOaBFbSvzbqN4gQRLnpUovh29wYJkCvAm5v4_LY/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0ODg4/NzAtMTM2MjQwNTIy/MS04NTMyLmpwZWc.jpeg",
           "publisher": "Arista",
           "remixArtistName": "",
           "sectionNumber": 27,
           "startTime": "2:30:08",
-          "trackName": "Always There"
+          "trackName": "Always There",
+          "localCoverArtLarge": "/trackart/jeff_lorber_always_there_large_jpg",
+          "localCoverArtSmall": "/trackart/jeff_lorber_always_there_small_jpg"
         },
         {
           "artistName": "Bobbi Humphrey",
-          "coverArtDate": "2023-12-23T22:18:30.972Z",
+          "coverArtDate": "2024-07-12T21:15:37.056Z",
           "coverArtLarge": "https://i.discogs.com/JErlU3TAca0kBmvZeu7XHefY03Lj3tUEbl3zZqd5r_0/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU0NDc2/NC0xNTI4MzU5MjU5/LTE2MTcubXBv.jpeg",
           "coverArtSmall": "https://i.discogs.com/pYxQ-PTLChWp-CQgmqyyfzzrj2yprvLXjqnaNfzW_ZE/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU0NDc2/NC0xNTI4MzU5MjU5/LTE2MTcubXBv.jpeg",
           "publisher": "Uno Melodic Records",
           "remixArtistName": "",
           "sectionNumber": 28,
           "startTime": "2:34:31",
-          "trackName": "Baby Don't You Know"
+          "trackName": "Baby Don't You Know",
+          "localCoverArtLarge": "/trackart/bobbi_humphrey_baby_don_t_you_know_large_jpg",
+          "localCoverArtSmall": "/trackart/bobbi_humphrey_baby_don_t_you_know_small_jpg"
         },
         {
           "artistName": "Brian Auger's Oblivion Express",
-          "coverArtDate": "2023-12-23T22:18:32.715Z",
+          "coverArtDate": "2024-07-12T21:15:38.222Z",
           "coverArtLarge": "https://i.discogs.com/udsbzQ4t6YMbZGvJhyGXSqU5rDxoPU0jmwXuq8TAY5U/rs:fit/g:sm/q:90/h:592/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYxOTE1/OTAtMTYzNjExMjI5/MS0xNjI0LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/hgfBkodsebOS43Xf3oa69dGvW8dmdZ9OcIyWGV_vHq4/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYxOTE1/OTAtMTYzNjExMjI5/MS0xNjI0LmpwZWc.jpeg",
           "publisher": "RCA",
           "remixArtistName": "",
           "sectionNumber": 29,
           "startTime": "2:40:57",
-          "trackName": "Happiness is Just Around the Bend"
+          "trackName": "Happiness is Just Around the Bend",
+          "localCoverArtLarge": "/trackart/brian_auger_s_oblivion_express_happiness_is_just_around_the_bend_large_jpg",
+          "localCoverArtSmall": "/trackart/brian_auger_s_oblivion_express_happiness_is_just_around_the_bend_small_jpg"
         },
         {
           "artistName": "The Crusaders",
-          "coverArtDate": "2023-12-23T22:18:34.250Z",
+          "coverArtDate": "2024-07-12T21:15:39.457Z",
           "coverArtLarge": "https://i.discogs.com/VpxUSVTao1dO4jqRGLeCp7rvgYHrMd18yVl-Fd1FaTE/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkwODMz/NjYtMTQ3NDQ4NDEx/NS03MDAxLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/0BJXAGpYOUV2kMVT0SQeps-XKFZ2kqND7etei4Mfz9s/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkwODMz/NjYtMTQ3NDQ4NDEx/NS03MDAxLmpwZWc.jpeg",
           "publisher": "MCA",
           "remixArtistName": "",
           "sectionNumber": 30,
           "startTime": "2:48:25",
-          "trackName": "Sweet N' Sour"
+          "trackName": "Sweet N' Sour",
+          "localCoverArtLarge": "/trackart/the_crusaders_sweet_n__sour_large_jpg",
+          "localCoverArtSmall": "/trackart/the_crusaders_sweet_n__sour_small_jpg"
         },
         {
           "artistName": "Stevie Wonder",
-          "coverArtDate": "2023-12-23T22:18:35.902Z",
+          "coverArtDate": "2024-07-12T21:15:40.839Z",
           "coverArtLarge": "https://i.discogs.com/kpmC0SBehCwA1bqySKyGuYB0NAYeVaONvNkANCTIacE/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc2NTcy/NS0xMTU2NzA5ODQ4/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/yty_lJEOW1kmhpoxuDNzKsrnV2B5wwK6pS25tCvNo64/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc2NTcy/NS0xMTU2NzA5ODQ4/LmpwZWc.jpeg",
           "publisher": "Motown",
           "remixArtistName": "",
           "sectionNumber": 31,
           "startTime": "2:57:11",
-          "trackName": "Contusion"
+          "trackName": "Contusion",
+          "localCoverArtLarge": "/trackart/stevie_wonder_contusion_large_jpg",
+          "localCoverArtSmall": "/trackart/stevie_wonder_contusion_small_jpg"
         },
         {
           "artistName": "Spyro Gyra",
-          "coverArtDate": "2023-12-23T22:18:37.536Z",
+          "coverArtDate": "2024-07-12T21:15:42.546Z",
           "coverArtLarge": "https://i.discogs.com/LIKljmKUtfj0aVHVojRYGZlB6CtG7L30Qnw849daGGk/rs:fit/g:sm/q:90/h:571/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcyNjE3/ODctMTUwODI3NDE4/MS01NjE5LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/MTUQ8My07Yf6PJKmXigo9joLXAQNpUnq1GZacN9e6Ks/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcyNjE3/ODctMTUwODI3NDE4/MS01NjE5LmpwZWc.jpeg",
           "publisher": "MCA",
           "remixArtistName": "",
           "sectionNumber": 32,
           "startTime": "3:00:56",
-          "trackName": "Starburst"
+          "trackName": "Starburst",
+          "localCoverArtLarge": "/trackart/spyro_gyra_starburst_large_jpg",
+          "localCoverArtSmall": "/trackart/spyro_gyra_starburst_small_jpg"
         },
         {
           "artistName": "Lonnie Liston Smith",
-          "coverArtDate": "2023-12-23T22:18:39.057Z",
+          "coverArtDate": "2024-07-12T21:15:43.473Z",
           "coverArtLarge": "https://i.discogs.com/S6LiLieEGtYzuosmOWrK0C8efexQJThndWa5x2jzy0E/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0OTk2/NDMtMTU5NjMxMTc0/NS01MDk0LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/HTN22CsDs9C0cVFILHwCDvG0TtkKVocYENerf64DTRc/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0OTk2/NDMtMTU5NjMxMTc0/NS01MDk0LmpwZWc.jpeg",
           "publisher": "Columbia",
           "remixArtistName": "",
           "sectionNumber": 33,
           "startTime": "3:05:31",
-          "trackName": "Sunburst"
+          "trackName": "Sunburst",
+          "localCoverArtLarge": "/trackart/lonnie_liston_smith_sunburst_large_jpg",
+          "localCoverArtSmall": "/trackart/lonnie_liston_smith_sunburst_small_jpg"
         },
         {
           "artistName": "Caldera",
-          "coverArtDate": "2023-12-23T22:18:40.589Z",
+          "coverArtDate": "2024-07-12T21:15:44.469Z",
           "coverArtLarge": "https://i.discogs.com/LjC2502C-ePP7WKmTmbInjyfNfrrYOsJH8cm2eVZeGs/rs:fit/g:sm/q:90/h:450/w:450/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc0NDk0/My0xMjcwODU4NDY3/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/tH3XK9BeJoxLH74GCAZboSrD4dkxsFENabQIfKvrlwQ/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc0NDk0/My0xMjcwODU4NDY3/LmpwZWc.jpeg",
           "publisher": "Capitol Records",
           "remixArtistName": "",
           "sectionNumber": 34,
           "startTime": "3:09:34",
-          "trackName": "Exaltation"
+          "trackName": "Exaltation",
+          "localCoverArtLarge": "/trackart/caldera_exaltation_large_jpg",
+          "localCoverArtSmall": "/trackart/caldera_exaltation_small_jpg"
         },
         {
           "artistName": "Steps Ahead",
-          "coverArtDate": "2023-12-23T22:18:42.468Z",
+          "coverArtDate": "2024-07-12T21:15:45.512Z",
           "coverArtLarge": "https://i.discogs.com/C77ajETcNCvlU_DDo3SnuDe3DRPhuU9sYZ67hE-NvSM/rs:fit/g:sm/q:90/h:599/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5Mjg2/NjMtMTI1MzA4MzM1/Ni5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/i5wZObfAr3fP3W4gy8BVPXZ3egbI9TrAZQHeT9DHC4w/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5Mjg2/NjMtMTI1MzA4MzM1/Ni5qcGVn.jpeg",
           "publisher": "Elektra",
           "remixArtistName": "",
           "sectionNumber": 35,
           "startTime": "3:16:13",
-          "trackName": "Trains"
+          "trackName": "Trains",
+          "localCoverArtLarge": "/trackart/steps_ahead_trains_large_jpg",
+          "localCoverArtSmall": "/trackart/steps_ahead_trains_small_jpg"
         },
         {
           "artistName": "Markus Enochon Feat. E-Man",
-          "coverArtDate": "2023-12-23T22:18:44.069Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:15:46.553Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "ITH Records",
           "remixArtistName": "",
           "sectionNumber": 36,
           "startTime": "3:23:13",
-          "trackName": "Musical Prayer (Acapella)"
+          "trackName": "Musical Prayer (Acapella)",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Gerard Presencer",
-          "coverArtDate": "2023-12-23T22:18:45.663Z",
+          "coverArtDate": "2024-07-12T21:15:47.340Z",
           "coverArtLarge": "https://i.discogs.com/r2mbGKZXAR2w8cYnLLvqGZ3WxwYuqXNuZI-GYW7cZlc/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMzMTU4/NTUtMTQyMjEwNDY5/NS01MjcyLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/9ljqxvG3vINHgbnhhR8PgytPHSLgHpbSOnSRmiahcjA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMzMTU4/NTUtMTQyMjEwNDY5/NS01MjcyLmpwZWc.jpeg",
           "publisher": "Linn Records",
           "remixArtistName": "",
           "sectionNumber": 37,
           "startTime": "3:23:36",
-          "trackName": "Platypus"
+          "trackName": "Platypus",
+          "localCoverArtLarge": "/trackart/gerard_presencer_platypus_large_jpg",
+          "localCoverArtSmall": "/trackart/gerard_presencer_platypus_small_jpg"
         },
         {
           "artistName": "Idris Muhammad",
-          "coverArtDate": "2023-12-23T22:18:47.133Z",
+          "coverArtDate": "2024-07-12T21:15:48.804Z",
           "coverArtLarge": "https://i.discogs.com/yz_l2JyCqj08eKDsdSUuM_osl49tMsdVA-6sHd4b3zA/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU5MjQy/Ni0xNDEzMTI2Mjkx/LTExOTMuanBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/sK4CB7Tstx5ETiSZ6ysLfdmHBGd07pqFFdJyYHPeYPE/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU5MjQy/Ni0xNDEzMTI2Mjkx/LTExOTMuanBlZw.jpeg",
           "publisher": "Kudu",
           "remixArtistName": "",
           "sectionNumber": 38,
           "startTime": "3:28:12",
-          "trackName": "Piece of Mind"
+          "trackName": "Piece of Mind",
+          "localCoverArtLarge": "/trackart/idris_muhammad_piece_of_mind_large_jpg",
+          "localCoverArtSmall": "/trackart/idris_muhammad_piece_of_mind_small_jpg"
         },
         {
           "artistName": "Special EFX",
-          "coverArtDate": "2023-12-23T22:18:49.097Z",
+          "coverArtDate": "2024-07-12T21:15:49.818Z",
           "coverArtLarge": "https://i.discogs.com/5Wb8BLBbobkMCZPXm9nB4HEltBmZD4QkZLhse-UQm34/rs:fit/g:sm/q:90/h:599/w:599/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MjEz/OTAtMTI0MTEzMDgx/OC5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/UpHnsEFwhT1Z2iZXR6PZUa3xMoOqXXS1AUyaXxqHtCM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MjEz/OTAtMTI0MTEzMDgx/OC5qcGVn.jpeg",
           "publisher": "GRP",
           "remixArtistName": "",
           "sectionNumber": 39,
           "startTime": "3:37:11",
-          "trackName": "Uptown East"
+          "trackName": "Uptown East",
+          "localCoverArtLarge": "/trackart/special_efx_uptown_east_large_jpg",
+          "localCoverArtSmall": "/trackart/special_efx_uptown_east_small_jpg"
         }
       ]
     },
     {
       "category": "cocksoup",
-      "coverArtDate": "2024-04-15T20:26:32.902Z",
-      "coverArtLarge": "https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/b/1/4/5/4017-9708-4384-9139-5ef70fd7863e",
-      "coverArtSmall": "https://thumbnailer.mixcloud.com/unsafe/100x100/extaudio/b/1/4/5/4017-9708-4384-9139-5ef70fd7863e",
+      "coverArtDate": "2024-07-12T21:12:54.991Z",
+      "coverArtLarge": "https://thumbnailer.mixcloud.com/unsafe/600x600/extaudio/b/1/4/5/4017-9708-4384-9139-5ef70fd7863e",
+      "coverArtSmall": "https://thumbnailer.mixcloud.com/unsafe/50x50/extaudio/b/1/4/5/4017-9708-4384-9139-5ef70fd7863e",
       "duration": "03:01:09",
       "fileName": "Cocksoup DJ Collective - Ultra Mid Tempo.mp3",
       "listOrder": 5,
@@ -5839,421 +5985,497 @@
       "tracks": [
         {
           "artistName": "Lee Ritenour",
-          "coverArtDate": "2023-12-23T22:18:50.755Z",
+          "coverArtDate": "2024-07-12T21:13:03.554Z",
           "coverArtLarge": "https://i.discogs.com/OueDz4LbwXgFL7ydny5GogrX2FYI0T_e6a8NNqbPb-E/rs:fit/g:sm/q:90/h:604/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExMzcx/NjctMTQ4MDI0Njg4/Ny04Mjc3LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/7H36ROc2gLKhwAtXCXZa1mR5QfUFRvi_QKC_7oKbN3M/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExMzcx/NjctMTQ4MDI0Njg4/Ny04Mjc3LmpwZWc.jpeg",
           "publisher": "Elektra",
           "remixArtistName": "",
           "sectionNumber": 1,
           "startTime": "00:00",
-          "trackName": "Is It You?"
+          "trackName": "Is It You?",
+          "localCoverArtLarge": "/trackart/lee_ritenour_is_it_you__large_jpg",
+          "localCoverArtSmall": "/trackart/lee_ritenour_is_it_you__small_jpg"
         },
         {
           "artistName": "Brenda Russell",
-          "coverArtDate": "2023-12-23T22:18:52.290Z",
+          "coverArtDate": "2024-07-12T21:13:04.702Z",
           "coverArtLarge": "https://i.discogs.com/uzz4N7nEC2IJqaNA0kVoshGYVj3cl5fou0U_G5iThhM/rs:fit/g:sm/q:90/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MDQx/ODUtMTI4NzYxNDkw/My5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/zSFVABSa_u_qs3hZk9Zl1kj1TeNn1IU0qKO4n82LXLU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI1MDQx/ODUtMTI4NzYxNDkw/My5qcGVn.jpeg",
           "publisher": "Dome Records",
           "remixArtistName": "",
           "sectionNumber": 2,
           "startTime": "03:47",
-          "trackName": "Catch On"
+          "trackName": "Catch On",
+          "localCoverArtLarge": "/trackart/brenda_russell_catch_on_large_jpg",
+          "localCoverArtSmall": "/trackart/brenda_russell_catch_on_small_jpg"
         },
         {
           "artistName": "Johnny Bristol",
-          "coverArtDate": "2023-12-23T22:18:53.921Z",
+          "coverArtDate": "2024-07-12T21:13:05.807Z",
           "coverArtLarge": "https://i.discogs.com/xkJtfoc91bNZC3xhDYNnuD9g1bFcHdWEeocWXr4PaoI/rs:fit/g:sm/q:90/h:459/w:482/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNzYy/MDItMTI5NDMzNDU3/MS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/jZ0egwqyoLXwD1PB-6j5m-UqsLLrk0YDnTf2_db7y5Y/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNzYy/MDItMTI5NDMzNDU3/MS5qcGVn.jpeg",
           "publisher": "Polydor",
           "remixArtistName": "",
           "sectionNumber": 3,
           "startTime": "07:30",
-          "trackName": "Do It To My Mind"
+          "trackName": "Do It To My Mind",
+          "localCoverArtLarge": "/trackart/johnny_bristol_do_it_to_my_mind_large_jpg",
+          "localCoverArtSmall": "/trackart/johnny_bristol_do_it_to_my_mind_small_jpg"
         },
         {
           "artistName": "Keni Burke",
-          "coverArtDate": "2023-12-23T22:18:55.708Z",
+          "coverArtDate": "2024-07-12T21:13:06.910Z",
           "coverArtLarge": "https://i.discogs.com/gt7ItuGgKnpzAH4gEBT-GPj2LR7aRk_QN48KhKHEfFE/rs:fit/g:sm/q:90/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwOTYy/MDEtMTM2NTYyMjQ0/OC05NzI0LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/Rhej9WoOJixgDcTSt69FrcnmjY1pCdxroVycArFlxp0/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwOTYy/MDEtMTM2NTYyMjQ0/OC05NzI0LmpwZWc.jpeg",
           "publisher": "RCA",
           "remixArtistName": "",
           "sectionNumber": 4,
           "startTime": "11:53",
-          "trackName": "Risin' to the Top"
+          "trackName": "Risin' to the Top",
+          "localCoverArtLarge": "/trackart/keni_burke_risin__to_the_top_large_jpg",
+          "localCoverArtSmall": "/trackart/keni_burke_risin__to_the_top_small_jpg"
         },
         {
           "artistName": "Brenda Russell",
-          "coverArtDate": "2023-12-23T22:18:57.273Z",
+          "coverArtDate": "2024-07-12T21:13:07.969Z",
           "coverArtLarge": "https://i.discogs.com/QapYbpls4uaTA0_9MhuKjASN6lXfKd-SXgZFLznNcmc/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE4MTA4/MjUzLTE2MTc2NTk5/NDMtOTc1OS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/lQ4Pww4l5eY7POUX6Jf0JjN8a8ITt3xqPRMqDNbD16Y/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE4MTA4/MjUzLTE2MTc2NTk5/NDMtOTc1OS5qcGVn.jpeg",
           "publisher": "Z Records",
           "remixArtistName": "Joey Negro Extended Disco Mix",
           "sectionNumber": 5,
           "startTime": "17:00",
-          "trackName": "Way Back When"
+          "trackName": "Way Back When",
+          "localCoverArtLarge": "/trackart/brenda_russell_way_back_when_large_jpg",
+          "localCoverArtSmall": "/trackart/brenda_russell_way_back_when_small_jpg"
         },
         {
           "artistName": "O'Bryan",
-          "coverArtDate": "2023-12-23T22:18:58.940Z",
+          "coverArtDate": "2024-07-12T21:13:09.152Z",
           "coverArtLarge": "https://i.discogs.com/E-ZWxy0EoL_eXZLPLnjNnI_gze6sK2ewm09Fl7mkfos/rs:fit/g:sm/q:90/h:300/w:298/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcxMjIw/Ni0xMjgyODU2NTcx/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/B0R2WYyZLP1oLrsTjft13whwYY0rEly6NjNDPfkxy8s/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcxMjIw/Ni0xMjgyODU2NTcx/LmpwZWc.jpeg",
           "publisher": "Capitol",
           "remixArtistName": "",
           "sectionNumber": 6,
           "startTime": "21:19",
-          "trackName": "Doin' Alright"
+          "trackName": "Doin' Alright",
+          "localCoverArtLarge": "/trackart/o_bryan_doin__alright_large_jpg",
+          "localCoverArtSmall": "/trackart/o_bryan_doin__alright_small_jpg"
         },
         {
           "artistName": "D'Sound Feat. J-Son",
-          "coverArtDate": "2023-12-23T22:19:00.660Z",
+          "coverArtDate": "2024-07-12T21:13:10.131Z",
           "coverArtLarge": "https://i.discogs.com/V6D7sD3dixN6hu-MDM8j3phcNmfCgNXDgdSq7Y30Xx0/rs:fit/g:sm/q:90/h:469/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5NDQ4/NDYtMTQ0MDY4MDgz/OS0xNDYzLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/6tDc9SYckBIYpGyeo85ihzCK2N1u-4yC4VmQwe2WmrM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5NDQ4/NDYtMTQ0MDY4MDgz/OS0xNDYzLmpwZWc.jpeg",
           "publisher": "SME",
           "remixArtistName": "",
           "sectionNumber": 7,
           "startTime": "26:22",
-          "trackName": "Dance With Me"
+          "trackName": "Dance With Me",
+          "localCoverArtLarge": "/trackart/d_sound_feat__j_son_dance_with_me_large_jpg",
+          "localCoverArtSmall": "/trackart/d_sound_feat__j_son_dance_with_me_small_jpg"
         },
         {
           "artistName": "Active Force",
-          "coverArtDate": "2023-12-23T22:19:02.174Z",
+          "coverArtDate": "2024-07-12T21:13:11.181Z",
           "coverArtLarge": "https://i.discogs.com/0EjuewLJ-HH6GRVEsjfVrLx5u0MO-3U4Q2_jpYweNKs/rs:fit/g:sm/q:90/h:602/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzOTU4/NjAtMTQ2MTcyMTEx/My03NDkxLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/JnRtlyiBWm8YbSvOkSRjquloB-rwYFSk-xFXHvVKUbU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzOTU4/NjAtMTQ2MTcyMTEx/My03NDkxLmpwZWc.jpeg",
           "publisher": "Original Disco Records",
           "remixArtistName": "Club Mix",
           "sectionNumber": 8,
           "startTime": "29:58",
-          "trackName": "Give Me Your Love"
+          "trackName": "Give Me Your Love",
+          "localCoverArtLarge": "/trackart/active_force_give_me_your_love_large_jpg",
+          "localCoverArtSmall": "/trackart/active_force_give_me_your_love_small_jpg"
         },
         {
           "artistName": "Deco",
-          "coverArtDate": "2023-12-23T22:19:03.870Z",
+          "coverArtDate": "2024-07-12T21:13:12.108Z",
           "coverArtLarge": "https://i.discogs.com/nlaDpAKsdMrYabRkMi7miSWyr3Cyc1D4l2CgpWNV1e4/rs:fit/g:sm/q:90/h:500/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcxMjM3/Mi0xMjkyNzgxMzgw/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/-cfq6zwDAcxnvy_UtyvDyN8eHUD1Cfydy_yNEQF1CP8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcxMjM3/Mi0xMjkyNzgxMzgw/LmpwZWc.jpeg",
           "publisher": "Qwest",
           "remixArtistName": "",
           "sectionNumber": 9,
           "startTime": "36:34",
-          "trackName": "I'm So Glad I Met You"
+          "trackName": "I'm So Glad I Met You",
+          "localCoverArtLarge": "/trackart/deco_i_m_so_glad_i_met_you_large_jpg",
+          "localCoverArtSmall": "/trackart/deco_i_m_so_glad_i_met_you_small_jpg"
         },
         {
           "artistName": "Viola Wills",
-          "coverArtDate": "2023-12-23T22:19:05.706Z",
+          "coverArtDate": "2024-07-12T21:13:13.294Z",
           "coverArtLarge": "https://i.discogs.com/aTw0qBrIlDL6G8zImN3_DmiPDgsrUCMXVZBU_Q8aaik/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0NTE4/OC0xMjI0NzM0NzE0/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/xYsEDucjkYFMqg4GS1NbY8XdkD01y61hiW-Z0Kc4IBs/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0NTE4/OC0xMjI0NzM0NzE0/LmpwZWc.jpeg",
           "publisher": "Wide Angle",
           "remixArtistName": "",
           "sectionNumber": 10,
           "startTime": "42:00",
-          "trackName": "Dare to Dream"
+          "trackName": "Dare to Dream",
+          "localCoverArtLarge": "/trackart/viola_wills_dare_to_dream_large_jpg",
+          "localCoverArtSmall": "/trackart/viola_wills_dare_to_dream_small_jpg"
         },
         {
           "artistName": "Yasuko Agawa",
-          "coverArtDate": "2023-12-23T22:19:07.388Z",
+          "coverArtDate": "2024-07-12T21:13:14.435Z",
           "coverArtLarge": "https://i.discogs.com/qjgYA-K6Kq0a03zHYrHLrqg3w4tsZOeqQ9YrktAdTN8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyMjI3/MzgtMTQxNDEzOTg2/Ny0zNjg5LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/XKa_5V53XPddifkd5aP0aAr9VRwN_5oEbanDDAh99KE/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyMjI3/MzgtMTQxNDEzOTg2/Ny0zNjg5LmpwZWc.jpeg",
           "publisher": "Tokyo Records",
           "remixArtistName": "",
           "sectionNumber": 11,
           "startTime": "46:02",
-          "trackName": "L.A. Night"
+          "trackName": "L.A. Night",
+          "localCoverArtLarge": "/trackart/yasuko_agawa_l_a__night_large_jpg",
+          "localCoverArtSmall": "/trackart/yasuko_agawa_l_a__night_small_jpg"
         },
         {
           "artistName": "Cameo",
-          "coverArtDate": "2023-12-23T22:19:09.367Z",
+          "coverArtDate": "2024-07-12T21:13:15.471Z",
           "coverArtLarge": "https://i.discogs.com/l8Bgsbzy2WXFcJVLHqimw3TBe3dYrptnsO3N451F_mM/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgyNDU3/LTEyODQyNjU4MjYu/anBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/NQ29WJDTBk7J5z4VaQDAWoSdaegup0lQ_jTKrIh-UwE/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgyNDU3/LTEyODQyNjU4MjYu/anBlZw.jpeg",
           "publisher": "Atlanta",
           "remixArtistName": "",
           "sectionNumber": 12,
           "startTime": "51:12",
-          "trackName": "Groove With You"
+          "trackName": "Groove With You",
+          "localCoverArtLarge": "/trackart/cameo_groove_with_you_large_jpg",
+          "localCoverArtSmall": "/trackart/cameo_groove_with_you_small_jpg"
         },
         {
           "artistName": "The Official Steppers",
-          "coverArtDate": "2023-12-23T22:19:10.990Z",
+          "coverArtDate": "2024-07-12T21:13:16.381Z",
           "coverArtLarge": "https://i.discogs.com/ZkBFN4ccmLmoOtNwKTg1eb2mHPriLvlmI0eWwJAbkqQ/rs:fit/g:sm/q:90/h:500/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTczMzI2/NTQtMTQzOTE1MzMy/OS0zMjY5LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/B_2ke9jDdDkXrh_mTrbE_yl_XzEBkkzMLRXigqKHZdA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTczMzI2/NTQtMTQzOTE1MzMy/OS0zMjY5LmpwZWc.jpeg",
           "publisher": "PDP",
           "remixArtistName": "Feat. Craig Chang",
           "sectionNumber": 13,
           "startTime": "55:42",
-          "trackName": "Get Up"
+          "trackName": "Get Up",
+          "localCoverArtLarge": "/trackart/the_official_steppers_get_up_large_jpg",
+          "localCoverArtSmall": "/trackart/the_official_steppers_get_up_small_jpg"
         },
         {
           "artistName": "Al Jarreau",
-          "coverArtDate": "2023-12-23T22:19:12.885Z",
+          "coverArtDate": "2024-07-12T21:13:17.540Z",
           "coverArtLarge": "https://i.discogs.com/qGuGR7_8WEAvHFvfX3iU6fWd5hj4tSLEwgs_SkdbPME/rs:fit/g:sm/q:90/h:603/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTk5NDg4/Ni0xMzI3NDMxODIz/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/naIAIE7PbE6LSi2rzenkcpz9bW71vGNUrSi4DKF2Apk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTk5NDg4/Ni0xMzI3NDMxODIz/LmpwZWc.jpeg",
           "publisher": "Warner Bros. Records",
           "remixArtistName": "",
           "sectionNumber": 14,
           "startTime": "59:50",
-          "trackName": "Roof Garden"
+          "trackName": "Roof Garden",
+          "localCoverArtLarge": "/trackart/al_jarreau_roof_garden_large_jpg",
+          "localCoverArtSmall": "/trackart/al_jarreau_roof_garden_small_jpg"
         },
         {
           "artistName": "Dexter Wansel",
-          "coverArtDate": "2023-12-23T22:19:14.484Z",
+          "coverArtDate": "2024-07-12T21:13:18.720Z",
           "coverArtLarge": "https://i.discogs.com/yvyvXIPQqAXNsnzr6ClIAk46tNf2JCipB12EY_Ps5fc/rs:fit/g:sm/q:90/h:601/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzNDY2/OS0xMjA0OTczMzYx/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/gvH0UsSw_i_9nKy0I9Gvc-7tZjukI1oBdZnZ0gY7pYU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzNDY2/OS0xMjA0OTczMzYx/LmpwZWc.jpeg",
           "publisher": "Philadelphia International Records",
           "remixArtistName": "",
           "sectionNumber": 15,
           "startTime": "1:05:22",
-          "trackName": "The Sweetest Pain"
+          "trackName": "The Sweetest Pain",
+          "localCoverArtLarge": "/trackart/dexter_wansel_the_sweetest_pain_large_jpg",
+          "localCoverArtSmall": "/trackart/dexter_wansel_the_sweetest_pain_small_jpg"
         },
         {
           "artistName": "Lalah Hathaway",
-          "coverArtDate": "2023-09-26T19:34:09.038Z",
+          "coverArtDate": "2024-07-12T21:13:19.934Z",
           "coverArtLarge": "https://i.discogs.com/HUa7cjj9SOxdl6ZL8Ynuqmnv_vBTKlh1ggvnM7kCh1s/rs:fit/g:sm/q:90/h:590/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTU5/NDItMTM0NDUyNTM5/OS0zNjUzLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/bt-jbamGKJKkGDRqcpS5T9oSv2NrieCyc9ceazsj-Sg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxNTU5/NDItMTM0NDUyNTM5/OS0zNjUzLmpwZWc.jpeg",
           "publisher": "Virgin America",
           "remixArtistName": "",
           "sectionNumber": 16,
           "startTime": "1:10:38",
-          "trackName": "Smile"
+          "trackName": "Smile",
+          "localCoverArtLarge": "/trackart/lalah_hathaway_smile_large_jpg",
+          "localCoverArtSmall": "/trackart/lalah_hathaway_smile_small_jpg"
         },
         {
           "artistName": "Rahsaan Patterson",
-          "coverArtDate": "2023-12-23T22:19:17.046Z",
+          "coverArtDate": "2024-07-12T21:13:21.049Z",
           "coverArtLarge": "https://i.discogs.com/g2r-5DbbzBP_TGLB-sKzqq3ZvBd-fsuxBXX6uySkGJU/rs:fit/g:sm/q:90/h:586/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyMTg3/MDItMTQ2NjQxNzk3/NS01NzQzLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/HUpkOVEMBbya3is_r2WJ_tz4q7PHL7JXVVMtoTqTFCw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyMTg3/MDItMTQ2NjQxNzk3/NS01NzQzLmpwZWc.jpeg",
           "publisher": "MCA Records",
           "remixArtistName": "",
           "sectionNumber": 17,
           "startTime": "1:15:17",
-          "trackName": "So Fine"
+          "trackName": "So Fine",
+          "localCoverArtLarge": "/trackart/rahsaan_patterson_so_fine_large_jpg",
+          "localCoverArtSmall": "/trackart/rahsaan_patterson_so_fine_small_jpg"
         },
         {
           "artistName": "Drizabone",
-          "coverArtDate": "2023-12-23T22:19:18.890Z",
+          "coverArtDate": "2024-07-12T21:13:22.041Z",
           "coverArtLarge": "https://i.discogs.com/w49R1CBmnivKyD3-rGDVSH95fRJvOTZhjMnEoJgAVRU/rs:fit/g:sm/q:90/h:532/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzNDYy/NzgtMTU4Njg3MDAy/Mi01OTM2LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/He1CH6ncLfHZvJKbV-MoaC7gTYUka6tspu6i4NnUbPU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzNDYy/NzgtMTU4Njg3MDAy/Mi01OTM2LmpwZWc.jpeg",
           "publisher": "4th & Broadway",
           "remixArtistName": "The Morales Mixes",
           "sectionNumber": 18,
           "startTime": "1:19:31",
-          "trackName": "Brightest Star"
+          "trackName": "Brightest Star",
+          "localCoverArtLarge": "/trackart/drizabone_brightest_star_large_jpg",
+          "localCoverArtSmall": "/trackart/drizabone_brightest_star_small_jpg"
         },
         {
           "artistName": "Lionel Richie",
-          "coverArtDate": "2023-12-23T22:19:20.553Z",
+          "coverArtDate": "2024-07-12T21:13:23.159Z",
           "coverArtLarge": "https://i.discogs.com/Sj1LEdZFMSoS0YJFX1S8B8_aeu6oyEA4VTH4hBSHlAI/rs:fit/g:sm/q:90/h:400/w:406/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyMjU3/MjYtMTM1OTA1NTc4/MS02MjY1LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/w2BhK0c6yhz6GcsMy5U35iydNwSJetQQn19E-P-PqtI/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQyMjU3/MjYtMTM1OTA1NTc4/MS02MjY1LmpwZWc.jpeg",
           "publisher": "Motown",
           "remixArtistName": "",
           "sectionNumber": 19,
           "startTime": "1:24:06",
-          "trackName": "Love Will Find a Way"
+          "trackName": "Love Will Find a Way",
+          "localCoverArtLarge": "/trackart/lionel_richie_love_will_find_a_way_large_jpg",
+          "localCoverArtSmall": "/trackart/lionel_richie_love_will_find_a_way_small_jpg"
         },
         {
           "artistName": "Loose Ends",
-          "coverArtDate": "2023-12-23T22:19:22.391Z",
+          "coverArtDate": "2024-07-12T21:13:24.263Z",
           "coverArtLarge": "https://i.discogs.com/rw8nj_mpSuQ1mcWe2BV68dreGk4vGRkKN0NTATw60dI/rs:fit/g:sm/q:90/h:587/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MjIx/MTAtMTY3NTIxOTg3/Mi05MjAyLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/54qrjb5xEsIfkYutjg8KKPHdrOUXhyTDVIw462FE0wA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MjIx/MTAtMTY3NTIxOTg3/Mi05MjAyLmpwZWc.jpeg",
           "publisher": "DIX",
           "remixArtistName": "",
           "sectionNumber": 20,
           "startTime": "1:29:59",
-          "trackName": "Don't Worry"
+          "trackName": "Don't Worry",
+          "localCoverArtLarge": "/trackart/loose_ends_don_t_worry_large_jpg",
+          "localCoverArtSmall": "/trackart/loose_ends_don_t_worry_small_jpg"
         },
         {
           "artistName": "George Benson",
-          "coverArtDate": "2023-12-23T22:19:24.145Z",
+          "coverArtDate": "2024-07-12T21:13:25.411Z",
           "coverArtLarge": "https://i.discogs.com/y-afpUG7e2T7L_daTHWgjdPIIXsWLZQ5Fm1DCPNLqWo/rs:fit/g:sm/q:90/h:594/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMTgy/NDItMTQ5MDQ2NzU1/OS0yNzEzLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/73aR_W6Nj80SwxPCnrYcay67EIRyPTo-bXQaQkazmyg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMTgy/NDItMTQ5MDQ2NzU1/OS0yNzEzLmpwZWc.jpeg",
           "publisher": "Warner Bros. Records",
           "remixArtistName": "",
           "sectionNumber": 21,
           "startTime": "1:35:23",
-          "trackName": "Lady Love Me (One More Time)"
+          "trackName": "Lady Love Me (One More Time)",
+          "localCoverArtLarge": "/trackart/george_benson_lady_love_me__one_more_time__large_jpg",
+          "localCoverArtSmall": "/trackart/george_benson_lady_love_me__one_more_time__small_jpg"
         },
         {
           "artistName": "Laurneá",
-          "coverArtDate": "2023-12-23T22:19:26.060Z",
+          "coverArtDate": "2024-07-12T21:13:26.463Z",
           "coverArtLarge": "https://i.discogs.com/ovyDrRAgYBdXn7Mulxz6XEPgnq9HNEqYifdHW0_VtPw/rs:fit/g:sm/q:90/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM5MDI5/Ni0xMTA3MDIwNjQ0/LmpwZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/gVwStaa8HhhKglItvWzmqbp851ktsmZdB3qi0j5oZLM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM5MDI5/Ni0xMTA3MDIwNjQ0/LmpwZw.jpeg",
           "publisher": "Epic",
           "remixArtistName": "",
           "sectionNumber": 22,
           "startTime": "1:39:12",
-          "trackName": "Happy"
+          "trackName": "Happy",
+          "localCoverArtLarge": "/trackart/laurne__happy_large_jpg",
+          "localCoverArtSmall": "/trackart/laurne__happy_small_jpg"
         },
         {
           "artistName": "Garfield Fleming",
-          "coverArtDate": "2023-12-23T22:19:27.850Z",
+          "coverArtDate": "2024-07-12T21:13:27.594Z",
           "coverArtLarge": "https://i.discogs.com/lEqJ9DDZyrR6ArR7thPG9NtPcSir6nO3ctwajyZpcTM/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM5OTI4/OS0xNjU3MDU1MTAw/LTU4MDAuanBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/8eF9FWkGIwaeNPoFg0bdjU2XPL25VCu0fyc4BTOFx8M/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM5OTI4/OS0xNjU3MDU1MTAw/LTU4MDAuanBlZw.jpeg",
           "publisher": "Becket Records",
           "remixArtistName": "",
           "sectionNumber": 23,
           "startTime": "1:43:30",
-          "trackName": "Don't Send Me Away"
+          "trackName": "Don't Send Me Away",
+          "localCoverArtLarge": "/trackart/garfield_fleming_don_t_send_me_away_large_jpg",
+          "localCoverArtSmall": "/trackart/garfield_fleming_don_t_send_me_away_small_jpg"
         },
         {
           "artistName": "Breakwater",
-          "coverArtDate": "2023-12-23T22:19:29.558Z",
+          "coverArtDate": "2024-07-12T21:13:28.690Z",
           "coverArtLarge": "https://i.discogs.com/XdHTta_RKvEFL-YzHDzBDV5nu2t9oBTuNdouhZubwiI/rs:fit/g:sm/q:90/h:347/w:350/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE2MTI4/MzUtMTIzMjE1MTk5/NS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/ip6GQKNwSGGH4EXDgVebe_fd5btX05PkTcptCRkniiI/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE2MTI4/MzUtMTIzMjE1MTk5/NS5qcGVn.jpeg",
           "publisher": "Expansion",
           "remixArtistName": "",
           "sectionNumber": 24,
           "startTime": "1:48:56",
-          "trackName": "Say You Love Me Girl"
+          "trackName": "Say You Love Me Girl",
+          "localCoverArtLarge": "/trackart/breakwater_say_you_love_me_girl_large_jpg",
+          "localCoverArtSmall": "/trackart/breakwater_say_you_love_me_girl_small_jpg"
         },
         {
           "artistName": "Patti Austin",
-          "coverArtDate": "2023-12-23T22:19:31.308Z",
+          "coverArtDate": "2024-07-12T21:13:29.895Z",
           "coverArtLarge": "https://i.discogs.com/2FDdQ7Gc_qtQiX1RH-DVQbM5dm1bU7LKJUT3uE_2YiY/rs:fit/g:sm/q:90/h:598/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcxMjA1/Ni0xNTQyNDcxMzI4/LTgwMDcuanBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/JjE6TWyuhmEVSQKyF9iwivomxT9BIa479fYBhRberNM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcxMjA1/Ni0xNTQyNDcxMzI4/LTgwMDcuanBlZw.jpeg",
           "publisher": "Qwest",
           "remixArtistName": "",
           "sectionNumber": 25,
           "startTime": "1:53:07",
-          "trackName": "Love Me To Death"
+          "trackName": "Love Me To Death",
+          "localCoverArtLarge": "/trackart/patti_austin_love_me_to_death_large_jpg",
+          "localCoverArtSmall": "/trackart/patti_austin_love_me_to_death_small_jpg"
         },
         {
           "artistName": "Luther Vandross",
-          "coverArtDate": "2023-12-23T22:19:33.021Z",
+          "coverArtDate": "2024-07-12T21:13:31.102Z",
           "coverArtLarge": "https://i.discogs.com/JrllvqhoMfJAg4VhQwhwKyJOKuIULn1nTXl-1v7Q2DU/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTIyNzU3/LTE2NjU4NDUzODAt/Mjk4OS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/Ibvx6VNFi9VdQDvEx3OPOhgWZs4tKClRXOXrH7mcM5Y/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTIyNzU3/LTE2NjU4NDUzODAt/Mjk4OS5qcGVn.jpeg",
           "publisher": "Epic",
           "remixArtistName": "",
           "sectionNumber": 26,
           "startTime": "1:57:18",
-          "trackName": "Never Too Much"
+          "trackName": "Never Too Much",
+          "localCoverArtLarge": "/trackart/luther_vandross_never_too_much_large_jpg",
+          "localCoverArtSmall": "/trackart/luther_vandross_never_too_much_small_jpg"
         },
         {
           "artistName": "Odyssey",
-          "coverArtDate": "2023-12-23T22:19:35.706Z",
+          "coverArtDate": "2024-07-12T21:13:32.378Z",
           "coverArtLarge": "https://i.discogs.com/ksEG3pJoKB3wtsva6mP8kYfOBe4BEILD9GtUVhxytfY/rs:fit/g:sm/q:90/h:341/w:354/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIxNzkx/Mi0xMTc0ODQ5Mzk5/LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/DDpR1gOFt7fSM5c6jisALc0_FNztp8lEXgiSak0pV9g/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIxNzkx/Mi0xMTc0ODQ5Mzk5/LmpwZWc.jpeg",
           "publisher": "RCA",
           "remixArtistName": "",
           "sectionNumber": 27,
           "startTime": "2:01:44",
-          "trackName": "Inside Out"
+          "trackName": "Inside Out",
+          "localCoverArtLarge": "/trackart/odyssey_inside_out_large_jpg",
+          "localCoverArtSmall": "/trackart/odyssey_inside_out_small_jpg"
         },
         {
           "artistName": "Tom Browne",
-          "coverArtDate": "2023-12-23T22:19:37.380Z",
+          "coverArtDate": "2024-07-12T21:13:33.496Z",
           "coverArtLarge": "https://i.discogs.com/dXl2I-AjZdxFwtt_U3bDfjTcub9V1eQG97QYVhl0bDY/rs:fit/g:sm/q:90/h:615/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY4MDE5/MjUtMTQ0MzAxNTkx/OC0zMDk1LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/hXx7lB3dCr5LGqfcc6LbJ_QmNuC0MZLePdsxoyvmoGs/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY4MDE5/MjUtMTQ0MzAxNTkx/OC0zMDk1LmpwZWc.jpeg",
           "publisher": "Arista",
           "remixArtistName": "",
           "sectionNumber": 28,
           "startTime": "2:07:58",
-          "trackName": "Brighter Tomorrow"
+          "trackName": "Brighter Tomorrow",
+          "localCoverArtLarge": "/trackart/tom_browne_brighter_tomorrow_large_jpg",
+          "localCoverArtSmall": "/trackart/tom_browne_brighter_tomorrow_small_jpg"
         },
         {
           "artistName": "Ledisi",
-          "coverArtDate": "2023-12-23T22:19:39.042Z",
+          "coverArtDate": "2024-07-12T21:13:34.410Z",
           "coverArtLarge": "https://i.discogs.com/RSVKM_0mZFmJx4SD2BeKt2d4puEttiGW1tQoR9nq_pY/rs:fit/g:sm/q:90/h:221/w:228/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxOTQw/My0xMzUxMjA1NDgz/LTcwMTcuanBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/zTeg4BNEREGmuK6wnkU5393WwIslLiZtK7ZbCa_MdOg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMxOTQw/My0xMzUxMjA1NDgz/LTcwMTcuanBlZw.jpeg",
           "publisher": "Le Sun Music",
           "remixArtistName": "",
           "sectionNumber": 29,
           "startTime": "2:14:22",
-          "trackName": "Good Lovin'"
+          "trackName": "Good Lovin'",
+          "localCoverArtLarge": "/trackart/ledisi_good_lovin__large_jpg",
+          "localCoverArtSmall": "/trackart/ledisi_good_lovin__small_jpg"
         },
         {
           "artistName": "George Benson",
-          "coverArtDate": "2023-12-23T22:19:40.426Z",
+          "coverArtDate": "2024-07-12T21:13:35.559Z",
           "coverArtLarge": "https://i.discogs.com/V2qAolWeWPLamCZ59bvSM2cs9tX1U9ux_32ZanHfmoE/rs:fit/g:sm/q:90/h:603/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMjg1/MDItMTU3OTQ5ODUw/NS0xMjU0LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/LvKmtuiTL_-3v_ASCh5T883JlRHTLViIqOrVSYeLxro/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMjg1/MDItMTU3OTQ5ODUw/NS0xMjU0LmpwZWc.jpeg",
           "publisher": "Qwest",
           "remixArtistName": "",
           "sectionNumber": 30,
           "startTime": "2:18:26",
-          "trackName": "Love X Love"
+          "trackName": "Love X Love",
+          "localCoverArtLarge": "/trackart/george_benson_love_x_love_large_jpg",
+          "localCoverArtSmall": "/trackart/george_benson_love_x_love_small_jpg"
         },
         {
           "artistName": "Chic",
-          "coverArtDate": "2023-12-23T22:19:42.068Z",
+          "coverArtDate": "2024-07-12T21:13:36.627Z",
           "coverArtLarge": "https://i.discogs.com/tGDo5NKyoMsboHWYvn3wPsNM6HJKiyGyKz1qv02BxsI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDky/ODQtMTMxNjk0MTc3/OS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/6N1LVHQvZzRHcnTmQ8Y6kMB-d84SgpHFjcpObBSzG1Q/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDky/ODQtMTMxNjk0MTc3/OS5qcGVn.jpeg",
           "publisher": "Mirage",
           "remixArtistName": "",
           "sectionNumber": 31,
           "startTime": "2:22:55",
-          "trackName": "Soup for One"
+          "trackName": "Soup for One",
+          "localCoverArtLarge": "/trackart/chic_soup_for_one_large_jpg",
+          "localCoverArtSmall": "/trackart/chic_soup_for_one_small_jpg"
         },
         {
           "artistName": "Jeffrey Osbourne",
-          "coverArtDate": "2023-12-23T22:19:43.918Z",
+          "coverArtDate": "2024-07-12T21:13:37.505Z",
           "coverArtLarge": "https://i.discogs.com/ugbBOuL4cLasPPYlw08A7sKh8nWZeeChIyjppriO6fk/rs:fit/g:sm/q:90/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyNDU0/NzUtMTM5NjY0MTM0/My02NTAzLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/WGEjd1cV1t9K5vdi_2J7LfyHfzG6eaT0FyJTZFPSO34/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyNDU0/NzUtMTM5NjY0MTM0/My02NTAzLmpwZWc.jpeg",
           "publisher": "A&M Records",
           "remixArtistName": "",
           "sectionNumber": 32,
           "startTime": "2:28:41",
-          "trackName": "Don't You Get So Mad"
+          "trackName": "Don't You Get So Mad",
+          "localCoverArtLarge": "/trackart/jeffrey_osbourne_don_t_you_get_so_mad_large_jpg",
+          "localCoverArtSmall": "/trackart/jeffrey_osbourne_don_t_you_get_so_mad_small_jpg"
         },
         {
           "artistName": "Ashford & Simpson",
-          "coverArtDate": "2023-12-23T22:19:45.648Z",
+          "coverArtDate": "2024-07-12T21:13:38.578Z",
           "coverArtLarge": "https://i.discogs.com/6jbmfsEqTGnDiNjZUwHQcQsrXKOcJ9tzpn_pMDsvCKE/rs:fit/g:sm/q:90/h:500/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNjM2/MjktMTE4OTI4MTIx/NC5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/fY5N9PbNbcp9OAyRkQnNThKpcc1zo9BJpnc0d3gkYuw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNjM2/MjktMTE4OTI4MTIx/NC5qcGVn.jpeg",
           "publisher": "Warner Bros. Records",
           "remixArtistName": "",
           "sectionNumber": 33,
           "startTime": "2:32:17",
-          "trackName": "It Seems To Hang On"
+          "trackName": "It Seems To Hang On",
+          "localCoverArtLarge": "/trackart/ashford___simpson_it_seems_to_hang_on_large_jpg",
+          "localCoverArtSmall": "/trackart/ashford___simpson_it_seems_to_hang_on_small_jpg"
         },
         {
           "artistName": "Midnight Star",
-          "coverArtDate": "2023-12-23T22:19:49.172Z",
+          "coverArtDate": "2024-07-12T21:13:39.560Z",
           "coverArtLarge": "https://i.discogs.com/9mRZ-NPPZGJFIHGInhHrHI_RjzQDGHkTjd2sKAUe1Oo/rs:fit/g:sm/q:90/h:550/w:550/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNzg2/Ni0xMzYxMTE4MzI0/LTEwNzIuanBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/h5hN91XnHGtae4szgP7EBOZJl7BqghgZ3DYT3pYwI2A/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNzg2/Ni0xMzYxMTE4MzI0/LTEwNzIuanBlZw.jpeg",
           "publisher": "Solar",
           "remixArtistName": "",
           "sectionNumber": 34,
           "startTime": "2:37:17",
-          "trackName": "Midas Touch"
+          "trackName": "Midas Touch",
+          "localCoverArtLarge": "/trackart/midnight_star_midas_touch_large_jpg",
+          "localCoverArtSmall": "/trackart/midnight_star_midas_touch_small_jpg"
         },
         {
           "artistName": "Alton McClain & Destiny",
-          "coverArtDate": "2023-12-23T22:19:50.635Z",
+          "coverArtDate": "2024-07-12T21:13:40.524Z",
           "coverArtLarge": "https://i.discogs.com/9pS_MMoBEtpeemaAvZxnurUHkHRGnfZ1TtSiSqDh-4o/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyOTg4/OTItMTM4MTU3NTE3/MC01OTg5LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/1zbARqu3v1IMXPenkkJ8KX6g8OqASHhpxvMHjwh84I0/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyOTg4/OTItMTM4MTU3NTE3/MC01OTg5LmpwZWc.jpeg",
           "publisher": "Polydor",
           "remixArtistName": "",
           "sectionNumber": 35,
           "startTime": "2:42:13",
-          "trackName": "Love Notes"
+          "trackName": "Love Notes",
+          "localCoverArtLarge": "/trackart/alton_mcclain___destiny_love_notes_large_jpg",
+          "localCoverArtSmall": "/trackart/alton_mcclain___destiny_love_notes_small_jpg"
         },
         {
           "artistName": "Patrice Rushen",
-          "coverArtDate": "2023-12-23T22:19:52.283Z",
+          "coverArtDate": "2024-07-12T21:13:41.877Z",
           "coverArtLarge": "https://i.discogs.com/HHC-4SE8paChjzB2HZvwJ3wbqaYkPjH7y5n26uyPHtM/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ3MzU2/My0xNjQ3MzY2OTgz/LTY5MDkuanBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/xsTIL4p_W_TY6MRLvpcNCB6u-O2nUMdtPV7zNGMugxk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ3MzU2/My0xNjQ3MzY2OTgz/LTY5MDkuanBlZw.jpeg",
           "publisher": "Arista",
           "remixArtistName": "",
           "sectionNumber": 36,
           "startTime": "2:46:02",
-          "trackName": "Watch Out!"
+          "trackName": "Watch Out!",
+          "localCoverArtLarge": "/trackart/patrice_rushen_watch_out__large_jpg",
+          "localCoverArtSmall": "/trackart/patrice_rushen_watch_out__small_jpg"
         },
         {
           "artistName": "Camelle Hinds",
-          "coverArtDate": "2023-12-23T22:19:53.741Z",
+          "coverArtDate": "2024-07-12T21:13:43.031Z",
           "coverArtLarge": "https://i.discogs.com/VdAQ8bIgEkMDvXRW3A5x8G_rv_nV8vW-IX3gtzvsZQo/rs:fit/g:sm/q:90/h:609/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMzA1/NDgtMTI5OTg3NDU4/OS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/Uqj46m2HsPjd-Xpx383Vg74IU00IwbFWRfhJIj_RavE/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMzA1/NDgtMTI5OTg3NDU4/OS5qcGVn.jpeg",
           "publisher": "Expansion",
           "remixArtistName": "",
           "sectionNumber": 37,
           "startTime": "2:51:18",
-          "trackName": "Closer to the Source"
+          "trackName": "Closer to the Source",
+          "localCoverArtLarge": "/trackart/camelle_hinds_closer_to_the_source_large_jpg",
+          "localCoverArtSmall": "/trackart/camelle_hinds_closer_to_the_source_small_jpg"
         },
         {
           "artistName": "Jennifer Flores & Shiloh Dynasty Feat. LofiCentral",
-          "coverArtDate": "2023-12-23T22:19:55.613Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:13:44.978Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Jennifer Flores x LofiCentral",
           "remixArtistName": "",
           "sectionNumber": 38,
           "startTime": "2:55:25",
-          "trackName": "Better Than He Can"
+          "trackName": "Better Than He Can",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         }
       ]
     },
@@ -21457,9 +21679,9 @@
     },
     {
       "category": "special",
-      "coverArtDate": "2024-04-15T20:27:37.158Z",
-      "coverArtLarge": "https://thumbnailer.mixcloud.com/unsafe/300x300/extaudio/1/e/2/0/0ceb-4049-4513-aec7-7912cbd863ce",
-      "coverArtSmall": "https://thumbnailer.mixcloud.com/unsafe/100x100/extaudio/1/e/2/0/0ceb-4049-4513-aec7-7912cbd863ce",
+      "coverArtDate": "2024-07-12T21:12:09.099Z",
+      "coverArtLarge": "https://thumbnailer.mixcloud.com/unsafe/600x600/extaudio/1/e/2/0/0ceb-4049-4513-aec7-7912cbd863ce",
+      "coverArtSmall": "https://thumbnailer.mixcloud.com/unsafe/50x50/extaudio/1/e/2/0/0ceb-4049-4513-aec7-7912cbd863ce",
       "duration": "02:00:17",
       "fileName": "W.u.R.St 2 Vol. 555.mp3",
       "listOrder": 4,
@@ -21479,322 +21701,380 @@
       "tracks": [
         {
           "artistName": "James Brown",
-          "coverArtDate": "2023-12-23T22:52:05.243Z",
+          "coverArtDate": "2024-07-12T21:12:13.868Z",
           "coverArtLarge": "https://i.discogs.com/AGH3Yq9fo59-SKyjYw7yOcP8F11Pkf8X-b8ZzrPHsJY/rs:fit/g:sm/q:90/h:607/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU1MjY3/NC0xNDMxMTMzNDYx/LTg2MjcuanBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/VZUrFZK1GFsLhq3x3NybK80VmEybUArdtXGHCM6DGII/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU1MjY3/NC0xNDMxMTMzNDYx/LTg2MjcuanBlZw.jpeg",
           "publisher": "UMG",
           "remixArtistName": "",
           "sectionNumber": 1,
           "startTime": "00:00",
-          "trackName": "You Love was Good for Me"
+          "trackName": "You Love was Good for Me",
+          "localCoverArtLarge": "/trackart/james_brown_you_love_was_good_for_me_large_jpg",
+          "localCoverArtSmall": "/trackart/james_brown_you_love_was_good_for_me_small_jpg"
         },
         {
           "artistName": "Minnie Riperton",
-          "coverArtDate": "2023-09-26T20:08:14.556Z",
+          "coverArtDate": "2024-07-12T21:12:15.045Z",
           "coverArtLarge": "https://i.discogs.com/LEVjJJEcOECV4gti7HThsge3tdKHyhVcB56PfsNFJ1k/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTk3NDY5/MC0xNDY0MzQ1MDk3/LTY3NjMuanBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/vUl6ajONv6BABALn68cduDyndloLFBCS8CbyGKko0hw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTk3NDY5/MC0xNDY0MzQ1MDk3/LTY3NjMuanBlZw.jpeg",
           "publisher": "Epic",
           "remixArtistName": "",
           "sectionNumber": 2,
           "startTime": "03:10",
-          "trackName": "Baby, This Love I Have"
+          "trackName": "Baby, This Love I Have",
+          "localCoverArtLarge": "/trackart/minnie_riperton_baby__this_love_i_have_large_jpg",
+          "localCoverArtSmall": "/trackart/minnie_riperton_baby__this_love_i_have_small_jpg"
         },
         {
           "artistName": "Curtis Mayfield",
-          "coverArtDate": "2023-09-26T20:08:16.117Z",
+          "coverArtDate": "2024-07-12T21:12:16.174Z",
           "coverArtLarge": "https://i.discogs.com/DDtQbg5Y_GosNWFdDYYruWSkRnhiwvWl0Ucw0E2UgKI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI2MTMz/MjAtMTQ3NzMxNDYz/Mi03NzM0LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/6vC-xu63McW7sN6AXvs_PsHUI5d1XaAgXi3BweHqwlk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI2MTMz/MjAtMTQ3NzMxNDYz/Mi03NzM0LmpwZWc.jpeg",
           "publisher": "Buddah Records",
           "remixArtistName": "",
           "sectionNumber": 3,
           "startTime": "07:03",
-          "trackName": "Freddie's Dead"
+          "trackName": "Freddie's Dead",
+          "localCoverArtLarge": "/trackart/curtis_mayfield_freddie_s_dead_large_jpg",
+          "localCoverArtSmall": "/trackart/curtis_mayfield_freddie_s_dead_small_jpg"
         },
         {
           "artistName": "Sisters Love",
-          "coverArtDate": "2023-09-26T20:08:17.833Z",
+          "coverArtDate": "2024-07-12T21:12:17.442Z",
           "coverArtLarge": "https://i.discogs.com/KIO81ty5wSnMEmq3j3AndXfMNH0VgGQwWSfQYnIQt5I/rs:fit/g:sm/q:90/h:599/w:593/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ5MzY4/MjUtMTU4OTMwNjU0/MC03MTY1LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/wG7csR7wmOfhp1fqCEICWEjMxCXPi59lCnUnKDsJxzU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ5MzY4/MjUtMTU4OTMwNjU0/MC03MTY1LmpwZWc.jpeg",
           "publisher": "MoWest",
           "remixArtistName": "",
           "sectionNumber": 4,
           "startTime": "13:04",
-          "trackName": "Give Me Your Love"
+          "trackName": "Give Me Your Love",
+          "localCoverArtLarge": "/trackart/sisters_love_give_me_your_love_large_jpg",
+          "localCoverArtSmall": "/trackart/sisters_love_give_me_your_love_small_jpg"
         },
         {
           "artistName": "Lettuce",
-          "coverArtDate": "2023-09-26T20:08:19.408Z",
+          "coverArtDate": "2024-07-12T21:12:18.379Z",
           "coverArtLarge": "https://i.discogs.com/LpqIY9ptrx2U7MDn59moJzgTC4sQGvbbfVxdl78U8IM/rs:fit/g:sm/q:90/h:533/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzNjU1/MTQ4LTE2NDQ3NjIz/ODQtMzI4Ni5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/WGN7qk8R0SQpVd4SLkTY_UtrS9EmV32APs0OUcB3Nuk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzNjU1/MTQ4LTE2NDQ3NjIz/ODQtMzI4Ni5qcGVn.jpeg",
           "publisher": "Velour Recordings",
           "remixArtistName": "",
           "sectionNumber": 5,
           "startTime": "21:07",
-          "trackName": "Express Yourself"
+          "trackName": "Express Yourself",
+          "localCoverArtLarge": "/trackart/lettuce_express_yourself_large_jpg",
+          "localCoverArtSmall": "/trackart/lettuce_express_yourself_small_jpg"
         },
         {
           "artistName": "Shirley Bassey",
-          "coverArtDate": "2023-09-26T20:08:21.320Z",
-          "coverArtLarge": "https://i.discogs.com/1F_wxx5no_9lMl-8BSh6SD5p4hC7SuIVoJxKm-PgMdM/rs:fit/g:sm/q:90/h:455/w:590/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNTk3/MDMtMTM3MzA5NzU4/OS01MjcwLmpwZWc.jpeg",
-          "coverArtSmall": "https://i.discogs.com/QacfNBUKc_41IrxGchf72SDd236TB2xIt5PXb3Vi70g/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNTk3/MDMtMTM3MzA5NzU4/OS01MjcwLmpwZWc.jpeg",
+          "coverArtDate": "2024-07-12T21:12:19.501Z",
+          "coverArtLarge": "https://i.discogs.com/c2YMPBx8eXH2Rh_aldnd97l2seq3Wt5nb2RPbx7g-P8/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzODgw/NTYtMTMxNDc5OTk2/MS5qcGVn.jpeg",
+          "coverArtSmall": "https://i.discogs.com/XhcN5PywcB5ZzR6ixWqddGnNIfcfznOO8vSmTy7DTqU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzODgw/NTYtMTMxNDc5OTk2/MS5qcGVn.jpeg",
           "publisher": "Zonophone",
           "remixArtistName": "",
           "sectionNumber": 6,
           "startTime": "24:25",
-          "trackName": "Light My Fire"
+          "trackName": "Light My Fire",
+          "localCoverArtLarge": "/trackart/shirley_bassey_light_my_fire_large_jpg",
+          "localCoverArtSmall": "/trackart/shirley_bassey_light_my_fire_small_jpg"
         },
         {
           "artistName": "Cake",
-          "coverArtDate": "2023-12-23T22:52:09.786Z",
+          "coverArtDate": "2024-07-12T21:12:21.044Z",
           "coverArtLarge": "https://i.discogs.com/92n7Fj0Ef04kJUtbD_g1CXJ5dw14ruhs0aWjMotx_ew/rs:fit/g:sm/q:90/h:602/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNDMy/MjItMTI2NzE4NDM3/MC5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/YPZlVE0sjC3MbIiS11nOjczGpiWfuYqaP0WMc58VFnY/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNDMy/MjItMTI2NzE4NDM3/MC5qcGVn.jpeg",
           "publisher": "",
           "remixArtistName": "",
           "sectionNumber": 7,
           "startTime": "27:48",
-          "trackName": "I Will Survive"
+          "trackName": "I Will Survive",
+          "localCoverArtLarge": "/trackart/cake_i_will_survive_large_jpg",
+          "localCoverArtSmall": "/trackart/cake_i_will_survive_small_jpg"
         },
         {
           "artistName": "The Bamboos",
-          "coverArtDate": "2023-12-23T22:52:11.270Z",
+          "coverArtDate": "2024-07-12T21:12:22.168Z",
           "coverArtLarge": "https://i.discogs.com/g536a_CqDfzMZ2FL_gItzYhTH2opuqI8sFLmAW-R79c/rs:fit/g:sm/q:90/h:355/w:355/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMzM0/NDMtMTIwNTAzMTQ3/OC5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/cm4BKRLdoOcMsb3L4JSZHEtxPxJ6sMlyBQRntlQFyFg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMzM0/NDMtMTIwNTAzMTQ3/OC5qcGVn.jpeg",
           "publisher": "",
           "remixArtistName": "",
           "sectionNumber": 8,
           "startTime": "32:30",
-          "trackName": "I Don't Wanna Stop"
+          "trackName": "I Don't Wanna Stop",
+          "localCoverArtLarge": "/trackart/the_bamboos_i_don_t_wanna_stop_large_jpg",
+          "localCoverArtSmall": "/trackart/the_bamboos_i_don_t_wanna_stop_small_jpg"
         },
         {
           "artistName": "The Jackson 5",
-          "coverArtDate": "2023-12-23T22:52:13.960Z",
+          "coverArtDate": "2024-07-12T21:12:23.334Z",
           "coverArtLarge": "https://i.discogs.com/HkeiXDEwf8TmGsCvTAKE-4yiS2-0ALsHgZ88IEU3i3g/rs:fit/g:sm/q:90/h:598/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE4NDQ2/NzAtMTY1Mjk5MDI5/Mi02MTg5LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/PYGx-uSfRMdtCww1y7yTHBQ8oCdqNFl5AEr5ltqougs/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE4NDQ2/NzAtMTY1Mjk5MDI5/Mi02MTg5LmpwZWc.jpeg",
           "publisher": "Motown",
           "remixArtistName": "The Reflex Edition",
           "sectionNumber": 9,
           "startTime": "37:27",
-          "trackName": "ABC"
+          "trackName": "ABC",
+          "localCoverArtLarge": "/trackart/the_jackson_5_abc_large_jpg",
+          "localCoverArtSmall": "/trackart/the_jackson_5_abc_small_jpg"
         },
         {
           "artistName": "Marvin Gaye & Tammi Terrell",
-          "coverArtDate": "2023-12-23T22:52:15.690Z",
+          "coverArtDate": "2024-07-12T21:12:24.724Z",
           "coverArtLarge": "https://i.discogs.com/52syqLreplxUdYL4XdsiQ8BkGtdVPfTG6q5M73vPgOw/rs:fit/g:sm/q:90/h:180/w:240/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU1MjQz/MTQtMTM5NTU5NjUx/Ny00MzU5LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/S9VUd72cCTnRAyvv-73MxpFwb5tKAjU-Lza6yCDRzVo/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU1MjQz/MTQtMTM5NTU5NjUx/Ny00MzU5LmpwZWc.jpeg",
           "publisher": "Tamla Motown",
           "remixArtistName": "",
           "sectionNumber": 10,
           "startTime": "43:57",
-          "trackName": "Ain't Nothing Like The Real Thing"
+          "trackName": "Ain't Nothing Like The Real Thing",
+          "localCoverArtLarge": "/trackart/marvin_gaye___tammi_terrell_ain_t_nothing_like_the_real_thing_large_jpg",
+          "localCoverArtSmall": "/trackart/marvin_gaye___tammi_terrell_ain_t_nothing_like_the_real_thing_small_jpg"
         },
         {
           "artistName": "Corduroy",
-          "coverArtDate": "2023-12-23T22:52:19.317Z",
+          "coverArtDate": "2024-07-12T21:12:25.873Z",
           "coverArtLarge": "https://i.discogs.com/ODe0Rqnm7TczUsK8Sq7IO9RoSKnkvvvS2Ai1mFqj_To/rs:fit/g:sm/q:90/h:535/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2NTA2/LTE0NTMwMDI5Njgt/MzIwMi5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/VYKsKU0zEyIL4nZh6BF0_ujNYDKwDVwOEiojaRIMrIA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2NTA2/LTE0NTMwMDI5Njgt/MzIwMi5qcGVn.jpeg",
           "publisher": "Acid Jazz",
           "remixArtistName": "",
           "sectionNumber": 11,
           "startTime": "46:09",
-          "trackName": "London, England"
+          "trackName": "London, England",
+          "localCoverArtLarge": "/trackart/corduroy_london__england_large_jpg",
+          "localCoverArtSmall": "/trackart/corduroy_london__england_small_jpg"
         },
         {
           "artistName": "Billy Paul",
-          "coverArtDate": "2023-12-23T22:52:20.997Z",
+          "coverArtDate": "2024-07-12T21:12:27.105Z",
           "coverArtLarge": "https://i.discogs.com/fCSeFwZKUItYlC-uEfQ_YaMLBdqkDOqqJ27DsX2oF_8/rs:fit/g:sm/q:90/h:572/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg5ODIw/Ni0xNTk5Njk4Mjk4/LTgwODQuanBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/uFfMEo3UcktO0IwewzSwHNTMbDx1Tm7Gt_ue-2vwsqU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg5ODIw/Ni0xNTk5Njk4Mjk4/LTgwODQuanBlZw.jpeg",
           "publisher": "Legacy Recordings",
           "remixArtistName": "",
           "sectionNumber": 12,
           "startTime": "49:39",
-          "trackName": "Am I Black Enough For Ya?"
+          "trackName": "Am I Black Enough For Ya?",
+          "localCoverArtLarge": "/trackart/billy_paul_am_i_black_enough_for_ya__large_jpg",
+          "localCoverArtSmall": "/trackart/billy_paul_am_i_black_enough_for_ya__small_jpg"
         },
         {
           "artistName": "Margaret Singana",
-          "coverArtDate": "2023-12-23T22:52:22.515Z",
+          "coverArtDate": "2024-07-12T21:12:28.150Z",
           "coverArtLarge": "https://i.discogs.com/0mcqX4kcc3eNzbvTzr0OOFJ6Z3nA4jGLy6_czTs6W88/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkyOTQ0/MDItMTUwODE3NjY4/OS03MDExLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/9Z-zFFcqcRWU32UXXYu9vnX3Wwpx9oJIo-4jZKF9pnQ/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkyOTQ0/MDItMTUwODE3NjY4/OS03MDExLmpwZWc.jpeg",
           "publisher": "Jo'Burg",
           "remixArtistName": "",
           "sectionNumber": 13,
           "startTime": "55:02",
-          "trackName": "Why Did You Do It"
+          "trackName": "Why Did You Do It",
+          "localCoverArtLarge": "/trackart/margaret_singana_why_did_you_do_it_large_jpg",
+          "localCoverArtSmall": "/trackart/margaret_singana_why_did_you_do_it_small_jpg"
         },
         {
           "artistName": "Aloe Blacc",
-          "coverArtDate": "2023-12-23T22:52:24.268Z",
+          "coverArtDate": "2024-07-12T21:12:29.202Z",
           "coverArtLarge": "https://i.discogs.com/Zysz1fLfR4BBfVSodDV034FU4YxYtGsm1Xei4d29dPY/rs:fit/g:sm/q:90/h:600/w:592/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyNDkw/NzUtMTM2NTA5ODIz/Ni04NDExLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/zD2GHVWUSBF0B2TwdrUFeQTPGvPCIExGq2zXC32Onrg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyNDkw/NzUtMTM2NTA5ODIz/Ni04NDExLmpwZWc.jpeg",
           "publisher": "Stones Throw Records",
           "remixArtistName": "",
           "sectionNumber": 14,
           "startTime": "1:01:03",
-          "trackName": "I Need A Dollar"
+          "trackName": "I Need A Dollar",
+          "localCoverArtLarge": "/trackart/aloe_blacc_i_need_a_dollar_large_jpg",
+          "localCoverArtSmall": "/trackart/aloe_blacc_i_need_a_dollar_small_jpg"
         },
         {
           "artistName": "The Spinners",
-          "coverArtDate": "2023-12-23T22:52:25.844Z",
+          "coverArtDate": "2024-07-12T21:12:30.293Z",
           "coverArtLarge": "https://i.discogs.com/5I2ClruLnoxc0Y_5lblSrFKOtHWQsKGMHskl5aJlopI/rs:fit/g:sm/q:90/h:582/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTgyNzM1/LTE2NDQ3OTE0NDUt/MzIxNS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/9d6aAQXRQfcVLPkiQPL-hfXPeuFEsi1HCukX2Asz2sA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTgyNzM1/LTE2NDQ3OTE0NDUt/MzIxNS5qcGVn.jpeg",
           "publisher": "V.I.P.",
           "remixArtistName": "",
           "sectionNumber": 15,
           "startTime": "1:05:12",
-          "trackName": "It's a Shame"
+          "trackName": "It's a Shame",
+          "localCoverArtLarge": "/trackart/the_spinners_it_s_a_shame_large_jpg",
+          "localCoverArtSmall": "/trackart/the_spinners_it_s_a_shame_small_jpg"
         },
         {
           "artistName": "Beastie Boys",
-          "coverArtDate": "2023-12-23T22:52:27.553Z",
+          "coverArtDate": "2024-07-12T21:12:31.505Z",
           "coverArtLarge": "https://i.discogs.com/zdguqrS5Q2Y2KJ_lNAU3THqxhycvf1pVesk2R6hKISM/rs:fit/g:sm/q:90/h:401/w:398/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIxNzE2/NTUtMTMxMjIzMTU5/MS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/ye-NPvix6aJ0Zcs7oX3HBKCK6KsmyantFWc077MtDuE/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIxNzE2/NTUtMTMxMjIzMTU5/MS5qcGVn.jpeg",
           "publisher": "Capitol",
           "remixArtistName": "Free Zone Mix",
           "sectionNumber": 16,
           "startTime": "1:08:15",
-          "trackName": "Root Down"
+          "trackName": "Root Down",
+          "localCoverArtLarge": "/trackart/beastie_boys_root_down_large_jpg",
+          "localCoverArtSmall": "/trackart/beastie_boys_root_down_small_jpg"
         },
         {
           "artistName": "The Baker Brothers",
-          "coverArtDate": "2023-12-23T22:52:29.172Z",
+          "coverArtDate": "2024-07-12T21:12:32.567Z",
           "coverArtLarge": "https://i.discogs.com/ZPQPLhU6DWosGUNpIUKVUh4mf7DM6OKXbIrxWIll3Rs/rs:fit/g:sm/q:90/h:585/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NDY1/MDQtMTM0NjY5NDAw/MC00ODA0LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/rkO3aG7Z28wGw3VNFubImxZJfOI67HOpjjaETSaqsJM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM4NDY1/MDQtMTM0NjY5NDAw/MC00ODA0LmpwZWc.jpeg",
           "publisher": "",
           "remixArtistName": "",
           "sectionNumber": 17,
           "startTime": "1:14:54",
-          "trackName": "Couldn't Get It Right"
+          "trackName": "Couldn't Get It Right",
+          "localCoverArtLarge": "/trackart/the_baker_brothers_couldn_t_get_it_right_large_jpg",
+          "localCoverArtSmall": "/trackart/the_baker_brothers_couldn_t_get_it_right_small_jpg"
         },
         {
           "artistName": "The Rebirth",
-          "coverArtDate": "2023-12-23T22:52:30.718Z",
+          "coverArtDate": "2024-07-12T21:12:33.571Z",
           "coverArtLarge": "https://i.discogs.com/k_to6Ik7PY3PQX1HT5L1DInr1VKOxTbttlflbC7lc2I/rs:fit/g:sm/q:90/h:350/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwNTE1/MDYtMTM1MzYxNTk2/Mi00OTU3LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/GcvsPXUHqKWbpM5-UTl2Qfdc_rpzHyg_MQ_Os0_m0oA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwNTE1/MDYtMTM1MzYxNTk2/Mi00OTU3LmpwZWc.jpeg",
           "publisher": "Ubiquity",
           "remixArtistName": "",
           "sectionNumber": 18,
           "startTime": "1:18:32",
-          "trackName": "Handle It"
+          "trackName": "Handle It",
+          "localCoverArtLarge": "/trackart/the_rebirth_handle_it_large_jpg",
+          "localCoverArtSmall": "/trackart/the_rebirth_handle_it_small_jpg"
         },
         {
           "artistName": "The Specials",
-          "coverArtDate": "2023-12-23T22:52:32.403Z",
+          "coverArtDate": "2024-07-12T21:12:34.636Z",
           "coverArtLarge": "https://i.discogs.com/l7pehbSgqgh3rVKtZSUSj6hV3JiqjZuSH2PUntasTnM/rs:fit/g:sm/q:90/h:538/w:523/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MTc2/ODgtMTY3MjkyNzU2/Mi0zMDUxLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/Im374ETIi3vlOxJwf8iz54Oz-_6SdiFX0ctf0NHyBlA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MTc2/ODgtMTY3MjkyNzU2/Mi0zMDUxLmpwZWc.jpeg",
           "publisher": "Two-Tone Records",
           "remixArtistName": "",
           "sectionNumber": 19,
           "startTime": "1:24:46",
-          "trackName": "A Message To You Rudy"
+          "trackName": "A Message To You Rudy",
+          "localCoverArtLarge": "/trackart/the_specials_a_message_to_you_rudy_large_jpg",
+          "localCoverArtSmall": "/trackart/the_specials_a_message_to_you_rudy_small_jpg"
         },
         {
           "artistName": "Jackson Sisters",
-          "coverArtDate": "2023-12-23T22:52:34.006Z",
-          "coverArtLarge": "https://i.discogs.com/CN_-QpfAVLRT1xOwOpgdB9HzSbqvs-pnEhOAVXcIe_I/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY3MzAy/MC0xNTAzNDQxNDI0/LTU0NjUuanBlZw.jpeg",
-          "coverArtSmall": "https://i.discogs.com/yTOOPy8lutNNMu-kdzRaeadRj_ZzeLN-BWpRh-8YSIs/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY3MzAy/MC0xNTAzNDQxNDI0/LTU0NjUuanBlZw.jpeg",
+          "coverArtDate": "2024-07-12T21:12:35.979Z",
+          "coverArtLarge": "https://i.discogs.com/jTCKLLZFAoK5FpUQE9EziphehUbpeFYgE1HLqBxs3A4/rs:fit/g:sm/q:90/h:599/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY2Mzg3/MzEtMTQyMzYxMTA2/NS00NDQxLmpwZWc.jpeg",
+          "coverArtSmall": "https://i.discogs.com/6re8FxGQTUphBWWztreIceA9p4G6o3Zvw0HYus_wdWU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY2Mzg3/MzEtMTQyMzYxMTA2/NS00NDQxLmpwZWc.jpeg",
           "publisher": "Mums Records",
           "remixArtistName": "",
           "sectionNumber": 20,
           "startTime": "1:27:46",
-          "trackName": "I Believe In Miracles"
+          "trackName": "I Believe In Miracles",
+          "localCoverArtLarge": "/trackart/jackson_sisters_i_believe_in_miracles_large_jpg",
+          "localCoverArtSmall": "/trackart/jackson_sisters_i_believe_in_miracles_small_jpg"
         },
         {
           "artistName": "Marva Whitney",
-          "coverArtDate": "2023-12-23T22:52:36.981Z",
+          "coverArtDate": "2024-07-12T21:12:37.804Z",
           "coverArtLarge": "https://i.discogs.com/UADq0RFC-kx1JE8nBkqG4lMr8szs4XE4K78wJkTvBdI/rs:fit/g:sm/q:90/h:599/w:592/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MzAw/MTktMTM5NDM5Nzg0/NS0zOTM2LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/9PiN55zR37BSuXRD6dYHyGy0N4w2kX2CCe_EE_0qU8U/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MzAw/MTktMTM5NDM5Nzg0/NS0zOTM2LmpwZWc.jpeg",
           "publisher": "Polydor",
           "remixArtistName": "",
           "sectionNumber": 21,
           "startTime": "1:30:13",
-          "trackName": "It's My Thing"
+          "trackName": "It's My Thing",
+          "localCoverArtLarge": "/trackart/marva_whitney_it_s_my_thing_large_jpg",
+          "localCoverArtSmall": "/trackart/marva_whitney_it_s_my_thing_small_jpg"
         },
         {
           "artistName": "The Tempations",
-          "coverArtDate": "2023-12-23T22:52:38.627Z",
+          "coverArtDate": "2024-07-12T21:12:38.857Z",
           "coverArtLarge": "https://i.discogs.com/PgUB1t0ism-cQI6jeD_sUjtWoo_5y8cdpvmFMx7-usY/rs:fit/g:sm/q:90/h:851/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MTEy/NjkyLTE1NjgwNjcz/NTctNzg3Ni5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/UNOL-in7NhV3ioapg3iDbhkUiSUcDk0aDMzBb_XMOeg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MTEy/NjkyLTE1NjgwNjcz/NTctNzg3Ni5qcGVn.jpeg",
           "publisher": "Motown",
           "remixArtistName": "",
           "sectionNumber": 22,
           "startTime": "1:33:03",
-          "trackName": "Ain't Too Proud to Beg"
+          "trackName": "Ain't Too Proud to Beg",
+          "localCoverArtLarge": "/trackart/the_tempations_ain_t_too_proud_to_beg_large_jpg",
+          "localCoverArtSmall": "/trackart/the_tempations_ain_t_too_proud_to_beg_small_jpg"
         },
         {
           "artistName": "The Trammps",
-          "coverArtDate": "2023-12-23T22:52:40.382Z",
+          "coverArtDate": "2024-07-12T21:12:39.965Z",
           "coverArtLarge": "https://i.discogs.com/YBqx68W-4Wy_R_5eWujkSZZGrcKkFYwk3QXIm28Ytv8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyNDg5/NjUtMTI3MzIzNDI5/OS5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/3C6xjhuV5WJFCXhwd_9zQ-ROu2DO3Eszk6t2bOMVpag/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyNDg5/NjUtMTI3MzIzNDI5/OS5qcGVn.jpeg",
           "publisher": "Warner",
           "remixArtistName": "Joey Negro Philly Dub Excursion",
           "sectionNumber": 23,
           "startTime": "1:34:37",
-          "trackName": "Can We Come Together"
+          "trackName": "Can We Come Together",
+          "localCoverArtLarge": "/trackart/the_trammps_can_we_come_together_large_jpg",
+          "localCoverArtSmall": "/trackart/the_trammps_can_we_come_together_small_jpg"
         },
         {
           "artistName": "Martha Reeves & The Vandellas",
-          "coverArtDate": "2023-12-23T22:52:42.135Z",
+          "coverArtDate": "2024-07-12T21:12:41.050Z",
           "coverArtLarge": "https://i.discogs.com/_Yprosl1Vai6ah6MSqWBQDGR9JCzT_oZkjiO21Lh7zM/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNDI4/NTQtMTY4MzgyNzIw/Ni0xMTAxLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/Mhg3nvKfoEwNdClDQaGgqzwGOegWHMvoIuPn7R_v9W4/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTMwNDI4/NTQtMTY4MzgyNzIw/Ni0xMTAxLmpwZWc.jpeg",
           "publisher": "Motown",
           "remixArtistName": "",
           "sectionNumber": 24,
           "startTime": "1:43:30",
-          "trackName": "Dancing in the Street"
+          "trackName": "Dancing in the Street",
+          "localCoverArtLarge": "/trackart/martha_reeves___the_vandellas_dancing_in_the_street_large_jpg",
+          "localCoverArtSmall": "/trackart/martha_reeves___the_vandellas_dancing_in_the_street_small_jpg"
         },
         {
           "artistName": "The Four Tops",
-          "coverArtDate": "2023-09-26T20:08:53.875Z",
+          "coverArtDate": "2024-07-12T21:12:42.610Z",
           "coverArtLarge": "https://i.discogs.com/kuizCReVLR0LW_PNFHRLYDtNE1LjsnfI9bmbq2jmmFY/rs:fit/g:sm/q:90/h:617/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg0MjEw/OTktMTQ2MTI3MjUw/MS0yNDI1LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/xlRM50IkjKjyLFL0VBawRLvrJvfnQRanp-tBYtiZvJw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg0MjEw/OTktMTQ2MTI3MjUw/MS0yNDI1LmpwZWc.jpeg",
           "publisher": "Motown",
           "remixArtistName": "",
           "sectionNumber": 25,
           "startTime": "1:45:19",
-          "trackName": "I Can't Help Myself"
+          "trackName": "I Can't Help Myself",
+          "localCoverArtLarge": "/trackart/the_four_tops_i_can_t_help_myself_large_jpg",
+          "localCoverArtSmall": "/trackart/the_four_tops_i_can_t_help_myself_small_jpg"
         },
         {
           "artistName": "The Supremes",
-          "coverArtDate": "2023-12-23T22:52:44.660Z",
+          "coverArtDate": "2024-07-12T21:12:43.805Z",
           "coverArtLarge": "https://i.discogs.com/NzhUfawQWRdttktPj3Ae-GZJMCcgo_HgDUE_yN5h_Ms/rs:fit/g:sm/q:90/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU5NjYz/MC0xNDUzNTAzODg5/LTI0MTEuanBlZw.jpeg",
           "coverArtSmall": "https://i.discogs.com/OvdwsLZoumnAGklPkY0FTpO3vt0Ni4ptc8TXJjiPON0/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU5NjYz/MC0xNDUzNTAzODg5/LTI0MTEuanBlZw.jpeg",
           "publisher": "Motown",
           "remixArtistName": "",
           "sectionNumber": 26,
           "startTime": "1:47:15",
-          "trackName": "You Keep Me Hangin' On"
+          "trackName": "You Keep Me Hangin' On",
+          "localCoverArtLarge": "/trackart/the_supremes_you_keep_me_hangin__on_large_jpg",
+          "localCoverArtSmall": "/trackart/the_supremes_you_keep_me_hangin__on_small_jpg"
         },
         {
           "artistName": "Paul Weller",
-          "coverArtDate": "2023-12-23T22:52:46.290Z",
+          "coverArtDate": "2024-07-12T21:12:44.907Z",
           "coverArtLarge": "https://i.discogs.com/bP6g8-QSL_P9-mBMdw0UW32VJtnLzmIJIucIxEK5VBs/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1ODQ5/ODEtMTcwMDg0OTY2/NC03NDg4LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/Mwu7ej3WC-hLznutYUKFjKq2QVNX6p3R_pPI25prDbs/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1ODQ5/ODEtMTcwMDg0OTY2/NC03NDg4LmpwZWc.jpeg",
           "publisher": "V2",
           "remixArtistName": "",
           "sectionNumber": 27,
           "startTime": "1:49:27",
-          "trackName": "If I Could Only Be Sure"
+          "trackName": "If I Could Only Be Sure",
+          "localCoverArtLarge": "/trackart/paul_weller_if_i_could_only_be_sure_large_jpg",
+          "localCoverArtSmall": "/trackart/paul_weller_if_i_could_only_be_sure_small_jpg"
         },
         {
           "artistName": "Rob Tex",
-          "coverArtDate": "2023-12-23T22:52:47.641Z",
+          "coverArtDate": "2024-07-12T21:12:45.814Z",
           "coverArtLarge": "https://i.discogs.com/ZwUIW_KWHuOUYJ6yRXOlUDQAaM4Hj9UKbT50d9F1mkA/rs:fit/g:sm/q:90/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2OTMy/NjctMTM0MDYyMDY1/Mi0xNDExLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/DlG5tkLfRQFuhxskUxzo42Ik-V2ezWYWyaHfeCeoOms/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2OTMy/NjctMTM0MDYyMDY1/Mi0xNDExLmpwZWc.jpeg",
           "publisher": "EDR Records",
           "remixArtistName": "Kasbah Disco Mix",
           "sectionNumber": 28,
           "startTime": "1:53:03",
-          "trackName": "Rock the Kasbah"
+          "trackName": "Rock the Kasbah",
+          "localCoverArtLarge": "/trackart/rob_tex_rock_the_kasbah_large_jpg",
+          "localCoverArtSmall": "/trackart/rob_tex_rock_the_kasbah_small_jpg"
         },
         {
           "artistName": "The Isley Brothers",
-          "coverArtDate": "2023-12-23T22:52:50.243Z",
+          "coverArtDate": "2024-07-12T21:12:47.032Z",
           "coverArtLarge": "https://i.discogs.com/cuDBgllQORx2SpNCgV0Za5T0lnMjIdB7bZ6efDh4VG4/rs:fit/g:sm/q:90/h:604/w:597/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTQ3NTEy/LTE1MDAxOTMxNDAt/NDIxNy5qcGVn.jpeg",
           "coverArtSmall": "https://i.discogs.com/kJyrBF1yYM1cf2L2kO_Ryf2jpAvpyEH4G1gRhTJcb8s/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTQ3NTEy/LTE1MDAxOTMxNDAt/NDIxNy5qcGVn.jpeg",
           "publisher": "Tamla",
           "remixArtistName": "",
           "sectionNumber": 29,
           "startTime": "1:58:34",
-          "trackName": "This Old Heart of Mine"
+          "trackName": "This Old Heart of Mine",
+          "localCoverArtLarge": "/trackart/the_isley_brothers_this_old_heart_of_mine_large_jpg",
+          "localCoverArtSmall": "/trackart/the_isley_brothers_this_old_heart_of_mine_small_jpg"
         }
       ]
     },
