@@ -119,6 +119,31 @@ const AdminTracks = (): JSX.Element => {
     }
   };
 
+  const handleFetchCoverArt = async (track: Track): Promise<void> => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.post(
+        "/api/updateTrackCoverArt",
+        { artistName: track.artistName, trackName: track.trackName },
+        { headers: { Authorization: token } },
+      );
+      if (response.status === 200) {
+        const updatedTrack = {
+          ...track,
+          coverArtDate: response.data.coverArtDate,
+          coverArtLarge: response.data.coverArtLarge,
+          coverArtSmall: response.data.coverArtSmall,
+        };
+        const updatedTracks = tracks.map((t) =>
+          t.sectionNumber === track.sectionNumber ? updatedTrack : t,
+        );
+        setTracks(updatedTracks);
+      }
+    } catch (error) {
+      console.error("Failed to fetch cover art:", error);
+    }
+  };
+
   return (
     <StyledAdminWrapper>
       <h1>Tracks</h1>
@@ -161,6 +186,11 @@ const AdminTracks = (): JSX.Element => {
                       }}
                     >
                       Delete
+                    </StyledAdminButton>
+                    <StyledAdminButton
+                      onClick={() => handleFetchCoverArt(track)}
+                    >
+                      Fetch Cover Art
                     </StyledAdminButton>
                   </td>
                   <td>{track.sectionNumber}</td>
