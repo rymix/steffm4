@@ -128,6 +128,25 @@ const AdminMixes = (): JSX.Element => {
     }
   };
 
+  const handleExport = async (mixcloudKey: string) => {
+    const token = localStorage.getItem("token");
+    const response = await axios.post(
+      "/api/exportMix",
+      { mixcloudKey },
+      {
+        headers: { Authorization: token },
+        responseType: "blob", // This is important for handling binary data
+      },
+    );
+    if (response.status === 200) {
+      const blob = new Blob([response.data], { type: response.data.type });
+      const link = document.createElement("a");
+      link.href = window.URL.createObjectURL(blob);
+      link.download = `${mixcloudKey}.cue`;
+      link.click();
+    }
+  };
+
   return (
     <StyledAdminWrapper>
       <h1>Mixes</h1>
@@ -168,12 +187,17 @@ const AdminMixes = (): JSX.Element => {
                 >
                   Edit Tracks
                 </StyledAdminButton>
+                <StyledAdminButton
+                  onClick={() => handleExport(mix.mixcloudKey)}
+                >
+                  Export to .cue
+                </StyledAdminButton>
               </td>
               <td>{mix.category.code}</td>
               <td>{mix.name}</td>
-              <td>{mix.coverArtDate}</td>
               <td>{mix.mixcloudKey}</td>
               <td>{mix.notes}</td>
+              <td>{mix.coverArtDate}</td>
               <td>
                 <StyledAdminCoverArtImage
                   src={mix.coverArtLarge}

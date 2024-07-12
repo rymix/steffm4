@@ -64,6 +64,7 @@
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "lowdb": "^7.0.1",
+    "mime": "^4.0.4",
     "next": "^14.0.4",
     "polished": "^4.2.2",
     "postcss-jsx": "^0.36.4",
