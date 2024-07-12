@@ -74,7 +74,7 @@ const AdminTracks = (): JSX.Element => {
       const updatedTracks = tracks.filter(
         (track) => track.sectionNumber !== sectionNumber,
       );
-      setTracks(updatedTracks);
+      setTracks([...updatedTracks]);
       setFormData(null);
     }
   };
@@ -114,12 +114,12 @@ const AdminTracks = (): JSX.Element => {
         headers: { Authorization: token },
       });
       setMix(updatedMix);
-      setTracks(updatedTracks);
+      setTracks([...updatedTracks]);
       setFormData(null);
     }
   };
 
-  const handleFetchCoverArt = async (track: Track): Promise<void> => {
+  const updateTrackCoverArt = async (track: Track) => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
@@ -133,7 +133,7 @@ const AdminTracks = (): JSX.Element => {
         { headers: { Authorization: token } },
       );
       if (response.status === 200) {
-        const updatedTrack = {
+        return {
           ...track,
           coverArtDate: response.data.coverArtDate,
           coverArtLarge: response.data.coverArtLarge,
@@ -141,53 +141,29 @@ const AdminTracks = (): JSX.Element => {
           localCoverArtLarge: response.data.localCoverArtLarge,
           localCoverArtSmall: response.data.localCoverArtSmall,
         };
-        const updatedTracks = tracks.map((t) =>
-          t.sectionNumber === track.sectionNumber ? updatedTrack : t,
-        );
-        setTracks(updatedTracks);
       }
     } catch (error) {
       console.error("Failed to fetch cover art:", error);
     }
+    return track;
+  };
+
+  const handleFetchCoverArt = async (track: Track): Promise<void> => {
+    const updatedTrack = await updateTrackCoverArt(track);
+    const updatedTracks = tracks.map((t) =>
+      t.sectionNumber === track.sectionNumber ? updatedTrack : t,
+    );
+    setTracks([...updatedTracks]);
   };
 
   const handleFetchAllCoverArt = async (): Promise<void> => {
-    const token = localStorage.getItem("token");
-    for (let i = 0; i < tracks.length; i++) {
-      const track = tracks[i];
-      try {
-        const response = await axios.post(
-          "/api/updateTrackCoverArt",
-          {
-            artistName: track.artistName,
-            trackName: track.trackName,
-            mixcloudKey: mix?.mixcloudKey,
-            sectionNumber: track.sectionNumber,
-          },
-          { headers: { Authorization: token } },
-        );
-        if (response.status === 200) {
-          const updatedTrack = {
-            ...track,
-            coverArtDate: response.data.coverArtDate,
-            coverArtLarge: response.data.coverArtLarge,
-            coverArtSmall: response.data.coverArtSmall,
-            localCoverArtLarge: response.data.localCoverArtLarge,
-            localCoverArtSmall: response.data.localCoverArtSmall,
-          };
-          const updatedTracks = tracks.map((t) =>
-            t.sectionNumber === track.sectionNumber ? updatedTrack : t,
-          );
-          setTracks(updatedTracks);
-        }
-        // Delay between requests to avoid rate limiting
-        await new Promise((resolve) => setTimeout(resolve, 500));
-      } catch (error) {
-        console.error(
-          `Failed to fetch cover art for track ${track.trackName}:`,
-          error,
-        );
-      }
+    const updatedTracks = [...tracks];
+    for (let i = 0; i < updatedTracks.length; i++) {
+      const track = updatedTracks[i];
+      updatedTracks[i] = await updateTrackCoverArt(track);
+      setTracks([...updatedTracks]); // Update state with new track data
+      // Delay between requests to avoid rate limiting
+      await new Promise((resolve) => setTimeout(resolve, 500));
     }
   };
 
