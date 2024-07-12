@@ -175,11 +175,98 @@ const AdminMixes = (): JSX.Element => {
     }
   };
 
+  const handleUpdateAllMixesCoverArt = async (): Promise<void> => {
+    const token = localStorage.getItem("token");
+    for (const mix of mixes) {
+      try {
+        const response = await axios.post(
+          "/api/updateMixcloudCoverArt",
+          { mixcloudKey: mix.mixcloudKey },
+          { headers: { Authorization: token } },
+        );
+        if (response.status === 200) {
+          const updatedMix = response.data;
+          setMixes((prevMixes) =>
+            prevMixes.map((m) =>
+              m.mixcloudKey === updatedMix.mixcloudKey
+                ? {
+                    ...m,
+                    coverArtLarge: updatedMix.coverArtLarge,
+                    coverArtSmall: updatedMix.coverArtSmall,
+                    coverArtDate: updatedMix.coverArtDate,
+                  }
+                : m,
+            ),
+          );
+        }
+        await new Promise((resolve) => setTimeout(resolve, 500)); // Delay between requests
+      } catch (error) {
+        console.error(`Failed to update cover art for mix ${mix.name}:`, error);
+      }
+    }
+  };
+
+  const handleUpdateAllTracksCoverArt = async (): Promise<void> => {
+    const token = localStorage.getItem("token");
+    for (const mix of mixes) {
+      for (const track of mix.tracks) {
+        try {
+          const response = await axios.post(
+            "/api/updateTrackCoverArt",
+            {
+              artistName: track.artistName,
+              trackName: track.trackName,
+              mixcloudKey: mix.mixcloudKey,
+              sectionNumber: track.sectionNumber,
+            },
+            { headers: { Authorization: token } },
+          );
+          if (response.status === 200) {
+            const updatedTrack = {
+              ...track,
+              coverArtDate: response.data.coverArtDate,
+              coverArtLarge: response.data.coverArtLarge,
+              coverArtSmall: response.data.coverArtSmall,
+              localCoverArtLarge: response.data.localCoverArtLarge,
+              localCoverArtSmall: response.data.localCoverArtSmall,
+            };
+            setMixes((prevMixes) =>
+              prevMixes.map((m) =>
+                m.mixcloudKey === mix.mixcloudKey
+                  ? {
+                      ...m,
+                      tracks: m.tracks.map((t) =>
+                        t.sectionNumber === track.sectionNumber
+                          ? updatedTrack
+                          : t,
+                      ),
+                    }
+                  : m,
+              ),
+            );
+          }
+          await new Promise((resolve) => setTimeout(resolve, 1000)); // Delay between requests
+        } catch (error) {
+          console.error(
+            `Failed to fetch cover art for track ${track.trackName}:`,
+            error,
+          );
+        }
+      }
+    }
+  };
+
   return (
     <StyledAdminWrapper>
       <h1>Mixes</h1>
       <AdminMenu />
       <StyledAdminButton onClick={handleAddNew}>Add New Mix</StyledAdminButton>
+      <StyledAdminButton onClick={handleUpdateAllMixesCoverArt}>
+        Update All Mixes Cover Art
+      </StyledAdminButton>
+      <StyledAdminButton onClick={handleUpdateAllTracksCoverArt}>
+        Update All Tracks Cover Art
+      </StyledAdminButton>
       <StyledAdminTable>
         <thead>
           <tr>
