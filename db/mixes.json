@@ -26027,44 +26027,52 @@
           "startTime": "52:22",
           "trackName": "Thank You...All The Ladies Part Two",
           "artistName": "Roberto Rodriguez",
-          "coverArtDate": "2023-12-23T23:01:00.076Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:45:13.500Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "sectionNumber": 11,
-          "remixArtistName": ""
+          "remixArtistName": "",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "publisher": "French Express",
           "startTime": "1:00:00",
           "trackName": "Yesterday",
           "artistName": "FM Attack",
-          "coverArtDate": "2023-12-23T23:01:01.772Z",
+          "coverArtDate": "2024-07-12T21:45:15.563Z",
           "coverArtLarge": "https://i.discogs.com/id3uMBVanLqG6EvopO-eOC-gsxcmgDA06kzLlmcHEXM/rs:fit/g:sm/q:90/h:616/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcyMDQ2/MTctMTQ3MDA1NTQ3/Ni01NzM5LmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/iXTEYUQOdlG7FgINdqdCBNI7rcsnFvZJB5DSAcV7qK8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcyMDQ2/MTctMTQ3MDA1NTQ3/Ni01NzM5LmpwZWc.jpeg",
           "sectionNumber": 12,
-          "remixArtistName": ""
+          "remixArtistName": "",
+          "localCoverArtLarge": "/trackart/fm_attack_yesterday_large_jpg",
+          "localCoverArtSmall": "/trackart/fm_attack_yesterday_small_jpg"
         },
         {
           "publisher": "Heartbeat Revolutions",
           "startTime": "1:04:14",
           "trackName": "She's The Boss",
           "artistName": "Butcherchops",
-          "coverArtDate": "2023-12-23T23:01:03.305Z",
-          "coverArtLarge": "images/tracklist-placeholder-rick.gif",
-          "coverArtSmall": "images/tracklist-placeholder-rick.gif",
+          "coverArtDate": "2024-07-12T21:45:17.450Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "sectionNumber": 13,
-          "remixArtistName": "Original Mix"
+          "remixArtistName": "Original Mix",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "publisher": "ISM",
           "startTime": "1:09:12",
           "trackName": "Inferno",
           "artistName": "Brothers Young",
-          "coverArtDate": "2023-12-23T23:01:05.097Z",
+          "coverArtDate": "2024-07-12T21:45:19.691Z",
           "coverArtLarge": "https://i.discogs.com/uoB3hE45ix35ttPwL0L6VxJaVvOU71y6PTXMBxbP22s/rs:fit/g:sm/q:90/h:536/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgwNDk0/MjMtMTQ3MTc0OTI0/Mi0yNDMwLmpwZWc.jpeg",
           "coverArtSmall": "https://i.discogs.com/61hKoZ6aeaqLBxKLHeHbBmPRkxe8Ddjq65liHtsKy8c/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgwNDk0/MjMtMTQ3MTc0OTI0/Mi0yNDMwLmpwZWc.jpeg",
           "sectionNumber": 14,
-          "remixArtistName": ""
+          "remixArtistName": "",
+          "localCoverArtLarge": "/trackart/brothers_young_inferno_large_jpg",
+          "localCoverArtSmall": "/trackart/brothers_young_inferno_small_jpg"
         },
         {
           "publisher": "Home Taping Is Killing Music",
