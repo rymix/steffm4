@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import {
   StyledAdminButton,
+  StyledAdminButtonBlock,
   StyledAdminForm,
   StyledAdminTable,
 } from "pages/admin/StyledAdmin";
@@ -196,28 +197,32 @@ const AdminPage = () => {
               onChange={handleChange}
             />
           </div>
-          <StyledAdminButton type="submit">Save</StyledAdminButton>
-          <StyledAdminButton
-            type="button"
-            onClick={() => {
-              setSelectedCategory(null);
-              setFormData(null);
-            }}
-          >
-            Cancel
-          </StyledAdminButton>
-          {selectedCategory && (
+          <StyledAdminButtonBlock>
+            <StyledAdminButton type="submit">Save</StyledAdminButton>
             <StyledAdminButton
               type="button"
               onClick={() => {
-                if (confirm("Are you sure you want to delete this category?")) {
-                  handleDelete();
-                }
+                setSelectedCategory(null);
+                setFormData(null);
               }}
             >
-              Delete
+              Cancel
             </StyledAdminButton>
-          )}
+            {selectedCategory && (
+              <StyledAdminButton
+                type="button"
+                onClick={() => {
+                  if (
+                    confirm("Are you sure you want to delete this category?")
+                  ) {
+                    handleDelete();
+                  }
+                }}
+              >
+                Delete
+              </StyledAdminButton>
+            )}
+          </StyledAdminButtonBlock>
         </StyledAdminForm>
       )}
     </div>

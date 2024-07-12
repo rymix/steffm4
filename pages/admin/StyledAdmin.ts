@@ -10,10 +10,15 @@ export const StyledAdminTable = styled.table`
   }
 `;
 
+export const StyledAdminButtonBlock = styled.table`
+  display: flex;
+`;
+
 export const StyledAdminButton = styled.table`
   background: lightgrey;
   border: 1px solid grey;
   cursor: pointer;
+  margin: 0 4px 0 0;
   padding: 4px;
 
   &:hover {
@@ -30,7 +35,8 @@ export const StyledAdminForm = styled.form`
   }
 
   input {
-    border: 1px solid grey;
+    border: 1px solid lightgrey;
+    margin: 0 0 4px 0;
     padding: 4px;
   }
 `;
