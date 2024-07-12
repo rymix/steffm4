@@ -1,5 +1,3 @@
-// pages/api/mixes.ts
-
 import { db, initializeDb } from "db";
 import type { Category, Mix, TransformedMix } from "db/types";
 import type { NextApiRequest, NextApiResponse } from "next";

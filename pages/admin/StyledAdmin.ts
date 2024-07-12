@@ -1,5 +1,13 @@
 import styled from "styled-components";
 
+export const StyledAdminWrapper = styled.div`
+  height: 100vh;
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const StyledAdminTable = styled.table`
   border-collapse: collapse;
   margin: 20px;
@@ -32,7 +40,7 @@ export const StyledAdminFormElements = styled.div`
 
   div {
     display: grid;
-    grid-template-columns: 100px 200px;
+    grid-template-columns: 200px 400px;
   }
 
   input {
