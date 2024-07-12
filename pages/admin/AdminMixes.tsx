@@ -147,6 +147,34 @@ const AdminMixes = (): JSX.Element => {
     }
   };
 
+  const handleUpdateCoverArt = async (mixcloudKey: string) => {
+    const token = localStorage.getItem("token");
+    try {
+      const response = await axios.post(
+        "/api/updateMixcloudCoverArt",
+        { mixcloudKey },
+        { headers: { Authorization: token } },
+      );
+      if (response.status === 200) {
+        const updatedMix = response.data;
+        setMixes(
+          mixes.map((mix) =>
+            mix.mixcloudKey === updatedMix.mixcloudKey
+              ? {
+                  ...mix,
+                  coverArtLarge: updatedMix.coverArtLarge,
+                  coverArtSmall: updatedMix.coverArtSmall,
+                  coverArtDate: updatedMix.coverArtDate,
+                }
+              : mix,
+          ),
+        );
+      }
+    } catch (error) {
+      console.error("Failed to update cover art:", error); // Log the error for debugging
+    }
+  };
+
   return (
     <StyledAdminWrapper>
       <h1>Mixes</h1>
@@ -191,6 +219,11 @@ const AdminMixes = (): JSX.Element => {
                   onClick={() => handleExport(mix.mixcloudKey)}
                 >
                   Export to .cue
+                </StyledAdminButton>
+                <StyledAdminButton
+                  onClick={() => handleUpdateCoverArt(mix.mixcloudKey)}
+                >
+                  Update Cover Art
                 </StyledAdminButton>
               </td>
               <td>{mix.category.code}</td>
