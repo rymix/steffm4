@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledAdminWrapper = styled.div`
   height: 100vh;
+  margin: 30px;
   overflow: auto;
   width: 100%;
   display: flex;

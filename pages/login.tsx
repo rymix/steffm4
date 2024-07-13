@@ -1,5 +1,10 @@
 import axios from "axios";
 import { useRouter } from "next/router";
+import {
+  StyledAdminButton,
+  StyledAdminFormElements,
+  StyledAdminWrapper,
+} from "pages/admin/StyledAdmin";
 import { FormEvent, useState } from "react";
 
 const LoginPage = (): JSX.Element => {
@@ -20,25 +25,27 @@ const LoginPage = (): JSX.Element => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
+    <StyledAdminWrapper>
+      <h1>Stef.FM Admin Login</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
+        <StyledAdminFormElements>
+          <input
+            type="text"
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <StyledAdminButton type="submit">Login</StyledAdminButton>
+        </StyledAdminFormElements>
       </form>
       {error && <p>{error}</p>}
-    </div>
+    </StyledAdminWrapper>
   );
 };
 

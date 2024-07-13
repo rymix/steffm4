@@ -7,6 +7,11 @@ const AdminMenu = (): JSX.Element => {
         <Link href="/admin">Admin Home</Link>
       </li>
       <li>
+        <Link href="/admin/MakePassword?password=yourpassword">
+          Make Password
+        </Link>
+      </li>
+      <li>
         <Link href="/admin/AdminCategories">Categories</Link>
       </li>
       <li>
