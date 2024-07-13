@@ -1,13 +1,13 @@
+import { StyledAdminButton } from "components/Admin/StyledAdmin";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { StyledAdminButton } from "pages/admin/StyledAdmin";
 
 const AdminMenu = (): JSX.Element => {
   const router = useRouter();
 
   const handleLogout = (): void => {
     localStorage.removeItem("token");
-    router.push("/login");
+    router.push("/admin/login");
   };
 
   return (
@@ -16,15 +16,13 @@ const AdminMenu = (): JSX.Element => {
         <Link href="/admin">Admin Home</Link>
       </li>
       <li>
-        <Link href="/admin/MakePassword?password=yourpassword">
-          Make Password
-        </Link>
+        <Link href="/admin/password?password=password">Make Password</Link>
       </li>
       <li>
-        <Link href="/admin/AdminCategories">Categories</Link>
+        <Link href="/admin/categories">Categories</Link>
       </li>
       <li>
-        <Link href="/admin/AdminMixes">Mixes</Link>
+        <Link href="/admin/mixes">Mixes</Link>
       </li>
       <li>
         <StyledAdminButton

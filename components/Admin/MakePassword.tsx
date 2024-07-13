@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import bcrypt from "bcryptjs";
-import { useRouter } from "next/router";
-import AdminLayout from "pages/admin/AdminLayout";
-import AdminMenu from "pages/admin/AdminMenu";
+import AdminLayout from "components/Admin/AdminLayout";
+import AdminMenu from "components/Admin/AdminMenu";
 import {
   StyledAdminFormElements,
   StyledAdminWrapper,
-} from "pages/admin/StyledAdmin";
+} from "components/Admin/StyledAdmin";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const MakePassword = (): JSX.Element => {

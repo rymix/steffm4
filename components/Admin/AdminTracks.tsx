@@ -3,17 +3,17 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-await-in-loop */
 import axios from "axios";
-import { Mix, Track } from "db/types";
-import { useRouter } from "next/router";
-import AdminLayout from "pages/admin/AdminLayout";
-import AdminMenu from "pages/admin/AdminMenu";
+import AdminLayout from "components/Admin/AdminLayout";
+import AdminMenu from "components/Admin/AdminMenu";
 import {
   StyledAdminButton,
   StyledAdminCoverArtImage,
   StyledAdminFormElements,
   StyledAdminTable,
   StyledAdminWrapper,
-} from "pages/admin/StyledAdmin";
+} from "components/Admin/StyledAdmin";
+import { Mix, Track } from "db/types";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const AdminTracks = (): JSX.Element => {
@@ -41,9 +41,9 @@ const AdminTracks = (): JSX.Element => {
             router.push("/admin/mixes");
           }
         })
-        .catch(() => router.push("/login"));
+        .catch(() => router.push("/admin/login"));
     } else {
-      router.push("/login");
+      router.push("/admin/login");
     }
   }, [mixcloudKey]);
 

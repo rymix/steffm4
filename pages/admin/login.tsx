@@ -1,12 +1,12 @@
-// pages/login.tsx
+// pages/admin/login.tsx
 
 import axios from "axios";
-import { useRouter } from "next/router";
 import {
   StyledAdminButton,
   StyledAdminFormElements,
   StyledAdminWrapper,
-} from "pages/admin/StyledAdmin";
+} from "components/Admin/StyledAdmin";
+import { useRouter } from "next/router";
 import { FormEvent, useState } from "react";
 
 const LoginPage = (): JSX.Element => {
@@ -18,7 +18,7 @@ const LoginPage = (): JSX.Element => {
   const handleSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
     try {
-      const response = await axios.post("/api/login", { username, password });
+      const response = await axios.post("/admin/login", { username, password });
       localStorage.setItem("token", response.data.token);
       router.push("/admin");
     } catch {

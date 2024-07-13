@@ -2,17 +2,17 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from "axios";
-import { Category } from "db/types";
-import { useRouter } from "next/router";
-import AdminLayout from "pages/admin/AdminLayout";
-import AdminMenu from "pages/admin/AdminMenu";
+import AdminLayout from "components/Admin/AdminLayout";
+import AdminMenu from "components/Admin/AdminMenu";
 import {
   StyledAdminButton,
   StyledAdminButtonBlock,
   StyledAdminFormElements,
   StyledAdminTable,
   StyledAdminWrapper,
-} from "pages/admin/StyledAdmin";
+} from "components/Admin/StyledAdmin";
+import { Category } from "db/types";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 const AdminCategories = (): JSX.Element => {
@@ -31,9 +31,9 @@ const AdminCategories = (): JSX.Element => {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => setCategories(response.data))
-        .catch(() => router.push("/login"));
+        .catch(() => router.push("/admin/login"));
     } else {
-      router.push("/login");
+      router.push("/admin/login");
     }
   }, []);
 

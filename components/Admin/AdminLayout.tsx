@@ -1,8 +1,8 @@
 // pages/admin/AdminLayout.tsx
 
 import axios from "axios";
+import { AdminLayoutProps } from "components/Admin/types";
 import { useRouter } from "next/router";
-import { AdminLayoutProps } from "pages/admin/types";
 import { useEffect, useState } from "react";
 
 const AdminLayout: React.FC<AdminLayoutProps> = ({ children }): JSX.Element => {
@@ -14,7 +14,8 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }): JSX.Element => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          router.push("/login");
+          console.log("no token");
+          router.push("/admin/login");
           return;
         }
 
@@ -23,9 +24,11 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }): JSX.Element => {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log("got here");
         setLoading(false);
       } catch {
-        router.push("/login");
+        console.log("catch");
+        router.push("/admin/login");
       }
     };
 
