@@ -40,7 +40,7 @@ const AdminMixes = (): JSX.Element => {
 
   const handleEdit = (mix: Mix): void => {
     setSelectedMix(mix);
-    setFormData({ ...mix, category: mix.category.code });
+    setFormData({ ...mix, category: mix.category });
     setOriginalTracks(mix.tracks || []);
     setCategoryCode(mix.category); // Set the category code
   };
@@ -319,7 +319,7 @@ const AdminMixes = (): JSX.Element => {
                     Update Cover Art
                   </StyledAdminButton>
                 </td>
-                <td>{mix.category.code}</td>
+                <td>{mix.category}</td>
                 <td>{mix.name}</td>
                 <td>{mix.mixcloudKey}</td>
                 <td>{mix.notes}</td>

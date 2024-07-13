@@ -22,7 +22,7 @@ export type Category = {
 };
 
 export type Mix = {
-  category: string;
+  category: Category["code"];
   coverArtDate: string;
   coverArtLarge: string;
   coverArtSmall: string;
@@ -36,10 +36,6 @@ export type Mix = {
   shortName: string;
   tags: string[];
   tracks: Track[];
-};
-
-export type TransformedMix = Omit<Mix, "category"> & {
-  category: Category;
 };
 
 export type Database = {
