@@ -124,3 +124,7 @@ export const isCategoryObject = (
 ): category is { code: string } => {
   return category && typeof category === "object" && "code" in category;
 };
+
+export const selectCoverArt = (local: string, remote: string): string => {
+  return local || remote;
+};

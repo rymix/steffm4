@@ -6,7 +6,7 @@ const users = [
   // Ideally, you should fetch user data from a database
   {
     username: "admin",
-    password: "$2a$10$kf4ef2IV/3CLjYxqDPmJvuJH5NQUA6OV62ubOgIbIEjEHKapfMdvG",
+    password: "$2a$10$lLx1OanUNDEYfrbFMxPafuK3x1c.WOS6ZfGfnNSPZi5jXnT9CaJIK",
   },
 ];
 
