@@ -67,7 +67,7 @@ const AdminTracks = (): JSX.Element => {
     if (mix) {
       const token = localStorage.getItem("token");
       await axios.post(
-        "/api/deleteTrack",
+        "/api/admin/deleteTrack",
         { mixcloudKey: mix.mixcloudKey, sectionNumber },
         { headers: { Authorization: token } },
       );
@@ -110,7 +110,7 @@ const AdminTracks = (): JSX.Element => {
         category: categoryCode, // Ensure category code is used
       };
       const token = localStorage.getItem("token");
-      await axios.post("/api/updateMix", updatedMix, {
+      await axios.post("/api/admin/updateMix", updatedMix, {
         headers: { Authorization: token },
       });
       setMix(updatedMix);
@@ -123,7 +123,7 @@ const AdminTracks = (): JSX.Element => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "/api/updateTrackCoverArt",
+        "/api/admin/updateTrackCoverArt",
         {
           artistName: track.artistName,
           trackName: track.trackName,

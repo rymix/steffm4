@@ -45,7 +45,7 @@ const AdminMixes = (): JSX.Element => {
     if (selectedMix) {
       const token = localStorage.getItem("token");
       await axios.post(
-        "/api/deleteMix",
+        "/api/admin/deleteMix",
         { mixcloudKey: selectedMix.mixcloudKey },
         {
           headers: { Authorization: token },
@@ -110,7 +110,7 @@ const AdminMixes = (): JSX.Element => {
         tracks: originalTracks, // Ensure tracks are preserved
       };
       console.log("Submitting form data:", updatedFormData);
-      await axios.post("/api/updateMix", updatedFormData, {
+      await axios.post("/api/admin/updateMix", updatedFormData, {
         headers: { Authorization: token },
       });
       if (selectedMix) {
@@ -131,7 +131,7 @@ const AdminMixes = (): JSX.Element => {
   const handleExport = async (mixcloudKey: string) => {
     const token = localStorage.getItem("token");
     const response = await axios.post(
-      "/api/exportMix",
+      "/api/admin/exportMix",
       { mixcloudKey },
       {
         headers: { Authorization: token },
@@ -151,7 +151,7 @@ const AdminMixes = (): JSX.Element => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        "/api/updateMixcloudCoverArt",
+        "/api/admin/updateMixcloudCoverArt",
         { mixcloudKey },
         { headers: { Authorization: token } },
       );
@@ -180,7 +180,7 @@ const AdminMixes = (): JSX.Element => {
     for (const mix of mixes) {
       try {
         const response = await axios.post(
-          "/api/updateMixcloudCoverArt",
+          "/api/admin/updateMixcloudCoverArt",
           { mixcloudKey: mix.mixcloudKey },
           { headers: { Authorization: token } },
         );
@@ -212,7 +212,7 @@ const AdminMixes = (): JSX.Element => {
       for (const track of mix.tracks) {
         try {
           const response = await axios.post(
-            "/api/updateTrackCoverArt",
+            "/api/admin/updateTrackCoverArt",
             {
               artistName: track.artistName,
               trackName: track.trackName,

@@ -42,7 +42,7 @@ const AdminCategories = (): JSX.Element => {
     if (selectedCategory) {
       const token = localStorage.getItem("token");
       await axios.post(
-        "/api/deleteCategory",
+        "/api/admin/deleteCategory",
         { index: selectedCategory.index },
         {
           headers: { Authorization: token },
@@ -85,7 +85,7 @@ const AdminCategories = (): JSX.Element => {
     e.preventDefault();
     if (formData) {
       const token = localStorage.getItem("token");
-      await axios.post("/api/updateCategory", formData, {
+      await axios.post("/api/admin/updateCategory", formData, {
         headers: { Authorization: token },
       });
       if (selectedCategory) {
