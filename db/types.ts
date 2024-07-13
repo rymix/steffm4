@@ -3,6 +3,8 @@ export type Track = {
   coverArtDate: string;
   coverArtLarge: string;
   coverArtSmall: string;
+  localCoverArtLarge: string;
+  localCoverArtSmall: string;
   publisher: string;
   remixArtistName?: string;
   sectionNumber: number;
