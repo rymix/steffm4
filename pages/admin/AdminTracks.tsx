@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable no-alert */
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-await-in-loop */
 import axios from "axios";
 import { Mix, Track } from "db/types";
 import { useRouter } from "next/router";
@@ -26,7 +30,7 @@ const AdminTracks = (): JSX.Element => {
         .get(`/api/mixes`, { headers: { Authorization: token } })
         .then((response) => {
           const mixData = response.data.find(
-            (mix: Mix) => mix.mixcloudKey === mixcloudKey,
+            (localMix: Mix) => localMix.mixcloudKey === mixcloudKey,
           );
           if (mixData) {
             console.log("Mix Data:", mixData); // Debugging: Check mix data
@@ -119,7 +123,7 @@ const AdminTracks = (): JSX.Element => {
     }
   };
 
-  const updateTrackCoverArt = async (track: Track) => {
+  const updateTrackCoverArt = async (track: Track): Promise<void> => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
@@ -158,10 +162,13 @@ const AdminTracks = (): JSX.Element => {
 
   const handleFetchAllCoverArt = async (): Promise<void> => {
     const updatedTracks = [...tracks];
-    for (let i = 0; i < updatedTracks.length; i++) {
+    for (let i = 0; i < updatedTracks.length; i += 1) {
       const track = updatedTracks[i];
-      updatedTracks[i] = await updateTrackCoverArt(track);
-      setTracks([...updatedTracks]); // Update state with new track data
+      const updatedTrack = await updateTrackCoverArt(track);
+      if (updatedTrack) {
+        updatedTracks[i] = updatedTrack;
+        setTracks([...updatedTracks]); // Update state with new track data
+      }
       // Delay between requests to avoid rate limiting
       await new Promise((resolve) => setTimeout(resolve, 500));
     }

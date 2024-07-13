@@ -117,3 +117,10 @@ export const copyToClipboard = (text: string): void => {
 export const replaceSpacesWithNbsp = (text: string): string => {
   return text.replaceAll(/\s/g, "\u00A0");
 };
+
+// Type guard function
+export const isCategoryObject = (
+  category: any,
+): category is { code: string } => {
+  return category && typeof category === "object" && "code" in category;
+};

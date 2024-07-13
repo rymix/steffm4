@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from "axios";

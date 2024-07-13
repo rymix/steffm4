@@ -1,9 +1,10 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import bcrypt from "bcryptjs";
 import { useRouter } from "next/router";
 import {
   StyledAdminFormElements,
   StyledAdminWrapper,
-} from "pages/Admin/StyledAdmin";
+} from "pages/admin/StyledAdmin";
 import { useEffect, useState } from "react";
 
 import AdminMenu from "./AdminMenu";

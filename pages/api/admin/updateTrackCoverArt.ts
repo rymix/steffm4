@@ -4,6 +4,44 @@ import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 
+const saveImageLocally = async (
+  url: string,
+  artistName: string,
+  trackName: string,
+  size: string,
+): Promise<string> => {
+  try {
+    const response = await axios({
+      url,
+      method: "GET",
+      responseType: "arraybuffer",
+      headers: {
+        "User-Agent": "DiscogsClient/1.0",
+      },
+    });
+    const buffer = Buffer.from(response.data, "binary");
+
+    // Generate a unique filename
+    const fileName = `${artistName}-${trackName}-${size}.jpg`
+      .replaceAll(/[^\da-z]/gi, "_")
+      .toLowerCase();
+    const filePath = path.join(process.cwd(), "public", "trackart", fileName);
+
+    // Ensure the directory exists
+    fs.mkdirSync(path.dirname(filePath), { recursive: true });
+
+    // Write the file
+    fs.writeFileSync(filePath, buffer);
+
+    return `/trackart/${fileName}`;
+  } catch (error) {
+    console.error(`Error saving image locally: ${error}`);
+    return size === "large"
+      ? "/images/tracklist-placeholder.png"
+      : "/images/tracklist-placeholder.png";
+  }
+};
+
 const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
@@ -87,44 +125,6 @@ const handler = async (
     }
   } else {
     res.status(405).json({ message: "Method not allowed" });
-  }
-};
-
-const saveImageLocally = async (
-  url: string,
-  artistName: string,
-  trackName: string,
-  size: string,
-): Promise<string> => {
-  try {
-    const response = await axios({
-      url,
-      method: "GET",
-      responseType: "arraybuffer",
-      headers: {
-        "User-Agent": "DiscogsClient/1.0",
-      },
-    });
-    const buffer = Buffer.from(response.data, "binary");
-
-    // Generate a unique filename
-    const fileName = `${artistName}-${trackName}-${size}.jpg`
-      .replaceAll(/[^\da-z]/gi, "_")
-      .toLowerCase();
-    const filePath = path.join(process.cwd(), "public", "trackart", fileName);
-
-    // Ensure the directory exists
-    fs.mkdirSync(path.dirname(filePath), { recursive: true });
-
-    // Write the file
-    fs.writeFileSync(filePath, buffer);
-
-    return `/trackart/${fileName}`;
-  } catch (error) {
-    console.error(`Error saving image locally: ${error}`);
-    return size === "large"
-      ? "/images/tracklist-placeholder.png"
-      : "/images/tracklist-placeholder.png";
   }
 };
 

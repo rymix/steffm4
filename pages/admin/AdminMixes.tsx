@@ -1,3 +1,7 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable no-await-in-loop */
+/* eslint-disable unicorn/consistent-function-scoping */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import axios from "axios";
@@ -83,7 +87,7 @@ const AdminMixes = (): JSX.Element => {
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => {
+  ): void => {
     const { name, value } = e.target;
     setFormData((prevFormData) => {
       if (prevFormData === null) {
@@ -128,7 +132,7 @@ const AdminMixes = (): JSX.Element => {
     }
   };
 
-  const handleExport = async (mixcloudKey: string) => {
+  const handleExport = async (mixcloudKey: string): Promise<void> => {
     const token = localStorage.getItem("token");
     const response = await axios.post(
       "/api/admin/exportMix",
@@ -147,7 +151,7 @@ const AdminMixes = (): JSX.Element => {
     }
   };
 
-  const handleUpdateCoverArt = async (mixcloudKey: string) => {
+  const handleUpdateCoverArt = async (mixcloudKey: string): Promise<void> => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
@@ -488,30 +492,30 @@ const AdminMixes = (): JSX.Element => {
                 }}
               />
             </div>
-          </StyledAdminFormElements>
-          <StyledAdminButton type="submit">Save</StyledAdminButton>
-          <StyledAdminButton
-            type="button"
-            onClick={() => {
-              setSelectedMix(null);
-              setFormData(null);
-              setOriginalTracks([]);
-            }}
-          >
-            Cancel
-          </StyledAdminButton>
-          {selectedMix && (
+            <StyledAdminButton type="submit">Save</StyledAdminButton>
             <StyledAdminButton
               type="button"
               onClick={() => {
-                if (confirm("Are you sure you want to delete this mix?")) {
-                  handleDelete();
-                }
+                setSelectedMix(null);
+                setFormData(null);
+                setOriginalTracks([]);
               }}
             >
-              Delete
+              Cancel
             </StyledAdminButton>
-          )}
+            {selectedMix && (
+              <StyledAdminButton
+                type="button"
+                onClick={() => {
+                  if (confirm("Are you sure you want to delete this mix?")) {
+                    handleDelete();
+                  }
+                }}
+              >
+                Delete
+              </StyledAdminButton>
+            )}
+          </StyledAdminFormElements>
         </form>
       )}
     </StyledAdminWrapper>

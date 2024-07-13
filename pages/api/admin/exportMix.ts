@@ -1,10 +1,11 @@
 import { db, initializeDb } from "db";
+import { Mix } from "db/types";
 import { promises as fs } from "fs";
 import mime from "mime";
 import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 
-const generateCueContent = (mix) => {
+const generateCueContent = (mix: Mix): string => {
   const header = `PERFORMER "Stef.FM"\nTITLE "${mix.name}"\nFILE "${mix.fileName}" MP3\n`;
   const tracks = mix.tracks
     .map((track, index) => {
@@ -24,7 +25,9 @@ const handler = async (
     await initializeDb();
     const { mixcloudKey } = req.body;
 
-    const mix = db.data?.mixes.find((mix) => mix.mixcloudKey === mixcloudKey);
+    const mix = db.data?.mixes.find(
+      (localMix) => localMix.mixcloudKey === mixcloudKey,
+    );
 
     if (!mix) {
       res.status(404).json({ message: "Mix not found" });
