@@ -34,7 +34,6 @@ const AdminTracks = (): JSX.Element => {
             (localMix: Mix) => localMix.mixcloudKey === mixcloudKey,
           );
           if (mixData) {
-            console.log("Mix Data:", mixData); // Debugging: Check mix data
             setMix(mixData);
             setTracks(mixData.tracks || []);
             setCategoryCode(mixData.category); // Set category code

@@ -18,7 +18,6 @@ export default async function handler(req: any, res: any): Promise<void> {
         category: categoryDetail || mix.category,
         tracks: mix.tracks,
       };
-      console.log("mixWithCategoryAndTracks", mixWithCategoryAndTracks);
       res.status(200).json(mixWithCategoryAndTracks);
     } else {
       res.status(404).json({ message: "Mix not found" });

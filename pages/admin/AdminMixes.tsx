@@ -39,7 +39,6 @@ const AdminMixes = (): JSX.Element => {
   }, []);
 
   const handleEdit = (mix: Mix): void => {
-    console.log("Editing mix:", mix);
     setSelectedMix(mix);
     setFormData({ ...mix, category: mix.category.code });
     setOriginalTracks(mix.tracks || []);
@@ -114,7 +113,6 @@ const AdminMixes = (): JSX.Element => {
         category: categoryCode, // Ensure category code is used
         tracks: originalTracks, // Ensure tracks are preserved
       };
-      console.log("Submitting form data:", updatedFormData);
       await axios.post("/api/admin/updateMix", updatedFormData, {
         headers: { Authorization: `Bearer ${token}` },
       });

@@ -22,14 +22,9 @@ const handler = async (
     }
 
     try {
-      console.log(
-        "Fetching mixcloud data for mix:",
-        mcKeyFormatter(mixcloudKey),
-      );
       const response = await axios.get(
         `https://api.mixcloud.com${mcKeyFormatter(mixcloudKey)}`,
       );
-      console.log("Mixcloud API response:", response.data); // Log the response to debug
 
       // Verify and extract the required data
       const { pictures } = response.data;
