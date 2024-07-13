@@ -7,6 +7,7 @@
 import axios from "axios";
 import { Mix, Track } from "db/types";
 import { useRouter } from "next/router";
+import AdminLayout from "pages/admin/AdminLayout";
 import AdminMenu from "pages/admin/AdminMenu";
 import {
   StyledAdminButton,
@@ -52,7 +53,7 @@ const AdminMixes = (): JSX.Element => {
         "/api/admin/deleteMix",
         { mixcloudKey: selectedMix.mixcloudKey },
         {
-          headers: { Authorization: token },
+          headers: { Authorization: `Bearer ${token}` },
         },
       );
       setMixes(
@@ -115,7 +116,7 @@ const AdminMixes = (): JSX.Element => {
       };
       console.log("Submitting form data:", updatedFormData);
       await axios.post("/api/admin/updateMix", updatedFormData, {
-        headers: { Authorization: token },
+        headers: { Authorization: `Bearer ${token}` },
       });
       if (selectedMix) {
         setMixes(
@@ -138,7 +139,7 @@ const AdminMixes = (): JSX.Element => {
       "/api/admin/exportMix",
       { mixcloudKey },
       {
-        headers: { Authorization: token },
+        headers: { Authorization: `Bearer ${token}` },
         responseType: "blob", // This is important for handling binary data
       },
     );
@@ -157,7 +158,7 @@ const AdminMixes = (): JSX.Element => {
       const response = await axios.post(
         "/api/admin/updateMixcloudCoverArt",
         { mixcloudKey },
-        { headers: { Authorization: token } },
+        { headers: { Authorization: `Bearer ${token}` } },
       );
       if (response.status === 200) {
         const updatedMix = response.data;
@@ -186,7 +187,7 @@ const AdminMixes = (): JSX.Element => {
         const response = await axios.post(
           "/api/admin/updateMixcloudCoverArt",
           { mixcloudKey: mix.mixcloudKey },
-          { headers: { Authorization: token } },
+          { headers: { Authorization: `Bearer ${token}` } },
         );
         if (response.status === 200) {
           const updatedMix = response.data;
@@ -223,7 +224,7 @@ const AdminMixes = (): JSX.Element => {
               mixcloudKey: mix.mixcloudKey,
               sectionNumber: track.sectionNumber,
             },
-            { headers: { Authorization: token } },
+            { headers: { Authorization: `Bearer ${token}` } },
           );
           if (response.status === 200) {
             const updatedTrack = {
@@ -261,264 +262,268 @@ const AdminMixes = (): JSX.Element => {
   };
 
   return (
-    <StyledAdminWrapper>
-      <h1>Mixes</h1>
-      <AdminMenu />
-      <StyledAdminButton onClick={handleAddNew}>Add New Mix</StyledAdminButton>
-      <StyledAdminButton onClick={handleUpdateAllMixesCoverArt}>
-        Update All Mixes Cover Art
-      </StyledAdminButton>
-      <StyledAdminButton onClick={handleUpdateAllTracksCoverArt}>
-        Update All Tracks Cover Art
-      </StyledAdminButton>
-      <StyledAdminTable>
-        <thead>
-          <tr>
-            <th>Actions</th>
-            <th>Category Code</th>
-            <th>Name</th>
-            <th>Mixcloud Key</th>
-            <th>Notes</th>
-            <th>Cover Art Date</th>
-            <th>Cover Art Large</th>
-            <th>Cover Art Small</th>
-            <th>Duration</th>
-            <th>File Name</th>
-            <th>List Order</th>
-            <th>Release Date</th>
-            <th>Short Name</th>
-            <th>Tags</th>
-          </tr>
-        </thead>
-        <tbody>
-          {mixes.map((mix) => (
-            <tr key={mix.mixcloudKey}>
-              <td>
-                <StyledAdminButton onClick={() => handleEdit(mix)}>
-                  Edit
-                </StyledAdminButton>
-                <StyledAdminButton
-                  onClick={() =>
-                    router.push(
-                      `/admin/AdminTracks?mixcloudKey=${mix.mixcloudKey}`,
-                    )
-                  }
-                >
-                  Edit Tracks
-                </StyledAdminButton>
-                <StyledAdminButton
-                  onClick={() => handleExport(mix.mixcloudKey)}
-                >
-                  Export to .cue
-                </StyledAdminButton>
-                <StyledAdminButton
-                  onClick={() => handleUpdateCoverArt(mix.mixcloudKey)}
-                >
-                  Update Cover Art
-                </StyledAdminButton>
-              </td>
-              <td>{mix.category.code}</td>
-              <td>{mix.name}</td>
-              <td>{mix.mixcloudKey}</td>
-              <td>{mix.notes}</td>
-              <td>{mix.coverArtDate}</td>
-              <td>
-                <StyledAdminCoverArtImage
-                  src={mix.coverArtLarge}
-                  alt={mix.coverArtLarge}
-                />
-              </td>
-              <td>
-                <StyledAdminCoverArtImage
-                  src={mix.coverArtSmall}
-                  alt={mix.coverArtSmall}
-                />
-              </td>
-              <td>{mix.duration}</td>
-              <td>{mix.fileName}</td>
-              <td>{mix.listOrder}</td>
-              <td>{mix.releaseDate}</td>
-              <td>{mix.shortName}</td>
-              <td>{mix.tags.join(", ")}</td>
+    <AdminLayout>
+      <StyledAdminWrapper>
+        <h1>Mixes</h1>
+        <AdminMenu />
+        <StyledAdminButton onClick={handleAddNew}>
+          Add New Mix
+        </StyledAdminButton>
+        <StyledAdminButton onClick={handleUpdateAllMixesCoverArt}>
+          Update All Mixes Cover Art
+        </StyledAdminButton>
+        <StyledAdminButton onClick={handleUpdateAllTracksCoverArt}>
+          Update All Tracks Cover Art
+        </StyledAdminButton>
+        <StyledAdminTable>
+          <thead>
+            <tr>
+              <th>Actions</th>
+              <th>Category Code</th>
+              <th>Name</th>
+              <th>Mixcloud Key</th>
+              <th>Notes</th>
+              <th>Cover Art Date</th>
+              <th>Cover Art Large</th>
+              <th>Cover Art Small</th>
+              <th>Duration</th>
+              <th>File Name</th>
+              <th>List Order</th>
+              <th>Release Date</th>
+              <th>Short Name</th>
+              <th>Tags</th>
             </tr>
-          ))}
-        </tbody>
-      </StyledAdminTable>
-
-      {formData && (
-        <form onSubmit={handleSubmit}>
-          <StyledAdminFormElements>
-            <h3>{selectedMix ? "Edit Mix" : "Add Mix"}</h3>
-            <div>
-              <label htmlFor="category">Category Code</label>
-              <input
-                id="category"
-                type="text"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="cover-art-date">Cover Art Date</label>
-              <input
-                id="cover-art-date"
-                type="text"
-                name="coverArtDate"
-                value={formData.coverArtDate}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="cover-art-large">Cover Art Large</label>
-              <input
-                id="cover-art-large"
-                type="text"
-                name="coverArtLarge"
-                value={formData.coverArtLarge}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="cover-art-small">Cover Art Small</label>
-              <input
-                id="cover-art-small"
-                type="text"
-                name="coverArtSmall"
-                value={formData.coverArtSmall}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="duration">Duration</label>
-              <input
-                id="duration"
-                type="text"
-                name="duration"
-                value={formData.duration}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="file-name">File Name</label>
-              <input
-                id="file-name"
-                type="text"
-                name="fileName"
-                value={formData.fileName}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="list-order">List Order</label>
-              <input
-                id="list-order"
-                type="number"
-                name="listOrder"
-                value={formData.listOrder}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="mixcloud-key">Mixcloud Key</label>
-              <input
-                id="mixcloud-key"
-                type="text"
-                name="mixcloudKey"
-                value={formData.mixcloudKey}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="name">Name</label>
-              <input
-                id="name"
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="notes">Notes</label>
-              <input
-                id="notes"
-                type="text"
-                name="notes"
-                value={formData.notes}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="release-date">Release Date</label>
-              <input
-                id="release-date"
-                type="text"
-                name="releaseDate"
-                value={formData.releaseDate}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="short-name">Short Name</label>
-              <input
-                id="short-name"
-                type="text"
-                name="shortName"
-                value={formData.shortName}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="tags">Tags</label>
-              <input
-                id="tags"
-                type="text"
-                name="tags"
-                value={formData.tags.join(", ")}
-                onChange={(e) => {
-                  const tags = e.target.value
-                    .split(",")
-                    .map((tag) => tag.trim());
-                  setFormData((prevFormData) => {
-                    if (prevFormData === null) {
-                      return null;
+          </thead>
+          <tbody>
+            {mixes.map((mix) => (
+              <tr key={mix.mixcloudKey}>
+                <td>
+                  <StyledAdminButton onClick={() => handleEdit(mix)}>
+                    Edit
+                  </StyledAdminButton>
+                  <StyledAdminButton
+                    onClick={() =>
+                      router.push(
+                        `/admin/AdminTracks?mixcloudKey=${mix.mixcloudKey}`,
+                      )
                     }
-                    return {
-                      ...prevFormData,
-                      tags,
-                    };
-                  });
-                }}
-              />
-            </div>
-            <StyledAdminButton type="submit">Save</StyledAdminButton>
-            <StyledAdminButton
-              type="button"
-              onClick={() => {
-                setSelectedMix(null);
-                setFormData(null);
-                setOriginalTracks([]);
-              }}
-            >
-              Cancel
-            </StyledAdminButton>
-            {selectedMix && (
+                  >
+                    Edit Tracks
+                  </StyledAdminButton>
+                  <StyledAdminButton
+                    onClick={() => handleExport(mix.mixcloudKey)}
+                  >
+                    Export to .cue
+                  </StyledAdminButton>
+                  <StyledAdminButton
+                    onClick={() => handleUpdateCoverArt(mix.mixcloudKey)}
+                  >
+                    Update Cover Art
+                  </StyledAdminButton>
+                </td>
+                <td>{mix.category.code}</td>
+                <td>{mix.name}</td>
+                <td>{mix.mixcloudKey}</td>
+                <td>{mix.notes}</td>
+                <td>{mix.coverArtDate}</td>
+                <td>
+                  <StyledAdminCoverArtImage
+                    src={mix.coverArtLarge}
+                    alt={mix.coverArtLarge}
+                  />
+                </td>
+                <td>
+                  <StyledAdminCoverArtImage
+                    src={mix.coverArtSmall}
+                    alt={mix.coverArtSmall}
+                  />
+                </td>
+                <td>{mix.duration}</td>
+                <td>{mix.fileName}</td>
+                <td>{mix.listOrder}</td>
+                <td>{mix.releaseDate}</td>
+                <td>{mix.shortName}</td>
+                <td>{mix.tags.join(", ")}</td>
+              </tr>
+            ))}
+          </tbody>
+        </StyledAdminTable>
+
+        {formData && (
+          <form onSubmit={handleSubmit}>
+            <StyledAdminFormElements>
+              <h3>{selectedMix ? "Edit Mix" : "Add Mix"}</h3>
+              <div>
+                <label htmlFor="category">Category Code</label>
+                <input
+                  id="category"
+                  type="text"
+                  name="category"
+                  value={formData.category}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="cover-art-date">Cover Art Date</label>
+                <input
+                  id="cover-art-date"
+                  type="text"
+                  name="coverArtDate"
+                  value={formData.coverArtDate}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="cover-art-large">Cover Art Large</label>
+                <input
+                  id="cover-art-large"
+                  type="text"
+                  name="coverArtLarge"
+                  value={formData.coverArtLarge}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="cover-art-small">Cover Art Small</label>
+                <input
+                  id="cover-art-small"
+                  type="text"
+                  name="coverArtSmall"
+                  value={formData.coverArtSmall}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="duration">Duration</label>
+                <input
+                  id="duration"
+                  type="text"
+                  name="duration"
+                  value={formData.duration}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="file-name">File Name</label>
+                <input
+                  id="file-name"
+                  type="text"
+                  name="fileName"
+                  value={formData.fileName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="list-order">List Order</label>
+                <input
+                  id="list-order"
+                  type="number"
+                  name="listOrder"
+                  value={formData.listOrder}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="mixcloud-key">Mixcloud Key</label>
+                <input
+                  id="mixcloud-key"
+                  type="text"
+                  name="mixcloudKey"
+                  value={formData.mixcloudKey}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="name">Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="notes">Notes</label>
+                <input
+                  id="notes"
+                  type="text"
+                  name="notes"
+                  value={formData.notes}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="release-date">Release Date</label>
+                <input
+                  id="release-date"
+                  type="text"
+                  name="releaseDate"
+                  value={formData.releaseDate}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="short-name">Short Name</label>
+                <input
+                  id="short-name"
+                  type="text"
+                  name="shortName"
+                  value={formData.shortName}
+                  onChange={handleChange}
+                />
+              </div>
+              <div>
+                <label htmlFor="tags">Tags</label>
+                <input
+                  id="tags"
+                  type="text"
+                  name="tags"
+                  value={formData.tags.join(", ")}
+                  onChange={(e) => {
+                    const tags = e.target.value
+                      .split(",")
+                      .map((tag) => tag.trim());
+                    setFormData((prevFormData) => {
+                      if (prevFormData === null) {
+                        return null;
+                      }
+                      return {
+                        ...prevFormData,
+                        tags,
+                      };
+                    });
+                  }}
+                />
+              </div>
+              <StyledAdminButton type="submit">Save</StyledAdminButton>
               <StyledAdminButton
                 type="button"
                 onClick={() => {
-                  if (confirm("Are you sure you want to delete this mix?")) {
-                    handleDelete();
-                  }
+                  setSelectedMix(null);
+                  setFormData(null);
+                  setOriginalTracks([]);
                 }}
               >
-                Delete
+                Cancel
               </StyledAdminButton>
-            )}
-          </StyledAdminFormElements>
-        </form>
-      )}
-    </StyledAdminWrapper>
+              {selectedMix && (
+                <StyledAdminButton
+                  type="button"
+                  onClick={() => {
+                    if (confirm("Are you sure you want to delete this mix?")) {
+                      handleDelete();
+                    }
+                  }}
+                >
+                  Delete
+                </StyledAdminButton>
+              )}
+            </StyledAdminFormElements>
+          </form>
+        )}
+      </StyledAdminWrapper>
+    </AdminLayout>
   );
 };
 

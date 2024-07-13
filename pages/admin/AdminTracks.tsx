@@ -5,6 +5,7 @@
 import axios from "axios";
 import { Mix, Track } from "db/types";
 import { useRouter } from "next/router";
+import AdminLayout from "pages/admin/AdminLayout";
 import AdminMenu from "pages/admin/AdminMenu";
 import {
   StyledAdminButton,
@@ -27,7 +28,7 @@ const AdminTracks = (): JSX.Element => {
     const token = localStorage.getItem("token");
     if (token && mixcloudKey) {
       axios
-        .get(`/api/mixes`, { headers: { Authorization: token } })
+        .get(`/api/mixes`, { headers: { Authorization: `Bearer ${token}` } })
         .then((response) => {
           const mixData = response.data.find(
             (localMix: Mix) => localMix.mixcloudKey === mixcloudKey,
@@ -73,7 +74,7 @@ const AdminTracks = (): JSX.Element => {
       await axios.post(
         "/api/admin/deleteTrack",
         { mixcloudKey: mix.mixcloudKey, sectionNumber },
-        { headers: { Authorization: token } },
+        { headers: { Authorization: `Bearer ${token}` } },
       );
       const updatedTracks = tracks.filter(
         (track) => track.sectionNumber !== sectionNumber,
@@ -115,7 +116,7 @@ const AdminTracks = (): JSX.Element => {
       };
       const token = localStorage.getItem("token");
       await axios.post("/api/admin/updateMix", updatedMix, {
-        headers: { Authorization: token },
+        headers: { Authorization: `Bearer ${token}` },
       });
       setMix(updatedMix);
       setTracks([...updatedTracks]);
@@ -123,7 +124,7 @@ const AdminTracks = (): JSX.Element => {
     }
   };
 
-  const updateTrackCoverArt = async (track: Track): Promise<void> => {
+  const updateTrackCoverArt = async (track: Track): Promise<Track> => {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
@@ -134,7 +135,7 @@ const AdminTracks = (): JSX.Element => {
           mixcloudKey: mix?.mixcloudKey,
           sectionNumber: track.sectionNumber,
         },
-        { headers: { Authorization: token } },
+        { headers: { Authorization: `Bearer ${token}` } },
       );
       if (response.status === 200) {
         return {
@@ -175,232 +176,236 @@ const AdminTracks = (): JSX.Element => {
   };
 
   return (
-    <StyledAdminWrapper>
-      <h1>Tracks</h1>
-      <AdminMenu />
-      {mix ? (
-        <>
-          <h2>{mix.name}</h2>
-          <StyledAdminButton onClick={handleAddNew}>
-            Add New Track
-          </StyledAdminButton>
-          <StyledAdminButton onClick={handleFetchAllCoverArt}>
-            Fetch All Cover Art
-          </StyledAdminButton>
-          <StyledAdminTable>
-            <thead>
-              <tr>
-                <th>Actions</th>
-                <th>Section Number</th>
-                <th>Artist Name</th>
-                <th>Cover Art Date</th>
-                <th>Cover Art Large</th>
-                <th>Cover Art Small</th>
-                <th>Local Cover Art Large</th>
-                <th>Local Cover Art Small</th>
-                <th>Publisher</th>
-                <th>Remix Artist Name</th>
-                <th>Start Time</th>
-                <th>Track Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tracks.map((track) => (
-                <tr key={track.sectionNumber}>
-                  <td>
-                    <StyledAdminButton onClick={() => handleEdit(track)}>
-                      Edit
-                    </StyledAdminButton>
-                    <StyledAdminButton
-                      onClick={() => {
-                        if (
-                          confirm("Are you sure you want to delete this track?")
-                        ) {
-                          handleDelete(track.sectionNumber);
-                        }
-                      }}
-                    >
-                      Delete
-                    </StyledAdminButton>
-                    <StyledAdminButton
-                      onClick={() => handleFetchCoverArt(track)}
-                    >
-                      Fetch Cover Art
-                    </StyledAdminButton>
-                  </td>
-                  <td>{track.sectionNumber}</td>
-                  <td>{track.artistName}</td>
-                  <td>{track.coverArtDate}</td>
-                  <td>
-                    <StyledAdminCoverArtImage
-                      src={track.coverArtLarge}
-                      alt={track.coverArtLarge}
-                    />
-                  </td>
-                  <td>
-                    <StyledAdminCoverArtImage
-                      src={track.coverArtSmall}
-                      alt={track.coverArtSmall}
-                    />
-                  </td>
-                  <td>
-                    <StyledAdminCoverArtImage
-                      src={track.localCoverArtLarge}
-                      alt={track.localCoverArtLarge}
-                    />
-                  </td>
-                  <td>
-                    <StyledAdminCoverArtImage
-                      src={track.localCoverArtSmall}
-                      alt={track.localCoverArtSmall}
-                    />
-                  </td>
-                  <td>{track.publisher}</td>
-                  <td>{track.remixArtistName}</td>
-                  <td>{track.startTime}</td>
-                  <td>{track.trackName}</td>
+    <AdminLayout>
+      <StyledAdminWrapper>
+        <h1>Tracks</h1>
+        <AdminMenu />
+        {mix ? (
+          <>
+            <h2>{mix.name}</h2>
+            <StyledAdminButton onClick={handleAddNew}>
+              Add New Track
+            </StyledAdminButton>
+            <StyledAdminButton onClick={handleFetchAllCoverArt}>
+              Fetch All Cover Art
+            </StyledAdminButton>
+            <StyledAdminTable>
+              <thead>
+                <tr>
+                  <th>Actions</th>
+                  <th>Section Number</th>
+                  <th>Artist Name</th>
+                  <th>Cover Art Date</th>
+                  <th>Cover Art Large</th>
+                  <th>Cover Art Small</th>
+                  <th>Local Cover Art Large</th>
+                  <th>Local Cover Art Small</th>
+                  <th>Publisher</th>
+                  <th>Remix Artist Name</th>
+                  <th>Start Time</th>
+                  <th>Track Name</th>
                 </tr>
-              ))}
-            </tbody>
-          </StyledAdminTable>
+              </thead>
+              <tbody>
+                {tracks.map((track) => (
+                  <tr key={track.sectionNumber}>
+                    <td>
+                      <StyledAdminButton onClick={() => handleEdit(track)}>
+                        Edit
+                      </StyledAdminButton>
+                      <StyledAdminButton
+                        onClick={() => {
+                          if (
+                            confirm(
+                              "Are you sure you want to delete this track?",
+                            )
+                          ) {
+                            handleDelete(track.sectionNumber);
+                          }
+                        }}
+                      >
+                        Delete
+                      </StyledAdminButton>
+                      <StyledAdminButton
+                        onClick={() => handleFetchCoverArt(track)}
+                      >
+                        Fetch Cover Art
+                      </StyledAdminButton>
+                    </td>
+                    <td>{track.sectionNumber}</td>
+                    <td>{track.artistName}</td>
+                    <td>{track.coverArtDate}</td>
+                    <td>
+                      <StyledAdminCoverArtImage
+                        src={track.coverArtLarge}
+                        alt={track.coverArtLarge}
+                      />
+                    </td>
+                    <td>
+                      <StyledAdminCoverArtImage
+                        src={track.coverArtSmall}
+                        alt={track.coverArtSmall}
+                      />
+                    </td>
+                    <td>
+                      <StyledAdminCoverArtImage
+                        src={track.localCoverArtLarge}
+                        alt={track.localCoverArtLarge}
+                      />
+                    </td>
+                    <td>
+                      <StyledAdminCoverArtImage
+                        src={track.localCoverArtSmall}
+                        alt={track.localCoverArtSmall}
+                      />
+                    </td>
+                    <td>{track.publisher}</td>
+                    <td>{track.remixArtistName}</td>
+                    <td>{track.startTime}</td>
+                    <td>{track.trackName}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </StyledAdminTable>
 
-          {formData && (
-            <form onSubmit={handleSubmit}>
-              <StyledAdminFormElements>
-                <h3>
-                  {formData.sectionNumber <= tracks.length
-                    ? "Edit Track"
-                    : "Add Track"}
-                </h3>
-                <div>
-                  <label htmlFor="artist-name">Artist Name</label>
-                  <input
-                    id="artist-name"
-                    type="text"
-                    name="artistName"
-                    value={formData.artistName}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="cover-art-date">Cover Art Date</label>
-                  <input
-                    id="cover-art-date"
-                    type="text"
-                    name="coverArtDate"
-                    value={formData.coverArtDate}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="cover-art-large">Cover Art Large</label>
-                  <input
-                    id="cover-art-large"
-                    type="text"
-                    name="coverArtLarge"
-                    value={formData.coverArtLarge}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="cover-art-small">Cover Art Small</label>
-                  <input
-                    id="cover-art-small"
-                    type="text"
-                    name="coverArtSmall"
-                    value={formData.coverArtSmall}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="local-cover-art-large">
-                    Local Cover Art Large
-                  </label>
-                  <input
-                    id="local-cover-art-large"
-                    type="text"
-                    name="localCoverArtLarge"
-                    value={formData.localCoverArtLarge}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="local-cover-art-small">
-                    Local Cover Art Small
-                  </label>
-                  <input
-                    id="local-cover-art-small"
-                    type="text"
-                    name="localCoverArtSmall"
-                    value={formData.localCoverArtSmall}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="publisher">Publisher</label>
-                  <input
-                    id="publisher"
-                    type="text"
-                    name="publisher"
-                    value={formData.publisher}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="remix-artist-name">Remix Artist Name</label>
-                  <input
-                    id="remix-artist-name"
-                    type="text"
-                    name="remixArtistName"
-                    value={formData.remixArtistName}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="section-number">Section Number</label>
-                  <input
-                    id="section-number"
-                    type="number"
-                    name="sectionNumber"
-                    value={formData.sectionNumber}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="start-time">Start Time</label>
-                  <input
-                    id="start-time"
-                    type="text"
-                    name="startTime"
-                    value={formData.startTime}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label htmlFor="track-name">Track Name</label>
-                  <input
-                    id="track-name"
-                    type="text"
-                    name="trackName"
-                    value={formData.trackName}
-                    onChange={handleChange}
-                  />
-                </div>
-              </StyledAdminFormElements>
-              <StyledAdminButton type="submit">Save</StyledAdminButton>
-              <StyledAdminButton
-                type="button"
-                onClick={() => setFormData(null)}
-              >
-                Cancel
-              </StyledAdminButton>
-            </form>
-          )}
-        </>
-      ) : (
-        <p>Loading mix...</p>
-      )}
-    </StyledAdminWrapper>
+            {formData && (
+              <form onSubmit={handleSubmit}>
+                <StyledAdminFormElements>
+                  <h3>
+                    {formData.sectionNumber <= tracks.length
+                      ? "Edit Track"
+                      : "Add Track"}
+                  </h3>
+                  <div>
+                    <label htmlFor="artist-name">Artist Name</label>
+                    <input
+                      id="artist-name"
+                      type="text"
+                      name="artistName"
+                      value={formData.artistName}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="cover-art-date">Cover Art Date</label>
+                    <input
+                      id="cover-art-date"
+                      type="text"
+                      name="coverArtDate"
+                      value={formData.coverArtDate}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="cover-art-large">Cover Art Large</label>
+                    <input
+                      id="cover-art-large"
+                      type="text"
+                      name="coverArtLarge"
+                      value={formData.coverArtLarge}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="cover-art-small">Cover Art Small</label>
+                    <input
+                      id="cover-art-small"
+                      type="text"
+                      name="coverArtSmall"
+                      value={formData.coverArtSmall}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="local-cover-art-large">
+                      Local Cover Art Large
+                    </label>
+                    <input
+                      id="local-cover-art-large"
+                      type="text"
+                      name="localCoverArtLarge"
+                      value={formData.localCoverArtLarge}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="local-cover-art-small">
+                      Local Cover Art Small
+                    </label>
+                    <input
+                      id="local-cover-art-small"
+                      type="text"
+                      name="localCoverArtSmall"
+                      value={formData.localCoverArtSmall}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="publisher">Publisher</label>
+                    <input
+                      id="publisher"
+                      type="text"
+                      name="publisher"
+                      value={formData.publisher}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="remix-artist-name">Remix Artist Name</label>
+                    <input
+                      id="remix-artist-name"
+                      type="text"
+                      name="remixArtistName"
+                      value={formData.remixArtistName}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="section-number">Section Number</label>
+                    <input
+                      id="section-number"
+                      type="number"
+                      name="sectionNumber"
+                      value={formData.sectionNumber}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="start-time">Start Time</label>
+                    <input
+                      id="start-time"
+                      type="text"
+                      name="startTime"
+                      value={formData.startTime}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="track-name">Track Name</label>
+                    <input
+                      id="track-name"
+                      type="text"
+                      name="trackName"
+                      value={formData.trackName}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </StyledAdminFormElements>
+                <StyledAdminButton type="submit">Save</StyledAdminButton>
+                <StyledAdminButton
+                  type="button"
+                  onClick={() => setFormData(null)}
+                >
+                  Cancel
+                </StyledAdminButton>
+              </form>
+            )}
+          </>
+        ) : (
+          <p>Loading mix...</p>
+        )}
+      </StyledAdminWrapper>
+    </AdminLayout>
   );
 };
 

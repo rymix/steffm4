@@ -1,10 +1,13 @@
+// pages/admin/middleware/auth.ts
+
 import jwt from "jsonwebtoken";
 import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 
 export const authenticateToken =
   (handler: NextApiHandler) =>
   async (req: NextApiRequest, res: NextApiResponse) => {
-    const token = req.headers.authorization;
+    const authHeader = req.headers.authorization;
+    const token = authHeader && authHeader.split(" ")[1];
 
     if (!token) {
       return res.status(403).json({ message: "Token is required" });

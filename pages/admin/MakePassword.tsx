@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import bcrypt from "bcryptjs";
 import { useRouter } from "next/router";
+import AdminLayout from "pages/admin/AdminLayout";
+import AdminMenu from "pages/admin/AdminMenu";
 import {
   StyledAdminFormElements,
   StyledAdminWrapper,
 } from "pages/admin/StyledAdmin";
 import { useEffect, useState } from "react";
-
-import AdminMenu from "./AdminMenu";
 
 const MakePassword = (): JSX.Element => {
   const router = useRouter();
@@ -23,21 +23,23 @@ const MakePassword = (): JSX.Element => {
   }, []);
 
   return (
-    <StyledAdminWrapper>
-      <h1>Password</h1>
-      <AdminMenu />
-      <StyledAdminFormElements>
-        <label htmlFor="password-hash">Password Hash</label>
-        <input
-          id="password-hash"
-          type="text"
-          name="passwordHash"
-          value={hashedPassword}
-          style={{ width: "550px" }}
-          readOnly
-        />
-      </StyledAdminFormElements>
-    </StyledAdminWrapper>
+    <AdminLayout>
+      <StyledAdminWrapper>
+        <h1>Password</h1>
+        <AdminMenu />
+        <StyledAdminFormElements>
+          <label htmlFor="password-hash">Password Hash</label>
+          <input
+            id="password-hash"
+            type="text"
+            name="passwordHash"
+            value={hashedPassword}
+            style={{ width: "550px" }}
+            readOnly
+          />
+        </StyledAdminFormElements>
+      </StyledAdminWrapper>
+    </AdminLayout>
   );
 };
 

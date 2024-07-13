@@ -1,6 +1,15 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { StyledAdminButton } from "pages/admin/StyledAdmin";
 
 const AdminMenu = (): JSX.Element => {
+  const router = useRouter();
+
+  const handleLogout = (): void => {
+    localStorage.removeItem("token");
+    router.push("/login");
+  };
+
   return (
     <ul>
       <li>
@@ -16,6 +25,14 @@ const AdminMenu = (): JSX.Element => {
       </li>
       <li>
         <Link href="/admin/AdminMixes">Mixes</Link>
+      </li>
+      <li>
+        <StyledAdminButton
+          onClick={handleLogout}
+          onKeyDown={(e) => e.key === "Enter" && handleLogout()}
+        >
+          Logout
+        </StyledAdminButton>
       </li>
     </ul>
   );
