@@ -18,12 +18,10 @@ const LoginPage = (): JSX.Element => {
   const handleSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
     try {
-      console.log("posting", username, password);
       const response = await axios.post("/api/auth/login", {
         username,
         password,
       });
-      console.log("response", response);
       localStorage.setItem("token", response.data.token);
       router.push("/admin");
     } catch {
