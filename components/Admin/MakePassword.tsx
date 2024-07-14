@@ -11,15 +11,14 @@ import { useEffect, useState } from "react";
 
 const MakePassword = (): JSX.Element => {
   const router = useRouter();
-  const salt = bcrypt.genSaltSync(10);
   const [hashedPassword, setHashedPassword] = useState<string>("");
 
   /* Initial load */
   useEffect(() => {
-    setHashedPassword(
-      bcrypt.hashSync((router.query.password as string) || "", salt),
-    );
-  }, []);
+    const password = (router.query.password as string) || "";
+    const hash = bcrypt.hashSync(password, 10); // Using the same salt rounds as in the login routine
+    setHashedPassword(hash);
+  }, [router.query.password]);
 
   return (
     <AdminLayout>
