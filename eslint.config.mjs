@@ -59,7 +59,6 @@ const config = [
       "plugin:react/recommended",
       "plugin:react-hooks/recommended",
       "plugin:testing-library/react",
-      //   "plugin:sonarjs/recommended",
       "plugin:unicorn/recommended",
       "prettier",
       "next",
@@ -69,7 +68,6 @@ const config = [
   {
     plugins: {
       "@typescript-eslint": fixupPluginRules(typescriptEslint),
-      //   "@next/next": fixupPluginRules(next / next),
       import: fixupPluginRules(_import),
       jest: fixupPluginRules(jest),
       prettier: fixupPluginRules(prettier),
@@ -101,30 +99,19 @@ const config = [
       "@next/next/no-document-import-in-page": "off",
       "@next/next/no-img-element": "off",
       "@typescript-eslint/ban-types": "off",
-
-      //   "@typescript-eslint/consistent-type-imports": [
-      //     "error",
-      //     {
-      //       prefer: "type-imports",
-      //     },
-      //   ],
-
       "@typescript-eslint/explicit-function-return-type": [
         "error",
         {
           allowExpressions: true,
         },
       ],
-
       "@typescript-eslint/no-explicit-any": "off",
-
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
           ignoreRestSiblings: true,
         },
       ],
-
       "import/extensions": [
         "error",
         "ignorePackages",
@@ -133,7 +120,6 @@ const config = [
           tsx: "never",
         },
       ],
-
       "import/no-cycle": "off",
       "import/no-named-as-default": "off",
       "import/prefer-default-export": "off",
@@ -144,17 +130,17 @@ const config = [
       "no-unsafe-optional-chaining": "off",
       "react-hooks/exhaustive-deps": "off",
       "react/function-component-definition": "off",
-
       "react/jsx-filename-extension": [
         "error",
         {
           extensions: [".tsx"],
         },
       ],
-
       "react/jsx-no-useless-fragment": "off",
       "react/jsx-props-no-spreading": "off",
       "react/require-default-props": "off",
+      "react/jsx-uses-react": "off", // Disable rule requiring React in scope
+      "react/react-in-jsx-scope": "off", // Disable rule requiring React in scope
       "simple-import-sort/exports": "error",
       "simple-import-sort/imports": "error",
       "sonarjs/cognitive-complexity": "off",

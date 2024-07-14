@@ -3,7 +3,10 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 const secret = process.env.JWT_SECRET;
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+): void {
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {

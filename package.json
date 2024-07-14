@@ -84,6 +84,9 @@
     "use-persisted-state": "^0.3.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.24.8",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@stylelint/postcss-css-in-js": "^0.38.0",
@@ -98,6 +101,7 @@
     "@types/react-scroll": "^1.8.10",
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/parser": "^6.16.0",
+    "babel-jest": "^29.7.0",
     "eslint": "^8.20.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "^14.0.4",
