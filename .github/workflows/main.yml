@@ -55,9 +55,25 @@ jobs:
       - name: Unzip wwwroot
         run: unzip wwwroot.zip
 
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Set up Key Vault Secrets
+        id: keyvault
+        run: |
+          echo "NEXTPUBLICDISCOGSAPITOKEN=$(az keyvault secret show --name NEXTPUBLICDISCOGSAPITOKEN --vault-name stef-fm-secrets --query value -o tsv)" >> $GITHUB_ENV
+          echo "JWTSECRET=$(az keyvault secret show --name JWTSECRET --vault-name stef-fm-secrets --query value -o tsv)" >> $GITHUB_ENV
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
           app-name: "steffm"
           publish-profile: ${{ secrets.STEFFM_PUBLISH_PROFILE }}
           package: wwwroot
+
+      - name: Set environment variables for Node.js
+        run: |
+          echo "NEXT_PUBLIC_DISCOGS_API_TOKEN=$NEXTPUBLICDISCOGSAPITOKEN" >> $GITHUB_ENV
+          echo "JWT_SECRET=$JWTSECRET" >> $GITHUB_ENV

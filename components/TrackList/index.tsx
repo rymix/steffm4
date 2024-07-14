@@ -35,10 +35,10 @@ export const TrackList: React.FC = () => {
               key={track.sectionNumber}
               $on={sectionNumber === track.sectionNumber}
             >
-              {track.coverArtLarge && (
+              {track.localCoverArtLarge && (
                 <StyledTrackCoverArt>
                   <StyledTrackCoverArtImage
-                    src={track.coverArtLarge}
+                    src={track.localCoverArtLarge}
                     alt={track.trackName}
                   />
                 </StyledTrackCoverArt>

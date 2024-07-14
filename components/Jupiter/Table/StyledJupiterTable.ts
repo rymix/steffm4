@@ -6,13 +6,14 @@ export const StyledJupiterTable = styled.div`
   display: flex;
   height: 100vh;
   justify-content: center;
+  position: relative;
   width: 100%;
 
   background-color: #795141;
   background-image: url("table/wood-pattern6.png");
   background-size: 600px;
 
-  z-index: -999;
+  z-index: 0;
 
   &::after {
     background-color: rgba(255, 255, 255, 0);

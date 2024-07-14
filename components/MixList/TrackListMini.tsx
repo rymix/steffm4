@@ -63,7 +63,7 @@ export const TrackListMini: React.FC<TrackListMiniProps> = ({ mix }) => {
             {track.sectionNumber}
           </StyledTrackListMiniSectionNumber>
           <StyledTrackListMiniCoverArt>
-            <StyledTrackListMiniCoverArtImage src={track.coverArtSmall} />
+            <StyledTrackListMiniCoverArtImage src={track.localCoverArtSmall} />
           </StyledTrackListMiniCoverArt>
           <StyledTrackListMiniInfoBlock key={track.sectionNumber}>
             <StyledTrackListMiniTrackName>
