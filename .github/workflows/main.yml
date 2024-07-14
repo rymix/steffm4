@@ -75,4 +75,4 @@ jobs:
 
       - name: Set environment variables for Node.js
         run: |
-          az webapp config appsettings set --name "steffm" --resource-group "your-resource-group-name" --settings NEXT_PUBLIC_DISCOGS_API_TOKEN=${{ env.NEXT_PUBLIC_DISCOGS_API_TOKEN }} JWT_SECRET=${{ env.JWT_SECRET }}
+          az webapp config appsettings set --name "steffm" --resource-group "Stef.FM" --settings NEXT_PUBLIC_DISCOGS_API_TOKEN=${{ env.NEXT_PUBLIC_DISCOGS_API_TOKEN }} JWT_SECRET=${{ env.JWT_SECRET }}
