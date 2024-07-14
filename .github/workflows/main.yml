@@ -63,8 +63,8 @@ jobs:
       - name: Set up Key Vault Secrets
         id: keyvault
         run: |
-          echo "NEXTPUBLICDISCOGSAPITOKEN=$(az keyvault secret show --name NEXTPUBLICDISCOGSAPITOKEN --vault-name stef-fm-secrets --query value -o tsv)" >> $GITHUB_ENV
-          echo "JWTSECRET=$(az keyvault secret show --name JWTSECRET --vault-name stef-fm-secrets --query value -o tsv)" >> $GITHUB_ENV
+          echo "NEXT_PUBLIC_DISCOGS_API_TOKEN=$(az keyvault secret show --name NEXTPUBLICDISCOGSAPITOKEN --vault-name stef-fm-secrets --query value -o tsv)" >> $GITHUB_ENV
+          echo "JWT_SECRET=$(az keyvault secret show --name JWTSECRET --vault-name stef-fm-secrets --query value -o tsv)" >> $GITHUB_ENV
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
@@ -75,5 +75,4 @@ jobs:
 
       - name: Set environment variables for Node.js
         run: |
-          echo "NEXT_PUBLIC_DISCOGS_API_TOKEN=$NEXTPUBLICDISCOGSAPITOKEN" >> $GITHUB_ENV
-          echo "JWT_SECRET=$JWTSECRET" >> $GITHUB_ENV
+          az webapp config appsettings set --name "steffm" --resource-group "your-resource-group-name" --settings NEXT_PUBLIC_DISCOGS_API_TOKEN=${{ env.NEXT_PUBLIC_DISCOGS_API_TOKEN }} JWT_SECRET=${{ env.JWT_SECRET }}
