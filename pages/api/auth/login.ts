@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 const users = [
   {
     username: "admin",
-    password: "$2a$10$RX0Ws9qlmpnmpKAwinBTNe7NyjJWM3FGI6V91my4V6rPp1mOr/EZW",
+    password: "$2a$10$RITrccyUWAUReGldZslhReTp4SPAoJsgJIjx5EhjaMDc.zFOgQvgC",
   },
 ];
 
