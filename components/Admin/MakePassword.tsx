@@ -19,7 +19,6 @@ const MakePassword = (): JSX.Element => {
     setHashedPassword(
       bcrypt.hashSync((router.query.password as string) || "", salt),
     );
-    console.log(hashedPassword);
   }, []);
 
   return (

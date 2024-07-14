@@ -1,11 +1,9 @@
-import jwt from "jsonwebtoken";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-const secret = process.env.JWT_SECRET;
-
-export function middleware(req: NextRequest): NextResponse {
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+
   // Apply middleware to API routes under /api/admin
   if (pathname.startsWith("/api/admin")) {
     const token = req.headers.get("authorization")?.split(" ")[1];
@@ -17,14 +15,22 @@ export function middleware(req: NextRequest): NextResponse {
     }
 
     try {
-      if (secret) {
-        jwt.verify(token, secret);
-        return NextResponse.next();
+      // Make the request to the API route for token verification
+      const response = await fetch(new URL("/api/auth/verify", req.url).href, {
+        headers: { authorization: `Bearer ${token}` },
+      });
+
+      if (response.status !== 200) {
+        return NextResponse.json(
+          { message: "Invalid or expired token" },
+          { status: 401 },
+        );
       }
-      throw new Error("JWT secret is not defined");
+
+      return NextResponse.next();
     } catch {
       return NextResponse.json(
-        { message: "Invalid or expired token" },
+        { message: "Authorization failed" },
         { status: 401 },
       );
     }
