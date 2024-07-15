@@ -8,6 +8,12 @@ export const StyledAdminWrapper = styled.div`
   flex-direction: column;
 `;
 
+export const StyledAdminHeader = styled.div`
+  border-top: 1px solid lightgrey;
+  margin-top: 15px;
+  padding-top: 15px;
+`;
+
 export const StyledAdminTable = styled.table`
   border-collapse: collapse;
   margin: 20px;
