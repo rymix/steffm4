@@ -8,6 +8,7 @@ import {
   StyledAdminButton,
   StyledAdminButtonBlock,
   StyledAdminFormElements,
+  StyledAdminHeader,
   StyledAdminTable,
   StyledAdminWrapper,
 } from "components/Admin/StyledAdmin";
@@ -111,9 +112,11 @@ const AdminCategories = (): JSX.Element => {
       <StyledAdminWrapper>
         <h1>Categories</h1>
         <AdminMenu />
-        <StyledAdminButton onClick={handleAddNew}>
-          Add New Category
-        </StyledAdminButton>
+        <StyledAdminHeader>
+          <StyledAdminButton onClick={handleAddNew}>
+            Add New Category
+          </StyledAdminButton>
+        </StyledAdminHeader>
         <StyledAdminTable>
           <thead>
             <tr>

@@ -46,6 +46,7 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.15",
     "@mui/styles": "^5.15.20",
     "@react-three/fiber": "^8.16.6",
+    "@types/multiparty": "^0.0.36",
     "@typescript-eslint/eslint-plugin": "^6.16.0",
     "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
@@ -65,6 +66,7 @@
     "lodash": "^4.17.21",
     "lowdb": "^7.0.1",
     "mime": "^4.0.4",
+    "multiparty": "^4.2.3",
     "next": "^14.0.4",
     "polished": "^4.2.2",
     "postcss-jsx": "^0.36.4",
@@ -79,6 +81,7 @@
     "react-scroll": "^1.9.0",
     "styled-components": "^6.1.8",
     "stylelint-config-recommended": "^14.0.1",
+    "types": "^0.1.1",
     "upgrade": "^1.1.0",
     "use-local-storage-state": "^19.1.0",
     "use-persisted-state": "^0.3.3"

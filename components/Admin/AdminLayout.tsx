@@ -14,7 +14,6 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }): JSX.Element => {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          console.log("no token");
           router.push("/admin/login");
           return;
         }
@@ -24,10 +23,8 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }): JSX.Element => {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log("got here");
         setLoading(false);
       } catch {
-        console.log("catch");
         router.push("/admin/login");
       }
     };

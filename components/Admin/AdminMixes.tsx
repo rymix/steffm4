@@ -11,6 +11,7 @@ import {
   StyledAdminButton,
   StyledAdminCoverArtImage,
   StyledAdminFormElements,
+  StyledAdminHeader,
   StyledAdminTable,
   StyledAdminWrapper,
 } from "components/Admin/StyledAdmin";
@@ -264,15 +265,17 @@ const AdminMixes = (): JSX.Element => {
       <StyledAdminWrapper>
         <h1>Mixes</h1>
         <AdminMenu />
-        <StyledAdminButton onClick={handleAddNew}>
-          Add New Mix
-        </StyledAdminButton>
-        <StyledAdminButton onClick={handleUpdateAllMixesCoverArt}>
-          Update All Mixes Cover Art
-        </StyledAdminButton>
-        <StyledAdminButton onClick={handleUpdateAllTracksCoverArt}>
-          Update All Tracks Cover Art
-        </StyledAdminButton>
+        <StyledAdminHeader>
+          <StyledAdminButton onClick={handleAddNew}>
+            Add New Mix
+          </StyledAdminButton>
+          <StyledAdminButton onClick={handleUpdateAllMixesCoverArt}>
+            Update All Mixes Cover Art
+          </StyledAdminButton>
+          <StyledAdminButton onClick={handleUpdateAllTracksCoverArt}>
+            Update All Tracks Cover Art
+          </StyledAdminButton>
+        </StyledAdminHeader>
         <StyledAdminTable>
           <thead>
             <tr>

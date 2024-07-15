@@ -3,6 +3,9 @@ const webpack = require("webpack"); // Ensure webpack is imported
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compiler: {
+    styledComponents: true,
+  },
   experimental: {
     outputFileTracingRoot: path.join(__dirname, "../../"),
   },
@@ -18,9 +21,6 @@ const nextConfig = {
     }
 
     return config;
-  },
-  compiler: {
-    styledComponents: true,
   },
 };
 

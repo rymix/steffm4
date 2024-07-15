@@ -10,27 +10,18 @@ const users = [
 ];
 
 const handler = (req: NextApiRequest, res: NextApiResponse): void => {
-  console.log("Received request to login");
-  console.log("Request body:", req.body);
-
   const { username, password } = req.body;
-  console.log("Username:", username);
-  console.log("Password:", password);
 
   const user = users.find((u) => u.username === username);
   if (user) {
-    console.log("User found:", user);
     const isPasswordCorrect = bcrypt.compareSync(password, user.password);
-    console.log("Is password correct:", isPasswordCorrect);
 
     if (isPasswordCorrect) {
       const secret = process.env.JWT_SECRET!;
-      console.log("JWT Secret:", secret);
 
       const token = jwt.sign({ username: user.username }, secret, {
         expiresIn: "1h",
       });
-      console.log("Generated JWT token:", token);
 
       res.status(200).json({ token });
     } else {
