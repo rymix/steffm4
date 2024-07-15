@@ -75,13 +75,13 @@ export const MixList: React.FC = () => {
 
         if (filterCategory) {
           mixesData = mixesData.filter(
-            (mix) => (mix.category as any).code === filterCategory,
+            (mix) => mix.category === filterCategory,
           );
         }
 
         mixesData = _.orderBy(
           mixesData,
-          ["category.code", "listOrder"],
+          ["category", "listOrder"],
           ["asc", "asc"],
         );
 
@@ -129,11 +129,11 @@ export const MixList: React.FC = () => {
         </>
       )}
       {!isLoading &&
-        filterCategory !== "fav" &&
-        mixes?.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)}
-      {!isLoading &&
-        filterCategory === "fav" &&
-        mixes?.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)}
+        (mixes?.length ? (
+          mixes.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)
+        ) : (
+          <div>No mixes found in this category</div>
+        ))}
     </>
   );
 };
