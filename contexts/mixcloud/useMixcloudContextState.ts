@@ -448,6 +448,47 @@ const useMixcloudContextState = (): MixcloudContextState => {
     });
   }, [player, playerUpdated]);
 
+  const handleSeek = useCallback(
+    (seconds: number) => {
+      console.log("handleSeek called with", seconds);
+      player
+        ?.seek(seconds)
+        .then((seekAllowed) => {
+          console.log("Seek promise resolved. Seek allowed:", seekAllowed);
+          if (seekAllowed) {
+            setPlayerUpdated(true);
+          } else {
+            console.log("Seek was not allowed");
+          }
+        })
+        .catch((error) => {
+          console.error("Error in play or seek:", error);
+        });
+      setPlayerUpdated(false);
+    },
+    [player, playerUpdated],
+  );
+
+  // const handleSeek = useCallback(
+  //   (seconds: number) => {
+  //     console.log("Handle Seek called with", seconds);
+  //     if (isReady && player) {
+  //       console.log("Player is available, seeking to", seconds);
+  //       player.seek(seconds);
+  //       setPlayerUpdated(false);
+
+  //       ReactGA.event({
+  //         category: "Control",
+  //         action: "Load",
+  //         label: `Seek ${seconds}`,
+  //       });
+  //     } else {
+  //       console.log("Player is not available.");
+  //     }
+  //   },
+  //   [player, playerUpdated],
+  // );
+
   /* Volume Controls */
   useEffect(() => {
     if (player) {
@@ -691,6 +732,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       handlePlay,
       handlePlayPause,
       handlePrevious,
+      handleSeek,
     },
     favourites: {
       addFavourite,

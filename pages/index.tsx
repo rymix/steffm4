@@ -1,27 +1,44 @@
 import Jupiter from "components";
 import { useMixcloud } from "contexts/mixcloud";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { GOOGLE_TRACKING_ID } from "utils/constants";
 
 const Home = (): JSX.Element => {
   const {
+    isReady,
     mcKey,
     setIsReady,
-    controls: { handleLoad, handleLoadRandom, handleLoadRandomFavourite },
+    controls: {
+      handleLoad,
+      handleLoadRandom,
+      handleLoadRandomFavourite,
+      handleSeek,
+    },
     filters: { selectedCategory },
-    history: { latestMcKey },
+    history: { latestMcKey, latestProgress },
   } = useMixcloud();
+  const [loadLatestProgress, setLoadLatestProgress] = useState<number>(0);
+
+  useEffect(() => {
+    if (isReady) {
+      console.log("Attempting to seek to", loadLatestProgress);
+      handleSeek(loadLatestProgress);
+    }
+  }, [isReady]);
 
   /* Initial load */
   useEffect(() => {
     console.log("latestMcKey", latestMcKey);
+
+    setLoadLatestProgress(latestProgress || 0);
+
     const handleInitialLoad = async (): Promise<void> => {
       if (mcKey) {
         console.log("Already have a key, loading...");
         handleLoad(mcKey);
       } else if (latestMcKey) {
-        console.log("No key, loading latest...");
+        console.log("No key, loading latest...", mcKey, latestProgress);
         handleLoad(latestMcKey);
       } else if (selectedCategory && selectedCategory === "fav") {
         console.log("No key, loading random favourite...");

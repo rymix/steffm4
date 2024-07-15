@@ -28,6 +28,7 @@ export type MixcloudContextState = {
     handlePlay: () => void;
     handlePlayPause: () => void;
     handlePrevious: () => void;
+    handleSeek: (seconds: number) => void;
   };
   favourites: {
     addFavourite: (localMcKey: string) => void;
