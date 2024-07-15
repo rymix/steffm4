@@ -14,9 +14,27 @@ export const StyledMixRow = styled.div<StyledMixRowProps>`
   margin-bottom: 20px;
 
   ${(props) =>
-    props.$on &&
+    props.$listenedStatus === "active" &&
     `
       border-left: 12px solid #3af;
+    `}
+
+  ${(props) =>
+    props.$listenedStatus === "unlistened" &&
+    `
+      border-left: 12px solid lightgrey;
+    `}
+
+  ${(props) =>
+    props.$listenedStatus === "listened" &&
+    `
+      border-left: 12px solid green;
+    `}
+
+  ${(props) =>
+    props.$listenedStatus === "partial" &&
+    `
+      border-left: 12px solid orange;
     `}
 
   @media screen and (orientation: portrait) and (max-width: 440px) {

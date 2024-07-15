@@ -5,7 +5,7 @@ export type MixRowProps = {
 };
 
 export type StyledMixRowProps = {
-  $on: boolean;
+  $listenedStatus: "active" | "listened" | "unlistened" | "partial";
 };
 
 export type TrackListMiniProps = {
