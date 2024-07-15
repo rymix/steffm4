@@ -125,6 +125,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const isComplete = percentageListened >= 95;
 
     updateProgressHistory(mcKey, mixProgress, isComplete);
+    setLatestMcKey(mcKey);
     setLatestProgress(mixProgress);
   }, [mixProgress, duration, mcKey]);
 
