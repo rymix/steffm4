@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import axios from "axios";
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";
@@ -6,72 +7,69 @@ import {
   StyledAdminHeader,
   StyledAdminWrapper,
 } from "components/Admin/StyledAdmin";
-import { useRef } from "react";
+import { ChangeEvent, useState } from "react";
 
 const handleExport = async (): Promise<void> => {
-  console.log("Exporting database...");
   const token = localStorage.getItem("token");
-
-  try {
-    const response = await axios.get("/api/admin/downloadDatabase", {
-      headers: { Authorization: `Bearer ${token}` },
-      responseType: "blob", // This is important for handling binary data
-    });
-
-    if (response.status === 200) {
-      const blob = new Blob([response.data], { type: response.data.type });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "mixes.json";
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      a.remove();
-    } else {
-      console.error("Failed to download the file.");
-    }
-  } catch (error) {
-    console.error("Error downloading the file:", error);
+  const response = await axios.get("/api/admin/downloadDatabase", {
+    headers: { Authorization: `Bearer ${token}` },
+    responseType: "blob",
+  });
+  if (response.status === 200) {
+    const blob = new Blob([response.data], { type: response.data.type });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "mixes.json";
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
+  } else {
+    console.error("Failed to download the file.");
   }
 };
 
 const AdminDatabase = (): JSX.Element => {
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [file, setFile] = useState<File | null>(null);
 
-  const handleUpload = async (
-    event: React.FormEvent<HTMLFormElement>,
-  ): Promise<void> => {
-    event.preventDefault();
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
 
-    if (
-      fileInputRef.current &&
-      fileInputRef.current.files &&
-      fileInputRef.current.files.length > 0
-    ) {
-      const token = localStorage.getItem("token");
-      const formData = new FormData();
-      formData.append("file", fileInputRef.current.files[0]);
+  const handleUpload = async (): Promise<void> => {
+    if (!file) {
+      alert("Please select a file first.");
+      return;
+    }
 
-      try {
-        const response = await axios.post(
-          "/api/admin/uploadDatabase",
-          formData,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          },
-        );
+    const confirmUpload = window.confirm(
+      "Are you sure you want to upload this database? This will replace the existing database.",
+    );
+    if (!confirmUpload) {
+      return;
+    }
 
-        if (response.status === 200) {
-          console.log("Database uploaded successfully");
-        } else {
-          console.error("Failed to upload the database.");
-        }
-      } catch (error) {
-        console.error("Error uploading the database:", error);
+    const token = localStorage.getItem("token");
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await axios.post("/api/admin/uploadDatabase", formData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
+      if (response.status === 200) {
+        alert("Database successfully replaced");
+      } else {
+        console.error("Failed to upload the file.");
       }
+    } catch (error) {
+      console.error("Error uploading the database:", error);
     }
   };
 
@@ -80,19 +78,18 @@ const AdminDatabase = (): JSX.Element => {
       <StyledAdminWrapper>
         <h1>Database Management</h1>
         <AdminMenu />
+
         <StyledAdminHeader>
           <StyledAdminButton onClick={handleExport}>
             Download Database
           </StyledAdminButton>
+          <br />
+          <br />
+          <input type="file" onChange={handleFileChange} />
+          <StyledAdminButton onClick={handleUpload}>
+            Upload Database
+          </StyledAdminButton>
         </StyledAdminHeader>
-        <form
-          onSubmit={handleUpload}
-          encType="multipart/form-data"
-          style={{ marginTop: "20px" }}
-        >
-          <input type="file" name="file" ref={fileInputRef} />
-          <StyledAdminButton type="submit">Upload Database</StyledAdminButton>
-        </form>
       </StyledAdminWrapper>
     </AdminLayout>
   );

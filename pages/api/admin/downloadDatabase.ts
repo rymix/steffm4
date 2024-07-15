@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { authenticateToken } from "pages/admin/middleware/auth";
 import path from "path";
 
-const handler = (req: NextApiRequest, res: NextApiResponse) => {
+const handler = (req: NextApiRequest, res: NextApiResponse): void => {
   const filePath = path.join(process.cwd(), "db", "mixes.json");
 
   if (fs.existsSync(filePath)) {

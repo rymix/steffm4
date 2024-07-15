@@ -1,4 +1,6 @@
+/* eslint-disable consistent-return */
 import fs from "fs";
+import multiparty from "multiparty";
 import { NextApiRequest, NextApiResponse } from "next";
 import { authenticateToken } from "pages/admin/middleware/auth";
 import path from "path";
@@ -9,28 +11,29 @@ export const config = {
   },
 };
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+): Promise<void> => {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const formidable = (await import("formidable")).default;
-  const form = new formidable.IncomingForm();
-  const uploadDir = path.join(process.cwd(), "db");
-
-  form.uploadDir = uploadDir;
-  form.keepExtensions = true;
+  const form = new multiparty.Form();
 
   form.parse(req, (err, fields, files) => {
     if (err) {
+      console.error("Error parsing form:", err);
       return res.status(500).json({ error: "Failed to upload file" });
     }
 
-    const oldPath = files.file.path;
-    const newPath = path.join(uploadDir, "db.json");
+    const file = files.file[0];
+    const oldPath = file.path;
+    const newPath = path.join(process.cwd(), "db", "mixes.json");
 
-    fs.rename(oldPath, newPath, (err) => {
+    fs.rename(oldPath, newPath, () => {
       if (err) {
+        console.error("Error renaming file:", err);
         return res
           .status(500)
           .json({ error: "Failed to replace database file" });
