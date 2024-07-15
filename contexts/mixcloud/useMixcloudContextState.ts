@@ -97,7 +97,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       sharableKey = localMix.mixcloudKey;
     }
 
-    sharableKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
+    sharableKey = sharableKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
     copyToClipboard(`https://stef.fm/${sharableKey}`);
     setTemporaryMessage("Sharable link copied to clipboard");
 
