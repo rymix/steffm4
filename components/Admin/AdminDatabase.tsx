@@ -1,3 +1,5 @@
+// components/Admin/AdminDatabase.tsx
+
 /* eslint-disable no-alert */
 import axios from "axios";
 import AdminLayout from "components/Admin/AdminLayout";

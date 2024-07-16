@@ -1,3 +1,5 @@
+// pages/api/admin/downloadDatabase.ts
+
 import fs from "fs";
 import { NextApiRequest, NextApiResponse } from "next";
 import { authenticateToken } from "pages/admin/middleware/auth";

@@ -1,4 +1,4 @@
-// pages/admin/AdminLayout.tsx
+// components/Admin/AdminLayout.tsx
 
 import axios from "axios";
 import { AdminLayoutProps } from "components/Admin/types";
