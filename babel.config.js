@@ -18,5 +18,6 @@ module.exports = {
         runtime: "automatic",
       },
     ],
+    ["babel-plugin-styled-components"],
   ],
 };
