@@ -450,7 +450,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   const handleSeek = useCallback(
     async (seconds: number) => {
-      console.log("handleSeek called with", seconds);
       try {
         const seekAllowed = await player?.seek(seconds);
         if (seekAllowed) {
