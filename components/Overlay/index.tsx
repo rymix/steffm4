@@ -6,7 +6,7 @@ const Overlay: React.FC = () => {
     session: { menuOpen, modalOpen },
   } = useMixcloud();
 
-  return <StyledOverlay className={modalOpen || menuOpen ? "visible" : ""} />;
+  return <StyledOverlay $open={modalOpen || menuOpen} />;
 };
 
 export default Overlay;
