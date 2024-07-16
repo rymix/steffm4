@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "next build && node post-build.js",
-    "dev": "set PORT=3001&&next dev",
+    "dev": "node server.js",
     "devmac": "PORT=3001 next dev",
     "eslint": "eslint .",
     "export": "next export -o _static",
