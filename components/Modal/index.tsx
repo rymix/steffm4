@@ -22,10 +22,7 @@ const Modal: React.FC = () => {
   } = useMixcloud();
 
   return (
-    <StyledModal
-      className={`modal ${modalOpen ? "modal-open" : ""}`}
-      ref={modalRef}
-    >
+    <StyledModal $open={modalOpen} ref={modalRef}>
       <StyledModalHeader>
         {modalTitle && <StyledModalTitle>{modalTitle}</StyledModalTitle>}
         {secondsRemaining !== null && (

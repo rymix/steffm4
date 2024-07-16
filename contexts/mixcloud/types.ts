@@ -6,6 +6,12 @@ export type Favourite = {
   mcKey: string;
 };
 
+export type Progress = {
+  complete: boolean;
+  mcKey: string;
+  seconds: number;
+};
+
 export type MixcloudContextState = {
   isReady: boolean;
   mcKey: string;
@@ -22,6 +28,7 @@ export type MixcloudContextState = {
     handlePlay: () => void;
     handlePlayPause: () => void;
     handlePrevious: () => void;
+    handleSeek: (seconds: number) => void;
   };
   favourites: {
     addFavourite: (localMcKey: string) => void;
@@ -41,6 +48,14 @@ export type MixcloudContextState = {
     >;
     setSelectedTag: React.Dispatch<React.SetStateAction<string>>;
     updateSelectedCategory: (index: number) => void;
+  };
+  history: {
+    latestMcKey: string;
+    latestProgress: number;
+    progress: Progress[];
+    setLatestMcKey: React.Dispatch<React.SetStateAction<string>>;
+    setLatestProgress: React.Dispatch<React.SetStateAction<number>>;
+    setProgress: React.Dispatch<React.SetStateAction<Progress[]>>;
   };
   mix: {
     categoryName: string;

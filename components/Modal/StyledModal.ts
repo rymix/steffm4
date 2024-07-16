@@ -1,7 +1,8 @@
 import CloseIcon from "@mui/icons-material/Close";
+import { StyledModalProps } from "components/Modal/types";
 import styled from "styled-components";
 
-export const StyledModal = styled.div`
+export const StyledModal = styled.div<StyledModalProps>`
   background: #f6f4ef;
   background-image: url("textures/rice-paper-2.png");
 
@@ -19,17 +20,24 @@ export const StyledModal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100;
-  opacity: 0;
-  visibility: hidden;
   transition:
     opacity 0.3s ease,
     visibility 0.3s ease;
   width: clamp(320px, 80%, 60vw);
 
-  &.modal-open {
-    opacity: 1;
-    visibility: visible;
-  }
+  ${(props) =>
+    props.$open === false &&
+    `
+      opacity: 0;
+      visibility: hidden;
+    `}
+
+  ${(props) =>
+    props.$open === true &&
+    `
+      opacity: 1;
+      visibility: visible;
+    `}
 
   .modal-overlay {
     position: fixed;

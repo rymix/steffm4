@@ -25,6 +25,7 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
     mcKey,
     controls: { handleLoad, handlePause, handlePlay },
     widget: { playing },
+    history: { progress },
   } = useMixcloud();
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -42,9 +43,29 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
     }
   };
 
+  const listenedStatus = ():
+    | "active"
+    | "listened"
+    | "unlistened"
+    | "partial" => {
+    if (mcKey.includes(mix.mixcloudKey)) {
+      return "active";
+    }
+
+    const progressEntry = progress.find((p) =>
+      p.mcKey.includes(mix.mixcloudKey),
+    );
+
+    if (!progressEntry) {
+      return "unlistened";
+    }
+
+    return progressEntry.complete ? "listened" : "partial";
+  };
+
   return (
     <>
-      <StyledMixRow $on={mcKey.includes(mix.mixcloudKey)}>
+      <StyledMixRow $listenedStatus={listenedStatus()}>
         <StyledMixPlay onClick={() => handleClickPlay(mix.mixcloudKey)}>
           {mcKey.includes(mix.mixcloudKey) && playing ? (
             <PauseIcon />

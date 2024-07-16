@@ -1,5 +1,9 @@
 /* eslint-disable unicorn/consistent-function-scoping */
-import type { Favourite, MixcloudContextState } from "contexts/mixcloud/types";
+import type {
+  Favourite,
+  MixcloudContextState,
+  Progress,
+} from "contexts/mixcloud/types";
 import type { Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
@@ -87,7 +91,43 @@ const useMixcloudContextState = (): MixcloudContextState => {
   );
   const [mixIsFavourite, setMixIsFavourite] = useState<boolean>(false);
 
+  /* Progress */
+  const [latestMcKey, setLatestMcKey] = usePersistedState<string>(
+    "latestMcKey",
+    "",
+  );
+  const [latestProgress, setLatestProgress] = usePersistedState<number>(
+    "latestProgress",
+    0,
+  );
+  const [progress, setProgress] = usePersistedState<Progress[]>("progress", []);
+
   /* FUNCTIONS -------------------- */
+
+  /* Progress */
+  const updateProgressHistory = (
+    localMcKey: string,
+    seconds: number,
+    complete: boolean,
+  ): void => {
+    const newProgress: Progress = { mcKey: localMcKey, seconds, complete };
+    setProgress((prevProgress) => {
+      // Remove any existing entry for the same mcKey
+      const filteredProgress = prevProgress.filter(
+        (p) => p.mcKey !== localMcKey,
+      );
+      return [...filteredProgress, newProgress];
+    });
+  };
+
+  useEffect(() => {
+    const percentageListened = (mixProgress / duration) * 100;
+    const isComplete = percentageListened >= 95;
+
+    updateProgressHistory(mcKey, mixProgress, isComplete);
+    setLatestMcKey(mcKey);
+    setLatestProgress(mixProgress);
+  }, [mixProgress, duration, mcKey]);
 
   /* Sharable Link */
   const copySharableLink = (localMix?: Mix): void => {
@@ -408,6 +448,24 @@ const useMixcloudContextState = (): MixcloudContextState => {
     });
   }, [player, playerUpdated]);
 
+  const handleSeek = useCallback(
+    async (seconds: number) => {
+      try {
+        const seekAllowed = await player?.seek(seconds);
+        if (seekAllowed) {
+          setPlayerUpdated(true);
+        } else {
+          console.log("Seek was not allowed");
+        }
+        return seekAllowed;
+      } catch (error) {
+        console.error("Error in play or seek:", error);
+        return false;
+      }
+    },
+    [player, playerUpdated],
+  );
+
   /* Volume Controls */
   useEffect(() => {
     if (player) {
@@ -651,6 +709,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       handlePlay,
       handlePlayPause,
       handlePrevious,
+      handleSeek,
     },
     favourites: {
       addFavourite,
@@ -668,6 +727,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setSelectedCategory,
       setSelectedTag,
       updateSelectedCategory,
+    },
+    history: {
+      latestMcKey,
+      latestProgress,
+      progress,
+      setLatestMcKey,
+      setLatestProgress,
+      setProgress,
     },
     mix: {
       categoryName,

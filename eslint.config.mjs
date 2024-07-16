@@ -127,6 +127,7 @@ const config = [
       "jsx-a11y/no-static-element-interactions": "off",
       "no-console": "off",
       "no-promise-executor-return": "off",
+      "no-underscore-dangle": "off",
       "no-unsafe-optional-chaining": "off",
       "react-hooks/exhaustive-deps": "off",
       "react/function-component-definition": "off",
