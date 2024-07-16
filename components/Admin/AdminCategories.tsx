@@ -92,20 +92,30 @@ const AdminCategories = (): JSX.Element => {
     e.preventDefault();
     if (formData) {
       const token = localStorage.getItem("token");
-      await axios.post("/api/admin/updateCategory", formData, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (selectedCategory) {
-        setCategories(
-          categories.map((cat) =>
-            cat.index === formData.index ? formData : cat,
-          ),
+      console.log("Sending token:", token);
+      try {
+        const response = await axios.post(
+          "/api/admin/updateCategory",
+          formData,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          },
         );
-      } else {
-        setCategories([...categories, formData]);
+        console.log("Response from updateCategory:", response.data);
+        if (selectedCategory) {
+          setCategories(
+            categories.map((cat) =>
+              cat.index === formData.index ? formData : cat,
+            ),
+          );
+        } else {
+          setCategories([...categories, formData]);
+        }
+        setSelectedCategory(null);
+        setFormData(null);
+      } catch (error) {
+        console.error("Error updating category:", error);
       }
-      setSelectedCategory(null);
-      setFormData(null);
     }
   };
 
