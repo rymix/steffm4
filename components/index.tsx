@@ -48,6 +48,7 @@ const Jupiter = (): JSX.Element => {
       handlePlay,
       handleNext,
       handlePrevious,
+      handleSeek,
     },
     favourites: { addFavourite, isFavourite, removeFavourite },
     filters: { categories = [], selectedCategory, setSelectedCategory },
@@ -159,6 +160,10 @@ const Jupiter = (): JSX.Element => {
 
   const handleShareClick = (): void => {
     copySharableLink();
+  };
+
+  const handleSeekClick = (): void => {
+    handleSeek(100);
   };
 
   useEffect(() => {
@@ -280,6 +285,11 @@ const Jupiter = (): JSX.Element => {
                         onChange={handleSliderChange}
                       />
                     )}
+                    <JupiterButton
+                      color="orange"
+                      label="Seek"
+                      onClick={handleSeekClick}
+                    />
                   </StyledItem>
                 </StyledItems>
               </StyledColumn>

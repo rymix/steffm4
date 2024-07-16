@@ -6,7 +6,6 @@ import { GOOGLE_TRACKING_ID } from "utils/constants";
 
 const Home = (): JSX.Element => {
   const {
-    isReady,
     mcKey,
     setIsReady,
     controls: {
@@ -17,15 +16,28 @@ const Home = (): JSX.Element => {
     },
     filters: { selectedCategory },
     history: { latestMcKey, latestProgress },
+    widget: { playing },
   } = useMixcloud();
+  const [hasSeeked, setHasSeeked] = useState<boolean>(false);
   const [loadLatestProgress, setLoadLatestProgress] = useState<number>(0);
 
+  /* Seek logic */
   useEffect(() => {
-    if (isReady) {
-      console.log("Attempting to seek to", loadLatestProgress);
-      handleSeek(loadLatestProgress);
-    }
-  }, [isReady]);
+    if (!latestMcKey || hasSeeked || loadLatestProgress <= 60) return;
+
+    const attemptSeek = async (): Promise<void> => {
+      if (playing) {
+        try {
+          await handleSeek(loadLatestProgress);
+          setHasSeeked(true);
+        } catch (error) {
+          console.error("Error during seek:", error);
+        }
+      }
+    };
+
+    attemptSeek();
+  }, [playing, latestMcKey, loadLatestProgress, handleSeek, hasSeeked]);
 
   /* Initial load */
   useEffect(() => {
