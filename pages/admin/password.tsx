@@ -1,3 +1,5 @@
+// pages/admin/password.tsx
+
 import MakePassword from "components/Admin/MakePassword";
 
 const Home = (): JSX.Element => {

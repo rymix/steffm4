@@ -105,6 +105,7 @@
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/parser": "^6.16.0",
     "babel-jest": "^29.7.0",
+    "babel-plugin-styled-components": "^2.1.4",
     "eslint": "^8.20.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-next": "^14.0.4",

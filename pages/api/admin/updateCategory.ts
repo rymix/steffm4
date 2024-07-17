@@ -1,3 +1,5 @@
+// pages/api/admin/updateCategory.ts
+
 import { db, initializeDb } from "db";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { authenticateToken } from "pages/admin/middleware/auth";
@@ -7,6 +9,8 @@ const handler = async (
   res: NextApiResponse,
 ): Promise<void> => {
   if (req.method === "POST") {
+    console.log("Received POST request");
+    console.log("Request headers:", req.headers);
     await initializeDb();
     const { index, code, name, shortName, x, y } = req.body;
 

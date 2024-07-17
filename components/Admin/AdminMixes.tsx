@@ -1,3 +1,5 @@
+// components/Admin/AdminMixes.tsx
+
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
@@ -305,7 +307,7 @@ const AdminMixes = (): JSX.Element => {
                   <StyledAdminButton
                     onClick={() =>
                       router.push(
-                        `/admin/AdminTracks?mixcloudKey=${mix.mixcloudKey}`,
+                        `/admin/tracks?mixcloudKey=${mix.mixcloudKey}`,
                       )
                     }
                   >

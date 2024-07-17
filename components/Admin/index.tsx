@@ -1,4 +1,4 @@
-// pages/admin/index.tsx
+// components/Admin/index.tsx
 
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";

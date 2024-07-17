@@ -1,4 +1,4 @@
-// pages/api/deleteTrack.ts
+// pages/api/admin/deleteTrack.ts
 
 import { db, initializeDb } from "db";
 import type { NextApiRequest, NextApiResponse } from "next";
