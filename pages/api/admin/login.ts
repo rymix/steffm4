@@ -1,9 +1,13 @@
 import bcrypt from "bcryptjs";
+import { NextApiRequest, NextApiResponse } from "next";
 import { generateToken } from "utils/jwt";
 
-const handler = async (req, res) => {
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+): Promise<void> => {
   if (req.method === "POST") {
-    const { username, password } = req.body;
+    const { password } = req.body;
 
     // Fetch user from database (mock example)
     const user = {
@@ -14,7 +18,9 @@ const handler = async (req, res) => {
     };
 
     if (user && bcrypt.compareSync(password, user.passwordHash)) {
-      const token = generateToken({ id: user.id, username: user.username });
+      const token = generateToken(
+        `{ id: ${user.id}, username: ${user.username} }`,
+      );
       return res.status(200).json({ token });
     }
 

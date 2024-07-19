@@ -2,7 +2,7 @@ import axios from "axios";
 import Router from "next/router";
 import { useEffect } from "react";
 
-const AdminHome = () => {
+const AdminHome = (): JSX.Element => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {

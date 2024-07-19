@@ -89,13 +89,9 @@ const AdminCategories = (): JSX.Element => {
     if (formData) {
       const token = localStorage.getItem("token");
       try {
-        const response = await axiosInstance.post(
-          "/api/admin/updateCategory",
-          formData,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          },
-        );
+        await axiosInstance.post("/api/admin/updateCategory", formData, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
 
         if (selectedCategory) {
           setCategories(

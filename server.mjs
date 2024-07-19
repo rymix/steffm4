@@ -17,12 +17,12 @@ const httpsOptions = {
   cert: fs.readFileSync(path.join(__dirname, "certs", "localhost-cert.pem")),
 };
 
-app.prepare().then(() => {
-  createServer(httpsOptions, (req, res) => {
-    const parsedUrl = parse(req.url, true);
-    handle(req, res, parsedUrl);
-  }).listen(3001, (err) => {
-    if (err) throw err;
-    console.log("> Server started on https://localhost:3001");
-  });
+await app.prepare();
+
+createServer(httpsOptions, (req, res) => {
+  const parsedUrl = parse(req.url, true);
+  handle(req, res, parsedUrl);
+}).listen(3001, (err) => {
+  if (err) throw err;
+  console.log("> Server started on https://localhost:3001");
 });
