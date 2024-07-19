@@ -18,9 +18,7 @@ const handler = async (
     };
 
     if (user && bcrypt.compareSync(password, user.passwordHash)) {
-      const token = generateToken(
-        `{ id: ${user.id}, username: ${user.username} }`,
-      );
+      const token = generateToken({ id: user.id, username: user.username });
       return res.status(200).json({ token });
     }
 
