@@ -1,9 +1,5 @@
 // components/Admin/AdminCategories.tsx
-
-/* eslint-disable no-alert */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import axios from "axios";
+import axiosInstance from "axiosConfig.mjs";
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";
 import {
@@ -29,7 +25,7 @@ const AdminCategories = (): JSX.Element => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      axios
+      axiosInstance
         .get("/api/categories", {
           headers: { Authorization: `Bearer ${token}` },
         })
@@ -48,7 +44,7 @@ const AdminCategories = (): JSX.Element => {
   const handleDelete = async (): Promise<void> => {
     if (selectedCategory) {
       const token = localStorage.getItem("token");
-      await axios.post(
+      await axiosInstance.post(
         "/api/admin/deleteCategory",
         { index: selectedCategory.index },
         {
@@ -94,7 +90,7 @@ const AdminCategories = (): JSX.Element => {
       const token = localStorage.getItem("token");
       console.log("Sending token:", token);
       try {
-        const response = await axios.post(
+        const response = await axiosInstance.post(
           "/api/admin/updateCategory",
           formData,
           {

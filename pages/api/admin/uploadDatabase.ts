@@ -4,7 +4,6 @@
 import fs from "fs";
 import multiparty from "multiparty";
 import { NextApiRequest, NextApiResponse } from "next";
-import { authenticateToken } from "pages/admin/middleware/auth";
 import path from "path";
 
 export const config = {
@@ -46,4 +45,4 @@ const handler = async (
   });
 };
 
-export default authenticateToken(handler);
+export default handler;

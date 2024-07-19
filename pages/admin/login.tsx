@@ -1,6 +1,5 @@
 // pages/admin/login.tsx
-
-import axios from "axios";
+import axiosInstance from "axiosConfig.mjs";
 import {
   StyledAdminButton,
   StyledAdminFormElements,
@@ -18,10 +17,11 @@ const LoginPage = (): JSX.Element => {
   const handleSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
     try {
-      const response = await axios.post("/api/auth/login", {
+      const response = await axiosInstance.post("/api/auth/login", {
         username,
         password,
       });
+      console.log("handleSubmit");
       localStorage.setItem("token", response.data.token);
       router.push("/admin");
     } catch {
