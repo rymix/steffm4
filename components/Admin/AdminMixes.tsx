@@ -116,7 +116,7 @@ const AdminMixes = (): JSX.Element => {
         category: categoryCode, // Ensure category code is used
         tracks: originalTracks, // Ensure tracks are preserved
       };
-      console.log("updatedFormData", updatedFormData);
+
       await axiosInstance.post("/api/admin/updateMix", updatedFormData, {
         headers: { Authorization: `Bearer ${token}` },
       });

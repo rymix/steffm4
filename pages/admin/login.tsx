@@ -21,7 +21,6 @@ const LoginPage = (): JSX.Element => {
         username,
         password,
       });
-      console.log("handleSubmit");
       localStorage.setItem("token", response.data.token);
       router.push("/admin");
     } catch {

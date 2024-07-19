@@ -88,8 +88,6 @@ const AdminCategories = (): JSX.Element => {
     e.preventDefault();
     if (formData) {
       const token = localStorage.getItem("token");
-      console.log("Sending token:", token);
-      console.log("Sending payload:", formData);
       try {
         const response = await axiosInstance.post(
           "/api/admin/updateCategory",
@@ -98,7 +96,7 @@ const AdminCategories = (): JSX.Element => {
             headers: { Authorization: `Bearer ${token}` },
           },
         );
-        console.log("Response from updateCategory:", response.data);
+
         if (selectedCategory) {
           setCategories(
             categories.map((cat) =>
