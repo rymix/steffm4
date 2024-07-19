@@ -1,5 +1,4 @@
 // pages/admin/login.tsx
-
 import axios from "axios";
 import {
   StyledAdminButton,
@@ -18,7 +17,7 @@ const LoginPage = (): JSX.Element => {
   const handleSubmit = async (event: FormEvent): Promise<void> => {
     event.preventDefault();
     try {
-      const response = await axios.post("/api/auth/login", {
+      const response = await axios.post("/api/admin/login", {
         username,
         password,
       });

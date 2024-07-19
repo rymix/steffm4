@@ -41,8 +41,6 @@ const Home = (): JSX.Element => {
 
   /* Initial load */
   useEffect(() => {
-    console.log("latestMcKey", latestMcKey);
-
     setLoadLatestProgress(latestProgress || 0);
 
     const handleInitialLoad = async (): Promise<void> => {

@@ -1,6 +1,7 @@
+// pages/api/admin/downloadDatabase.ts
+
 import fs from "fs";
 import { NextApiRequest, NextApiResponse } from "next";
-import { authenticateToken } from "pages/admin/middleware/auth";
 import path from "path";
 
 const handler = (req: NextApiRequest, res: NextApiResponse): void => {
@@ -17,4 +18,4 @@ const handler = (req: NextApiRequest, res: NextApiResponse): void => {
   }
 };
 
-export default authenticateToken(handler);
+export default handler;

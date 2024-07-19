@@ -1,7 +1,4 @@
-/* eslint-disable no-alert */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import axios from "axios";
+// components/Admin/AdminCategories.tsx
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";
 import {
@@ -15,6 +12,7 @@ import {
 import { Category } from "db/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import axiosInstance from "utils/axiosInstance";
 
 const AdminCategories = (): JSX.Element => {
   const router = useRouter();
@@ -27,7 +25,7 @@ const AdminCategories = (): JSX.Element => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      axios
+      axiosInstance
         .get("/api/categories", {
           headers: { Authorization: `Bearer ${token}` },
         })
@@ -46,7 +44,7 @@ const AdminCategories = (): JSX.Element => {
   const handleDelete = async (): Promise<void> => {
     if (selectedCategory) {
       const token = localStorage.getItem("token");
-      await axios.post(
+      await axiosInstance.post(
         "/api/admin/deleteCategory",
         { index: selectedCategory.index },
         {
@@ -90,20 +88,25 @@ const AdminCategories = (): JSX.Element => {
     e.preventDefault();
     if (formData) {
       const token = localStorage.getItem("token");
-      await axios.post("/api/admin/updateCategory", formData, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (selectedCategory) {
-        setCategories(
-          categories.map((cat) =>
-            cat.index === formData.index ? formData : cat,
-          ),
-        );
-      } else {
-        setCategories([...categories, formData]);
+      try {
+        await axiosInstance.post("/api/admin/updateCategory", formData, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+
+        if (selectedCategory) {
+          setCategories(
+            categories.map((cat) =>
+              cat.index === formData.index ? formData : cat,
+            ),
+          );
+        } else {
+          setCategories([...categories, formData]);
+        }
+        setSelectedCategory(null);
+        setFormData(null);
+      } catch (error) {
+        console.error("Error updating category:", error);
       }
-      setSelectedCategory(null);
-      setFormData(null);
     }
   };
 

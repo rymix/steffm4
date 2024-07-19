@@ -160,6 +160,15 @@ const config = [
       "unicorn/prefer-node-protocol": "off",
       "unicorn/prefer-string-slice": "off",
       "unicorn/prevent-abbreviations": "off",
+      "jsx-a11y/label-has-associated-control": [
+        "error",
+        {
+          assert: "htmlFor",
+          depth: 3,
+        },
+      ],
+      "no-restricted-globals": "off",
+      "no-alert": "off",
     },
   },
 ];

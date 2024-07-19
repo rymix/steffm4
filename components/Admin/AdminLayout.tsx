@@ -1,5 +1,3 @@
-// pages/admin/AdminLayout.tsx
-
 import axios from "axios";
 import { AdminLayoutProps } from "components/Admin/types";
 import { useRouter } from "next/router";
@@ -10,26 +8,13 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }): JSX.Element => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const checkAuth = async (): Promise<void> => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          router.push("/admin/login");
-          return;
-        }
-
-        await axios.get("/api/auth/check", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setLoading(false);
-      } catch {
-        router.push("/admin/login");
-      }
-    };
-
-    checkAuth();
+    const token = localStorage.getItem("token");
+    if (token) {
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+      setLoading(false);
+    } else {
+      router.push("/admin/login");
+    }
   }, [router]);
 
   if (loading) {

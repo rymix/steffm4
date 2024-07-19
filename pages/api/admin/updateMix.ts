@@ -1,6 +1,7 @@
+// pages/api/admin/updateMix.ts
+
 import { db, initializeDb } from "db";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { authenticateToken } from "pages/admin/middleware/auth";
 
 const handler = async (
   req: NextApiRequest,
@@ -32,7 +33,7 @@ const handler = async (
     if (mixIndex !== -1 && mixIndex !== undefined) {
       // Update existing mix
       db.data.mixes[mixIndex] = {
-        category: category.code, // Use category code only
+        category, // Use category code only
         coverArtDate,
         coverArtLarge,
         coverArtSmall,
@@ -50,7 +51,7 @@ const handler = async (
     } else {
       // Create new mix
       db.data.mixes.push({
-        category: category.code, // Use category code only
+        category, // Use category code only
         coverArtDate,
         coverArtLarge,
         coverArtSmall,
@@ -74,4 +75,4 @@ const handler = async (
   }
 };
 
-export default authenticateToken(handler);
+export default handler;

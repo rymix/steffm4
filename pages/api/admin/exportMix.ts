@@ -1,9 +1,10 @@
+// pages/api/admin/exportMix.ts
+
 import { db, initializeDb } from "db";
 import { Mix } from "db/types";
 import { promises as fs } from "fs";
 import mime from "mime";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { authenticateToken } from "pages/admin/middleware/auth";
 import path from "path";
 
 const generateCueContent = (mix: Mix): string => {
@@ -52,4 +53,4 @@ const handler = async (
   }
 };
 
-export default authenticateToken(handler);
+export default handler;

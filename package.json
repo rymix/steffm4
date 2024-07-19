@@ -59,6 +59,7 @@
     "eslint-plugin-sonarjs": "^0.23.0",
     "eslint-plugin-testing-library": "^6.2.0",
     "eslint-plugin-unicorn": "^50.0.1",
+    "express": "^4.19.2",
     "framer-motion": "^11.2.6",
     "fs-extra": "^11.2.0",
     "globals": "^15.8.0",

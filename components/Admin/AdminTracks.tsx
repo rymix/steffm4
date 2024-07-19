@@ -1,8 +1,9 @@
+// components/Admin/AdminTracks.tsx
+
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-await-in-loop */
-import axios from "axios";
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";
 import {
@@ -15,6 +16,7 @@ import {
 import { Mix, Track } from "db/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import axiosInstance from "utils/axiosInstance";
 
 const AdminTracks = (): JSX.Element => {
   const router = useRouter();
@@ -27,7 +29,7 @@ const AdminTracks = (): JSX.Element => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token && mixcloudKey) {
-      axios
+      axiosInstance
         .get(`/api/mixes`, { headers: { Authorization: `Bearer ${token}` } })
         .then((response) => {
           const mixData = response.data.find(
@@ -70,7 +72,7 @@ const AdminTracks = (): JSX.Element => {
   const handleDelete = async (sectionNumber: number): Promise<void> => {
     if (mix) {
       const token = localStorage.getItem("token");
-      await axios.post(
+      await axiosInstance.post(
         "/api/admin/deleteTrack",
         { mixcloudKey: mix.mixcloudKey, sectionNumber },
         { headers: { Authorization: `Bearer ${token}` } },
@@ -114,7 +116,7 @@ const AdminTracks = (): JSX.Element => {
         category: categoryCode, // Ensure category code is used
       };
       const token = localStorage.getItem("token");
-      await axios.post("/api/admin/updateMix", updatedMix, {
+      await axiosInstance.post("/api/admin/updateMix", updatedMix, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setMix(updatedMix);
@@ -126,7 +128,7 @@ const AdminTracks = (): JSX.Element => {
   const updateTrackCoverArt = async (track: Track): Promise<Track> => {
     const token = localStorage.getItem("token");
     try {
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         "/api/admin/updateTrackCoverArt",
         {
           artistName: track.artistName,

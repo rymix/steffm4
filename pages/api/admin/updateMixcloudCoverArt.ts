@@ -1,7 +1,8 @@
+// pages/api/admin/updateMixcloudCoverArt.ts
+
 import axios from "axios";
 import { db, initializeDb } from "db";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { authenticateToken } from "pages/admin/middleware/auth";
 import { mcKeyFormatter } from "utils/functions";
 
 const handler = async (
@@ -58,4 +59,4 @@ const handler = async (
   }
 };
 
-export default authenticateToken(handler);
+export default handler;

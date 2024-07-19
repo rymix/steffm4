@@ -1,7 +1,7 @@
-import { readFileSync } from "fs";
+import fs from "fs";
 import { createServer } from "https";
 import next from "next";
-import { dirname, join } from "path";
+import path, { dirname } from "path";
 import { fileURLToPath, parse } from "url";
 
 // Get __dirname equivalent
@@ -13,8 +13,8 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const httpsOptions = {
-  key: readFileSync(join(__dirname, "localhost-key.pem")),
-  cert: readFileSync(join(__dirname, "localhost-cert.pem")),
+  key: fs.readFileSync(path.join(__dirname, "certs", "localhost-key.pem")),
+  cert: fs.readFileSync(path.join(__dirname, "certs", "localhost-cert.pem")),
 };
 
 await app.prepare();

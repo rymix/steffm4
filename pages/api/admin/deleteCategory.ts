@@ -1,6 +1,7 @@
+// pages/api/admin/deleteCategory.ts
+
 import { db, initializeDb } from "db";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { authenticateToken } from "pages/admin/middleware/auth";
 
 const handler = async (
   req: NextApiRequest,
@@ -27,4 +28,4 @@ const handler = async (
   }
 };
 
-export default authenticateToken(handler);
+export default handler;

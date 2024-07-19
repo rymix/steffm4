@@ -1,10 +1,11 @@
+// components/Admin/AdminMixes.tsx
+
 /* eslint-disable no-alert */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable unicorn/consistent-function-scoping */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import axios from "axios";
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";
 import {
@@ -18,6 +19,7 @@ import {
 import { Mix, Track } from "db/types";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import axiosInstance from "utils/axiosInstance";
 
 const AdminMixes = (): JSX.Element => {
   const router = useRouter();
@@ -30,7 +32,7 @@ const AdminMixes = (): JSX.Element => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      axios
+      axiosInstance
         .get("/api/mixes", { headers: { Authorization: token } })
         .then((response) => setMixes(response.data))
         .catch(() => router.push("/admin/login"));
@@ -49,7 +51,7 @@ const AdminMixes = (): JSX.Element => {
   const handleDelete = async (): Promise<void> => {
     if (selectedMix) {
       const token = localStorage.getItem("token");
-      await axios.post(
+      await axiosInstance.post(
         "/api/admin/deleteMix",
         { mixcloudKey: selectedMix.mixcloudKey },
         {
@@ -114,7 +116,8 @@ const AdminMixes = (): JSX.Element => {
         category: categoryCode, // Ensure category code is used
         tracks: originalTracks, // Ensure tracks are preserved
       };
-      await axios.post("/api/admin/updateMix", updatedFormData, {
+
+      await axiosInstance.post("/api/admin/updateMix", updatedFormData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (selectedMix) {
@@ -134,7 +137,7 @@ const AdminMixes = (): JSX.Element => {
 
   const handleExport = async (mixcloudKey: string): Promise<void> => {
     const token = localStorage.getItem("token");
-    const response = await axios.post(
+    const response = await axiosInstance.post(
       "/api/admin/exportMix",
       { mixcloudKey },
       {
@@ -154,7 +157,7 @@ const AdminMixes = (): JSX.Element => {
   const handleUpdateCoverArt = async (mixcloudKey: string): Promise<void> => {
     const token = localStorage.getItem("token");
     try {
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         "/api/admin/updateMixcloudCoverArt",
         { mixcloudKey },
         { headers: { Authorization: `Bearer ${token}` } },
@@ -183,7 +186,7 @@ const AdminMixes = (): JSX.Element => {
     const token = localStorage.getItem("token");
     for (const mix of mixes) {
       try {
-        const response = await axios.post(
+        const response = await axiosInstance.post(
           "/api/admin/updateMixcloudCoverArt",
           { mixcloudKey: mix.mixcloudKey },
           { headers: { Authorization: `Bearer ${token}` } },
@@ -215,7 +218,7 @@ const AdminMixes = (): JSX.Element => {
     for (const mix of mixes) {
       for (const track of mix.tracks) {
         try {
-          const response = await axios.post(
+          const response = await axiosInstance.post(
             "/api/admin/updateTrackCoverArt",
             {
               artistName: track.artistName,
@@ -305,7 +308,7 @@ const AdminMixes = (): JSX.Element => {
                   <StyledAdminButton
                     onClick={() =>
                       router.push(
-                        `/admin/AdminTracks?mixcloudKey=${mix.mixcloudKey}`,
+                        `/admin/tracks?mixcloudKey=${mix.mixcloudKey}`,
                       )
                     }
                   >

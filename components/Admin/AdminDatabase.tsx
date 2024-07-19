@@ -1,5 +1,6 @@
+// components/Admin/AdminDatabase.tsx
+
 /* eslint-disable no-alert */
-import axios from "axios";
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";
 import {
@@ -8,10 +9,11 @@ import {
   StyledAdminWrapper,
 } from "components/Admin/StyledAdmin";
 import { ChangeEvent, useState } from "react";
+import axiosInstance from "utils/axiosInstance";
 
 const handleExport = async (): Promise<void> => {
   const token = localStorage.getItem("token");
-  const response = await axios.get("/api/admin/downloadDatabase", {
+  const response = await axiosInstance.get("/api/admin/downloadDatabase", {
     headers: { Authorization: `Bearer ${token}` },
     responseType: "blob",
   });
@@ -57,12 +59,16 @@ const AdminDatabase = (): JSX.Element => {
     formData.append("file", file);
 
     try {
-      const response = await axios.post("/api/admin/uploadDatabase", formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
+      const response = await axiosInstance.post(
+        "/api/admin/uploadDatabase",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
         },
-      });
+      );
       if (response.status === 200) {
         alert("Database successfully replaced");
       } else {

@@ -1,6 +1,8 @@
+// pages/api/admin/updateCategory.ts
+
 import { db, initializeDb } from "db";
+import { authenticate } from "middleware/auth";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { authenticateToken } from "pages/admin/middleware/auth";
 
 const handler = async (
   req: NextApiRequest,
@@ -36,4 +38,4 @@ const handler = async (
   }
 };
 
-export default authenticateToken(handler);
+export default authenticate(handler);

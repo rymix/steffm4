@@ -1,8 +1,9 @@
+// pages/api/admin/updateTrackCoverArt.ts
+
 import axios from "axios";
 import { db, initializeDb } from "db";
 import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { authenticateToken } from "pages/admin/middleware/auth";
 import path from "path";
 
 const saveImageLocally = async (
@@ -129,4 +130,4 @@ const handler = async (
   }
 };
 
-export default authenticateToken(handler);
+export default handler;
