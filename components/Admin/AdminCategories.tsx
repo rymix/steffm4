@@ -1,6 +1,5 @@
 // components/Admin/AdminCategories.tsx
-import axiosInstance from "axiosConfig.mjs";
-import AdminLayout from "components/Admin/AdminLayout";
+import axios from "axios";
 import AdminMenu from "components/Admin/AdminMenu";
 import {
   StyledAdminButton,
@@ -11,8 +10,9 @@ import {
   StyledAdminWrapper,
 } from "components/Admin/StyledAdmin";
 import { Category } from "db/types";
-import { useRouter } from "next/router";
+import { Router, useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import axiosInstance from "utils/axiosInstance";
 
 const AdminCategories = (): JSX.Element => {
   const router = useRouter();
@@ -25,7 +25,16 @@ const AdminCategories = (): JSX.Element => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      axiosInstance
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    } else {
+      Router.push("/admin/login");
+    }
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      axios
         .get("/api/categories", {
           headers: { Authorization: `Bearer ${token}` },
         })
@@ -116,142 +125,140 @@ const AdminCategories = (): JSX.Element => {
   };
 
   return (
-    <AdminLayout>
-      <StyledAdminWrapper>
-        <h1>Categories</h1>
-        <AdminMenu />
-        <StyledAdminHeader>
-          <StyledAdminButton onClick={handleAddNew}>
-            Add New Category
-          </StyledAdminButton>
-        </StyledAdminHeader>
-        <StyledAdminTable>
-          <thead>
-            <tr>
-              <th>Actions</th>
-              <th>Index</th>
-              <th>Code</th>
-              <th>Name</th>
-              <th>Short Name</th>
-              <th>X</th>
-              <th>Y</th>
+    <StyledAdminWrapper>
+      <h1>Categories</h1>
+      <AdminMenu />
+      <StyledAdminHeader>
+        <StyledAdminButton onClick={handleAddNew}>
+          Add New Category
+        </StyledAdminButton>
+      </StyledAdminHeader>
+      <StyledAdminTable>
+        <thead>
+          <tr>
+            <th>Actions</th>
+            <th>Index</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Short Name</th>
+            <th>X</th>
+            <th>Y</th>
+          </tr>
+        </thead>
+        <tbody>
+          {categories.map((category) => (
+            <tr key={category.index}>
+              <td>
+                <StyledAdminButton onClick={() => handleEdit(category)}>
+                  Edit
+                </StyledAdminButton>
+              </td>
+              <td>{category.index}</td>
+              <td>{category.code}</td>
+              <td>{category.name}</td>
+              <td>{category.shortName}</td>
+              <td>{category.x}</td>
+              <td>{category.y}</td>
             </tr>
-          </thead>
-          <tbody>
-            {categories.map((category) => (
-              <tr key={category.index}>
-                <td>
-                  <StyledAdminButton onClick={() => handleEdit(category)}>
-                    Edit
-                  </StyledAdminButton>
-                </td>
-                <td>{category.index}</td>
-                <td>{category.code}</td>
-                <td>{category.name}</td>
-                <td>{category.shortName}</td>
-                <td>{category.x}</td>
-                <td>{category.y}</td>
-              </tr>
-            ))}
-          </tbody>
-        </StyledAdminTable>
+          ))}
+        </tbody>
+      </StyledAdminTable>
 
-        {formData && (
-          <form onSubmit={handleSubmit}>
-            <StyledAdminFormElements>
-              <h3>{selectedCategory ? "Edit Category" : "Add Category"}</h3>
-              <div>
-                <label htmlFor="index">Index</label>
-                <input
-                  id="index"
-                  type="number"
-                  name="index"
-                  value={formData?.index}
-                  onChange={handleChange}
-                  readOnly={!!selectedCategory}
-                />
-              </div>
-              <div>
-                <label htmlFor="code">Code</label>
-                <input
-                  id="code"
-                  type="text"
-                  name="code"
-                  value={formData?.code}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="name">Name</label>
-                <input
-                  id="name"
-                  type="text"
-                  name="name"
-                  value={formData?.name}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="shortName">Short Name</label>
-                <input
-                  id="shortName"
-                  type="text"
-                  name="shortName"
-                  value={formData?.shortName}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="x">X</label>
-                <input
-                  id="x"
-                  type="number"
-                  name="x"
-                  value={formData?.x}
-                  onChange={handleChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="y">Y</label>
-                <input
-                  id="y"
-                  type="number"
-                  name="y"
-                  value={formData?.y}
-                  onChange={handleChange}
-                />
-              </div>
-            </StyledAdminFormElements>
-            <StyledAdminButtonBlock>
-              <StyledAdminButton type="submit">Save</StyledAdminButton>
+      {formData && (
+        <form onSubmit={handleSubmit}>
+          <StyledAdminFormElements>
+            <h3>{selectedCategory ? "Edit Category" : "Add Category"}</h3>
+            <div>
+              <label htmlFor="index">Index</label>
+              <input
+                id="index"
+                type="number"
+                name="index"
+                value={formData?.index}
+                onChange={handleChange}
+                readOnly={!!selectedCategory}
+              />
+            </div>
+            <div>
+              <label htmlFor="code">Code</label>
+              <input
+                id="code"
+                type="text"
+                name="code"
+                value={formData?.code}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="name">Name</label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                value={formData?.name}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="shortName">Short Name</label>
+              <input
+                id="shortName"
+                type="text"
+                name="shortName"
+                value={formData?.shortName}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="x">X</label>
+              <input
+                id="x"
+                type="number"
+                name="x"
+                value={formData?.x}
+                onChange={handleChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="y">Y</label>
+              <input
+                id="y"
+                type="number"
+                name="y"
+                value={formData?.y}
+                onChange={handleChange}
+              />
+            </div>
+          </StyledAdminFormElements>
+          <StyledAdminButtonBlock>
+            <StyledAdminButton type="submit">Save</StyledAdminButton>
+            <StyledAdminButton
+              type="button"
+              onClick={() => {
+                setSelectedCategory(null);
+                setFormData(null);
+              }}
+            >
+              Cancel
+            </StyledAdminButton>
+            {selectedCategory && (
               <StyledAdminButton
                 type="button"
                 onClick={() => {
-                  setSelectedCategory(null);
-                  setFormData(null);
+                  if (
+                    confirm("Are you sure you want to delete this category?")
+                  ) {
+                    handleDelete();
+                  }
                 }}
               >
-                Cancel
+                Delete
               </StyledAdminButton>
-              {selectedCategory && (
-                <StyledAdminButton
-                  type="button"
-                  onClick={() => {
-                    if (
-                      confirm("Are you sure you want to delete this category?")
-                    ) {
-                      handleDelete();
-                    }
-                  }}
-                >
-                  Delete
-                </StyledAdminButton>
-              )}
-            </StyledAdminButtonBlock>
-          </form>
-        )}
-      </StyledAdminWrapper>
-    </AdminLayout>
+            )}
+          </StyledAdminButtonBlock>
+        </form>
+      )}
+    </StyledAdminWrapper>
   );
 };
 
