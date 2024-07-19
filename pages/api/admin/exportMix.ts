@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 // pages/api/admin/exportMix.ts
 
 import { db, initializeDb } from "db";
@@ -7,12 +8,40 @@ import mime from "mime";
 import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";
 
+const formatTime = (startTime: string): string => {
+  const parts = startTime.split(":").map(Number);
+
+  let totalMinutes = 0;
+  let seconds = 0;
+
+  if (parts.length === 2) {
+    // Format mm:ss
+    totalMinutes = parts[0];
+    seconds = parts[1];
+  } else if (parts.length === 3) {
+    // Format h:mm:ss
+    totalMinutes = parts[0] * 60 + parts[1];
+    seconds = parts[2];
+  } else {
+    throw new Error("Invalid time format");
+  }
+
+  const formattedMinutes =
+    totalMinutes < 100
+      ? totalMinutes.toString().padStart(2, "0")
+      : totalMinutes.toString();
+  const formattedSeconds = seconds.toString().padStart(2, "0");
+
+  return `${formattedMinutes}:${formattedSeconds}:00`;
+};
+
 const generateCueContent = (mix: Mix): string => {
   const header = `PERFORMER "Stef.FM"\nTITLE "${mix.name}"\nFILE "${mix.fileName}" MP3\n`;
+
   const tracks = mix.tracks
     .map((track, index) => {
-      const trackNumber = index.toString().padStart(2, "0");
-      const indexTime = `${track.startTime.replace(":", ":")}:00`;
+      const trackNumber = (index + 1).toString().padStart(2, "0");
+      const indexTime = formatTime(track.startTime);
       return `TRACK ${trackNumber} AUDIO\nPERFORMER "${track.artistName}"\nTITLE "${track.trackName}"\nINDEX 01 ${indexTime}\n`;
     })
     .join("");
