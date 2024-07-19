@@ -2,13 +2,18 @@ import jwt from "jsonwebtoken";
 
 const secretKey = process.env.JWT_SECRET || "your-secret-key";
 
-export const generateToken = (payload: string): string => {
+interface TokenPayload {
+  id: number;
+  username: string;
+}
+
+export const generateToken = (payload: TokenPayload): string => {
   return jwt.sign(payload, secretKey, { expiresIn: "1h" });
 };
 
-export const verifyToken = (token: string): string | jwt.JwtPayload | null => {
+export const verifyToken = (token: string): TokenPayload | null => {
   try {
-    return jwt.verify(token, secretKey);
+    return jwt.verify(token, secretKey) as TokenPayload;
   } catch {
     return null;
   }
