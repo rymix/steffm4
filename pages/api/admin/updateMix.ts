@@ -33,7 +33,7 @@ const handler = async (
     if (mixIndex !== -1 && mixIndex !== undefined) {
       // Update existing mix
       db.data.mixes[mixIndex] = {
-        category: category.code, // Use category code only
+        category, // Use category code only
         coverArtDate,
         coverArtLarge,
         coverArtSmall,
@@ -51,7 +51,7 @@ const handler = async (
     } else {
       // Create new mix
       db.data.mixes.push({
-        category: category.code, // Use category code only
+        category, // Use category code only
         coverArtDate,
         coverArtLarge,
         coverArtSmall,

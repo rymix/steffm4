@@ -9,7 +9,8 @@ const handler = async (req, res) => {
     const user = {
       id: 1,
       username: "admin",
-      passwordHash: bcrypt.hashSync("password", 10),
+      passwordHash:
+        "$2a$10$yYbBJinvbyiGUToZkfSmh.ePcVQmmDyowyd.pOxl7xFioIx5zfNcu",
     };
 
     if (user && bcrypt.compareSync(password, user.passwordHash)) {

@@ -2,35 +2,21 @@
 
 import axios from "axios";
 import { AdminLayoutProps } from "components/Admin/types";
-import { useRouter } from "next/router";
+import { Router } from "next/router";
 import { useEffect, useState } from "react";
 
 const AdminLayout: React.FC<AdminLayoutProps> = ({ children }): JSX.Element => {
-  const router = useRouter();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const checkAuth = async (): Promise<void> => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          router.push("/admin/login");
-          return;
-        }
-
-        await axios.get("/api/auth/check", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setLoading(false);
-      } catch {
-        router.push("/admin/login");
-      }
-    };
-
-    checkAuth();
-  }, [router]);
+    const token = localStorage.getItem("token");
+    if (token) {
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+      setLoading(false);
+    } else {
+      Router.push("/admin/login");
+    }
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>; // or a loading spinner
