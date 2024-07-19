@@ -1,0 +1,103 @@
+PERFORMER "Stef.FM"
+TITLE "My Pair of Shoes - Volume 718 - Sessions Part 1"
+FILE "My_Pair_Of_Shoes_Vol._718_Sessions_pt.1_Disco_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Joyce Sims"
+TITLE "Come Into My Life"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Archie Bell & The Drells"
+TITLE "Strategy"
+INDEX 01 04:10:00
+TRACK 03 AUDIO
+PERFORMER "Barry White"
+TITLE "It's Ecstasy When You Lay Down Next To Me"
+INDEX 01 10:10:00
+TRACK 04 AUDIO
+PERFORMER "Jones Girls"
+TITLE "You Gonna Make Me Love Somebody Else"
+INDEX 01 14:22:00
+TRACK 05 AUDIO
+PERFORMER "Gladys Knight & The Pips"
+TITLE "Taste Of Bitter Love"
+INDEX 01 18:39:00
+TRACK 06 AUDIO
+PERFORMER "Heaven & Earth"
+TITLE "I Really Love You"
+INDEX 01 23:00:00
+TRACK 07 AUDIO
+PERFORMER "Sylvia Stripin"
+TITLE "Give Me Your Love"
+INDEX 01 27:38:00
+TRACK 08 AUDIO
+PERFORMER "Instant Funk"
+TITLE "I Got My Mind Made Up"
+INDEX 01 32:04:00
+TRACK 09 AUDIO
+PERFORMER "Trussel"
+TITLE "Love Injection"
+INDEX 01 35:53:00
+TRACK 10 AUDIO
+PERFORMER "Stephanie Mills"
+TITLE "Put Your Body In It"
+INDEX 01 42:22:00
+TRACK 11 AUDIO
+PERFORMER "Giorgio Moroder"
+TITLE "I Wanna Rock You"
+INDEX 01 47:00:00
+TRACK 12 AUDIO
+PERFORMER "Brothers Johnson"
+TITLE "Stomp"
+INDEX 01 52:00:00
+TRACK 13 AUDIO
+PERFORMER "Booker T."
+TITLE "Don't Stop Your Love"
+INDEX 01 57:30:00
+TRACK 14 AUDIO
+PERFORMER "Ripple"
+TITLE "The Beat Goes On"
+INDEX 01 63:18:00
+TRACK 15 AUDIO
+PERFORMER "Juggy Murray Jones"
+TITLE "Inside America"
+INDEX 01 68:15:00
+TRACK 16 AUDIO
+PERFORMER "El Coco"
+TITLE "Cocomotion"
+INDEX 01 69:25:00
+TRACK 17 AUDIO
+PERFORMER "Lenny Williams"
+TITLE "Choosing You"
+INDEX 01 73:46:00
+TRACK 18 AUDIO
+PERFORMER "Taana Gardner"
+TITLE "When You Touch Me"
+INDEX 01 77:07:00
+TRACK 19 AUDIO
+PERFORMER "Diana Ross"
+TITLE "Love Hangover"
+INDEX 01 82:50:00
+TRACK 20 AUDIO
+PERFORMER "Chaka Khan"
+TITLE "I Know You, I Live You"
+INDEX 01 86:57:00
+TRACK 21 AUDIO
+PERFORMER "Loleatta Holloway"
+TITLE "Hit & Run"
+INDEX 01 90:24:00
+TRACK 22 AUDIO
+PERFORMER "Lace"
+TITLE "Can't Play Around"
+INDEX 01 94:16:00
+TRACK 23 AUDIO
+PERFORMER "Serious Intention"
+TITLE "You Don't Know"
+INDEX 01 99:00:00
+TRACK 24 AUDIO
+PERFORMER "MFSB"
+TITLE "Love Is The Message"
+INDEX 01 102:59:00
+TRACK 25 AUDIO
+PERFORMER "Karen Young"
+TITLE "Hot Shot"
+INDEX 01 108:38:00
