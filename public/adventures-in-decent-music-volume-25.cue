@@ -1,0 +1,79 @@
+PERFORMER "Stef.FM"
+TITLE "Adventures in Decent Music - Nu-Disco - Volume 25"
+FILE "Adventures_in_Decent_Music_Vol._27_Nu-Disco_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Carly Simon"
+TITLE "Why"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Aurra"
+TITLE "Like I Like It"
+INDEX 01 05:47:00
+TRACK 03 AUDIO
+PERFORMER "Tensnake"
+TITLE "Need Your Lovin'"
+INDEX 01 11:22:00
+TRACK 04 AUDIO
+PERFORMER "Calvin Flame"
+TITLE "Natural"
+INDEX 01 17:15:00
+TRACK 05 AUDIO
+PERFORMER "Tornado Wallace"
+TITLE "Swimmin'"
+INDEX 01 23:54:00
+TRACK 06 AUDIO
+PERFORMER "Chancey The Glow"
+TITLE "Think Other (Instrumental)"
+INDEX 01 30:22:00
+TRACK 07 AUDIO
+PERFORMER "Patrice Rushen"
+TITLE "Forget Me Nots"
+INDEX 01 36:50:00
+TRACK 08 AUDIO
+PERFORMER "Lovebirds"
+TITLE "Out Into The Night"
+INDEX 01 45:05:00
+TRACK 09 AUDIO
+PERFORMER "The Phenominal Handclap Band"
+TITLE "Judge Not"
+INDEX 01 52:28:00
+TRACK 10 AUDIO
+PERFORMER "Positive Force"
+TITLE "We Got the Funk (12'' Mix)"
+INDEX 01 59:10:00
+TRACK 11 AUDIO
+PERFORMER "MyPairOfShoes Dub"
+TITLE "If You Really Want It (Dub Mix)"
+INDEX 01 66:50:00
+TRACK 12 AUDIO
+PERFORMER "Unknown"
+TITLE "Unknown"
+INDEX 01 74:28:00
+TRACK 13 AUDIO
+PERFORMER "Aloe Blacc"
+TITLE "I Need A Dollar"
+INDEX 01 79:20:00
+TRACK 14 AUDIO
+PERFORMER "Jake Island"
+TITLE "What If You Wanted More? Feat. Joanna Christie"
+INDEX 01 86:39:00
+TRACK 15 AUDIO
+PERFORMER "Unknown"
+TITLE "Unknown"
+INDEX 01 93:04:00
+TRACK 16 AUDIO
+PERFORMER "Gramatik"
+TITLE "The Prophet"
+INDEX 01 98:50:00
+TRACK 17 AUDIO
+PERFORMER "Brick"
+TITLE "Dazz (Disco Mix)"
+INDEX 01 106:15:00
+TRACK 18 AUDIO
+PERFORMER "Unknown"
+TITLE "Unknown"
+INDEX 01 112:00:00
+TRACK 19 AUDIO
+PERFORMER "Komiko"
+TITLE "Feel Alright"
+INDEX 01 116:35:00
