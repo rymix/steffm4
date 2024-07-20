@@ -19,6 +19,7 @@ import type { MixRowProps } from "components/MixList/types";
 import Share from "components/Share";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useState } from "react";
+import { mcKeyFormatter } from "utils/functions";
 
 export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
   const {
@@ -34,26 +35,27 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
   };
 
   const handleClickPlay = (newMcKey: string): void => {
-    if (mcKey.includes(mix.mixcloudKey) && playing) {
+    if (mcKeyFormatter(mcKey) === mcKeyFormatter(mix.mixcloudKey) && playing) {
       handlePause();
-    } else if (mcKey.includes(mix.mixcloudKey)) {
+    } else if (mcKeyFormatter(mcKey) === mcKeyFormatter(mix.mixcloudKey)) {
       handlePlay();
     } else {
       handleLoad(newMcKey);
     }
   };
 
+
   const listenedStatus = ():
     | "active"
     | "listened"
     | "unlistened"
     | "partial" => {
-    if (mcKey.includes(mix.mixcloudKey)) {
+    if (mcKeyFormatter(mcKey) === mcKeyFormatter(mix.mixcloudKey)) {
       return "active";
     }
 
     const progressEntry = progress.find((p) =>
-      p.mcKey.includes(mix.mixcloudKey),
+      mcKeyFormatter(p.mcKey) === mcKeyFormatter(mix.mixcloudKey),
     );
 
     if (!progressEntry) {
@@ -67,7 +69,7 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
     <>
       <StyledMixRow $listenedStatus={listenedStatus()}>
         <StyledMixPlay onClick={() => handleClickPlay(mix.mixcloudKey)}>
-          {mcKey.includes(mix.mixcloudKey) && playing ? (
+          {mcKeyFormatter(mcKey) === mcKeyFormatter(mix.mixcloudKey) && playing ? (
             <PauseIcon />
           ) : (
             <PlayArrowIcon />
