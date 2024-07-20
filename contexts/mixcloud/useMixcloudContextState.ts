@@ -177,18 +177,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Screen */
   useEffect(() => {
-    const mixMessage = [
-      mixDetails?.name,
-      mixDetails?.notes,
-      mixDetails?.releaseDate,
-      mixDetails?.duration
-        ? convertTimeToHumanReadable(mixDetails.duration, "!")
-        : undefined,
-    ]
-      .filter(Boolean)
-      .join(" - ");
-    setHoldingMessage(mixMessage);
-  }, [mixDetails?.name]);
+    if (playing) {
+      const mixMessage = [
+        mixDetails?.name,
+        mixDetails?.notes,
+        mixDetails?.releaseDate,
+        mixDetails?.duration
+          ? convertTimeToHumanReadable(mixDetails.duration, "!")
+          : undefined,
+      ]
+        .filter(Boolean)
+        .join(" - ");
+      setHoldingMessage(mixMessage);
+    }
+  }, [mixDetails?.name, playing]);
 
   useEffect(() => {
     const trackMessage = [
