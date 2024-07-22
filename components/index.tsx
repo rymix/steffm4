@@ -9,8 +9,8 @@ import JupiterFrontPanel from "components/Jupiter/Panel/FrontPanel";
 import JupiterProgressLeds from "components/Jupiter/ProgressLeds";
 import JupiterScreen from "components/Jupiter/Screen";
 import JupiterSlider from "components/Jupiter/Slider";
-import JupiterTable from "components/Jupiter/Table";
 import JupiterTitle from "components/Jupiter/Title";
+import JupiterWrapper from "components/Jupiter/Wrapper";
 import Mixcloud from "components/Mixcloud";
 import MixInformation from "components/MixInformation";
 import MixList from "components/MixList";
@@ -34,7 +34,7 @@ const getCategoryIndex = (
   const category = categories.find(
     (cat: Category) => cat.code === selectedCategory,
   );
-  return category ? category.index : 1; // Default to 1 if not found
+  return category ? category.index : 1;
 };
 
 const Jupiter = (): JSX.Element => {
@@ -167,6 +167,7 @@ const Jupiter = (): JSX.Element => {
 
   return (
     <>
+      {/* <JupiterTable /> */}
       <Overlay />
       <Modal />
       {mcKey && (
@@ -174,7 +175,7 @@ const Jupiter = (): JSX.Element => {
           <Mixcloud defaultMcKey={mcKey} />
         </>
       )}
-      <JupiterTable>
+      <JupiterWrapper>
         <JupiterCase>
           <JupiterPanel padding="0" background="rear">
             <JupiterBackPanel />
@@ -289,7 +290,7 @@ const Jupiter = (): JSX.Element => {
             <JupiterFrontPanel />
           </JupiterPanel>
         </JupiterCase>
-      </JupiterTable>
+      </JupiterWrapper>
     </>
   );
 };
