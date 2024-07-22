@@ -7,7 +7,12 @@ import { join } from "path";
 
 const file = join(process.cwd(), "db/mixes.json");
 const adapter = new JSONFile<Database>(file);
-const defaultData: Database = { categories: [], mixes: [] };
+const defaultData: Database = {
+  backgroundCategories: [],
+  backgrounds: [],
+  categories: [],
+  mixes: [],
+};
 const db = new Low<Database>(adapter, defaultData);
 
 async function initializeDb(): Promise<void> {
