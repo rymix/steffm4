@@ -26,6 +26,8 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
+import Background from "./Background";
+import BurgerMenu from "./BurgerMenu";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -168,6 +170,8 @@ const Jupiter = (): JSX.Element => {
   return (
     <>
       {/* <JupiterTable /> */}
+      <Background />
+      <BurgerMenu />
       <Overlay />
       <Modal />
       {mcKey && (

@@ -1,5 +1,7 @@
+import { StyledBackground } from "components/Background/StyledBackground";
+
 const Background: React.FC = () => {
-  return <p>farts</p>;
+  return <StyledBackground />;
 };
 
 export default Background;
