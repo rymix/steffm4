@@ -2,15 +2,18 @@
   "backgroundCategories": [
     {
       "code": "win31",
-      "name": "Windows 3.1"
+      "name": "Windows 3.1",
+      "order": 1
     },
     {
       "code": "win95",
-      "name": "Windows 95"
+      "name": "Windows 95",
+      "order": 2
     },
     {
       "code": "winxp",
-      "name": "Windows XP"
+      "name": "Windows XP",
+      "order": 3
     }
   ],
   "backgrounds": [

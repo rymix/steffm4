@@ -39,15 +39,16 @@ export type Mix = {
 };
 
 export type BackgroundCategory = {
-  backgroundCategory: Category["code"];
-
   code: string;
   name: string;
+  order: number;
 };
 
 export type Background = {
-  code: string;
+  backgroundCategory: Category["code"];
   name: string;
+  fileName: string;
+  tileType: string;
 };
 
 export type Database = {
