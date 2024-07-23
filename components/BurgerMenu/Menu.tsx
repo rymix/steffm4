@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import About from "components/About";
+import BackgroundSelect from "components/BackgroundSelect";
 import {
   StyledHeading,
   StyledMenu,
@@ -18,7 +18,7 @@ const Menu: React.FC = () => {
     event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
   ): void => {
     event.preventDefault();
-    openModal(<About />, "About Stef.FM");
+    openModal(<BackgroundSelect />);
     setTimeout(() => setMenuOpen(false), 500);
   };
 
