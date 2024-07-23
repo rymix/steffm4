@@ -25,7 +25,7 @@ export const MixList: React.FC = () => {
   const [showFilters, setShowFilters] = useState<boolean>(false);
 
   const handleFilterCategory = (category: string | undefined): void => {
-    if (filterCategory === category) {
+    if (filterCategory === category || category === "all") {
       setFilterCategory(undefined);
       return;
     }
@@ -34,10 +34,6 @@ export const MixList: React.FC = () => {
   };
 
   const handleToggleFilters = (): void => {
-    if (showFilters) {
-      setFilterCategory(undefined);
-    }
-
     setShowFilters(!showFilters);
   };
 
@@ -112,6 +108,12 @@ export const MixList: React.FC = () => {
           </StyledFilterToggle>
           {showFilters && (
             <StyledMixListCategories>
+              <StyledMixListCategory
+                onClick={() => handleFilterCategory("all")}
+                $on={filterCategory === "all" || !filterCategory}
+              >
+                All Mixes
+              </StyledMixListCategory>
               {categories?.map(
                 (category: Category) =>
                   category.code !== "all" && (

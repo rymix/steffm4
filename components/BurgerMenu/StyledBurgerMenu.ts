@@ -50,7 +50,7 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
 `;
 
 export const StyledMenu = styled.nav<StyledMenuProps>`
-  background-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;

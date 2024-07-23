@@ -1,19 +1,24 @@
 {
   "backgroundCategories": [
     {
+      "code": "table",
+      "name": "Tabletop",
+      "order": 1
+    },
+    {
       "code": "3.1",
       "name": "Windows 3.1",
-      "order": 1
+      "order": 2
     },
     {
       "code": "95",
       "name": "Windows 95",
-      "order": 2
+      "order": 3
     },
     {
       "code": "xp",
       "name": "Windows XP",
-      "order": 3
+      "order": 4
     }
   ],
   "backgrounds": [
@@ -291,6 +296,14 @@
     },
     {
       "backgroundCategory": "xp",
+      "name": "Bliss",
+      "fileName": "bliss.png",
+      "tileType": "stretch",
+      "width": 800,
+      "height": 600
+    },
+    {
+      "backgroundCategory": "xp",
       "name": "Aquarium",
       "fileName": "aquarium.jpg",
       "tileType": "stretch",
@@ -429,14 +442,6 @@
       "backgroundCategory": "xp",
       "name": "Wind",
       "fileName": "wind.jpg",
-      "tileType": "stretch",
-      "width": 800,
-      "height": 600
-    },
-    {
-      "backgroundCategory": "xp",
-      "name": "Bliss",
-      "fileName": "bliss.png",
       "tileType": "stretch",
       "width": 800,
       "height": 600

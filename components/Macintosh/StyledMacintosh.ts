@@ -5,7 +5,7 @@ export const StyledMacintosh = styled.div`
   display: block;
   width: 340px;
   height: 475px;
-  margin: 125px auto;
+  margin: 40px auto;
   position: relative;
   box-shadow: 0 80px 60px -60px rgba(0, 0, 0, 0.4);
 `;

@@ -3,7 +3,11 @@
 import FilterAlt from "@mui/icons-material/FilterAlt";
 import FilterAltOff from "@mui/icons-material/FilterAltOff";
 import { CircularProgress } from "@mui/material";
-import { StyledBackgroundSelect } from "components/BackgroundSelect/StyledBackgroundSelect";
+import {
+  StyledBackgroundButton,
+  StyledBackgroundButtons,
+  StyledBackgroundSelect,
+} from "components/BackgroundSelect/StyledBackgroundSelect";
 import Macintosh from "components/Macintosh";
 import {
   StyledFilterToggle,
@@ -32,7 +36,10 @@ export const BackgroundSelect: React.FC = () => {
   const handleFilterBackgroundCategory = (
     localBackground: string | undefined,
   ): void => {
-    if (filterBackgroundCategory === localBackground) {
+    if (
+      filterBackgroundCategory === localBackground ||
+      localBackground === "all"
+    ) {
       setFilterBackgroundCategory(undefined);
       return;
     }
@@ -83,6 +90,16 @@ export const BackgroundSelect: React.FC = () => {
       );
 
       setBackgrounds(backgroundsData);
+
+      if (backgroundsData.length > 0) {
+        if (
+          !backgroundsData.some((bg) => bg.fileName === background?.fileName)
+        ) {
+          setBackground(backgroundsData[0]);
+        }
+      } else {
+        setBackground(undefined);
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -130,6 +147,16 @@ export const BackgroundSelect: React.FC = () => {
           </StyledFilterToggle>
           {showFilters && backgroundCategories && (
             <StyledMixListCategories>
+              <StyledMixListCategory
+                onClick={() => handleFilterBackgroundCategory("all")}
+                $on={
+                  filterBackgroundCategory === "all" ||
+                  !filterBackgroundCategory
+                }
+              >
+                All Backgrounds
+              </StyledMixListCategory>
+
               {backgroundCategories?.map(
                 (backgroundCategory: BackgroundCategory) =>
                   backgroundCategory.code !== "all" && (
@@ -148,12 +175,17 @@ export const BackgroundSelect: React.FC = () => {
           )}
         </>
       )}
-      <button type="button" onClick={handlePreviousBackground}>
-        Previous
-      </button>
-      <button type="button" onClick={handleNextBackground}>
-        Next
-      </button>
+      <StyledBackgroundButtons>
+        <StyledBackgroundButton
+          type="button"
+          onClick={handlePreviousBackground}
+        >
+          Previous
+        </StyledBackgroundButton>
+        <StyledBackgroundButton type="button" onClick={handleNextBackground}>
+          Next
+        </StyledBackgroundButton>
+      </StyledBackgroundButtons>
       <Macintosh background={background || undefined} />
     </StyledBackgroundSelect>
   );
