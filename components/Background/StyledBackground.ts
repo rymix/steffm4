@@ -1,11 +1,30 @@
+// components/Background/StyledBackground.ts
+
 import styled from "styled-components";
 
-export const StyledBackground = styled.div`
-  background: orange;
+import { StyledBackgroundProps } from "./types";
+
+export const StyledBackground = styled.div<StyledBackgroundProps>`
   height: 100vh;
-  position: absolute;
   width: 100%;
+  position: absolute;
   z-index: -1;
+
+  background-color: ${(props) =>
+    props.$background ? "transparent" : "orange"};
+  background-image: ${(props) =>
+    props.$background
+      ? `url(/windows/${props.$background.backgroundCategory}/${props.$background.fileName})`
+      : "none"};
+  background-size: ${(props) =>
+    props.$background?.tileType === "stretch"
+      ? "cover"
+      : props.$background?.tileType === "tile"
+        ? `${props.$background.width}px ${props.$background.height}px`
+        : "cover"};
+  background-repeat: ${(props) =>
+    props.$background?.tileType === "tile" ? "repeat" : "no-repeat"};
+  background-position: center;
 
   &::before {
     content: "";
