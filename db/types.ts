@@ -49,6 +49,12 @@ export type Background = {
   name: string;
   fileName: string;
   tileType: string;
+  width: number;
+  height: number;
+};
+
+export type BackgroundExtended = Background & {
+  backgroundCategoryName: string;
 };
 
 export type Database = {

@@ -1,3 +1,4 @@
+import { BackgroundCategory } from "db/types";
 import { stripUnit } from "polished";
 
 export const convertTimeToSeconds = (timeString: string): number => {
@@ -127,4 +128,12 @@ export const isCategoryObject = (
 
 export const selectCoverArt = (local: string, remote: string): string => {
   return local || remote;
+};
+
+export const getBackgroundCategoryName = (
+  code: string,
+  categories: BackgroundCategory[],
+): string => {
+  const category = categories.find((cat) => cat.code === code);
+  return category ? category.name : "";
 };

@@ -17,7 +17,7 @@ function usePersistedState<T>(
     if (isBrowser) {
       localStorage.setItem(key, JSON.stringify(state));
     }
-  }, [key, state, isBrowser]);
+  }, [key, state]);
 
   return [state, setState];
 }

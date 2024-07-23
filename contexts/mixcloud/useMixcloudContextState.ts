@@ -4,12 +4,13 @@ import type {
   MixcloudContextState,
   Progress,
 } from "contexts/mixcloud/types";
-import type { Category, Mix, Track } from "db/types";
+import type { BackgroundExtended, Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import ReactGA from "react-ga4";
 import themes from "styles/themes";
 import {
+  DEFAULT_BACKGROUND,
   DEFAULT_MESSAGE,
   DEFAULT_VOLUME,
   DISPLAY_LENGTH,
@@ -101,6 +102,11 @@ const useMixcloudContextState = (): MixcloudContextState => {
     0,
   );
   const [progress, setProgress] = usePersistedState<Progress[]>("progress", []);
+
+  /* Background */
+  const [background, setBackground] = usePersistedState<
+    BackgroundExtended | undefined
+  >("background", DEFAULT_BACKGROUND);
 
   /* FUNCTIONS -------------------- */
 
@@ -760,6 +766,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       temporaryMessage,
     },
     session: {
+      background,
       burgerMenuRef,
       displayLength,
       handleCloseModal,
@@ -772,6 +779,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       openModal,
       scale,
       secondsRemaining,
+      setBackground,
       setDisplayLength,
       setIsMobile,
       setMenuOpen,

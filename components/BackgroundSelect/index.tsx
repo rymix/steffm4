@@ -3,10 +3,7 @@
 import FilterAlt from "@mui/icons-material/FilterAlt";
 import FilterAltOff from "@mui/icons-material/FilterAltOff";
 import { CircularProgress } from "@mui/material";
-import {
-  StyledBackgroundSelect,
-  StyledPreviewBackground,
-} from "components/BackgroundSelect/StyledBackgroundSelect";
+import { StyledBackgroundSelect } from "components/BackgroundSelect/StyledBackgroundSelect";
 import Macintosh from "components/Macintosh";
 import {
   StyledFilterToggle,
@@ -14,14 +11,13 @@ import {
   StyledMixListCategory,
 } from "components/MixList/StyledMixList";
 import { useMixcloud } from "contexts/mixcloud";
-import type { Background, BackgroundCategory } from "db/types";
+import type { BackgroundCategory, BackgroundExtended } from "db/types";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 
 export const BackgroundSelect: React.FC = () => {
   const {
-    favourites: { favouritesList },
-    filters: { categories },
+    session: { background, setBackground },
   } = useMixcloud();
   const [filterBackgroundCategory, setFilterBackgroundCategory] = useState<
     string | undefined
@@ -30,19 +26,18 @@ export const BackgroundSelect: React.FC = () => {
     BackgroundCategory[]
   >([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [background, setBackground] = useState<Background>();
-  const [backgrounds, setBackgrounds] = useState<Background[]>([]);
+  const [backgrounds, setBackgrounds] = useState<BackgroundExtended[]>([]);
   const [showFilters, setShowFilters] = useState<boolean>(false);
 
   const handleFilterBackgroundCategory = (
-    background: string | undefined,
+    localBackground: string | undefined,
   ): void => {
-    if (filterBackgroundCategory === background) {
+    if (filterBackgroundCategory === localBackground) {
       setFilterBackgroundCategory(undefined);
       return;
     }
 
-    setFilterBackgroundCategory(background);
+    setFilterBackgroundCategory(localBackground);
   };
 
   const handleToggleFilters = (): void => {
@@ -71,11 +66,13 @@ export const BackgroundSelect: React.FC = () => {
       setIsLoading(true);
       const backgroundsResponse = await fetch(`/api/background/backgrounds`);
       if (!backgroundsResponse.ok) throw new Error("Data fetch failed");
-      let backgroundsData: Background[] = await backgroundsResponse.json();
+      let backgroundsData: BackgroundExtended[] =
+        await backgroundsResponse.json();
 
       if (filterBackgroundCategory) {
         backgroundsData = backgroundsData.filter(
-          (background) => background.fileName === filterBackgroundCategory,
+          (localBackground) =>
+            localBackground.backgroundCategory === filterBackgroundCategory,
         );
       }
 
@@ -93,18 +90,35 @@ export const BackgroundSelect: React.FC = () => {
     }
   };
 
-  const handleBackgroundPreviewLoad = (localBackground: Background): void => {
-    setBackground(localBackground);
+  const handlePreviousBackground = (): void => {
+    if (backgrounds.length === 0) return;
+
+    const currentIndex = backgrounds.findIndex(
+      (bg) => bg.fileName === background?.fileName,
+    );
+    const newIndex =
+      currentIndex === 0 ? backgrounds.length - 1 : currentIndex - 1;
+    setBackground(backgrounds[newIndex]);
   };
 
-  useEffect(() => {
-    fetchBackgrounds();
-  }, [filterBackgroundCategory]);
+  const handleNextBackground = (): void => {
+    if (backgrounds.length === 0) return;
+
+    const currentIndex = backgrounds.findIndex(
+      (bg) => bg.fileName === background?.fileName,
+    );
+    const newIndex = (currentIndex + 1) % backgrounds.length;
+    setBackground(backgrounds[newIndex]);
+  };
 
   useEffect(() => {
     fetchBackgroundCategories();
     fetchBackgrounds();
   }, []);
+
+  useEffect(() => {
+    fetchBackgrounds();
+  }, [filterBackgroundCategory]);
 
   return (
     <StyledBackgroundSelect>
@@ -134,30 +148,13 @@ export const BackgroundSelect: React.FC = () => {
           )}
         </>
       )}
-      <Macintosh>
-        <StyledPreviewBackground
-          $backgroundImage={`windows/${background?.backgroundCategory}/${background?.fileName}`}
-          $tileType={background?.tileType}
-        />
-      </Macintosh>
-      <ul>
-        {!isLoading &&
-          (backgrounds?.length ? (
-            backgrounds.map((background: Background) => {
-              return (
-                <li
-                  onClick={() => {
-                    handleBackgroundPreviewLoad(background);
-                  }}
-                >
-                  {background.name}
-                </li>
-              );
-            })
-          ) : (
-            <div>No backgrounds found in this category</div>
-          ))}
-      </ul>
+      <button type="button" onClick={handlePreviousBackground}>
+        Previous
+      </button>
+      <button type="button" onClick={handleNextBackground}>
+        Next
+      </button>
+      <Macintosh background={background || undefined} />
     </StyledBackgroundSelect>
   );
 };

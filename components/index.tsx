@@ -1,4 +1,6 @@
 import About from "components/About";
+import Background from "components/Background";
+import BurgerMenu from "components/BurgerMenu";
 import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
 import JupiterHeader from "components/Jupiter/Header";
@@ -26,8 +28,6 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-import Background from "./Background";
-import BurgerMenu from "./BurgerMenu";
 
 const getCategoryIndex = (
   categories: Category[],

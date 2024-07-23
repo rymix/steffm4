@@ -1,6 +1,13 @@
+// pages/api/backgrounds.ts
+
 import { db, initializeDb } from "db";
-import type { Background } from "db/types";
+import type {
+  Background,
+  BackgroundCategory,
+  BackgroundExtended,
+} from "db/types";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { getBackgroundCategoryName } from "utils/functions";
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,6 +18,8 @@ export default async function handler(
   const { backgroundCategory, name, tileType } = req.query;
 
   let filteredBackgrounds: Background[] = db.data?.backgrounds || [];
+  const backgroundCategories: BackgroundCategory[] =
+    db.data?.backgroundCategories || [];
 
   if (typeof backgroundCategory === "string") {
     filteredBackgrounds = filteredBackgrounds.filter(
@@ -32,9 +41,17 @@ export default async function handler(
     );
   }
 
-  filteredBackgrounds = filteredBackgrounds.sort((a, b) =>
-    a.name.localeCompare(b.name),
+  const extendedBackgrounds: BackgroundExtended[] = filteredBackgrounds.map(
+    (background) => ({
+      ...background,
+      backgroundCategoryName: getBackgroundCategoryName(
+        background.backgroundCategory,
+        backgroundCategories,
+      ),
+    }),
   );
 
-  res.status(200).json(filteredBackgrounds);
+  extendedBackgrounds.sort((a, b) => a.name.localeCompare(b.name));
+
+  res.status(200).json(extendedBackgrounds);
 }

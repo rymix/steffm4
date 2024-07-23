@@ -11,17 +11,25 @@ import {
   StyledOpening,
   StyledOpeningInner,
   StyledScreen,
+  StyledScreenBanner,
   StyledScreenCutout,
+  StyledScreenShadow,
 } from "components/Macintosh/StyledMacintosh";
 import { MacintoshProps } from "components/Macintosh/types";
 
-export const Macintosh: React.FC<MacintoshProps> = ({ children }) => {
+export const Macintosh: React.FC<MacintoshProps> = ({ background }) => {
   return (
-    <StyledMacintosh aria-label="1984 Macintosh illustration">
+    <StyledMacintosh>
       <StyledMonitor>
         <StyledMonitorInner>
           <StyledScreenCutout>
-            <StyledScreen>{children}</StyledScreen>
+            <StyledScreen $background={background}>
+              <StyledScreenBanner>
+                {background?.name || ""}{" "}
+                {background?.backgroundCategoryName || ""}
+              </StyledScreenBanner>
+              <StyledScreenShadow />
+            </StyledScreen>
           </StyledScreenCutout>
           <StyledLogo>
             <StyledLogoText>🏳️‍🌈</StyledLogoText>
