@@ -1,3 +1,5 @@
+import { BackgroundExtended } from "db/types";
+
 export const DEBUG = false;
 export const DEFAULT_LOCALE = "en-GB";
 export const DEFAULT_MESSAGE = "Stef FM - Funky House Coming In Your Ears";
@@ -19,3 +21,18 @@ export const NOISE_BACKGROUND_HIGH = `
 export const SCREEN_SPEED_HOLDING = 200;
 export const SCREEN_SPEED_TEMPORARY = 120;
 export const GOOGLE_TRACKING_ID = "G-P82N7RRW45";
+export const DEFAULT_BACKGROUND: BackgroundExtended = {
+  backgroundCategory: "table",
+  name: "Wood 6",
+  fileName: "wood-pattern6.png",
+  tileType: "tile",
+  width: 317,
+  height: 400,
+  backgroundCategoryObject: {
+    code: "table",
+    name: "Tabletop",
+    folder: "wallpapers/table",
+    type: "Macintosh",
+    order: 1,
+  },
+};

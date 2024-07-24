@@ -8,14 +8,6 @@ export const StyledJupiterCase = styled.div<StyledJupiterCaseProps>`
   width: 1100px;
   z-index: 2;
 
-  ${(props) =>
-    props.$scale &&
-    props.$scale !== 1 &&
-    `
-        transform: scale(${props.$scale});
-
-    `}
-
   @media screen and (orientation: landscape) and (max-width: 1300px) {
     max-width: 900px;
     min-width: 900px;

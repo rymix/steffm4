@@ -1,4 +1,4 @@
-import type { Category, Mix, Track } from "db/types";
+import type { BackgroundExtended, Category, Mix, Track } from "db/types";
 import type { ReactNode } from "react";
 import type { DefaultTheme } from "styled-components";
 
@@ -81,6 +81,7 @@ export type MixcloudContextState = {
     temporaryMessage: string | undefined;
   };
   session: {
+    background: BackgroundExtended | undefined;
     burgerMenuRef: React.MutableRefObject<HTMLDivElement | null>;
     displayLength: number;
     handleCloseModal: () => void;
@@ -97,6 +98,9 @@ export type MixcloudContextState = {
     ) => void;
     scale: number;
     secondsRemaining: number | null;
+    setBackground: React.Dispatch<
+      React.SetStateAction<BackgroundExtended | undefined>
+    >;
     setDisplayLength: React.Dispatch<React.SetStateAction<number>>;
     setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
     setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;

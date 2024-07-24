@@ -38,7 +38,30 @@ export type Mix = {
   tracks: Track[];
 };
 
+export type BackgroundCategory = {
+  code: string;
+  name: string;
+  folder: string;
+  type: string;
+  order: number;
+};
+
+export type Background = {
+  backgroundCategory: Category["code"];
+  name: string;
+  fileName: string;
+  tileType: string;
+  width: number;
+  height: number;
+};
+
+export type BackgroundExtended = Background & {
+  backgroundCategoryObject: BackgroundCategory;
+};
+
 export type Database = {
+  backgroundCategories: BackgroundCategory[];
+  backgrounds: Background[];
   categories: Category[];
   mixes: Mix[];
 };

@@ -1,77 +1,21 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
-import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 import About from "components/About";
-import {
-  StyledHeading,
-  StyledMenu,
-} from "components/BurgerMenu/StyledBurgerMenu";
+import BackgroundSelect from "components/BackgroundSelect";
+import { StyledMenu } from "components/BurgerMenu/StyledBurgerMenu";
+import Contact from "components/Contact";
 import { useMixcloud } from "contexts/mixcloud";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 
 const Menu: React.FC = () => {
   const {
-    controls: { fetchRandomMcKey, fetchRandomMcKeyByCategory, handleLoad },
-    filters: { selectedCategory, setSelectedCategory },
     session: { menuOpen, openModal, setMenuOpen },
   } = useMixcloud();
 
-  const [links, setLinks] = useState([
-    {
-      key: "",
-      selected: false,
-      text: "I Love Everything!",
-    },
-    {
-      key: "mpos",
-      selected: false,
-      text: "My Pair of Shoes",
-    },
-    {
-      key: "aidm",
-      selected: false,
-      text: "Adventures in Decent Music",
-    },
-    {
-      key: "cocksoup",
-      selected: false,
-      text: "Cocksoup DJ Collective",
-    },
-    {
-      key: "special",
-      selected: false,
-      text: "Specials",
-    },
-  ]);
-
-  const updateLinks = useCallback(
-    (category: string) => {
-      const updatedLinks = links.map((link) => ({
-        ...link,
-        selected: link.key === category,
-      }));
-      setLinks(updatedLinks);
-    },
-    [links],
-  );
-
-  useEffect(() => {
-    updateLinks(selectedCategory || "");
-  }, [selectedCategory]);
-
-  const handleCategoryClick = async (
-    code: string,
+  const handleBackgroundClick = (
     event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
-  ): Promise<void> => {
+  ): void => {
     event.preventDefault();
-
-    if (code === "") {
-      setSelectedCategory("");
-      handleLoad(await fetchRandomMcKey());
-    } else {
-      setSelectedCategory(code);
-      handleLoad(await fetchRandomMcKeyByCategory(code));
-    }
-
+    openModal(<BackgroundSelect />);
     setTimeout(() => setMenuOpen(false), 500);
   };
 
@@ -79,37 +23,33 @@ const Menu: React.FC = () => {
     event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
   ): void => {
     event.preventDefault();
-    openModal(<About />, "About Stef.FM");
+    openModal(<About />);
+    setTimeout(() => setMenuOpen(false), 500);
+  };
+
+  const handleContactClick = (
+    event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
+  ): void => {
+    event.preventDefault();
+    openModal(<Contact />);
     setTimeout(() => setMenuOpen(false), 500);
   };
 
   return (
     <StyledMenu $open={menuOpen}>
-      <StyledHeading>Choose Your Flavour</StyledHeading>
       <ul>
-        {links.map((link) => (
-          <li
-            key={link.key}
-            onClick={(event) => handleCategoryClick(link.key, event)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                handleCategoryClick("mpos", e);
-              }
-            }}
-            tabIndex={0}
-            role="button"
-          >
-            {link.selected && (
-              <span>
-                <AudiotrackIcon />
-              </span>
-            )}
-            {link.text}
-          </li>
-        ))}
-      </ul>
-      <StyledHeading>Other Things</StyledHeading>
-      <ul>
+        <li
+          onClick={(event) => handleBackgroundClick(event)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleBackgroundClick(e);
+            }
+          }}
+          tabIndex={0}
+          role="button"
+        >
+          Background
+        </li>
         <li
           onClick={(event) => handleAboutClick(event)}
           onKeyDown={(e) => {
@@ -121,6 +61,18 @@ const Menu: React.FC = () => {
           role="button"
         >
           About
+        </li>
+        <li
+          onClick={(event) => handleContactClick(event)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleContactClick(e);
+            }
+          }}
+          tabIndex={0}
+          role="button"
+        >
+          Contact
         </li>
       </ul>
     </StyledMenu>

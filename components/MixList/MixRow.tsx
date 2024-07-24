@@ -44,7 +44,6 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
     }
   };
 
-
   const listenedStatus = ():
     | "active"
     | "listened"
@@ -54,8 +53,8 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
       return "active";
     }
 
-    const progressEntry = progress.find((p) =>
-      mcKeyFormatter(p.mcKey) === mcKeyFormatter(mix.mixcloudKey),
+    const progressEntry = progress.find(
+      (p) => mcKeyFormatter(p.mcKey) === mcKeyFormatter(mix.mixcloudKey),
     );
 
     if (!progressEntry) {
@@ -69,7 +68,8 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
     <>
       <StyledMixRow $listenedStatus={listenedStatus()}>
         <StyledMixPlay onClick={() => handleClickPlay(mix.mixcloudKey)}>
-          {mcKeyFormatter(mcKey) === mcKeyFormatter(mix.mixcloudKey) && playing ? (
+          {mcKeyFormatter(mcKey) === mcKeyFormatter(mix.mixcloudKey) &&
+          playing ? (
             <PauseIcon />
           ) : (
             <PlayArrowIcon />

@@ -4,12 +4,13 @@ import type {
   MixcloudContextState,
   Progress,
 } from "contexts/mixcloud/types";
-import type { Category, Mix, Track } from "db/types";
+import type { BackgroundExtended, Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import ReactGA from "react-ga4";
 import themes from "styles/themes";
 import {
+  DEFAULT_BACKGROUND,
   DEFAULT_MESSAGE,
   DEFAULT_VOLUME,
   DISPLAY_LENGTH,
@@ -101,6 +102,11 @@ const useMixcloudContextState = (): MixcloudContextState => {
     0,
   );
   const [progress, setProgress] = usePersistedState<Progress[]>("progress", []);
+
+  /* Background */
+  const [background, setBackground] = usePersistedState<
+    BackgroundExtended | undefined
+  >("background", DEFAULT_BACKGROUND);
 
   /* FUNCTIONS -------------------- */
 
@@ -287,6 +293,16 @@ const useMixcloudContextState = (): MixcloudContextState => {
         : screenLimits.landscape;
 
       setIsMobile(windowWidth <= 768);
+
+      if (windowWidth <= 320) {
+        setScale(0.5);
+      } else if (windowWidth > 320 && windowWidth < 768) {
+        const scaleFactor = (windowWidth - 320) / (768 - 320);
+        const newScale = 0.5 + scaleFactor * 0.5;
+        setScale(newScale);
+      } else {
+        setScale(1);
+      }
 
       let limit;
       for (let i = 0; i < limits.length - 1; i += 1) {
@@ -760,6 +776,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       temporaryMessage,
     },
     session: {
+      background,
       burgerMenuRef,
       displayLength,
       handleCloseModal,
@@ -772,6 +789,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       openModal,
       scale,
       secondsRemaining,
+      setBackground,
       setDisplayLength,
       setIsMobile,
       setMenuOpen,
