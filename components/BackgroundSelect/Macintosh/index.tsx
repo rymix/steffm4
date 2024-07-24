@@ -13,30 +13,38 @@ import {
   StyledOpeningInner,
   StyledScreenCutout,
 } from "components/BackgroundSelect/Macintosh/StyledMacintosh";
+import { useMixcloud } from "contexts/mixcloud";
 
 export const Macintosh: React.FC = () => {
+  const {
+    session: { scale },
+  } = useMixcloud();
+
   return (
-    <StyledMacintosh>
-      <StyledMonitor>
-        <StyledMonitorInner>
-          <StyledScreenCutout>
-            <Screen />
-          </StyledScreenCutout>
-          <StyledLogo>
-            <StyledLogoText>🏳️‍🌈</StyledLogoText>
-          </StyledLogo>
-          <StyledOpening>
-            <StyledOpeningInner />
-          </StyledOpening>
-        </StyledMonitorInner>
-      </StyledMonitor>
-      <StyledFoot>
-        <StyledInset />
-        <StyledCableContainer>
-          <StyledCableHole />
-        </StyledCableContainer>
-      </StyledFoot>
-    </StyledMacintosh>
+    <>
+      <p>scale: {scale}</p>
+      <StyledMacintosh $scale={scale}>
+        <StyledMonitor>
+          <StyledMonitorInner>
+            <StyledScreenCutout>
+              <Screen />
+            </StyledScreenCutout>
+            <StyledLogo>
+              <StyledLogoText>🏳️‍🌈</StyledLogoText>
+            </StyledLogo>
+            <StyledOpening>
+              <StyledOpeningInner />
+            </StyledOpening>
+          </StyledMonitorInner>
+        </StyledMonitor>
+        <StyledFoot>
+          <StyledInset />
+          <StyledCableContainer>
+            <StyledCableHole />
+          </StyledCableContainer>
+        </StyledFoot>
+      </StyledMacintosh>
+    </>
   );
 };
 

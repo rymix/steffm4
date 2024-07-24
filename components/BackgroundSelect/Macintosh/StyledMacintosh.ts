@@ -1,12 +1,23 @@
+import { StyledMacintoshProps } from "components/BackgroundSelect/Macintosh/types";
 import styled from "styled-components";
 
-export const StyledMacintosh = styled.div`
+export const StyledMacintosh = styled.div<StyledMacintoshProps>`
   display: block;
   width: 340px;
   height: 475px;
   margin: 40px auto;
   position: relative;
   box-shadow: 0 80px 60px -60px rgba(0, 0, 0, 0.4);
+  overflow: visible;
+
+  ${(props) =>
+    props.$scale &&
+    props.$scale !== 1 &&
+    `
+      transform: scale(${props.$scale}) translateX(-${
+        (1 - props.$scale) * 120
+      }px) translateY(-${(1 - props.$scale) * 240}px);
+    `}
 `;
 
 export const StyledMonitor = styled.div`

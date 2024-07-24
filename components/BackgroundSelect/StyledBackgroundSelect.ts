@@ -4,6 +4,7 @@ export const StyledBackgroundSelect = styled.div``;
 
 export const StyledBackgroundButtons = styled.div`
   display: flex;
+  justify-content: center;
 `;
 
 export const StyledBackgroundButton = styled.button`
@@ -14,7 +15,7 @@ export const StyledBackgroundButton = styled.button`
   margin: 8px;
   padding: 8px;
   transition: background 0.2s ease-in-out;
-  width: 50%;
+  width: 25%;
 
   &:hover {
     background: #ddd1be;
