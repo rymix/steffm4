@@ -375,14 +375,6 @@
     },
     {
       "backgroundCategory": "xp",
-      "name": "Friend",
-      "fileName": "friend.jpg",
-      "tileType": "stretch",
-      "width": 800,
-      "height": 600
-    },
-    {
-      "backgroundCategory": "xp",
       "name": "Home",
       "fileName": "home.jpg",
       "tileType": "stretch",

@@ -127,7 +127,7 @@ export const StyledScreenShadow = styled.div`
   left: 0;
   overflow: visible;
   right: 0;
-  box-shadow: 0 0 20px 10px rgba(43, 48, 48, 0.6) inset;
+  box-shadow: 0 0 20px 10px rgba(43, 48, 48, 0.3) inset;
 `;
 export const StyledLogo = styled.div`
   display: block;
