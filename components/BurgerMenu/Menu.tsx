@@ -8,8 +8,6 @@ import React from "react";
 
 const Menu: React.FC = () => {
   const {
-    controls: { fetchRandomMcKey, fetchRandomMcKeyByCategory, handleLoad },
-    filters: { selectedCategory, setSelectedCategory },
     session: { menuOpen, openModal, setMenuOpen },
   } = useMixcloud();
 
