@@ -8,7 +8,6 @@ import {
   StyledBackgroundButtons,
   StyledBackgroundSelect,
 } from "components/BackgroundSelect/StyledBackgroundSelect";
-import Macintosh from "components/Macintosh";
 import {
   StyledFilterToggle,
   StyledMixListCategories,
@@ -18,6 +17,9 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { BackgroundCategory, BackgroundExtended } from "db/types";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
+
+import Macintosh from "./Macintosh";
+import RetroPC from "./RetroPC";
 
 export const BackgroundSelect: React.FC = () => {
   const {
@@ -189,7 +191,11 @@ export const BackgroundSelect: React.FC = () => {
           Next
         </StyledBackgroundButton>
       </StyledBackgroundButtons>
-      <Macintosh background={background || undefined} />
+      {background?.backgroundCategoryObject?.type === "Macintosh" ? (
+        <Macintosh />
+      ) : (
+        <RetroPC />
+      )}{" "}
     </StyledBackgroundSelect>
   );
 };

@@ -1,3 +1,4 @@
+import Screen from "components/BackgroundSelect/Macintosh/Screen";
 import {
   StyledCableContainer,
   StyledCableHole,
@@ -10,26 +11,16 @@ import {
   StyledMonitorInner,
   StyledOpening,
   StyledOpeningInner,
-  StyledScreen,
-  StyledScreenBanner,
   StyledScreenCutout,
-  StyledScreenShadow,
-} from "components/Macintosh/StyledMacintosh";
-import { MacintoshProps } from "components/Macintosh/types";
+} from "components/BackgroundSelect/Macintosh/StyledMacintosh";
 
-export const Macintosh: React.FC<MacintoshProps> = ({ background }) => {
+export const Macintosh: React.FC = () => {
   return (
     <StyledMacintosh>
       <StyledMonitor>
         <StyledMonitorInner>
           <StyledScreenCutout>
-            <StyledScreen $background={background}>
-              <StyledScreenBanner>
-                {background?.name || ""}{" "}
-                {background?.backgroundCategoryObject?.name || ""}
-              </StyledScreenBanner>
-              <StyledScreenShadow />
-            </StyledScreen>
+            <Screen />
           </StyledScreenCutout>
           <StyledLogo>
             <StyledLogoText>🏳️‍🌈</StyledLogoText>
