@@ -21,30 +21,27 @@ export const Macintosh: React.FC = () => {
   } = useMixcloud();
 
   return (
-    <>
-      <p>scale: {scale}</p>
-      <StyledMacintosh $scale={scale}>
-        <StyledMonitor>
-          <StyledMonitorInner>
-            <StyledScreenCutout>
-              <Screen />
-            </StyledScreenCutout>
-            <StyledLogo>
-              <StyledLogoText>🏳️‍🌈</StyledLogoText>
-            </StyledLogo>
-            <StyledOpening>
-              <StyledOpeningInner />
-            </StyledOpening>
-          </StyledMonitorInner>
-        </StyledMonitor>
-        <StyledFoot>
-          <StyledInset />
-          <StyledCableContainer>
-            <StyledCableHole />
-          </StyledCableContainer>
-        </StyledFoot>
-      </StyledMacintosh>
-    </>
+    <StyledMacintosh $scale={scale}>
+      <StyledMonitor>
+        <StyledMonitorInner>
+          <StyledScreenCutout>
+            <Screen />
+          </StyledScreenCutout>
+          <StyledLogo>
+            <StyledLogoText>🏳️‍🌈</StyledLogoText>
+          </StyledLogo>
+          <StyledOpening>
+            <StyledOpeningInner />
+          </StyledOpening>
+        </StyledMonitorInner>
+      </StyledMonitor>
+      <StyledFoot>
+        <StyledInset />
+        <StyledCableContainer>
+          <StyledCableHole />
+        </StyledCableContainer>
+      </StyledFoot>
+    </StyledMacintosh>
   );
 };
 
