@@ -41,6 +41,8 @@ export type Mix = {
 export type BackgroundCategory = {
   code: string;
   name: string;
+  folder: string;
+  type: string;
   order: number;
 };
 
@@ -54,7 +56,7 @@ export type Background = {
 };
 
 export type BackgroundExtended = Background & {
-  backgroundCategoryName: string;
+  backgroundCategoryObject: BackgroundCategory;
 };
 
 export type Database = {

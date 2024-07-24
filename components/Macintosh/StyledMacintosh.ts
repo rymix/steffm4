@@ -81,7 +81,7 @@ export const StyledScreen = styled.div<StyledScreenProps>`
   background-color: rgba(79, 85, 85, 1);
   background-image: ${(props) =>
     props.$background
-      ? `url(/windows/${props.$background.backgroundCategory}/${props.$background.fileName})`
+      ? `url(/${props.$background.backgroundCategoryObject?.folder}/${props.$background.fileName})`
       : "radial-gradient(rgba(82, 91, 90, 1), rgba(80, 88, 90, 1))"};
   background-size: ${(props) =>
     props.$background?.tileType === "stretch"

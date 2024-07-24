@@ -26,7 +26,7 @@ export const Macintosh: React.FC<MacintoshProps> = ({ background }) => {
             <StyledScreen $background={background}>
               <StyledScreenBanner>
                 {background?.name || ""}{" "}
-                {background?.backgroundCategoryName || ""}
+                {background?.backgroundCategoryObject?.name || ""}
               </StyledScreenBanner>
               <StyledScreenShadow />
             </StyledScreen>

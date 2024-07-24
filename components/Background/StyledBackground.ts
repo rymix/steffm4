@@ -14,7 +14,7 @@ export const StyledBackground = styled.div<StyledBackgroundProps>`
     props.$background ? "transparent" : "orange"};
   background-image: ${(props) =>
     props.$background
-      ? `url(/windows/${props.$background.backgroundCategory}/${props.$background.fileName})`
+      ? `url(/${props.$background.backgroundCategoryObject?.folder}/${props.$background.fileName})`
       : "none"};
   background-size: ${(props) =>
     props.$background?.tileType === "stretch"

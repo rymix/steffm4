@@ -130,10 +130,10 @@ export const selectCoverArt = (local: string, remote: string): string => {
   return local || remote;
 };
 
-export const getBackgroundCategoryName = (
+export const getBackgroundCategoryObject = (
   code: string,
   categories: BackgroundCategory[],
-): string => {
+): BackgroundCategory | undefined => {
   const category = categories.find((cat) => cat.code === code);
-  return category ? category.name : "";
+  return category || undefined;
 };

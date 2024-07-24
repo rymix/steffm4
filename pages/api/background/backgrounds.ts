@@ -7,7 +7,7 @@ import type {
   BackgroundExtended,
 } from "db/types";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getBackgroundCategoryName } from "utils/functions";
+import { getBackgroundCategoryObject } from "utils/functions";
 
 export default async function handler(
   req: NextApiRequest,
@@ -42,13 +42,19 @@ export default async function handler(
   }
 
   const extendedBackgrounds: BackgroundExtended[] = filteredBackgrounds.map(
-    (background) => ({
-      ...background,
-      backgroundCategoryName: getBackgroundCategoryName(
+    (background) => {
+      const backgroundCategoryObject = getBackgroundCategoryObject(
         background.backgroundCategory,
         backgroundCategories,
-      ),
-    }),
+      );
+      if (backgroundCategoryObject) {
+        return {
+          ...background,
+          backgroundCategoryObject,
+        };
+      }
+      return background as BackgroundExtended;
+    },
   );
 
   extendedBackgrounds.sort((a, b) => a.name.localeCompare(b.name));
