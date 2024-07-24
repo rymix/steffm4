@@ -95,7 +95,10 @@ export const BackgroundSelect: React.FC = () => {
         if (
           !backgroundsData.some((bg) => bg.fileName === background?.fileName)
         ) {
-          setBackground(backgroundsData[0]);
+          const randomIndex = Math.floor(
+            Math.random() * backgroundsData.length,
+          );
+          setBackground(backgroundsData[randomIndex]);
         }
       } else {
         setBackground(undefined);
