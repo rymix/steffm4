@@ -22,11 +22,17 @@ export const SCREEN_SPEED_HOLDING = 200;
 export const SCREEN_SPEED_TEMPORARY = 120;
 export const GOOGLE_TRACKING_ID = "G-P82N7RRW45";
 export const DEFAULT_BACKGROUND: BackgroundExtended = {
-  backgroundCategory: "xp",
-  name: "Bliss",
-  fileName: "bliss.png",
-  tileType: "stretch",
-  width: 800,
-  height: 600,
-  backgroundCategoryName: "Windows XP",
+  backgroundCategory: "table",
+  name: "Wood 6",
+  fileName: "wood-pattern6.png",
+  tileType: "tile",
+  width: 317,
+  height: 400,
+  backgroundCategoryObject: {
+    code: "table",
+    name: "Tabletop",
+    folder: "wallpapers/table",
+    type: "Macintosh",
+    order: 1,
+  },
 };

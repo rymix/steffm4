@@ -11,7 +11,11 @@ export const StyledBackground = styled.div<StyledBackgroundProps>`
   z-index: -1;
 
   background-color: ${(props) =>
-    props.$background ? "transparent" : "orange"};
+    props.$background
+      ? props.$background.backgroundCategoryObject?.code === "table"
+        ? "#795141"
+        : "transparent"
+      : "orange"};
   background-image: ${(props) =>
     props.$background
       ? `url(/${props.$background.backgroundCategoryObject?.folder}/${props.$background.fileName})`
@@ -20,8 +24,11 @@ export const StyledBackground = styled.div<StyledBackgroundProps>`
     props.$background?.tileType === "stretch"
       ? "cover"
       : props.$background?.tileType === "tile"
-        ? `${props.$background.width}px ${props.$background.height}px`
+        ? props.$background.backgroundCategoryObject?.code === "table"
+          ? "600px"
+          : `${props.$background.width}px ${props.$background.height}px`
         : "cover"};
+
   background-repeat: ${(props) =>
     props.$background?.tileType === "tile" ? "repeat" : "no-repeat"};
   background-position: center;
