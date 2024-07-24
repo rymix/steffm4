@@ -2,8 +2,8 @@ import Screen from "components/BackgroundSelect/RetroPC/Screen";
 import {
   StyledMonitor,
   StyledMonitorPanel,
+  StyledMonitorStand,
   StyledMonitorWrapper,
-  StyledScreenWrapper,
 } from "components/BackgroundSelect/RetroPC/StyledRetroPC";
 import React from "react";
 
@@ -12,9 +12,8 @@ const MonitorComponent: React.FC = () => {
     <StyledMonitorWrapper>
       <StyledMonitor>
         <StyledMonitorPanel />
-        <StyledScreenWrapper>
-          <Screen />
-        </StyledScreenWrapper>
+        <Screen />
+        <StyledMonitorStand />
       </StyledMonitor>
     </StyledMonitorWrapper>
   );

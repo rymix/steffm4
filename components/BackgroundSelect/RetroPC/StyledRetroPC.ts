@@ -4,7 +4,7 @@ const monitorWidth = 320;
 
 export const StyledMonitorWrapper = styled.div`
   display: flex;
-  margin: 40px 0;
+  margin: 40px 0 120px 0;
   justify-content: center;
 `;
 
@@ -49,13 +49,11 @@ export const StyledMonitor = styled.div`
   }
 `;
 
-export const StyledScreenWrapper = styled.div``;
-
 export const StyledMonitorPanel = styled.div`
   position: absolute;
   top: 100%;
   width: 100%;
-  height: 10%;
+  height: 24px;
   background: rgba(220, 209, 187, 1);
   box-shadow:
     0px 10px 22px rgba(0, 0, 0, 0.25),
@@ -71,5 +69,40 @@ export const StyledMonitorPanel = styled.div`
     height: 100%;
     background: rgba(220, 209, 187, 1);
     box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 1);
+  }
+`;
+
+export const StyledMonitorStand = styled.div`
+  width: 60%;
+  height: 30px;
+  position: absolute;
+  bottom: -54px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: rgba(220, 209, 187, 1);
+    border-radius: 0 0 60px 60px;
+    box-shadow: inset 0px 0px 13px rgba(0, 0, 0, 0.2);
+    transform: translateX(-50%);
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    background: linear-gradient(
+      121.79deg,
+      rgba(231, 223, 208, 1) 0%,
+      rgba(220, 209, 187, 1) 3.75%
+    );
+    border-radius: 2px;
+    width: 100%;
+    height: 10px;
+    top: 100%;
+    background: rgba(220, 209, 187, 1);
+    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.2);
+    transform: translateX(-50%) translateY(-6px);
   }
 `;
