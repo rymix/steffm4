@@ -13,10 +13,15 @@ import {
   StyledOpeningInner,
   StyledScreenCutout,
 } from "components/BackgroundSelect/Macintosh/StyledMacintosh";
+import { useMixcloud } from "contexts/mixcloud";
 
 export const Macintosh: React.FC = () => {
+  const {
+    session: { scale },
+  } = useMixcloud();
+
   return (
-    <StyledMacintosh>
+    <StyledMacintosh $scale={scale}>
       <StyledMonitor>
         <StyledMonitorInner>
           <StyledScreenCutout>

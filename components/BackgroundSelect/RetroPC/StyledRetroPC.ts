@@ -1,11 +1,21 @@
+import { StyledMonitorWrapperProps } from "components/BackgroundSelect/RetroPC/types";
 import styled from "styled-components";
 
 const monitorWidth = 320;
 
-export const StyledMonitorWrapper = styled.div`
+export const StyledMonitorWrapper = styled.div<StyledMonitorWrapperProps>`
   display: flex;
   margin: 40px 0 120px 0;
   justify-content: center;
+
+  ${(props) =>
+    props.$scale &&
+    props.$scale !== 1 &&
+    `
+      transform: scale(${props.$scale}) translateY(-${
+        (1 - props.$scale) * 240
+      }px);
+    `}
 `;
 
 export const StyledMonitor = styled.div`

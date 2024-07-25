@@ -5,11 +5,16 @@ import {
   StyledMonitorStand,
   StyledMonitorWrapper,
 } from "components/BackgroundSelect/RetroPC/StyledRetroPC";
+import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 
 const MonitorComponent: React.FC = () => {
+  const {
+    session: { scale },
+  } = useMixcloud();
+
   return (
-    <StyledMonitorWrapper>
+    <StyledMonitorWrapper $scale={scale}>
       <StyledMonitor>
         <StyledMonitorPanel />
         <Screen />
