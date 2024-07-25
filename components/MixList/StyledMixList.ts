@@ -150,10 +150,15 @@ export const StyledTrackListMiniTrackStartTime = styled.div`
   text-align: left;
 `;
 
-export const StyledFilterToggle = styled.div`
+export const StyledControls = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const StyledToggle = styled.div`
   color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  margin: 0 0 20px 0;
+  margin: 0 20px 20px 20px;
 
   transition: color 0.2s ease-in-out;
 
@@ -191,4 +196,37 @@ export const StyledMixListCategory = styled.li<StyledMixListCategoryProps>`
   &:hover {
     background: #ddd1be;
   }
+`;
+
+export const StyledSearchContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0 0 20px 0;
+`;
+
+export const StyledSearchBox = styled.input`
+  border-radius: 20px;
+  margin: 10px;
+  padding: 10px;
+  width: 300px;
+`;
+
+export const StyledSearchButton = styled.button`
+  background: #e4dbcd;
+  border: 1px solid #e4dbcd;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 10px;
+  padding: 10px;
+  width: 60px;
+  transition: background 0.2s ease-in-out;
+
+  &:hover {
+    background: #ddd1be;
+    border: 1px solid #a59a88;
+  }
+`;
+
+export const StyledNoResults = styled.div`
+  margin: 20px 0;
 `;

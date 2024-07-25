@@ -4,17 +4,22 @@ import FilterAlt from "@mui/icons-material/FilterAlt";
 import FilterAltOff from "@mui/icons-material/FilterAltOff";
 import Search from "@mui/icons-material/Search";
 import SearchOff from "@mui/icons-material/SearchOff";
-import { Button, CircularProgress, TextField } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 import MixRow from "components/MixList/MixRow";
 import {
-  StyledFilterToggle,
+  StyledControls,
   StyledMixListCategories,
   StyledMixListCategory,
+  StyledNoResults,
+  StyledSearchBox,
+  StyledSearchButton,
+  StyledSearchContainer,
+  StyledToggle,
 } from "components/MixList/StyledMixList";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Category, Mix } from "db/types";
 import _ from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export const MixList: React.FC = () => {
   const {
@@ -28,6 +33,7 @@ export const MixList: React.FC = () => {
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const handleFilterCategory = (category: string | undefined): void => {
     if (filterCategory === category || category === "all") {
@@ -39,11 +45,17 @@ export const MixList: React.FC = () => {
   };
 
   const handleToggleFilters = (): void => {
+    setFilterCategory(undefined);
+    setSearchQuery("");
+    setSearchResults([]);
     setShowSearch(false);
     setShowFilters(!showFilters);
   };
 
   const handleToggleSearch = (): void => {
+    setFilterCategory(undefined);
+    setSearchQuery("");
+    setSearchResults([]);
     setShowFilters(false);
     setShowSearch(!showSearch);
   };
@@ -116,6 +128,12 @@ export const MixList: React.FC = () => {
   };
 
   useEffect(() => {
+    if (showSearch && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [showSearch]);
+
+  useEffect(() => {
     fetchMixes();
   }, [filterCategory]);
 
@@ -128,12 +146,14 @@ export const MixList: React.FC = () => {
       {isLoading && <CircularProgress />}
       {!isLoading && (
         <>
-          <StyledFilterToggle onClick={handleToggleFilters}>
-            {showFilters ? <FilterAltOff /> : <FilterAlt />}
-          </StyledFilterToggle>
-          <StyledFilterToggle onClick={handleToggleSearch}>
-            {showSearch ? <SearchOff /> : <Search />}
-          </StyledFilterToggle>
+          <StyledControls>
+            <StyledToggle onClick={handleToggleFilters}>
+              {showFilters ? <FilterAltOff /> : <FilterAlt />}
+            </StyledToggle>
+            <StyledToggle onClick={handleToggleSearch}>
+              {showSearch ? <SearchOff /> : <Search />}
+            </StyledToggle>
+          </StyledControls>
           {showFilters && (
             <StyledMixListCategories>
               <StyledMixListCategory
@@ -157,9 +177,11 @@ export const MixList: React.FC = () => {
             </StyledMixListCategories>
           )}
           {showSearch && (
-            <div>
-              <TextField
-                label="Search"
+            <StyledSearchContainer>
+              <StyledSearchBox
+                ref={searchInputRef}
+                type="text"
+                placeholder="Search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyPress={(e) => {
@@ -168,8 +190,10 @@ export const MixList: React.FC = () => {
                   }
                 }}
               />
-              <Button onClick={handleSearch}>Search</Button>
-            </div>
+              <StyledSearchButton type="button" onClick={handleSearch}>
+                Go
+              </StyledSearchButton>
+            </StyledSearchContainer>
           )}
         </>
       )}
@@ -186,12 +210,12 @@ export const MixList: React.FC = () => {
               />
             ))
           ) : (
-            <div>No search results found</div>
+            <StyledNoResults>No search results found</StyledNoResults>
           )
         ) : mixes.length > 0 ? (
           mixes.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)
         ) : (
-          <div>No mixes found in this category</div>
+          <StyledNoResults>No mixes found in this category</StyledNoResults>
         ))}
     </>
   );
