@@ -5,7 +5,7 @@ const monitorWidth = 320;
 
 export const StyledMonitorWrapper = styled.div<StyledMonitorWrapperProps>`
   display: flex;
-  margin: 40px 0 120px 0;
+  margin: 40px 0 248px 0;
   justify-content: center;
 
   ${(props) =>
@@ -115,4 +115,33 @@ export const StyledMonitorStand = styled.div`
     box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.2);
     transform: translateX(-50%) translateY(-6px);
   }
+`;
+
+export const StyledLogo = styled.div`
+  display: block;
+  width: 22px;
+  height: 22px;
+  background-image: radial-gradient(
+    rgba(201, 198, 181, 1),
+    rgba(203, 201, 186, 1)
+  );
+  border-radius: 2px;
+  position: absolute;
+  left: 18px;
+  bottom: 2px;
+  padding-left: 3.5px;
+  box-shadow: 0 0 2px 0px rgba(151, 145, 129, 1) inset;
+`;
+
+export const StyledLogoText = styled.p`
+  text-align: center;
+  margin-top: -2px;
+`;
+
+export const StyledBadge = styled.img`
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 3px;
 `;

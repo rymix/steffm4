@@ -2,6 +2,9 @@ import type { Mix } from "db/types";
 
 export type MixRowProps = {
   mix: Mix;
+  highlight?: string;
+  matchType?: any;
+  trackMatch?: any;
 };
 
 export type StyledMixRowProps = {
@@ -10,6 +13,7 @@ export type StyledMixRowProps = {
 
 export type TrackListMiniProps = {
   mix: Mix;
+  highlight?: string;
 };
 
 export type StyledTrackListMiniProps = {

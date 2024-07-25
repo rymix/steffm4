@@ -105,6 +105,14 @@ export const StyledLogoText = styled.p`
   margin-top: -2px;
 `;
 
+export const StyledBadge = styled.img`
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 3px;
+`;
+
 export const StyledOpening = styled.div`
   display: block;
   width: 155px;

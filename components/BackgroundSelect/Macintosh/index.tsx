@@ -1,5 +1,6 @@
 import Screen from "components/BackgroundSelect/Macintosh/Screen";
 import {
+  StyledBadge,
   StyledCableContainer,
   StyledCableHole,
   StyledFoot,
@@ -28,7 +29,9 @@ export const Macintosh: React.FC = () => {
             <Screen />
           </StyledScreenCutout>
           <StyledLogo>
-            <StyledLogoText>🏳️‍🌈</StyledLogoText>
+            <StyledLogoText>
+              <StyledBadge src="/favicon-32x32.png" alt="Stef.FM" />
+            </StyledLogoText>
           </StyledLogo>
           <StyledOpening>
             <StyledOpeningInner />
