@@ -1,5 +1,8 @@
 import Screen from "components/BackgroundSelect/RetroPC/Screen";
 import {
+  StyledBadge,
+  StyledLogo,
+  StyledLogoText,
   StyledMonitor,
   StyledMonitorPanel,
   StyledMonitorStand,
@@ -16,6 +19,11 @@ const MonitorComponent: React.FC = () => {
   return (
     <StyledMonitorWrapper $scale={scale}>
       <StyledMonitor>
+        <StyledLogo>
+          <StyledLogoText>
+            <StyledBadge src="/favicon-32x32.png" alt="Stef.FM" />
+          </StyledLogoText>
+        </StyledLogo>
         <StyledMonitorPanel />
         <Screen />
         <StyledMonitorStand />

@@ -116,3 +116,32 @@ export const StyledMonitorStand = styled.div`
     transform: translateX(-50%) translateY(-6px);
   }
 `;
+
+export const StyledLogo = styled.div`
+  display: block;
+  width: 22px;
+  height: 22px;
+  background-image: radial-gradient(
+    rgba(201, 198, 181, 1),
+    rgba(203, 201, 186, 1)
+  );
+  border-radius: 2px;
+  position: absolute;
+  left: 18px;
+  bottom: 2px;
+  padding-left: 3.5px;
+  box-shadow: 0 0 2px 0px rgba(151, 145, 129, 1) inset;
+`;
+
+export const StyledLogoText = styled.p`
+  text-align: center;
+  margin-top: -2px;
+`;
+
+export const StyledBadge = styled.img`
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 3px;
+`;
