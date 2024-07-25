@@ -5,7 +5,7 @@ const monitorWidth = 320;
 
 export const StyledMonitorWrapper = styled.div<StyledMonitorWrapperProps>`
   display: flex;
-  margin: 40px 0 120px 0;
+  margin: 40px 0 248px 0;
   justify-content: center;
 
   ${(props) =>

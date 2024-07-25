@@ -9,9 +9,9 @@ import {
   StyledBackgroundSelect,
 } from "components/BackgroundSelect/StyledBackgroundSelect";
 import {
-  StyledFilterToggle,
   StyledMixListCategories,
   StyledMixListCategory,
+  StyledToggle,
 } from "components/MixList/StyledMixList";
 import { useMixcloud } from "contexts/mixcloud";
 import type { BackgroundCategory, BackgroundExtended } from "db/types";
@@ -147,9 +147,9 @@ export const BackgroundSelect: React.FC = () => {
       {isLoading && <CircularProgress />}
       {!isLoading && (
         <>
-          <StyledFilterToggle onClick={handleToggleFilters}>
+          <StyledToggle onClick={handleToggleFilters}>
             {showFilters ? <FilterAltOff /> : <FilterAlt />}
-          </StyledFilterToggle>
+          </StyledToggle>
           {showFilters && backgroundCategories && (
             <StyledMixListCategories>
               <StyledMixListCategory
