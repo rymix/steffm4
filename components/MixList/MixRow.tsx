@@ -84,7 +84,7 @@ export const MixRow: React.FC<MixRowProps> = ({ mix, highlight }) => {
         <StyledMixInfoBlock onClick={handleExpandToggle}>
           <StyledMixName>
             <Highlight
-              searchWords={[highlight]}
+              searchWords={highlight ? [highlight] : []}
               autoEscape
               textToHighlight={mix.name}
             />
@@ -100,7 +100,7 @@ export const MixRow: React.FC<MixRowProps> = ({ mix, highlight }) => {
       {isExpanded && (
         <StyledMixNotes>
           <Highlight
-            searchWords={[highlight]}
+            searchWords={highlight ? [highlight] : []}
             autoEscape
             textToHighlight={mix.notes || ""}
           />

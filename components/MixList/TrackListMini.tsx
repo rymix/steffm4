@@ -73,14 +73,14 @@ export const TrackListMini: React.FC<TrackListMiniProps> = ({
           <StyledTrackListMiniInfoBlock key={track.sectionNumber}>
             <StyledTrackListMiniTrackName>
               <Highlight
-                searchWords={[highlight]}
+                searchWords={highlight ? [highlight] : []}
                 autoEscape
                 textToHighlight={track.trackName}
               />
             </StyledTrackListMiniTrackName>
             <StyledTrackListMiniArtistName>
               <Highlight
-                searchWords={[highlight]}
+                searchWords={highlight ? [highlight] : []}
                 autoEscape
                 textToHighlight={track.artistName}
               />
@@ -88,7 +88,7 @@ export const TrackListMini: React.FC<TrackListMiniProps> = ({
             {track.remixArtistName && (
               <StyledTrackListMiniTrackRemixArtistName>
                 <Highlight
-                  searchWords={[highlight]}
+                  searchWords={highlight ? [highlight] : []}
                   autoEscape
                   textToHighlight={track.remixArtistName}
                 />
@@ -97,7 +97,7 @@ export const TrackListMini: React.FC<TrackListMiniProps> = ({
             {track.publisher && (
               <StyledTrackListMiniTrackPublisher>
                 <Highlight
-                  searchWords={[highlight]}
+                  searchWords={highlight ? [highlight] : []}
                   autoEscape
                   textToHighlight={track.publisher}
                 />

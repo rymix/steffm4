@@ -57,7 +57,7 @@ const handler = async (
   });
 
   const combinedResults = [...mixResults, ...trackResults].sort(
-    (a, b) => a.score - b.score,
+    (a, b) => (a.score ?? 1) - (b.score ?? 1),
   );
 
   res.status(200).json(combinedResults);
