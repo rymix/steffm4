@@ -2,7 +2,9 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import FilterAlt from "@mui/icons-material/FilterAlt";
 import FilterAltOff from "@mui/icons-material/FilterAltOff";
-import { CircularProgress } from "@mui/material";
+import Search from "@mui/icons-material/Search";
+import SearchOff from "@mui/icons-material/SearchOff";
+import { Button, CircularProgress, TextField } from "@mui/material";
 import MixRow from "components/MixList/MixRow";
 import {
   StyledFilterToggle,
@@ -23,6 +25,9 @@ export const MixList: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [mixes, setMixes] = useState<Mix[]>([]);
   const [showFilters, setShowFilters] = useState<boolean>(false);
+  const [showSearch, setShowSearch] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<any[]>([]);
 
   const handleFilterCategory = (category: string | undefined): void => {
     if (filterCategory === category || category === "all") {
@@ -34,7 +39,13 @@ export const MixList: React.FC = () => {
   };
 
   const handleToggleFilters = (): void => {
+    setShowSearch(false);
     setShowFilters(!showFilters);
+  };
+
+  const handleToggleSearch = (): void => {
+    setShowFilters(false);
+    setShowSearch(!showSearch);
   };
 
   const fetchFavouriteMixes = async (): Promise<Mix[]> => {
@@ -90,6 +101,20 @@ export const MixList: React.FC = () => {
     }
   };
 
+  const handleSearch = async (): Promise<void> => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`/api/search?query=${searchQuery}`);
+      if (!response.ok) throw new Error("Search fetch failed");
+      const results = await response.json();
+      setSearchResults(results);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchMixes();
   }, [filterCategory]);
@@ -105,6 +130,9 @@ export const MixList: React.FC = () => {
         <>
           <StyledFilterToggle onClick={handleToggleFilters}>
             {showFilters ? <FilterAltOff /> : <FilterAlt />}
+          </StyledFilterToggle>
+          <StyledFilterToggle onClick={handleToggleSearch}>
+            {showSearch ? <SearchOff /> : <Search />}
           </StyledFilterToggle>
           {showFilters && (
             <StyledMixListCategories>
@@ -128,10 +156,39 @@ export const MixList: React.FC = () => {
               )}
             </StyledMixListCategories>
           )}
+          {showSearch && (
+            <div>
+              <TextField
+                label="Search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearch();
+                  }
+                }}
+              />
+              <Button onClick={handleSearch}>Search</Button>
+            </div>
+          )}
         </>
       )}
       {!isLoading &&
-        (mixes?.length ? (
+        (showSearch ? (
+          searchResults.length > 0 ? (
+            searchResults.map((result) => (
+              <MixRow
+                key={result.mixcloudKey || result.trackMatch.trackName}
+                mix={result}
+                highlight={searchQuery}
+                matchType={result.matchType}
+                trackMatch={result.trackMatch}
+              />
+            ))
+          ) : (
+            <div>No search results found</div>
+          )
+        ) : mixes.length > 0 ? (
           mixes.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)
         ) : (
           <div>No mixes found in this category</div>

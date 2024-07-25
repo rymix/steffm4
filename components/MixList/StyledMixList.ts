@@ -138,6 +138,8 @@ export const StyledTrackListMiniTrackName = styled.div`
   font-weight: 700;
 `;
 
+export const StyledTrackListMiniArtistName = styled.div``;
+
 export const StyledTrackListMiniTrackRemixArtistName = styled.div``;
 
 export const StyledTrackListMiniTrackPublisher = styled.div``;

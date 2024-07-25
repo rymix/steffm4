@@ -1,6 +1,7 @@
 import CircularProgress from "@mui/material/CircularProgress";
 import {
   StyledTrackListMini,
+  StyledTrackListMiniArtistName,
   StyledTrackListMiniCoverArt,
   StyledTrackListMiniCoverArtImage,
   StyledTrackListMiniInfoBlock,
@@ -16,9 +17,13 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { Track } from "db/types";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
+import Highlight from "react-highlight-words";
 import { convertTimeToHumanReadable } from "utils/functions";
 
-export const TrackListMini: React.FC<TrackListMiniProps> = ({ mix }) => {
+export const TrackListMini: React.FC<TrackListMiniProps> = ({
+  mix,
+  highlight,
+}) => {
   const {
     mcKey,
     track: { sectionNumber },
@@ -67,16 +72,35 @@ export const TrackListMini: React.FC<TrackListMiniProps> = ({ mix }) => {
           </StyledTrackListMiniCoverArt>
           <StyledTrackListMiniInfoBlock key={track.sectionNumber}>
             <StyledTrackListMiniTrackName>
-              {track.trackName}
+              <Highlight
+                searchWords={[highlight]}
+                autoEscape
+                textToHighlight={track.trackName}
+              />
             </StyledTrackListMiniTrackName>
+            <StyledTrackListMiniArtistName>
+              <Highlight
+                searchWords={[highlight]}
+                autoEscape
+                textToHighlight={track.artistName}
+              />
+            </StyledTrackListMiniArtistName>
             {track.remixArtistName && (
               <StyledTrackListMiniTrackRemixArtistName>
-                {track.remixArtistName}
+                <Highlight
+                  searchWords={[highlight]}
+                  autoEscape
+                  textToHighlight={track.remixArtistName}
+                />
               </StyledTrackListMiniTrackRemixArtistName>
             )}
             {track.publisher && (
               <StyledTrackListMiniTrackPublisher>
-                {track.publisher}
+                <Highlight
+                  searchWords={[highlight]}
+                  autoEscape
+                  textToHighlight={track.publisher}
+                />
               </StyledTrackListMiniTrackPublisher>
             )}
           </StyledTrackListMiniInfoBlock>

@@ -19,9 +19,10 @@ import type { MixRowProps } from "components/MixList/types";
 import Share from "components/Share";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useState } from "react";
+import Highlight from "react-highlight-words";
 import { mcKeyFormatter } from "utils/functions";
 
-export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
+export const MixRow: React.FC<MixRowProps> = ({ mix, highlight }) => {
   const {
     mcKey,
     controls: { handleLoad, handlePause, handlePlay },
@@ -81,7 +82,13 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
           <StyledMixCoverArtImage src={mix.coverArtSmall} />
         </StyledMixCoverArt>
         <StyledMixInfoBlock onClick={handleExpandToggle}>
-          <StyledMixName>{mix.name}</StyledMixName>
+          <StyledMixName>
+            <Highlight
+              searchWords={[highlight]}
+              autoEscape
+              textToHighlight={mix.name}
+            />
+          </StyledMixName>
           <StyledMixDetails>
             {mix.releaseDate} {mix.duration}
           </StyledMixDetails>
@@ -90,8 +97,16 @@ export const MixRow: React.FC<MixRowProps> = ({ mix }) => {
           {isExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </StyledMixExpand>
       </StyledMixRow>
-      {isExpanded && <StyledMixNotes>{mix.notes}</StyledMixNotes>}
-      {isExpanded && <TrackListMini mix={mix} />}
+      {isExpanded && (
+        <StyledMixNotes>
+          <Highlight
+            searchWords={[highlight]}
+            autoEscape
+            textToHighlight={mix.notes || ""}
+          />
+        </StyledMixNotes>
+      )}
+      {isExpanded && <TrackListMini mix={mix} highlight={highlight} />}{" "}
     </>
   );
 };
