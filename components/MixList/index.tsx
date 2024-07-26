@@ -134,8 +134,10 @@ export const MixList: React.FC = () => {
   }, [showSearch]);
 
   useEffect(() => {
-    fetchMixes();
-  }, [filterCategory]);
+    if (!showSearch) {
+      fetchMixes();
+    }
+  }, [filterCategory, showSearch]);
 
   useEffect(() => {
     fetchMixes();
@@ -199,23 +201,31 @@ export const MixList: React.FC = () => {
       )}
       {!isLoading &&
         (showSearch ? (
-          searchResults.length > 0 ? (
-            searchResults.map((result) => (
-              <MixRow
-                key={result.mixcloudKey || result.trackMatch.trackName}
-                mix={result}
-                highlight={searchQuery}
-                matchType={result.matchType}
-                trackMatch={result.trackMatch}
-              />
-            ))
-          ) : (
-            <StyledNoResults>No search results found</StyledNoResults>
-          )
-        ) : mixes.length > 0 ? (
-          mixes.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)
+          <div>
+            {searchResults.length > 0 ? (
+              searchResults.map((result) => (
+                <MixRow
+                  key={result.mixcloudKey || result.trackMatch.trackName}
+                  mix={result}
+                  highlight={searchQuery}
+                  matchType={result.matchType}
+                  trackMatch={result.trackMatch}
+                />
+              ))
+            ) : (
+              <StyledNoResults>No search results found</StyledNoResults>
+            )}
+          </div>
         ) : (
-          <StyledNoResults>No mixes found in this category</StyledNoResults>
+          <div>
+            {mixes.length > 0 ? (
+              mixes.map((mix: Mix) => (
+                <MixRow key={mix.mixcloudKey} mix={mix} />
+              ))
+            ) : (
+              <StyledNoResults>No mixes found in this category</StyledNoResults>
+            )}
+          </div>
         ))}
     </>
   );
