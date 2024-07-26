@@ -56,9 +56,17 @@ const handler = async (
     };
   });
 
-  const combinedResults = [...mixResults, ...trackResults].sort(
-    (a, b) => (a.score ?? 1) - (b.score ?? 1),
-  );
+  // Ensure unique mix instances
+  const uniqueMixes: { [key: string]: boolean } = {};
+  const combinedResults = [...mixResults, ...trackResults]
+    .filter((result) => {
+      if (uniqueMixes[result.mixcloudKey || 0]) {
+        return false;
+      }
+      uniqueMixes[result.mixcloudKey || 0] = true;
+      return true;
+    })
+    .sort((a, b) => (a.score ?? 1) - (b.score ?? 1));
 
   res.status(200).json(combinedResults);
 };

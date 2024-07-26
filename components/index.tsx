@@ -24,6 +24,7 @@ import {
   StyledItem,
   StyledItems,
 } from "components/Styled";
+import Tooltip from "components/Tooltip";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
@@ -174,6 +175,7 @@ const Jupiter = (): JSX.Element => {
       <BurgerMenu />
       <Overlay />
       <Modal />
+      <Tooltip />
       {mcKey && (
         <>
           <Mixcloud defaultMcKey={mcKey} />

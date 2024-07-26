@@ -109,6 +109,17 @@ export type MixcloudContextState = {
     setModalTitle: React.Dispatch<React.SetStateAction<string | null>>;
     setScale: React.Dispatch<React.SetStateAction<number>>;
     setThemeName: React.Dispatch<React.SetStateAction<string>>;
+    setTooltipFading: React.Dispatch<React.SetStateAction<boolean>>;
+    setTooltipMessage: React.Dispatch<React.SetStateAction<string | null>>;
+    setTooltipPosition: React.Dispatch<
+      React.SetStateAction<{ x: number; y: number }>
+    >;
+    setTooltipVisible: React.Dispatch<React.SetStateAction<boolean>>;
+    showTooltip: (message: string, x: number, y: number) => void;
+    tooltipFading: boolean;
+    tooltipMessage: string | null;
+    tooltipPosition: { x: number; y: number };
+    tooltipVisible: boolean;
     theme: DefaultTheme;
     themeName: string;
   };
