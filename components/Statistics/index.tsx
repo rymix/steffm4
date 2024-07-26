@@ -12,6 +12,7 @@ import {
 import {
   CategoryMixCount,
   Stats,
+  TopTagCount,
   TopTrackCount,
 } from "components/Statistics/types";
 import { useEffect, useState } from "react";
@@ -77,9 +78,7 @@ const Statistics: React.FC = () => {
       </StyledStatisticsListItem>
     ));
 
-  const renderTopTagCounts = (
-    topTagCounts: { tag: string; count: number }[],
-  ): JSX.Element[] =>
+  const renderTopTagCounts = (topTagCounts: TopTagCount[]): JSX.Element[] =>
     topTagCounts.map((item) => (
       <StyledStatisticsListItem key={item.tag}>
         <StyledStatisticsLabel>{item.tag}</StyledStatisticsLabel>
@@ -87,13 +86,10 @@ const Statistics: React.FC = () => {
       </StyledStatisticsListItem>
     ));
 
-  const topTagCountsArray =
-    Array.isArray(stats.tagCounts) && stats.tagCounts.length > 0
-      ? stats.tagCounts
-          .map(({ tag, count }) => ({ tag, count }))
-          .sort((a, b) => b.count - a.count)
-          .slice(0, 10)
-      : [];
+  const topTagCountsArray = stats.top10TagCounts
+    .map(({ tag, count }) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 10);
 
   return (
     <StyledStatisticsContainer>
