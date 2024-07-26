@@ -3,6 +3,7 @@ import About from "components/About";
 import BackgroundSelect from "components/BackgroundSelect";
 import { StyledMenu } from "components/BurgerMenu/StyledBurgerMenu";
 import Contact from "components/Contact";
+import Statistics from "components/Statistics";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 
@@ -32,6 +33,14 @@ const Menu: React.FC = () => {
   ): void => {
     event.preventDefault();
     openModal(<Contact />);
+    setTimeout(() => setMenuOpen(false), 500);
+  };
+
+  const handleStatisticsClick = (
+    event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
+  ): void => {
+    event.preventDefault();
+    openModal(<Statistics />);
     setTimeout(() => setMenuOpen(false), 500);
   };
 
@@ -73,6 +82,18 @@ const Menu: React.FC = () => {
           role="button"
         >
           Contact
+        </li>
+        <li
+          onClick={(event) => handleStatisticsClick(event)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleStatisticsClick(e);
+            }
+          }}
+          tabIndex={0}
+          role="button"
+        >
+          Statistics
         </li>
       </ul>
     </StyledMenu>
