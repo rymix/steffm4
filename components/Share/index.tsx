@@ -1,45 +1,30 @@
 import {
   StyledShareIcon,
-  StyledShareMessage,
   StyledShareWrapper,
-  TooltipContainer,
 } from "components/Share/StyledShare";
 import { ShareProps } from "components/Share/types";
 import { useMixcloud } from "contexts/mixcloud";
-import { useState } from "react";
 
 export const Share: React.FC<ShareProps> = ({ mix }) => {
   const {
     mix: { copySharableLink },
+    session: { showTooltip },
   } = useMixcloud();
-  const [visible, setVisible] = useState(false);
-  const [fading, setFading] = useState(false);
 
-  const handleClickShare = (): void => {
+  const handleClickShare = (event: React.MouseEvent<HTMLDivElement>): void => {
     if (mix) {
       copySharableLink(mix);
     } else {
       copySharableLink();
     }
 
-    setVisible(true);
-    setFading(true);
-    setTimeout(() => {
-      setFading(false);
-      setTimeout(() => {
-        setVisible(false);
-      }, 1000); // Duration of the fade-out transition
-    }, 2000); // Time the tooltip stays fully visible
+    const { clientX: x, clientY: y } = event;
+    showTooltip("Sharable link copied to clipboard", x, y - 10);
   };
 
   return (
     <StyledShareWrapper onClick={handleClickShare}>
       <StyledShareIcon />
-      <TooltipContainer>
-        <StyledShareMessage $visible={visible} $fading={fading}>
-          Sharable link copied to clipboard
-        </StyledShareMessage>
-      </TooltipContainer>
     </StyledShareWrapper>
   );
 };

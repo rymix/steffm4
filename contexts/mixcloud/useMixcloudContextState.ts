@@ -108,7 +108,28 @@ const useMixcloudContextState = (): MixcloudContextState => {
     BackgroundExtended | undefined
   >("background", DEFAULT_BACKGROUND);
 
+  /* Tooltip */
+  const [tooltipMessage, setTooltipMessage] = useState<string | null>(null);
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const [tooltipFading, setTooltipFading] = useState(false);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+
   /* FUNCTIONS -------------------- */
+
+  /* Tooltip */
+  const showTooltip = (message: string, x: number, y: number): void => {
+    setTooltipMessage(message);
+    setTooltipPosition({ x, y });
+    setTooltipVisible(true);
+    setTooltipFading(true);
+    setTimeout(() => {
+      setTooltipFading(false);
+      setTimeout(() => {
+        setTooltipVisible(false);
+        setTooltipMessage(null);
+      }, 1000);
+    }, 2000);
+  };
 
   /* Progress */
   const updateProgressHistory = (
@@ -798,6 +819,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setModalTitle,
       setScale,
       setThemeName,
+      setTooltipFading,
+      setTooltipMessage,
+      setTooltipPosition,
+      setTooltipVisible,
+      showTooltip,
+      tooltipFading,
+      tooltipMessage,
+      tooltipPosition,
+      tooltipVisible,
       theme,
       themeName,
     },
