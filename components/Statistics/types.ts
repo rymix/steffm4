@@ -21,7 +21,7 @@ export type Stats = {
   trackCount: number;
   totalDuration: string;
   categoryMixCounts: CategoryMixCount[];
-  tagCounts: { tag: string; count: number }[];
+  top10TagCounts: TopTagCount[];
   averageMixDuration: string;
   top10ArtistTrackCounts: TopTrackCount[];
   top10RemixArtistTrackCounts: TopTrackCount[];
