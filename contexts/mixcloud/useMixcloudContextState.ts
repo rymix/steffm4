@@ -204,7 +204,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Screen */
   useEffect(() => {
-    if (playing) {
+    if (playing && mixDetails) {
       const mixMessage = [
         mixDetails?.name,
         mixDetails?.notes,
@@ -430,6 +430,17 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const fetchedMixDetails = await fetchMixDetails();
       if (fetchedMixDetails) {
         setMixDetails(fetchedMixDetails);
+        const mixMessage = [
+          fetchedMixDetails.name,
+          fetchedMixDetails.notes,
+          fetchedMixDetails.releaseDate,
+          fetchedMixDetails.duration
+            ? convertTimeToHumanReadable(fetchedMixDetails.duration, "!")
+            : undefined,
+        ]
+          .filter(Boolean)
+          .join(" - ");
+        setHoldingMessage(mixMessage);
       }
     };
 
