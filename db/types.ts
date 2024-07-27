@@ -33,6 +33,7 @@ export type Mix = {
   name: string;
   notes?: string;
   releaseDate: string;
+  uploadedDate: string;
   shortName: string;
   tags: string[];
   tracks: Track[];
