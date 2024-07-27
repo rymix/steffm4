@@ -84,6 +84,33 @@ export const StyledMixExpand = styled.div`
   }
 `;
 
+export const StyledMixTags = styled.div`
+  color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  font-size: 14px;
+  gap: 6px;
+  margin-top: 1em;
+`;
+
+export const StyledMixTag = styled.span`
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 6px;
+`;
+
+export const StyledMixUploadedDate = styled.div`
+  margin-top: 1em;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+`;
+
+export const StyledMixUploadedDateTitle = styled.div`
+  margin: 2em 0 0.5em 172px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  text-align: left;
+`;
+
 export const StyledMixNotes = styled.div`
   margin: 0 0 0 122px;
   text-align: left;

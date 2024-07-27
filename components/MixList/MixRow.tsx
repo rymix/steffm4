@@ -13,6 +13,9 @@ import {
   StyledMixNotes,
   StyledMixPlay,
   StyledMixRow,
+  StyledMixTag,
+  StyledMixTags,
+  StyledMixUploadedDate,
 } from "components/MixList/StyledMixList";
 import TrackListMini from "components/MixList/TrackListMini";
 import type { MixRowProps } from "components/MixList/types";
@@ -20,7 +23,7 @@ import Share from "components/Share";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useState } from "react";
 import Highlight from "react-highlight-words";
-import { mcKeyFormatter } from "utils/functions";
+import { convertTimeToHumanReadable, mcKeyFormatter } from "utils/functions";
 
 export const MixRow: React.FC<MixRowProps> = ({ mix, highlight }) => {
   const {
@@ -90,7 +93,7 @@ export const MixRow: React.FC<MixRowProps> = ({ mix, highlight }) => {
             />
           </StyledMixName>
           <StyledMixDetails>
-            {mix.releaseDate} {mix.duration}
+            {mix.releaseDate} - {convertTimeToHumanReadable(mix.duration)}
           </StyledMixDetails>
         </StyledMixInfoBlock>
         <StyledMixExpand onClick={handleExpandToggle}>
@@ -104,6 +107,14 @@ export const MixRow: React.FC<MixRowProps> = ({ mix, highlight }) => {
             autoEscape
             textToHighlight={mix.notes || ""}
           />
+          <StyledMixTags>
+            {mix.tags.map((tag, index) => (
+              <StyledMixTag key={index}>#{tag}</StyledMixTag>
+            ))}
+          </StyledMixTags>
+          <StyledMixUploadedDate>
+            Uploaded on {mix.uploadedDate}
+          </StyledMixUploadedDate>
         </StyledMixNotes>
       )}
       {isExpanded && <TrackListMini mix={mix} highlight={highlight} />}{" "}

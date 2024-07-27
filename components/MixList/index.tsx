@@ -1,15 +1,16 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import FilterAlt from "@mui/icons-material/FilterAlt";
 import FilterAltOff from "@mui/icons-material/FilterAltOff";
 import Search from "@mui/icons-material/Search";
 import SearchOff from "@mui/icons-material/SearchOff";
+import Update from "@mui/icons-material/Update";
+import UpdateDisabled from "@mui/icons-material/UpdateDisabled";
 import { CircularProgress } from "@mui/material";
 import MixRow from "components/MixList/MixRow";
 import {
   StyledControls,
   StyledMixListCategories,
   StyledMixListCategory,
+  StyledMixUploadedDateTitle,
   StyledNoResults,
   StyledSearchBox,
   StyledSearchButton,
@@ -29,7 +30,9 @@ export const MixList: React.FC = () => {
   const [filterCategory, setFilterCategory] = useState<string | undefined>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [mixes, setMixes] = useState<Mix[]>([]);
+  const [latestMixes, setLatestMixes] = useState<Mix[]>([]);
   const [showFilters, setShowFilters] = useState<boolean>(false);
+  const [showLatest, setShowLatest] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
@@ -44,20 +47,28 @@ export const MixList: React.FC = () => {
     setFilterCategory(category);
   };
 
-  const handleToggleFilters = (): void => {
+  const resetViews = () => {
+    setShowFilters(false);
+    setShowLatest(false);
+    setShowSearch(false);
     setFilterCategory(undefined);
     setSearchQuery("");
     setSearchResults([]);
-    setShowSearch(false);
+  };
+
+  const handleToggleFilters = (): void => {
+    resetViews();
     setShowFilters(!showFilters);
   };
 
   const handleToggleSearch = (): void => {
-    setFilterCategory(undefined);
-    setSearchQuery("");
-    setSearchResults([]);
-    setShowFilters(false);
+    resetViews();
     setShowSearch(!showSearch);
+  };
+
+  const handleToggleLatest = (): void => {
+    resetViews();
+    setShowLatest(!showLatest);
   };
 
   const fetchFavouriteMixes = async (): Promise<Mix[]> => {
@@ -113,6 +124,20 @@ export const MixList: React.FC = () => {
     }
   };
 
+  const fetchLatestMixes = async (): Promise<void> => {
+    try {
+      setIsLoading(true);
+      const response = await fetch(`/api/latestMixes`);
+      if (!response.ok) throw new Error("Data fetch failed");
+      const latestMixesData = await response.json();
+      setLatestMixes(latestMixesData);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleSearch = async (): Promise<void> => {
     try {
       setIsLoading(true);
@@ -134,10 +159,18 @@ export const MixList: React.FC = () => {
   }, [showSearch]);
 
   useEffect(() => {
-    if (!showSearch) {
+    if (!showSearch && !showLatest) {
       fetchMixes();
     }
-  }, [filterCategory, showSearch]);
+  }, [filterCategory, showSearch, showLatest]);
+
+  useEffect(() => {
+    if (showLatest) {
+      fetchLatestMixes();
+    } else {
+      fetchMixes();
+    }
+  }, [showLatest]);
 
   useEffect(() => {
     fetchMixes();
@@ -154,6 +187,9 @@ export const MixList: React.FC = () => {
             </StyledToggle>
             <StyledToggle onClick={handleToggleSearch}>
               {showSearch ? <SearchOff /> : <Search />}
+            </StyledToggle>
+            <StyledToggle onClick={handleToggleLatest}>
+              {showLatest ? <UpdateDisabled /> : <Update />}
             </StyledToggle>
           </StyledControls>
           {showFilters && (
@@ -199,34 +235,63 @@ export const MixList: React.FC = () => {
           )}
         </>
       )}
-      {!isLoading &&
-        (showSearch ? (
-          <div>
-            {searchResults.length > 0 ? (
-              searchResults.map((result) => (
-                <MixRow
-                  key={result.mixcloudKey || result.trackMatch.trackName}
-                  mix={result}
-                  highlight={searchQuery}
-                  matchType={result.matchType}
-                  trackMatch={result.trackMatch}
-                />
-              ))
-            ) : (
-              <StyledNoResults>No search results found</StyledNoResults>
-            )}
-          </div>
-        ) : (
-          <div>
-            {mixes.length > 0 ? (
-              mixes.map((mix: Mix) => (
-                <MixRow key={mix.mixcloudKey} mix={mix} />
-              ))
-            ) : (
-              <StyledNoResults>No mixes found in this category</StyledNoResults>
-            )}
-          </div>
-        ))}
+      {!isLoading && showSearch && (
+        <div>
+          {searchResults.length > 0 ? (
+            searchResults.map((result) => (
+              <MixRow
+                key={result.mixcloudKey || result.trackMatch.trackName}
+                mix={result}
+                highlight={searchQuery}
+                matchType={result.matchType}
+                trackMatch={result.trackMatch}
+              />
+            ))
+          ) : (
+            <StyledNoResults>No search results found</StyledNoResults>
+          )}
+        </div>
+      )}
+      {!isLoading && showLatest && (
+        <div>
+          <h2>Latest mixes</h2>
+          {latestMixes.length > 0 ? (
+            latestMixes.map((mix: Mix) => (
+              <div key={mix.mixcloudKey}>
+                <StyledMixUploadedDateTitle>
+                  Uploaded on{" "}
+                  {new Date(mix.uploadedDate).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </StyledMixUploadedDateTitle>
+                <MixRow mix={mix} />
+              </div>
+            ))
+          ) : (
+            <StyledNoResults>No recent mixes found</StyledNoResults>
+          )}
+        </div>
+      )}
+      {!isLoading && showFilters && (
+        <div>
+          {mixes.length > 0 ? (
+            mixes.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)
+          ) : (
+            <StyledNoResults>No mixes found in this category</StyledNoResults>
+          )}
+        </div>
+      )}
+      {!isLoading && !showFilters && !showSearch && !showLatest && (
+        <div>
+          {mixes.length > 0 ? (
+            mixes.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)
+          ) : (
+            <StyledNoResults>No mixes found</StyledNoResults>
+          )}
+        </div>
+      )}
     </>
   );
 };
