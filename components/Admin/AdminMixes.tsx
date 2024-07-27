@@ -81,6 +81,7 @@ const AdminMixes = (): JSX.Element => {
       name: "",
       notes: "",
       releaseDate: "",
+      uploadedDate: "",
       shortName: "",
       tags: [],
       tracks: [], // Initialize an empty array for tracks

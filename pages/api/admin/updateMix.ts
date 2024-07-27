@@ -21,6 +21,7 @@ const handler = async (
       name,
       notes,
       releaseDate,
+      uploadedDate,
       shortName,
       tags,
       tracks, // Include tracks in the request body
@@ -44,6 +45,7 @@ const handler = async (
         name,
         notes,
         releaseDate,
+        uploadedDate,
         shortName,
         tags,
         tracks, // Ensure tracks are updated
@@ -62,6 +64,7 @@ const handler = async (
         name,
         notes,
         releaseDate,
+        uploadedDate,
         shortName,
         tags,
         tracks, // Ensure tracks are added
