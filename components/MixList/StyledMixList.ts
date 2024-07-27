@@ -104,6 +104,13 @@ export const StyledMixUploadedDate = styled.div`
   font-size: 14px;
 `;
 
+export const StyledMixUploadedDateTitle = styled.div`
+  margin: 2em 0 0.5em 172px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  text-align: left;
+`;
+
 export const StyledMixNotes = styled.div`
   margin: 0 0 0 122px;
   text-align: left;
