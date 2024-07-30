@@ -277,7 +277,7 @@ const Jupiter = (): JSX.Element => {
                       on={favourite}
                     />
                     <JupiterButton
-                      color="orange"
+                      color="yellow"
                       label="Share"
                       onClick={handleShareClick}
                     />
