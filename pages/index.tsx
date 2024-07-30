@@ -2,7 +2,7 @@ import Jupiter from "components";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-import { GOOGLE_TRACKING_ID, LOAD_TYPE } from "utils/constants";
+import { GOOGLE_TRACKING_ID } from "utils/constants";
 
 const Home = (): JSX.Element => {
   const {
@@ -10,7 +10,6 @@ const Home = (): JSX.Element => {
     setIsReady,
     controls: {
       handleLoad,
-      handleLoadLatest,
       handleLoadRandom,
       handleLoadRandomFavourite,
       handleSeek,
@@ -47,8 +46,6 @@ const Home = (): JSX.Element => {
     const handleInitialLoad = async (): Promise<void> => {
       if (mcKey) {
         handleLoad(mcKey);
-      } else if (LOAD_TYPE === "newest") {
-        handleLoadLatest();
       } else if (latestMcKey) {
         handleLoad(latestMcKey);
       } else if (selectedCategory && selectedCategory === "fav") {

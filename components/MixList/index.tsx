@@ -47,7 +47,7 @@ export const MixList: React.FC = () => {
     setFilterCategory(category);
   };
 
-  const resetViews = () => {
+  const resetViews = (): void => {
     setShowFilters(false);
     setShowLatest(false);
     setShowSearch(false);
