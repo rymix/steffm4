@@ -2,7 +2,10 @@ import { db, initializeDb } from "db";
 import type { Mix } from "db/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (
+  req: NextApiRequest,
+  res: NextApiResponse,
+): Promise<void> => {
   await initializeDb();
 
   const { count } = req.query;
@@ -24,4 +27,3 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 };
 
 export default handler;
-

@@ -6,7 +6,6 @@ export const DEFAULT_MESSAGE = "Stef FM - Funky House Coming In Your Ears";
 export const DEFAULT_TITLE = "Stef.FM - Funky House Coming In Your Ears";
 export const DEFAULT_VOLUME = 1;
 export const DISPLAY_LENGTH = 24;
-export const LOAD_TYPE = "latestPlayed"; // "latestPlayed" or "newest"
 export const NOISE_BACKGROUND_LOW = `
   data:image/png;base64,
   iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAn8CBG0xnoYAAAAASUVORK5CYII=
