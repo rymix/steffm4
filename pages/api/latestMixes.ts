@@ -5,6 +5,9 @@ import type { NextApiRequest, NextApiResponse } from "next";
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   await initializeDb();
 
+  const { count } = req.query;
+  const limit = Number.isNaN(Number(count)) ? 5 : Number(count);
+
   const mixes: Mix[] = db.data?.mixes || [];
 
   // Convert uploadedDate to a sortable datetime format and sort by uploadedDate in descending order
@@ -15,7 +18,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   });
 
   // Get the 5 most recent mixes
-  const recentMixes = sortedMixes.slice(0, 5);
+  const recentMixes = sortedMixes.slice(0, Number(limit));
 
   res.status(200).json(recentMixes);
 };
