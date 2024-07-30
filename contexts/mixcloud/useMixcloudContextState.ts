@@ -410,7 +410,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const fetchLatestMcKey = async (): Promise<string> => {
     const response = await fetch("/api/latestMixes?count=1");
     const data = await response.json();
-    console.log("data[0]", data[0]);
     return data[0].mixcloudKey;
   };
 
