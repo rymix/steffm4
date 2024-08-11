@@ -45,6 +45,7 @@ const Jupiter = (): JSX.Element => {
     isReady,
     mcKey,
     controls: {
+      handleLoadLatest,
       handleLoadRandom,
       handleLoadRandomFavourite,
       handlePause,
@@ -137,6 +138,16 @@ const Jupiter = (): JSX.Element => {
       category: "Option",
       action: "Click",
       label: "Random Mix",
+    });
+  };
+
+  const handleLatestClick = async (): Promise<void> => {
+    handleLoadLatest();
+
+    ReactGA.event({
+      category: "Option",
+      action: "Click",
+      label: "Latest Mix",
     });
   };
 
@@ -248,10 +259,9 @@ const Jupiter = (): JSX.Element => {
                       onClick={handleRandomClick}
                     />
                     <JupiterButton
-                      color="yellow"
-                      label="Fav"
-                      onClick={handleFavouriteClick}
-                      on={favourite}
+                      color="blue"
+                      label="Latest"
+                      onClick={handleLatestClick}
                     />
                   </StyledItem>
                 </StyledItems>
@@ -261,7 +271,13 @@ const Jupiter = (): JSX.Element => {
                 <StyledItems>
                   <StyledItem>
                     <JupiterButton
-                      color="orange"
+                      color="yellow"
+                      label="Fav"
+                      onClick={handleFavouriteClick}
+                      on={favourite}
+                    />
+                    <JupiterButton
+                      color="yellow"
                       label="Share"
                       onClick={handleShareClick}
                     />

@@ -18,9 +18,11 @@ export type MixcloudContextState = {
   mcUrl: string;
   setIsReady: React.Dispatch<React.SetStateAction<boolean>>;
   controls: {
+    fetchLatestMcKey: () => Promise<string>;
     fetchRandomMcKey: () => Promise<string>;
     fetchRandomMcKeyByCategory: (category: string | null) => Promise<string>;
     handleLoad: (localMcKey?: string) => void;
+    handleLoadLatest: () => void;
     handleLoadRandom: (category?: string) => void;
     handleLoadRandomFavourite: () => void;
     handleNext: () => void;

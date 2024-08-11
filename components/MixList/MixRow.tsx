@@ -108,8 +108,8 @@ export const MixRow: React.FC<MixRowProps> = ({ mix, highlight }) => {
             textToHighlight={mix.notes || ""}
           />
           <StyledMixTags>
-            {mix.tags.map((tag, index) => (
-              <StyledMixTag key={index}>#{tag}</StyledMixTag>
+            {mix.tags.map((tag) => (
+              <StyledMixTag key={tag}>#{tag}</StyledMixTag>
             ))}
           </StyledMixTags>
           <StyledMixUploadedDate>

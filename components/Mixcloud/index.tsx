@@ -54,7 +54,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setTrackProgressPercent(0);
 
     widget.ready.then(() => {
-      console.log("widget ready");
+      console.log("Widget ready");
       setPlayer(widget);
       setPlayerUpdated(true);
       widget.pause();
@@ -83,7 +83,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
       });
 
       widget.events.error.on((error: any) => {
-        console.log("error", error);
+        console.log("Error", error);
         setShowUnavailable(true);
         setPlaying(false);
       });

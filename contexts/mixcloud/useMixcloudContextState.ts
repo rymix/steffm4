@@ -407,6 +407,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
     return data.mcKey;
   };
 
+  const fetchLatestMcKey = async (): Promise<string> => {
+    const response = await fetch("/api/latestMixes?count=1");
+    const data = await response.json();
+    return data[0].mixcloudKey;
+  };
+
   const fetchMixDetails = async (
     localMcKey?: string,
   ): Promise<Mix | undefined> => {
@@ -553,6 +559,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const handleLoad = async (newMcKey?: string): Promise<void> => {
     if (!newMcKey) return;
     setMcKey(mcKeyFormatter(newMcKey));
+  };
+
+  const handleLoadLatest = async (): Promise<void> => {
+    handleLoad(await fetchLatestMcKey());
   };
 
   const handleLoadRandom = async (category?: string): Promise<void> => {
@@ -749,9 +759,11 @@ const useMixcloudContextState = (): MixcloudContextState => {
     mcUrl,
     setIsReady,
     controls: {
+      fetchLatestMcKey,
       fetchRandomMcKey,
       fetchRandomMcKeyByCategory,
       handleLoad,
+      handleLoadLatest,
       handleLoadRandom,
       handleLoadRandomFavourite,
       handleNext,
