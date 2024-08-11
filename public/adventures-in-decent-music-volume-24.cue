@@ -1,0 +1,59 @@
+PERFORMER "Stef.FM"
+TITLE "Adventures In Decent Music - Volume 24"
+FILE "Adventures_In_Decent_Music_Vol._24_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Scrimshire"
+TITLE "Warm Sound feat. Inga-Lill Aker"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Breakbot"
+TITLE "Make You Mine"
+INDEX 01 05:56:00
+TRACK 03 AUDIO
+PERFORMER "Max Sedgley"
+TITLE "Whatcha Doin'? feat. QNC"
+INDEX 01 09:03:00
+TRACK 04 AUDIO
+PERFORMER "Sunlightsquare Latin Combo"
+TITLE "I Believe In Miracles (Mark Capanni cover 1973)"
+INDEX 01 13:06:00
+TRACK 05 AUDIO
+PERFORMER "Snoop Dogg"
+TITLE "Gangsta Luv"
+INDEX 01 16:56:00
+TRACK 06 AUDIO
+PERFORMER "Maddslinky"
+TITLE "Special feat. Omar"
+INDEX 01 20:43:00
+TRACK 07 AUDIO
+PERFORMER "Richter"
+TITLE "Start Never Lie"
+INDEX 01 26:21:00
+TRACK 08 AUDIO
+PERFORMER "Cut-Ex"
+TITLE "Wreckastow"
+INDEX 01 30:13:00
+TRACK 09 AUDIO
+PERFORMER "Ralph Myers"
+TITLE "Grey Goose"
+INDEX 01 34:55:00
+TRACK 10 AUDIO
+PERFORMER "Lettuce"
+TITLE "Blast Off"
+INDEX 01 39:29:00
+TRACK 11 AUDIO
+PERFORMER "Renee Geyer"
+TITLE "Be There In The Morning"
+INDEX 01 43:01:00
+TRACK 12 AUDIO
+PERFORMER "Lovebirds"
+TITLE "This Feelin'"
+INDEX 01 47:11:00
+TRACK 13 AUDIO
+PERFORMER "l'Aroye"
+TITLE "Love 4 a Minute"
+INDEX 01 55:08:00
+TRACK 14 AUDIO
+PERFORMER "Eumir Deodate feat. Al Jarreau"
+TITLE "Double Face"
+INDEX 01 59:52:00
