@@ -18,8 +18,8 @@ import type { BackgroundCategory, BackgroundExtended } from "db/types";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 
-import Macintosh from "./Macintosh";
-import RetroPC from "./RetroPC";
+import Macintosh from "components/BackgroundSelect/Macintosh";
+import RetroPC from "components/BackgroundSelect/RetroPC";
 
 export const BackgroundSelect: React.FC = () => {
   const {

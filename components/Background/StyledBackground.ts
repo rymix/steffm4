@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 
-import { StyledBackgroundProps } from "./types";
+import { StyledBackgroundProps } from "components/Background/types";
 
 export const StyledBackground = styled.div<StyledBackgroundProps>`
   height: 100vh;

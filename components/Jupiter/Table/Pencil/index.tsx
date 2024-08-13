@@ -1,4 +1,4 @@
-import StyledPencil from "./StyledPencil";
+import StyledPencil from "components/Jupiter/Table/Pencil/StyledPencil";
 
 const Pencil: React.FC = () => {
   return <StyledPencil />;
