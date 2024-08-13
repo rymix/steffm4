@@ -25,16 +25,19 @@ export const StyledBurger = styled.button<StyledBurgerProps>`
 
   &:hover {
     div {
-      background: rgba(0, 0, 0, 0.8);
-      box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.8);
+      background: rgba(0, 0, 0, 1);
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 1);
     }
   }
 
   div {
     background: ${({ $open }) =>
-      $open ? "rgba(0, 0, 0, 0.6)" : "rgba(0, 0, 0, 0.5)"};
+      $open ? "rgba(0, 0, 0, 0.8)" : "rgba(0, 0, 0, 0.7)"};
     border-radius: 10px;
-    box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.4);
+    box-shadow: ${({ $open }) =>
+      $open
+        ? "0 0 0 2px rgba(255, 255, 255, 0.5)"
+        : "0 0 0 2px rgba(255, 255, 255, 0.7)"};
 
     height: 0.25rem;
     position: relative;
