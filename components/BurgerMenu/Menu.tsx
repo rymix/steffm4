@@ -48,18 +48,6 @@ const Menu: React.FC = () => {
     <StyledMenu $open={menuOpen}>
       <ul>
         <li
-          onClick={(event) => handleBackgroundClick(event)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              handleBackgroundClick(e);
-            }
-          }}
-          tabIndex={0}
-          role="button"
-        >
-          Background
-        </li>
-        <li
           onClick={(event) => handleAboutClick(event)}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
@@ -94,6 +82,18 @@ const Menu: React.FC = () => {
           role="button"
         >
           Statistics
+        </li>
+        <li
+          onClick={(event) => handleBackgroundClick(event)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleBackgroundClick(e);
+            }
+          }}
+          tabIndex={0}
+          role="button"
+        >
+          Wallpaper
         </li>
       </ul>
     </StyledMenu>
