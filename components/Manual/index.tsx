@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import {
+  StyledControl,
   StyledGrid,
   StyledGridDetail,
   StyledGridHeader,
@@ -10,9 +11,31 @@ import {
   StyledManualTitle,
   StyledWarningIcon,
 } from "components/Manual/StyledManual";
+import {
+  StyledManualGrip,
+  StyledManualInnerKnob,
+  StyledManualKnobMarker,
+  StyledManualKnobWrapper,
+  StyledManualOuterKnob,
+  StyledManualOuterKnobWrapper,
+} from "components/Manual/StyledManualKnob";
+import { useMixcloud } from "contexts/mixcloud";
+import { steps } from "framer-motion";
 import React from "react";
 
 export const Manual: React.FC = () => {
+  const {
+    filters: { categories = [] },
+  } = useMixcloud();
+  const size = 92;
+  const deg = 290;
+  const outerStyle = { width: size, height: size };
+  const innerStyle = {
+    width: size,
+    height: size,
+    transform: `rotate(${deg}deg)`,
+  };
+
   return (
     <StyledManual>
       <StyledManualTitle>Stef.fM</StyledManualTitle>
@@ -39,6 +62,33 @@ export const Manual: React.FC = () => {
         The <strong>SELECT</strong> knob allows you to dial in the sounds of
         your preference. Rotate it to choose between:
       </p>
+
+      <StyledControl>
+        <StyledManualKnobWrapper>
+          <StyledManualOuterKnobWrapper>
+            {categories.map((category, index) => (
+              // eslint-disable-next-line react/no-array-index-key
+              <StyledManualKnobMarker
+                key={index}
+                $x={category.x}
+                $y={category.y}
+              >
+                {category.shortName}
+              </StyledManualKnobMarker>
+            ))}
+            <StyledManualOuterKnob style={outerStyle} $margin={9}>
+              <StyledManualInnerKnob
+                style={innerStyle}
+                $deg={deg}
+                $snap={steps ? 1 : 0}
+              >
+                <StyledManualGrip />
+              </StyledManualInnerKnob>
+            </StyledManualOuterKnob>
+          </StyledManualOuterKnobWrapper>
+        </StyledManualKnobWrapper>
+      </StyledControl>
+
       <StyledGrid>
         <StyledGridHeader>ADV</StyledGridHeader>
         <StyledGridDetail>

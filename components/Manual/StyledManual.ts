@@ -95,3 +95,11 @@ export const StyledGridHeader = styled.div`
 export const StyledGridDetail = styled.div`
   padding: 5px;
 `;
+
+export const StyledControl = styled.div`
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  margin: 10px 0 30px 0;
+`;
