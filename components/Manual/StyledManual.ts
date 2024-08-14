@@ -38,12 +38,12 @@ export const StyledManual = styled.div`
   }
 
   ul {
-    margin: 0 0 0 20px;
+    margin: 20px 0 20px 20px;
   }
 
   li {
-    list-style-type: disc;
-    margin: 0 0 20px 0;
+    list-style-type: square;
+    margin: 0 0 6px 0;
   }
 `;
 
