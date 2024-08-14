@@ -35,6 +35,7 @@ import {
 import { useMixcloud } from "contexts/mixcloud";
 import { steps } from "framer-motion";
 import React from "react";
+import { StyledManualSlider, StyledManualSliderWrapper } from "./StyledSlider";
 
 export const Manual: React.FC = () => {
   const {
@@ -275,6 +276,23 @@ export const Manual: React.FC = () => {
           <strong>Stef.FM</strong> has more to it than meets the eye. Read about
           the origins of the project, its genius original author and its future.
         </StyledGridDetail>
+      </StyledGrid>
+
+      <StyledControl>
+        <StyledManualSliderWrapper>
+          <StyledManualSlider
+            aria-label="Volume"
+            orientation="vertical"
+            value={70}
+            min={0}
+            max={100}
+            $lineColor="black"
+            onChange={null}
+          />
+        </StyledManualSliderWrapper>
+      </StyledControl>
+
+      <StyledGrid>
         <StyledGridHeader>VOL</StyledGridHeader>
         <StyledGridDetail>
           <strong>CHANGE VOLUME</strong>
