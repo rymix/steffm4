@@ -3,6 +3,7 @@ import About from "components/About";
 import BackgroundSelect from "components/BackgroundSelect";
 import { StyledMenu } from "components/BurgerMenu/StyledBurgerMenu";
 import Contact from "components/Contact";
+import Manual from "components/Manual";
 import Statistics from "components/Statistics";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
@@ -28,6 +29,14 @@ const Menu: React.FC = () => {
     setTimeout(() => setMenuOpen(false), 500);
   };
 
+  const handleManualClick = (
+    event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
+  ): void => {
+    event.preventDefault();
+    openModal(<Manual />);
+    setTimeout(() => setMenuOpen(false), 500);
+  };
+
   const handleContactClick = (
     event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
   ): void => {
@@ -47,18 +56,6 @@ const Menu: React.FC = () => {
   return (
     <StyledMenu $open={menuOpen}>
       <ul>
-        <li
-          onClick={(event) => handleBackgroundClick(event)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              handleBackgroundClick(e);
-            }
-          }}
-          tabIndex={0}
-          role="button"
-        >
-          Background
-        </li>
         <li
           onClick={(event) => handleAboutClick(event)}
           onKeyDown={(e) => {
@@ -84,6 +81,18 @@ const Menu: React.FC = () => {
           Contact
         </li>
         <li
+          onClick={(event) => handleManualClick(event)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleManualClick(e);
+            }
+          }}
+          tabIndex={0}
+          role="button"
+        >
+          Manual
+        </li>
+        <li
           onClick={(event) => handleStatisticsClick(event)}
           onKeyDown={(e) => {
             if (e.key === "Enter" || e.key === " ") {
@@ -94,6 +103,18 @@ const Menu: React.FC = () => {
           role="button"
         >
           Statistics
+        </li>
+        <li
+          onClick={(event) => handleBackgroundClick(event)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleBackgroundClick(e);
+            }
+          }}
+          tabIndex={0}
+          role="button"
+        >
+          Wallpaper
         </li>
       </ul>
     </StyledMenu>

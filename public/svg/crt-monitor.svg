@@ -1,0 +1,27 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 400 400"
+  width="400"
+  height="400"
+  fill="none"
+  stroke="black"
+  stroke-width="4"
+>
+  <!-- Outer Frame -->
+  <rect x="50" y="50" width="300" height="240" />
+
+  <!-- Inner Screen -->
+  <rect x="80" y="80" width="240" height="180" />
+
+  <!-- Smaller Button/Details on the bottom left -->
+  <rect x="60" y="265" width="20" height="20" />
+
+  <!-- Bottom Panel -->
+  <rect x="50" y="290" width="300" height="30" />
+
+  <!-- Stand Foot (Wider) -->
+  <rect x="140" y="320" width="120" height="25" />
+
+  <!-- Stand Base (Wider) -->
+  <rect x="120" y="345" width="160" height="10" />
+</svg>

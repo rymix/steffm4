@@ -1,0 +1,7 @@
+<svg width="30" height="15" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with border radius and more pronounced bevel effect -->
+  <rect x="0" y="0" width="30" height="15" rx="2" ry="2" fill="#ffffff" stroke="#000000" stroke-width="5"/>
+  <!-- Orange rectangles with more pronounced shadow at the top, centrally aligned -->
+  <rect x="1" y="6" width="10" height="3" fill="#000000"/>
+  <rect x="19" y="6" width="10" height="3" fill="#000000"/>
+</svg>
