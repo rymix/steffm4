@@ -19,6 +19,7 @@ import {
   StyledGridHeader,
   StyledIconSection,
   StyledManual,
+  StyledManualFooter,
   StyledManualSectionTitle,
   StyledManualSubTitle,
   StyledManualTitle,
@@ -76,7 +77,6 @@ export const Manual: React.FC = () => {
         The <strong>SELECT</strong> knob allows you to dial in the sounds of
         your preference. Rotate it to choose between:
       </p>
-
       <StyledControl>
         <StyledManualKnobWrapper>
           <StyledManualOuterKnobWrapper>
@@ -102,7 +102,6 @@ export const Manual: React.FC = () => {
           </StyledManualOuterKnobWrapper>
         </StyledManualKnobWrapper>
       </StyledControl>
-
       <StyledGrid>
         <StyledGridHeader>ADV</StyledGridHeader>
         <StyledGridDetail>
@@ -148,20 +147,17 @@ export const Manual: React.FC = () => {
           <strong>EVERYTHING</strong> and listen until tomorrow.
         </StyledGridDetail>
       </StyledGrid>
-
       <StyledManualSectionTitle>Control</StyledManualSectionTitle>
       <hr />
       <p>
         Press the button and things will happen. The things that will happen are
         described below.
       </p>
-
       <StyledControl>
         <StyledManualButton>
           <StyledManualLed $down={false} $on={true} />
         </StyledManualButton>
       </StyledControl>
-
       <StyledGrid>
         <StyledGridHeader>STOP</StyledGridHeader>
         <StyledGridDetail>
@@ -205,7 +201,6 @@ export const Manual: React.FC = () => {
           <strong>NOTE:</strong> This button ignores the current selection.
         </StyledGridDetail>
       </StyledGrid>
-
       <StyledManualSectionTitle>Option</StyledManualSectionTitle>
       <hr />
       <p>
@@ -213,13 +208,11 @@ export const Manual: React.FC = () => {
         things that happen when you click these buttons are different than the
         things that happen when you press the other buttons.
       </p>
-
       <StyledControl>
         <StyledManualButton>
           <StyledManualLed $down={false} $on={true} />
         </StyledManualButton>
       </StyledControl>
-
       <StyledGrid>
         <StyledGridHeader>FAV</StyledGridHeader>
         <StyledGridDetail>
@@ -277,7 +270,6 @@ export const Manual: React.FC = () => {
           the origins of the project, its genius original author and its future.
         </StyledGridDetail>
       </StyledGrid>
-
       <StyledControl>
         <StyledManualSliderWrapper>
           <StyledManualSlider
@@ -290,7 +282,6 @@ export const Manual: React.FC = () => {
           />
         </StyledManualSliderWrapper>
       </StyledControl>
-
       <StyledGrid>
         <StyledGridHeader>VOL</StyledGridHeader>
         <StyledGridDetail>
@@ -309,7 +300,6 @@ export const Manual: React.FC = () => {
           </StyledIconSection>
         </StyledGridDetail>
       </StyledGrid>
-
       <StyledManualSectionTitle>List Mode</StyledManualSectionTitle>
       <hr />
       <p>
@@ -363,7 +353,6 @@ export const Manual: React.FC = () => {
           order.
         </StyledGridDetail>
       </StyledGrid>
-
       <StyledManualSectionTitle>Menu</StyledManualSectionTitle>
       <hr />
       <p>
@@ -426,12 +415,10 @@ export const Manual: React.FC = () => {
           </ul>
         </StyledGridDetail>
       </StyledGrid>
-
       <StyledControl>
         <img src="/svg/crt-monitor.svg" alt="Retro PC" width="40%" />
         <img src="/svg/mac.svg" alt="Mac Classic" width="30%" />
       </StyledControl>
-
       <StyledGrid>
         <StyledGridHeader>WALLPAPER</StyledGridHeader>
         <StyledGridDetail>
@@ -455,6 +442,74 @@ export const Manual: React.FC = () => {
           delectation.
         </StyledGridDetail>
       </StyledGrid>
+      <StyledManualSectionTitle>Specifications</StyledManualSectionTitle>
+      <hr />
+      <StyledGrid>
+        <StyledGridHeader>AMPLIFIER POWER</StyledGridHeader>
+        <StyledGridDetail>
+          Measured in decibels of pure enthusiasm
+        </StyledGridDetail>
+
+        <StyledGridHeader>ANTENNA</StyledGridHeader>
+        <StyledGridDetail>There is no antenna</StyledGridDetail>
+
+        <StyledGridHeader>BASS RESPONSE</StyledGridHeader>
+        <StyledGridDetail>Slapper</StyledGridDetail>
+
+        <StyledGridHeader>BROWSER COMPATIBILITY</StyledGridHeader>
+        <StyledGridDetail>Pretty, pretty good</StyledGridDetail>
+
+        <StyledGridHeader>BUTTONS</StyledGridHeader>
+        <StyledGridDetail>
+          Multi-functional pressable operative function single-throw switch
+          blocks
+        </StyledGridDetail>
+
+        <StyledGridHeader>HUMIDITY RESISTANCE</StyledGridHeader>
+        <StyledGridDetail>Moist</StyledGridDetail>
+
+        <StyledGridHeader>JOY</StyledGridHeader>
+        <StyledGridDetail>Endless</StyledGridDetail>
+
+        <StyledGridHeader>KNOB</StyledGridHeader>
+        <StyledGridDetail>Rotatable</StyledGridDetail>
+
+        <StyledGridHeader>LIGHT INDICATOR</StyledGridHeader>
+        <StyledGridDetail>
+          Glows with the intensity of a thousand ideas
+        </StyledGridDetail>
+
+        <StyledGridHeader>MAXIMUM VOLUME</StyledGridHeader>
+        <StyledGridDetail>11</StyledGridDetail>
+
+        <StyledGridHeader>OUTPUT RANGE</StyledGridHeader>
+        <StyledGridDetail>From low-volume to floor-filling</StyledGridDetail>
+
+        <StyledGridHeader>PLUG COMPATIBILITY</StyledGridHeader>
+        <StyledGridDetail>
+          Fits most sockets, unless they're too small. Or too big
+        </StyledGridDetail>
+
+        <StyledGridHeader>SHUFFLE MODE</StyledGridHeader>
+        <StyledGridDetail>
+          Randomised with the wisdom of ancient algorithms
+        </StyledGridDetail>
+
+        <StyledGridHeader>SONGS</StyledGridHeader>
+        <StyledGridDetail>
+          Funky, soulful, groovy, deep and masterful
+        </StyledGridDetail>
+      </StyledGrid>
+      <StyledManualSectionTitle>Notes</StyledManualSectionTitle>
+      <hr />
+      <p>
+        <a href="mailto:webmaster@stef.fm">webmaster@stef.fm</a>
+        <br />
+        Copyright © 2021 - {new Date().getFullYear()}
+        <br />
+        Some rights reserved
+      </p>
+      <StyledManualFooter>Stef.fM</StyledManualFooter>
     </StyledManual>
   );
 };

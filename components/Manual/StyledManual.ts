@@ -12,6 +12,14 @@ export const StyledManual = styled.div`
     padding: 0;
   }
 
+  a {
+    color: rgba(0, 0, 0, 0.8);
+
+    &:hover {
+      color: rgba(0, 0, 0, 1);
+    }
+  }
+
   hr {
     border-top: 3px solid rgba(0, 0, 0, 0.4);
     margin: 30px 0;
@@ -58,6 +66,14 @@ export const StyledManualSubTitle = styled.div`
   display: block;
   font-size: 54px;
   flex-shrink: 0;
+`;
+
+export const StyledManualFooter = styled.div`
+  display: block;
+  font-family: "Sforzando";
+  font-size: 64px;
+  flex-shrink: 0;
+  text-align: right;
 `;
 
 export const StyledManualSectionTitle = styled.div`
