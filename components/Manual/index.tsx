@@ -9,10 +9,6 @@ import Update from "@mui/icons-material/Update";
 import UpdateDisabled from "@mui/icons-material/UpdateDisabled";
 
 import {
-  StyledManualButton,
-  StyledManualLed,
-} from "components/Manual/StyledButton";
-import {
   StyledControl,
   StyledGrid,
   StyledGridDetail,
@@ -26,6 +22,10 @@ import {
   StyledWarningIcon,
 } from "components/Manual/StyledManual";
 import {
+  StyledManualButton,
+  StyledManualLed,
+} from "components/Manual/StyledManualButton";
+import {
   StyledManualGrip,
   StyledManualInnerKnob,
   StyledManualKnobMarker,
@@ -36,7 +36,20 @@ import {
 import { useMixcloud } from "contexts/mixcloud";
 import { steps } from "framer-motion";
 import React from "react";
-import { StyledManualSlider, StyledManualSliderWrapper } from "./StyledSlider";
+import {
+  StyledManualProgressLed,
+  StyledManualProgressLedsItemsWrapper,
+  StyledManualProgressLedsLabels,
+  StyledManualProgressLedsWrapper,
+} from "./StyledManualProgressLeds";
+import {
+  StyledManualScreen,
+  StyledManualScreenWrapper,
+} from "./StyledManualScreen";
+import {
+  StyledManualSlider,
+  StyledManualSliderWrapper,
+} from "./StyledManualSlider";
 
 export const Manual: React.FC = () => {
   const {
@@ -71,6 +84,47 @@ export const Manual: React.FC = () => {
       <StyledIconSection>
         <StyledWarningIcon /> Warning! The funk is strong. Proceed with caution.
       </StyledIconSection>
+
+      <StyledManualSectionTitle>Display Screen</StyledManualSectionTitle>
+      <hr />
+      <StyledControl>
+        <StyledManualScreenWrapper $displayLength={10}>
+          <StyledManualScreen $displayLength={10}>
+            ADVENTURES
+          </StyledManualScreen>
+        </StyledManualScreenWrapper>
+      </StyledControl>
+      <p>
+        The <strong>DISPLAY SCREEN</strong> features a variable-length
+        multi-segment display. Its content is updated automatically with the
+        most recent mixes and tracks. Occasional messages are displayed when the
+        time is right.
+      </p>
+
+      <StyledManualSectionTitle>Progress Indicator</StyledManualSectionTitle>
+      <hr />
+      <StyledControl>
+        <StyledManualProgressLedsWrapper>
+          <StyledManualProgressLedsItemsWrapper $displayLength={11}>
+            {Array.from({ length: 11 }, (_, i) => (
+              <StyledManualProgressLed key={i} $on={i < 4} />
+            ))}
+          </StyledManualProgressLedsItemsWrapper>
+          <StyledManualProgressLedsLabels>
+            <div>0</div>
+            <div>25</div>
+            <div>50</div>
+            <div>75</div>
+            <div>100</div>
+          </StyledManualProgressLedsLabels>
+        </StyledManualProgressLedsWrapper>
+      </StyledControl>
+      <p>
+        The <strong>PROGRESS INDICATOR</strong> shows the playback progress of
+        the current mix. The LEDs light up in sequence to indicate the current
+        playhead position proportional to the overall length of the mix.
+      </p>
+
       <StyledManualSectionTitle>Select</StyledManualSectionTitle>
       <hr />
       <p>
@@ -147,6 +201,7 @@ export const Manual: React.FC = () => {
           <strong>EVERYTHING</strong> and listen until tomorrow.
         </StyledGridDetail>
       </StyledGrid>
+
       <StyledManualSectionTitle>Control</StyledManualSectionTitle>
       <hr />
       <p>
@@ -201,6 +256,7 @@ export const Manual: React.FC = () => {
           <strong>NOTE:</strong> This button ignores the current selection.
         </StyledGridDetail>
       </StyledGrid>
+
       <StyledManualSectionTitle>Option</StyledManualSectionTitle>
       <hr />
       <p>
@@ -300,6 +356,7 @@ export const Manual: React.FC = () => {
           </StyledIconSection>
         </StyledGridDetail>
       </StyledGrid>
+
       <StyledManualSectionTitle>List Mode</StyledManualSectionTitle>
       <hr />
       <p>
@@ -353,6 +410,7 @@ export const Manual: React.FC = () => {
           order.
         </StyledGridDetail>
       </StyledGrid>
+
       <StyledManualSectionTitle>Menu</StyledManualSectionTitle>
       <hr />
       <p>
@@ -442,6 +500,7 @@ export const Manual: React.FC = () => {
           delectation.
         </StyledGridDetail>
       </StyledGrid>
+
       <StyledManualSectionTitle>Specifications</StyledManualSectionTitle>
       <hr />
       <StyledGrid>
@@ -500,6 +559,7 @@ export const Manual: React.FC = () => {
           Funky, soulful, groovy, deep and masterful
         </StyledGridDetail>
       </StyledGrid>
+
       <StyledManualSectionTitle>Notes</StyledManualSectionTitle>
       <hr />
       <p>
