@@ -1,0 +1,24 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 400 500"
+  width="400"
+  height="500"
+  fill="none"
+  stroke="black"
+  stroke-width="6"
+>
+  <!-- Outer Frame -->
+  <rect x="50" y="50" width="300" height="400" rx="20" ry="20" />
+
+  <!-- Inner Screen -->
+  <rect x="90" y="100" width="220" height="180" rx="20" ry="20" />
+
+  <!-- Disk Slot -->
+  <rect x="180" y="320" width="120" height="10" rx="2" ry="2" />
+
+  <!-- Bottom Left Badge -->
+  <rect x="70" y="360" width="30" height="30" rx="5" ry="5" />
+
+  <!-- Bottom Right Button -->
+  <rect x="280" y="410" width="20" height="30" rx="5" ry="5" />
+</svg>

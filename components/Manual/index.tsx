@@ -425,6 +425,14 @@ export const Manual: React.FC = () => {
             </li>
           </ul>
         </StyledGridDetail>
+      </StyledGrid>
+
+      <StyledControl>
+        <img src="/svg/crt-monitor.svg" alt="Retro PC" width="40%" />
+        <img src="/svg/mac.svg" alt="Mac Classic" width="30%" />
+      </StyledControl>
+
+      <StyledGrid>
         <StyledGridHeader>WALLPAPER</StyledGridHeader>
         <StyledGridDetail>
           <strong>CHANGE THE BACKGROUND IMAGE</strong>
