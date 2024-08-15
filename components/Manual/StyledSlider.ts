@@ -1,6 +1,6 @@
 import { Slider } from "@mui/material";
 import { StyledJupiterSliderProps } from "components/Jupiter/Slider/types";
-import JupiterHandle from "public/svg/slider-handle2.svg";
+import JupiterHandle from "public/svg/slider-handle3.svg";
 import styled from "styled-components";
 
 export const StyledManualSliderWrapper = styled.div`
@@ -10,11 +10,13 @@ export const StyledManualSliderWrapper = styled.div`
   justify-content: flex-start;
   font-size: 14px;
   text-transform: uppercase;
-  height: 128px;
+  height: 100px;
   width: 54px;
 `;
 
 export const StyledManualSlider = styled(Slider)<StyledJupiterSliderProps>`
+  cursor: default;
+
   & .MuiSlider-track {
     display: none;
   }
@@ -25,13 +27,10 @@ export const StyledManualSlider = styled(Slider)<StyledJupiterSliderProps>`
     border-radius: 1px;
     background: url(${JupiterHandle.src}) no-repeat center center;
     background-size: cover;
-    box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.9);
     z-index: 2;
 
-    &:focus,
-    &:hover,
-    &:active {
-      box-shadow: "none";
+    &:hover {
+      box-shadow: none;
     }
   }
 
@@ -81,13 +80,8 @@ export const StyledManualSlider = styled(Slider)<StyledJupiterSliderProps>`
         ${(props) => props.$lineColor || "black"} 99%,
         transparent 100%
       );
-      pointerevents: none;
       z-index: -1;
       mix-blend-mode: multiply;
     }
-  }
-
-  & .MuiSlider-root {
-    padding: 0 8px;
   }
 `;

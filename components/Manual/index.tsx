@@ -287,7 +287,6 @@ export const Manual: React.FC = () => {
             min={0}
             max={100}
             $lineColor="black"
-            onChange={null}
           />
         </StyledManualSliderWrapper>
       </StyledControl>
