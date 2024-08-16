@@ -88,10 +88,8 @@ export const Manual: React.FC = () => {
       <StyledManualSectionTitle>Display Screen</StyledManualSectionTitle>
       <hr />
       <StyledControl>
-        <StyledManualScreenWrapper $displayLength={10}>
-          <StyledManualScreen $displayLength={10}>
-            ADVENTURES
-          </StyledManualScreen>
+        <StyledManualScreenWrapper $displayLength={8}>
+          <StyledManualScreen $displayLength={8}>ADVENTUR</StyledManualScreen>
         </StyledManualScreenWrapper>
       </StyledControl>
       <p>
@@ -220,6 +218,8 @@ export const Manual: React.FC = () => {
           <br />
           <strong>NEVER</strong> press this button. If you press this, sadness
           will ensue. You have been warned.
+          <br />
+          <em>Keypress K, Spacebar</em>
         </StyledGridDetail>
         <StyledGridHeader>PLAY</StyledGridHeader>
         <StyledGridDetail>
@@ -227,24 +227,32 @@ export const Manual: React.FC = () => {
           <br />
           Press this button to make the music begin. You will not be
           disappointed.
+          <br />
+          <em>Keypress K, Spacebar</em>
         </StyledGridDetail>
         <StyledGridHeader>PREV</StyledGridHeader>
         <StyledGridDetail>
           <strong>PREVIOUS MIX</strong>
           <br />
           Go to the previous mix in the current selection.
+          <br />
+          <em>Keypress J</em>
         </StyledGridDetail>
         <StyledGridHeader>NEXT</StyledGridHeader>
         <StyledGridDetail>
           <strong>NEXT MIX</strong>
           <br />
           Go to the next mix in the current selection.
+          <br />
+          <em>Keypress L</em>
         </StyledGridDetail>
         <StyledGridHeader>RAND</StyledGridHeader>
         <StyledGridDetail>
           <strong>RANDOM MIX</strong>
           <br />
           Play a random mix in the current selection.
+          <br />
+          <em>Keypress R</em>
         </StyledGridDetail>
         <StyledGridHeader>LATEST</StyledGridHeader>
         <StyledGridDetail>
@@ -254,6 +262,8 @@ export const Manual: React.FC = () => {
           this to keep up to date with the newest music.
           <br />
           <strong>NOTE:</strong> This button ignores the current selection.
+          <br />
+          <em>Keypress N</em>
         </StyledGridDetail>
       </StyledGrid>
 
@@ -281,6 +291,8 @@ export const Manual: React.FC = () => {
           this mix. Your favourited mixes will appear under the{" "}
           <strong>FAV</strong> selection as well as in the{" "}
           <strong>Favourites</strong> section of the <strong>LIST</strong> mode.
+          <br />
+          <em>Keypress F</em>
         </StyledGridDetail>
         <StyledGridHeader>SHARE</StyledGridHeader>
         <StyledGridDetail>
@@ -289,6 +301,8 @@ export const Manual: React.FC = () => {
           Click the <strong>SHARE</strong> button to copy a shareable link to
           your clipboard. Paste this into your social posts or send the link to
           a friend. Share the music and share the love.
+          <br />
+          <em>Keypress S</em>
         </StyledGridDetail>
         <StyledGridHeader>INFO</StyledGridHeader>
         <StyledGridDetail>
@@ -348,6 +362,8 @@ export const Manual: React.FC = () => {
           louder rare grooves in your ear then move the slider upwards. For a
           more chilled listening experience then moving the slider downwards
           will satisfy your desires.
+          <br />
+          <em>Keypress Up, Down, M to mute</em>
           <br />
           <br />
           <StyledIconSection>
@@ -499,6 +515,39 @@ export const Manual: React.FC = () => {
           selection screen simulates a vintage computing experience for your
           delectation.
         </StyledGridDetail>
+      </StyledGrid>
+
+      <StyledManualSectionTitle>Keyboard Shortcuts</StyledManualSectionTitle>
+      <hr />
+      <p>
+        The <strong>DISPLAY SCREEN</strong> features a variable-length
+        multi-segment display. Its content is updated automatically with the
+        most recent mixes and tracks. Occasional messages are displayed when the
+        time is right.
+      </p>
+      <StyledGrid>
+        <StyledGridHeader>SPACE BAR OR K</StyledGridHeader>
+        <StyledGridDetail>Toggle Play/Stop</StyledGridDetail>
+        <StyledGridHeader>J</StyledGridHeader>
+        <StyledGridDetail>Previous Track</StyledGridDetail>
+        <StyledGridHeader>L</StyledGridHeader>
+        <StyledGridDetail>Next Track</StyledGridDetail>
+        <StyledGridHeader>M</StyledGridHeader>
+        <StyledGridDetail>Mute</StyledGridDetail>
+        <StyledGridHeader>UP</StyledGridHeader>
+        <StyledGridDetail>Increase volume</StyledGridDetail>
+        <StyledGridHeader>DOWN</StyledGridHeader>
+        <StyledGridDetail>Decrease volume</StyledGridDetail>
+        <StyledGridHeader>R</StyledGridHeader>
+        <StyledGridDetail>Load random track</StyledGridDetail>
+        <StyledGridHeader>N</StyledGridHeader>
+        <StyledGridDetail>Load latest/newest track</StyledGridDetail>
+        <StyledGridHeader>F</StyledGridHeader>
+        <StyledGridDetail>Toggle favourite mix</StyledGridDetail>
+        <StyledGridHeader>S</StyledGridHeader>
+        <StyledGridDetail>Copy shareable link to clipboard</StyledGridDetail>
+        <StyledGridHeader></StyledGridHeader>
+        <StyledGridDetail></StyledGridDetail>
       </StyledGrid>
 
       <StyledManualSectionTitle>Specifications</StyledManualSectionTitle>
