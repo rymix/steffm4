@@ -14,6 +14,11 @@ import {
   StyledSubDetails,
 } from "components/MixCard/StyledMixCard";
 import type { MixCardProps } from "components/MixCard/types";
+import {
+  StyledMixTag,
+  StyledMixTags,
+  StyledMixUploadedDate,
+} from "components/MixList/StyledMixList";
 import Share from "components/Share";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
@@ -56,6 +61,15 @@ export const MixCard: React.FC<MixCardProps> = ({ category = false }) => {
             <Favourite mix={mixDetails} />
             <Share />
           </StyledInteractionsWrapper>
+
+          <StyledMixTags>
+            {mixDetails.tags.map((tag) => (
+              <StyledMixTag key={tag}>#{tag}</StyledMixTag>
+            ))}
+          </StyledMixTags>
+          <StyledMixUploadedDate>
+            Uploaded on {mixDetails.uploadedDate}
+          </StyledMixUploadedDate>
         </StyledMixInfo>
       </StyledMixCard>
     </StyledMixCardWrapper>

@@ -66,7 +66,7 @@ const Menu: React.FC = () => {
           tabIndex={0}
           role="button"
         >
-          About
+          About Stef.FM
         </li>
         <li
           onClick={(event) => handleContactClick(event)}
@@ -90,7 +90,7 @@ const Menu: React.FC = () => {
           tabIndex={0}
           role="button"
         >
-          Manual
+          User Manual
         </li>
         <li
           onClick={(event) => handleStatisticsClick(event)}
@@ -114,7 +114,7 @@ const Menu: React.FC = () => {
           tabIndex={0}
           role="button"
         >
-          Wallpaper
+          Wallpaper Chooser
         </li>
       </ul>
     </StyledMenu>
