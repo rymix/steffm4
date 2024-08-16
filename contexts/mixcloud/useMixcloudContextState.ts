@@ -753,6 +753,88 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchCategories();
   }, []);
 
+  /* Keypress Listeners */
+  const handleKeyPress = useCallback(
+    (event: KeyboardEvent) => {
+      switch (event.key) {
+        case " ":
+        case "k":
+          event.preventDefault();
+          if (playing) {
+            handlePause();
+          } else {
+            handlePlay();
+          }
+          break;
+        case "j":
+          event.preventDefault();
+          handlePrevious();
+          break;
+        case "l":
+          event.preventDefault();
+          handleNext();
+          break;
+        case "m":
+          event.preventDefault();
+          setVolume(0);
+          break;
+        case "r":
+          event.preventDefault();
+          handleLoadRandom();
+          break;
+        case "n":
+          event.preventDefault();
+          handleLoadLatest();
+          break;
+        case "f":
+          event.preventDefault();
+          if (mixIsFavourite) {
+            removeFavourite(mcKey);
+          } else {
+            addFavourite(mcKey);
+          }
+          break;
+        case "s":
+          event.preventDefault();
+          copySharableLink();
+          break;
+        case "ArrowUp":
+          event.preventDefault();
+          setVolume(Math.min(volume + 0.1, 1));
+          break;
+        case "ArrowDown":
+          event.preventDefault();
+          setVolume(Math.max(volume - 0.1, 0));
+          break;
+        default:
+          break;
+      }
+    },
+    [
+      handlePlayPause,
+      handlePrevious,
+      handleNext,
+      setVolume,
+      handleLoadLatest,
+      handleLoadRandom,
+      mixIsFavourite,
+      mcKey,
+      addFavourite,
+      removeFavourite,
+      openModal,
+      mixDetails,
+      volume,
+    ],
+  );
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
+  }, [handleKeyPress]);
+
   return {
     isReady,
     mcKey,
