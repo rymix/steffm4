@@ -259,12 +259,7 @@ export const MixList: React.FC = () => {
             latestMixes.map((mix: Mix) => (
               <div key={mix.mixcloudKey}>
                 <StyledMixUploadedDateTitle>
-                  Uploaded on{" "}
-                  {new Date(mix.uploadedDate).toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
-                  })}
+                  Uploaded on {mix.uploadedDate}
                 </StyledMixUploadedDateTitle>
                 <MixRow mix={mix} />
               </div>
