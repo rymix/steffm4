@@ -87,6 +87,7 @@ export const StyledMixExpand = styled.div`
 export const StyledMixTags = styled.div`
   color: rgba(0, 0, 0, 0.6);
   display: flex;
+  flex-wrap: wrap;
   font-size: 14px;
   gap: 6px;
   margin-top: 1em;
