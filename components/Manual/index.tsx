@@ -519,12 +519,7 @@ export const Manual: React.FC = () => {
 
       <StyledManualSectionTitle>Keyboard Shortcuts</StyledManualSectionTitle>
       <hr />
-      <p>
-        The <strong>DISPLAY SCREEN</strong> features a variable-length
-        multi-segment display. Its content is updated automatically with the
-        most recent mixes and tracks. Occasional messages are displayed when the
-        time is right.
-      </p>
+      <p>Press the keys to do the things.</p>
       <StyledGrid>
         <StyledGridHeader>SPACE BAR OR K</StyledGridHeader>
         <StyledGridDetail>Toggle Play/Stop</StyledGridDetail>
