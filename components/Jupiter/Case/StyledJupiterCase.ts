@@ -7,58 +7,23 @@ export const StyledJupiterCase = styled.div<StyledJupiterCaseProps>`
   max-width: 1100px;
   min-width: 320px;
   z-index: 2;
+  ${(props) =>
+    props.$scale && props.$scale.y !== 1
+      ? `transform: scale(${props.$scale.y});`
+      : ""}
 
   /* PORTRAIT */
   @media screen and (orientation: portrait) and (max-width: 1100px) {
     max-width: 1100px;
     min-width: 480px;
-    transform: scale(0.9);
   }
 
   @media screen and (orientation: portrait) and (max-width: 768px) {
     max-width: 480px;
     min-width: 320px;
-    transform: scale(0.9);
-  }
-
-  @media screen and (orientation: portrait) and (max-width: 420px) {
-    transform: scale(0.8);
   }
 
   @media screen and (orientation: portrait) and (max-width: 320px) {
     transform: scale(0.7);
-  }
-
-  /* LANDSCAPE */
-  @media screen and (orientation: landscape) and (max-width: 1152px) {
-    max-width: 1100px;
-    min-width: 780px;
-    transform: scale(0.8);
-  }
-
-  @media screen and (orientation: landscape) and (max-width: 999px) {
-    max-width: 780px;
-    min-width: 480px;
-    transform: scale(0.7);
-  }
-
-  @media screen and (orientation: landscape) and (max-width: 880px) {
-    max-width: 780px;
-    min-width: 480px;
-    transform: scale(0.6);
-  }
-
-  @media screen and (orientation: landscape) and (max-width: 768px) {
-    max-width: 480px;
-    min-width: 320px;
-    transform: scale(0.5);
-  }
-
-  @media screen and (orientation: landscape) and (max-width: 420px) {
-    transform: scale(0.4);
-  }
-
-  @media screen and (orientation: landscape) and (max-width: 320px) {
-    transform: scale(0.4);
   }
 `;

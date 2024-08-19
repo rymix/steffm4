@@ -1,3 +1,5 @@
+import { Scale } from "contexts/mixcloud/types";
+
 export type StyledMacintoshProps = {
-  $scale?: number;
+  $scale?: Scale;
 };

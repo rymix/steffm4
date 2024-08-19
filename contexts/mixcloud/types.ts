@@ -12,6 +12,11 @@ export type Progress = {
   seconds: number;
 };
 
+export type Scale = {
+  x: number;
+  y: number;
+};
+
 export type MixcloudContextState = {
   isReady: boolean;
   mcKey: string;
@@ -88,6 +93,7 @@ export type MixcloudContextState = {
     displayLength: number;
     handleCloseModal: () => void;
     isMobile: boolean;
+    jupiterCaseRef: React.MutableRefObject<HTMLDivElement | null>;
     menuOpen: boolean;
     modalContent: ReactNode | null;
     modalOpen: boolean;
@@ -98,7 +104,7 @@ export type MixcloudContextState = {
       title?: string | null,
       seconds?: number,
     ) => void;
-    scale: number;
+    scale: Scale | null;
     secondsRemaining: number | null;
     setBackground: React.Dispatch<
       React.SetStateAction<BackgroundExtended | undefined>
@@ -109,7 +115,7 @@ export type MixcloudContextState = {
     setModalContent: React.Dispatch<React.SetStateAction<ReactNode | null>>;
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setModalTitle: React.Dispatch<React.SetStateAction<string | null>>;
-    setScale: React.Dispatch<React.SetStateAction<number>>;
+    setScale: React.Dispatch<React.SetStateAction<Scale>>;
     setThemeName: React.Dispatch<React.SetStateAction<string>>;
     setTooltipFading: React.Dispatch<React.SetStateAction<boolean>>;
     setTooltipMessage: React.Dispatch<React.SetStateAction<string | null>>;

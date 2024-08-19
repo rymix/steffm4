@@ -3,6 +3,7 @@ import type {
   Favourite,
   MixcloudContextState,
   Progress,
+  Scale,
 } from "contexts/mixcloud/types";
 import type { BackgroundExtended, Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
@@ -31,6 +32,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [duration, setDuration] = useState<number>(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isReady, setIsReady] = useState<boolean>(false);
+  const jupiterCaseRef = useRef<HTMLDivElement>(null);
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
   );
@@ -46,7 +48,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [player, setPlayer] = useState<any>();
   const [playerUpdated, setPlayerUpdated] = useState<boolean>(false);
   const [playing, setPlaying] = useState<boolean>(false);
-  const [scale, setScale] = useState<number>(1);
+  const [scale, setScale] = useState<Scale>({ x: 1, y: 1 });
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = usePersistedState<
     string | null | undefined
@@ -316,12 +318,36 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
       setIsMobile(windowWidth <= 768);
 
-      if (isPortrait) {
-        if (windowWidth <= 320) {
-          setScale(0.5);
-        }
-      } else {
+      const jupiterCaseHeight = jupiterCaseRef.current
+        ? jupiterCaseRef.current.offsetHeight
+        : 0;
+
+      const jupiterCaseWidth = jupiterCaseRef.current
+        ? jupiterCaseRef.current.offsetWidth
+        : 0;
+
+      const maxHeight = windowHeight - 40;
+      const maxWidth = windowWidth - 40;
+
+      // Calculate the scale factor
+      let scaleFactorY = 1;
+      if (jupiterCaseHeight > maxHeight) {
+        scaleFactorY = maxHeight / jupiterCaseHeight;
       }
+
+      const minScreenWidth = 320;
+      const maxScreenWidth = 640;
+      const minScale = 0.5;
+      const maxScale = 1;
+
+      let scaleFactorX =
+        minScale +
+        ((maxScale - minScale) *
+          (Math.min(Math.max(jupiterCaseWidth, minScreenWidth), maxWidth) -
+            minScreenWidth)) /
+          (maxScreenWidth - minScreenWidth);
+
+      setScale({ x: scaleFactorX, y: scaleFactorY });
 
       // Display lengths
       let limit;
@@ -906,6 +932,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       displayLength,
       handleCloseModal,
       isMobile,
+      jupiterCaseRef,
       menuOpen,
       modalContent,
       modalOpen,
