@@ -10,10 +10,10 @@ export const StyledMonitorWrapper = styled.div<StyledMonitorWrapperProps>`
 
   ${(props) =>
     props.$scale &&
-    props.$scale !== 1 &&
+    props.$scale.x !== 1 &&
     `
-      transform: scale(${props.$scale}) translateY(-${
-        (1 - props.$scale) * 240
+      transform: scale(${props.$scale.x}) translateY(-${
+        (1 - props.$scale.x) * 240
       }px);
     `}
 `;
