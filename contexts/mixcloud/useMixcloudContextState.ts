@@ -322,15 +322,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
         }
       } else {
       }
-      // if (windowWidth <= 320) {
-      //   setScale(0.5);
-      // } else if (windowWidth > 320 && windowWidth < 768) {
-      //   const scaleFactor = (windowWidth - 320) / (768 - 320);
-      //   const newScale = 0.5 + scaleFactor * 0.5;
-      //   setScale(newScale);
-      // } else {
-      //   setScale(1);
-      // }
 
       // Display lengths
       let limit;

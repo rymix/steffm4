@@ -30,21 +30,28 @@ export const StyledJupiterCase = styled.div<StyledJupiterCaseProps>`
   }
 
   /* LANDSCAPE */
-  @media screen and (orientation: landscape) and (min-width: 1100px) {
-    width: 1100px;
-    transform: scale(0.6);
+  @media screen and (orientation: landscape) and (max-width: 1152px) {
+    max-width: 1100px;
+    min-width: 780px;
+    transform: scale(0.8);
   }
 
-  @media screen and (orientation: landscape) and (max-width: 1100px) {
-    max-width: 1100px;
+  @media screen and (orientation: landscape) and (max-width: 999px) {
+    max-width: 780px;
     min-width: 480px;
-    transform: scale(0.5);
+    transform: scale(0.7);
+  }
+
+  @media screen and (orientation: landscape) and (max-width: 880px) {
+    max-width: 780px;
+    min-width: 480px;
+    transform: scale(0.6);
   }
 
   @media screen and (orientation: landscape) and (max-width: 768px) {
     max-width: 480px;
     min-width: 320px;
-    transform: scale(0.4);
+    transform: scale(0.5);
   }
 
   @media screen and (orientation: landscape) and (max-width: 420px) {
