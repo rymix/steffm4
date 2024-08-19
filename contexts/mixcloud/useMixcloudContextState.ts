@@ -289,19 +289,19 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const screenLimits = {
       landscape: [
         { width: 320, displayLength: 6 },
-        { width: 440, displayLength: 7 },
-        { width: 550, displayLength: 12 },
-        { width: 768, displayLength: 15 },
-        { width: 1024, displayLength: 18 },
-        { width: 1300, displayLength: 24 },
+        { width: 440, displayLength: 8 },
+        { width: 768, displayLength: 16 },
+        { width: 880, displayLength: 18 },
+        { width: 1000, displayLength: 20 },
+        { width: 1052, displayLength: 24 },
       ],
       portrait: [
         { width: 320, displayLength: 6 },
-        { width: 440, displayLength: 7 },
-        { width: 550, displayLength: 8 },
-        { width: 768, displayLength: 12 },
-        { width: 1024, displayLength: 14 },
-        { width: 1300, displayLength: 18 },
+        { width: 440, displayLength: 8 },
+        { width: 768, displayLength: 10 },
+        { width: 880, displayLength: 18 },
+        { width: 1000, displayLength: 20 },
+        { width: 1052, displayLength: 24 },
       ],
     };
 
@@ -309,22 +309,30 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
       const isPortrait = windowHeight > windowWidth;
+      const aspectRatio = windowWidth / windowHeight;
       const limits = isPortrait
         ? screenLimits.portrait
         : screenLimits.landscape;
 
       setIsMobile(windowWidth <= 768);
 
-      if (windowWidth <= 320) {
-        setScale(0.5);
-      } else if (windowWidth > 320 && windowWidth < 768) {
-        const scaleFactor = (windowWidth - 320) / (768 - 320);
-        const newScale = 0.5 + scaleFactor * 0.5;
-        setScale(newScale);
+      if (isPortrait) {
+        if (windowWidth <= 320) {
+          setScale(0.5);
+        }
       } else {
-        setScale(1);
       }
+      // if (windowWidth <= 320) {
+      //   setScale(0.5);
+      // } else if (windowWidth > 320 && windowWidth < 768) {
+      //   const scaleFactor = (windowWidth - 320) / (768 - 320);
+      //   const newScale = 0.5 + scaleFactor * 0.5;
+      //   setScale(newScale);
+      // } else {
+      //   setScale(1);
+      // }
 
+      // Display lengths
       let limit;
       for (let i = 0; i < limits.length - 1; i += 1) {
         if (
