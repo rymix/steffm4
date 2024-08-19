@@ -17,7 +17,7 @@ const MonitorComponent: React.FC = () => {
   } = useMixcloud();
 
   return (
-    <StyledMonitorWrapper $scale={scale}>
+    <StyledMonitorWrapper $scale={scale || undefined}>
       <StyledMonitor>
         <StyledLogo>
           <StyledLogoText>

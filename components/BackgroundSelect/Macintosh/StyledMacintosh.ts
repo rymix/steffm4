@@ -12,11 +12,11 @@ export const StyledMacintosh = styled.div<StyledMacintoshProps>`
 
   ${(props) =>
     props.$scale &&
-    props.$scale !== 1 &&
+    props.$scale.x !== 1 &&
     `
-      transform: scale(${props.$scale}) translateX(-${
-        (1 - props.$scale) * 120
-      }px) translateY(-${(1 - props.$scale) * 240}px);
+      transform: scale(${props.$scale.x}) translateX(-${
+        (1 - props.$scale.x) * 120
+      }px) translateY(-${(1 - props.$scale.x) * 240}px);
     `}
 `;
 

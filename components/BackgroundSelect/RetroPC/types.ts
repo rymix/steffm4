@@ -1,3 +1,5 @@
+import { Scale } from "contexts/mixcloud/types";
+
 export type StyledMonitorWrapperProps = {
-  $scale?: number;
+  $scale?: Scale;
 };

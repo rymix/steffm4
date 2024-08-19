@@ -3,6 +3,7 @@ import type {
   Favourite,
   MixcloudContextState,
   Progress,
+  Scale,
 } from "contexts/mixcloud/types";
 import type { BackgroundExtended, Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
@@ -31,6 +32,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [duration, setDuration] = useState<number>(0);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [isReady, setIsReady] = useState<boolean>(false);
+  const jupiterCaseRef = useRef<HTMLDivElement>(null);
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
   );
@@ -46,7 +48,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [player, setPlayer] = useState<any>();
   const [playerUpdated, setPlayerUpdated] = useState<boolean>(false);
   const [playing, setPlaying] = useState<boolean>(false);
-  const [scale, setScale] = useState<number>(1);
+  const [scale, setScale] = useState<Scale>({ x: 1, y: 1 });
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = usePersistedState<
     string | null | undefined
@@ -289,19 +291,19 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const screenLimits = {
       landscape: [
         { width: 320, displayLength: 6 },
-        { width: 440, displayLength: 7 },
-        { width: 550, displayLength: 12 },
-        { width: 768, displayLength: 15 },
-        { width: 1024, displayLength: 18 },
-        { width: 1300, displayLength: 24 },
+        { width: 440, displayLength: 8 },
+        { width: 768, displayLength: 16 },
+        { width: 880, displayLength: 18 },
+        { width: 1000, displayLength: 20 },
+        { width: 1052, displayLength: 24 },
       ],
       portrait: [
         { width: 320, displayLength: 6 },
-        { width: 440, displayLength: 7 },
-        { width: 550, displayLength: 8 },
-        { width: 768, displayLength: 12 },
-        { width: 1024, displayLength: 14 },
-        { width: 1300, displayLength: 18 },
+        { width: 440, displayLength: 8 },
+        { width: 768, displayLength: 10 },
+        { width: 880, displayLength: 18 },
+        { width: 1000, displayLength: 20 },
+        { width: 1052, displayLength: 24 },
       ],
     };
 
@@ -309,22 +311,45 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
       const isPortrait = windowHeight > windowWidth;
+      const aspectRatio = windowWidth / windowHeight;
       const limits = isPortrait
         ? screenLimits.portrait
         : screenLimits.landscape;
 
       setIsMobile(windowWidth <= 768);
 
-      if (windowWidth <= 320) {
-        setScale(0.5);
-      } else if (windowWidth > 320 && windowWidth < 768) {
-        const scaleFactor = (windowWidth - 320) / (768 - 320);
-        const newScale = 0.5 + scaleFactor * 0.5;
-        setScale(newScale);
-      } else {
-        setScale(1);
+      const jupiterCaseHeight = jupiterCaseRef.current
+        ? jupiterCaseRef.current.offsetHeight
+        : 0;
+
+      const jupiterCaseWidth = jupiterCaseRef.current
+        ? jupiterCaseRef.current.offsetWidth
+        : 0;
+
+      const maxHeight = windowHeight - 40;
+      const maxWidth = windowWidth - 40;
+
+      // Calculate the scale factor
+      let scaleFactorY = 1;
+      if (jupiterCaseHeight > maxHeight) {
+        scaleFactorY = maxHeight / jupiterCaseHeight;
       }
 
+      const minScreenWidth = 320;
+      const maxScreenWidth = 640;
+      const minScale = 0.5;
+      const maxScale = 1;
+
+      let scaleFactorX =
+        minScale +
+        ((maxScale - minScale) *
+          (Math.min(Math.max(jupiterCaseWidth, minScreenWidth), maxWidth) -
+            minScreenWidth)) /
+          (maxScreenWidth - minScreenWidth);
+
+      setScale({ x: scaleFactorX, y: scaleFactorY });
+
+      // Display lengths
       let limit;
       for (let i = 0; i < limits.length - 1; i += 1) {
         if (
@@ -907,6 +932,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       displayLength,
       handleCloseModal,
       isMobile,
+      jupiterCaseRef,
       menuOpen,
       modalContent,
       modalOpen,

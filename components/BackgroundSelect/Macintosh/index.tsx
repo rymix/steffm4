@@ -22,7 +22,7 @@ export const Macintosh: React.FC = () => {
   } = useMixcloud();
 
   return (
-    <StyledMacintosh $scale={scale}>
+    <StyledMacintosh $scale={scale || undefined}>
       <StyledMonitor>
         <StyledMonitorInner>
           <StyledScreenCutout>

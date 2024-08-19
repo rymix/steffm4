@@ -4,10 +4,14 @@ import { useMixcloud } from "contexts/mixcloud";
 
 const JupiterCase: React.FC<JupiterCaseProps> = ({ children }) => {
   const {
-    session: { scale },
+    session: { jupiterCaseRef, scale },
   } = useMixcloud();
 
-  return <StyledJupiterCase $scale={scale}>{children}</StyledJupiterCase>;
+  return (
+    <StyledJupiterCase $scale={scale || undefined} ref={jupiterCaseRef}>
+      {children}
+    </StyledJupiterCase>
+  );
 };
 
 export default JupiterCase;
