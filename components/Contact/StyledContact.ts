@@ -1,40 +1,48 @@
-import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
-import InstagramIcon from "@mui/icons-material/Instagram";
 import styled from "styled-components";
 
-export const StyledEmail = styled(AlternateEmailIcon)`
-  font-size: 2em;
-`;
-
-export const StyledInstagram = styled(InstagramIcon)`
-  font-size: 2em;
-`;
-
-export const StyledSocialsWrapper = styled.p`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  height: 2em;
-`;
-
 export const StyledContact = styled.div`
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
-  p {
-    line-height: 1.6;
-    margin: 0 0 20px 0;
+export const StyledRow = styled.a`
+  display: flex;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: 600;
+  font-size: 1.2em;
+  transition: color 0.3s;
+
+  &:hover {
+    color: rgba(0, 0, 0, 1);
   }
+`;
 
-  a {
-    color: rgba(0, 0, 0, 0.7);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.2em;
-    transition: 0.3s;
+export const StyledIconWrapper = styled.div`
+  width: 40%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 
-    &:hover {
-      color: rgba(0, 0, 0, 1);
-    }
+  svg,
+  img {
+    font-size: 2em;
+    width: 1em;
+    height: auto;
+  }
+`;
+
+export const StyledTextWrapper = styled.div`
+  width: 60%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  span {
+    margin-left: 10px;
   }
 `;

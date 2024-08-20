@@ -1,5 +1,4 @@
 const path = require("path");
-const webpack = require("webpack");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -19,6 +18,19 @@ const nextConfig = {
         stream: false,
       };
     }
+
+    // Add SVG handling using @svgr/webpack
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: {
+            icon: true,
+          },
+        },
+      ],
+    });
 
     return config;
   },
