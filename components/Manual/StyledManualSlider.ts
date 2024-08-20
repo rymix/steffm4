@@ -1,6 +1,6 @@
 import { Slider } from "@mui/material";
 import { StyledJupiterSliderProps } from "components/Jupiter/Slider/types";
-import JupiterHandle from "public/svg/slider-handle3.svg";
+import JupiterHandle from "public/svg/slider-handle3.png";
 import styled from "styled-components";
 
 export const StyledManualSliderWrapper = styled.div`
