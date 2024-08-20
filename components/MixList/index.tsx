@@ -1,5 +1,7 @@
 import FilterAlt from "@mui/icons-material/FilterAlt";
 import FilterAltOff from "@mui/icons-material/FilterAltOff";
+import HeadsetIcon from "@mui/icons-material/Headset";
+import HeadsetOffIcon from "@mui/icons-material/HeadsetOff";
 import Search from "@mui/icons-material/Search";
 import SearchOff from "@mui/icons-material/SearchOff";
 import Update from "@mui/icons-material/Update";
@@ -34,6 +36,7 @@ export const MixList: React.FC = () => {
   const [showFilters, setShowFilters] = useState<boolean>(false);
   const [showLatest, setShowLatest] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
+  const [showUnplayed, setShowUnplayed] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -51,6 +54,7 @@ export const MixList: React.FC = () => {
     setShowFilters(false);
     setShowLatest(false);
     setShowSearch(false);
+    setShowUnplayed(false);
     setFilterCategory(undefined);
     setSearchQuery("");
     setSearchResults([]);
@@ -69,6 +73,11 @@ export const MixList: React.FC = () => {
   const handleToggleLatest = (): void => {
     resetViews();
     setShowLatest(!showLatest);
+  };
+
+  const handleToggleUnplayed = (): void => {
+    resetViews();
+    setShowUnplayed(!showUnplayed);
   };
 
   const fetchFavouriteMixes = async (): Promise<Mix[]> => {
@@ -182,14 +191,25 @@ export const MixList: React.FC = () => {
       {!isLoading && (
         <>
           <StyledControls>
-            <StyledToggle onClick={handleToggleFilters}>
+            <StyledToggle
+              onClick={handleToggleFilters}
+              $on={showFilters}
+              $default={!showSearch && !showLatest && !showUnplayed}
+            >
               {showFilters ? <FilterAltOff /> : <FilterAlt />}
+              <div>Categoriers</div>
             </StyledToggle>
-            <StyledToggle onClick={handleToggleSearch}>
+            <StyledToggle onClick={handleToggleSearch} $on={showSearch}>
               {showSearch ? <SearchOff /> : <Search />}
+              <div>Search</div>
             </StyledToggle>
-            <StyledToggle onClick={handleToggleLatest}>
+            <StyledToggle onClick={handleToggleLatest} $on={showLatest}>
               {showLatest ? <UpdateDisabled /> : <Update />}
+              <div>New Mixes</div>
+            </StyledToggle>
+            <StyledToggle onClick={handleToggleUnplayed} $on={showUnplayed}>
+              {showUnplayed ? <HeadsetOffIcon /> : <HeadsetIcon />}
+              <div>Unplayed</div>
             </StyledToggle>
           </StyledControls>
           {showFilters && (
@@ -278,15 +298,30 @@ export const MixList: React.FC = () => {
           )}
         </div>
       )}
-      {!isLoading && !showFilters && !showSearch && !showLatest && (
+      {!isLoading && showUnplayed && (
         <div>
           {mixes.length > 0 ? (
             mixes.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)
           ) : (
-            <StyledNoResults>No mixes found</StyledNoResults>
+            <StyledNoResults>No mixes found in this category</StyledNoResults>
           )}
         </div>
       )}
+      {!isLoading &&
+        !showFilters &&
+        !showSearch &&
+        !showLatest &&
+        !showUnplayed && (
+          <div>
+            {mixes.length > 0 ? (
+              mixes.map((mix: Mix) => (
+                <MixRow key={mix.mixcloudKey} mix={mix} />
+              ))
+            ) : (
+              <StyledNoResults>No mixes found</StyledNoResults>
+            )}
+          </div>
+        )}
     </>
   );
 };
