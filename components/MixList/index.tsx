@@ -23,11 +23,13 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { Category, Mix } from "db/types";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
+import { listenedStatus } from "utils/functions";
 
 export const MixList: React.FC = () => {
   const {
     favourites: { favouritesList },
     filters: { categories },
+    history: { progress },
   } = useMixcloud();
   const [filterCategory, setFilterCategory] = useState<string | undefined>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -197,7 +199,7 @@ export const MixList: React.FC = () => {
               $default={!showSearch && !showLatest && !showUnplayed}
             >
               {showFilters ? <FilterAltOff /> : <FilterAlt />}
-              <div>Categoriers</div>
+              <div>Categories</div>
             </StyledToggle>
             <StyledToggle onClick={handleToggleSearch} $on={showSearch}>
               {showSearch ? <SearchOff /> : <Search />}
@@ -300,11 +302,14 @@ export const MixList: React.FC = () => {
       )}
       {!isLoading && showUnplayed && (
         <div>
-          {mixes.length > 0 ? (
-            mixes.map((mix: Mix) => <MixRow key={mix.mixcloudKey} mix={mix} />)
-          ) : (
-            <StyledNoResults>No mixes found in this category</StyledNoResults>
-          )}
+          {mixes
+            .filter(
+              (mix) =>
+                listenedStatus(mix.mixcloudKey, mix, progress) === "unlistened",
+            )
+            .map((mix: Mix) => (
+              <MixRow key={mix.mixcloudKey} mix={mix} />
+            ))}
         </div>
       )}
       {!isLoading &&
