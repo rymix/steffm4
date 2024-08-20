@@ -276,7 +276,6 @@ export const MixList: React.FC = () => {
       )}
       {!isLoading && showLatest && (
         <div>
-          <h2>Latest mixes</h2>
           {latestMixes.length > 0 ? (
             latestMixes.map((mix: Mix) => (
               <div key={mix.mixcloudKey}>

@@ -195,6 +195,10 @@ export const StyledToggle = styled.div<StyledToggleProps>`
   &:hover {
     color: rgba(0, 0, 0, 1);
   }
+
+  @media (max-width: 640px) {
+    margin: 0 5px 20px 5px;
+  }
 `;
 
 export const StyledMixListCategories = styled.ul`
