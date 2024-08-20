@@ -11,6 +11,11 @@ export type StyledMixRowProps = {
   $listenedStatus: "active" | "listened" | "unlistened" | "partial";
 };
 
+export type StyledToggleProps = {
+  $on?: boolean;
+  $default?: boolean;
+};
+
 export type TrackListMiniProps = {
   mix: Mix;
   highlight?: string;

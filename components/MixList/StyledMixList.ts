@@ -1,6 +1,7 @@
 import type {
   StyledMixListCategoryProps,
   StyledMixRowProps,
+  StyledToggleProps,
   StyledTrackListMiniProps,
 } from "components/MixList/types";
 import styled from "styled-components";
@@ -183,8 +184,9 @@ export const StyledControls = styled.div`
   justify-content: center;
 `;
 
-export const StyledToggle = styled.div`
-  color: rgba(0, 0, 0, 0.5);
+export const StyledToggle = styled.div<StyledToggleProps>`
+  color: ${(props) =>
+    props.$on || props.$default ? "rgba(0, 0, 0, 1)" : "rgba(0, 0, 0, 0.5)"};
   cursor: pointer;
   margin: 0 20px 20px 20px;
 
@@ -192,6 +194,10 @@ export const StyledToggle = styled.div`
 
   &:hover {
     color: rgba(0, 0, 0, 1);
+  }
+
+  @media (max-width: 640px) {
+    margin: 0 5px 20px 5px;
   }
 `;
 

@@ -1,4 +1,5 @@
-import { BackgroundCategory } from "db/types";
+import { Progress } from "contexts/mixcloud/types";
+import { BackgroundCategory, Mix } from "db/types";
 import { stripUnit } from "polished";
 
 export const convertTimeToSeconds = (timeString: string): number => {
@@ -136,4 +137,24 @@ export const getBackgroundCategoryObject = (
 ): BackgroundCategory | undefined => {
   const category = categories.find((cat) => cat.code === code);
   return category || undefined;
+};
+
+export const listenedStatus = (
+  localMcKey: string,
+  localMix: Mix,
+  progress: Progress[],
+): "active" | "listened" | "unlistened" | "partial" => {
+  const progressEntry = progress.find(
+    (p) => mcKeyFormatter(p.mcKey) === mcKeyFormatter(localMix.mixcloudKey),
+  );
+
+  if (!progressEntry) {
+    return "unlistened";
+  }
+
+  if (mcKeyFormatter(localMcKey) === mcKeyFormatter(localMix.mixcloudKey)) {
+    return "active";
+  }
+
+  return progressEntry.complete ? "listened" : "partial";
 };

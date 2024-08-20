@@ -23,7 +23,11 @@ import Share from "components/Share";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useState } from "react";
 import Highlight from "react-highlight-words";
-import { convertTimeToHumanReadable, mcKeyFormatter } from "utils/functions";
+import {
+  convertTimeToHumanReadable,
+  listenedStatus,
+  mcKeyFormatter,
+} from "utils/functions";
 
 export const MixRow: React.FC<MixRowProps> = ({ mix, highlight }) => {
   const {
@@ -48,29 +52,9 @@ export const MixRow: React.FC<MixRowProps> = ({ mix, highlight }) => {
     }
   };
 
-  const listenedStatus = ():
-    | "active"
-    | "listened"
-    | "unlistened"
-    | "partial" => {
-    if (mcKeyFormatter(mcKey) === mcKeyFormatter(mix.mixcloudKey)) {
-      return "active";
-    }
-
-    const progressEntry = progress.find(
-      (p) => mcKeyFormatter(p.mcKey) === mcKeyFormatter(mix.mixcloudKey),
-    );
-
-    if (!progressEntry) {
-      return "unlistened";
-    }
-
-    return progressEntry.complete ? "listened" : "partial";
-  };
-
   return (
     <>
-      <StyledMixRow $listenedStatus={listenedStatus()}>
+      <StyledMixRow $listenedStatus={listenedStatus(mcKey, mix, progress)}>
         <StyledMixPlay onClick={() => handleClickPlay(mix.mixcloudKey)}>
           {mcKeyFormatter(mcKey) === mcKeyFormatter(mix.mixcloudKey) &&
           playing ? (
