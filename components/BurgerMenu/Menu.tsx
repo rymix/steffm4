@@ -3,6 +3,7 @@ import About from "components/About";
 import BackgroundSelect from "components/BackgroundSelect";
 import { StyledMenu } from "components/BurgerMenu/StyledBurgerMenu";
 import Contact from "components/Contact";
+import Install from "components/Install";
 import Manual from "components/Manual";
 import Statistics from "components/Statistics";
 import { useMixcloud } from "contexts/mixcloud";
@@ -42,6 +43,14 @@ const Menu: React.FC = () => {
   ): void => {
     event.preventDefault();
     openModal(<Contact />);
+    setTimeout(() => setMenuOpen(false), 500);
+  };
+
+  const handleInstallClick = (
+    event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
+  ): void => {
+    event.preventDefault();
+    openModal(<Install />);
     setTimeout(() => setMenuOpen(false), 500);
   };
 
@@ -91,6 +100,18 @@ const Menu: React.FC = () => {
           role="button"
         >
           User Manual
+        </li>
+        <li
+          onClick={(event) => handleInstallClick(event)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleInstallClick(e);
+            }
+          }}
+          tabIndex={0}
+          role="button"
+        >
+          Install
         </li>
         <li
           onClick={(event) => handleStatisticsClick(event)}
