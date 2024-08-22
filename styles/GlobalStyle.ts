@@ -25,6 +25,30 @@ const GlobalStyle = createGlobalStyle`
     src: url("fonts/DSEG14Classic-Regular.woff2") format("woff2"), url("fonts/DSEG14Classic-Regular.woff") format("woff");
   }
 
+  @font-face {
+    font-family: 'Caveat';
+    src: url('/fonts/Caveat-Regular.woff2') format('woff2'),
+         url('/fonts/Caveat-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'IndieFlower';
+    src: url('/fonts/IndieFlower-Regular.woff2') format('woff2'),
+         url('/foonts/IndieFlower-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'ShadowsIntoLight';
+    src: url('/fonts/ShadowsIntoLightTwo-Regular.woff2') format('woff2'),
+         url('/foonts/ShadowsIntoLightTwo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   html,
   *,
   *::before,
