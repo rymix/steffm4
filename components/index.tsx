@@ -29,7 +29,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-import FloppyDisk from "./FloppyDisk";
+import FloppyDiskStack from "./Floppy/FloppyDiskStack";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -180,6 +180,24 @@ const Jupiter = (): JSX.Element => {
     setSliderValue(volume * 100);
   }, [volume]);
 
+  const notesList = [
+    "<p>Disk 1</p><p>Do <span>not</span> erase!</p>",
+    "<p>Disk 2</p><p>Important</p>",
+    "<p>Disk 3</p><p>Confidential</p>",
+    "<p>Disk 4</p><p>Top Secret</p>",
+    "<p>Disk 5</p><p>Top Secret</p>",
+    "<p>Disk 6</p><p>Top Secret</p>",
+    "<p>Disk 7</p><p>Top Secret</p>",
+    "<p>Disk 8</p><p>Top Secret</p>",
+    "<p>Disk 9</p><p>Top Secret</p>",
+    "<p>Disk 10</p><p>Top Secret</p>",
+    "<p>Disk 11</p><p>Top Secret</p>",
+  ];
+
+  const handleAddDisk = () => {
+    // Trigger to add a new disk
+  };
+
   return (
     <>
       {/* <JupiterTable /> */}
@@ -188,14 +206,8 @@ const Jupiter = (): JSX.Element => {
       <Overlay />
       <Modal />
       <Tooltip />
-      <FloppyDisk
-        notes={
-          <>
-            <p>Big Farts</p>
-            <p>Juicy Turds</p>
-          </>
-        }
-      />
+      <FloppyDiskStack notesList={notesList} onAddDisk={handleAddDisk} />
+
       {mcKey && (
         <>
           <Mixcloud defaultMcKey={mcKey} />

@@ -1,3 +1,3 @@
 export type FloppyDiskProps = {
-  notes: HTMLElement;
+  notes: string;
 };

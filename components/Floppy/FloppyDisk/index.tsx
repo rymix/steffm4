@@ -5,8 +5,8 @@ import {
   StyledNotes,
   StyledSlider,
   StyledTop,
-} from "components/FloppyDisk/StyledFloppyDisk";
-import { FloppyDiskProps } from "components/FloppyDisk/types";
+} from "components/Floppy/FloppyDisk/StyledFloppyDisk";
+import { FloppyDiskProps } from "components/Floppy/FloppyDisk/types";
 import React from "react";
 
 const FloppyDisk: React.FC<FloppyDiskProps> = ({ notes }) => {
@@ -17,7 +17,7 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({ notes }) => {
         <StyledFitinha />
       </StyledTop>
       <StyledDown>
-        <StyledNotes>{notes}</StyledNotes>
+        <StyledNotes dangerouslySetInnerHTML={{ __html: notes }} />
       </StyledDown>
     </StyledFloppy>
   );
