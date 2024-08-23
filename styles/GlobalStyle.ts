@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
          url('/fonts/Microgramma W01 Bold Extended.woff') format('woff');
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
   }
 
   @font-face {
@@ -15,14 +16,15 @@ const GlobalStyle = createGlobalStyle`
          url('Sforzando W00.woff') format('woff');
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
   }
 
   @font-face {
-    font-display: swap;
     font-family: "dseg14";
+    src: url("fonts/DSEG14Classic-Regular.woff2") format("woff2"), url("fonts/DSEG14Classic-Regular.woff") format("woff");
     font-style: normal;
     font-weight: normal;
-    src: url("fonts/DSEG14Classic-Regular.woff2") format("woff2"), url("fonts/DSEG14Classic-Regular.woff") format("woff");
+    font-display: swap;
   }
 
   @font-face {
@@ -31,6 +33,7 @@ const GlobalStyle = createGlobalStyle`
          url('/fonts/Caveat-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
   }
 
   @font-face {
@@ -39,6 +42,7 @@ const GlobalStyle = createGlobalStyle`
          url('/foonts/IndieFlower-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
   }
 
   @font-face {
@@ -47,6 +51,7 @@ const GlobalStyle = createGlobalStyle`
          url('/foonts/ShadowsIntoLightTwo-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
   }
 
   html,
