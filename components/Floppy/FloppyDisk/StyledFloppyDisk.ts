@@ -70,8 +70,9 @@ export const StyledDown = styled.div<{ labelColor: string }>`
   background: linear-gradient(
     to bottom,
     ${(props) => props.labelColor} 50%,
-    ${(props) => props.labelColor} 50%
+    ${(props) => (Math.random() < 0.2 ? "#e6e6fa" : props.labelColor)} 50%
   );
+
   background-size: 100% 50px;
 
   &::after,
@@ -95,13 +96,13 @@ export const StyledDown = styled.div<{ labelColor: string }>`
 `;
 
 // Notes section inside the bottom part
-export const StyledNotes = styled.div<{ textColor: string }>`
-  font-family: "ShadowsIntoLight", cursive;
+export const StyledNotes = styled.div<{ textColor: string; font: string }>`
+  font-family: ${(props) => props.font};
   margin-left: 15px;
   margin-top: 0px;
   color: ${(props) => props.textColor};
-  font-size: 1.3rem;
-  transform: rotate(-3deg);
+  font-size: ${Math.random() * 0.7 + 1.3}rem;
+  transform: rotate(${Math.floor(Math.random() * 11) - 6}deg);
 
   p > span {
     text-decoration: underline;

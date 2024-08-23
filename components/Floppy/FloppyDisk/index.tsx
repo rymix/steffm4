@@ -15,6 +15,7 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
   labelColor,
   textColor,
   sliderColor,
+  font,
 }) => {
   return (
     <StyledFloppy floppyColor={floppyColor}>
@@ -23,7 +24,7 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
         <StyledFitinha />
       </StyledTop>
       <StyledDown labelColor={labelColor}>
-        <StyledNotes textColor={textColor}>
+        <StyledNotes textColor={textColor} font={font}>
           {notes.paragraphs.map((para, index) => (
             <React.Fragment key={index}>{para}</React.Fragment>
           ))}

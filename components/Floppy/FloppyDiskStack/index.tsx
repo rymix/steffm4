@@ -17,9 +17,19 @@ const floppyColors = [
   "#2c2827",
   "#cbcab8",
 ];
-const labelColors = ["#ddc4b0", "#d3d3d3", "#add8e6", "#ffb6c1", "#e6e6fa"];
-const textColors = ["#a4243b", "#000000", "#ff0000", "#008000", "#000080"];
+const labelColors = ["#ddc4b0", "#d3d3d3", "#add8e6", "#e6e6fa"];
+const textColors = [
+  "#a4243b",
+  "#000000",
+  "#000000",
+  "#000000",
+  "#008000",
+  "#000080",
+  "#000080",
+  "#000080",
+];
 const sliderColors = ["#1b1a20", "#a5acb2", "#a5acb2", "#959ca2", "#d1d3df"];
+const fonts = ["Caveat", "IndieFlower", "ShadowsIntoLight"];
 
 const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({
   notesList,
@@ -54,6 +64,7 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({
       textColor: textColors[Math.floor(Math.random() * textColors.length)],
       sliderColor:
         sliderColors[Math.floor(Math.random() * sliderColors.length)],
+      font: fonts[Math.floor(Math.random() * fonts.length)],
     };
 
     if (disks.length >= 5) {
@@ -90,6 +101,7 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({
                 labelColor={disk.labelColor}
                 textColor={disk.textColor}
                 sliderColor={disk.sliderColor}
+                font={disk.font}
               />
             </FadingDisk>
           ) : (
@@ -99,6 +111,7 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({
               labelColor={disk.labelColor}
               textColor={disk.textColor}
               sliderColor={disk.sliderColor}
+              font={disk.font}
             />
           )}
         </AnimatedDisk>

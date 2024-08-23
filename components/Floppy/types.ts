@@ -23,6 +23,7 @@ export type DiskProps = {
   labelColor: string;
   textColor: string;
   sliderColor: string;
+  font: string;
 };
 
 export type FloppyDiskProps = {
@@ -31,4 +32,5 @@ export type FloppyDiskProps = {
   labelColor: string;
   textColor: string;
   sliderColor: string;
+  font: string;
 };
