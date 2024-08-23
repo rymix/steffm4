@@ -2,21 +2,12 @@
 
 import styled from "styled-components";
 
-// Define CSS variables for consistent theming
-const floppyColor = "#675d56";
-const externalBackground = "transparent";
-const labelLine1 = "#ddc4b0";
-const labelLine2 = "#decdc1";
-const textNote = "#a4243b";
-const shadow = "#32281d";
-const slider = "#33291f";
-
 // Main Floppy Disk Container
 export const StyledFloppy = styled.div<{ floppyColor: string }>`
   width: 290px;
   height: 290px;
   background-color: ${(props) => props.floppyColor};
-  box-shadow: -5px 8px 10px ${shadow};
+  box-shadow: -5px 8px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -69,9 +60,9 @@ export const StyledFitinha = styled.div`
 export const StyledDown = styled.div<{ labelColor: string }>`
   width: 225px;
   height: 180px;
-  border-left: 2px solid rgba(0, 0, 0, 0.6);
-  border-right: 2px solid rgba(0, 0, 0, 0.3);
-  border-top: 2px solid rgba(0, 0, 0, 0.6);
+  border-left: 2px solid rgba(0, 0, 0, 0.2);
+  border-right: 2px solid rgba(0, 0, 0, 0.2);
+  border-top: 2px solid rgba(0, 0, 0, 0.2);
   margin-left: 30px;
   margin-top: 15px;
   border-radius: 5px;

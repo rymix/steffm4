@@ -8,10 +8,18 @@ import {
 import React, { useEffect, useState } from "react";
 import { DiskProps, FloppyDiskStackProps } from "../types";
 
-const floppyColors = ["#675d56", "#8B4513", "#2E8B57", "#4682B4", "#FFD700"];
+const floppyColors = [
+  "#675d56",
+  "#32694a",
+  "#d04145",
+  "#2c3e6e",
+  "#f4e858",
+  "#2c2827",
+  "#cbcab8",
+];
 const labelColors = ["#ddc4b0", "#d3d3d3", "#add8e6", "#ffb6c1", "#e6e6fa"];
 const textColors = ["#a4243b", "#000000", "#ff0000", "#008000", "#000080"];
-const sliderColors = ["#ff9900", "#0099ff", "#ff0099", "#99ff00", "#9900ff"];
+const sliderColors = ["#1b1a20", "#a5acb2", "#a5acb2", "#959ca2", "#d1d3df"];
 
 const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({
   notesList,
