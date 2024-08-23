@@ -30,7 +30,7 @@ import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import FloppyDiskStack from "./Floppy/FloppyDiskStack";
-import { NotesList } from "./Floppy/types";
+import { Notes } from "./Floppy/types";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -181,39 +181,36 @@ const Jupiter = (): JSX.Element => {
     setSliderValue(volume * 100);
   }, [volume]);
 
-  const notesList: NotesList = [
+  const notesList: Notes = [
     {
-      paragraphs: [
-        { text: "Disk 1" },
-        { text: "Do not erase!", emphasize: true },
-      ],
+      paragraphs: [<p>Disk 1</p>, <p>Hello</p>],
     },
     {
-      paragraphs: [{ text: "Disk 2" }, { text: "Important" }],
+      paragraphs: [<p>Disk 2</p>, <p>Hello</p>],
     },
     {
-      paragraphs: [{ text: "Disk 3" }, { text: "Important" }],
+      paragraphs: [<p>Disk 3</p>, <p>Hello</p>],
     },
     {
-      paragraphs: [{ text: "Disk 4" }, { text: "Important" }],
+      paragraphs: [<p>Disk 4</p>, <p>Hello</p>],
     },
     {
-      paragraphs: [{ text: "Disk 5" }, { text: "Important" }],
+      paragraphs: [<p>Disk 5</p>, <p>Hello</p>],
     },
     {
-      paragraphs: [{ text: "Disk 6" }, { text: "Important" }],
+      paragraphs: [<p>Disk 6</p>, <p>Hello</p>],
     },
     {
-      paragraphs: [{ text: "Disk 7" }, { text: "Important" }],
+      paragraphs: [<p>Disk 7</p>, <p>Hello</p>],
     },
     {
-      paragraphs: [{ text: "Disk 8" }, { text: "Important" }],
+      paragraphs: [<p>Disk 8</p>, <p>Hello</p>],
     },
     {
-      paragraphs: [{ text: "Disk 9" }, { text: "Important" }],
+      paragraphs: [<p>Disk 9</p>, <p>Hello</p>],
     },
     {
-      paragraphs: [{ text: "Disk 10" }, { text: "Important" }],
+      paragraphs: [<p>Disk 10</p>, <p>Hello</p>],
     },
   ];
 

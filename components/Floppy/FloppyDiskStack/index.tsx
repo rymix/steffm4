@@ -4,11 +4,9 @@ import {
   FadingDisk,
   StyledDiskContainer,
 } from "components/Floppy/FloppyDiskStack/StyledFloppyDiskStack";
-import {
-  DiskProps,
-  FloppyDiskStackProps,
-} from "components/Floppy/FloppyDiskStack/types";
+
 import React, { useEffect, useState } from "react";
+import { DiskProps, FloppyDiskStackProps } from "../types";
 
 const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({
   notesList,

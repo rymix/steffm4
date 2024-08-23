@@ -1,22 +1,17 @@
-export type NoteParagraph = {
-  text: string;
-  emphasize?: boolean;
-};
-
 export type Note = {
-  paragraphs: NoteParagraph[];
+  paragraphs: JSX.Element[];
 };
 
-export type NotesList = Note[];
+export type Notes = Note[];
 
 export type FloppyDiskStackProps = {
-  notesList: string[];
+  notesList: Notes;
   onAddDisk: () => void;
 };
 
 export type DiskProps = {
   id: number;
-  notes: string;
+  notes: Note;
   startRotate: number;
   endRotate: number;
   finalX: number;
@@ -24,5 +19,5 @@ export type DiskProps = {
 };
 
 export type FloppyDiskProps = {
-  notes: string;
+  notes: Note;
 };

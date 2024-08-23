@@ -6,6 +6,7 @@ import {
   StyledSlider,
   StyledTop,
 } from "components/Floppy/FloppyDisk/StyledFloppyDisk";
+import { FloppyDiskProps } from "components/Floppy/types";
 import React from "react";
 
 const FloppyDisk: React.FC<FloppyDiskProps> = ({ notes }) => {
@@ -18,9 +19,7 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({ notes }) => {
       <StyledDown>
         <StyledNotes>
           {notes.paragraphs.map((para, index) => (
-            <p key={index}>
-              {para.emphasize ? <span>{para.text}</span> : para.text}
-            </p>
+            <React.Fragment key={index}>{para}</React.Fragment>
           ))}
         </StyledNotes>
       </StyledDown>
