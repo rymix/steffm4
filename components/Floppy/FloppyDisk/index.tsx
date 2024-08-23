@@ -9,15 +9,21 @@ import {
 import { FloppyDiskProps } from "components/Floppy/types";
 import React from "react";
 
-const FloppyDisk: React.FC<FloppyDiskProps> = ({ notes }) => {
+const FloppyDisk: React.FC<FloppyDiskProps> = ({
+  notes,
+  floppyColor,
+  labelColor,
+  textColor,
+  sliderColor,
+}) => {
   return (
-    <StyledFloppy>
-      <StyledTop>
-        <StyledSlider />
+    <StyledFloppy floppyColor={floppyColor}>
+      <StyledTop floppyColor={floppyColor}>
+        <StyledSlider sliderColor={sliderColor} />
         <StyledFitinha />
       </StyledTop>
-      <StyledDown>
-        <StyledNotes>
+      <StyledDown labelColor={labelColor}>
+        <StyledNotes textColor={textColor}>
           {notes.paragraphs.map((para, index) => (
             <React.Fragment key={index}>{para}</React.Fragment>
           ))}

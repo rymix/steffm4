@@ -1,3 +1,5 @@
+// components/Floppy/types.ts
+
 export type Note = {
   paragraphs: JSX.Element[];
 };
@@ -16,8 +18,17 @@ export type DiskProps = {
   endRotate: number;
   finalX: number;
   finalY: number;
+  startX: number;
+  floppyColor: string;
+  labelColor: string;
+  textColor: string;
+  sliderColor: string;
 };
 
 export type FloppyDiskProps = {
   notes: Note;
+  floppyColor: string;
+  labelColor: string;
+  textColor: string;
+  sliderColor: string;
 };

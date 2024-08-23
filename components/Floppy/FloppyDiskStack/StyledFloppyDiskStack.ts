@@ -1,3 +1,5 @@
+// components/Floppy/FloppyDiskStack/StyledFloppyDiskStack.ts
+
 import styled, { keyframes } from "styled-components";
 
 // Container for the disk stack
@@ -15,9 +17,10 @@ const tossAnimation = (
   endRotate: number,
   finalX: number,
   finalY: number,
+  startX: number,
 ) => keyframes`
   0% {
-    transform: translate(-1000px, -1000px) rotate(${startRotate}deg);
+    transform: translate(${startX}px, 100vh) rotate(${startRotate}deg);
   }
   100% {
     transform: translate(${finalX}px, ${finalY}px) rotate(${endRotate}deg);
@@ -41,6 +44,7 @@ export const AnimatedDisk = styled.div<{
   endRotate: number;
   finalX: number;
   finalY: number;
+  startX: number;
 }>`
   position: absolute;
   top: 50%;
@@ -54,6 +58,7 @@ export const AnimatedDisk = styled.div<{
         props.endRotate,
         props.finalX,
         props.finalY,
+        props.startX,
       )}
     0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 `;

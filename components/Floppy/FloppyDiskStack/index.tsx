@@ -8,6 +8,11 @@ import {
 import React, { useEffect, useState } from "react";
 import { DiskProps, FloppyDiskStackProps } from "../types";
 
+const floppyColors = ["#675d56", "#8B4513", "#2E8B57", "#4682B4", "#FFD700"];
+const labelColors = ["#ddc4b0", "#d3d3d3", "#add8e6", "#ffb6c1", "#e6e6fa"];
+const textColors = ["#a4243b", "#000000", "#ff0000", "#008000", "#000080"];
+const sliderColors = ["#ff9900", "#0099ff", "#ff0099", "#99ff00", "#9900ff"];
+
 const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({
   notesList,
   onAddDisk,
@@ -26,13 +31,21 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({
   }, [currentIndex, notesList]);
 
   const addDisk = () => {
+    const diskWidth = 290; // Assuming the disk's width is 290px
     const newDisk: DiskProps = {
       id: Date.now(),
       notes: notesList[currentIndex % notesList.length],
-      startRotate: Math.random() * 60 - 30,
-      endRotate: Math.random() * 20 - 10,
+      startRotate: Math.random() * 120 - 60, // Random starting rotation between -60 and +60 degrees
+      endRotate: Math.random() * 20 - 10, // Random ending rotation between -10 and +10 degrees
       finalX: Math.random() * 20 - 10, // Random X position within -10px to +10px
       finalY: Math.random() * 20 - 10, // Random Y position within -10px to +10px
+      startX: Math.random() * diskWidth * 3 - diskWidth, // Random X start position from left to 3x disk width to the right
+      floppyColor:
+        floppyColors[Math.floor(Math.random() * floppyColors.length)],
+      labelColor: labelColors[Math.floor(Math.random() * labelColors.length)],
+      textColor: textColors[Math.floor(Math.random() * textColors.length)],
+      sliderColor:
+        sliderColors[Math.floor(Math.random() * sliderColors.length)],
     };
 
     if (disks.length >= 5) {
@@ -59,13 +72,26 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({
           endRotate={disk.endRotate}
           finalX={disk.finalX}
           finalY={disk.finalY}
+          startX={disk.startX}
         >
           {index === 0 && disks.length >= 5 ? (
             <FadingDisk>
-              <FloppyDisk notes={disk.notes} />
+              <FloppyDisk
+                notes={disk.notes}
+                floppyColor={disk.floppyColor}
+                labelColor={disk.labelColor}
+                textColor={disk.textColor}
+                sliderColor={disk.sliderColor}
+              />
             </FadingDisk>
           ) : (
-            <FloppyDisk notes={disk.notes} />
+            <FloppyDisk
+              notes={disk.notes}
+              floppyColor={disk.floppyColor}
+              labelColor={disk.labelColor}
+              textColor={disk.textColor}
+              sliderColor={disk.sliderColor}
+            />
           )}
         </AnimatedDisk>
       ))}
