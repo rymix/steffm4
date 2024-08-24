@@ -4,7 +4,6 @@ import styled, { keyframes } from "styled-components";
 
 // Container for the disk stack
 export const StyledDiskContainer = styled.div`
-  background: green;
   position: relative;
   width: 290px; /* Match floppy disk size */
   height: 290px;

@@ -1,19 +1,17 @@
 // components/Floppy/types.ts
 
-export type Note = {
-  paragraphs: JSX.Element[];
+export type DiskLabel = {
+  trackName?: string;
+  artistName?: string;
 };
 
-export type Notes = Note[];
-
 export type FloppyDiskStackProps = {
-  notesList: Notes;
-  onAddDisk: () => void;
+  label?: DiskLabel;
 };
 
 export type DiskProps = {
   id: number;
-  notes: Note;
+  notes: JSX.Element[];
   startRotate: number;
   endRotate: number;
   finalX: number;
@@ -27,7 +25,7 @@ export type DiskProps = {
 };
 
 export type FloppyDiskProps = {
-  notes: Note;
+  notes: JSX.Element[];
   floppyColor: string;
   labelColor: string;
   textColor: string;

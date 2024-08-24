@@ -30,7 +30,7 @@ import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import FloppyDiskStack from "./Floppy/FloppyDiskStack";
-import { Notes } from "./Floppy/types";
+import { DiskLabel } from "./Floppy/types";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -59,9 +59,11 @@ const Jupiter = (): JSX.Element => {
     filters: { categories = [], selectedCategory, setSelectedCategory },
     mix: { copySharableLink, favourite },
     session: { openModal },
+    track: { details: trackDetails, sectionNumber: trackSectionNumber },
     widget: { playing, setVolume, volume },
   } = useMixcloud();
   const [sliderValue, setSliderValue] = useState<number>(volume * 100);
+  const [diskLabel, setDiskLabel] = useState<DiskLabel>();
 
   const initialKnobValue = selectedCategory
     ? getCategoryIndex(categories, selectedCategory)
@@ -181,53 +183,21 @@ const Jupiter = (): JSX.Element => {
     setSliderValue(volume * 100);
   }, [volume]);
 
-  const notesList: Notes = [
-    {
-      paragraphs: [<p>Disk 1</p>, <p>Hello</p>],
-    },
-    {
-      paragraphs: [<p>Disk 2</p>, <p>Hello</p>],
-    },
-    {
-      paragraphs: [<p>Disk 3</p>, <p>Hello</p>],
-    },
-    {
-      paragraphs: [<p>Disk 4</p>, <p>Hello</p>],
-    },
-    {
-      paragraphs: [<p>Disk 5</p>, <p>Hello</p>],
-    },
-    {
-      paragraphs: [<p>Disk 6</p>, <p>Hello</p>],
-    },
-    {
-      paragraphs: [<p>Disk 7</p>, <p>Hello</p>],
-    },
-    {
-      paragraphs: [<p>Disk 8</p>, <p>Hello</p>],
-    },
-    {
-      paragraphs: [<p>Disk 9</p>, <p>Hello</p>],
-    },
-    {
-      paragraphs: [<p>Disk 10</p>, <p>Hello</p>],
-    },
-  ];
-
-  const handleAddDisk = () => {
-    // Trigger to add a new disk
-  };
+  useEffect(() => {
+    setDiskLabel({
+      trackName: trackDetails?.trackName,
+      artistName: trackDetails?.artistName,
+    });
+  }, [trackSectionNumber]);
 
   return (
     <>
-      {/* <JupiterTable /> */}
       <Background />
       <BurgerMenu />
       <Overlay />
       <Modal />
       <Tooltip />
-      <FloppyDiskStack notesList={notesList} onAddDisk={handleAddDisk} />
-
+      {trackDetails && <FloppyDiskStack label={diskLabel} />}
       {mcKey && (
         <>
           <Mixcloud defaultMcKey={mcKey} />

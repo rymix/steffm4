@@ -31,55 +31,52 @@ const textColors = [
 const sliderColors = ["#1b1a20", "#a5acb2", "#a5acb2", "#959ca2", "#d1d3df"];
 const fonts = ["Caveat", "IndieFlower", "ShadowsIntoLight"];
 
-const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({
-  notesList,
-  onAddDisk,
-}) => {
+const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
   const [disks, setDisks] = useState<DiskProps[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0); // Independent index tracker
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (currentIndex < notesList.length) {
-        addDisk();
+    const addDisk = (notes: JSX.Element[]) => {
+      const diskWidth = 290; // Assuming the disk's width is 290px
+      const newDisk: DiskProps = {
+        id: Date.now(),
+        notes,
+        startRotate: Math.random() * 120 - 60, // Random starting rotation between -60 and +60 degrees
+        endRotate: Math.random() * 20 - 10, // Random ending rotation between -10 and +10 degrees
+        finalX: Math.random() * 20 - 10, // Random X position within -10px to +10px
+        finalY: Math.random() * 20 - 10, // Random Y position within -10px to +10px
+        startX: Math.random() * diskWidth * 3 - diskWidth, // Random X start position from left to 3x disk width to the right
+        floppyColor:
+          floppyColors[Math.floor(Math.random() * floppyColors.length)],
+        labelColor: labelColors[Math.floor(Math.random() * labelColors.length)],
+        textColor: textColors[Math.floor(Math.random() * textColors.length)],
+        sliderColor:
+          sliderColors[Math.floor(Math.random() * sliderColors.length)],
+        font: fonts[Math.floor(Math.random() * fonts.length)],
+      };
+
+      if (disks.length >= 5) {
+        const remainingDisks = disks.slice(1);
+        setDisks([...remainingDisks, newDisk]);
+      } else {
+        setDisks((prevDisks) => [...prevDisks, newDisk]);
       }
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [currentIndex, notesList]);
-
-  const addDisk = () => {
-    const diskWidth = 290; // Assuming the disk's width is 290px
-    const newDisk: DiskProps = {
-      id: Date.now(),
-      notes: notesList[currentIndex % notesList.length],
-      startRotate: Math.random() * 120 - 60, // Random starting rotation between -60 and +60 degrees
-      endRotate: Math.random() * 20 - 10, // Random ending rotation between -10 and +10 degrees
-      finalX: Math.random() * 20 - 10, // Random X position within -10px to +10px
-      finalY: Math.random() * 20 - 10, // Random Y position within -10px to +10px
-      startX: Math.random() * diskWidth * 3 - diskWidth, // Random X start position from left to 3x disk width to the right
-      floppyColor:
-        floppyColors[Math.floor(Math.random() * floppyColors.length)],
-      labelColor: labelColors[Math.floor(Math.random() * labelColors.length)],
-      textColor: textColors[Math.floor(Math.random() * textColors.length)],
-      sliderColor:
-        sliderColors[Math.floor(Math.random() * sliderColors.length)],
-      font: fonts[Math.floor(Math.random() * fonts.length)],
     };
 
-    if (disks.length >= 5) {
-      // Start the removal of the oldest disk
-      const remainingDisks = disks.slice(1);
+    const notes = [
+      label?.trackName ? (
+        <p key="trackName">{label.trackName}</p>
+      ) : (
+        <p key="trackName">Track Name Unavailable</p>
+      ),
+      label?.artistName ? (
+        <p key="artistName">{label.artistName}</p>
+      ) : (
+        <p key="artistName">Artist Name Unavailable</p>
+      ),
+    ];
 
-      setTimeout(() => {
-        setDisks([...remainingDisks, newDisk]);
-        setCurrentIndex((prevIndex) => prevIndex + 1); // Increment index after adding new disk
-      }, 1000); // Allow time for the fade-out animation
-    } else {
-      setDisks((prevDisks) => [...prevDisks, newDisk]);
-      setCurrentIndex((prevIndex) => prevIndex + 1); // Increment index after adding new disk
-    }
-  };
+    addDisk(notes);
+  }, [label]);
 
   return (
     <StyledDiskContainer>
