@@ -14,17 +14,17 @@ export const StyledDiskContainer = styled.div`
 
 // Animation for tossing the disk
 const tossAnimation = (
-  startRotate: number,
-  endRotate: number,
-  finalX: number,
-  finalY: number,
-  startX: number,
+  $startRotate: number,
+  $endRotate: number,
+  $finalX: number,
+  $finalY: number,
+  $startX: number,
 ) => keyframes`
   0% {
-    transform: translate(${startX}px, 100vh) rotate(${startRotate}deg);
+    transform: translate(${$startX}px, 100vh) rotate(${$startRotate}deg);
   }
   100% {
-    transform: translate(${finalX}px, ${finalY}px) rotate(${endRotate}deg);
+    transform: translate(${$finalX}px, ${$finalY}px) rotate(${$endRotate}deg);
   }
 `;
 
@@ -40,26 +40,26 @@ const fadeOut = keyframes`
 
 // Styled component for the animated disk
 export const AnimatedDisk = styled.div<{
-  index: number;
-  startRotate: number;
-  endRotate: number;
-  finalX: number;
-  finalY: number;
-  startX: number;
+  $index: number;
+  $startRotate: number;
+  $endRotate: number;
+  $finalX: number;
+  $finalY: number;
+  $startX: number;
 }>`
   position: absolute;
   top: 50%;
   left: 50%;
   transform-origin: center;
-  z-index: ${(props) => props.index}; /* Ensure stacking order */
+  z-index: ${(props) => props.$index}; /* Ensure stacking order */
 
   animation: ${(props) =>
       tossAnimation(
-        props.startRotate,
-        props.endRotate,
-        props.finalX,
-        props.finalY,
-        props.startX,
+        props.$startRotate,
+        props.$endRotate,
+        props.$finalX,
+        props.$finalY,
+        props.$startX,
       )}
     0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 `;

@@ -19,13 +19,13 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
   font,
 }) => {
   return (
-    <StyledFloppy floppyColor={floppyColor}>
-      <StyledTop floppyColor={floppyColor}>
-        <StyledSlider sliderColor={sliderColor} />
+    <StyledFloppy $floppyColor={floppyColor}>
+      <StyledTop $floppyColor={floppyColor}>
+        <StyledSlider $sliderColor={sliderColor} />
         <StyledFitinha />
       </StyledTop>
-      <StyledDown labelColor={labelColor} labelSecondColor={labelSecondColor}>
-        <StyledNotes textColor={textColor} font={font}>
+      <StyledDown $labelColor={labelColor} $labelSecondColor={labelSecondColor}>
+        <StyledNotes $textColor={textColor} $font={font}>
           {notes}
         </StyledNotes>
       </StyledDown>

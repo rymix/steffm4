@@ -86,12 +86,12 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
       {disks.map((disk, index) => (
         <AnimatedDisk
           key={disk.id}
-          index={index}
-          startRotate={disk.startRotate}
-          endRotate={disk.endRotate}
-          finalX={disk.finalX}
-          finalY={disk.finalY}
-          startX={disk.startX}
+          $index={index}
+          $startRotate={disk.startRotate}
+          $endRotate={disk.endRotate}
+          $finalX={disk.finalX}
+          $finalY={disk.finalY}
+          $startX={disk.startX}
         >
           {index === 0 && disks.length >= 5 ? (
             <FadingDisk>
