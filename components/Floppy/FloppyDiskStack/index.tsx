@@ -37,6 +37,8 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
   useEffect(() => {
     const addDisk = (notes: JSX.Element[]) => {
       const diskWidth = 290; // Assuming the disk's width is 290px
+      const labelColor =
+        labelColors[Math.floor(Math.random() * labelColors.length)];
       const newDisk: DiskProps = {
         id: Date.now(),
         notes,
@@ -47,7 +49,8 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
         startX: Math.random() * diskWidth * 3 - diskWidth, // Random X start position from left to 3x disk width to the right
         floppyColor:
           floppyColors[Math.floor(Math.random() * floppyColors.length)],
-        labelColor: labelColors[Math.floor(Math.random() * labelColors.length)],
+        labelColor: labelColor,
+        labelSecondColor: Math.random() < 0.7 ? labelColor : "#e6e6fa",
         textColor: textColors[Math.floor(Math.random() * textColors.length)],
         sliderColor:
           sliderColors[Math.floor(Math.random() * sliderColors.length)],
@@ -96,6 +99,7 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
                 notes={disk.notes}
                 floppyColor={disk.floppyColor}
                 labelColor={disk.labelColor}
+                labelSecondColor={disk.labelSecondColor}
                 textColor={disk.textColor}
                 sliderColor={disk.sliderColor}
                 font={disk.font}
@@ -106,6 +110,7 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
               notes={disk.notes}
               floppyColor={disk.floppyColor}
               labelColor={disk.labelColor}
+              labelSecondColor={disk.labelSecondColor}
               textColor={disk.textColor}
               sliderColor={disk.sliderColor}
               font={disk.font}

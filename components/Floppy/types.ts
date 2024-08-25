@@ -19,6 +19,7 @@ export type DiskProps = {
   startX: number;
   floppyColor: string;
   labelColor: string;
+  labelSecondColor: string;
   textColor: string;
   sliderColor: string;
   font: string;
@@ -28,6 +29,7 @@ export type FloppyDiskProps = {
   notes: JSX.Element[];
   floppyColor: string;
   labelColor: string;
+  labelSecondColor: string;
   textColor: string;
   sliderColor: string;
   font: string;

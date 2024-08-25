@@ -57,7 +57,10 @@ export const StyledFitinha = styled.div`
 `;
 
 // Bottom part of the floppy where the notes are displayed
-export const StyledDown = styled.div<{ labelColor: string }>`
+export const StyledDown = styled.div<{
+  labelColor: string;
+  labelSecondColor: string;
+}>`
   width: 225px;
   height: 180px;
   border-left: 2px solid rgba(0, 0, 0, 0.2);
@@ -70,7 +73,7 @@ export const StyledDown = styled.div<{ labelColor: string }>`
   background: linear-gradient(
     to bottom,
     ${(props) => props.labelColor} 50%,
-    ${(props) => (Math.random() < 0.2 ? "#e6e6fa" : props.labelColor)} 50%
+    ${(props) => props.labelSecondColor} 50%
   );
 
   background-size: 100% 50px;

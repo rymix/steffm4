@@ -13,6 +13,7 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
   notes,
   floppyColor,
   labelColor,
+  labelSecondColor,
   textColor,
   sliderColor,
   font,
@@ -23,7 +24,7 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
         <StyledSlider sliderColor={sliderColor} />
         <StyledFitinha />
       </StyledTop>
-      <StyledDown labelColor={labelColor}>
+      <StyledDown labelColor={labelColor} labelSecondColor={labelSecondColor}>
         <StyledNotes textColor={textColor} font={font}>
           {notes}
         </StyledNotes>
