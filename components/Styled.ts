@@ -1,23 +1,41 @@
 import styled from "styled-components";
+import Panel from "./Jupiter/Panel";
 
-export const ScrollContainer = styled.div`
+export const StyledScrollContainer = styled.div`
   height: 200vh;
   width: 100%;
   overflow: hidden;
 `;
 
-export const Panel = styled.div`
+export const StyledPanel = styled.div`
   height: 100vh;
   width: 100%;
   position: relative;
 `;
 
-export const TopPanel = styled(Panel)`
-  background-color: rgba(255, 255, 255, 0.5);
+export const StyledTopPanel = styled(Panel)`
+  background-color: transparent;
 `;
 
-export const BottomPanel = styled(Panel)`
-  background-color: rgba(0, 0, 0, 0.5);
+export const StyledBottomPanel = styled(StyledPanel)`
+  background-color: transparent;
+`;
+
+export const StyledScrollerDebug = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: yellow;
+  font-size: 2rem;
+  z-index: 1000; /* Ensure it's on top of other content */
+  padding: 10px;
+`;
+
+export const StyledFixedContent = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 `;
 
 export const StyledGridWrapper = styled.div`

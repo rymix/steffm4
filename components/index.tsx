@@ -19,13 +19,14 @@ import MixList from "components/MixList";
 import Modal from "components/Modal";
 import Overlay from "components/Overlay";
 import {
-  BottomPanel,
-  ScrollContainer,
+  StyledBottomPanel,
   StyledColumn,
+  StyledFixedContent,
   StyledGridWrapper,
   StyledItem,
   StyledItems,
-  TopPanel,
+  StyledScrollContainer,
+  StyledTopPanel,
 } from "components/Styled";
 import Tooltip from "components/Tooltip";
 import { useMixcloud } from "contexts/mixcloud";
@@ -46,7 +47,11 @@ const getCategoryIndex = (
 };
 
 const Jupiter = () => {
+  // Scroller stuff
   const [isAtBottom, setIsAtBottom] = useState(false);
+  const [touchStartY, setTouchStartY] = useState(0); // Store touch start position
+  const [swipeDistance, setSwipeDistance] = useState(0);
+
   const {
     isReady,
     mcKey,
@@ -197,14 +202,12 @@ const Jupiter = () => {
   useEffect(() => {
     const handleScroll = (event: WheelEvent) => {
       if (event.deltaY > 0 && !isAtBottom) {
-        // Scroll down to bottom panel
         setIsAtBottom(true);
         window.scrollTo({
           top: window.innerHeight,
           behavior: "smooth",
         });
       } else if (event.deltaY < 0 && isAtBottom) {
-        // Scroll up to top panel
         setIsAtBottom(false);
         window.scrollTo({
           top: 0,
@@ -212,24 +215,25 @@ const Jupiter = () => {
         });
       }
     };
-
     const handleTouchStart = (event: TouchEvent) => {
-      touchStartY = event.touches[0].clientY;
+      const startY = event.touches[0].clientY;
+      setTouchStartY(startY);
     };
+
     const handleTouchMove = (event: TouchEvent) => {
       const touchEndY = event.touches[0].clientY;
       const swipeDistance = touchStartY - touchEndY;
-      const sensitivity = 30; // Reduce this value to increase sensitivity
+      setSwipeDistance(swipeDistance);
+
+      const sensitivity = 30; // Adjust sensitivity here
 
       if (swipeDistance > sensitivity && !isAtBottom) {
-        // Scroll down to bottom panel
         setIsAtBottom(true);
         window.scrollTo({
           top: window.innerHeight,
           behavior: "smooth",
         });
       } else if (swipeDistance < -sensitivity && isAtBottom) {
-        // Scroll up to top panel
         setIsAtBottom(false);
         window.scrollTo({
           top: 0,
@@ -237,8 +241,6 @@ const Jupiter = () => {
         });
       }
     };
-
-    let touchStartY = 0;
 
     window.addEventListener("wheel", handleScroll);
     window.addEventListener("touchstart", handleTouchStart);
@@ -249,11 +251,11 @@ const Jupiter = () => {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [isAtBottom]);
+  }, [isAtBottom, touchStartY]);
 
   return (
     <>
-      <div id="FixedContent">
+      <StyledFixedContent>
         <Background />
         <BurgerMenu />
         <Overlay />
@@ -264,10 +266,10 @@ const Jupiter = () => {
             <Mixcloud defaultMcKey={mcKey} />
           </>
         )}
-      </div>
+      </StyledFixedContent>
 
-      <ScrollContainer>
-        <TopPanel>
+      <StyledScrollContainer>
+        <StyledTopPanel>
           <JupiterWrapper>
             <JupiterCase>
               <JupiterPanel padding="0" background="rear">
@@ -389,11 +391,11 @@ const Jupiter = () => {
               </JupiterPanel>
             </JupiterCase>
           </JupiterWrapper>
-        </TopPanel>
-        <BottomPanel>
+        </StyledTopPanel>
+        <StyledBottomPanel>
           {trackDetails && <FloppyDiskStack label={diskLabel} />}
-        </BottomPanel>
-      </ScrollContainer>
+        </StyledBottomPanel>
+      </StyledScrollContainer>
     </>
   );
 };
