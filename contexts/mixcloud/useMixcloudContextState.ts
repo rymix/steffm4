@@ -116,6 +116,11 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [tooltipFading, setTooltipFading] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
 
+  /* Scroller */
+  const [isAtBottom, setIsAtBottom] = useState(false);
+  const [touchStartY, setTouchStartY] = useState(0); // Store touch start position
+  const [swipeDistance, setSwipeDistance] = useState(0);
+
   /* FUNCTIONS -------------------- */
 
   /* Tooltip */
@@ -860,6 +865,61 @@ const useMixcloudContextState = (): MixcloudContextState => {
     };
   }, [handleKeyPress]);
 
+  /* Scroll and touch listeners */
+  useEffect(() => {
+    const handleScroll = (event: WheelEvent) => {
+      if (event.deltaY > 0 && !isAtBottom) {
+        setIsAtBottom(true);
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: "smooth",
+        });
+      } else if (event.deltaY < 0 && isAtBottom) {
+        setIsAtBottom(false);
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    };
+    const handleTouchStart = (event: TouchEvent) => {
+      const startY = event.touches[0].clientY;
+      setTouchStartY(startY);
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      const touchEndY = event.touches[0].clientY;
+      const swipeDistance = touchStartY - touchEndY;
+      setSwipeDistance(swipeDistance);
+
+      const sensitivity = 30; // Adjust sensitivity here
+
+      if (swipeDistance > sensitivity && !isAtBottom) {
+        setIsAtBottom(true);
+        window.scrollTo({
+          top: window.innerHeight,
+          behavior: "smooth",
+        });
+      } else if (swipeDistance < -sensitivity && isAtBottom) {
+        setIsAtBottom(false);
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      }
+    };
+
+    window.addEventListener("wheel", handleScroll);
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchmove", handleTouchMove);
+
+    return () => {
+      window.removeEventListener("wheel", handleScroll);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, [isAtBottom, touchStartY]);
+
   return {
     isReady,
     mcKey,
@@ -931,6 +991,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       burgerMenuRef,
       displayLength,
       handleCloseModal,
+      isAtBottom,
       isMobile,
       jupiterCaseRef,
       menuOpen,
@@ -943,6 +1004,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       secondsRemaining,
       setBackground,
       setDisplayLength,
+      setIsAtBottom,
       setIsMobile,
       setMenuOpen,
       setModalContent,
