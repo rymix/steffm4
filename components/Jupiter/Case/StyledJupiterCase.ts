@@ -6,7 +6,7 @@ export const StyledJupiterCase = styled.div<StyledJupiterCaseProps>`
   width: 100%;
   max-width: 1100px;
   min-width: 320px;
-  z-index: 2;
+  z-index: 1;
   ${(props) =>
     props.$scale && props.$scale.y !== 1
       ? `transform: scale(${props.$scale.y});`

@@ -21,7 +21,8 @@ import Overlay from "components/Overlay";
 import {
   StyledBottomPanel,
   StyledColumn,
-  StyledFixedContent,
+  StyledFixedBackground,
+  StyledFixedForeground,
   StyledGridWrapper,
   StyledItem,
   StyledItems,
@@ -255,18 +256,21 @@ const Jupiter = () => {
 
   return (
     <>
-      <StyledFixedContent>
+      <StyledFixedBackground>
         <Background />
-        <BurgerMenu />
-        <Overlay />
-        <Modal />
-        <Tooltip />
         {mcKey && (
           <>
             <Mixcloud defaultMcKey={mcKey} />
           </>
         )}
-      </StyledFixedContent>
+      </StyledFixedBackground>
+
+      <StyledFixedForeground>
+        <BurgerMenu />
+        <Overlay />
+        <Modal />
+        <Tooltip />
+      </StyledFixedForeground>
 
       <StyledScrollContainer>
         <StyledTopPanel>

@@ -21,21 +21,20 @@ export const StyledBottomPanel = styled(StyledPanel)`
   background-color: transparent;
 `;
 
-export const StyledScrollerDebug = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: yellow;
-  font-size: 2rem;
-  z-index: 1000; /* Ensure it's on top of other content */
-  padding: 10px;
-`;
-
-export const StyledFixedContent = styled.div`
+export const StyledFixedBackground = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 1;
+`;
+
+export const StyledFixedForeground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
 `;
 
 export const StyledGridWrapper = styled.div`

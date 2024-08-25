@@ -18,7 +18,7 @@ export const Tooltip: React.FC = () => {
             top: tooltipPosition.y,
             left: tooltipPosition.x,
             transform: "translate(-50%, -100%)",
-            zIndex: 1000,
+            zIndex: 110,
           }}
         >
           <TooltipContainer>

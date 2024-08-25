@@ -8,7 +8,7 @@ export const StyledBackground = styled.div<StyledBackgroundProps>`
   height: 100vh;
   width: 100%;
   position: absolute;
-  z-index: -1;
+  z-index: 1;
 
   background-color: ${(props) =>
     props.$background
