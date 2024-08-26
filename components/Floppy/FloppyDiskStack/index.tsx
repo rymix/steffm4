@@ -29,7 +29,11 @@ const textColors = [
   "#000080",
 ];
 const sliderColors = ["#1b1a20", "#a5acb2", "#a5acb2", "#959ca2", "#d1d3df"];
-const fonts = ["Caveat", "IndieFlower", "ShadowsIntoLight"];
+const fonts = ["GloriaHallelujah", "Caveat", "IndieFlower", "ShadowsIntoLight"];
+
+const getRandomOffset = (amount: number): number => {
+  return Math.random() * (2 * amount) - amount;
+};
 
 const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
   const [disks, setDisks] = useState<DiskProps[]>([]);
@@ -42,10 +46,10 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
       const newDisk: DiskProps = {
         id: Date.now(),
         notes,
-        startRotate: Math.random() * 120 - 60, // Random starting rotation between -60 and +60 degrees
-        endRotate: Math.random() * 20 - 10, // Random ending rotation between -10 and +10 degrees
-        finalX: Math.random() * 20 - 10, // Random X position within -10px to +10px
-        finalY: Math.random() * 20 - 10, // Random Y position within -10px to +10px
+        startRotate: getRandomOffset(120),
+        endRotate: getRandomOffset(10),
+        finalX: getRandomOffset(10),
+        finalY: getRandomOffset(10),
         startX: Math.random() * diskWidth * 3 - diskWidth, // Random X start position from left to 3x disk width to the right
         floppyColor:
           floppyColors[Math.floor(Math.random() * floppyColors.length)],

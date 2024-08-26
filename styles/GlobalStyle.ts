@@ -54,6 +54,15 @@ const GlobalStyle = createGlobalStyle`
     font-display: swap;
   }
 
+  @font-face {
+    font-family: 'GloriaHallelujah';
+    src: url('/fonts/GloriaHallelujah-Regular.woff2') format('woff2'),
+         url('/foonts/GloriaHallelujah-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
   html,
   *,
   *::before,
