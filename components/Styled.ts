@@ -21,6 +21,22 @@ export const StyledBottomPanel = styled(StyledPanel)`
   background-color: transparent;
 `;
 
+export const StyledBottomGrid = styled(StyledPanel)`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  grid-row-gap: 0;
+  grid-column-gap: 100px;
+  padding-bottom: 60px;
+`;
+
+export const StyledChild = styled.div`
+  width: 300px;
+  height: 400px;
+`;
+
 export const StyledFixedBackground = styled.div`
   position: fixed;
   top: 0;

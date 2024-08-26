@@ -23,7 +23,9 @@ import MixList from "components/MixList";
 import Modal from "components/Modal";
 import Overlay from "components/Overlay";
 import {
+  StyledBottomGrid,
   StyledBottomPanel,
+  StyledChild,
   StyledColumn,
   StyledFixedBackground,
   StyledFixedForeground,
@@ -341,8 +343,14 @@ const Jupiter = () => {
           </JupiterWrapper>
         </StyledTopPanel>
         <StyledBottomPanel>
-          {trackDetails && <FloppyDiskStack label={diskLabel} />}
-          <Notebook />
+          <StyledBottomGrid>
+            <StyledChild>
+              {trackDetails && <FloppyDiskStack label={diskLabel} />}
+            </StyledChild>
+            <StyledChild>
+              <Notebook />
+            </StyledChild>
+          </StyledBottomGrid>
         </StyledBottomPanel>
       </StyledScrollContainer>
     </>

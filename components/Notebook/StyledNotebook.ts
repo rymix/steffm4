@@ -7,6 +7,10 @@ export const StyledNotebook = styled.div`
   width: 320px;
   height: 400px;
   z-index: 1;
+
+  @media (max-width: 700px) {
+    transform: scale(0.8);
+  }
 `;
 
 export const StyledNotebookTop = styled.div`
