@@ -48,8 +48,8 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
         notes,
         startRotate: getRandomOffset(120),
         endRotate: getRandomOffset(10),
-        finalX: getRandomOffset(10),
-        finalY: getRandomOffset(10),
+        finalX: getRandomOffset(10) - 145,
+        finalY: getRandomOffset(10) - 120,
         startX: Math.random() * diskWidth * 3 - diskWidth, // Random X start position from left to 3x disk width to the right
         floppyColor:
           floppyColors[Math.floor(Math.random() * floppyColors.length)],

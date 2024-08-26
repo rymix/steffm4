@@ -1,6 +1,10 @@
+import Notebook from "components//Notebook";
+import ScrollIndicator from "components//ScrollIndicator";
 import About from "components/About";
 import Background from "components/Background";
 import BurgerMenu from "components/BurgerMenu";
+import FloppyDiskStack from "components/Floppy/FloppyDiskStack";
+import { DiskLabel } from "components/Floppy/types";
 import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
 import JupiterHeader from "components/Jupiter/Header";
@@ -34,9 +38,6 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-import FloppyDiskStack from "./Floppy/FloppyDiskStack";
-import { DiskLabel } from "./Floppy/types";
-import ScrollIndicator from "./ScrollIndicator";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -341,6 +342,7 @@ const Jupiter = () => {
         </StyledTopPanel>
         <StyledBottomPanel>
           {trackDetails && <FloppyDiskStack label={diskLabel} />}
+          <Notebook />
         </StyledBottomPanel>
       </StyledScrollContainer>
     </>

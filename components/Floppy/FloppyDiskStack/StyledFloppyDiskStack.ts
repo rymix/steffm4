@@ -5,11 +5,10 @@ import styled, { keyframes } from "styled-components";
 // Container for the disk stack
 export const StyledDiskContainer = styled.div`
   position: relative;
-  width: 50px; /* If you want to match floppy disk size it's 290px square */
-  height: 50px;
+  width: 290px;
+  height: 290px;
   margin: 0 auto;
   z-index: 1;
-  transform: translateX(-145px);
 `;
 
 // Animation for tossing the disk
