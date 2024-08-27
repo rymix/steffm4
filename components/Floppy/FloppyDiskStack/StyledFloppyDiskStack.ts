@@ -10,9 +10,9 @@ export const StyledDiskContainer = styled.div`
   margin: 0 auto;
   z-index: 1;
 
-  @media (max-width: 700px) {
-    transform: scale(0.8);
-  }
+  /* @media (max-width: 700px) {
+    transform: scale(0.6);
+  } */
 `;
 
 // Animation for tossing the disk

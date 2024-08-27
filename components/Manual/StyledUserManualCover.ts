@@ -45,9 +45,9 @@ export const StyledUserManualCover = styled.div<StyledUserManualCoverProps>`
     transform: ${(props) => `rotate(0deg) scale(1.2)`};
   }
 
-  @media (max-width: 700px) {
-    transform: scale(0.8);
-  }
+  /* @media (max-width: 700px) {
+    transform: scale(0.6);
+  } */
 `;
 
 export const StyledUserManualCoverTitle = styled.div`

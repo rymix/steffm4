@@ -21,20 +21,42 @@ export const StyledBottomPanel = styled(StyledPanel)`
   background-color: transparent;
 `;
 
-export const StyledBottomGrid = styled(StyledPanel)`
+export const StyledBottomGrid = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  grid-row-gap: 0;
-  grid-column-gap: 100px;
-  padding-bottom: 60px;
+  gap: 100px; /* Space between items */
+  padding: 60px 0;
+  width: 100%;
+  height: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: row;
+    padding: 60px 0;
+  }
+
+  /* @media (max-width: 1024px) {
+    flex-direction: column;
+  } */
+
+  /* @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  } */
 `;
 
 export const StyledChild = styled.div`
   width: 300px;
   height: 400px;
+  flex-shrink: 0; /* Prevent shrinking */
+
+  @media (max-width: 768px) {
+    width: 200px;
+    height: 300px;
+  }
 `;
 
 export const StyledFixedBackground = styled.div`
