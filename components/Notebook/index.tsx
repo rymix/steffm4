@@ -5,7 +5,7 @@ import {
   StyledNotebookTop,
 } from "components/Notebook/StyledNotebook";
 import { useMixcloud } from "contexts/mixcloud";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { convertTimeToHumanReadable } from "utils/functions";
 
 export const Notebook: React.FC = () => {
@@ -13,6 +13,7 @@ export const Notebook: React.FC = () => {
     mix: { details: mixDetails },
     session: { openModal },
   } = useMixcloud();
+  const [rotation, setRotation] = useState<number>(0);
 
   const handleNotebookClick = (
     event:
@@ -23,8 +24,20 @@ export const Notebook: React.FC = () => {
     openModal(<MixInformation />);
   };
 
+  const handleStopHover = () => {
+    setRotation(Math.floor(Math.random() * 31) - 15);
+  };
+
+  useEffect(() => {
+    handleStopHover();
+  }, []);
+
   return (
-    <StyledNotebook onClick={handleNotebookClick}>
+    <StyledNotebook
+      onClick={handleNotebookClick}
+      onMouseLeave={handleStopHover}
+      $rotation={rotation}
+    >
       <StyledNotebookTop />
       <StyledNotebookPaper>
         <p>{mixDetails?.name}</p>

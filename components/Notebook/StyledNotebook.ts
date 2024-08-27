@@ -1,12 +1,19 @@
 import styled from "styled-components";
+import { StyledNotebookProps } from "./types";
 
-export const StyledNotebook = styled.div`
+export const StyledNotebook = styled.div<StyledNotebookProps>`
   cursor: pointer;
   box-shadow: -5px 8px 10px rgba(0, 0, 0, 0.5);
   position: relative;
   width: 320px;
   height: 400px;
   z-index: 1;
+  transform: ${(props) => `rotate(${props.$rotation}deg)`};
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: ${(props) => `rotate(0deg) scale(1.2)`};
+  }
 
   @media (max-width: 700px) {
     transform: scale(0.8);
