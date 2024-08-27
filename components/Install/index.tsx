@@ -20,7 +20,7 @@ const InstallInstructions: React.FC = () => {
   const [userAgent, setUserAgent] = useState("");
 
   useEffect(() => {
-    const userAgent = window.navigator.userAgent.toLowerCase();
+    setUserAgent(window.navigator.userAgent.toLowerCase());
     const vendor = navigator.vendor?.toLowerCase();
 
     setIsIos(/iphone|ipad|ipod/.test(userAgent));
@@ -81,8 +81,8 @@ const InstallInstructions: React.FC = () => {
               </span>
               .
             </li>
-            <li>Scroll down and select "Add to Home Screen"</li>
-            <li>Tap "Add" in the top-right corner</li>
+            <li>Scroll down and select &quot;Add to Home Screen&quot;</li>
+            <li>Tap &quot;Add&quot; in the top-right corner</li>
           </InstructionsList>
         </>
       );
@@ -95,7 +95,9 @@ const InstallInstructions: React.FC = () => {
           </InstructionsText>
           <InstructionsList>
             <li>Tap the three-dot menu in the top-right corner</li>
-            <li>Select "Install app" or "Add to Home screen"</li>
+            <li>
+              Select &quot;Install app&quot; or &quot;Add to Home screen&quot;
+            </li>
             <li>Follow the on-screen instructions</li>
           </InstructionsList>
           {showInstallButton && (
@@ -113,7 +115,8 @@ const InstallInstructions: React.FC = () => {
           <InstructionsList>
             <li>Click the three-dot menu in the top-right corner of Chrome</li>
             <li>
-              Hover over "Save and Share" and select "Install page as app..."
+              Hover over &quot;Save and Share&quot; and select &quot;Install
+              page as app...&quot;
             </li>
             <li>Follow the prompts to install the app</li>
           </InstructionsList>
@@ -130,8 +133,8 @@ const InstallInstructions: React.FC = () => {
             To install this app on your Mac using Safari:
           </InstructionsText>
           <InstructionsList>
-            <li>Click "File" in the menu bar</li>
-            <li>Select "Add to Dock" from the dropdown menu</li>
+            <li>Click &quot;File&quot; in the menu bar</li>
+            <li>Select &quot;Add to Dock&quot; from the dropdown menu</li>
             <li>Follow the prompts to add the app to your Dock</li>
           </InstructionsList>
         </>

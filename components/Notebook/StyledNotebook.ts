@@ -13,7 +13,7 @@ export const StyledNotebook = styled.div<StyledNotebookProps>`
   transition: transform 0.3s ease;
 
   &:hover {
-    transform: ${(props) => `rotate(0deg) scale(1.2)`};
+    transform: rotate(0deg) scale(1.2)};
   }
 
   /* @media (max-width: 700px) {

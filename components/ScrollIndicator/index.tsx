@@ -11,7 +11,7 @@ export const ScrollIndicator: React.FC = () => {
     session: { isAtBottom, setIsAtBottom },
   } = useMixcloud();
 
-  const handleIsAtBottomToggle = () => {
+  const handleIsAtBottomToggle = (): void => {
     if (isAtBottom) {
       // Scroll up to top panel
       setIsAtBottom(false);

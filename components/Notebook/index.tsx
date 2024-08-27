@@ -24,7 +24,7 @@ export const Notebook: React.FC = () => {
     openModal(<MixInformation />);
   };
 
-  const handleStopHover = () => {
+  const handleStopHover = (): void => {
     setRotation(Math.floor(Math.random() * 31) - 15);
   };
 

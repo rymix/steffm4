@@ -53,7 +53,7 @@ const getCategoryIndex = (
   return category ? category.index : 1;
 };
 
-const Jupiter = () => {
+const Jupiter = (): React.FC => {
   const {
     isReady,
     mcKey,

@@ -316,7 +316,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
       const isPortrait = windowHeight > windowWidth;
-      const aspectRatio = windowWidth / windowHeight;
+      // const aspectRatio = windowWidth / windowHeight;
       const limits = isPortrait
         ? screenLimits.portrait
         : screenLimits.landscape;
@@ -877,8 +877,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, [handleKeyPress]);
 
   /* Scroll and touch listeners */
-  useEffect(() => {
-    const handleScroll = (event: WheelEvent) => {
+  useEffect((): (() => void) => {
+    const handleScroll = (event: WheelEvent): void => {
       if (event.deltaY > 0 && !isAtBottom) {
         setIsAtBottom(true);
         window.scrollTo({
@@ -894,15 +894,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
       }
     };
 
-    const handleTouchStart = (event: TouchEvent) => {
+    const handleTouchStart = (event: TouchEvent): void => {
       const startY = event.touches[0].clientY;
       setTouchStartY(startY);
     };
 
-    const handleTouchMove = (event: TouchEvent) => {
+    const handleTouchMove = (event: TouchEvent): void => {
       const touchEndY = event.touches[0].clientY;
-      const swipeDistance = touchStartY - touchEndY;
-      setSwipeDistance(swipeDistance);
+      const newSwipeDistance = touchStartY - touchEndY;
+      setSwipeDistance(newSwipeDistance);
 
       const sensitivity = 30; // Adjust sensitivity here
 
