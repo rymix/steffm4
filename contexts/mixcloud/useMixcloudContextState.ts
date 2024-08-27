@@ -345,7 +345,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const minScale = 0.5;
       const maxScale = 1;
 
-      let scaleFactorX =
+      const scaleFactorX =
         minScale +
         ((maxScale - minScale) *
           (Math.min(Math.max(jupiterCaseWidth, minScreenWidth), maxWidth) -
@@ -788,7 +788,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     (event: KeyboardEvent) => {
       switch (event.key) {
         case " ":
-        case "k":
+        case "k": {
           event.preventDefault();
           if (playing) {
             handlePause();
@@ -796,27 +796,33 @@ const useMixcloudContextState = (): MixcloudContextState => {
             handlePlay();
           }
           break;
-        case "j":
+        }
+        case "j": {
           event.preventDefault();
           handlePrevious();
           break;
-        case "l":
+        }
+        case "l": {
           event.preventDefault();
           handleNext();
           break;
-        case "m":
+        }
+        case "m": {
           event.preventDefault();
           setVolume(0);
           break;
-        case "r":
+        }
+        case "r": {
           event.preventDefault();
           handleLoadRandom();
           break;
-        case "n":
+        }
+        case "n": {
           event.preventDefault();
           handleLoadLatest();
           break;
-        case "f":
+        }
+        case "f": {
           event.preventDefault();
           if (mixIsFavourite) {
             removeFavourite(mcKey);
@@ -824,20 +830,25 @@ const useMixcloudContextState = (): MixcloudContextState => {
             addFavourite(mcKey);
           }
           break;
-        case "s":
+        }
+        case "s": {
           event.preventDefault();
           copySharableLink();
           break;
-        case "ArrowUp":
+        }
+        case "ArrowUp": {
           event.preventDefault();
           setVolume(Math.min(volume + 0.1, 1));
           break;
-        case "ArrowDown":
+        }
+        case "ArrowDown": {
           event.preventDefault();
           setVolume(Math.max(volume - 0.1, 0));
           break;
-        default:
+        }
+        default: {
           break;
+        }
       }
     },
     [
@@ -910,14 +921,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       }
     };
 
-    if (!modalOpen) {
-      window.addEventListener("wheel", handleScroll);
-      window.addEventListener("touchstart", handleTouchStart);
-      window.addEventListener("touchmove", handleTouchMove);
-    } else {
+    if (modalOpen) {
       window.removeEventListener("wheel", handleScroll);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
+    } else {
+      window.addEventListener("wheel", handleScroll);
+      window.addEventListener("touchstart", handleTouchStart);
+      window.addEventListener("touchmove", handleTouchMove);
     }
 
     return () => {

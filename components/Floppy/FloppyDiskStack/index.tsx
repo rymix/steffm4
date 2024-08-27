@@ -4,8 +4,8 @@ import {
   FadingDisk,
   StyledDiskContainer,
 } from "components/Floppy/FloppyDiskStack/StyledFloppyDiskStack";
-
 import React, { useEffect, useState } from "react";
+
 import { DiskProps, FloppyDiskStackProps } from "../types";
 
 const floppyColors = [
@@ -53,7 +53,7 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
         startX: Math.random() * diskWidth * 3 - diskWidth, // Random X start position from left to 3x disk width to the right
         floppyColor:
           floppyColors[Math.floor(Math.random() * floppyColors.length)],
-        labelColor: labelColor,
+        labelColor,
         labelSecondColor: Math.random() < 0.7 ? labelColor : "#e6e6fa",
         textColor: textColors[Math.floor(Math.random() * textColors.length)],
         sliderColor:

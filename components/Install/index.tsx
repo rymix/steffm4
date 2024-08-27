@@ -1,5 +1,6 @@
 // components/InstallInstructions.tsx
 import React, { useEffect, useState } from "react";
+
 import {
   InstallButton,
   InstallInstructionsWrapper,
@@ -85,7 +86,8 @@ const InstallInstructions: React.FC = () => {
           </InstructionsList>
         </>
       );
-    } else if (isChrome && isAndroid) {
+    }
+    if (isChrome && isAndroid) {
       return (
         <>
           <InstructionsText>
@@ -101,7 +103,8 @@ const InstallInstructions: React.FC = () => {
           )}
         </>
       );
-    } else if (isChrome && isMac) {
+    }
+    if (isChrome && isMac) {
       return (
         <>
           <InstructionsText>
@@ -119,7 +122,8 @@ const InstallInstructions: React.FC = () => {
           )}
         </>
       );
-    } else if (isSafari && isMac) {
+    }
+    if (isSafari && isMac) {
       return (
         <>
           <InstructionsText>
@@ -132,16 +136,15 @@ const InstallInstructions: React.FC = () => {
           </InstructionsList>
         </>
       );
-    } else {
-      return (
-        <>
-          <InstructionsText>
-            To install this app, use the instructions specific to your device
-            and browser.
-          </InstructionsText>
-        </>
-      );
     }
+    return (
+      <>
+        <InstructionsText>
+          To install this app, use the instructions specific to your device and
+          browser.
+        </InstructionsText>
+      </>
+    );
   };
 
   const getDebug = () => {

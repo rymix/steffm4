@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import { StyledNotebookProps } from "./types";
 
 export const StyledNotebook = styled.div<StyledNotebookProps>`

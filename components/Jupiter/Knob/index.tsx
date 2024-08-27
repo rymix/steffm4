@@ -136,9 +136,9 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
 
   const outerStyle = { width: size, height: size };
   const innerStyle =
-    deg !== null
-      ? { width: size, height: size, transform: `rotate(${deg}deg)` }
-      : { width: size, height: size }; // Default style for SSR
+    deg === null
+      ? { width: size, height: size }
+      : { width: size, height: size, transform: `rotate(${deg}deg)` }; // Default style for SSR
 
   return (
     <StyledJupiterKnobWrapper>

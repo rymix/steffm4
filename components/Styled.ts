@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import Panel from "./Jupiter/Panel";
 
 export const StyledScrollContainer = styled.div`
