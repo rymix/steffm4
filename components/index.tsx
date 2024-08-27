@@ -40,6 +40,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
+import UserManualCover from "./Manual/UserManualCover";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -349,6 +350,9 @@ const Jupiter = () => {
             </StyledChild>
             <StyledChild>
               <Notebook />
+            </StyledChild>
+            <StyledChild>
+              <UserManualCover />
             </StyledChild>
           </StyledBottomGrid>
         </StyledBottomPanel>

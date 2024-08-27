@@ -29,7 +29,7 @@ export const StyledNotebookTop = styled.div`
 
 export const StyledNotebookPaper = styled.div`
   background-color: #f6f4ef;
-  background-image: url("textures/rice-paper-2.png"); /* Textured image */
+  background-image: url("textures/rice-paper-2.png");
   background-size: cover;
   background-blend-mode: overlay;
   width: 100%;
