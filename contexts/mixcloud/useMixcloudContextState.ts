@@ -882,6 +882,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
         });
       }
     };
+
     const handleTouchStart = (event: TouchEvent) => {
       const startY = event.touches[0].clientY;
       setTouchStartY(startY);
@@ -909,16 +910,22 @@ const useMixcloudContextState = (): MixcloudContextState => {
       }
     };
 
-    window.addEventListener("wheel", handleScroll);
-    window.addEventListener("touchstart", handleTouchStart);
-    window.addEventListener("touchmove", handleTouchMove);
+    if (!modalOpen) {
+      window.addEventListener("wheel", handleScroll);
+      window.addEventListener("touchstart", handleTouchStart);
+      window.addEventListener("touchmove", handleTouchMove);
+    } else {
+      window.removeEventListener("wheel", handleScroll);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+    }
 
     return () => {
       window.removeEventListener("wheel", handleScroll);
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [isAtBottom, touchStartY]);
+  }, [isAtBottom, touchStartY, modalOpen]);
 
   return {
     isReady,
