@@ -42,7 +42,7 @@ export const StyledUserManualCover = styled.div<StyledUserManualCoverProps>`
   }
 
   &:hover {
-    transform: ${(props) => `rotate(0deg) scale(1.2)`};
+    transform: rotate(0deg) scale(1.2);
   }
 
   /* @media (max-width: 700px) {

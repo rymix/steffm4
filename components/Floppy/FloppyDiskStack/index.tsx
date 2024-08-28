@@ -39,7 +39,7 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
   const [disks, setDisks] = useState<DiskProps[]>([]);
 
   useEffect(() => {
-    const addDisk = (notes: JSX.Element[]) => {
+    const addDisk = (notes: JSX.Element[]): void => {
       const diskWidth = 290; // Assuming the disk's width is 290px
       const labelColor =
         labelColors[Math.floor(Math.random() * labelColors.length)];

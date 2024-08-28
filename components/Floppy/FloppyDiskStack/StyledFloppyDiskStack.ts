@@ -22,7 +22,7 @@ const tossAnimation = (
   $finalX: number,
   $finalY: number,
   $startX: number,
-) => keyframes`
+): ReturnType<typeof keyframes> => keyframes`
   0% {
     transform: translate(${$startX}px, 100vh) rotate(${$startRotate}deg);
   }

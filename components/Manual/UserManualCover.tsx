@@ -22,7 +22,7 @@ export const UserManualCover: React.FC = () => {
     openModal(<Manual />);
   };
 
-  const handleStopHover = () => {
+  const handleStopHover = (): void => {
     setRotation(Math.floor(Math.random() * 31) - 15);
   };
 

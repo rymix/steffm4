@@ -40,18 +40,23 @@ const InstallInstructions: React.FC = () => {
         (window.navigator as any).standalone === true,
     );
 
-    window.addEventListener("beforeinstallprompt", (e) => {
+    const handleBeforeInstallPrompt = (e: Event): void => {
       e.preventDefault();
       setDeferredPrompt(e);
       setShowInstallButton(true);
-    });
+    };
+
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
     return () => {
-      window.removeEventListener("beforeinstallprompt", () => {});
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt,
+      );
     };
   }, []);
 
-  const handleInstallClick = () => {
+  const handleInstallClick = (): void => {
     if (deferredPrompt) {
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then((choiceResult: any) => {
@@ -66,7 +71,7 @@ const InstallInstructions: React.FC = () => {
     }
   };
 
-  const getInstructions = () => {
+  const getInstructions = (): JSX.Element => {
     if (isIos && !isStandalone && isSafari) {
       return (
         <>
@@ -150,28 +155,11 @@ const InstallInstructions: React.FC = () => {
     );
   };
 
-  const getDebug = () => {
-    console.log(userAgent);
-    return (
-      <pre>
-        {`
-        userAgent: ${userAgent}
-        isIos: ${isIos}
-        isStandalone: ${isStandalone}
-        isSafari: ${isSafari}
-        isChrome: ${isChrome}
-        isMac: ${isMac}
-        isAndroid: ${isAndroid}
-        `}
-      </pre>
-    );
-  };
-
   return (
     <InstallInstructionsWrapper>
       <InstructionsText>
-        Enjoy <strong>Stef.FM</strong> as an app on your device. It's easier and
-        funkier than those old fashioned web browsers.
+        Enjoy <strong>Stef.FM</strong> as an app on your device. It&apos;s
+        easier and funkier than those old fashioned web browsers.
       </InstructionsText>
       {getInstructions()}
     </InstallInstructionsWrapper>

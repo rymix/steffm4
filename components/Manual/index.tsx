@@ -132,10 +132,10 @@ export const Manual: React.FC = () => {
       <StyledControl>
         <StyledManualKnobWrapper>
           <StyledManualOuterKnobWrapper>
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               // eslint-disable-next-line react/no-array-index-key
               <StyledManualKnobMarker
-                key={index}
+                key={category.shortName}
                 $x={category.x}
                 $y={category.y}
               >
