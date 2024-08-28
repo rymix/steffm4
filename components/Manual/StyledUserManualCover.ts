@@ -5,13 +5,13 @@ export const StyledUserManualCover = styled.div<StyledUserManualCoverProps>`
   cursor: pointer;
   box-shadow: -5px 8px 10px rgba(0, 0, 0, 0.5);
   position: relative;
-  width: 320px;
-  height: 400px;
+  width: 100%;
+  height: 100%;
   z-index: 1;
   transform: ${(props) => `rotate(${props.$rotation}deg)`};
   transition: transform 0.3s ease;
   text-align: left;
-  padding: 30px;
+  padding: 1.4em 1em;
   background-color: #f6f4ef;
   background-image: url("textures/rice-paper-2.png"); /* Textured image */
   background-size: cover;
@@ -24,13 +24,13 @@ export const StyledUserManualCover = styled.div<StyledUserManualCoverProps>`
 
   hr {
     border-top: 2px solid rgba(0, 0, 0, 0.4);
-    margin: 22px 0;
+    margin: 0.4em 0;
   }
 
   p {
-    font-size: 14px;
+    font-size: 0.6em;
     line-height: 1.6;
-    margin: 0 0 20px 0;
+    margin: 0 0 0.3em 0;
   }
 
   a {
@@ -44,29 +44,25 @@ export const StyledUserManualCover = styled.div<StyledUserManualCoverProps>`
   &:hover {
     transform: rotate(0deg) scale(1.2);
   }
-
-  /* @media (max-width: 700px) {
-    transform: scale(0.6);
-  } */
 `;
 
 export const StyledUserManualCoverTitle = styled.div`
   display: block;
   font-family: "Sforzando";
-  font-size: 64.4px;
+  font-size: 2.6em;
   flex-shrink: 0;
 `;
 
 export const StyledUserManualCoverSubTitle = styled.div`
   display: block;
-  font-size: 34px;
+  font-size: 1.2em;
   flex-shrink: 0;
-  padding-bottom: 60px;
+  padding-bottom: 4em;
 `;
 
 export const StyledUserManualCoverSectionTitle = styled.div`
   display: block;
   font-size: 23.8px;
   flex-shrink: 0;
-  margin-top: 40px;
+  margin-top: 3.4em;
 `;

@@ -1,9 +1,7 @@
-import Notebook from "components//Notebook";
 import ScrollIndicator from "components//ScrollIndicator";
 import About from "components/About";
 import Background from "components/Background";
 import BurgerMenu from "components/BurgerMenu";
-import FloppyDiskStack from "components/Floppy/FloppyDiskStack";
 import { DiskLabel } from "components/Floppy/types";
 import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
@@ -40,8 +38,9 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-
+import FloppyDiskStack from "./Floppy/FloppyDiskStack";
 import UserManualCover from "./Manual/UserManualCover";
+import Notebook from "./Notebook";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -53,7 +52,7 @@ const getCategoryIndex = (
   return category ? category.index : 1;
 };
 
-const Jupiter = (): React.FC => {
+const Jupiter: React.FC = () => {
   const {
     isReady,
     mcKey,
@@ -205,11 +204,7 @@ const Jupiter = (): React.FC => {
     <>
       <StyledFixedBackground>
         <Background />
-        {mcKey && (
-          <>
-            <Mixcloud defaultMcKey={mcKey} />
-          </>
-        )}
+        {mcKey && <Mixcloud defaultMcKey={mcKey} />}
       </StyledFixedBackground>
 
       <StyledFixedForeground>
@@ -347,13 +342,13 @@ const Jupiter = (): React.FC => {
         <StyledBottomPanel>
           <StyledBottomGrid>
             <StyledChild>
-              {trackDetails && <FloppyDiskStack label={diskLabel} />}
-            </StyledChild>
-            <StyledChild>
               <Notebook />
             </StyledChild>
             <StyledChild>
               <UserManualCover />
+            </StyledChild>
+            <StyledChild>
+              <FloppyDiskStack />
             </StyledChild>
           </StyledBottomGrid>
         </StyledBottomPanel>

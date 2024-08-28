@@ -28,33 +28,40 @@ export const StyledBottomGrid = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 100px; /* Space between items */
-  padding: 60px 0;
+  gap: 2.6em;
+  zpadding: 60px 0;
   width: 100%;
   height: 100%;
 
   @media (max-width: 768px) {
-    flex-direction: row;
-    padding: 60px 0;
+    gap: 1.6em; /* Reduce the gap further on smaller screens */
   }
 
-  /* @media (max-width: 1024px) {
-    flex-direction: column;
-  } */
-
-  /* @media (max-width: 768px) {
+  @media (max-width: 480px) {
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-  } */
+  }
 `;
 
 export const StyledChild = styled.div`
   width: 300px;
   height: 400px;
-  flex-shrink: 0; /* Prevent shrinking */
+  border: 1px solid red; /* For debugging */
+  flex-shrink: 1; /* Allow shrinking when space is tight */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 
-  @media (max-width: 768px) {
+  font-size: 24px;
+
+  /* transition:
+    transform 0.3s ease,
+    width 0.3s ease,
+    height 0.3s ease; */
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
     width: 200px;
     height: 300px;
   }
