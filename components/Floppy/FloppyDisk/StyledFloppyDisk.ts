@@ -4,8 +4,8 @@ import styled from "styled-components";
 
 // Main Floppy Disk Container
 export const StyledFloppy = styled.div<{ $floppyColor: string }>`
-  width: 290px;
-  height: 290px;
+  width: 100%;
+  height: 100%;
   background-color: ${(props) => props.$floppyColor};
   box-shadow: -5px 8px 10px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
