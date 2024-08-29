@@ -44,9 +44,8 @@ export const StyledBottomGrid = styled.div`
 `;
 
 export const StyledChild = styled.div`
-  width: 300px;
-  height: 400px;
-  border: 1px solid red; /* For debugging */
+  width: 290px;
+  height: 290px;
   flex-shrink: 1; /* Allow shrinking when space is tight */
   display: flex;
   justify-content: center;
@@ -63,7 +62,7 @@ export const StyledChild = styled.div`
   @media (max-width: 1024px) {
     font-size: 16px;
     width: 200px;
-    height: 300px;
+    height: v300px;
   }
 `;
 

@@ -5,8 +5,8 @@ import styled, { keyframes } from "styled-components";
 // Container for the disk stack
 export const StyledDiskContainer = styled.div`
   position: relative;
-  width: 290px;
-  height: 290px;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   z-index: 1;
 
@@ -27,7 +27,8 @@ const tossAnimation = (
     transform: translate(${$startX}px, 100vh) rotate(${$startRotate}deg);
   }
   100% {
-    transform: translate(${$finalX}px, ${$finalY}px) rotate(${$endRotate}deg);
+    ztransform: translate(${$finalX}px, ${$finalY}px) rotate(${$endRotate}deg);
+    transform: translate(${$finalX}px, ${$finalY}px) rotate(0deg);
   }
 `;
 
@@ -53,6 +54,8 @@ export const AnimatedDisk = styled.div<{
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 100%;
+  height: 100%;
   transform-origin: center;
   z-index: ${(props) => props.$index}; /* Ensure stacking order */
 

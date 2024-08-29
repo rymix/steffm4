@@ -4,27 +4,27 @@ import styled from "styled-components";
 
 // Main Floppy Disk Container
 export const StyledFloppy = styled.div<{ $floppyColor: string }>`
-  width: 100%;
-  height: 100%;
+  width: 100%; /* 290px of 290px */
+  height: 100%; /* 290px of 290px */
   background-color: ${(props) => props.$floppyColor};
   box-shadow: -5px 8px 10px rgba(0, 0, 0, 0.5);
-  border-radius: 10px;
+  border-radius: 3.44%; /* 10px of 290px */
   display: flex;
   flex-direction: column;
 `;
 
 // Top part of the floppy
 export const StyledTop = styled.div<{ $floppyColor: string }>`
-  width: 190px;
-  height: 100px;
+  width: 65.51%; /* 190px of 290px */
+  height: 34.48%; /* 100px of 290px */
   background-color: ${(props) => props.$floppyColor};
-  margin-left: 30px;
+  margin-left: 10.34%; /* 30px of 290px */
   position: relative;
   border-left: 2px solid rgba(0, 0, 0, 0.2);
   border-right: 2px solid rgba(0, 0, 0, 0.15);
   border-top: 2px solid transparent;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 4.21%; /* 8px of 190px */
+  border-bottom-right-radius: 4.21%; /* 8px of 190px */
 `;
 
 // Slider element
