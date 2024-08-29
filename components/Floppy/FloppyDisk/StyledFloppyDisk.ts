@@ -29,13 +29,13 @@ export const StyledTop = styled.div<{ $floppyColor: string }>`
 
 // Slider element
 export const StyledSlider = styled.div<{ $sliderColor: string }>`
-  width: 150px;
-  height: inherit;
+  width: 78.95%; /* 150px of 190px */
+  height: 100%;
   position: absolute;
-  left: 40px;
-  top: -3px;
-  border-radius: 8px;
-  border: 10px solid ${(props) => props.$sliderColor};
+  left: 21.05%; /* 150px of 190px */
+  top: -1.58%; /* -3px of 190px */
+  border-radius: 4.21%; /* 150px of 190px */
+  border: 10px solid ${(props) => props.$sliderColor}; /* 10px of 190px */
   border-left-width: 100px;
   z-index: 1;
   transition: left 0.2s ease-in-out;
@@ -48,11 +48,11 @@ export const StyledSlider = styled.div<{ $sliderColor: string }>`
 // Black tape element inside the top part
 export const StyledFitinha = styled.div`
   position: absolute;
-  width: 42px;
-  height: 82px;
+  width: 22.11%; /* 42px of 190px */
+  height: 90%;
   background-color: rgba(0, 0, 0, 0.8);
-  right: 45px;
-  top: 6px;
+  right: 23.68%; /* 45px of 190px */
+  top: 3.16%; /* 6px of 190px */
   z-index: 0;
 `;
 
@@ -61,13 +61,13 @@ export const StyledDown = styled.div<{
   $labelColor: string;
   $labelSecondColor: string;
 }>`
-  width: 225px;
-  height: 180px;
+  width: 77.59%; /* 225px of 290px */
+  height: 62.07%; /* 180px of 290px */
   border-left: 2px solid rgba(0, 0, 0, 0.2);
   border-right: 2px solid rgba(0, 0, 0, 0.2);
   border-top: 2px solid rgba(0, 0, 0, 0.2);
-  margin-left: 30px;
-  margin-top: 15px;
+  margin-left: 10.34%; /* 30px of 290px */
+  margin-top: 5.17%; /* 15px of 290px */
   border-radius: 5px;
   position: relative;
   background: linear-gradient(
@@ -82,19 +82,19 @@ export const StyledDown = styled.div<{
   &::before {
     content: "";
     position: absolute;
-    width: 15px;
-    height: 15px;
+    width: 5.17%; /* 15px of 290px */
+    height: 5.17%; /* 15px of 290px */
     background-color: transparent;
-    bottom: 20px;
+    bottom: 6.9%; /* 20px of 290px */
     box-shadow: inset -4px 0 10px rgba(0, 0, 0, 0.3);
   }
 
   &::after {
-    right: -25px;
+    right: -8.62%; /* -25px of 290px */
   }
 
   &::before {
-    left: -25px;
+    left: -8.62%; /* -25px of 290px */
   }
 `;
 

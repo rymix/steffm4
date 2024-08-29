@@ -62,7 +62,7 @@ export const StyledChild = styled.div`
   @media (max-width: 1024px) {
     font-size: 16px;
     width: 200px;
-    height: v300px;
+    height: 200px;
   }
 `;
 
