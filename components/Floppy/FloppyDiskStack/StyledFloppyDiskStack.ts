@@ -9,10 +9,6 @@ export const StyledDiskContainer = styled.div`
   height: 100%;
   margin: 0 auto;
   z-index: 1;
-
-  /* @media (max-width: 700px) {
-    transform: scale(0.6);
-  } */
 `;
 
 // Animation for tossing the disk
@@ -52,8 +48,8 @@ export const AnimatedDisk = styled.div<{
   $startX: number;
 }>`
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 150px;
+  left: 150px;
   width: 100%;
   height: 100%;
   transform-origin: center;
@@ -68,6 +64,11 @@ export const AnimatedDisk = styled.div<{
         props.$startX,
       )}
     0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+
+  @media (max-width: 1024px) {
+    top: 130px;
+    left: 150px;
+  }
 `;
 
 // Styled component for fading out the oldest disk

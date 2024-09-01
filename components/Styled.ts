@@ -44,8 +44,9 @@ export const StyledBottomGrid = styled.div`
 `;
 
 export const StyledChild = styled.div`
-  width: 290px;
-  height: 290px;
+  border: 1px solid red;
+  width: 300px;
+  height: 400px;
   flex-shrink: 1; /* Allow shrinking when space is tight */
   display: flex;
   justify-content: center;
@@ -54,13 +55,18 @@ export const StyledChild = styled.div`
 
   font-size: 24px;
 
-  /* transition:
-    transform 0.3s ease,
-    width 0.3s ease,
-    height 0.3s ease; */
-
   @media (max-width: 1024px) {
     font-size: 16px;
+    width: 200px;
+    height: 300px;
+  }
+`;
+
+export const StyledChildFloppy = styled(StyledChild)`
+  width: 290px;
+  height: 290px;
+
+  @media (max-width: 1024px) {
     width: 200px;
     height: 200px;
   }

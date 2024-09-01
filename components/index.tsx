@@ -24,6 +24,7 @@ import {
   StyledBottomGrid,
   StyledBottomPanel,
   StyledChild,
+  StyledChildFloppy,
   StyledColumn,
   StyledFixedBackground,
   StyledFixedForeground,
@@ -347,9 +348,9 @@ const Jupiter: React.FC = () => {
             <StyledChild>
               <UserManualCover />
             </StyledChild>
-            <StyledChild>
+            <StyledChildFloppy>
               <FloppyDiskStack />
-            </StyledChild>
+            </StyledChildFloppy>
           </StyledBottomGrid>
         </StyledBottomPanel>
       </StyledScrollContainer>
