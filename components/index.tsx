@@ -39,6 +39,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
+
 import FloppyDiskStack from "./Floppy/FloppyDiskStack";
 import UserManualCover from "./Manual/UserManualCover";
 import Notebook from "./Notebook";
@@ -349,7 +350,7 @@ const Jupiter: React.FC = () => {
               <UserManualCover />
             </StyledChild>
             <StyledChildFloppy>
-              <FloppyDiskStack />
+              {trackDetails && <FloppyDiskStack label={diskLabel} />}
             </StyledChildFloppy>
           </StyledBottomGrid>
         </StyledBottomPanel>

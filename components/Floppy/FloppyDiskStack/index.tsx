@@ -29,7 +29,7 @@ const textColors = [
   "#000080",
 ];
 const sliderColors = ["#1b1a20", "#a5acb2", "#a5acb2", "#959ca2", "#d1d3df"];
-const fonts = ["GloriaHallelujah", "Caveat", "IndieFlower", "ShadowsIntoLight"];
+const fonts = ["GloriaHallelujah", "Caveat", "IndieFlower", "ShadowIntoLight"];
 
 const getRandomOffset = (amount: number): number => {
   return Math.random() * (2 * amount) - amount;

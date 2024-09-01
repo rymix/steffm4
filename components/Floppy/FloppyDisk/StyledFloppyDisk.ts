@@ -75,6 +75,7 @@ export const StyledDown = styled.div<{
     ${(props) => props.$labelColor} 50%,
     ${(props) => props.$labelSecondColor} 50%
   );
+  overflow: hidden;
 
   background-size: 100% 50px;
 
@@ -105,7 +106,8 @@ export const StyledNotes = styled.div<{ $textColor: string; $font: string }>`
   margin-left: 15px;
   margin-top: 0px;
   color: ${(props) => props.$textColor};
-  font-size: ${Math.random() * 0.7 + 1.3}rem;
+  font-size: ${Math.random() * 0.6 + 0.7}rem;
+  line-height: 1.1;
   transform: rotate(${Math.floor(Math.random() * 11) - 6}deg);
 
   p > span {

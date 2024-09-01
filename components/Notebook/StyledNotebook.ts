@@ -33,6 +33,7 @@ export const StyledNotebookPaper = styled.div`
   font-family: "ShadowsIntoLight", cursive;
   outline: 0;
   position: relative;
+  overflow: hidden;
   z-index: 0;
 
   width: 100%;

@@ -23,8 +23,7 @@ const tossAnimation = (
     transform: translate(${$startX}px, 100vh) rotate(${$startRotate}deg);
   }
   100% {
-    ztransform: translate(${$finalX}px, ${$finalY}px) rotate(${$endRotate}deg);
-    transform: translate(${$finalX}px, ${$finalY}px) rotate(0deg);
+    transform: translate(${$finalX}px, ${$finalY}px) rotate(${$endRotate}deg);
   }
 `;
 

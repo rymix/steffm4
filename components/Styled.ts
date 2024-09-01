@@ -44,7 +44,6 @@ export const StyledBottomGrid = styled.div`
 `;
 
 export const StyledChild = styled.div`
-  border: 1px solid red;
   width: 300px;
   height: 400px;
   flex-shrink: 1; /* Allow shrinking when space is tight */
