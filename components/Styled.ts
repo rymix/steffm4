@@ -29,7 +29,7 @@ export const StyledBottomGrid = styled.div`
   justify-content: center;
   align-items: center;
   gap: 2.6em;
-  zpadding: 60px 0;
+  padding: 60px 0;
   width: 100%;
   height: 100%;
 

@@ -20,9 +20,9 @@ export const StyledTop = styled.div<{ $floppyColor: string }>`
   background-color: ${(props) => props.$floppyColor};
   margin-left: 10.34%; /* 30px of 290px */
   position: relative;
-  border-left: 2px solid rgba(0, 0, 0, 0.2);
-  border-right: 2px solid rgba(0, 0, 0, 0.15);
-  border-top: 2px solid transparent;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  border-right: 2px solid rgba(255, 255, 255, 0.15);
+  border-top: 0;
   border-bottom-left-radius: 4.21%; /* 8px of 190px */
   border-bottom-right-radius: 4.21%; /* 8px of 190px */
 `;
@@ -36,7 +36,7 @@ export const StyledSlider = styled.div<{ $sliderColor: string }>`
   top: -1.58%; /* -3px of 190px */
   border-radius: 4.21%; /* 150px of 190px */
   border: 10px solid ${(props) => props.$sliderColor}; /* 10px of 190px */
-  border-left-width: 100px;
+  border-left-width: 4.25em;
   z-index: 1;
   transition: left 0.2s ease-in-out;
 
@@ -82,19 +82,20 @@ export const StyledDown = styled.div<{
   &::before {
     content: "";
     position: absolute;
-    width: 5.17%; /* 15px of 290px */
-    height: 5.17%; /* 15px of 290px */
+    width: 6.17%; /* 15px of 290px */
+    height: 8.17%; /* 15px of 290px */
     background-color: transparent;
-    bottom: 6.9%; /* 20px of 290px */
+    bottom: 10.9%; /* 20px of 290px */
     box-shadow: inset -4px 0 10px rgba(0, 0, 0, 0.3);
   }
 
   &::after {
-    right: -8.62%; /* -25px of 290px */
+    right: -10.62%; /* -25px of 290px */
   }
 
   &::before {
-    left: -8.62%; /* -25px of 290px */
+    background-color: rgba(0, 0, 0, 0.7);
+    left: -10.62%; /* -25px of 290px */
   }
 `;
 
