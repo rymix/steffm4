@@ -1,6 +1,8 @@
+import ScrollIndicator from "components//ScrollIndicator";
 import About from "components/About";
 import Background from "components/Background";
 import BurgerMenu from "components/BurgerMenu";
+import { DiskLabel } from "components/Floppy/types";
 import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
 import JupiterHeader from "components/Jupiter/Header";
@@ -19,16 +21,28 @@ import MixList from "components/MixList";
 import Modal from "components/Modal";
 import Overlay from "components/Overlay";
 import {
+  StyledBottomGrid,
+  StyledBottomPanel,
+  StyledChild,
+  StyledChildFloppy,
   StyledColumn,
+  StyledFixedBackground,
+  StyledFixedForeground,
   StyledGridWrapper,
   StyledItem,
   StyledItems,
+  StyledScrollContainer,
+  StyledTopPanel,
 } from "components/Styled";
 import Tooltip from "components/Tooltip";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
+
+import FloppyDiskStack from "./Floppy/FloppyDiskStack";
+import UserManualCover from "./Manual/UserManualCover";
+import Notebook from "./Notebook";
 
 const getCategoryIndex = (
   categories: Category[],
@@ -40,7 +54,7 @@ const getCategoryIndex = (
   return category ? category.index : 1;
 };
 
-const Jupiter = (): JSX.Element => {
+const Jupiter: React.FC = () => {
   const {
     isReady,
     mcKey,
@@ -57,9 +71,11 @@ const Jupiter = (): JSX.Element => {
     filters: { categories = [], selectedCategory, setSelectedCategory },
     mix: { copySharableLink, favourite },
     session: { openModal },
+    track: { details: trackDetails, sectionNumber: trackSectionNumber },
     widget: { playing, setVolume, volume },
   } = useMixcloud();
   const [sliderValue, setSliderValue] = useState<number>(volume * 100);
+  const [diskLabel, setDiskLabel] = useState<DiskLabel>();
 
   const initialKnobValue = selectedCategory
     ? getCategoryIndex(categories, selectedCategory)
@@ -179,140 +195,166 @@ const Jupiter = (): JSX.Element => {
     setSliderValue(volume * 100);
   }, [volume]);
 
+  useEffect(() => {
+    setDiskLabel({
+      trackName: trackDetails?.trackName,
+      artistName: trackDetails?.artistName,
+    });
+  }, [trackSectionNumber, trackDetails?.trackName]);
+
   return (
     <>
-      {/* <JupiterTable /> */}
-      <Background />
-      <BurgerMenu />
-      <Overlay />
-      <Modal />
-      <Tooltip />
-      {mcKey && (
-        <>
-          <Mixcloud defaultMcKey={mcKey} />
-        </>
-      )}
-      <JupiterWrapper>
-        <JupiterCase>
-          <JupiterPanel padding="0" background="rear">
-            <JupiterBackPanel />
-          </JupiterPanel>
-          <JupiterPanel align="right" padding="12">
-            <JupiterHeader />
-          </JupiterPanel>
-          <JupiterPanel padding="24">
-            <JupiterScreen />
-          </JupiterPanel>
-          <JupiterPanel padding="0">
-            <JupiterProgressLeds />
-          </JupiterPanel>
-          <JupiterPanel padding="12">
-            <StyledGridWrapper>
-              <StyledColumn>
-                <JupiterTitle title="Select" />
-                <StyledItems>
-                  <StyledItem>
-                    <JupiterKnob
-                      size={92}
-                      degrees={220}
-                      min={1}
-                      max={6}
-                      value={initialKnobValue}
-                      steps
-                      labelVisible={false}
-                      categories={categories}
-                      onCategoryChange={handleKnobChange}
-                      onChange={() => {}}
-                    />
-                  </StyledItem>
-                </StyledItems>
-              </StyledColumn>
-              <StyledColumn>
-                <JupiterTitle title="Control" />
-                <StyledItems>
-                  <StyledItem>
-                    <JupiterButton
-                      color="red"
-                      label="Stop"
-                      onClick={handlePause}
-                      on={playing === false}
-                    />
-                    <JupiterButton
-                      color="green"
-                      label="Play"
-                      onClick={handlePlay}
-                      on={playing === true}
-                    />
-                    <JupiterButton
-                      color="cream"
-                      label="Prev"
-                      onClick={handlePrevious}
-                    />
-                    <JupiterButton
-                      color="cream"
-                      label="Next"
-                      onClick={handleNext}
-                    />
-                    <JupiterButton
-                      color="blue"
-                      label="Rand"
-                      onClick={handleRandomClick}
-                    />
-                    <JupiterButton
-                      color="blue"
-                      label="Latest"
-                      onClick={handleLatestClick}
-                    />
-                  </StyledItem>
-                </StyledItems>
-              </StyledColumn>
-              <StyledColumn>
-                <JupiterTitle title="Option" />
-                <StyledItems>
-                  <StyledItem>
-                    <JupiterButton
-                      color="yellow"
-                      label="Fav"
-                      onClick={handleFavouriteClick}
-                      on={favourite}
-                    />
-                    <JupiterButton
-                      color="yellow"
-                      label="Share"
-                      onClick={handleShareClick}
-                    />
-                    <JupiterButton
-                      color="orange"
-                      label="Info"
-                      onClick={handleInfoClick}
-                    />
-                    <JupiterButton
-                      color="orange"
-                      label="List"
-                      onClick={handleListClick}
-                    />
-                    <JupiterButton
-                      color="orange"
-                      label="About"
-                      onClick={handleAboutClick}
-                    />
-                    {isReady && (
-                      <JupiterSlider
-                        label="Vol"
-                        volume={sliderValue}
-                        onChange={handleSliderChange}
-                      />
-                    )}
-                  </StyledItem>
-                </StyledItems>
-              </StyledColumn>
-            </StyledGridWrapper>
-          </JupiterPanel>
-          <JupiterPanel padding="0" background="front">
-            <JupiterFrontPanel />
-          </JupiterPanel>
-        </JupiterCase>
-      </JupiterWrapper>
+      <StyledFixedBackground>
+        <Background />
+        {mcKey && <Mixcloud defaultMcKey={mcKey} />}
+      </StyledFixedBackground>
+
+      <StyledFixedForeground>
+        <BurgerMenu />
+        <Overlay />
+        <Modal />
+        <Tooltip />
+        <ScrollIndicator />
+      </StyledFixedForeground>
+
+      <StyledScrollContainer>
+        <StyledTopPanel>
+          <JupiterWrapper>
+            <JupiterCase>
+              <JupiterPanel padding="0" background="rear">
+                <JupiterBackPanel />
+              </JupiterPanel>
+              <JupiterPanel align="right" padding="12">
+                <JupiterHeader />
+              </JupiterPanel>
+              <JupiterPanel padding="24">
+                <JupiterScreen />
+              </JupiterPanel>
+              <JupiterPanel padding="0">
+                <JupiterProgressLeds />
+              </JupiterPanel>
+              <JupiterPanel padding="12">
+                <StyledGridWrapper>
+                  <StyledColumn>
+                    <JupiterTitle title="Select" />
+                    <StyledItems>
+                      <StyledItem>
+                        <JupiterKnob
+                          size={92}
+                          degrees={220}
+                          min={1}
+                          max={6}
+                          value={initialKnobValue}
+                          steps
+                          labelVisible={false}
+                          categories={categories}
+                          onCategoryChange={handleKnobChange}
+                          onChange={() => {}}
+                        />
+                      </StyledItem>
+                    </StyledItems>
+                  </StyledColumn>
+                  <StyledColumn>
+                    <JupiterTitle title="Control" />
+                    <StyledItems>
+                      <StyledItem>
+                        <JupiterButton
+                          color="red"
+                          label="Stop"
+                          onClick={handlePause}
+                          on={playing === false}
+                        />
+                        <JupiterButton
+                          color="green"
+                          label="Play"
+                          onClick={handlePlay}
+                          on={playing === true}
+                        />
+                        <JupiterButton
+                          color="cream"
+                          label="Prev"
+                          onClick={handlePrevious}
+                        />
+                        <JupiterButton
+                          color="cream"
+                          label="Next"
+                          onClick={handleNext}
+                        />
+                        <JupiterButton
+                          color="blue"
+                          label="Rand"
+                          onClick={handleRandomClick}
+                        />
+                        <JupiterButton
+                          color="blue"
+                          label="Latest"
+                          onClick={handleLatestClick}
+                        />
+                      </StyledItem>
+                    </StyledItems>
+                  </StyledColumn>
+                  <StyledColumn>
+                    <JupiterTitle title="Option" />
+                    <StyledItems>
+                      <StyledItem>
+                        <JupiterButton
+                          color="yellow"
+                          label="Fav"
+                          onClick={handleFavouriteClick}
+                          on={favourite}
+                        />
+                        <JupiterButton
+                          color="yellow"
+                          label="Share"
+                          onClick={handleShareClick}
+                        />
+                        <JupiterButton
+                          color="orange"
+                          label="Info"
+                          onClick={handleInfoClick}
+                        />
+                        <JupiterButton
+                          color="orange"
+                          label="List"
+                          onClick={handleListClick}
+                        />
+                        <JupiterButton
+                          color="orange"
+                          label="About"
+                          onClick={handleAboutClick}
+                        />
+                        {isReady && (
+                          <JupiterSlider
+                            label="Vol"
+                            volume={sliderValue}
+                            onChange={handleSliderChange}
+                          />
+                        )}
+                      </StyledItem>
+                    </StyledItems>
+                  </StyledColumn>
+                </StyledGridWrapper>
+              </JupiterPanel>
+              <JupiterPanel padding="0" background="front">
+                <JupiterFrontPanel />
+              </JupiterPanel>
+            </JupiterCase>
+          </JupiterWrapper>
+        </StyledTopPanel>
+        <StyledBottomPanel>
+          <StyledBottomGrid>
+            <StyledChild>
+              <Notebook />
+            </StyledChild>
+            <StyledChild>
+              <UserManualCover />
+            </StyledChild>
+            <StyledChildFloppy>
+              {trackDetails && <FloppyDiskStack label={diskLabel} />}
+            </StyledChildFloppy>
+          </StyledBottomGrid>
+        </StyledBottomPanel>
+      </StyledScrollContainer>
     </>
   );
 };

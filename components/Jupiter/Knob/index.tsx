@@ -40,19 +40,18 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
   const knobRef = useRef<HTMLDivElement>(null);
   const prevValueRef = useRef(value);
 
+  const [deg, setDeg] = useState<number | null>(null); // Initialize to null for SSR
+
+  useEffect(() => {
+    // Ensure that the rotation is set after mount
+    const initialDeg = convertRange(min, max, startAngle, endAngle, value);
+    setDeg(initialDeg);
+  }, [value, min, max, startAngle, endAngle]);
+
   const handleKnobChange = (newValue: number): void => {
     onChange(newValue);
     onCategoryChange(newValue);
   };
-
-  const [deg, setDeg] = useState(() =>
-    convertRange(min, max, startAngle, endAngle, value),
-  );
-
-  useEffect(() => {
-    const newDeg = convertRange(min, max, startAngle, endAngle, value);
-    setDeg(newDeg);
-  }, [value, min, max, startAngle, endAngle]);
 
   const getDeg = (
     cX: number,
@@ -136,11 +135,10 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
   };
 
   const outerStyle = { width: size, height: size };
-  const innerStyle = {
-    width: size,
-    height: size,
-    transform: `rotate(${deg}deg)`,
-  };
+  const innerStyle =
+    deg === null
+      ? { width: size, height: size }
+      : { width: size, height: size, transform: `rotate(${deg}deg)` }; // Default style for SSR
 
   return (
     <StyledJupiterKnobWrapper>
@@ -169,7 +167,7 @@ const JupiterKnob: React.FC<JupiterKnobProps> = ({
         >
           <StyledJupiterInnerKnob
             style={innerStyle}
-            $deg={deg}
+            $deg={deg || 0}
             $snap={steps ? 1 : 0}
           >
             <StyledJupiterGrip />

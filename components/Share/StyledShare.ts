@@ -1,7 +1,6 @@
 import ShareIcon from "@mui/icons-material/Share";
-import styled from "styled-components";
-
 import { StyledShareMessageProps } from "components/Share/types";
+import styled from "styled-components";
 
 export const StyledShareWrapper = styled.div`
   cursor: pointer;

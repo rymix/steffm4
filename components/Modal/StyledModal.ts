@@ -19,7 +19,7 @@ export const StyledModal = styled.div<StyledModalProps>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 100;
+  z-index: 60;
   transition:
     opacity 0.3s ease,
     visibility 0.3s ease;

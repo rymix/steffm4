@@ -3,6 +3,8 @@
 import FilterAlt from "@mui/icons-material/FilterAlt";
 import FilterAltOff from "@mui/icons-material/FilterAltOff";
 import { CircularProgress } from "@mui/material";
+import Macintosh from "components/BackgroundSelect/Macintosh";
+import RetroPC from "components/BackgroundSelect/RetroPC";
 import {
   StyledBackgroundButton,
   StyledBackgroundButtons,
@@ -17,9 +19,6 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { BackgroundCategory, BackgroundExtended } from "db/types";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
-
-import Macintosh from "components/BackgroundSelect/Macintosh";
-import RetroPC from "components/BackgroundSelect/RetroPC";
 
 export const BackgroundSelect: React.FC = () => {
   const {

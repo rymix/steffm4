@@ -92,6 +92,7 @@ export type MixcloudContextState = {
     burgerMenuRef: React.MutableRefObject<HTMLDivElement | null>;
     displayLength: number;
     handleCloseModal: () => void;
+    isAtBottom: boolean;
     isMobile: boolean;
     jupiterCaseRef: React.MutableRefObject<HTMLDivElement | null>;
     menuOpen: boolean;
@@ -110,6 +111,7 @@ export type MixcloudContextState = {
       React.SetStateAction<BackgroundExtended | undefined>
     >;
     setDisplayLength: React.Dispatch<React.SetStateAction<number>>;
+    setIsAtBottom: React.Dispatch<React.SetStateAction<boolean>>;
     setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
     setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setModalContent: React.Dispatch<React.SetStateAction<ReactNode | null>>;

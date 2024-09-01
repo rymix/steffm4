@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
          url('/fonts/Microgramma W01 Bold Extended.woff') format('woff');
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
   }
 
   @font-face {
@@ -15,14 +16,51 @@ const GlobalStyle = createGlobalStyle`
          url('Sforzando W00.woff') format('woff');
     font-weight: bold;
     font-style: normal;
+    font-display: swap;
   }
 
   @font-face {
-    font-display: swap;
     font-family: "dseg14";
+    src: url("fonts/DSEG14Classic-Regular.woff2") format("woff2"), url("fonts/DSEG14Classic-Regular.woff") format("woff");
     font-style: normal;
     font-weight: normal;
-    src: url("fonts/DSEG14Classic-Regular.woff2") format("woff2"), url("fonts/DSEG14Classic-Regular.woff") format("woff");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Caveat';
+    src: url('/fonts/Caveat-Regular.woff2') format('woff2'),
+         url('/fonts/Caveat-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'IndieFlower';
+    src: url('/fonts/IndieFlower-Regular.woff2') format('woff2'),
+         url('/foonts/IndieFlower-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'ShadowsIntoLight';
+    src: url('/fonts/ShadowsIntoLightTwo-Regular.woff2') format('woff2'),
+         url('/foonts/ShadowsIntoLightTwo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'GloriaHallelujah';
+    src: url('/fonts/GloriaHallelujah-Regular.woff2') format('woff2'),
+         url('/foonts/GloriaHallelujah-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
   }
 
   html,
@@ -43,7 +81,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Microgamma', sans-serif;
     font-weight: 400;
     overscroll-behavior: none;
-    perspective: 100px;
   }
 
   html, body {

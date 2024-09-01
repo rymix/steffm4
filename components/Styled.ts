@@ -1,5 +1,92 @@
 import styled from "styled-components";
 
+import Panel from "./Jupiter/Panel";
+
+export const StyledScrollContainer = styled.div`
+  height: 200vh;
+  width: 100%;
+  overflow: hidden;
+`;
+
+export const StyledPanel = styled.div`
+  height: 100vh;
+  width: 100%;
+  position: relative;
+`;
+
+export const StyledTopPanel = styled(Panel)`
+  background-color: transparent;
+`;
+
+export const StyledBottomPanel = styled(StyledPanel)`
+  background-color: transparent;
+`;
+
+export const StyledBottomGrid = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2.6em;
+  padding: 60px 0;
+  width: 100%;
+  height: 100%;
+
+  @media (max-width: 768px) {
+    gap: 1.6em; /* Reduce the gap further on smaller screens */
+  }
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+export const StyledChild = styled.div`
+  width: 300px;
+  height: 400px;
+  flex-shrink: 1; /* Allow shrinking when space is tight */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+
+  font-size: 24px;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+    width: 200px;
+    height: 300px;
+  }
+`;
+
+export const StyledChildFloppy = styled(StyledChild)`
+  width: 290px;
+  height: 290px;
+
+  @media (max-width: 1024px) {
+    width: 200px;
+    height: 200px;
+  }
+`;
+
+export const StyledFixedBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+`;
+
+export const StyledFixedForeground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+`;
+
 export const StyledGridWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));

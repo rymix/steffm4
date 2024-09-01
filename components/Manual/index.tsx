@@ -7,7 +7,6 @@ import Search from "@mui/icons-material/Search";
 import SearchOff from "@mui/icons-material/SearchOff";
 import Update from "@mui/icons-material/Update";
 import UpdateDisabled from "@mui/icons-material/UpdateDisabled";
-
 import {
   StyledControl,
   StyledGrid,
@@ -36,6 +35,7 @@ import {
 import { useMixcloud } from "contexts/mixcloud";
 import { steps } from "framer-motion";
 import React from "react";
+
 import {
   StyledManualProgressLed,
   StyledManualProgressLedsItemsWrapper,
@@ -132,10 +132,10 @@ export const Manual: React.FC = () => {
       <StyledControl>
         <StyledManualKnobWrapper>
           <StyledManualOuterKnobWrapper>
-            {categories.map((category, index) => (
+            {categories.map((category) => (
               // eslint-disable-next-line react/no-array-index-key
               <StyledManualKnobMarker
-                key={index}
+                key={category.shortName}
                 $x={category.x}
                 $y={category.y}
               >
@@ -208,7 +208,7 @@ export const Manual: React.FC = () => {
       </p>
       <StyledControl>
         <StyledManualButton>
-          <StyledManualLed $down={false} $on={true} />
+          <StyledManualLed $down={false} $on />
         </StyledManualButton>
       </StyledControl>
       <StyledGrid>
@@ -276,7 +276,7 @@ export const Manual: React.FC = () => {
       </p>
       <StyledControl>
         <StyledManualButton>
-          <StyledManualLed $down={false} $on={true} />
+          <StyledManualLed $down={false} $on />
         </StyledManualButton>
       </StyledControl>
       <StyledGrid>
@@ -541,8 +541,8 @@ export const Manual: React.FC = () => {
         <StyledGridDetail>Toggle favourite mix</StyledGridDetail>
         <StyledGridHeader>S</StyledGridHeader>
         <StyledGridDetail>Copy shareable link to clipboard</StyledGridDetail>
-        <StyledGridHeader></StyledGridHeader>
-        <StyledGridDetail></StyledGridDetail>
+        <StyledGridHeader />
+        <StyledGridDetail />
       </StyledGrid>
 
       <StyledManualSectionTitle>Specifications</StyledManualSectionTitle>

@@ -33,6 +33,7 @@ export const MixCard: React.FC<MixCardProps> = ({ category = false }) => {
     return <StyledMixCard>Loading...</StyledMixCard>;
   }
 
+  const { tags, uploadedDate } = mixDetails;
   const { coverArtLarge, duration, name, notes, releaseDate } = mixDetails;
 
   return (
@@ -63,12 +64,12 @@ export const MixCard: React.FC<MixCardProps> = ({ category = false }) => {
           </StyledInteractionsWrapper>
 
           <StyledMixTags>
-            {mixDetails.tags.map((tag) => (
+            {tags.map((tag) => (
               <StyledMixTag key={tag}>#{tag}</StyledMixTag>
             ))}
           </StyledMixTags>
           <StyledMixUploadedDate>
-            Uploaded on {mixDetails.uploadedDate}
+            Uploaded on {uploadedDate}
           </StyledMixUploadedDate>
         </StyledMixInfo>
       </StyledMixCard>
