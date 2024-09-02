@@ -11,6 +11,7 @@ export const StyledFloppy = styled.div<{ $floppyColor: string }>`
   border-radius: 3.44%; /* 10px of 290px */
   display: flex;
   flex-direction: column;
+  clip-path: polygon(0 0, 94% 0, 100% 6%, 100% 100%, 0 100%);
 `;
 
 // Top part of the floppy
@@ -70,7 +71,6 @@ export const StyledDown = styled.div<{
   margin-top: 5.17%; /* 15px of 290px */
   border-radius: 5px;
   position: relative;
-  overflow-y: hidden;
   background: linear-gradient(
     to bottom,
     ${(props) => props.$labelColor} 50%,
