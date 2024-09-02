@@ -70,12 +70,12 @@ export const StyledDown = styled.div<{
   margin-top: 5.17%; /* 15px of 290px */
   border-radius: 5px;
   position: relative;
+  overflow-y: hidden;
   background: linear-gradient(
     to bottom,
     ${(props) => props.$labelColor} 50%,
     ${(props) => props.$labelSecondColor} 50%
   );
-  overflow: hidden;
 
   background-size: 100% 50px;
 
@@ -106,9 +106,15 @@ export const StyledNotes = styled.div<{ $textColor: string; $font: string }>`
   margin-left: 15px;
   margin-top: 0px;
   color: ${(props) => props.$textColor};
-  font-size: ${Math.random() * 0.6 + 0.7}rem;
+  font-size: ${Math.random() + 1}rem;
   line-height: 1.1;
   transform: rotate(${Math.floor(Math.random() * 11) - 6}deg);
+
+  @media (max-width: 1024px) {
+    font-size: ${Math.random() * 0.6 + 0.7}rem;
+    top: 130px;
+    left: 150px;
+  }
 
   p > span {
     text-decoration: underline;
