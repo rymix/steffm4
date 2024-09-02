@@ -7,7 +7,7 @@ import {
   StyledTop,
 } from "components/Floppy/FloppyDisk/StyledFloppyDisk";
 import { FloppyDiskProps } from "components/Floppy/types";
-import React from "react";
+import React, { useState } from "react";
 
 const FloppyDisk: React.FC<FloppyDiskProps> = ({
   notes,
@@ -18,10 +18,24 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
   sliderColor,
   font,
 }) => {
+  const [isHovered, setIsHovered] = useState(false); // Hover state
+
+  const handleMouseOver = () => {
+    setIsHovered(true); // Set hover state to true
+  };
+
+  const handleMouseOut = () => {
+    setIsHovered(false); // Set hover state to false
+  };
+
   return (
-    <StyledFloppy $floppyColor={floppyColor}>
+    <StyledFloppy
+      $floppyColor={floppyColor}
+      onMouseOver={handleMouseOver}
+      onMouseOut={handleMouseOut}
+    >
       <StyledTop $floppyColor={floppyColor}>
-        <StyledSlider $sliderColor={sliderColor} />
+        <StyledSlider $sliderColor={sliderColor} $hovered={isHovered} />
         <StyledFitinha />
       </StyledTop>
       <StyledDown $labelColor={labelColor} $labelSecondColor={labelSecondColor}>

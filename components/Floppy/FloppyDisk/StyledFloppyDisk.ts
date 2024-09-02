@@ -28,21 +28,21 @@ export const StyledTop = styled.div<{ $floppyColor: string }>`
 `;
 
 // Slider element
-export const StyledSlider = styled.div<{ $sliderColor: string }>`
+export const StyledSlider = styled.div<{
+  $sliderColor: string;
+  $hovered: boolean;
+}>`
   width: 78.95%; /* 150px of 190px */
   height: 100%;
   position: absolute;
-  left: 21.05%; /* 150px of 190px */
+  left: ${(props) =>
+    props.$hovered ? "0" : "21.05%"}; /* Set left based on hover state */
   top: -1.58%; /* -3px of 190px */
   border-radius: 4.21%; /* 150px of 190px */
   border: 10px solid ${(props) => props.$sliderColor}; /* 10px of 190px */
   border-left-width: 4.25em;
   z-index: 1;
   transition: left 0.2s ease-in-out;
-
-  &:hover {
-    left: 0;
-  }
 `;
 
 // Black tape element inside the top part
