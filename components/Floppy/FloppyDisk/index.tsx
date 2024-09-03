@@ -8,6 +8,7 @@ import {
 } from "components/Floppy/FloppyDisk/StyledFloppyDisk";
 import { FloppyDiskProps } from "components/Floppy/types";
 import React, { useState } from "react";
+import ReactGA from "react-ga4";
 
 const FloppyDisk: React.FC<FloppyDiskProps> = ({
   notes,
@@ -21,11 +22,17 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
   const [isHovered, setIsHovered] = useState(false); // Hover state
 
   const handleMouseOver = () => {
-    setIsHovered(true); // Set hover state to true
+    setIsHovered(true);
+
+    ReactGA.event({
+      category: "2SPA",
+      action: "Interact",
+      label: "Disk Slider",
+    });
   };
 
   const handleMouseOut = () => {
-    setIsHovered(false); // Set hover state to false
+    setIsHovered(false);
   };
 
   return (
