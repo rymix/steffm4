@@ -6,6 +6,7 @@ import {
 } from "components/Manual/StyledUserManualCover";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
+import ReactGA from "react-ga4";
 
 export const UserManualCover: React.FC = () => {
   const {
@@ -20,6 +21,12 @@ export const UserManualCover: React.FC = () => {
   ): void => {
     event.preventDefault();
     openModal(<Manual />);
+
+    ReactGA.event({
+      category: "2SPA",
+      action: "Interact",
+      label: "Open User Manual",
+    });
   };
 
   const handleStopHover = (): void => {

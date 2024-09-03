@@ -6,6 +6,7 @@ import {
 } from "components/Notebook/StyledNotebook";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useEffect, useState } from "react";
+import ReactGA from "react-ga4";
 import { convertTimeToHumanReadable } from "utils/functions";
 
 export const Notebook: React.FC = () => {
@@ -22,6 +23,12 @@ export const Notebook: React.FC = () => {
   ): void => {
     event.preventDefault();
     openModal(<MixInformation />);
+
+    ReactGA.event({
+      category: "2SPA",
+      action: "Interact",
+      label: "Open Notebook",
+    });
   };
 
   const handleStopHover = (): void => {

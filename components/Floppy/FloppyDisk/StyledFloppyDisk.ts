@@ -11,6 +11,7 @@ export const StyledFloppy = styled.div<{ $floppyColor: string }>`
   border-radius: 3.44%; /* 10px of 290px */
   display: flex;
   flex-direction: column;
+  clip-path: polygon(0 0, 94% 0, 100% 6%, 100% 100%, 0 100%);
 `;
 
 // Top part of the floppy
@@ -28,21 +29,21 @@ export const StyledTop = styled.div<{ $floppyColor: string }>`
 `;
 
 // Slider element
-export const StyledSlider = styled.div<{ $sliderColor: string }>`
+export const StyledSlider = styled.div<{
+  $sliderColor: string;
+  $hovered: boolean;
+}>`
   width: 78.95%; /* 150px of 190px */
   height: 100%;
   position: absolute;
-  left: 21.05%; /* 150px of 190px */
+  left: ${(props) =>
+    props.$hovered ? "0" : "21.05%"}; /* Set left based on hover state */
   top: -1.58%; /* -3px of 190px */
   border-radius: 4.21%; /* 150px of 190px */
   border: 10px solid ${(props) => props.$sliderColor}; /* 10px of 190px */
   border-left-width: 4.25em;
   z-index: 1;
   transition: left 0.2s ease-in-out;
-
-  &:hover {
-    left: 0;
-  }
 `;
 
 // Black tape element inside the top part
@@ -75,7 +76,6 @@ export const StyledDown = styled.div<{
     ${(props) => props.$labelColor} 50%,
     ${(props) => props.$labelSecondColor} 50%
   );
-  overflow: hidden;
 
   background-size: 100% 50px;
 
@@ -106,9 +106,15 @@ export const StyledNotes = styled.div<{ $textColor: string; $font: string }>`
   margin-left: 15px;
   margin-top: 0px;
   color: ${(props) => props.$textColor};
-  font-size: ${Math.random() * 0.6 + 0.7}rem;
+  font-size: ${Math.random() + 1}rem;
   line-height: 1.1;
   transform: rotate(${Math.floor(Math.random() * 11) - 6}deg);
+
+  @media (max-width: 1024px) {
+    font-size: ${Math.random() * 0.6 + 0.7}rem;
+    top: 130px;
+    left: 150px;
+  }
 
   p > span {
     text-decoration: underline;

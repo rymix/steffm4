@@ -64,6 +64,16 @@ export const AnimatedDisk = styled.div<{
       )}
     0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 
+  transition: transform 0.3s ease-in-out; /* Smooth transition for hover effect */
+
+  &:hover {
+    transform: translate(
+        ${(props) => props.$finalX}px,
+        ${(props) => props.$finalY}px
+      )
+      rotate(${(props) => props.$endRotate}deg) scale(1.2); /* Scale to 1.2 on hover */
+  }
+
   @media (max-width: 1024px) {
     top: 130px;
     left: 150px;
