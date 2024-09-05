@@ -93,6 +93,7 @@
     "use-persisted-state": "^0.3.3"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-import-assertions": "^7.25.6",
     "@babel/preset-env": "^7.24.8",
     "@babel/preset-react": "^7.24.7",
     "@babel/preset-typescript": "^7.24.7",
@@ -101,8 +102,8 @@
     "@stylelint/postcss-css-in-js": "^0.38.0",
     "@svgr/webpack": "^8.1.0",
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.1.6",
-    "@testing-library/react": "^16.0.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
     "@testing-library/react-hooks": "^8.0.1",
     "@types/bcryptjs": "^2.4.6",
     "@types/jest": "^29.0.0",
