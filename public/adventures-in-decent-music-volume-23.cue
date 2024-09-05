@@ -1,0 +1,59 @@
+PERFORMER "Stef.FM"
+TITLE "Adventures in Decent Music Volume 23"
+FILE "Adventures_in_Decent_Music_Vol._23_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Pratt & McClain"
+TITLE "Whachersign"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Vaceo"
+TITLE "Right Here"
+INDEX 01 06:00:00
+TRACK 03 AUDIO
+PERFORMER "Mr Day"
+TITLE "Get Your Point Over"
+INDEX 01 09:02:00
+TRACK 04 AUDIO
+PERFORMER "Tensnake"
+TITLE "Need Your Lovin (Tiger & Woods Remix)"
+INDEX 01 13:36:00
+TRACK 05 AUDIO
+PERFORMER "Shalamar"
+TITLE "A Night to Remember"
+INDEX 01 18:56:00
+TRACK 06 AUDIO
+PERFORMER "Mystic Touch"
+TITLE "Get Yourself Together"
+INDEX 01 23:40:00
+TRACK 07 AUDIO
+PERFORMER "Kenny Loggins"
+TITLE "Wait a Little While"
+INDEX 01 29:50:00
+TRACK 08 AUDIO
+PERFORMER "Jinadu"
+TITLE "Turning the Tide (Original Mix)"
+INDEX 01 33:40:00
+TRACK 09 AUDIO
+PERFORMER "Matt Bianco"
+TITLE "Half a Minute"
+INDEX 01 38:00:00
+TRACK 10 AUDIO
+PERFORMER "Unknown"
+TITLE "Unknown"
+INDEX 01 43:40:00
+TRACK 11 AUDIO
+PERFORMER "Craig Chang"
+TITLE "Get Up"
+INDEX 01 47:24:00
+TRACK 12 AUDIO
+PERFORMER "Floating Points"
+TITLE "Love Me Like This (Nonsense Dub)"
+INDEX 01 51:11:00
+TRACK 13 AUDIO
+PERFORMER "Tony Soprano"
+TITLE "Love Me Like This"
+INDEX 01 56:41:00
+TRACK 14 AUDIO
+PERFORMER "Raw Soul Express"
+TITLE "The Way We Live"
+INDEX 01 58:54:00
