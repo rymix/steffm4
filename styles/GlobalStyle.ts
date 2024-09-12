@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Sforzando';
     src: url('/fonts/Sforzando W00.woff2') format('woff2'),
-         url('Sforzando W00.woff') format('woff');
+         url('/fonts/Sforzando W00.woff') format('woff');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -39,7 +39,7 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'IndieFlower';
     src: url('/fonts/IndieFlower-Regular.woff2') format('woff2'),
-         url('/foonts/IndieFlower-Regular.woff') format('woff');
+         url('/fonts/IndieFlower-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -48,7 +48,7 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'ShadowsIntoLight';
     src: url('/fonts/ShadowsIntoLightTwo-Regular.woff2') format('woff2'),
-         url('/foonts/ShadowsIntoLightTwo-Regular.woff') format('woff');
+         url('/fonts/ShadowsIntoLightTwo-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -57,7 +57,16 @@ const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'GloriaHallelujah';
     src: url('/fonts/GloriaHallelujah-Regular.woff2') format('woff2'),
-         url('/foonts/GloriaHallelujah-Regular.woff') format('woff');
+         url('/fonts/GloriaHallelujah-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Determination';
+    src: url('/fonts/Determination-Sans-Web-Regular.woff2') format('woff2'),
+         url('/fonts/Determination-Sans-Web-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
