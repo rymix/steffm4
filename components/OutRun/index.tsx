@@ -3,7 +3,9 @@ import {
   StyledNotesImage,
   StyledNotesShadowImage,
   StyledOutRun,
+  StyledOutRunAudio,
   StyledOutRunHand,
+  StyledOutRunNumber,
   StyledOutRunText,
   StyledOutRunTextShadow,
   StyledOutRunTextShadowWrapper,
@@ -21,10 +23,11 @@ import {
 
 export const OutRun: React.FC = () => {
   const [hand, setHand] = React.useState("outrun/hand-none.png");
-  const [direction, setDirection] = useState(1);
+  const [frequency, setFrequency] = useState(87.5);
 
   const {
     track: { details: trackDetails },
+    widget: { playing },
   } = useMixcloud();
   const trackName = trackDetails?.trackName || "";
 
@@ -82,6 +85,8 @@ export const OutRun: React.FC = () => {
 
   useEffect(() => {
     showHandSequence(setHand);
+    const randomFrequency = (Math.random() * (108.0 - 87.5) + 87.5).toFixed(1);
+    setFrequency(Number(randomFrequency)); // Set the frequency with one decimal place
   }, [trackName]);
 
   return (
@@ -103,6 +108,10 @@ export const OutRun: React.FC = () => {
             {cleanTrackName}
           </StyledOutRunText>
         </StyledOutRunTextWrapper>
+        <StyledOutRunNumber>{frequency}</StyledOutRunNumber>
+        <StyledOutRunAudio
+          src={playing ? "outrun/audio-loop.gif" : "outrun/anim/audio-0.png"}
+        />
         <StyledOutRunHand src={hand}></StyledOutRunHand>
       </StyledOutRun>
     </StyledOutRunWrapper>

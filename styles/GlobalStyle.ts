@@ -20,6 +20,14 @@ const GlobalStyle = createGlobalStyle`
   }
 
   @font-face {
+    font-family: "dseg7";
+    src: url("fonts/DSEG7Classic-Regular.woff2") format("woff2"), url("fonts/DSEG7Classic-Regular.woff") format("woff");
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+  }
+
+  @font-face {
     font-family: "dseg14";
     src: url("fonts/DSEG14Classic-Regular.woff2") format("woff2"), url("fonts/DSEG14Classic-Regular.woff") format("woff");
     font-style: normal;

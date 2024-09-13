@@ -57,6 +57,25 @@ export const StyledNotesShadowImage = styled(StyledNotesImage)`
   z-index: 1;
 `;
 
+export const StyledOutRunNumber = styled.div`
+  position: absolute;
+  left: 268px;
+  top: 300px;
+  width: 80px;
+  height: 14px;
+  color: #42d6d6;
+  font-family: "dseg7";
+  font-size: 13px;
+`;
+
+export const StyledOutRunAudio = styled.img`
+  position: absolute;
+  left: 276px;
+  top: 328px;
+  width: 88px;
+  height: 10px;
+`;
+
 export const StyledOutRunHand = styled.img`
   position: absolute;
   left: 0;
