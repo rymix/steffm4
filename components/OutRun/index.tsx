@@ -1,14 +1,23 @@
 /* eslint-disable react/no-unescaped-entities */
 import {
+  StyledNotesImage,
+  StyledNotesShadowImage,
   StyledOutRun,
   StyledOutRunHand,
   StyledOutRunText,
   StyledOutRunTextShadow,
+  StyledOutRunTextShadowWrapper,
+  StyledOutRunTextWrapper,
   StyledOutRunWrapper,
 } from "components/OutRun/StyledOutRun";
 import { useMixcloud } from "contexts/mixcloud";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { setTimeout } from "timers";
+import {
+  getScaledFontSize,
+  removeParentheses,
+  removeTextAfterComma,
+} from "utils/functions";
 
 export const OutRun: React.FC = () => {
   const [hand, setHand] = React.useState("outrun/hand-none.png");
@@ -17,7 +26,12 @@ export const OutRun: React.FC = () => {
   const {
     track: { details: trackDetails },
   } = useMixcloud();
-  const trackName = trackDetails?.trackName;
+  const trackName = trackDetails?.trackName || "";
+
+  let cleanTrackName = removeParentheses(trackName);
+  cleanTrackName = removeTextAfterComma(cleanTrackName);
+
+  const fontSize = getScaledFontSize(cleanTrackName, 22, 44, 26, 52);
 
   const handImages = {
     none: "outrun/hand-none.png", // No image
@@ -58,27 +72,40 @@ export const OutRun: React.FC = () => {
               setTimeout(() => {
                 // Step 7: Show no hand
                 setHand(handImages.none);
-              }, 500); // Step 6
+              }, 250); // Step 6
             }, 1000); // Step 5
           }, 500); // Step 4
-        }, 500); // Step 3
-      }, 500); // Step 2
+        }, 250); // Step 3
+      }, 250); // Step 2
     }, 0); // Step 1: Start immediately
   };
+
+  useEffect(() => {
+    showHandSequence(setHand);
+  }, [trackName]);
+
   return (
-    <>
-      <button onClick={() => showHandSequence(setHand)}>
-        Show Hand Sequence
-      </button>
-      <StyledOutRunWrapper>
-        <StyledOutRun>
-          <img src="outrun/notes.png" />
-          <StyledOutRunText>{trackName}</StyledOutRunText>
-          <StyledOutRunTextShadow>{trackName}</StyledOutRunTextShadow>
-          <StyledOutRunHand src={hand}></StyledOutRunHand>
-        </StyledOutRun>
-      </StyledOutRunWrapper>
-    </>
+    <StyledOutRunWrapper>
+      <StyledOutRun>
+        <StyledOutRunTextShadowWrapper $fontSize={fontSize}>
+          <StyledNotesShadowImage
+            src="outrun/notes-shadow.png"
+            $fontSize={fontSize}
+          />
+          <StyledOutRunTextShadow $fontSize={fontSize}>
+            {cleanTrackName}
+          </StyledOutRunTextShadow>
+        </StyledOutRunTextShadowWrapper>
+
+        <StyledOutRunTextWrapper $fontSize={fontSize}>
+          <StyledNotesImage src="outrun/notes.png" $fontSize={fontSize} />
+          <StyledOutRunText $fontSize={fontSize}>
+            {cleanTrackName}
+          </StyledOutRunText>
+        </StyledOutRunTextWrapper>
+        <StyledOutRunHand src={hand}></StyledOutRunHand>
+      </StyledOutRun>
+    </StyledOutRunWrapper>
   );
 };
 
