@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import {
   StyledNotesImage,
   StyledNotesShadowImage,
@@ -16,7 +15,6 @@ import {
 } from "components/OutRun/StyledOutRun";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useEffect, useState } from "react";
-import { setTimeout } from "timers";
 import {
   getScaledFontSize,
   removeParentheses,
@@ -28,6 +26,7 @@ export const OutRun: React.FC = () => {
   const [tree, setTree] = React.useState("outrun/tree-1.png");
   const [frequency, setFrequency] = useState("87.5");
   const [backgroundPosition, setBackgroundPosition] = useState(0);
+  const [tick, setTick] = useState(0); // Global timer tick
 
   const {
     track: { details: trackDetails },
@@ -48,74 +47,61 @@ export const OutRun: React.FC = () => {
     hand3: "outrun/hand-3.png",
   };
 
-  const showHandSequence = (
-    setHand: React.Dispatch<React.SetStateAction<string>>,
-  ) => {
-    // Start by showing no hand
-    setHand(handImages.none);
-
-    setTimeout(() => {
-      // Step 2: Show hand-0
-      setHand(handImages.hand0);
-
-      setTimeout(() => {
-        // Step 3: Show hand-2
-        setHand(handImages.hand2);
-
-        setTimeout(() => {
-          // Step 4: Randomly show hand-1 or hand-3
-          const randomHand =
-            Math.random() < 0.5 ? handImages.hand1 : handImages.hand3;
-          setHand(randomHand);
-
-          setTimeout(() => {
-            // Step 5: Show hand-2
-            setHand(handImages.hand2);
-
-            setTimeout(() => {
-              // Step 6: Show hand-0
-              setHand(handImages.hand0);
-
-              setTimeout(() => {
-                // Step 7: Show no hand
-                setHand(handImages.none);
-              }, 250); // Step 6
-            }, 1000); // Step 5
-          }, 500); // Step 4
-        }, 250); // Step 3
-      }, 250); // Step 2
-    }, 0); // Step 1: Start immediately
-  };
-
+  // Global timer that ticks every 250ms
   useEffect(() => {
-    showHandSequence(setHand);
-    const randomFrequency = (Math.random() * (108.0 - 87.5) + 87.5).toFixed(1);
-    setFrequency(randomFrequency);
-  }, [trackName]);
+    const interval = setInterval(() => {
+      setTick((prevTick) => prevTick + 1); // Increment tick
+    }, 250); // Global tick interval
 
-  useEffect(() => {
-    showHandSequence(setHand);
-  }, [playing]);
-
-  useEffect(() => {
-    const intervalBackgroundPosition = setInterval(() => {
-      setBackgroundPosition((prev) => prev - 4);
-    }, 3000);
-
-    return () => clearInterval(intervalBackgroundPosition);
+    return () => clearInterval(interval);
   }, []);
 
+  // Hand animation logic based on global timer
   useEffect(() => {
-    const intervalTree = setInterval(() => {
+    const handTick = tick % 30; // 30 ticks = 7.5s (assuming 250ms per tick)
+
+    if (handTick === 1) {
+      setHand(handImages.none);
+    } else if (handTick === 2) {
+      setHand(handImages.hand0);
+    } else if (handTick === 4) {
+      setHand(handImages.hand2);
+    } else if (handTick === 6) {
+      setHand(Math.random() < 0.5 ? handImages.hand1 : handImages.hand3);
+    } else if (handTick === 8) {
+      setHand(handImages.hand2);
+    } else if (handTick === 10) {
+      setHand(handImages.hand0);
+    } else if (handTick === 12) {
+      setHand(handImages.none);
+    }
+  }, [tick]); // Dependency on the global tick
+
+  // Cloud movement based on global timer
+  useEffect(() => {
+    if (tick % 4 === 0) {
+      // Move cloud every 1 second (4 ticks)
+      setBackgroundPosition((prev) => prev - 4);
+    }
+  }, [tick]);
+
+  // Tree switching logic based on global timer
+  useEffect(() => {
+    if (tick % 8 === 0) {
+      // Switch tree every 2 seconds (8 ticks)
       setTree((prevTree) =>
         prevTree === "outrun/tree-1.png"
           ? "outrun/tree-2.png"
           : "outrun/tree-1.png",
       );
-    }, 2000);
+    }
+  }, [tick]);
 
-    return () => clearInterval(intervalTree);
-  }, []); // Empty dependency array to run once on mount
+  // Frequency logic based on track change
+  useEffect(() => {
+    const randomFrequency = (Math.random() * (108.0 - 87.5) + 87.5).toFixed(1);
+    setFrequency(randomFrequency);
+  }, [trackName]);
 
   return (
     <StyledOutRunWrapper>
