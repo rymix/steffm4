@@ -4,12 +4,14 @@ import {
   StyledNotesShadowImage,
   StyledOutRun,
   StyledOutRunAudio,
+  StyledOutRunClouds,
   StyledOutRunHand,
   StyledOutRunNumber,
   StyledOutRunText,
   StyledOutRunTextShadow,
   StyledOutRunTextShadowWrapper,
   StyledOutRunTextWrapper,
+  StyledOutRunTree,
   StyledOutRunWrapper,
 } from "components/OutRun/StyledOutRun";
 import { useMixcloud } from "contexts/mixcloud";
@@ -23,7 +25,9 @@ import {
 
 export const OutRun: React.FC = () => {
   const [hand, setHand] = React.useState("outrun/hand-none.png");
-  const [frequency, setFrequency] = useState(87.5);
+  const [tree, setTree] = React.useState("outrun/tree-1.png");
+  const [frequency, setFrequency] = useState("87.5");
+  const [backgroundPosition, setBackgroundPosition] = useState(0);
 
   const {
     track: { details: trackDetails },
@@ -86,8 +90,32 @@ export const OutRun: React.FC = () => {
   useEffect(() => {
     showHandSequence(setHand);
     const randomFrequency = (Math.random() * (108.0 - 87.5) + 87.5).toFixed(1);
-    setFrequency(Number(randomFrequency)); // Set the frequency with one decimal place
+    setFrequency(randomFrequency);
   }, [trackName]);
+
+  useEffect(() => {
+    showHandSequence(setHand);
+  }, [playing]);
+
+  useEffect(() => {
+    const intervalBackgroundPosition = setInterval(() => {
+      setBackgroundPosition((prev) => prev - 4);
+    }, 3000);
+
+    return () => clearInterval(intervalBackgroundPosition);
+  }, []);
+
+  useEffect(() => {
+    const intervalTree = setInterval(() => {
+      setTree((prevTree) =>
+        prevTree === "outrun/tree-1.png"
+          ? "outrun/tree-2.png"
+          : "outrun/tree-1.png",
+      );
+    }, 2000);
+
+    return () => clearInterval(intervalTree);
+  }, []); // Empty dependency array to run once on mount
 
   return (
     <StyledOutRunWrapper>
@@ -101,13 +129,16 @@ export const OutRun: React.FC = () => {
             {cleanTrackName}
           </StyledOutRunTextShadow>
         </StyledOutRunTextShadowWrapper>
-
         <StyledOutRunTextWrapper $fontSize={fontSize}>
           <StyledNotesImage src="outrun/notes.png" $fontSize={fontSize} />
           <StyledOutRunText $fontSize={fontSize}>
             {cleanTrackName}
           </StyledOutRunText>
         </StyledOutRunTextWrapper>
+        <StyledOutRunTree src={tree} />
+        <StyledOutRunClouds
+          style={{ backgroundPositionX: `${backgroundPosition}px` }}
+        />
         <StyledOutRunNumber>{frequency}</StyledOutRunNumber>
         <StyledOutRunAudio
           src={playing ? "outrun/audio-loop.gif" : "outrun/anim/audio-0.png"}

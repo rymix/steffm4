@@ -57,6 +57,28 @@ export const StyledNotesShadowImage = styled(StyledNotesImage)`
   z-index: 1;
 `;
 
+export const StyledOutRunTree = styled.img`
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 188px;
+  height: 88px;
+  z-index: 2;
+`;
+
+export const StyledOutRunClouds = styled.div`
+  position: absolute;
+  left: 0;
+  top: 180px;
+  width: 100%;
+  height: 11px;
+  background-image: url("outrun/clouds.png");
+  background-repeat: repeat-x;
+  background-position: 0 0;
+  background-size: contain;
+  z-index: 2;
+`;
+
 export const StyledOutRunNumber = styled.div`
   position: absolute;
   left: 268px;
