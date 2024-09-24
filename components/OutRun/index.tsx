@@ -23,6 +23,11 @@ import {
 
 export const OutRun: React.FC = () => {
   const [hand, setHand] = React.useState("outrun/hand-none.png");
+  const [showHand, setShowHand] = React.useState(false);
+  const [handAnimationStartTick, setHandAnimationStartTick] = useState<
+    number | null
+  >(null);
+
   const [tree, setTree] = React.useState("outrun/tree-1.png");
   const [frequency, setFrequency] = useState("87.5");
   const [backgroundPosition, setBackgroundPosition] = useState(0);
@@ -30,7 +35,7 @@ export const OutRun: React.FC = () => {
 
   const {
     track: { details: trackDetails },
-    widget: { playing },
+    widget: { playing, volume },
   } = useMixcloud();
   const trackName = trackDetails?.trackName || "";
 
@@ -58,24 +63,42 @@ export const OutRun: React.FC = () => {
 
   // Hand animation logic based on global timer
   useEffect(() => {
-    const handTick = tick % 30; // 30 ticks = 7.5s (assuming 250ms per tick)
+    if (handAnimationStartTick === null) return; // Do nothing if hand animation hasn't started yet
 
-    if (handTick === 1) {
-      setHand(handImages.none);
-    } else if (handTick === 2) {
-      setHand(handImages.hand0);
-    } else if (handTick === 4) {
-      setHand(handImages.hand2);
-    } else if (handTick === 6) {
-      setHand(Math.random() < 0.5 ? handImages.hand1 : handImages.hand3);
-    } else if (handTick === 8) {
-      setHand(handImages.hand2);
-    } else if (handTick === 10) {
-      setHand(handImages.hand0);
-    } else if (handTick === 12) {
-      setHand(handImages.none);
+    if (showHand) {
+      // const handTick = tick % 30; // 30 ticks = 7.5s (assuming 250ms per tick)
+      const animationTick = (tick - handAnimationStartTick) % 30; // Calculate the offset from the start tick
+
+      if (animationTick === 1) {
+        setHand(handImages.none);
+      } else if (animationTick === 2) {
+        setHand(handImages.hand0);
+      } else if (animationTick === 4) {
+        setHand(handImages.hand2);
+      } else if (animationTick === 6) {
+        setHand(Math.random() < 0.5 ? handImages.hand1 : handImages.hand3);
+      } else if (animationTick === 8) {
+        setHand(handImages.hand2);
+      } else if (animationTick === 10) {
+        setHand(handImages.hand0);
+      } else if (animationTick === 12) {
+        setHand(handImages.none);
+        setShowHand(false);
+      }
+    } else {
+      setShowHand(false);
     }
-  }, [tick]); // Dependency on the global tick
+  }, [tick, handAnimationStartTick, showHand]); // Dependency on the global tick
+
+  // Show hand animation if volume, track or playig changes
+  useEffect(() => {
+    if (playing) {
+      setHandAnimationStartTick(tick); // Record the current tick when playing changes
+      setShowHand(true);
+    } else {
+      setHand(handImages.none); // Reset hand when not playing
+    }
+  }, [playing, trackDetails, volume]);
 
   // Cloud movement based on global timer
   useEffect(() => {
