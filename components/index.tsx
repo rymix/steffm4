@@ -112,7 +112,7 @@ const Jupiter: React.FC = () => {
   };
 
   const handleAboutClick = (): void => {
-    openModal(<About />, null);
+    openModal(<About />);
 
     ReactGA.event({
       category: "Option",
@@ -122,7 +122,7 @@ const Jupiter: React.FC = () => {
   };
 
   const handleListClick = (): void => {
-    openModal(<MixList />, null);
+    openModal(<MixList />);
 
     ReactGA.event({
       category: "Option",
@@ -132,7 +132,7 @@ const Jupiter: React.FC = () => {
   };
 
   const handleInfoClick = (): void => {
-    openModal(<MixInformation />, null);
+    openModal(<MixInformation />);
 
     ReactGA.event({
       category: "Option",

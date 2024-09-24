@@ -67,7 +67,7 @@ const Menu: React.FC = () => {
     event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
   ): void => {
     event.preventDefault();
-    openModal(<OutRun />);
+    openModal(<OutRun />, undefined, undefined, true);
     setTimeout(() => setMenuOpen(false), 500);
   };
 

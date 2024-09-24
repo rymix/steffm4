@@ -9,10 +9,16 @@ import {
 } from "components/Modal/StyledModal";
 import { useMixcloud } from "contexts/mixcloud";
 
-const Modal: React.FC = () => {
+// Adding hideChrome as a prop and defaulting to false
+interface ModalProps {
+  hideChrome?: boolean;
+}
+
+const Modal: React.FC<ModalProps> = () => {
   const {
     session: {
       handleCloseModal,
+      modalHideChrome,
       modalOpen,
       modalRef,
       modalContent,
@@ -22,17 +28,28 @@ const Modal: React.FC = () => {
   } = useMixcloud();
 
   return (
-    <StyledModal $open={modalOpen} ref={modalRef}>
-      <StyledModalHeader>
-        {modalTitle && <StyledModalTitle>{modalTitle}</StyledModalTitle>}
-        {secondsRemaining !== null && (
-          <StyledCountdown>
-            <Countdown seconds={secondsRemaining} />
-          </StyledCountdown>
+    <StyledModal $open={modalOpen} $hideChrome={modalHideChrome} ref={modalRef}>
+      {!modalHideChrome && (
+        <StyledModalHeader>
+          {modalTitle && <StyledModalTitle>{modalTitle}</StyledModalTitle>}
+          {secondsRemaining !== null && (
+            <StyledCountdown>
+              <Countdown seconds={secondsRemaining} />
+            </StyledCountdown>
+          )}
+          <StyledCloseLink onClick={handleCloseModal} />
+        </StyledModalHeader>
+      )}
+
+      <StyledModalContent $hideChrome={modalHideChrome}>
+        {modalContent}
+        {modalHideChrome && (
+          <StyledCloseLink
+            onClick={handleCloseModal}
+            style={{ position: "absolute", top: "10px", right: "10px" }}
+          />
         )}
-        <StyledCloseLink onClick={handleCloseModal} />
-      </StyledModalHeader>
-      <StyledModalContent>{modalContent}</StyledModalContent>
+      </StyledModalContent>
     </StyledModal>
   );
 };

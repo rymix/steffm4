@@ -23,7 +23,8 @@ export const StyledModal = styled.div<StyledModalProps>`
   transition:
     opacity 0.3s ease,
     visibility 0.3s ease;
-  width: clamp(320px, 80%, 60vw);
+  width: ${(props) =>
+    props.$hideChrome ? "640px" : "clamp(320px, 80%, 60vw)"};
 
   ${(props) =>
     props.$open === false &&
@@ -79,10 +80,11 @@ export const StyledCountdown = styled.div`
   color: ${({ theme }) => theme.colors.modal.countdown};
 `;
 
-export const StyledModalContent = styled.div`
+export const StyledModalContent = styled.div<{ $hideChrome?: boolean }>`
   overflow: hidden;
   overflow-y: scroll;
-  padding: 20px;
+  position: relative;
+  padding: ${({ $hideChrome }) => ($hideChrome ? "0" : "20px")};
   text-align: center;
   flex-grow: 1;
 `;
