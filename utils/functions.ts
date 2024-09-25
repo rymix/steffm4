@@ -160,15 +160,16 @@ export const listenedStatus = (
 };
 
 // Remove parentheses and their content
-export const removeParentheses = (str: string) =>
+export const removeParentheses = (str: string): string =>
   str.replace(/\s*\(.*?\)\s*/g, "");
 
-//Remove text after the first comma
-export const removeTextAfterComma = (str: string) => str.split(",")[0].trim();
+// Remove text after the first comma
+export const removeTextAfterComma = (str: string): string =>
+  str.split(",")[0].trim();
 
 // Scale font size based on the number of alphanumeric characters
-export const countAlphanumeric = (str: string) =>
-  (str.match(/[a-z0-9]/gi) || []).length;
+export const countAlphanumeric = (str: string): number =>
+  (str.match(/[\da-z]/gi) || []).length;
 
 //  Function to get the scaled font size based on the number of alphanumeric characters
 export const getScaledFontSize = (
@@ -177,18 +178,14 @@ export const getScaledFontSize = (
   maxChar: number,
   minSize: number,
   maxSize: number,
-) => {
-  {
-    const charCount = countAlphanumeric(str);
+): number => {
+  const charCount = countAlphanumeric(str);
 
-    // Scale font size between minSize and maxSize based on character count
-    if (charCount <= minChar) return maxSize;
-    if (charCount >= maxChar) return minSize;
+  // Scale font size between minSize and maxSize based on character count
+  if (charCount <= minChar) return maxSize;
+  if (charCount >= maxChar) return minSize;
 
-    // Gradually scale font size between 52 and 26
-    const scaleFactor = maxChar - minChar;
-    return (
-      maxSize - ((charCount - minChar) / scaleFactor) * (maxSize - minSize)
-    );
-  }
+  // Gradually scale font size between 52 and 26
+  const scaleFactor = maxChar - minChar;
+  return maxSize - ((charCount - minChar) / scaleFactor) * (maxSize - minSize);
 };

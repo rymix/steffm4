@@ -69,21 +69,31 @@ export const OutRun: React.FC = () => {
       // const handTick = tick % 30; // 30 ticks = 7.5s (assuming 250ms per tick)
       const animationTick = (tick - handAnimationStartTick) % 30; // Calculate the offset from the start tick
 
-      if (animationTick === 1) {
-        setHand(handImages.none);
-      } else if (animationTick === 2) {
-        setHand(handImages.hand0);
-      } else if (animationTick === 4) {
-        setHand(handImages.hand2);
-      } else if (animationTick === 6) {
-        setHand(Math.random() < 0.5 ? handImages.hand1 : handImages.hand3);
-      } else if (animationTick === 8) {
-        setHand(handImages.hand2);
-      } else if (animationTick === 10) {
-        setHand(handImages.hand0);
-      } else if (animationTick === 12) {
-        setHand(handImages.none);
-        setShowHand(false);
+      switch (animationTick) {
+        case 1:
+          setHand(handImages.none);
+          break;
+        case 2:
+          setHand(handImages.hand0);
+          break;
+        case 4:
+          setHand(handImages.hand2);
+          break;
+        case 6:
+          setHand(Math.random() < 0.5 ? handImages.hand1 : handImages.hand3);
+          break;
+        case 8:
+          setHand(handImages.hand2);
+          break;
+        case 10:
+          setHand(handImages.hand0);
+          break;
+        case 12:
+          setHand(handImages.none);
+          setShowHand(false);
+          break;
+        default:
+          break;
       }
     } else {
       setShowHand(false);
@@ -92,13 +102,14 @@ export const OutRun: React.FC = () => {
 
   // Show hand animation if volume, track or playig changes
   useEffect(() => {
+    console.log("playing, trackName, volume changed");
     if (playing) {
       setHandAnimationStartTick(tick); // Record the current tick when playing changes
       setShowHand(true);
     } else {
       setHand(handImages.none); // Reset hand when not playing
     }
-  }, [playing, trackDetails, volume]);
+  }, [playing, trackName, volume]);
 
   // Cloud movement based on global timer
   useEffect(() => {
@@ -122,7 +133,7 @@ export const OutRun: React.FC = () => {
 
   // Frequency logic based on track change
   useEffect(() => {
-    const randomFrequency = (Math.random() * (108.0 - 87.5) + 87.5).toFixed(1);
+    const randomFrequency = (Math.random() * (108 - 87.5) + 87.5).toFixed(1);
     setFrequency(randomFrequency);
   }, [trackName]);
 
@@ -152,7 +163,7 @@ export const OutRun: React.FC = () => {
         <StyledOutRunAudio
           src={playing ? "outrun/audio-loop.gif" : "outrun/anim/audio-0.png"}
         />
-        <StyledOutRunHand src={hand}></StyledOutRunHand>
+        <StyledOutRunHand src={hand} />
       </StyledOutRun>
     </StyledOutRunWrapper>
   );

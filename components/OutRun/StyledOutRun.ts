@@ -1,5 +1,5 @@
+import { StyledOutRunTextProps } from "components/OutRun/types";
 import styled from "styled-components";
-import { StyledOutRunTextProps } from "./types";
 
 export const StyledOutRunWrapper = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ export const StyledOutRunTextShadowWrapper = styled(StyledOutRunTextWrapper)`
 export const StyledOutRunText = styled.div<StyledOutRunTextProps>`
   color: #eebb00;
   font-family: "Determination";
-  font-size: ${({ $fontSize }) => ($fontSize ? $fontSize : 52)}px;
+  font-size: ${({ $fontSize }) => $fontSize || 52}px;
   z-index: 2;
 `;
 
@@ -47,8 +47,8 @@ export const StyledOutRunTextShadow = styled(StyledOutRunText)`
 `;
 
 export const StyledNotesImage = styled.img<StyledOutRunTextProps>`
-  width: ${({ $fontSize }) => ($fontSize ? $fontSize : 52) / 1.5}px;
-  height: ${({ $fontSize }) => ($fontSize ? $fontSize : 52) / 1.5}px;
+  width: ${({ $fontSize }) => ($fontSize || 52) / 1.5}px;
+  height: ${({ $fontSize }) => ($fontSize || 52) / 1.5}px;
   margin-right: 10px;
   z-index: 2;
 `;

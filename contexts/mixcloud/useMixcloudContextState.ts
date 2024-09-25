@@ -287,7 +287,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     ): void => {
       setModalContent(content);
       setModalTitle(title ?? null);
-      setModalHideChrome(hideChrome ? true : false);
+      setModalHideChrome(hideChrome ?? false);
       setModalOpen(true);
       if (seconds === undefined) {
         setSecondsRemaining(null);
