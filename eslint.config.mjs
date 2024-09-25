@@ -158,7 +158,9 @@ const config = [
       "unicorn/prefer-dom-node-append": "off",
       "unicorn/prefer-module": "off",
       "unicorn/prefer-node-protocol": "off",
+      "unicorn/prefer-string-replace-all": "off",
       "unicorn/prefer-string-slice": "off",
+      "unicorn/switch-case-braces": "off",
       "unicorn/prevent-abbreviations": "off",
       "jsx-a11y/label-has-associated-control": [
         "error",

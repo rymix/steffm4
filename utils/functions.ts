@@ -158,3 +158,34 @@ export const listenedStatus = (
 
   return progressEntry.complete ? "listened" : "partial";
 };
+
+// Remove parentheses and their content
+export const removeParentheses = (str: string): string =>
+  str.replace(/\s*\(.*?\)\s*/g, "");
+
+// Remove text after the first comma
+export const removeTextAfterComma = (str: string): string =>
+  str.split(",")[0].trim();
+
+// Scale font size based on the number of alphanumeric characters
+export const countAlphanumeric = (str: string): number =>
+  (str.match(/[\da-z]/gi) || []).length;
+
+//  Function to get the scaled font size based on the number of alphanumeric characters
+export const getScaledFontSize = (
+  str: string,
+  minChar: number,
+  maxChar: number,
+  minSize: number,
+  maxSize: number,
+): number => {
+  const charCount = countAlphanumeric(str);
+
+  // Scale font size between minSize and maxSize based on character count
+  if (charCount <= minChar) return maxSize;
+  if (charCount >= maxChar) return minSize;
+
+  // Gradually scale font size between 52 and 26
+  const scaleFactor = maxChar - minChar;
+  return maxSize - ((charCount - minChar) / scaleFactor) * (maxSize - minSize);
+};

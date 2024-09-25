@@ -97,13 +97,15 @@ export type MixcloudContextState = {
     jupiterCaseRef: React.MutableRefObject<HTMLDivElement | null>;
     menuOpen: boolean;
     modalContent: ReactNode | null;
+    modalHideChrome: boolean;
     modalOpen: boolean;
     modalRef: React.MutableRefObject<HTMLDivElement | null>;
     modalTitle: string | null;
     openModal: (
       content: ReactNode,
-      title?: string | null,
-      seconds?: number,
+      title?: string | undefined,
+      seconds?: number | undefined,
+      hideChrome?: boolean,
     ) => void;
     scale: Scale | null;
     secondsRemaining: number | null;
@@ -115,6 +117,7 @@ export type MixcloudContextState = {
     setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
     setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setModalContent: React.Dispatch<React.SetStateAction<ReactNode | null>>;
+    setModalHideChrome: React.Dispatch<React.SetStateAction<boolean>>;
     setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setModalTitle: React.Dispatch<React.SetStateAction<string | null>>;
     setScale: React.Dispatch<React.SetStateAction<Scale>>;

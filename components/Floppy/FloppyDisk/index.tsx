@@ -21,7 +21,7 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false); // Hover state
 
-  const handleMouseOver = () => {
+  const handleMouseOver = (): void => {
     setIsHovered(true);
 
     ReactGA.event({
@@ -31,7 +31,7 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
     });
   };
 
-  const handleMouseOut = () => {
+  const handleMouseOut = (): void => {
     setIsHovered(false);
   };
 

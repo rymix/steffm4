@@ -69,6 +69,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const [modalHideChrome, setModalHideChrome] = useState<boolean>(false);
   const [modalContent, setModalContent] = useState<ReactNode>(null);
   const [modalTitle, setModalTitle] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -278,9 +279,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
 
   const openModal = useCallback(
-    (content: ReactNode, title?: string | null, seconds?: number): void => {
+    (
+      content: ReactNode,
+      title?: string | undefined,
+      seconds?: number | undefined,
+      hideChrome?: boolean,
+    ): void => {
       setModalContent(content);
       setModalTitle(title ?? null);
+      setModalHideChrome(hideChrome ?? false);
       setModalOpen(true);
       if (seconds === undefined) {
         setSecondsRemaining(null);
@@ -1014,6 +1021,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       jupiterCaseRef,
       menuOpen,
       modalContent,
+      modalHideChrome,
       modalOpen,
       modalRef,
       modalTitle,
@@ -1026,6 +1034,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setIsMobile,
       setMenuOpen,
       setModalContent,
+      setModalHideChrome,
       setModalOpen,
       setModalTitle,
       setScale,
