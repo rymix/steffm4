@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export const StyledJupiterBackPanel = styled.div`
   background: #3c3c3b;
@@ -8,6 +8,28 @@ export const StyledJupiterBackPanel = styled.div`
   display: block;
   height: 54px;
   width: 100%;
+`;
+
+const powerButtonAnimation = (): ReturnType<typeof keyframes> => keyframes`
+  0% {
+    transform: rotateZ(360deg);
+    sbackground: rgba(252, 121, 31, 0.9);
+  }
+  100% {
+    sbackground: rgba(0, 101, 11, 0.9);
+  }
+`;
+
+const fadeOut = keyframes`
+  0% {
+    background: rgba(252, 121, 31, 0.9);
+  }
+  50% {
+    background: rgba(245, 111, 21, 0.9);
+  }
+  100% {
+    background: rgba(252, 121, 31, 0.9);
+  }
 `;
 
 export const StyledJupiterBackPanelPowerButton = styled.div`
@@ -20,7 +42,9 @@ export const StyledJupiterBackPanelPowerButton = styled.div`
   position: absolute;
   right: 34px;
   width: 34px;
-  sbox-shadow: 0 0 5px 5px rgba(252, 121, 31, 0.5);
+  zbox-shadow: 0 0 5px 5px rgba(252, 121, 31, 0.5);
+
+  animation: ${fadeOut} forwards 0.2s infinite;
 
   &::before {
     content: "";
@@ -34,7 +58,7 @@ export const StyledJupiterBackPanelPowerButton = styled.div`
       circle at bottom,
       rgba(236, 169, 122, 0.8) 0%,
       rgba(255, 255, 255, 0.2) 50%,
-      transparent 70%
+      transparent 40%
     );
   }
 `;
