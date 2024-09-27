@@ -1,5 +1,5 @@
 import { Progress } from "contexts/mixcloud/types";
-import { BackgroundCategory, Mix } from "db/types";
+import { BackgroundCategory, Category, Mix } from "db/types";
 import { stripUnit } from "polished";
 
 export const convertTimeToSeconds = (timeString: string): number => {
@@ -188,4 +188,14 @@ export const getScaledFontSize = (
   // Gradually scale font size between 52 and 26
   const scaleFactor = maxChar - minChar;
   return maxSize - ((charCount - minChar) / scaleFactor) * (maxSize - minSize);
+};
+
+export const getCategoryIndex = (
+  categories: Category[],
+  selectedCategory: string | null,
+): number => {
+  const category = categories.find(
+    (cat: Category) => cat.code === selectedCategory,
+  );
+  return category ? category.index : 1;
 };

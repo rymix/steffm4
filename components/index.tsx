@@ -2,6 +2,7 @@ import ScrollIndicator from "components//ScrollIndicator";
 import About from "components/About";
 import Background from "components/Background";
 import BurgerMenu from "components/BurgerMenu";
+import FloppyDiskStack from "components/Floppy/FloppyDiskStack";
 import { DiskLabel } from "components/Floppy/types";
 import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
@@ -15,10 +16,13 @@ import JupiterScreen from "components/Jupiter/Screen";
 import JupiterSlider from "components/Jupiter/Slider";
 import JupiterTitle from "components/Jupiter/Title";
 import JupiterWrapper from "components/Jupiter/Wrapper";
+import UserManualCover from "components/Manual/UserManualCover";
 import Mixcloud from "components/Mixcloud";
 import MixInformation from "components/MixInformation";
 import MixList from "components/MixList";
 import Modal from "components/Modal";
+import Notebook from "components/Notebook";
+import OutRun from "components/OutRun";
 import Overlay from "components/Overlay";
 import {
   StyledBottomGrid,
@@ -36,23 +40,10 @@ import {
 } from "components/Styled";
 import Tooltip from "components/Tooltip";
 import { useMixcloud } from "contexts/mixcloud";
-import type { Category } from "db/types";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-
-import FloppyDiskStack from "./Floppy/FloppyDiskStack";
-import UserManualCover from "./Manual/UserManualCover";
-import Notebook from "./Notebook";
-
-const getCategoryIndex = (
-  categories: Category[],
-  selectedCategory: string | null,
-): number => {
-  const category = categories.find(
-    (cat: Category) => cat.code === selectedCategory,
-  );
-  return category ? category.index : 1;
-};
+import { useKonami } from "react-konami-code";
+import { getCategoryIndex } from "utils/functions";
 
 const Jupiter: React.FC = () => {
   const {
@@ -76,6 +67,11 @@ const Jupiter: React.FC = () => {
   } = useMixcloud();
   const [sliderValue, setSliderValue] = useState<number>(volume * 100);
   const [diskLabel, setDiskLabel] = useState<DiskLabel>();
+
+  const easterEgg = () => {
+    openModal(<OutRun />, undefined, undefined, true);
+  };
+  useKonami(easterEgg);
 
   const initialKnobValue = selectedCategory
     ? getCategoryIndex(categories, selectedCategory)
