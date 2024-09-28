@@ -15,6 +15,7 @@ import {
 } from "components/OutRun/StyledOutRun";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useEffect, useState } from "react";
+import ReactGA from "react-ga4";
 import {
   getScaledFontSize,
   removeParentheses,
@@ -59,6 +60,14 @@ export const OutRun: React.FC = () => {
     }, 250); // Global tick interval
 
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    ReactGA.event({
+      category: "Secret",
+      action: "Click",
+      label: "Our Run",
+    });
   }, []);
 
   // Hand animation logic based on global timer
