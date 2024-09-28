@@ -7,6 +7,7 @@ import {
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
+import { GA4 } from "utils/constants";
 import { convertTimeToHumanReadable } from "utils/functions";
 
 export const Notebook: React.FC = () => {
@@ -24,11 +25,13 @@ export const Notebook: React.FC = () => {
     event.preventDefault();
     openModal(<MixInformation />);
 
-    ReactGA.event({
-      category: "2SPA",
-      action: "Interact",
-      label: "Open Notebook",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "2SPA",
+        action: "Interact",
+        label: "Open Notebook",
+      });
+    }
   };
 
   const handleStopHover = (): void => {

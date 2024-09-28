@@ -2,6 +2,7 @@
 import { StyledAbout, StyledImage } from "components/About/StyledAbout";
 import React from "react";
 import ReactGA from "react-ga4";
+import { GA4 } from "utils/constants";
 
 export const About: React.FC = () => {
   return (
@@ -148,11 +149,13 @@ export const About: React.FC = () => {
             href="https://www.youtube.com/@DustinBrett"
             target="_blank"
             onClick={() => {
-              ReactGA.event({
-                category: "Outbound",
-                action: "Link",
-                label: "Dustin Brett",
-              });
+              if (GA4) {
+                ReactGA.event({
+                  category: "Outbound",
+                  action: "Link",
+                  label: "Dustin Brett",
+                });
+              }
             }}
           >
             YouTube tutorials
@@ -167,11 +170,13 @@ export const About: React.FC = () => {
             href="https://github.com/lewhunt/mixmotion"
             target="_blank"
             onClick={() => {
-              ReactGA.event({
-                category: "Outbound",
-                action: "Link",
-                label: "Lewis Hunt",
-              });
+              if (GA4) {
+                ReactGA.event({
+                  category: "Outbound",
+                  action: "Link",
+                  label: "Lewis Hunt",
+                });
+              }
             }}
           >
             Mixmotion library for Mixcloud

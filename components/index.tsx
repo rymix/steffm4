@@ -43,6 +43,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { useKonami } from "react-konami-code";
+import { GA4 } from "utils/constants";
 import { getCategoryIndex } from "utils/functions";
 
 const Jupiter: React.FC = () => {
@@ -81,11 +82,13 @@ const Jupiter: React.FC = () => {
     setSliderValue(value);
     setVolume(value / 100);
 
-    ReactGA.event({
-      category: "Option",
-      action: "Slide",
-      label: "Change Volume",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Option",
+        action: "Slide",
+        label: "Change Volume",
+      });
+    }
   };
 
   const handleKnobChange = (index: number): void => {
@@ -100,41 +103,49 @@ const Jupiter: React.FC = () => {
 
     setSelectedCategory(categoryLookup);
 
-    ReactGA.event({
-      category: "Select",
-      action: "Knob",
-      label: `Change Category ${categoryLookup}`,
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Select",
+        action: "Knob",
+        label: `Change Category ${categoryLookup}`,
+      });
+    }
   };
 
   const handleAboutClick = (): void => {
     openModal(<About />);
 
-    ReactGA.event({
-      category: "Option",
-      action: "Click",
-      label: "About",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Option",
+        action: "Click",
+        label: "About",
+      });
+    }
   };
 
   const handleListClick = (): void => {
     openModal(<MixList />);
 
-    ReactGA.event({
-      category: "Option",
-      action: "Click",
-      label: "Mix List",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Option",
+        action: "Click",
+        label: "Mix List",
+      });
+    }
   };
 
   const handleInfoClick = (): void => {
     openModal(<MixInformation />);
 
-    ReactGA.event({
-      category: "Option",
-      action: "Click",
-      label: "Mix Information",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Option",
+        action: "Click",
+        label: "Mix Information",
+      });
+    }
   };
 
   const handleRandomClick = async (): Promise<void> => {
@@ -146,40 +157,48 @@ const Jupiter: React.FC = () => {
       handleLoadRandom();
     }
 
-    ReactGA.event({
-      category: "Option",
-      action: "Click",
-      label: "Random Mix",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Option",
+        action: "Click",
+        label: "Random Mix",
+      });
+    }
   };
 
   const handleLatestClick = async (): Promise<void> => {
     handleLoadLatest();
 
-    ReactGA.event({
-      category: "Option",
-      action: "Click",
-      label: "Latest Mix",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Option",
+        action: "Click",
+        label: "Latest Mix",
+      });
+    }
   };
 
   const handleFavouriteClick = async (): Promise<void> => {
     if (isFavourite(mcKey)) {
       removeFavourite(mcKey);
 
-      ReactGA.event({
-        category: "Option",
-        action: "Click",
-        label: `Favourite Remove ${mcKey}`,
-      });
+      if (GA4) {
+        ReactGA.event({
+          category: "Option",
+          action: "Click",
+          label: `Favourite Remove ${mcKey}`,
+        });
+      }
     } else {
       addFavourite(mcKey);
 
-      ReactGA.event({
-        category: "Option",
-        action: "Click",
-        label: `Favourite Add ${mcKey}`,
-      });
+      if (GA4) {
+        ReactGA.event({
+          category: "Option",
+          action: "Click",
+          label: `Favourite Add ${mcKey}`,
+        });
+      }
     }
   };
 

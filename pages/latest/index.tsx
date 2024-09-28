@@ -2,7 +2,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import ReactGA from "react-ga4";
-import { GOOGLE_TRACKING_ID } from "utils/constants";
+import { GA4, GOOGLE_TRACKING_ID } from "utils/constants";
 
 const DynamicRoute = (): null => {
   const router = useRouter();
@@ -26,11 +26,13 @@ const DynamicRoute = (): null => {
         }
 
         // Send GA4 event
-        ReactGA.event({
-          category: "User",
-          action: "Dynamic Route Redirect",
-          label: `Load Latest: ${mcKey}`,
-        });
+        if (GA4) {
+          ReactGA.event({
+            category: "User",
+            action: "Dynamic Route Redirect",
+            label: `Load Latest: ${mcKey}`,
+          });
+        }
       })
       .catch((error) => {
         console.error("Failed to redirect:", error);

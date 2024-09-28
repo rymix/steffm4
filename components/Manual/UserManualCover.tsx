@@ -7,6 +7,7 @@ import {
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
+import { GA4 } from "utils/constants";
 
 export const UserManualCover: React.FC = () => {
   const {
@@ -22,11 +23,13 @@ export const UserManualCover: React.FC = () => {
     event.preventDefault();
     openModal(<Manual />);
 
-    ReactGA.event({
-      category: "2SPA",
-      action: "Interact",
-      label: "Open User Manual",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "2SPA",
+        action: "Interact",
+        label: "Open User Manual",
+      });
+    }
   };
 
   const handleStopHover = (): void => {

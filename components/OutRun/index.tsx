@@ -16,6 +16,7 @@ import {
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
+import { GA4 } from "utils/constants";
 import {
   getScaledFontSize,
   removeParentheses,
@@ -63,11 +64,13 @@ export const OutRun: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    ReactGA.event({
-      category: "Secret",
-      action: "Click",
-      label: "Our Run",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Secret",
+        action: "Click",
+        label: "Our Run",
+      });
+    }
   }, []);
 
   // Hand animation logic based on global timer

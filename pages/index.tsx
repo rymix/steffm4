@@ -2,7 +2,7 @@ import Jupiter from "components";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-import { GOOGLE_TRACKING_ID } from "utils/constants";
+import { GA4, GOOGLE_TRACKING_ID } from "utils/constants";
 
 const Home = (): JSX.Element => {
   const {
@@ -60,12 +60,15 @@ const Home = (): JSX.Element => {
     handleInitialLoad();
     setIsReady(true);
 
-    ReactGA.initialize(GOOGLE_TRACKING_ID);
-    ReactGA.send({
-      hitType: "pageview",
-      page: "/",
-      title: "Home Page",
-    });
+    if (GA4) {
+      ReactGA.initialize(GOOGLE_TRACKING_ID);
+
+      ReactGA.send({
+        hitType: "pageview",
+        page: "/",
+        title: "Home Page",
+      });
+    }
   }, []);
 
   return <Jupiter />;

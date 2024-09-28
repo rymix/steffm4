@@ -15,6 +15,7 @@ import {
   DEFAULT_MESSAGE,
   DEFAULT_VOLUME,
   DISPLAY_LENGTH,
+  GA4,
 } from "utils/constants";
 import {
   convertTimeToHumanReadable,
@@ -176,11 +177,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
     copyToClipboard(`https://stef.fm/${sharableKey}`);
     setTemporaryMessage("Sharable link copied to clipboard");
 
-    ReactGA.event({
-      category: "Option",
-      action: "Click",
-      label: `Share Link ${sharableKey}`,
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Option",
+        action: "Click",
+        label: `Share Link ${sharableKey}`,
+      });
+    }
   };
 
   /* Favourites */
@@ -512,33 +515,39 @@ const useMixcloudContextState = (): MixcloudContextState => {
     player?.togglePlay();
     setPlayerUpdated(false);
 
-    ReactGA.event({
-      category: "Control",
-      action: "Click",
-      label: "Play / Pause",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Control",
+        action: "Click",
+        label: "Play / Pause",
+      });
+    }
   }, [player, playerUpdated]);
 
   const handlePlay = useCallback(() => {
     player?.play();
     setPlayerUpdated(false);
 
-    ReactGA.event({
-      category: "Control",
-      action: "Click",
-      label: "Play",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Control",
+        action: "Click",
+        label: "Play",
+      });
+    }
   }, [player, playerUpdated]);
 
   const handlePause = useCallback(() => {
     player?.pause();
     setPlayerUpdated(false);
 
-    ReactGA.event({
-      category: "Control",
-      action: "Click",
-      label: "Stop",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Control",
+        action: "Click",
+        label: "Stop",
+      });
+    }
   }, [player, playerUpdated]);
 
   const handleSeek = useCallback(
@@ -634,11 +643,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
       handleLoad(mixes[nextIndex].mixcloudKey);
     }
 
-    ReactGA.event({
-      category: "Control",
-      action: "Click",
-      label: "Next",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Control",
+        action: "Click",
+        label: "Next",
+      });
+    }
   }, [mcKey, mixes]);
 
   const handlePrevious = useCallback(async () => {
@@ -654,11 +665,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
       );
     }
 
-    ReactGA.event({
-      category: "Control",
-      action: "Click",
-      label: "Previous",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Control",
+        action: "Click",
+        label: "Previous",
+      });
+    }
   }, [mcKey, mixes]);
 
   /* Calculate Progress */
