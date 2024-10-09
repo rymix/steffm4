@@ -33,7 +33,6 @@ import {
   StyledManualOuterKnobWrapper,
 } from "components/Manual/StyledManualKnob";
 import { useMixcloud } from "contexts/mixcloud";
-import { steps } from "framer-motion";
 import React from "react";
 
 import { VOLUME_AVAILABLE } from "utils/constants";
@@ -147,7 +146,8 @@ export const Manual: React.FC = () => {
               <StyledManualInnerKnob
                 style={innerStyle}
                 $deg={deg}
-                $snap={steps ? 1 : 0}
+                // $snap={steps ? 1 : 0}
+                $snap={1}
               >
                 <StyledManualGrip />
               </StyledManualInnerKnob>
