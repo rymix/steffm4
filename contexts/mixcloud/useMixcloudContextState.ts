@@ -16,6 +16,7 @@ import {
   DEFAULT_VOLUME,
   DISPLAY_LENGTH,
   GA4,
+  VOLUME_AVAILABLE,
 } from "utils/constants";
 import {
   convertTimeToHumanReadable,
@@ -570,9 +571,22 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Volume Controls */
   useEffect(() => {
-    if (player) {
-      player.setVolume(volume);
-    }
+    const updateVolume = async () => {
+      if (player) {
+        console.log("Setting volume to", volume);
+        try {
+          player.setVolume(volume);
+
+          // Check if volume was set correctly
+          const currentVolume = await player.getVolume();
+          console.log("Current volume after setVolume:", currentVolume);
+        } catch (error) {
+          console.error("Error setting volume:", error);
+        }
+      }
+    };
+
+    updateVolume();
   }, [player, volume]);
 
   useEffect(() => {
@@ -828,8 +842,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
           break;
         }
         case "m": {
-          event.preventDefault();
-          setVolume(0);
+          if (VOLUME_AVAILABLE) {
+            event.preventDefault();
+            setVolume(0);
+          }
           break;
         }
         case "r": {
@@ -857,13 +873,17 @@ const useMixcloudContextState = (): MixcloudContextState => {
           break;
         }
         case "ArrowUp": {
-          event.preventDefault();
-          setVolume(Math.min(volume + 0.1, 1));
+          if (VOLUME_AVAILABLE) {
+            event.preventDefault();
+            setVolume(Math.min(volume + 0.1, 1));
+          }
           break;
         }
         case "ArrowDown": {
-          event.preventDefault();
-          setVolume(Math.max(volume - 0.1, 0));
+          if (VOLUME_AVAILABLE) {
+            event.preventDefault();
+            setVolume(Math.max(volume - 0.1, 0));
+          }
           break;
         }
         default: {

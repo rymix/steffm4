@@ -43,7 +43,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { useKonami } from "react-konami-code";
-import { GA4 } from "utils/constants";
+import { GA4, VOLUME_AVAILABLE } from "utils/constants";
 import { getCategoryIndex } from "utils/functions";
 
 const Jupiter: React.FC = () => {
@@ -338,7 +338,7 @@ const Jupiter: React.FC = () => {
                           label="About"
                           onClick={handleAboutClick}
                         />
-                        {isReady && (
+                        {isReady && VOLUME_AVAILABLE && (
                           <JupiterSlider
                             label="Vol"
                             volume={sliderValue}
