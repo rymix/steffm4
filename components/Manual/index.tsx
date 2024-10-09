@@ -33,9 +33,9 @@ import {
   StyledManualOuterKnobWrapper,
 } from "components/Manual/StyledManualKnob";
 import { useMixcloud } from "contexts/mixcloud";
-import { steps } from "framer-motion";
 import React from "react";
 
+import { VOLUME_AVAILABLE } from "utils/constants";
 import {
   StyledManualProgressLed,
   StyledManualProgressLedsItemsWrapper,
@@ -146,7 +146,8 @@ export const Manual: React.FC = () => {
               <StyledManualInnerKnob
                 style={innerStyle}
                 $deg={deg}
-                $snap={steps ? 1 : 0}
+                // $snap={steps ? 1 : 0}
+                $snap={1}
               >
                 <StyledManualGrip />
               </StyledManualInnerKnob>
@@ -340,18 +341,20 @@ export const Manual: React.FC = () => {
           the origins of the project, its genius original author and its future.
         </StyledGridDetail>
       </StyledGrid>
-      <StyledControl>
-        <StyledManualSliderWrapper>
-          <StyledManualSlider
-            aria-label="Volume"
-            orientation="vertical"
-            value={70}
-            min={0}
-            max={100}
-            $lineColor="black"
-          />
-        </StyledManualSliderWrapper>
-      </StyledControl>
+      {VOLUME_AVAILABLE && (
+        <StyledControl>
+          <StyledManualSliderWrapper>
+            <StyledManualSlider
+              aria-label="Volume"
+              orientation="vertical"
+              value={70}
+              min={0}
+              max={100}
+              $lineColor="black"
+            />
+          </StyledManualSliderWrapper>
+        </StyledControl>
+      )}
       <StyledGrid>
         <StyledGridHeader>VOL</StyledGridHeader>
         <StyledGridDetail>

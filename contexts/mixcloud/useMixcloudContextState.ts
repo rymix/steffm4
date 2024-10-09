@@ -15,6 +15,8 @@ import {
   DEFAULT_MESSAGE,
   DEFAULT_VOLUME,
   DISPLAY_LENGTH,
+  GA4,
+  VOLUME_AVAILABLE,
 } from "utils/constants";
 import {
   convertTimeToHumanReadable,
@@ -176,11 +178,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
     copyToClipboard(`https://stef.fm/${sharableKey}`);
     setTemporaryMessage("Sharable link copied to clipboard");
 
-    ReactGA.event({
-      category: "Option",
-      action: "Click",
-      label: `Share Link ${sharableKey}`,
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Option",
+        action: "Click",
+        label: `Share Link ${sharableKey}`,
+      });
+    }
   };
 
   /* Favourites */
@@ -512,33 +516,39 @@ const useMixcloudContextState = (): MixcloudContextState => {
     player?.togglePlay();
     setPlayerUpdated(false);
 
-    ReactGA.event({
-      category: "Control",
-      action: "Click",
-      label: "Play / Pause",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Control",
+        action: "Click",
+        label: "Play / Pause",
+      });
+    }
   }, [player, playerUpdated]);
 
   const handlePlay = useCallback(() => {
     player?.play();
     setPlayerUpdated(false);
 
-    ReactGA.event({
-      category: "Control",
-      action: "Click",
-      label: "Play",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Control",
+        action: "Click",
+        label: "Play",
+      });
+    }
   }, [player, playerUpdated]);
 
   const handlePause = useCallback(() => {
     player?.pause();
     setPlayerUpdated(false);
 
-    ReactGA.event({
-      category: "Control",
-      action: "Click",
-      label: "Stop",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Control",
+        action: "Click",
+        label: "Stop",
+      });
+    }
   }, [player, playerUpdated]);
 
   const handleSeek = useCallback(
@@ -561,9 +571,22 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Volume Controls */
   useEffect(() => {
-    if (player) {
-      player.setVolume(volume);
-    }
+    const updateVolume = async () => {
+      if (player) {
+        console.log("Setting volume to", volume);
+        try {
+          player.setVolume(volume);
+
+          // Check if volume was set correctly
+          const currentVolume = await player.getVolume();
+          console.log("Current volume after setVolume:", currentVolume);
+        } catch (error) {
+          console.error("Error setting volume:", error);
+        }
+      }
+    };
+
+    updateVolume();
   }, [player, volume]);
 
   useEffect(() => {
@@ -634,11 +657,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
       handleLoad(mixes[nextIndex].mixcloudKey);
     }
 
-    ReactGA.event({
-      category: "Control",
-      action: "Click",
-      label: "Next",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Control",
+        action: "Click",
+        label: "Next",
+      });
+    }
   }, [mcKey, mixes]);
 
   const handlePrevious = useCallback(async () => {
@@ -654,11 +679,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
       );
     }
 
-    ReactGA.event({
-      category: "Control",
-      action: "Click",
-      label: "Previous",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "Control",
+        action: "Click",
+        label: "Previous",
+      });
+    }
   }, [mcKey, mixes]);
 
   /* Calculate Progress */
@@ -815,8 +842,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
           break;
         }
         case "m": {
-          event.preventDefault();
-          setVolume(0);
+          if (VOLUME_AVAILABLE) {
+            event.preventDefault();
+            setVolume(0);
+          }
           break;
         }
         case "r": {
@@ -844,13 +873,17 @@ const useMixcloudContextState = (): MixcloudContextState => {
           break;
         }
         case "ArrowUp": {
-          event.preventDefault();
-          setVolume(Math.min(volume + 0.1, 1));
+          if (VOLUME_AVAILABLE) {
+            event.preventDefault();
+            setVolume(Math.min(volume + 0.1, 1));
+          }
           break;
         }
         case "ArrowDown": {
-          event.preventDefault();
-          setVolume(Math.max(volume - 0.1, 0));
+          if (VOLUME_AVAILABLE) {
+            event.preventDefault();
+            setVolume(Math.max(volume - 0.1, 0));
+          }
           break;
         }
         default: {

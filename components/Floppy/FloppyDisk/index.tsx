@@ -9,6 +9,7 @@ import {
 import { FloppyDiskProps } from "components/Floppy/types";
 import React, { useState } from "react";
 import ReactGA from "react-ga4";
+import { GA4 } from "utils/constants";
 
 const FloppyDisk: React.FC<FloppyDiskProps> = ({
   notes,
@@ -24,11 +25,13 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
   const handleMouseOver = (): void => {
     setIsHovered(true);
 
-    ReactGA.event({
-      category: "2SPA",
-      action: "Interact",
-      label: "Disk Slider",
-    });
+    if (GA4) {
+      ReactGA.event({
+        category: "2SPA",
+        action: "Interact",
+        label: "Disk Slider",
+      });
+    }
   };
 
   const handleMouseOut = (): void => {

@@ -1,6 +1,8 @@
 import { BackgroundExtended } from "db/types";
 
 export const DEBUG = false;
+export const VOLUME_AVAILABLE = false;
+export const GA4 = false;
 export const DEFAULT_LOCALE = "en-GB";
 export const DEFAULT_MESSAGE = "Stef FM - Funky House Coming In Your Ears";
 export const DEFAULT_TITLE = "Stef.FM - Funky House Coming In Your Ears";
