@@ -573,16 +573,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   useEffect(() => {
     const updateVolume = async () => {
       if (player) {
-        console.log("Setting volume to", volume);
-        try {
-          player.setVolume(volume);
-
-          // Check if volume was set correctly
-          const currentVolume = await player.getVolume();
-          console.log("Current volume after setVolume:", currentVolume);
-        } catch (error) {
-          console.error("Error setting volume:", error);
-        }
+        player.setVolume(volume);
       }
     };
 

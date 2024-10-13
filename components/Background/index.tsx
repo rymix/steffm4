@@ -1,6 +1,9 @@
 // components/Background/Background.tsx
 
-import { StyledBackground } from "components/Background/StyledBackground";
+import {
+  StyledBackgroundLayerA,
+  StyledBackgroundLayerB,
+} from "components/Background/StyledBackground";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 
@@ -8,19 +11,51 @@ const Background: React.FC = () => {
   const {
     session: { background },
   } = useMixcloud();
+
   const [hydrated, setHydrated] = useState(false);
+  const [activeBackground, setActiveBackground] = useState<"A" | "B">("A");
+  const [backgroundA, setBackgroundA] = useState(background);
+  const [backgroundB, setBackgroundB] = useState(background);
 
   useEffect(() => {
     // Ensure this effect only runs on the client
     setHydrated(true);
   }, []);
 
+  useEffect(() => {
+    if (!hydrated) return;
+
+    if (activeBackground === "A") {
+      // When Layer A is active, update Layer B and start transition
+      setBackgroundB(background);
+      setTimeout(() => {
+        setActiveBackground("B");
+      }, 1500); // 1.5s matches the CSS transition time
+    } else {
+      // When Layer B is active, update Layer A and start transition
+      setBackgroundA(background);
+      setTimeout(() => {
+        setActiveBackground("A");
+      }, 1500);
+    }
+  }, [background, hydrated]);
+
   if (!hydrated) {
-    // Avoid rendering on the server to prevent mismatch
-    return null;
+    return null; // Avoid rendering on the server to prevent mismatch
   }
 
-  return <StyledBackground $background={background} />;
+  return (
+    <>
+      <StyledBackgroundLayerA
+        $background={backgroundA}
+        isActive={activeBackground === "A"}
+      />
+      <StyledBackgroundLayerB
+        $background={backgroundB}
+        isActive={activeBackground === "B"}
+      />
+    </>
+  );
 };
 
 export default Background;
