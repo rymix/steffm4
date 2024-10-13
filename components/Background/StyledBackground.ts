@@ -3,7 +3,8 @@
 import { StyledBackgroundProps } from "components/Background/types";
 import styled from "styled-components";
 
-export const StyledBackground = styled.div<StyledBackgroundProps>`
+// Shared styles for both background layers (backgroundA and backgroundB)
+const SharedBackgroundStyles = styled.div<StyledBackgroundProps>`
   height: 100vh;
   width: 100%;
   position: absolute;
@@ -31,6 +32,8 @@ export const StyledBackground = styled.div<StyledBackgroundProps>`
   background-repeat: ${(props) =>
     props.$background?.tileType === "tile" ? "repeat" : "no-repeat"};
   background-position: center;
+
+  transition: opacity 1.5s ease-in-out; /* Smooth transition for opacity */
 
   &::before {
     content: "";
@@ -64,4 +67,17 @@ export const StyledBackground = styled.div<StyledBackgroundProps>`
     width: 100%;
     z-index: 1;
   }
+`;
+
+// Export the two background layers
+export const StyledBackgroundLayerA = styled(
+  SharedBackgroundStyles,
+)<StyledBackgroundProps>`
+  opacity: ${(props) => (props.isActive ? 1 : 0)};
+`;
+
+export const StyledBackgroundLayerB = styled(
+  SharedBackgroundStyles,
+)<StyledBackgroundProps>`
+  opacity: ${(props) => (props.isActive ? 1 : 0)};
 `;
