@@ -9,8 +9,11 @@ import { useEffect, useState } from "react";
 
 const Background: React.FC = () => {
   const {
-    session: { background },
+    session: { background, setBackground },
+    track: { details: trackDetails },
   } = useMixcloud();
+
+  const trackName = trackDetails?.trackName;
 
   const [hydrated, setHydrated] = useState(false);
   const [activeBackground, setActiveBackground] = useState<"A" | "B">("A");
@@ -21,6 +24,24 @@ const Background: React.FC = () => {
     // Ensure this effect only runs on the client
     setHydrated(true);
   }, []);
+
+  useEffect(() => {
+    const setRandomBackground = async (): Promise<void> => {
+      try {
+        const response = await fetch("/api/background/randomBackground");
+        if (!response.ok) {
+          throw new Error("Failed to fetch random background");
+        }
+
+        const randomBackground = await response.json();
+        setBackground(randomBackground); // Update the state with the fetched background
+      } catch (error) {
+        console.error("Error setting random background:", error);
+      }
+    };
+
+    setRandomBackground();
+  }, [trackName]);
 
   useEffect(() => {
     if (!hydrated) return;
