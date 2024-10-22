@@ -11,9 +11,18 @@ export default async function handler(
 ): Promise<void> {
   await initializeDb();
 
+  const { backgroundCategory } = req.query;
+  console.log("backgroundCategory", backgroundCategory);
+
   // Fetch all backgrounds and categories from the database
   let backgrounds = db.data?.backgrounds || [];
   const backgroundCategories = db.data?.backgroundCategories || [];
+
+  if (backgroundCategory && typeof backgroundCategory === "string") {
+    backgrounds = backgrounds.filter(
+      (bg) => bg.backgroundCategory === backgroundCategory,
+    );
+  }
 
   if (backgrounds.length === 0) {
     return res.status(404).json({ error: "No backgrounds found" });
@@ -42,4 +51,3 @@ export default async function handler(
 
   res.status(200).json(randomBackground);
 }
-

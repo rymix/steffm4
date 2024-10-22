@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 const Background: React.FC = () => {
   const {
-    session: { background, setBackground },
+    session: { background, filterBackgroundCategory, setBackground },
     track: { details: trackDetails },
   } = useMixcloud();
 
@@ -28,7 +28,14 @@ const Background: React.FC = () => {
   useEffect(() => {
     const setRandomBackground = async (): Promise<void> => {
       try {
-        const response = await fetch("/api/background/randomBackground");
+        const response = await fetch(
+          `/api/background/randomBackground${
+            filterBackgroundCategory === "undefined" ||
+            !filterBackgroundCategory
+              ? ""
+              : `?backgroundCategory=${filterBackgroundCategory}`
+          }`,
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch random background");
         }
