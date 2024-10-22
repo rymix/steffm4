@@ -1,4 +1,4 @@
-// pages/api/randomBackground.ts
+/* eslint-disable consistent-return */
 
 import { db, initializeDb } from "db";
 import type { BackgroundExtended } from "db/types";
