@@ -574,7 +574,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Volume Controls */
   useEffect(() => {
-    const updateVolume = async () => {
+    const updateVolume = async (): Promise<void> => {
       if (player) {
         player.setVolume(volume);
       }

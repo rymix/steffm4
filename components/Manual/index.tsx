@@ -34,8 +34,8 @@ import {
 } from "components/Manual/StyledManualKnob";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
-
 import { VOLUME_AVAILABLE } from "utils/constants";
+
 import {
   StyledManualProgressLed,
   StyledManualProgressLedsItemsWrapper,

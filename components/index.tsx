@@ -69,7 +69,7 @@ const Jupiter: React.FC = () => {
   const [sliderValue, setSliderValue] = useState<number>(volume * 100);
   const [diskLabel, setDiskLabel] = useState<DiskLabel>();
 
-  const easterEgg = () => {
+  const easterEgg = (): void => {
     openModal(<OutRun />, undefined, undefined, true);
   };
   useKonami(easterEgg);
