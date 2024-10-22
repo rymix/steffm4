@@ -22,11 +22,14 @@ import React, { useEffect, useState } from "react";
 
 export const BackgroundSelect: React.FC = () => {
   const {
-    session: { background, setBackground },
+    session: {
+      background,
+      filterBackgroundCategory,
+      setBackground,
+      setFilterBackgroundCategory,
+    },
   } = useMixcloud();
-  const [filterBackgroundCategory, setFilterBackgroundCategory] = useState<
-    string | undefined
-  >();
+
   const [backgroundCategories, setBackgroundCategories] = useState<
     BackgroundCategory[]
   >([]);

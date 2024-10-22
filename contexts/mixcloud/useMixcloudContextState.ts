@@ -112,6 +112,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [background, setBackground] = usePersistedState<
     BackgroundExtended | undefined
   >("background", DEFAULT_BACKGROUND);
+  const [filterBackgroundCategory, setFilterBackgroundCategory] = useState<
+    string | undefined
+  >();
 
   /* Tooltip */
   const [tooltipMessage, setTooltipMessage] = useState<string | null>(null);
@@ -1039,6 +1042,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       background,
       burgerMenuRef,
       displayLength,
+      filterBackgroundCategory,
       handleCloseModal,
       isAtBottom,
       isMobile,
@@ -1054,6 +1058,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       secondsRemaining,
       setBackground,
       setDisplayLength,
+      setFilterBackgroundCategory,
       setIsAtBottom,
       setIsMobile,
       setMenuOpen,
