@@ -10,15 +10,15 @@ export const StyledJupiterBackPanel = styled.div`
   width: 100%;
 `;
 
-const powerButtonAnimation = (): ReturnType<typeof keyframes> => keyframes`
-  0% {
-    transform: rotateZ(360deg);
-    sbackground: rgba(252, 121, 31, 0.9);
-  }
-  100% {
-    sbackground: rgba(0, 101, 11, 0.9);
-  }
-`;
+// const powerButtonAnimation = (): ReturnType<typeof keyframes> => keyframes`
+//   0% {
+//     transform: rotateZ(360deg);
+//     sbackground: rgba(252, 121, 31, 0.9);
+//   }
+//   100% {
+//     sbackground: rgba(0, 101, 11, 0.9);
+//   }
+// `;
 
 const fadeOut = keyframes`
   0% {
