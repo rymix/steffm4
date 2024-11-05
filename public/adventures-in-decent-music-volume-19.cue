@@ -1,0 +1,51 @@
+PERFORMER "Stef.FM"
+TITLE "Adventures In Decent Music - Volume 19"
+FILE "Adventures_In_Decent_Music_Vol._19_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Nobuyo Yagi"
+TITLE "Mi Mi Africa"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "The Sunburst Band"
+TITLE "Everything's Gonna Be Ok"
+INDEX 01 06:36:00
+TRACK 03 AUDIO
+PERFORMER "Busy People feat. Lai Cheun"
+TITLE "Wasting My Time"
+INDEX 01 11:43:00
+TRACK 04 AUDIO
+PERFORMER "Feist"
+TITLE "Inside And Out"
+INDEX 01 16:21:00
+TRACK 05 AUDIO
+PERFORMER "Nolen & Crossley"
+TITLE "Salsa Boogie"
+INDEX 01 21:04:00
+TRACK 06 AUDIO
+PERFORMER "The Jackson 5"
+TITLE "We're Almost There"
+INDEX 01 25:05:00
+TRACK 07 AUDIO
+PERFORMER "The Crusaders"
+TITLE "Spiral"
+INDEX 01 31:17:00
+TRACK 08 AUDIO
+PERFORMER "Break Reform"
+TITLE "And I"
+INDEX 01 36:15:00
+TRACK 09 AUDIO
+PERFORMER "Opolopo feat. Amalia"
+TITLE "Life's A Dance"
+INDEX 01 42:00:00
+TRACK 10 AUDIO
+PERFORMER "Curiosity Killed The Cat"
+TITLE "Misfit"
+INDEX 01 47:15:00
+TRACK 11 AUDIO
+PERFORMER "Excellent Gentlemen"
+TITLE "Tonight Alright"
+INDEX 01 51:51:00
+TRACK 12 AUDIO
+PERFORMER "Blaze feat. Amira"
+TITLE "I Think Of You"
+INDEX 01 56:07:00
