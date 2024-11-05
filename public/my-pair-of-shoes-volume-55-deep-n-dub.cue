@@ -1,0 +1,51 @@
+PERFORMER "Stef.FM"
+TITLE "My Pair of Shoes - Volume 55 - Deep 'n' Dub"
+FILE "My_Pair_Of_Shoes_Vol._55_deep_n_dub_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Dan & Phil"
+TITLE "Brighther"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Joel Harrison"
+TITLE "High Voltage"
+INDEX 01 05:35:00
+TRACK 03 AUDIO
+PERFORMER "Lisa Shaw"
+TITLE "Born To Fly"
+INDEX 01 11:26:00
+TRACK 04 AUDIO
+PERFORMER "Anthony Molina"
+TITLE "Just For The Music"
+INDEX 01 16:15:00
+TRACK 05 AUDIO
+PERFORMER "Cicada"
+TITLE "Electric Blue"
+INDEX 01 20:08:00
+TRACK 06 AUDIO
+PERFORMER "System Check"
+TITLE "Parallel Universe"
+INDEX 01 24:13:00
+TRACK 07 AUDIO
+PERFORMER "JP Phillippe"
+TITLE "Providence Of The Cosmos"
+INDEX 01 36:11:00
+TRACK 08 AUDIO
+PERFORMER "Lovebirds"
+TITLE "The Sound"
+INDEX 01 40:52:00
+TRACK 09 AUDIO
+PERFORMER "Spirit Catcher"
+TITLE "Core Memory"
+INDEX 01 43:30:00
+TRACK 10 AUDIO
+PERFORMER "Physics feat. Daisy"
+TITLE "Holdin On"
+INDEX 01 46:33:00
+TRACK 11 AUDIO
+PERFORMER "Lovebirds"
+TITLE "Love On My Hands"
+INDEX 01 51:10:00
+TRACK 12 AUDIO
+PERFORMER "Spiritchaser"
+TITLE "Ride"
+INDEX 01 55:45:00
