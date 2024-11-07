@@ -38328,6 +38328,198 @@
           "localCoverArtSmall": "/trackart/skyy_first_time_around_small_jpg"
         }
       ]
+    },
+    {
+      "category": "aidm",
+      "coverArtDate": "2024-11-07T21:53:44.620Z",
+      "coverArtLarge": "https://thumbnailer.mixcloud.com/unsafe/600x600/extaudio/8/7/5/3/5caf-58a7-4d8b-9f85-11037d270e2a",
+      "coverArtSmall": "https://thumbnailer.mixcloud.com/unsafe/50x50/extaudio/8/7/5/3/5caf-58a7-4d8b-9f85-11037d270e2a",
+      "duration": "1:02:37",
+      "fileName": "Adventures_In_Decent_Music_Vol._17_disco_of_today_hifi.mp3",
+      "listOrder": 17,
+      "mixcloudKey": "adventures-in-decent-music-volume-17-disco-of-today",
+      "name": "Adventures in Decent Music - Volume 17 - Disco of Today",
+      "notes": "Compiled & mixed by Stef - May 2009",
+      "releaseDate": "May 2009",
+      "uploadedDate": "7 November 2024",
+      "shortName": "AIDM - Volume 17",
+      "tags": [
+        "house",
+        "disco house",
+        "disco",
+        "nu disco"
+      ],
+      "tracks": [
+        {
+          "publisher": "DNH Records",
+          "startTime": "00:00",
+          "trackName": "Disco '79",
+          "artistName": "Nick Holder",
+          "coverArtDate": "2024-11-07T21:48:49.261Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
+          "sectionNumber": 1,
+          "remixArtistName": "",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
+        },
+        {
+          "publisher": "Papa Records",
+          "startTime": "04:17",
+          "trackName": "This Is Not Your Job",
+          "artistName": "Da Lata feat. Diabel Cissokoh",
+          "coverArtDate": "2024-11-07T21:48:50.245Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
+          "sectionNumber": 2,
+          "remixArtistName": "Faze Action Dub",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
+        },
+        {
+          "publisher": "Disco Strut",
+          "startTime": "08:08",
+          "trackName": "Rebel On The Run",
+          "artistName": "Selection",
+          "coverArtDate": "2024-11-07T21:48:51.306Z",
+          "coverArtLarge": "https://i.discogs.com/ER6jxwWyHGRmtNADVkSWBis1BEPYvXEQjmsbFjgQrzg/rs:fit/g:sm/q:90/h:609/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MTUz/NTQtMTQ4MjQwMTIy/Ny0yNDM5Lm1wbw.jpeg",
+          "coverArtSmall": "https://i.discogs.com/2uhka5vS48HjoNsS22kBuNYiaEtgWfzBQJsCEHhPwvk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MTUz/NTQtMTQ4MjQwMTIy/Ny0yNDM5Lm1wbw.jpeg",
+          "sectionNumber": 3,
+          "remixArtistName": "Remix",
+          "localCoverArtLarge": "/trackart/selection_rebel_on_the_run_large_jpg",
+          "localCoverArtSmall": "/trackart/selection_rebel_on_the_run_small_jpg"
+        },
+        {
+          "publisher": "Junior Boys Own",
+          "startTime": "12:29",
+          "trackName": "Save Us",
+          "artistName": "Black Science Orchestra",
+          "coverArtDate": "2024-11-07T21:48:53.518Z",
+          "coverArtLarge": "https://i.discogs.com/-CgMOXUIvAaqEowcmajy3b_VAKb7mHX3qhrcBxv_AKg/rs:fit/g:sm/q:90/h:601/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NzU3/LTEyMDI3MTY0NDUu/anBlZw.jpeg",
+          "coverArtSmall": "https://i.discogs.com/KVwwr9AwfQPYYs0W199mkO6sGrEmNnW18dXuNlRfSWs/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0NzU3/LTEyMDI3MTY0NDUu/anBlZw.jpeg",
+          "sectionNumber": 4,
+          "remixArtistName": "Ashley Beedle’s Disco Throwback Remix",
+          "localCoverArtLarge": "/trackart/black_science_orchestra_save_us_large_jpg",
+          "localCoverArtSmall": "/trackart/black_science_orchestra_save_us_small_jpg"
+        },
+        {
+          "publisher": "Player Records",
+          "startTime": "17:21",
+          "trackName": "Each And Every Day",
+          "artistName": "Rawsoul Orchestra",
+          "coverArtDate": "2024-11-07T21:48:54.522Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
+          "sectionNumber": 5,
+          "remixArtistName": "Aston Martinez & Mario Held Vox Mix",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
+        },
+        {
+          "publisher": "Zoo Groove Stereo",
+          "startTime": "23:37",
+          "trackName": "The Past As The Future",
+          "artistName": "Souldynamic",
+          "coverArtDate": "2024-11-07T21:48:55.301Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
+          "sectionNumber": 6,
+          "remixArtistName": "",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
+        },
+        {
+          "publisher": "Clean Up Records",
+          "startTime": "28:49",
+          "trackName": "Post-Modern Sleaze",
+          "artistName": "Sneaker Pimps",
+          "coverArtDate": "2024-11-07T21:48:56.546Z",
+          "coverArtLarge": "https://i.discogs.com/fpDHU9LeDfgHNN8d9B70QKkIGldb96Shf4FFzvxNZHY/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ5MTI0/LTE3MDM5MzMxNzIt/NzkzNi5qcGVn.jpeg",
+          "coverArtSmall": "https://i.discogs.com/0PduBomT3dU6KsABc8hlsBj62esisdJ9thNr3CB8-Q0/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ5MTI0/LTE3MDM5MzMxNzIt/NzkzNi5qcGVn.jpeg",
+          "sectionNumber": 7,
+          "remixArtistName": "The Salt City Orchestra Nightclub Mix",
+          "localCoverArtLarge": "/trackart/sneaker_pimps_post_modern_sleaze_large_jpg",
+          "localCoverArtSmall": "/trackart/sneaker_pimps_post_modern_sleaze_small_jpg"
+        },
+        {
+          "publisher": "Winding Road Records",
+          "startTime": "34:04",
+          "trackName": "Say It",
+          "artistName": "Office Gossip",
+          "coverArtDate": "2024-11-07T21:48:58.691Z",
+          "coverArtLarge": "https://i.discogs.com/kCq0bp60t68uDC4bq5xZm7qXFk5R9K8-YjDt1yHaaso/rs:fit/g:sm/q:90/h:578/w:589/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNzQ5/MzctMTE5MDMxMDU4/My5qcGVn.jpeg",
+          "coverArtSmall": "https://i.discogs.com/RS0qjUdWi9loF5i7N44c6Xt_soLPySX47P-LebMeSuo/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNzQ5/MzctMTE5MDMxMDU4/My5qcGVn.jpeg",
+          "sectionNumber": 8,
+          "remixArtistName": "Lovebirds Dub",
+          "localCoverArtLarge": "/trackart/office_gossip_say_it_large_jpg",
+          "localCoverArtSmall": "/trackart/office_gossip_say_it_small_jpg"
+        },
+        {
+          "publisher": "White Label",
+          "startTime": "38:45",
+          "trackName": "Cerrone's Paradise",
+          "artistName": "Cerrone",
+          "coverArtDate": "2024-11-07T21:49:00.749Z",
+          "coverArtLarge": "https://i.discogs.com/ZOF0JPztqYNmxw3cVau3ROJ1waM6bYVJTCSvy4XQqHQ/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY2OTk0/LTEyNzQ5NjkyOTUu/anBlZw.jpeg",
+          "coverArtSmall": "https://i.discogs.com/ugdEm1so_QIUGcgRWQ4-nPQ9NUXgbVzK5jta7BoN2tw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY2OTk0/LTEyNzQ5NjkyOTUu/anBlZw.jpeg",
+          "sectionNumber": 9,
+          "remixArtistName": "Joey Negro Disco Madness",
+          "localCoverArtLarge": "/trackart/cerrone_cerrone_s_paradise_large_jpg",
+          "localCoverArtSmall": "/trackart/cerrone_cerrone_s_paradise_small_jpg"
+        },
+        {
+          "publisher": "Z Records",
+          "startTime": "42:23",
+          "trackName": "Mucho Macho",
+          "artistName": "Dave Lee",
+          "coverArtDate": "2024-11-07T21:49:02.075Z",
+          "coverArtLarge": "https://i.discogs.com/7_Jdg9WSEIu7dQhpHo9ZWf5mq1llklauLsfM9PLz9FY/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MDY1/NjktMTY0NDA3ODAz/OS0yNjI1LmpwZWc.jpeg",
+          "coverArtSmall": "https://i.discogs.com/x-63vpHSlVviaUpve8zL21Fe8TvIpJlTzw7iuw2Y6Fw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0MDY1/NjktMTY0NDA3ODAz/OS0yNjI1LmpwZWc.jpeg",
+          "sectionNumber": 10,
+          "remixArtistName": "Joey Negro Disco Blend Mix",
+          "localCoverArtLarge": "/trackart/dave_lee_mucho_macho_large_jpg",
+          "localCoverArtSmall": "/trackart/dave_lee_mucho_macho_small_jpg"
+        },
+        {
+          "publisher": "G-Stone Recordings",
+          "startTime": "45:35",
+          "trackName": "Boogie No More",
+          "artistName": "Richard Dorfmeister vs Madrid De Los Austrias",
+          "coverArtDate": "2024-11-07T21:49:03.795Z",
+          "coverArtLarge": "https://i.discogs.com/jOo7xgnGZR_HZw0tqbMtwh5MBgoOdgpkg-5os9Ygh5Q/rs:fit/g:sm/q:90/h:511/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1MjM1/NS0xNDA0NzQ0MzI5/LTczMzEuanBlZw.jpeg",
+          "coverArtSmall": "https://i.discogs.com/i_dujU3GzxXIwxVaqLTy3NPyedO3bHEov2aGoB6gXak/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc1MjM1/NS0xNDA0NzQ0MzI5/LTczMzEuanBlZw.jpeg",
+          "sectionNumber": 11,
+          "remixArtistName": "",
+          "localCoverArtLarge": "/trackart/richard_dorfmeister_vs_madrid_de_los_austrias_boogie_no_more_large_jpg",
+          "localCoverArtSmall": "/trackart/richard_dorfmeister_vs_madrid_de_los_austrias_boogie_no_more_small_jpg"
+        },
+        {
+          "publisher": "Modus Vivendi Music",
+          "startTime": "51:20",
+          "trackName": "Black & Gold",
+          "artistName": "Sam Sparro",
+          "coverArtDate": "2024-11-07T21:49:05.449Z",
+          "coverArtLarge": "https://i.discogs.com/OHBxDpQ6hubTJXAWD9AyEOz2MboRx3TwcXlpxGRp1bk/rs:fit/g:sm/q:90/h:461/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5OTk2/NjctMTQ2NjU4MTIy/NC0yMzQ2LmpwZWc.jpeg",
+          "coverArtSmall": "https://i.discogs.com/P0DE6iqgq7Co_EGqhPJK1u3je0w2aT4QYdBhMDdvGXg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5OTk2/NjctMTQ2NjU4MTIy/NC0yMzQ2LmpwZWc.jpeg",
+          "sectionNumber": 12,
+          "remixArtistName": "Kings Of The Universe Mix",
+          "localCoverArtLarge": "/trackart/sam_sparro_black___gold_large_jpg",
+          "localCoverArtSmall": "/trackart/sam_sparro_black___gold_small_jpg"
+        },
+        {
+          "publisher": "Flame",
+          "startTime": "57:04",
+          "trackName": "Don't Stay Until Breakfast",
+          "artistName": "Stroer",
+          "coverArtDate": "2024-11-07T21:49:07.122Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
+          "sectionNumber": 13,
+          "remixArtistName": "",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
+        }
+      ]
     }
   ]
 }
