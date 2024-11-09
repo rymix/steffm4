@@ -1,0 +1,51 @@
+PERFORMER "Stef.FM"
+TITLE "My Pair of Shoes - Volume 5"
+FILE "My_Pair_Of_Shoes_Vol._50_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Lil' Louis & The World"
+TITLE "Club Lonely"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Only Paradise"
+TITLE "Help Me"
+INDEX 01 05:24:00
+TRACK 03 AUDIO
+PERFORMER "Amira"
+TITLE "My Desire"
+INDEX 01 10:35:00
+TRACK 04 AUDIO
+PERFORMER "Gus Gus"
+TITLE "VIP"
+INDEX 01 19:45:00
+TRACK 05 AUDIO
+PERFORMER "Lisa Fisher"
+TITLE "(When You Are A) Woman"
+INDEX 01 23:04:00
+TRACK 06 AUDIO
+PERFORMER "Bobby D'Ambrosio feat Kelli Sae"
+TITLE "Optimistic"
+INDEX 01 28:38:00
+TRACK 07 AUDIO
+PERFORMER "Cerrone"
+TITLE "Love In C Minor"
+INDEX 01 35:27:00
+TRACK 08 AUDIO
+PERFORMER "Gat Decor"
+TITLE "Passion"
+INDEX 01 39:00:00
+TRACK 09 AUDIO
+PERFORMER "H2O feat. Billie"
+TITLE "Nobody's Business"
+INDEX 01 42:54:00
+TRACK 10 AUDIO
+PERFORMER "Colour of Life"
+TITLE "Takes You Higher"
+INDEX 01 48:47:00
+TRACK 11 AUDIO
+PERFORMER "Giselle Jackson"
+TITLE "Love Commandments"
+INDEX 01 55:10:00
+TRACK 12 AUDIO
+PERFORMER "Degrees Of Motion"
+TITLE "Do You Want It Right Now"
+INDEX 01 60:49:00
