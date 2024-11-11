@@ -39425,6 +39425,159 @@
           "localCoverArtSmall": "/trackart/matias_aguayo_minimal_small_jpg"
         }
       ]
+    },
+    {
+      "category": "mpos",
+      "coverArtDate": "2024-11-11T21:29:48.069Z",
+      "coverArtLarge": "https://thumbnailer.mixcloud.com/unsafe/600x600/extaudio/6/3/5/0/f07b-fe8e-4f13-8ccb-aaff1f4e7eae",
+      "coverArtSmall": "https://thumbnailer.mixcloud.com/unsafe/50x50/extaudio/6/3/5/0/f07b-fe8e-4f13-8ccb-aaff1f4e7eae",
+      "duration": "00:00",
+      "fileName": "My_Pair_Of_Shoes_Vol._48_hifi.mp3",
+      "listOrder": 48,
+      "mixcloudKey": "my-pair-of-shoes-volume-48",
+      "name": "My Pair of Shoes - Volume 48",
+      "notes": "Compiled & mixed by Stef - February 2009",
+      "releaseDate": "February 2009",
+      "uploadedDate": "11 November 2024",
+      "shortName": "MPOS - Volume 48",
+      "tags": [
+        "house",
+        "funky house",
+        "soulful house",
+        "jazz house"
+      ],
+      "tracks": [
+        {
+          "publisher": "T's Box",
+          "startTime": "00:00",
+          "trackName": "House Of Tribe",
+          "artistName": "Jazzy Jeff",
+          "coverArtDate": "2024-11-11T21:29:51.165Z",
+          "coverArtLarge": "https://i.discogs.com/kduvY3hG045HRaKHMajG7miRy2Nj8Uqsw7Cl6pOqP90/rs:fit/g:sm/q:90/h:512/w:512/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE4NjQz/MDItMTU0MzYwNjM3/OC02MzM0LmpwZWc.jpeg",
+          "coverArtSmall": "https://i.discogs.com/ts76ix23fjtAqAahtXjYNO7yLxJoQtuG23AI1uEBJ8w/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE4NjQz/MDItMTU0MzYwNjM3/OC02MzM0LmpwZWc.jpeg",
+          "sectionNumber": 1,
+          "remixArtistName": "Jazzy Jeff's Main Mix",
+          "localCoverArtLarge": "/trackart/jazzy_jeff_house_of_tribe_large_jpg",
+          "localCoverArtSmall": "/trackart/jazzy_jeff_house_of_tribe_small_jpg"
+        },
+        {
+          "publisher": "TSTC Records",
+          "startTime": "03:48",
+          "trackName": "See You More",
+          "artistName": "Tortured Soul",
+          "coverArtDate": "2024-11-11T21:29:52.698Z",
+          "coverArtLarge": "https://i.discogs.com/RA1N7dNxHbTpt-wd8kE5Bs5lfCfWxk237kiJoUMUOsE/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY3MzUz/OC0xNTAzODM5MjYx/LTkzMTYuanBlZw.jpeg",
+          "coverArtSmall": "https://i.discogs.com/n2cQorleZgcnx62yk5N4L9olTcNc0wCVamOEoiMKeTA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY3MzUz/OC0xNTAzODM5MjYx/LTkzMTYuanBlZw.jpeg",
+          "sectionNumber": 2,
+          "remixArtistName": "",
+          "localCoverArtLarge": "/trackart/tortured_soul_see_you_more_large_jpg",
+          "localCoverArtSmall": "/trackart/tortured_soul_see_you_more_small_jpg"
+        },
+        {
+          "publisher": "Defected",
+          "startTime": "09:39",
+          "trackName": "Glad I Found You",
+          "artistName": "DJ Gomi feat. Louie Balo & Yasmeen",
+          "coverArtDate": "2024-11-11T21:29:54.117Z",
+          "coverArtLarge": "https://i.discogs.com/EPV8oKucMJFpBW45q5dj6FCspRZSpxnuoTYNeqoaDBw/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjQ5/MzYtMTIwMjM2ODE3/NS5qcGVn.jpeg",
+          "coverArtSmall": "https://i.discogs.com/XO5HHCsvHZa8TQ0pBmtxwje-LVGPSJzniiEYG9g61OM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjQ5/MzYtMTIwMjM2ODE3/NS5qcGVn.jpeg",
+          "sectionNumber": 3,
+          "remixArtistName": "Ethan White Vocal Mix",
+          "localCoverArtLarge": "/trackart/dj_gomi_feat__louie_balo___yasmeen_glad_i_found_you_large_jpg",
+          "localCoverArtSmall": "/trackart/dj_gomi_feat__louie_balo___yasmeen_glad_i_found_you_small_jpg"
+        },
+        {
+          "publisher": "Soul Heaven",
+          "startTime": "16:04",
+          "trackName": "Fly",
+          "artistName": "Fanatix feat. Alison Crockett & Nathan Haines",
+          "coverArtDate": "2024-11-11T21:29:55.496Z",
+          "coverArtLarge": "https://i.discogs.com/zbquxh8bNDSeZ6KCn5WsJWOUet3sU-yeCUye4FE0YrU/rs:fit/g:sm/q:90/h:464/w:520/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MTcx/NzMtMTIzOTU2Mjc2/MS5qcGVn.jpeg",
+          "coverArtSmall": "https://i.discogs.com/jjY8F3Ae5VwBmU74yOle_gfTEZsOR1_lGTO0CzqMnIg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MTcx/NzMtMTIzOTU2Mjc2/MS5qcGVn.jpeg",
+          "sectionNumber": 4,
+          "remixArtistName": "Main Vocal Mix",
+          "localCoverArtLarge": "/trackart/fanatix_feat__alison_crockett___nathan_haines_fly_large_jpg",
+          "localCoverArtSmall": "/trackart/fanatix_feat__alison_crockett___nathan_haines_fly_small_jpg"
+        },
+        {
+          "publisher": "Jellybean Soul",
+          "startTime": "21:57",
+          "trackName": "Ready To Love",
+          "artistName": "DunnEASY feat. Tricia Angus",
+          "coverArtDate": "2024-11-11T21:29:56.760Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
+          "sectionNumber": 5,
+          "remixArtistName": "Spring Mix",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
+        },
+        {
+          "publisher": "Home Recordings",
+          "startTime": "29:07",
+          "trackName": "Valentine 4 Life",
+          "artistName": "Kim Davis",
+          "coverArtDate": "2024-11-11T21:29:57.820Z",
+          "coverArtLarge": "https://i.discogs.com/slW2gAr5yVjT5MGVPXHxP5ox5xlM4gpXNmEz27it4oc/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MjE5/OTEtMTIzOTIxOTc4/MC5qcGVn.jpeg",
+          "coverArtSmall": "https://i.discogs.com/iCbeiasmEdHLLKE6hMrsiCmS6u82L1cIjKzPdweVotk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MjE5/OTEtMTIzOTIxOTc4/MC5qcGVn.jpeg",
+          "sectionNumber": 6,
+          "remixArtistName": "Guy Robin Vocal Mix",
+          "localCoverArtLarge": "/trackart/kim_davis_valentine_4_life_large_jpg",
+          "localCoverArtSmall": "/trackart/kim_davis_valentine_4_life_small_jpg"
+        },
+        {
+          "publisher": "SOLE Channel",
+          "startTime": "35:00",
+          "trackName": "I Can Sing",
+          "artistName": "Mr. V",
+          "coverArtDate": "2024-11-11T21:29:59.995Z",
+          "coverArtLarge": "https://i.discogs.com/YLF1ICqUSZLzTrCNM_63EnCgqsSCHv9bEvkxl8QyeN4/rs:fit/g:sm/q:90/h:599/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyOTU2/Mi0xNTA5NDUzNTIx/LTg0MTMuanBlZw.jpeg",
+          "coverArtSmall": "https://i.discogs.com/6GLusmqrceBqLC5wgjmLWGmX5A49quc64oCa0Ryd85Y/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyOTU2/Mi0xNTA5NDUzNTIx/LTg0MTMuanBlZw.jpeg",
+          "sectionNumber": 7,
+          "remixArtistName": "",
+          "localCoverArtLarge": "/trackart/mr__v_i_can_sing_large_jpg",
+          "localCoverArtSmall": "/trackart/mr__v_i_can_sing_small_jpg"
+        },
+        {
+          "publisher": "Circular Motion",
+          "startTime": "39:26",
+          "trackName": "Sky's The Limit",
+          "artistName": "Anthony Nicholson",
+          "coverArtDate": "2024-11-11T21:30:01.013Z",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
+          "sectionNumber": 8,
+          "remixArtistName": "Miquifaye Boogie Mix",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
+        },
+        {
+          "publisher": "Reelgroove",
+          "startTime": "45:44",
+          "trackName": "Chicago",
+          "artistName": "Nightrhymes",
+          "coverArtDate": "2024-11-11T21:30:02.117Z",
+          "coverArtLarge": "https://i.discogs.com/ZDReOvWMN4KzKALOXc5EFsZgggMDZ6Uky_-za23bMwQ/rs:fit/g:sm/q:90/h:587/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTgw/NzYtMTQ1NjQzOTM5/NC0xNzI4LmpwZWc.jpeg",
+          "coverArtSmall": "https://i.discogs.com/c8Lh1CkxDu6sFvrQ4Hk5HBdEuFipUG7sLPNokIrIroo/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIzOTgw/NzYtMTQ1NjQzOTM5/NC0xNzI4LmpwZWc.jpeg",
+          "sectionNumber": 9,
+          "remixArtistName": "DJ Meme Warehouse Mix",
+          "localCoverArtLarge": "/trackart/nightrhymes_chicago_large_jpg",
+          "localCoverArtSmall": "/trackart/nightrhymes_chicago_small_jpg"
+        },
+        {
+          "publisher": "Sole",
+          "startTime": "54:48",
+          "trackName": "Satellites",
+          "artistName": "Chuck Cogan",
+          "coverArtDate": "2024-11-11T21:30:04.268Z",
+          "coverArtLarge": "https://i.discogs.com/fQmvO1RU5tlZK-UIDAC5pyhZ_m617MmfeD12AT-PLwU/rs:fit/g:sm/q:90/h:317/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3NDY5/MTQtMTI0MDczNTMw/OC5qcGVn.jpeg",
+          "coverArtSmall": "https://i.discogs.com/vpdrvJKAWCqZZqjEKxfqWMa-F5xyBy0UdHLsRCET4TM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3NDY5/MTQtMTI0MDczNTMw/OC5qcGVn.jpeg",
+          "sectionNumber": 10,
+          "remixArtistName": "Stevie Sole's Re-Edit",
+          "localCoverArtLarge": "/trackart/chuck_cogan_satellites_large_jpg",
+          "localCoverArtSmall": "/trackart/chuck_cogan_satellites_small_jpg"
+        }
+      ]
     }
   ]
 }
