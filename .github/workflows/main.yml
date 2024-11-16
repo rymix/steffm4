@@ -82,4 +82,4 @@ jobs:
         run: |
           echo "Cleaning up wwwroot.zip"
           ls -alh # List contents to confirm location
-          : # rm -f wwwroot.zip # Force delete the zip file
+          rm -f wwwroot.zip # Force delete the zip file
