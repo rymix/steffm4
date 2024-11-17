@@ -77,9 +77,3 @@ jobs:
       - name: Set environment variables for Node.js
         run: |
           az webapp config appsettings set --name "steffm" --resource-group "Stef.FM" --settings NEXT_PUBLIC_DISCOGS_API_TOKEN=${{ env.NEXT_PUBLIC_DISCOGS_API_TOKEN }} JWT_SECRET=${{ env.JWT_SECRET }} NEXT_PUBLIC_API_URL=${{ env.NEXT_PUBLIC_API_URL }}
-
-      - name: Clean up wwwroot.zip (remed out)
-        run: |
-          echo "Cleaning up wwwroot.zip"
-          ls -alh # List contents to confirm location
-          rm -f wwwroot.zip # Force delete the zip file
