@@ -17,6 +17,7 @@ import {
   StyledAdminWrapper,
 } from "components/Admin/StyledAdmin";
 import { Mix, Track } from "db/types";
+import _ from "lodash";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axiosInstance from "utils/axiosInstance";
@@ -34,7 +35,15 @@ const AdminMixes = (): JSX.Element => {
     if (token) {
       axiosInstance
         .get("/api/mixes", { headers: { Authorization: token } })
-        .then((response) => setMixes(response.data))
+        .then((response) => {
+          const mixesData = _.chain(response.data)
+            .groupBy("category")
+            .mapValues((group) => _.orderBy(group, ["listOrder"], ["asc"]))
+            .values()
+            .flatten()
+            .value();
+          setMixes(mixesData);
+        })
         .catch(() => router.push("/admin/login"));
     } else {
       router.push("/admin/login");
