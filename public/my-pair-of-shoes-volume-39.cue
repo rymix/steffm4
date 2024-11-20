@@ -1,0 +1,55 @@
+PERFORMER "Stef.FM"
+TITLE "My Pair of Shoes - Volume 39"
+FILE "My_Pair_Of_Shoes_Vol._39_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Pilates Music Ensemble"
+TITLE "The Beauty Of Love II"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Akimbo"
+TITLE "Everybody Knows feat. Marcinda Arnold"
+INDEX 01 04:54:00
+TRACK 03 AUDIO
+PERFORMER "Stardust"
+TITLE "Music Sounds Better With You"
+INDEX 01 07:33:00
+TRACK 04 AUDIO
+PERFORMER "Mike Delgado"
+TITLE "Byrdman's Revenge"
+INDEX 01 11:00:00
+TRACK 05 AUDIO
+PERFORMER "Bob Sinclar"
+TITLE "Mo Underground People"
+INDEX 01 16:20:00
+TRACK 06 AUDIO
+PERFORMER "DeMoN & Etienne de Crécy"
+TITLE "Lil'f**k"
+INDEX 01 22:00:00
+TRACK 07 AUDIO
+PERFORMER "Joey Negro"
+TITLE "Master Rocker"
+INDEX 01 24:20:00
+TRACK 08 AUDIO
+PERFORMER "Phreek Plus One"
+TITLE "The Model"
+INDEX 01 29:15:00
+TRACK 09 AUDIO
+PERFORMER "Imagination"
+TITLE "Just an Illusion"
+INDEX 01 32:30:00
+TRACK 10 AUDIO
+PERFORMER "Carlos Rubio"
+TITLE "Una Familia"
+INDEX 01 35:09:00
+TRACK 11 AUDIO
+PERFORMER "Dave Angel"
+TITLE "Funk Music"
+INDEX 01 40:35:00
+TRACK 12 AUDIO
+PERFORMER "Kwality Kontrol"
+TITLE "2 Forget About U"
+INDEX 01 47:11:00
+TRACK 13 AUDIO
+PERFORMER "Dj Klass"
+TITLE "Paradoxal Lover (feat. Aymeric)"
+INDEX 01 51:58:00
