@@ -1,0 +1,55 @@
+PERFORMER "Stef.FM"
+TITLE "My Pair of Shoes - Volume 38"
+FILE "My_Pair_Of_Shoes_Vol._38_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Stef"
+TITLE "Intro"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Sonny J. Mason"
+TITLE "Life Is The Music"
+INDEX 01 01:01:00
+TRACK 03 AUDIO
+PERFORMER "Tortured Soul"
+TITLE "Your Dream Is My Dream"
+INDEX 01 05:29:00
+TRACK 04 AUDIO
+PERFORMER "Joey Youngman"
+TITLE "Qualudes"
+INDEX 01 11:36:00
+TRACK 05 AUDIO
+PERFORMER "H&H SoulSurvivors"
+TITLE "He Can Work It Out"
+INDEX 01 15:49:00
+TRACK 06 AUDIO
+PERFORMER "Shawn Christopher"
+TITLE "Don't Lose The Magic"
+INDEX 01 20:44:00
+TRACK 07 AUDIO
+PERFORMER "Sérgio Mendes feat. Ledisi"
+TITLE "Waters Of March"
+INDEX 01 28:09:00
+TRACK 08 AUDIO
+PERFORMER "Steal Vybe"
+TITLE "Gloria"
+INDEX 01 34:08:00
+TRACK 09 AUDIO
+PERFORMER "Roasted Soul feat Hollie O'Brien"
+TITLE "Now Or Never"
+INDEX 01 38:59:00
+TRACK 10 AUDIO
+PERFORMER "Sandra Lima"
+TITLE "Higher"
+INDEX 01 44:40:00
+TRACK 11 AUDIO
+PERFORMER "Rachel Claudio"
+TITLE "Freedom"
+INDEX 01 49:47:00
+TRACK 12 AUDIO
+PERFORMER "Micky More"
+TITLE "Zero Gravity"
+INDEX 01 54:53:00
+TRACK 13 AUDIO
+PERFORMER "Stef"
+TITLE "Outro"
+INDEX 01 61:56:00
