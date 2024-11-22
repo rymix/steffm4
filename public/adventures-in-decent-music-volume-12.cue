@@ -1,0 +1,55 @@
+PERFORMER "Stef.FM"
+TITLE "Adventures in Decent Music - Volume 12"
+FILE "Adventures_In_Decent_Music_Vol.12_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Keni Burke"
+TITLE "Let Somebody Love You"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Pleasure"
+TITLE "Spread That Feelin' (All Around)"
+INDEX 01 05:07:00
+TRACK 03 AUDIO
+PERFORMER "Unknown"
+TITLE "Unknown"
+INDEX 01 09:20:00
+TRACK 04 AUDIO
+PERFORMER "The Rebirth"
+TITLE "Love Issue"
+INDEX 01 12:12:00
+TRACK 05 AUDIO
+PERFORMER "Pockets"
+TITLE "Charisma"
+INDEX 01 16:39:00
+TRACK 06 AUDIO
+PERFORMER "Kleeer"
+TITLE "Get Tough"
+INDEX 01 21:18:00
+TRACK 07 AUDIO
+PERFORMER "Tortured Soul"
+TITLE "Special Lady"
+INDEX 01 26:15:00
+TRACK 08 AUDIO
+PERFORMER "Faze Action"
+TITLE "Disco Warrior (Special Disco Mix)"
+INDEX 01 32:38:00
+TRACK 09 AUDIO
+PERFORMER "Angela Bofill"
+TITLE "Rough Times"
+INDEX 01 37:21:00
+TRACK 10 AUDIO
+PERFORMER "Brass Wood & Steel"
+TITLE "Funkanova"
+INDEX 01 41:45:00
+TRACK 11 AUDIO
+PERFORMER "Stetsasonic"
+TITLE "Talkin' All That Jazz"
+INDEX 01 47:40:00
+TRACK 12 AUDIO
+PERFORMER "Al Jarreau"
+TITLE "Roof Garden"
+INDEX 01 53:14:00
+TRACK 13 AUDIO
+PERFORMER "Gilberto Gil"
+TITLE "Palco"
+INDEX 01 59:22:00
