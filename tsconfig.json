@@ -17,6 +17,6 @@
     "jsx": "preserve"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "post-build.js"],
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "scripts"],
   "types": ["node", "jest", "@testing-library/jest-dom"]
 }
