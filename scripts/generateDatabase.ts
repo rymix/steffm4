@@ -14,7 +14,7 @@ const staticFiles = {
 };
 
 // Function to read and parse a JSON file
-const readJSONFile = (filePath) => {
+const readJSONFile = (filePath: any) => {
   try {
     const data = fs.readFileSync(filePath, "utf-8");
     return JSON.parse(data);
@@ -32,8 +32,8 @@ const categories = readJSONFile(staticFiles.categories);
 // Dynamically load mixes
 const mixes = fs
   .readdirSync(mixesPath)
-  .filter((file) => file.endsWith(".json")) // Only include .json files
-  .map((file) => {
+  .filter((file: string) => file.endsWith(".json")) // Only include .json files
+  .map((file: any) => {
     const mixFilePath = path.resolve(mixesPath, file);
     return readJSONFile(mixFilePath); // Parse each mix file
   });
@@ -49,4 +49,3 @@ const database = {
 // Write the result to a JSON file
 fs.writeFileSync(outputFilePath, JSON.stringify(database, null, 2), "utf-8");
 console.log(`Database generated at ${outputFilePath}`);
-
