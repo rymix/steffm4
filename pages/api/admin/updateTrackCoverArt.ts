@@ -23,16 +23,12 @@ const saveImageLocally = async (
     });
     const buffer = Buffer.from(response.data, "binary");
 
-    // Generate a unique filename
     const fileName = `${artistName}-${trackName}-${size}.jpg`
       .replaceAll(/[^\da-z]/gi, "_")
       .toLowerCase();
     const filePath = path.join(process.cwd(), "public", "trackart", fileName);
 
-    // Ensure the directory exists
     fs.mkdirSync(path.dirname(filePath), { recursive: true });
-
-    // Write the file
     fs.writeFileSync(filePath, buffer);
 
     return `/trackart/${fileName}`;
@@ -41,6 +37,39 @@ const saveImageLocally = async (
     return size === "large"
       ? "/images/tracklist-placeholder.png"
       : "/images/tracklist-placeholder.png";
+  }
+};
+
+const updateIndividualMixFile = async (
+  mixcloudKey: string,
+  sectionNumber: number,
+  coverArt: any,
+) => {
+  const mixFilePath = path.join(
+    process.cwd(),
+    "db/mixes",
+    `${mixcloudKey}.json`,
+  );
+
+  if (fs.existsSync(mixFilePath)) {
+    const mixData = JSON.parse(fs.readFileSync(mixFilePath, "utf8"));
+
+    const trackIndex = mixData.tracks.findIndex(
+      (track: any) => track.sectionNumber === sectionNumber,
+    );
+
+    if (trackIndex !== -1) {
+      mixData.tracks[trackIndex] = {
+        ...mixData.tracks[trackIndex],
+        ...coverArt,
+      };
+
+      fs.writeFileSync(mixFilePath, JSON.stringify(mixData, null, 2));
+    } else {
+      console.warn(`Track not found in mix file: ${mixcloudKey}`);
+    }
+  } else {
+    console.warn(`Mix file not found for key: ${mixcloudKey}`);
   }
 };
 
@@ -64,7 +93,6 @@ const handler = async (
         const coverArtLarge = response.data.results[0].cover_image;
         const coverArtSmall = response.data.results[0].thumb;
 
-        // Save images locally
         const localCoverArtLarge = await saveImageLocally(
           coverArtLarge,
           artistName,
@@ -115,12 +143,15 @@ const handler = async (
         };
 
         await db.write();
+
+        // Update individual mix file
+        await updateIndividualMixFile(mixcloudKey, sectionNumber, coverArt);
+
+        res.status(200).json(coverArt);
       } else {
         res.status(404).json({ message: "Track not found" });
         return;
       }
-
-      res.status(200).json(coverArt);
     } catch (error) {
       console.error("Error fetching cover art:", error);
       res.status(500).json({ message: "Failed to fetch cover art" });

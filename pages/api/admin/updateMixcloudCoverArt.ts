@@ -2,7 +2,9 @@
 
 import axios from "axios";
 import { db, initializeDb } from "db";
+import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
+import path from "path";
 import { mcKeyFormatter } from "utils/functions";
 
 const handler = async (
@@ -23,11 +25,11 @@ const handler = async (
     }
 
     try {
+      // Fetch cover art data from Mixcloud
       const response = await axios.get(
         `https://api.mixcloud.com${mcKeyFormatter(mixcloudKey)}`,
       );
 
-      // Verify and extract the required data
       const { pictures } = response.data;
       if (!pictures) {
         throw new Error("Pictures data not found in the response");
@@ -37,12 +39,30 @@ const handler = async (
       const coverArtSmall = pictures.thumbnail;
       const coverArtDate = new Date().toISOString();
 
-      // Update the database with the new cover art data
+      // Update the aggregated mixes.json file
       db.data.mixes[mixIndex].coverArtLarge = coverArtLarge;
       db.data.mixes[mixIndex].coverArtSmall = coverArtSmall;
       db.data.mixes[mixIndex].coverArtDate = coverArtDate;
 
       await db.write();
+
+      // Update the individual mix file
+      const mixFilePath = path.join(
+        process.cwd(),
+        "db/mixes",
+        `${mixcloudKey}.json`,
+      );
+
+      if (fs.existsSync(mixFilePath)) {
+        const mixData = JSON.parse(fs.readFileSync(mixFilePath, "utf8"));
+        mixData.coverArtLarge = coverArtLarge;
+        mixData.coverArtSmall = coverArtSmall;
+        mixData.coverArtDate = coverArtDate;
+
+        fs.writeFileSync(mixFilePath, JSON.stringify(mixData, null, 2));
+      } else {
+        console.warn(`Mix file not found for key: ${mixcloudKey}`);
+      }
 
       res.status(200).json({
         mixcloudKey,
@@ -51,7 +71,7 @@ const handler = async (
         coverArtDate,
       });
     } catch (error) {
-      console.error("Error fetching cover art:", error); // Log the error to debug
+      console.error("Error fetching cover art:", error);
       res.status(500).json({ message: "Failed to fetch cover art" });
     }
   } else {
