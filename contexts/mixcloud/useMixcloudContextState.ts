@@ -7,6 +7,7 @@ import type {
 } from "contexts/mixcloud/types";
 import type { BackgroundExtended, Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
+import router from "next/router";
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import ReactGA from "react-ga4";
 import themes from "styles/themes";
@@ -814,7 +815,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Keypress Listeners */
   const handleKeyPress = useCallback(
     (event: KeyboardEvent) => {
-      if (window.location.pathname.startsWith("/admin")) {
+      if (
+        typeof window !== "undefined" &&
+        !router.pathname.startsWith("/admin")
+      ) {
         return;
       }
 
