@@ -72,7 +72,10 @@ const Jupiter: React.FC = () => {
   const easterEgg = (): void => {
     openModal(<OutRun />, undefined, undefined, true);
   };
-  useKonami(easterEgg);
+
+  if (!window.location.pathname.startsWith("/admin")) {
+    useKonami(easterEgg);
+  }
 
   const initialKnobValue = selectedCategory
     ? getCategoryIndex(categories, selectedCategory)

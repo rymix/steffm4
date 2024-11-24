@@ -814,6 +814,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Keypress Listeners */
   const handleKeyPress = useCallback(
     (event: KeyboardEvent) => {
+      if (window.location.pathname.startsWith("/admin")) {
+        return;
+      }
+
       switch (event.key) {
         case " ":
         case "k": {
