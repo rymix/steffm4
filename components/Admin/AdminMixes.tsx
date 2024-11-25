@@ -273,6 +273,27 @@ const AdminMixes = (): JSX.Element => {
     }
   };
 
+  const handleGenerateDatabase = async (): Promise<void> => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axiosInstance.post(
+        "/api/admin/generateDatabase",
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        },
+      );
+      if (response.status === 200) {
+        alert("Database generated successfully!");
+      } else {
+        alert("Failed to generate database.");
+      }
+    } catch (error) {
+      console.error("Error generating database:", error);
+      alert("Error generating database.");
+    }
+  };
+
   return (
     <AdminLayout>
       <StyledAdminWrapper>
@@ -287,6 +308,9 @@ const AdminMixes = (): JSX.Element => {
           </StyledAdminButton>
           <StyledAdminButton onClick={handleUpdateAllTracksCoverArt}>
             Update All Tracks Cover Art
+          </StyledAdminButton>
+          <StyledAdminButton onClick={handleGenerateDatabase}>
+            Generate Database
           </StyledAdminButton>
         </StyledAdminHeader>
         <StyledAdminTable>

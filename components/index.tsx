@@ -40,6 +40,7 @@ import {
 } from "components/Styled";
 import Tooltip from "components/Tooltip";
 import { useMixcloud } from "contexts/mixcloud";
+import router from "next/router";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { useKonami } from "react-konami-code";
@@ -72,7 +73,10 @@ const Jupiter: React.FC = () => {
   const easterEgg = (): void => {
     openModal(<OutRun />, undefined, undefined, true);
   };
-  useKonami(easterEgg);
+
+  if (typeof window !== "undefined" && !router.pathname.startsWith("/admin")) {
+    useKonami(easterEgg);
+  }
 
   const initialKnobValue = selectedCategory
     ? getCategoryIndex(categories, selectedCategory)

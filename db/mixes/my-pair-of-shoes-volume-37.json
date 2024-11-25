@@ -1,8 +1,8 @@
 {
   "category": "mpos",
-  "coverArtDate": "",
-  "coverArtLarge": "",
-  "coverArtSmall": "",
+  "coverArtDate": "2024-11-24T16:56:50.802Z",
+  "coverArtLarge": "https://thumbnailer.mixcloud.com/unsafe/600x600/extaudio/8/b/d/e/d354-7ae7-4d6a-8867-b0711c72d23d",
+  "coverArtSmall": "https://thumbnailer.mixcloud.com/unsafe/50x50/extaudio/8/b/d/e/d354-7ae7-4d6a-8867-b0711c72d23d",
   "duration": "1:00:52",
   "fileName": "My_Pair_Of_Shoes_Vol._37_hifi.mp3",
   "listOrder": 37,
@@ -12,128 +12,153 @@
   "releaseDate": "June 2008",
   "uploadedDate": "23 November 2024",
   "shortName": "MPOS - Volume 37",
-  "tags": ["house", "deep house"],
+  "tags": [
+    "house",
+    "deep house"
+  ],
   "tracks": [
     {
       "publisher": "Beat Monkey",
       "startTime": "00:00",
       "trackName": "Summer Love",
       "artistName": "H&H pres. Groove Delivers feat. Kaysee",
-      "coverArtDate": "",
-      "coverArtLarge": "",
-      "coverArtSmall": "",
+      "coverArtDate": "2024-11-24T16:58:38.010Z",
+      "coverArtLarge": "/images/tracklist-placeholder.png",
+      "coverArtSmall": "/images/tracklist-placeholder.png",
       "sectionNumber": 1,
-      "remixArtistName": "Park Street Summer Vibe Mix"
+      "remixArtistName": "Park Street Summer Vibe Mix",
+      "localCoverArtLarge": "/images/tracklist-placeholder.png",
+      "localCoverArtSmall": "/images/tracklist-placeholder.png"
     },
     {
       "publisher": "Gotta Keep Faith",
       "startTime": "07:24",
       "trackName": "Praise Always",
       "artistName": "Diva Down Entertainment feat. Su Su Bobien",
-      "coverArtDate": "",
-      "coverArtLarge": "",
-      "coverArtSmall": "",
+      "coverArtDate": "2024-11-24T16:58:38.785Z",
+      "coverArtLarge": "/images/tracklist-placeholder.png",
+      "coverArtSmall": "/images/tracklist-placeholder.png",
       "sectionNumber": 2,
-      "remixArtistName": "Dolls Combers MonaLeslie Mix"
+      "remixArtistName": "Dolls Combers MonaLeslie Mix",
+      "localCoverArtLarge": "/images/tracklist-placeholder.png",
+      "localCoverArtSmall": "/images/tracklist-placeholder.png"
     },
     {
       "publisher": "Deep Haven",
       "startTime": "12:10",
       "trackName": "Truth (I Know You Are Beautiful)",
       "artistName": "Sterling Ensemble feat. Mario Inchausti",
-      "coverArtDate": "",
-      "coverArtLarge": "",
-      "coverArtSmall": "",
+      "coverArtDate": "2024-11-24T16:58:39.547Z",
+      "coverArtLarge": "/images/tracklist-placeholder.png",
+      "coverArtSmall": "/images/tracklist-placeholder.png",
       "sectionNumber": 3,
-      "remixArtistName": "Man-X & Reel Soul's Sunset Nights Mix"
+      "remixArtistName": "Man-X & Reel Soul's Sunset Nights Mix",
+      "localCoverArtLarge": "/images/tracklist-placeholder.png",
+      "localCoverArtSmall": "/images/tracklist-placeholder.png"
     },
     {
       "publisher": "T's Box",
       "startTime": "18:25",
       "trackName": "Stay With Me",
       "artistName": "Glenn Lewis",
-      "coverArtDate": "",
-      "coverArtLarge": "",
-      "coverArtSmall": "",
+      "coverArtDate": "2024-11-24T16:58:40.328Z",
+      "coverArtLarge": "https://i.discogs.com/hRr5OoaZYRSrBy8UIEzTR8p7rMhk1S1zLlUvwGJRzKI/rs:fit/g:sm/q:90/h:80/w:175/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3Mjk4/MjUtMTIzOTYzNzM2/My5qcGVn.jpeg",
+      "coverArtSmall": "https://i.discogs.com/_KOOkw82_KnsKrzbdlpgA6hxiLG7o9jsKL-mTfpM56o/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3Mjk4/MjUtMTIzOTYzNzM2/My5qcGVn.jpeg",
       "sectionNumber": 4,
-      "remixArtistName": "T's Vocal Mix"
+      "remixArtistName": "T's Vocal Mix",
+      "localCoverArtLarge": "/trackart/glenn_lewis_stay_with_me_large_jpg",
+      "localCoverArtSmall": "/trackart/glenn_lewis_stay_with_me_small_jpg"
     },
     {
       "publisher": "Jellybean Soul",
       "startTime": "24:18",
       "trackName": "The Lover That You Are",
       "artistName": "Pulse feat. Antoinette Roberson",
-      "coverArtDate": "",
-      "coverArtLarge": "",
-      "coverArtSmall": "",
+      "coverArtDate": "2024-11-24T16:58:41.296Z",
+      "coverArtLarge": "https://i.discogs.com/zUlhssx4VGhIj9QqQG7qEATqa2LSLcVjzeCylGrFXk8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5ODc4/NC0xNTA1OTQxMjAy/LTc4MzAuanBlZw.jpeg",
+      "coverArtSmall": "https://i.discogs.com/NzXCRtVIY49SBCQuWlF3nAfBQNVlERBx2kTYVeuvUKs/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5ODc4/NC0xNTA1OTQxMjAy/LTc4MzAuanBlZw.jpeg",
       "sectionNumber": 5,
-      "remixArtistName": "Marlon D & George Mena Club Mix"
+      "remixArtistName": "Marlon D & George Mena Club Mix",
+      "localCoverArtLarge": "/trackart/pulse_feat__antoinette_roberson_the_lover_that_you_are_large_jpg",
+      "localCoverArtSmall": "/trackart/pulse_feat__antoinette_roberson_the_lover_that_you_are_small_jpg"
     },
     {
       "publisher": "CDr",
       "startTime": "28:25",
       "trackName": "Don't Take It Personal",
       "artistName": "Wahoo",
-      "coverArtDate": "",
-      "coverArtLarge": "",
-      "coverArtSmall": "",
+      "coverArtDate": "2024-11-24T16:58:42.334Z",
+      "coverArtLarge": "https://i.discogs.com/B6JTHHHg_UG6rmyS5KYTiWOSO42t77f_nQ5bjGMnzDQ/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMTYy/NDAtMTQ5MzMyNjUy/MS04NzA4LmpwZWc.jpeg",
+      "coverArtSmall": "https://i.discogs.com/KcnHWiWItROwgdni8-JtR3Sp4xlXkidf_fciR9GNJgw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMTYy/NDAtMTQ5MzMyNjUy/MS04NzA4LmpwZWc.jpeg",
       "sectionNumber": 6,
-      "remixArtistName": "Groove Assassin Remix"
+      "remixArtistName": "Groove Assassin Remix",
+      "localCoverArtLarge": "/trackart/wahoo_don_t_take_it_personal_large_jpg",
+      "localCoverArtSmall": "/trackart/wahoo_don_t_take_it_personal_small_jpg"
     },
     {
       "publisher": "DIY",
       "startTime": "32:55",
       "trackName": "Real Love",
       "artistName": "Samuele Sartini feat. Michael Watford",
-      "coverArtDate": "",
-      "coverArtLarge": "",
-      "coverArtSmall": "",
+      "coverArtDate": "2024-11-24T16:58:43.554Z",
+      "coverArtLarge": "https://i.discogs.com/QQaES98hC2H7Ypbp7v4qSM-CkQNgux3B6tltfeT-amg/rs:fit/g:sm/q:90/h:420/w:420/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1NTA5/MjctMTMxOTkxNzM1/Ni5qcGVn.jpeg",
+      "coverArtSmall": "https://i.discogs.com/CXJ9k6ooQyCHGPdzHKCOjtFRTckGkIy5evtBPTcxYLk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1NTA5/MjctMTMxOTkxNzM1/Ni5qcGVn.jpeg",
       "sectionNumber": 7,
-      "remixArtistName": "Original Mix"
+      "remixArtistName": "Original Mix",
+      "localCoverArtLarge": "/trackart/samuele_sartini_feat__michael_watford_real_love_large_jpg",
+      "localCoverArtSmall": "/trackart/samuele_sartini_feat__michael_watford_real_love_small_jpg"
     },
     {
       "publisher": "Tasty Recordings Digital",
       "startTime": "40:40",
       "trackName": "Push The Funk",
       "artistName": "Disko Junkie",
-      "coverArtDate": "",
-      "coverArtLarge": "",
-      "coverArtSmall": "",
+      "coverArtDate": "2024-11-24T16:58:44.433Z",
+      "coverArtLarge": "https://i.discogs.com/97RgUwAIxbcWThcfFN3qbY89qgOrYlhqHJuCUEQc1bo/rs:fit/g:sm/q:90/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNjUz/MzEwLTE1MjAwODgz/MjMtNjQyNS5qcGVn.jpeg",
+      "coverArtSmall": "https://i.discogs.com/6Dys9TL296mi2KIK2iXwcCPsr5FMQz5Tz_lP_xCZVNk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNjUz/MzEwLTE1MjAwODgz/MjMtNjQyNS5qcGVn.jpeg",
       "sectionNumber": 8,
-      "remixArtistName": "Soul Power Remix"
+      "remixArtistName": "Soul Power Remix",
+      "localCoverArtLarge": "/trackart/disko_junkie_push_the_funk_large_jpg",
+      "localCoverArtSmall": "/trackart/disko_junkie_push_the_funk_small_jpg"
     },
     {
       "publisher": "Nitelife",
       "startTime": "45:15",
       "trackName": "Never Give You Up",
       "artistName": "Crispin J. Glover feat. Johnnie Fiori",
-      "coverArtDate": "",
-      "coverArtLarge": "",
-      "coverArtSmall": "",
+      "coverArtDate": "2024-11-24T16:58:45.271Z",
+      "coverArtLarge": "https://i.discogs.com/q6kMwKVb9NQxbZikYQ6MFFEbX1wd3Aaaj_FHg8PqdxM/rs:fit/g:sm/q:90/h:508/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMTM1/NC0xNDE0NzA5Njk5/LTQ2MzkuanBlZw.jpeg",
+      "coverArtSmall": "https://i.discogs.com/CmOjrPRvuo4bASEaXkKxM6kt4GKMFXvY8EJcXJeOpV8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMTM1/NC0xNDE0NzA5Njk5/LTQ2MzkuanBlZw.jpeg",
       "sectionNumber": 9,
-      "remixArtistName": "Fabio Bacchini's Discofied Mix"
+      "remixArtistName": "Fabio Bacchini's Discofied Mix",
+      "localCoverArtLarge": "/trackart/crispin_j__glover_feat__johnnie_fiori_never_give_you_up_large_jpg",
+      "localCoverArtSmall": "/trackart/crispin_j__glover_feat__johnnie_fiori_never_give_you_up_small_jpg"
     },
     {
       "publisher": "Farris Wheel Records",
       "startTime": "50:15",
       "trackName": "Visions Of The Future",
       "artistName": "Gene Farris",
-      "coverArtDate": "",
-      "coverArtLarge": "",
-      "coverArtSmall": "",
+      "coverArtDate": "2024-11-24T16:58:46.193Z",
+      "coverArtLarge": "https://i.discogs.com/5PVM_AcJ3fIvj3BkfcMsccFjc3b5jmGB-1ue2hMtH9A/rs:fit/g:sm/q:90/h:151/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMTA3/OTgtMTIwODYxNzk5/My5qcGVn.jpeg",
+      "coverArtSmall": "https://i.discogs.com/sOAMzKYAk47Ky6jGGhlNXnq1SDvxtitEHtU-3G1hPws/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMTA3/OTgtMTIwODYxNzk5/My5qcGVn.jpeg",
       "sectionNumber": 10,
-      "remixArtistName": "Fabio Bacchini Dub Mix"
+      "remixArtistName": "Fabio Bacchini Dub Mix",
+      "localCoverArtLarge": "/trackart/gene_farris_visions_of_the_future_large_jpg",
+      "localCoverArtSmall": "/trackart/gene_farris_visions_of_the_future_small_jpg"
     },
     {
       "publisher": "Defected",
       "startTime": "54:15",
       "trackName": "Put Our Heads Together",
       "artistName": "The O'Jays",
-      "coverArtDate": "",
-      "coverArtLarge": "",
-      "coverArtSmall": "",
+      "coverArtDate": "2024-11-24T16:58:47.065Z",
+      "coverArtLarge": "https://i.discogs.com/ABQcP1LHIzfZDa7XsfcR1UoeEjw0YFqduoOTEytwDZ4/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMjE0/NC0xMzczMTUyNTQ2/LTYyODkuanBlZw.jpeg",
+      "coverArtSmall": "https://i.discogs.com/pdoVPQ7tTS83dKXnpDqHwsSCAp1HK_zm7AbCbWJ4BCA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMjE0/NC0xMzczMTUyNTQ2/LTYyODkuanBlZw.jpeg",
       "sectionNumber": 11,
-      "remixArtistName": "Joey Negro Edit"
+      "remixArtistName": "Joey Negro Edit",
+      "localCoverArtLarge": "/trackart/the_o_jays_put_our_heads_together_large_jpg",
+      "localCoverArtSmall": "/trackart/the_o_jays_put_our_heads_together_small_jpg"
     }
   ]
 }
