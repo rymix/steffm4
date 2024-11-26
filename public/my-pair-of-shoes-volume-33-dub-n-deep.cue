@@ -1,0 +1,55 @@
+PERFORMER "Stef.FM"
+TITLE "My Pair of Shoes - Volume 33 - Dub 'n' Deep"
+FILE "My_Pair_Of_Shoes_Vol._33_dub_n_deep_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Lukas Greenberg feat. Idiophonic"
+TITLE "Fahrenheit"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Scott Wozniak"
+TITLE "Breath"
+INDEX 01 06:16:00
+TRACK 03 AUDIO
+PERFORMER "Ralphski feat. Kristie"
+TITLE "Keep Me Awake"
+INDEX 01 09:54:00
+TRACK 04 AUDIO
+PERFORMER "Alex Botar"
+TITLE "I See"
+INDEX 01 14:33:00
+TRACK 05 AUDIO
+PERFORMER "Digital Villains"
+TITLE "Jiffy Swing"
+INDEX 01 17:40:00
+TRACK 06 AUDIO
+PERFORMER "Lawnchair Generals"
+TITLE "When I Think"
+INDEX 01 21:49:00
+TRACK 07 AUDIO
+PERFORMER "Trevor Lovey"
+TITLE "Feel The Horns"
+INDEX 01 27:21:00
+TRACK 08 AUDIO
+PERFORMER "Ian Pooley"
+TITLE "Samo Iluzija"
+INDEX 01 32:11:00
+TRACK 09 AUDIO
+PERFORMER "St. Germain"
+TITLE "Alabama Blues"
+INDEX 01 37:41:00
+TRACK 10 AUDIO
+PERFORMER "Laurentius"
+TITLE "Karate Samba"
+INDEX 01 43:14:00
+TRACK 11 AUDIO
+PERFORMER "Ranura De Alma"
+TITLE "Mariposa"
+INDEX 01 50:04:00
+TRACK 12 AUDIO
+PERFORMER "Yogi & Husky"
+TITLE "Let It Go"
+INDEX 01 55:53:00
+TRACK 13 AUDIO
+PERFORMER "Tom Middleton"
+TITLE "Starq"
+INDEX 01 59:49:00
