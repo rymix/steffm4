@@ -1,0 +1,67 @@
+PERFORMER "Stef.FM"
+TITLE "My Pair of Shoes - Volume 31 - Jackin' Deep 'n' Dub"
+FILE "My_Pair_Of_Shoes_Vol._31_jackin_deep_n_dub_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Boeing"
+TITLE "Atar"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "d-t3ch"
+TITLE "From The Soul"
+INDEX 01 01:34:00
+TRACK 03 AUDIO
+PERFORMER "Latenight Society"
+TITLE "Can't Figure It Out"
+INDEX 01 03:34:00
+TRACK 04 AUDIO
+PERFORMER "Kinky Movement"
+TITLE "Atlantis"
+INDEX 01 06:05:00
+TRACK 05 AUDIO
+PERFORMER "Formidable Force"
+TITLE "Zip Jumper"
+INDEX 01 08:37:00
+TRACK 06 AUDIO
+PERFORMER "Shik Stylko"
+TITLE "Minion"
+INDEX 01 12:20:00
+TRACK 07 AUDIO
+PERFORMER "Taucher and Trancefeld"
+TITLE "No More Clean Records"
+INDEX 01 18:43:00
+TRACK 08 AUDIO
+PERFORMER "Dan Electro"
+TITLE "I've Got That Feeling"
+INDEX 01 24:46:00
+TRACK 09 AUDIO
+PERFORMER "Doug Willis"
+TITLE "You & I"
+INDEX 01 28:02:00
+TRACK 10 AUDIO
+PERFORMER "Phil T Project feat. D'Layna"
+TITLE "Love Commandments"
+INDEX 01 32:08:00
+TRACK 11 AUDIO
+PERFORMER "UPZ feat. Rasu"
+TITLE "NoiZ"
+INDEX 01 36:10:00
+TRACK 12 AUDIO
+PERFORMER "Ross Couch"
+TITLE "One Night In The Bronx"
+INDEX 01 41:50:00
+TRACK 13 AUDIO
+PERFORMER "Ross Couch"
+TITLE "Playin' Jazz"
+INDEX 01 45:36:00
+TRACK 14 AUDIO
+PERFORMER "Wildchild"
+TITLE "Jump To My Beat"
+INDEX 01 50:53:00
+TRACK 15 AUDIO
+PERFORMER "Roy Ayers"
+TITLE "Chicago"
+INDEX 01 55:00:00
+TRACK 16 AUDIO
+PERFORMER "Rhythm Section"
+TITLE "Sunshine"
+INDEX 01 58:34:00
