@@ -1,0 +1,59 @@
+PERFORMER "Stef.FM"
+TITLE "My Pair of Shoes - Volume 26 - Deep 'n' Deb"
+FILE "My_Pair_Of_Shoes_Vol._26_deep_n_dub_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Ski Oakenfull"
+TITLE "Illuminations"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Tim Fuller"
+TITLE "Show Me Right"
+INDEX 01 05:47:00
+TRACK 03 AUDIO
+PERFORMER "Chuck Love"
+TITLE "Beatdown"
+INDEX 01 09:01:00
+TRACK 04 AUDIO
+PERFORMER "Kurd Maverick"
+TITLE "Let's Work"
+INDEX 01 10:30:00
+TRACK 05 AUDIO
+PERFORMER "Nacho Marco"
+TITLE "Sundays In Love"
+INDEX 01 13:20:00
+TRACK 06 AUDIO
+PERFORMER "Mood II Swing feat. Tara J."
+TITLE "Passing Time"
+INDEX 01 17:01:00
+TRACK 07 AUDIO
+PERFORMER "Kiko Navarro"
+TITLE "O-Yah"
+INDEX 01 20:55:00
+TRACK 08 AUDIO
+PERFORMER "Jamello"
+TITLE "Something"
+INDEX 01 26:44:00
+TRACK 09 AUDIO
+PERFORMER "Ken (ECB)"
+TITLE "I Heart Music"
+INDEX 01 29:44:00
+TRACK 10 AUDIO
+PERFORMER "Schmoov!"
+TITLE "The Swirl"
+INDEX 01 34:41:00
+TRACK 11 AUDIO
+PERFORMER "Latenight Society"
+TITLE "Scatterbox"
+INDEX 01 39:43:00
+TRACK 12 AUDIO
+PERFORMER "Schmoov!"
+TITLE "Hot Flash"
+INDEX 01 45:17:00
+TRACK 13 AUDIO
+PERFORMER "Ian Pooley"
+TITLE "All Nite"
+INDEX 01 50:36:00
+TRACK 14 AUDIO
+PERFORMER "The Keith Thompson Project"
+TITLE "The Rhythm Of Life"
+INDEX 01 55:38:00
