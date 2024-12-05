@@ -1,0 +1,59 @@
+PERFORMER "Stef.FM"
+TITLE "Adventures in Decent Music - Volume 6"
+FILE "Adventures_In_Decent_Music_Vol._6_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Sygaire"
+TITLE "Got to Be There"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Jazzanova"
+TITLE "Theme From 'Belle Et Fou' - The Opening"
+INDEX 01 07:16:00
+TRACK 03 AUDIO
+PERFORMER "Joss Stone"
+TITLE "Tell Me 'Bout It"
+INDEX 01 10:51:00
+TRACK 04 AUDIO
+PERFORMER "Lovebirds"
+TITLE "Can't Get Along"
+INDEX 01 14:24:00
+TRACK 05 AUDIO
+PERFORMER "Crazy Penis"
+TITLE "You Started Something"
+INDEX 01 18:29:00
+TRACK 06 AUDIO
+PERFORMER "Diana Brown"
+TITLE "Love In Return"
+INDEX 01 25:06:00
+TRACK 07 AUDIO
+PERFORMER "Fabio Nobile"
+TITLE "Always Love"
+INDEX 01 29:51:00
+TRACK 08 AUDIO
+PERFORMER "Christian Prommer's Drumlesson"
+TITLE "Strings of Life"
+INDEX 01 32:38:00
+TRACK 09 AUDIO
+PERFORMER "Breakwater"
+TITLE "Let Love In"
+INDEX 01 37:01:00
+TRACK 10 AUDIO
+PERFORMER "The Sound Stylistics"
+TITLE "Put It In the Pocket"
+INDEX 01 40:40:00
+TRACK 11 AUDIO
+PERFORMER "Billy Evans"
+TITLE "Prisoner Of My Weaness"
+INDEX 01 44:19:00
+TRACK 12 AUDIO
+PERFORMER "Patrick L"
+TITLE "Blah"
+INDEX 01 49:14:00
+TRACK 13 AUDIO
+PERFORMER "Root Soul"
+TITLE "Spirit Of Love"
+INDEX 01 53:18:00
+TRACK 14 AUDIO
+PERFORMER "Fonzi Thornton"
+TITLE "I Work for a Livin'"
+INDEX 01 57:29:00
