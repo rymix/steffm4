@@ -13,6 +13,10 @@ export const StyledScrollIndicator = styled.div`
   opacity: 0.5;
   transition: opacity 0.3s ease;
 
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 1))
+    drop-shadow(0 0 3px rgba(255, 255, 255, 0.9))
+    drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+
   &:hover {
     opacity: 1;
   }
