@@ -1,0 +1,55 @@
+PERFORMER "Stef.FM"
+TITLE "My Pair of Shoes - Volume 13 - Soul 'n' Jazz"
+FILE "My_Pair_Of_Shoes_Vol._13_soul_n_jazz_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Matteo Ionesco feat. Brent St. Clair"
+TITLE "Stand Up"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "N'Dea Davenport"
+TITLE "One Day My Love"
+INDEX 01 05:26:00
+TRACK 03 AUDIO
+PERFORMER "Denzee"
+TITLE "Like To Party"
+INDEX 01 11:17:00
+TRACK 04 AUDIO
+PERFORMER "AG Thomas"
+TITLE "The 1,2"
+INDEX 01 15:50:00
+TRACK 05 AUDIO
+PERFORMER "John Legend"
+TITLE "Ordinary People"
+INDEX 01 19:52:00
+TRACK 06 AUDIO
+PERFORMER "Kloud 9 feat. Maysa"
+TITLE "Running"
+INDEX 01 24:00:00
+TRACK 07 AUDIO
+PERFORMER "Autosoul"
+TITLE "Music"
+INDEX 01 27:27:00
+TRACK 08 AUDIO
+PERFORMER "Stereo Mutants feat. Litl'n"
+TITLE "Mama's & Brothers"
+INDEX 01 33:52:00
+TRACK 09 AUDIO
+PERFORMER "Innerdaze"
+TITLE "Supa 7"
+INDEX 01 38:03:00
+TRACK 10 AUDIO
+PERFORMER "Sessomatto"
+TITLE "Moving On (Accapella)"
+INDEX 01 43:10:00
+TRACK 11 AUDIO
+PERFORMER "Deep Solution"
+TITLE "Trans-Atlantic Jazz (pt. 1)"
+INDEX 01 49:04:00
+TRACK 12 AUDIO
+PERFORMER "Julien Jabre"
+TITLE "Swimming Places"
+INDEX 01 55:28:00
+TRACK 13 AUDIO
+PERFORMER "Tom & Joyce"
+TITLE "Outro Mundo"
+INDEX 01 61:23:00
