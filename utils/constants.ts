@@ -38,3 +38,4 @@ export const DEFAULT_BACKGROUND: BackgroundExtended = {
     order: 1,
   },
 };
+export const STORAGE_PREFIX = "https://steffm.blob.core.windows.net/steffm/";

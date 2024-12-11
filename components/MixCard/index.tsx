@@ -1,3 +1,4 @@
+import Download from "components/Download";
 import Favourite from "components/Favourite";
 import {
   StyledCategoryName,
@@ -61,6 +62,7 @@ export const MixCard: React.FC<MixCardProps> = ({ category = false }) => {
           <StyledInteractionsWrapper>
             <Favourite mix={mixDetails} />
             <Share />
+            <Download mix={mixDetails} />
           </StyledInteractionsWrapper>
 
           <StyledMixTags>
