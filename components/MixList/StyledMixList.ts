@@ -11,7 +11,7 @@ export const StyledMixList = styled.div``;
 export const StyledMixRow = styled.div<StyledMixRowProps>`
   border-left: 12px solid transparent;
   display: grid;
-  grid-template-columns: 30px 30px 30px 70px 1fr 40px;
+  grid-template-columns: 30px 30px 30px 30px 70px 1fr 40px;
   margin-bottom: 20px;
 
   ${(props) =>

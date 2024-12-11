@@ -2,6 +2,7 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import Download from "components/Download";
 import Favourite from "components/Favourite";
 import {
   StyledMixCoverArt,
@@ -65,6 +66,7 @@ export const MixRow: React.FC<MixRowProps> = ({ mix, highlight }) => {
         </StyledMixPlay>
         <Favourite mix={mix} />
         <Share mix={mix} />
+        <Download mix={mix} />
         <StyledMixCoverArt onClick={handleExpandToggle}>
           <StyledMixCoverArtImage src={mix.coverArtSmall} />
         </StyledMixCoverArt>
