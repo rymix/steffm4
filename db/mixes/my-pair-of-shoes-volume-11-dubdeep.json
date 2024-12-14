@@ -1,8 +1,8 @@
 {
   "category": "mpos",
-  "coverArtDate": "",
-  "coverArtLarge": "",
-  "coverArtSmall": "",
+  "coverArtDate": "2024-12-14T21:07:12.609Z",
+  "coverArtLarge": "https://thumbnailer.mixcloud.com/unsafe/600x600/extaudio/0/c/8/a/9b49-bf5b-488c-b550-6d927f9e9197",
+  "coverArtSmall": "https://thumbnailer.mixcloud.com/unsafe/50x50/extaudio/0/c/8/a/9b49-bf5b-488c-b550-6d927f9e9197",
   "duration": "1:09:35",
   "fileName": "My_Pair_Of_Shoes_Vol._11_dubdeep_hifi.mp3",
   "listOrder": 11,
@@ -12,11 +12,7 @@
   "releaseDate": "May 2006",
   "uploadedDate": "14 December 2024",
   "shortName": "MPOS - Volume 11 - Dub/Deep",
-  "tags": [
-    "house",
-    "deep house",
-    "dub"
-  ],
+  "tags": ["house", "deep house", "dub"],
   "tracks": [
     {
       "publisher": "",
