@@ -1,0 +1,63 @@
+PERFORMER "Stef.FM"
+TITLE "My Pair of Shoes - Volume 11 - Dub/Deep"
+FILE "My_Pair_Of_Shoes_Vol._11_dubdeep_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Soul Orchestra / Vernon & DaCosta"
+TITLE "Flat & Round"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Ray Mang & Foolish Felix"
+TITLE "Who Said Boogie?"
+INDEX 01 04:06:00
+TRACK 03 AUDIO
+PERFORMER "Mike Monday"
+TITLE "Boondubble"
+INDEX 01 06:28:00
+TRACK 04 AUDIO
+PERFORMER "Warren Clarke"
+TITLE "Jazz"
+INDEX 01 09:26:00
+TRACK 05 AUDIO
+PERFORMER "Jon Cutler & Jocelyn Brown"
+TITLE "One"
+INDEX 01 16:49:00
+TRACK 06 AUDIO
+PERFORMER "Akabu"
+TITLE "Phuture Bound"
+INDEX 01 22:58:00
+TRACK 07 AUDIO
+PERFORMER "Julien Jabre"
+TITLE "Swimming Places"
+INDEX 01 26:26:00
+TRACK 08 AUDIO
+PERFORMER "Milton Jackson"
+TITLE "1998"
+INDEX 01 30:12:00
+TRACK 09 AUDIO
+PERFORMER "Hardsoul feat. Shaun Escoffery"
+TITLE "No Man"
+INDEX 01 36:03:00
+TRACK 10 AUDIO
+PERFORMER "Byron Stingily & Kimara Lovelace"
+TITLE "About Our Love"
+INDEX 01 40:33:00
+TRACK 11 AUDIO
+PERFORMER "Blaze"
+TITLE "How Deep Is Your Love"
+INDEX 01 44:05:00
+TRACK 12 AUDIO
+PERFORMER "Karizma feat. DJ Spen"
+TITLE "4 The Love"
+INDEX 01 50:53:00
+TRACK 13 AUDIO
+PERFORMER "Troydon"
+TITLE "Listen Up"
+INDEX 01 54:37:00
+TRACK 14 AUDIO
+PERFORMER "Todd Terje"
+TITLE "Eurodans"
+INDEX 01 57:34:00
+TRACK 15 AUDIO
+PERFORMER "Amillionsons"
+TITLE "Misty Blue"
+INDEX 01 62:12:00
