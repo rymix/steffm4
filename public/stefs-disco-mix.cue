@@ -1,0 +1,55 @@
+PERFORMER "Stef.FM"
+TITLE "Special - Stef's Disco Mix"
+FILE "Disco-Mix_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "Brainstorm"
+TITLE "We're On Our Way Home, Pt. 1"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Joey Negro and Sean P"
+TITLE "Bourgie Bourgie"
+INDEX 01 03:32:00
+TRACK 03 AUDIO
+PERFORMER "Stargard"
+TITLE "Wear It Out"
+INDEX 01 08:24:00
+TRACK 04 AUDIO
+PERFORMER "Invisible Man's Band"
+TITLE "All Night Thing"
+INDEX 01 12:37:00
+TRACK 05 AUDIO
+PERFORMER "Dan Hartman"
+TITLE "Relight My Fire"
+INDEX 01 18:35:00
+TRACK 06 AUDIO
+PERFORMER "First Choice"
+TITLE "Double Cross"
+INDEX 01 25:56:00
+TRACK 07 AUDIO
+PERFORMER "Sanction"
+TITLE "Got to Get Your Love (Vocal)"
+INDEX 01 31:47:00
+TRACK 08 AUDIO
+PERFORMER "Class Action"
+TITLE "Weekend (feat. Chris Wiltshire)"
+INDEX 01 35:05:00
+TRACK 09 AUDIO
+PERFORMER "Sylvester"
+TITLE "Over And Over"
+INDEX 01 40:47:00
+TRACK 10 AUDIO
+PERFORMER "Walter & Lomax"
+TITLE "Bring the Funk Back"
+INDEX 01 44:52:00
+TRACK 11 AUDIO
+PERFORMER "Shalamar"
+TITLE "Right in the Socket"
+INDEX 01 50:45:00
+TRACK 12 AUDIO
+PERFORMER "Chic"
+TITLE "Everybody Dance"
+INDEX 01 53:36:00
+TRACK 13 AUDIO
+PERFORMER "Diana Ross"
+TITLE "No One Gets The Prize/The Boss"
+INDEX 01 59:49:00
