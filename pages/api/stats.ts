@@ -62,6 +62,10 @@ const handler = async (
     .slice(0, 10)
     .map(([tag, count]) => ({ tag, count }));
 
+  const allTagCounts = Object.entries(tagCounts)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([tag, count]) => ({ tag, count }));
+
   const remixArtistTrackCounts: { [key: string]: number } = tracks.reduce(
     (acc, track) => {
       if (track.remixArtistName) {
@@ -87,14 +91,26 @@ const handler = async (
     .slice(0, 10)
     .map(([artistName, count]) => ({ artistName, count }));
 
+  const allArtistTrackCounts = Object.entries(artistTrackCounts)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([artistName, count]) => ({ artistName, count }));
+
   const top10RemixArtistTrackCounts = Object.entries(remixArtistTrackCounts)
-    .sort((a, b) => b[1] - a[1])
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
     .slice(0, 10)
     .map(([remixArtistName, count]) => ({ remixArtistName, count }));
 
+  const allRemixArtistTrackCounts = Object.entries(remixArtistTrackCounts)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([remixArtistName, count]) => ({ remixArtistName, count }));
+
   const top10PublisherCounts = Object.entries(publisherCounts)
-    .sort((a, b) => b[1] - a[1])
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
     .slice(0, 10)
+    .map(([publisher, count]) => ({ publisher, count }));
+
+  const allPublisherCounts = Object.entries(publisherCounts)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
     .map(([publisher, count]) => ({ publisher, count }));
 
   const averageMixDurationInSeconds = totalDurationInSeconds / mixCount;
@@ -110,15 +126,19 @@ const handler = async (
     .padStart(2, "0")}:${averageMixSeconds.toString().padStart(2, "0")}`;
 
   res.status(200).json({
-    mixCount,
-    trackCount,
-    totalDuration,
-    categoryMixCounts,
-    top10TagCounts,
+    artistTrackCounts: allArtistTrackCounts,
     averageMixDuration,
+    categoryMixCounts,
+    mixCount,
+    publisherCounts: allPublisherCounts,
+    remixArtistTrackCounts: allRemixArtistTrackCounts,
+    tagCounts: allTagCounts,
     top10ArtistTrackCounts,
-    top10RemixArtistTrackCounts,
     top10PublisherCounts,
+    top10RemixArtistTrackCounts,
+    top10TagCounts,
+    totalDuration,
+    trackCount,
   });
 };
 

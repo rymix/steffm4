@@ -1,3 +1,5 @@
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
 import styled from "styled-components";
 
 export const StyledStatisticsContainer = styled.div`
@@ -49,3 +51,23 @@ export const StyledSummaryList = styled.ul`
   flex-direction: column;
   gap: 5px;
 `;
+
+export const StyledShowHideBlock = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  color: grey;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: black;
+  }
+`;
+
+export const StyledArrowDropUp = styled(ArrowDropUp)``;
+
+export const StyledArrowDropDown = styled(ArrowDropDown)``;
