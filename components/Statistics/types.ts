@@ -21,9 +21,13 @@ export type Stats = {
   trackCount: number;
   totalDuration: string;
   categoryMixCounts: CategoryMixCount[];
+  tagCounts: TopTagCount[];
   top10TagCounts: TopTagCount[];
   averageMixDuration: string;
+  artistTrackCounts: TopTrackCount[];
   top10ArtistTrackCounts: TopTrackCount[];
+  remixArtistTrackCounts: TopTrackCount[];
   top10RemixArtistTrackCounts: TopTrackCount[];
+  publisherCounts: TopTrackCount[];
   top10PublisherCounts: TopTrackCount[];
 };

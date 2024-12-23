@@ -1,4 +1,7 @@
 import {
+  StyledArrowDropDown,
+  StyledArrowDropUp,
+  StyledShowHideBlock,
   StyledStatisticsContainer,
   StyledStatisticsLabel,
   StyledStatisticsList,
@@ -22,6 +25,11 @@ const Statistics: React.FC = () => {
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [showAllTags, setShowAllTags] = useState<boolean>(false);
+  const [showAllArtists, setShowAllArtists] = useState<boolean>(false);
+  const [showAllRemixArtists, setShowAllRemixArtists] =
+    useState<boolean>(false);
+  const [showAllPublishers, setShowAllPublishers] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchStats = async (): Promise<void> => {
@@ -91,6 +99,10 @@ const Statistics: React.FC = () => {
     .sort((a, b) => b.count - a.count)
     .slice(0, 10);
 
+  const allTagCountsArray = stats.tagCounts
+    .map(({ tag, count }) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count);
+
   return (
     <StyledStatisticsContainer>
       <StyledStatisticsTitle>Statistics</StyledStatisticsTitle>
@@ -118,43 +130,115 @@ const Statistics: React.FC = () => {
           </StyledStatisticsListItem>
         </StyledSummaryList>
       </StyledStatisticsSection>
+
       <StyledStatisticsSection>
         <StyledStatisticsSubTitle>Categories</StyledStatisticsSubTitle>
         <StyledStatisticsList>
           {renderCategoryMixCounts(stats.categoryMixCounts)}
         </StyledStatisticsList>
       </StyledStatisticsSection>
-      <StyledStatisticsSection>
-        <StyledStatisticsSubTitle>Top 10 Tags</StyledStatisticsSubTitle>
-        <StyledStatisticsList>
-          {renderTopTagCounts(topTagCountsArray)}
-        </StyledStatisticsList>
-      </StyledStatisticsSection>
-      <StyledStatisticsSection>
-        <StyledStatisticsSubTitle>Top 10 Artists</StyledStatisticsSubTitle>
-        <StyledStatisticsList>
-          {renderTopCounts(stats.top10ArtistTrackCounts, "artistName")}
-        </StyledStatisticsList>
-      </StyledStatisticsSection>
+
       <StyledStatisticsSection>
         <StyledStatisticsSubTitle>
-          Top 10 Remix Artists
+          {showAllTags ? "All Tags" : "Top 10 Tags"}
+        </StyledStatisticsSubTitle>
+        <StyledStatisticsList>
+          {renderTopTagCounts(
+            showAllTags ? allTagCountsArray : topTagCountsArray,
+          )}
+        </StyledStatisticsList>
+        <StyledShowHideBlock onClick={() => setShowAllTags(!showAllTags)}>
+          {showAllTags ? (
+            <>
+              Reduce to top 10 tags <StyledArrowDropUp />
+            </>
+          ) : (
+            <>
+              Show all tags <StyledArrowDropDown />
+            </>
+          )}
+        </StyledShowHideBlock>
+      </StyledStatisticsSection>
+
+      <StyledStatisticsSection>
+        <StyledStatisticsSubTitle>
+          {showAllArtists ? "All Artists" : "Top 10 Artists"}
         </StyledStatisticsSubTitle>
         <StyledStatisticsList>
           {renderTopCounts(
-            stats.top10RemixArtistTrackCounts,
+            showAllArtists
+              ? stats.artistTrackCounts
+              : stats.top10ArtistTrackCounts,
+            "artistName",
+          )}
+        </StyledStatisticsList>
+        <StyledShowHideBlock onClick={() => setShowAllArtists(!showAllArtists)}>
+          {showAllArtists ? (
+            <>
+              Reduce to top 10 artists <StyledArrowDropUp />
+            </>
+          ) : (
+            <>
+              Show all artists <StyledArrowDropDown />
+            </>
+          )}
+        </StyledShowHideBlock>
+      </StyledStatisticsSection>
+
+      <StyledStatisticsSection>
+        <StyledStatisticsSubTitle>
+          {showAllRemixArtists ? "All Remix Artists" : "Top 10 Remix Artists"}
+        </StyledStatisticsSubTitle>
+        <StyledStatisticsList>
+          {renderTopCounts(
+            showAllRemixArtists
+              ? stats.remixArtistTrackCounts
+              : stats.top10RemixArtistTrackCounts,
             "remixArtistName",
           )}
         </StyledStatisticsList>
+        <StyledShowHideBlock
+          onClick={() => setShowAllRemixArtists(!showAllRemixArtists)}
+        >
+          {showAllRemixArtists ? (
+            <>
+              Reduce to top 10 remix artists <StyledArrowDropUp />
+            </>
+          ) : (
+            <>
+              Show all remix artists <StyledArrowDropDown />
+            </>
+          )}
+        </StyledShowHideBlock>
       </StyledStatisticsSection>
+
       <StyledStatisticsSection>
-        <StyledStatisticsSubTitle>Top 10 Publishers</StyledStatisticsSubTitle>
+        <StyledStatisticsSubTitle>
+          {showAllPublishers ? " All Publishers" : "Top 10 Publishers"}
+        </StyledStatisticsSubTitle>
         <StyledStatisticsList>
-          {renderTopCounts(stats.top10PublisherCounts, "publisher")}
+          {renderTopCounts(
+            showAllPublishers
+              ? stats.publisherCounts
+              : stats.top10PublisherCounts,
+            "publisher",
+          )}
         </StyledStatisticsList>
+        <StyledShowHideBlock
+          onClick={() => setShowAllPublishers(!showAllPublishers)}
+        >
+          {showAllPublishers ? (
+            <>
+              Reduce to top 10 publishers <StyledArrowDropUp />
+            </>
+          ) : (
+            <>
+              Show all publishers <StyledArrowDropDown />
+            </>
+          )}
+        </StyledShowHideBlock>
       </StyledStatisticsSection>
     </StyledStatisticsContainer>
   );
 };
-
 export default Statistics;
