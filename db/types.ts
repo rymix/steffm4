@@ -66,3 +66,7 @@ export type Database = {
   categories: Category[];
   mixes: Mix[];
 };
+
+export type UnknownTrack = Track & {
+  mixcloudKey: string;
+};

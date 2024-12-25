@@ -30,6 +30,9 @@ const AdminMenu = (): JSX.Element => {
         <Link href="/admin/database">Database Management</Link>
       </li>
       <li>
+        <Link href="/admin/unknownTracks">Unknown Tracks</Link>
+      </li>
+      <li>
         <StyledAdminButton
           onClick={handleLogout}
           onKeyDown={(e) => e.key === "Enter" && handleLogout()}
