@@ -2,6 +2,7 @@
 
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable no-alert */
+/* eslint-disable react/no-array-index-key */
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";
 import {
@@ -16,7 +17,7 @@ const AdminUnknownTracks = (): JSX.Element => {
   const [unknownTracks, setUnknownTracks] = useState<UnknownTrack[]>([]);
 
   useEffect(() => {
-    const fetchUnknownTracks = async () => {
+    const fetchUnknownTracks = async (): Promise<void> => {
       const token = localStorage.getItem("token");
       if (token) {
         try {
@@ -77,4 +78,3 @@ const AdminUnknownTracks = (): JSX.Element => {
 };
 
 export default AdminUnknownTracks;
-

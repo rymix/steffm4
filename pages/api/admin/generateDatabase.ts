@@ -1,5 +1,7 @@
 // pages/api/admin/generateDatabase.ts
 
+/* eslint-disable unicorn/text-encoding-identifier-case */
+
 import fs from "fs";
 import type { NextApiRequest, NextApiResponse } from "next";
 import path from "path";

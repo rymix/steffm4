@@ -1,3 +1,5 @@
+/* eslint-disable unicorn/prefer-dom-node-remove */
+
 import {
   StyledDownloadIcon,
   StyledDownloadWrapper,
@@ -6,7 +8,7 @@ import { DownloadProps } from "components/Download/types";
 import { useMixcloud } from "contexts/mixcloud";
 import { STORAGE_PREFIX } from "utils/constants";
 
-export const Download: React.FC<DownloadProps> = ({ mix }) => {
+export const Download: React.FC<DownloadProps> = () => {
   const {
     mix: { details: mixDetails },
   } = useMixcloud();

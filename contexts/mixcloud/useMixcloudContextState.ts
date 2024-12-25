@@ -1,4 +1,6 @@
 /* eslint-disable unicorn/consistent-function-scoping */
+/* eslint-disable unicorn/no-useless-undefined */
+
 import type {
   Favourite,
   MixcloudContextState,
@@ -913,6 +915,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
         document.removeEventListener("keydown", handleKeyPress);
       };
     }
+
+    return undefined;
   }, []);
 
   /* Scroll and touch listeners */
