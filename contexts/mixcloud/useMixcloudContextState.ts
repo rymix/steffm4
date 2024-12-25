@@ -814,13 +814,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Keypress Listeners */
   const handleKeyPress = useCallback(
     (event: KeyboardEvent) => {
-      //   if (
-      //     typeof window !== "undefined" &&
-      //     !router.pathname.startsWith("/admin")
-      //   ) {
-      //     return;
-      //   }
-
       switch (event.key) {
         case " ":
         case "k": {
@@ -910,12 +903,17 @@ const useMixcloudContextState = (): MixcloudContextState => {
   );
 
   useEffect(() => {
-    document.addEventListener("keydown", handleKeyPress);
+    if (
+      typeof window !== "undefined" &&
+      !window.location.pathname.startsWith("/admin")
+    ) {
+      document.addEventListener("keydown", handleKeyPress);
 
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  }, [handleKeyPress]);
+      return () => {
+        document.removeEventListener("keydown", handleKeyPress);
+      };
+    }
+  }, []);
 
   /* Scroll and touch listeners */
   useEffect((): (() => void) => {
