@@ -44,7 +44,7 @@ const updateIndividualMixFile = async (
   mixcloudKey: string,
   sectionNumber: number,
   coverArt: any,
-) => {
+): Promise<void> => {
   const mixFilePath = path.join(
     process.cwd(),
     "db/mixes",
@@ -58,7 +58,7 @@ const updateIndividualMixFile = async (
       (track: any) => track.sectionNumber === sectionNumber,
     );
 
-    if (trackIndex !== -1) {
+    if (trackIndex >= 0) {
       mixData.tracks[trackIndex] = {
         ...mixData.tracks[trackIndex],
         ...coverArt,
@@ -150,7 +150,6 @@ const handler = async (
         res.status(200).json(coverArt);
       } else {
         res.status(404).json({ message: "Track not found" });
-        return;
       }
     } catch (error) {
       console.error("Error fetching cover art:", error);
