@@ -39,7 +39,7 @@ export const StyledMixRow = styled.div<StyledMixRowProps>`
     `}
 
   @media screen and (orientation: portrait) and (max-width: 440px) {
-    grid-template-columns: 20px 20px 20px 50px 1fr 20px;
+    grid-template-columns: 20px 20px 20px 20px 50px 1fr 20px;
   }
 `;
 
