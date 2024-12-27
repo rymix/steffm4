@@ -69,4 +69,6 @@ export type Database = {
 
 export type UnknownTrack = Track & {
   mixcloudKey: string;
+  mixName: string;
+  mixCoverArt: string;
 };

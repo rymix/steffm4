@@ -1,15 +1,16 @@
+import PauseIcon from "@mui/icons-material/Pause";
 import axios from "axios";
 import { useMixcloud } from "contexts/mixcloud";
+import { UnknownTrack } from "db/types";
 import React, { useEffect, useState } from "react";
-import { convertTimeToSeconds } from "utils/functions";
-
-interface UnknownTrack {
-  artistName: string;
-  trackName: string;
-  publisher: string;
-  mixcloudKey: string;
-  startTime: string; // Assuming this is added to track start times
-}
+import { convertTimeToSeconds, mcKeyFormatter } from "utils/functions";
+import {
+  StyledTrackPlay,
+  StyledUnknownTrack,
+  StyledUnknownTrackDetails,
+  StyledUnknownTrackMix,
+  StyledUnknownTracks,
+} from "./StyledUnknownTracks";
 
 export const UnknownTracks: React.FC = () => {
   const [unknownTracks, setUnknownTracks] = useState<UnknownTrack[]>([]);
@@ -17,8 +18,11 @@ export const UnknownTracks: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   const {
+    mcKey,
     controls: { handleLoad, handleSeek },
+    widget: { playing },
   } = useMixcloud();
+
   useEffect(() => {
     const fetchUnknownTracks = async () => {
       try {
@@ -54,55 +58,52 @@ export const UnknownTracks: React.FC = () => {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Unknown Tracks</h1>
+    <StyledUnknownTracks>
       {unknownTracks.length === 0 ? (
         <p>No unknown tracks found.</p>
       ) : (
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+        <>
           {unknownTracks.map((track, index) => (
-            <div
-              key={index}
-              style={{
-                border: "1px solid #ccc",
-                padding: "10px",
-                borderRadius: "5px",
-                backgroundColor: "#f9f9f9",
-              }}
-            >
-              <h3>{track.trackName || "Unknown Track Name"}</h3>
-              <p>
-                <strong>Artist:</strong> {track.artistName || "Unknown"}
-              </p>
-              <p>
-                <strong>Publisher:</strong> {track.publisher || "Unknown"}
-              </p>
-              <p>
-                <strong>Mixcloud Key:</strong> {track.mixcloudKey}
-              </p>
-              <p>
-                <strong>Start Time:</strong> {track.startTime}
-              </p>
-              <button
-                style={{
-                  padding: "10px",
-                  backgroundColor: "#007bff",
-                  color: "#fff",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                }}
-                onClick={() =>
-                  handleTrackClick(track.mixcloudKey, track.startTime)
-                }
-              >
-                Play Track
-              </button>
-            </div>
+            <>
+              <StyledUnknownTrack key={index}>
+                <img src={track.coverArtLarge} alt={track.trackName} />
+
+                <StyledUnknownTrackDetails>
+                  <div>
+                    <strong>Track Name:</strong>
+                  </div>
+                  <div>{track.trackName || "Unknown Track Name"}</div>
+                  <div>
+                    <strong>Artist:</strong>
+                  </div>
+                  <div>{track.artistName || "Unknown"}</div>
+                  <div>
+                    <strong>Publisher:</strong>
+                  </div>
+                  <div> {track.publisher || "Unknown"}</div>
+                </StyledUnknownTrackDetails>
+                {mcKeyFormatter(mcKey) === mcKeyFormatter(track.mixcloudKey) &&
+                playing ? (
+                  <PauseIcon />
+                ) : (
+                  <StyledTrackPlay
+                    onClick={() =>
+                      handleTrackClick(track.mixcloudKey, track.startTime)
+                    }
+                  ></StyledTrackPlay>
+                )}
+              </StyledUnknownTrack>
+              <StyledUnknownTrackMix>
+                <img src={track.mixCoverArt} alt={track.mixName} />
+                <div>
+                  {track.mixName} at {track.startTime}
+                </div>
+              </StyledUnknownTrackMix>
+            </>
           ))}
-        </div>
+        </>
       )}
-    </div>
+    </StyledUnknownTracks>
   );
 };
 
