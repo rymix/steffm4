@@ -3,6 +3,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import { UnknownTrack } from "db/types";
 import React, { useEffect, useState } from "react";
 import { convertTimeToSeconds, mcKeyFormatter } from "utils/functions";
+
 import {
   StyledTrackPause,
   StyledTrackPlay,
@@ -24,12 +25,12 @@ export const UnknownTracks: React.FC = () => {
   } = useMixcloud();
 
   useEffect(() => {
-    const fetchUnknownTracks = async () => {
+    const fetchUnknownTracks = async (): Promise<void> => {
       try {
         const response = await axios.get("/api/unknownTracks");
         setUnknownTracks(response.data);
-      } catch (err) {
-        console.error(err);
+      } catch (error_) {
+        console.error(error_);
         setError("Failed to fetch unknown tracks.");
       } finally {
         setLoading(false);
@@ -39,18 +40,20 @@ export const UnknownTracks: React.FC = () => {
     fetchUnknownTracks();
   }, []);
 
-  const handleTrackClick = async (mixcloudKey: string, startTime: string) => {
-    console.log("handleTrackClick", mixcloudKey, startTime, playing);
-    if (!playing) {
+  const handleTrackClick = async (
+    mixcloudKey: string,
+    startTime: string,
+  ): Promise<void> => {
+    if (playing) {
+      handlePause();
+    } else {
       try {
         await handleLoad(mixcloudKey); // Load the mix
         const seconds = convertTimeToSeconds(startTime);
         await handleSeek(seconds); // Seek to the track's start time
-      } catch (error) {
-        console.error("Error loading or seeking mix:", error);
+      } catch (localError) {
+        console.error("Error loading or seeking mix:", localError);
       }
-    } else {
-      handlePause();
     }
   };
 
@@ -68,7 +71,7 @@ export const UnknownTracks: React.FC = () => {
         <p>No unknown tracks found.</p>
       ) : (
         <>
-          {unknownTracks.map((track, index) => (
+          {unknownTracks.map((track) => (
             <div key={`${track.mixcloudKey}-${track.startTime}`}>
               <StyledUnknownTrack
                 key={`${track.mixcloudKey}-${track.sectionNumber}`}
@@ -97,7 +100,7 @@ export const UnknownTracks: React.FC = () => {
                     onClick={() =>
                       handleTrackClick(track.mixcloudKey, track.startTime)
                     }
-                  ></StyledTrackPlay>
+                  />
                 )}
               </StyledUnknownTrack>
               <StyledUnknownTrackMix>
