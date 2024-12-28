@@ -76,11 +76,11 @@ const Background: React.FC = () => {
     <>
       <StyledBackgroundLayerA
         $background={backgroundA}
-        isActive={activeBackground === "A"}
+        $isActive={activeBackground === "A"}
       />
       <StyledBackgroundLayerB
         $background={backgroundB}
-        isActive={activeBackground === "B"}
+        $isActive={activeBackground === "B"}
       />
     </>
   );

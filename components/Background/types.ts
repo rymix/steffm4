@@ -6,5 +6,5 @@ export type BackgroundProps = {
 
 export type StyledBackgroundProps = {
   $background: BackgroundExtended | undefined;
-  isActive?: boolean;
+  $isActive?: boolean;
 };
