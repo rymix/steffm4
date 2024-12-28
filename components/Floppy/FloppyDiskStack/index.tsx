@@ -6,7 +6,7 @@ import {
 } from "components/Floppy/FloppyDiskStack/StyledFloppyDiskStack";
 import React, { useEffect, useState } from "react";
 
-import { DiskProps, FloppyDiskStackProps } from "../types";
+import { DiskProps, FloppyDiskStackProps } from "components/Floppy/types";
 
 const floppyColors = [
   "#675d56",

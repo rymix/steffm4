@@ -11,7 +11,7 @@ import {
   StyledUnknownTrackDetails,
   StyledUnknownTrackMix,
   StyledUnknownTracks,
-} from "./StyledUnknownTracks";
+} from "components/MixList/StyledUnknownTracks";
 
 export const UnknownTracks: React.FC = () => {
   const [unknownTracks, setUnknownTracks] = useState<UnknownTrack[]>([]);

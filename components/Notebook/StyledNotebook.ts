@@ -1,6 +1,5 @@
+import { StyledNotebookProps } from "components/Notebook/types";
 import styled from "styled-components";
-
-import { StyledNotebookProps } from "./types";
 
 export const StyledNotebook = styled.div<StyledNotebookProps>`
   cursor: pointer;

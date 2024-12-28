@@ -7,8 +7,8 @@ import {
   StyledIconWrapper,
   StyledRow,
   StyledTextWrapper,
-} from "./StyledContact";
-import Threads from "./Threads";
+} from "components/Contact/StyledContact";
+import Threads from "components/Contact/Threads";
 
 export const Contact: React.FC = () => {
   return (
