@@ -98,11 +98,11 @@
       "trackName": "Unknown",
       "artistName": "Unknown",
       "coverArtDate": "2024-12-03T22:08:10.567Z",
-      "coverArtLarge": "https://st.discogs.com/488b0dfe848265458d6c92cd8505d0ba3887fffd/images/spacer.gif",
-      "coverArtSmall": "",
+      "coverArtLarge": "/images/tracklist-placeholder.png",
+      "coverArtSmall": "/images/tracklist-placeholder.png",
       "sectionNumber": 7,
       "remixArtistName": "",
-      "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+      "localCoverArtLarge": "/images/tracklist-placeholder.png",
       "localCoverArtSmall": "/images/tracklist-placeholder.png"
     },
     {

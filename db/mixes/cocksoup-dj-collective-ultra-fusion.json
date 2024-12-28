@@ -271,15 +271,15 @@
     {
       "artistName": "Unknown",
       "coverArtDate": "2024-07-12T21:41:16.760Z",
-      "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
-      "coverArtSmall": "",
+      "coverArtLarge": "/images/tracklist-placeholder.png",
+      "coverArtSmall": "/images/tracklist-placeholder.png",
       "publisher": "Unknown",
       "remixArtistName": "",
       "sectionNumber": 20,
       "startTime": "1:45:56",
       "trackName": "Unknown",
-      "localCoverArtLarge": "/trackart/unknown_unknown_large.jpg",
-      "localCoverArtSmall": "/trackart/unknown_unknown_small.jpg"
+      "localCoverArtLarge": "/images/tracklist-placeholder.png",
+      "localCoverArtSmall": "/images/tracklist-placeholder.png"
     },
     {
       "artistName": "Yellowjackets",
@@ -349,15 +349,15 @@
     {
       "artistName": "Unknown",
       "coverArtDate": "2024-07-12T21:41:24.720Z",
-      "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
-      "coverArtSmall": "",
+      "coverArtLarge": "/images/tracklist-placeholder.png",
+      "coverArtSmall": "/images/tracklist-placeholder.png",
       "publisher": "Unknown",
       "remixArtistName": "",
       "sectionNumber": 26,
       "startTime": "2:25:56",
       "trackName": "Unknown",
-      "localCoverArtLarge": "/trackart/unknown_unknown_large.jpg",
-      "localCoverArtSmall": "/trackart/unknown_unknown_small.jpg"
+      "localCoverArtLarge": "/images/tracklist-placeholder.png",
+      "localCoverArtSmall": "/images/tracklist-placeholder.png"
     },
     {
       "artistName": "Jeff Lorber",
