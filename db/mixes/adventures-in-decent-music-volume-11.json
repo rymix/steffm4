@@ -85,11 +85,11 @@
       "trackName": "Unknown",
       "artistName": "Unknown",
       "coverArtDate": "2024-11-26T22:03:05.720Z",
-      "coverArtLarge": "https://st.discogs.com/de0abfc1c4e64adaa25ec5cfab8f4784713fc645/images/spacer.gif",
-      "coverArtSmall": "",
+      "coverArtLarge": "/images/tracklist-placeholder.png",
+      "coverArtSmall": "/images/tracklist-placeholder.png",
       "sectionNumber": 6,
       "remixArtistName": "",
-      "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+      "localCoverArtLarge": "/images/tracklist-placeholder.png",
       "localCoverArtSmall": "/images/tracklist-placeholder.png"
     },
     {
@@ -150,11 +150,11 @@
       "trackName": "Unknown",
       "artistName": "Unknown",
       "coverArtDate": "2024-11-26T22:03:11.440Z",
-      "coverArtLarge": "https://st.discogs.com/de0abfc1c4e64adaa25ec5cfab8f4784713fc645/images/spacer.gif",
-      "coverArtSmall": "",
+      "coverArtLarge": "/images/tracklist-placeholder.png",
+      "coverArtSmall": "/images/tracklist-placeholder.png",
       "sectionNumber": 11,
       "remixArtistName": "",
-      "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+      "localCoverArtLarge": "/images/tracklist-placeholder.png",
       "localCoverArtSmall": "/images/tracklist-placeholder.png"
     },
     {

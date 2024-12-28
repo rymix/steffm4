@@ -1,11 +1,9 @@
 import FilterAlt from "@mui/icons-material/FilterAlt";
 import FilterAltOff from "@mui/icons-material/FilterAltOff";
 import HeadsetIcon from "@mui/icons-material/Headset";
-import HeadsetOffIcon from "@mui/icons-material/HeadsetOff";
+import QuestionMark from "@mui/icons-material/QuestionMark";
 import Search from "@mui/icons-material/Search";
-import SearchOff from "@mui/icons-material/SearchOff";
 import Update from "@mui/icons-material/Update";
-import UpdateDisabled from "@mui/icons-material/UpdateDisabled";
 import { CircularProgress } from "@mui/material";
 import MixRow from "components/MixList/MixRow";
 import {
@@ -18,7 +16,9 @@ import {
   StyledSearchButton,
   StyledSearchContainer,
   StyledToggle,
+  StyledUnknownTracksContainer,
 } from "components/MixList/StyledMixList";
+import UnknownTracks from "components/MixList/UnknownTracks";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Category, Mix } from "db/types";
 import _ from "lodash";
@@ -39,9 +39,21 @@ export const MixList: React.FC = () => {
   const [showLatest, setShowLatest] = useState<boolean>(false);
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [showUnplayed, setShowUnplayed] = useState<boolean>(false);
+  const [showUnknown, setShowUnknown] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const resetViews = (): void => {
+    setShowFilters(false);
+    setShowLatest(false);
+    setShowSearch(false);
+    setShowUnplayed(false);
+    setShowUnknown(false);
+    setFilterCategory(undefined);
+    setSearchQuery("");
+    setSearchResults([]);
+  };
 
   const handleFilterCategory = (category: string | undefined): void => {
     if (filterCategory === category || category === "all") {
@@ -50,16 +62,6 @@ export const MixList: React.FC = () => {
     }
 
     setFilterCategory(category);
-  };
-
-  const resetViews = (): void => {
-    setShowFilters(false);
-    setShowLatest(false);
-    setShowSearch(false);
-    setShowUnplayed(false);
-    setFilterCategory(undefined);
-    setSearchQuery("");
-    setSearchResults([]);
   };
 
   const handleToggleFilters = (): void => {
@@ -80,6 +82,11 @@ export const MixList: React.FC = () => {
   const handleToggleUnplayed = (): void => {
     resetViews();
     setShowUnplayed(!showUnplayed);
+  };
+
+  const handleToggleUnknown = (): void => {
+    resetViews();
+    setShowUnknown(!showUnknown);
   };
 
   const fetchFavouriteMixes = async (): Promise<Mix[]> => {
@@ -202,16 +209,20 @@ export const MixList: React.FC = () => {
               <div>Categories</div>
             </StyledToggle>
             <StyledToggle onClick={handleToggleSearch} $on={showSearch}>
-              {showSearch ? <SearchOff /> : <Search />}
+              <Search />
               <div>Search</div>
             </StyledToggle>
             <StyledToggle onClick={handleToggleLatest} $on={showLatest}>
-              {showLatest ? <UpdateDisabled /> : <Update />}
+              <Update />
               <div>New Mixes</div>
             </StyledToggle>
             <StyledToggle onClick={handleToggleUnplayed} $on={showUnplayed}>
-              {showUnplayed ? <HeadsetOffIcon /> : <HeadsetIcon />}
+              <HeadsetIcon />
               <div>Unplayed</div>
+            </StyledToggle>
+            <StyledToggle onClick={handleToggleUnknown} $on={showUnknown}>
+              <QuestionMark />
+              <div>Unknown</div>
             </StyledToggle>
           </StyledControls>
           {showFilters && (
@@ -311,11 +322,21 @@ export const MixList: React.FC = () => {
             ))}
         </div>
       )}
+      {!isLoading && showUnknown && (
+        <StyledUnknownTracksContainer>
+          <div>Help me identify these tracks!</div>
+          <div>
+            Mail me at <a href="mailto:webmaster@stef.fm">webmaster@stef.fm</a>
+          </div>
+          <UnknownTracks />
+        </StyledUnknownTracksContainer>
+      )}
       {!isLoading &&
         !showFilters &&
         !showSearch &&
         !showLatest &&
-        !showUnplayed && (
+        !showUnplayed &&
+        !showUnknown && (
           <div>
             {mixes.length > 0 ? (
               mixes.map((mix: Mix) => (

@@ -43,15 +43,15 @@
     {
       "artistName": "Unknown",
       "coverArtDate": "2024-07-12T21:38:01.458Z",
-      "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
-      "coverArtSmall": "",
-      "publisher": "",
+      "coverArtLarge": "/images/tracklist-placeholder.png",
+      "coverArtSmall": "/images/tracklist-placeholder.png",
+      "publisher": "Unknown",
       "remixArtistName": "",
       "sectionNumber": 3,
       "startTime": "05:40",
-      "trackName": "",
-      "localCoverArtLarge": "/trackart/unknown__large.jpg",
-      "localCoverArtSmall": "/trackart/unknown__small.jpg"
+      "trackName": "Unknown",
+      "localCoverArtLarge": "/images/tracklist-placeholder.png",
+      "localCoverArtSmall": "/images/tracklist-placeholder.png"
     },
     {
       "artistName": "Bitty McLean",
@@ -225,15 +225,15 @@
     {
       "artistName": "Unknown",
       "coverArtDate": "2024-07-12T21:38:20.362Z",
-      "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
-      "coverArtSmall": "",
-      "publisher": "",
+      "coverArtLarge": "/images/tracklist-placeholder.png",
+      "coverArtSmall": "/images/tracklist-placeholder.png",
+      "publisher": "Unknown",
       "remixArtistName": "",
       "sectionNumber": 17,
       "startTime": "1:00:51",
-      "trackName": "",
-      "localCoverArtLarge": "/trackart/unknown__large.jpg",
-      "localCoverArtSmall": "/trackart/unknown__small.jpg"
+      "trackName": "Unknown",
+      "localCoverArtLarge": "/images/tracklist-placeholder.png",
+      "localCoverArtSmall": "/images/tracklist-placeholder.png"
     },
     {
       "artistName": "Gentleman Feat. Barrington Levy & Daddy Rings",

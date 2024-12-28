@@ -6,7 +6,7 @@ import {
   InstallInstructionsWrapper,
   InstructionsList,
   InstructionsText,
-} from "./StyledInstall";
+} from "components/Install/StyledInstall";
 
 const InstallInstructions: React.FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);

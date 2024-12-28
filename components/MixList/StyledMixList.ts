@@ -39,7 +39,7 @@ export const StyledMixRow = styled.div<StyledMixRowProps>`
     `}
 
   @media screen and (orientation: portrait) and (max-width: 440px) {
-    grid-template-columns: 20px 20px 20px 50px 1fr 20px;
+    grid-template-columns: 20px 20px 20px 20px 50px 1fr 20px;
   }
 `;
 
@@ -263,4 +263,17 @@ export const StyledSearchButton = styled.button`
 
 export const StyledNoResults = styled.div`
   margin: 20px 0;
+`;
+
+export const StyledUnknownTracksContainer = styled.div`
+  a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 600;
+    transition: color 0.3s;
+
+    &:hover {
+      color: rgba(0, 0, 0, 1);
+    }
+  }
 `;

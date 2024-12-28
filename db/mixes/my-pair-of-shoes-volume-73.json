@@ -20,12 +20,12 @@
       "trackName": "Unknown",
       "artistName": "Unknown",
       "coverArtDate": "2024-07-12T22:06:11.447Z",
-      "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
-      "coverArtSmall": "",
+      "coverArtLarge": "/images/tracklist-placeholder.png",
+      "coverArtSmall": "/images/tracklist-placeholder.png",
       "sectionNumber": 1,
       "remixArtistName": "Unknown",
-      "localCoverArtLarge": "/trackart/unknown_unknown_large.jpg",
-      "localCoverArtSmall": "/trackart/unknown_unknown_small.jpg"
+      "localCoverArtLarge": "/images/tracklist-placeholder.png",
+      "localCoverArtSmall": "/images/tracklist-placeholder.png"
     },
     {
       "publisher": "She Records",

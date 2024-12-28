@@ -12,11 +12,7 @@
   "releaseDate": "January 2007",
   "uploadedDate": "26 December 2024",
   "shortName": "AIDM - Volume 2",
-  "tags": [
-    "rare groove",
-    "soulful house",
-    "hip hop"
-  ],
+  "tags": ["rare groove", "soulful house", "hip hop"],
   "tracks": [
     {
       "publisher": "Chess",
@@ -76,11 +72,11 @@
       "trackName": "Unknown",
       "artistName": "Unknown",
       "coverArtDate": "2024-12-26T22:19:52.141Z",
-      "coverArtLarge": "https://st.discogs.com/2e60b8851bf5744e565cfa74615705ea3d320f4f/images/spacer.gif",
-      "coverArtSmall": "",
+      "coverArtLarge": "/images/tracklist-placeholder.png",
+      "coverArtSmall": "/images/tracklist-placeholder.png",
       "sectionNumber": 5,
       "remixArtistName": "",
-      "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+      "localCoverArtLarge": "/images/tracklist-placeholder.png",
       "localCoverArtSmall": "/images/tracklist-placeholder.png"
     },
     {

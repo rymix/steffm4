@@ -41,15 +41,15 @@ import {
   StyledManualProgressLedsItemsWrapper,
   StyledManualProgressLedsLabels,
   StyledManualProgressLedsWrapper,
-} from "./StyledManualProgressLeds";
+} from "components/Manual/StyledManualProgressLeds";
 import {
   StyledManualScreen,
   StyledManualScreenWrapper,
-} from "./StyledManualScreen";
+} from "components/Manual/StyledManualScreen";
 import {
   StyledManualSlider,
   StyledManualSliderWrapper,
-} from "./StyledManualSlider";
+} from "components/Manual/StyledManualSlider";
 
 export const Manual: React.FC = () => {
   const {

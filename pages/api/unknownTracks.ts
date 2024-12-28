@@ -18,6 +18,8 @@ export default async function handler(_req: any, res: any): Promise<void> {
         unknownTracks.push({
           ...track,
           mixcloudKey: mix.mixcloudKey,
+          mixName: mix.name,
+          mixCoverArt: mix.coverArtSmall,
         });
       }
     });

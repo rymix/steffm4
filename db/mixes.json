@@ -2582,11 +2582,11 @@
           "trackName": "Unknown",
           "artistName": "Unknown",
           "coverArtDate": "2024-11-26T22:03:05.720Z",
-          "coverArtLarge": "https://st.discogs.com/de0abfc1c4e64adaa25ec5cfab8f4784713fc645/images/spacer.gif",
-          "coverArtSmall": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "sectionNumber": 6,
           "remixArtistName": "",
-          "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
           "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
@@ -2647,11 +2647,11 @@
           "trackName": "Unknown",
           "artistName": "Unknown",
           "coverArtDate": "2024-11-26T22:03:11.440Z",
-          "coverArtLarge": "https://st.discogs.com/de0abfc1c4e64adaa25ec5cfab8f4784713fc645/images/spacer.gif",
-          "coverArtSmall": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "sectionNumber": 11,
           "remixArtistName": "",
-          "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
           "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
@@ -6245,11 +6245,11 @@
           "trackName": "Unknown",
           "artistName": "Unknown",
           "coverArtDate": "2024-12-11T21:54:43.947Z",
-          "coverArtLarge": "https://st.discogs.com/b669a7ca0add07b4d08262855a7a9f8f6707fcba/images/spacer.gif",
-          "coverArtSmall": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "sectionNumber": 5,
           "remixArtistName": "",
-          "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
           "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
@@ -12190,11 +12190,11 @@
           "trackName": "Unknown",
           "artistName": "Unknown",
           "coverArtDate": "2024-12-07T21:25:50.631Z",
-          "coverArtLarge": "https://st.discogs.com/a4fc2709a9dd443896e1088725ee68ac4f3d4c4a/images/spacer.gif",
-          "coverArtSmall": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "sectionNumber": 7,
           "remixArtistName": "",
-          "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
           "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
@@ -12203,11 +12203,11 @@
           "trackName": "Unknown",
           "artistName": "Unknown",
           "coverArtDate": "2024-12-07T21:25:51.628Z",
-          "coverArtLarge": "https://st.discogs.com/a4fc2709a9dd443896e1088725ee68ac4f3d4c4a/images/spacer.gif",
-          "coverArtSmall": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "sectionNumber": 8,
           "remixArtistName": "",
-          "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
           "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
@@ -14034,11 +14034,11 @@
           "trackName": "Unknown",
           "artistName": "Unknown",
           "coverArtDate": "2024-12-03T22:08:10.567Z",
-          "coverArtLarge": "https://st.discogs.com/488b0dfe848265458d6c92cd8505d0ba3887fffd/images/spacer.gif",
-          "coverArtSmall": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "sectionNumber": 7,
           "remixArtistName": "",
-          "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
           "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
@@ -14356,11 +14356,11 @@
           "trackName": "Unknown",
           "artistName": "Unknown",
           "coverArtDate": "2024-12-01T22:02:32.722Z",
-          "coverArtLarge": "https://st.discogs.com/77a54e691a41849b423c38a2c3520f837bd88696/images/spacer.gif",
-          "coverArtSmall": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "sectionNumber": 15,
           "remixArtistName": "",
-          "localCoverArtLarge": "/trackart/unknown_unknown_large_jpg",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
           "localCoverArtSmall": "/images/tracklist-placeholder.png"
         }
       ]
@@ -15568,15 +15568,15 @@
         {
           "artistName": "Unknown",
           "coverArtDate": "2024-07-12T21:41:16.760Z",
-          "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
-          "coverArtSmall": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Unknown",
           "remixArtistName": "",
           "sectionNumber": 20,
           "startTime": "1:45:56",
           "trackName": "Unknown",
-          "localCoverArtLarge": "/trackart/unknown_unknown_large.jpg",
-          "localCoverArtSmall": "/trackart/unknown_unknown_small.jpg"
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Yellowjackets",
@@ -15646,15 +15646,15 @@
         {
           "artistName": "Unknown",
           "coverArtDate": "2024-07-12T21:41:24.720Z",
-          "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
-          "coverArtSmall": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "publisher": "Unknown",
           "remixArtistName": "",
           "sectionNumber": 26,
           "startTime": "2:25:56",
           "trackName": "Unknown",
-          "localCoverArtLarge": "/trackart/unknown_unknown_large.jpg",
-          "localCoverArtSmall": "/trackart/unknown_unknown_small.jpg"
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Jeff Lorber",
@@ -16398,15 +16398,15 @@
         {
           "artistName": "Unknown",
           "coverArtDate": "2024-07-12T21:38:01.458Z",
-          "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
-          "coverArtSmall": "",
-          "publisher": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
+          "publisher": "Unknown",
           "remixArtistName": "",
           "sectionNumber": 3,
           "startTime": "05:40",
-          "trackName": "",
-          "localCoverArtLarge": "/trackart/unknown__large.jpg",
-          "localCoverArtSmall": "/trackart/unknown__small.jpg"
+          "trackName": "Unknown",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Bitty McLean",
@@ -16580,15 +16580,15 @@
         {
           "artistName": "Unknown",
           "coverArtDate": "2024-07-12T21:38:20.362Z",
-          "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
-          "coverArtSmall": "",
-          "publisher": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
+          "publisher": "Unknown",
           "remixArtistName": "",
           "sectionNumber": 17,
           "startTime": "1:00:51",
-          "trackName": "",
-          "localCoverArtLarge": "/trackart/unknown__large.jpg",
-          "localCoverArtSmall": "/trackart/unknown__small.jpg"
+          "trackName": "Unknown",
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "artistName": "Gentleman Feat. Barrington Levy & Daddy Rings",
@@ -19362,12 +19362,12 @@
           "trackName": "Unknown",
           "artistName": "Unknown",
           "coverArtDate": "2024-07-12T22:07:34.449Z",
-          "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
-          "coverArtSmall": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "sectionNumber": 8,
           "remixArtistName": "Unknown",
-          "localCoverArtLarge": "/trackart/unknown_unknown_large.jpg",
-          "localCoverArtSmall": "/trackart/unknown_unknown_small.jpg"
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "publisher": "Unknown",
@@ -41063,12 +41063,12 @@
           "trackName": "Unknown",
           "artistName": "Unknown",
           "coverArtDate": "2024-07-12T22:06:11.447Z",
-          "coverArtLarge": "https://st.discogs.com/dd5a9fdf4dd47d66bd480823f6377b104a01a70b/images/spacer.gif",
-          "coverArtSmall": "",
+          "coverArtLarge": "/images/tracklist-placeholder.png",
+          "coverArtSmall": "/images/tracklist-placeholder.png",
           "sectionNumber": 1,
           "remixArtistName": "Unknown",
-          "localCoverArtLarge": "/trackart/unknown_unknown_large.jpg",
-          "localCoverArtSmall": "/trackart/unknown_unknown_small.jpg"
+          "localCoverArtLarge": "/images/tracklist-placeholder.png",
+          "localCoverArtSmall": "/images/tracklist-placeholder.png"
         },
         {
           "publisher": "She Records",

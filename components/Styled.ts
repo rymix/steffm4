@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import Panel from "./Jupiter/Panel";
+import Panel from "components/Jupiter/Panel";
 
 export const StyledScrollContainer = styled.div`
   height: 200vh;

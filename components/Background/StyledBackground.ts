@@ -73,11 +73,11 @@ const SharedBackgroundStyles = styled.div<StyledBackgroundProps>`
 export const StyledBackgroundLayerA = styled(
   SharedBackgroundStyles,
 )<StyledBackgroundProps>`
-  opacity: ${(props) => (props.isActive ? 1 : 0)};
+  opacity: ${(props) => (props.$isActive ? 1 : 0)};
 `;
 
 export const StyledBackgroundLayerB = styled(
   SharedBackgroundStyles,
 )<StyledBackgroundProps>`
-  opacity: ${(props) => (props.isActive ? 1 : 0)};
+  opacity: ${(props) => (props.$isActive ? 1 : 0)};
 `;
