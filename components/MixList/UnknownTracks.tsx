@@ -1,10 +1,10 @@
-import PauseIcon from "@mui/icons-material/Pause";
 import axios from "axios";
 import { useMixcloud } from "contexts/mixcloud";
 import { UnknownTrack } from "db/types";
 import React, { useEffect, useState } from "react";
 import { convertTimeToSeconds, mcKeyFormatter } from "utils/functions";
 import {
+  StyledTrackPause,
   StyledTrackPlay,
   StyledUnknownTrack,
   StyledUnknownTrackDetails,
@@ -19,7 +19,7 @@ export const UnknownTracks: React.FC = () => {
 
   const {
     mcKey,
-    controls: { handleLoad, handleSeek },
+    controls: { handleLoad, handlePause, handleSeek },
     widget: { playing },
   } = useMixcloud();
 
@@ -40,12 +40,17 @@ export const UnknownTracks: React.FC = () => {
   }, []);
 
   const handleTrackClick = async (mixcloudKey: string, startTime: string) => {
-    try {
-      await handleLoad(mixcloudKey); // Load the mix
-      const seconds = convertTimeToSeconds(startTime);
-      await handleSeek(seconds); // Seek to the track's start time
-    } catch (error) {
-      console.error("Error loading or seeking mix:", error);
+    console.log("handleTrackClick", mixcloudKey, startTime, playing);
+    if (!playing) {
+      try {
+        await handleLoad(mixcloudKey); // Load the mix
+        const seconds = convertTimeToSeconds(startTime);
+        await handleSeek(seconds); // Seek to the track's start time
+      } catch (error) {
+        console.error("Error loading or seeking mix:", error);
+      }
+    } else {
+      handlePause();
     }
   };
 
@@ -84,7 +89,7 @@ export const UnknownTracks: React.FC = () => {
                 </StyledUnknownTrackDetails>
                 {mcKeyFormatter(mcKey) === mcKeyFormatter(track.mixcloudKey) &&
                 playing ? (
-                  <PauseIcon />
+                  <StyledTrackPause onClick={() => handlePause()} />
                 ) : (
                   <StyledTrackPlay
                     onClick={() =>

@@ -1,3 +1,4 @@
+import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import styled from "styled-components";
 
@@ -44,6 +45,16 @@ export const StyledUnknownTrackDetails = styled.div`
 `;
 
 export const StyledTrackPlay = styled(PlayArrowIcon)`
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: rgba(0, 0, 0, 1);
+  }
+`;
+
+export const StyledTrackPause = styled(PauseIcon)`
   color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
   transition: color 0.2s ease-in-out;

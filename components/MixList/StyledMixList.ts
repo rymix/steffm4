@@ -264,3 +264,16 @@ export const StyledSearchButton = styled.button`
 export const StyledNoResults = styled.div`
   margin: 20px 0;
 `;
+
+export const StyledUnknownTracksContainer = styled.div`
+  a {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 600;
+    transition: color 0.3s;
+
+    &:hover {
+      color: rgba(0, 0, 0, 1);
+    }
+  }
+`;

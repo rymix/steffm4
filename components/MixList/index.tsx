@@ -16,6 +16,7 @@ import {
   StyledSearchButton,
   StyledSearchContainer,
   StyledToggle,
+  StyledUnknownTracksContainer,
 } from "components/MixList/StyledMixList";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Category, Mix } from "db/types";
@@ -322,10 +323,13 @@ export const MixList: React.FC = () => {
         </div>
       )}
       {!isLoading && showUnknown && (
-        <>
+        <StyledUnknownTracksContainer>
           <div>Help me identify these tracks!</div>
+          <div>
+            Mail me at <a href="mailto:webmaster@stef.fm">webmaster@stef.fm</a>
+          </div>
           <UnknownTracks />
-        </>
+        </StyledUnknownTracksContainer>
       )}
       {!isLoading &&
         !showFilters &&
