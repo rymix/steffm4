@@ -24,7 +24,7 @@ export const StyledUnknownTrackMix = styled.div`
   grid-template-columns: 140px 1fr;
   justify-items: center;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 
   img {
     border-radius: 50%;

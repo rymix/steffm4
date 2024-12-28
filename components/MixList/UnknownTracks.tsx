@@ -69,8 +69,10 @@ export const UnknownTracks: React.FC = () => {
       ) : (
         <>
           {unknownTracks.map((track, index) => (
-            <>
-              <StyledUnknownTrack key={index}>
+            <div key={`${track.mixcloudKey}-${track.startTime}`}>
+              <StyledUnknownTrack
+                key={`${track.mixcloudKey}-${track.sectionNumber}`}
+              >
                 <img src={track.coverArtLarge} alt={track.trackName} />
 
                 <StyledUnknownTrackDetails>
@@ -104,7 +106,7 @@ export const UnknownTracks: React.FC = () => {
                   {track.mixName} at {track.startTime}
                 </div>
               </StyledUnknownTrackMix>
-            </>
+            </div>
           ))}
         </>
       )}
