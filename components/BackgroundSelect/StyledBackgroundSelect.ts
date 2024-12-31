@@ -7,6 +7,11 @@ export const StyledBackgroundButtons = styled.div`
   justify-content: center;
 `;
 
+export const StyledBackgroundAutoChangeToggle = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 export const StyledBackgroundButton = styled.button`
   background: #e4dbcd;
   border: 1px solid #e4dbcd;
