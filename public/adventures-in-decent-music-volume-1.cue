@@ -1,0 +1,55 @@
+PERFORMER "Stef.FM"
+TITLE "Adventures in Decent Music - Volume 1"
+FILE "Adventures_In_Decent_Music_Vol._1_hifi.mp3" MP3
+TRACK 01 AUDIO
+PERFORMER "DJ Old Nick* & The Fresh Prince"
+TITLE "Summertime"
+INDEX 01 00:00:00
+TRACK 02 AUDIO
+PERFORMER "Unknown"
+TITLE "Unknown"
+INDEX 01 05:56:00
+TRACK 03 AUDIO
+PERFORMER "Common"
+TITLE "Go!"
+INDEX 01 09:17:00
+TRACK 04 AUDIO
+PERFORMER "Global Communications"
+TITLE "The Groove"
+INDEX 01 13:19:00
+TRACK 05 AUDIO
+PERFORMER "A Hundred Birds"
+TITLE "Batonga (Main Mix)"
+INDEX 01 20:44:00
+TRACK 06 AUDIO
+PERFORMER "Crue-L Grand Orchestra"
+TITLE "Got To Be Real"
+INDEX 01 27:30:00
+TRACK 07 AUDIO
+PERFORMER "Ju-Par Universal Orchestra"
+TITLE "Time"
+INDEX 01 34:02:00
+TRACK 08 AUDIO
+PERFORMER "Gabor Szabo"
+TITLE "Keep Smilin'"
+INDEX 01 37:06:00
+TRACK 09 AUDIO
+PERFORMER "Unknown"
+TITLE "Unknown"
+INDEX 01 44:23:00
+TRACK 10 AUDIO
+PERFORMER "Linx"
+TITLE "Rise and Shine"
+INDEX 01 47:49:00
+TRACK 11 AUDIO
+PERFORMER "Escort"
+TITLE "Starlight"
+INDEX 01 51:23:00
+TRACK 12 AUDIO
+PERFORMER "Dust"
+TITLE "Recloose Feat. Joe Dukie"
+INDEX 01 54:16:00
+TRACK 13 AUDIO
+PERFORMER "Paul Weller"
+TITLE "That Spiritual Feeling"
+INDEX 01 56:48:00
