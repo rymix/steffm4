@@ -2,10 +2,16 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import FilterAlt from "@mui/icons-material/FilterAlt";
 import FilterAltOff from "@mui/icons-material/FilterAltOff";
-import { CircularProgress } from "@mui/material";
+import {
+  CircularProgress,
+  FormControlLabel,
+  FormGroup,
+  Switch,
+} from "@mui/material";
 import Macintosh from "components/BackgroundSelect/Macintosh";
 import RetroPC from "components/BackgroundSelect/RetroPC";
 import {
+  StyledBackgroundAutoChangeToggle,
   StyledBackgroundButton,
   StyledBackgroundButtons,
   StyledBackgroundSelect,
@@ -24,8 +30,10 @@ export const BackgroundSelect: React.FC = () => {
   const {
     session: {
       background,
+      backgroundAutoChange,
       filterBackgroundCategory,
       setBackground,
+      setBackgroundAutoChange,
       setFilterBackgroundCategory,
     },
   } = useMixcloud();
@@ -36,6 +44,12 @@ export const BackgroundSelect: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [backgrounds, setBackgrounds] = useState<BackgroundExtended[]>([]);
   const [showFilters, setShowFilters] = useState<boolean>(false);
+
+  const handleToggleAutoChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
+    setBackgroundAutoChange(event.target.checked);
+  };
 
   const handleFilterBackgroundCategory = (
     localBackground: string | undefined,
@@ -206,6 +220,19 @@ export const BackgroundSelect: React.FC = () => {
           Next
         </StyledBackgroundButton>
       </StyledBackgroundButtons>
+      <StyledBackgroundAutoChangeToggle>
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={backgroundAutoChange}
+                onChange={handleToggleAutoChange}
+              />
+            }
+            label="Auto-change background"
+          />
+        </FormGroup>
+      </StyledBackgroundAutoChangeToggle>
       {background?.backgroundCategoryObject?.type === "Macintosh" ? (
         <Macintosh />
       ) : (

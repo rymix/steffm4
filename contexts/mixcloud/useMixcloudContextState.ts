@@ -13,6 +13,7 @@ import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import ReactGA from "react-ga4";
 import themes from "styles/themes";
 import {
+  AUTO_CHANGE_BACKGROUND,
   DEFAULT_BACKGROUND,
   DEFAULT_MESSAGE,
   DEFAULT_VOLUME,
@@ -114,6 +115,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [background, setBackground] = usePersistedState<
     BackgroundExtended | undefined
   >("background", DEFAULT_BACKGROUND);
+  const [backgroundAutoChange, setBackgroundAutoChange] =
+    usePersistedState<boolean>("backgroundAutoChange", AUTO_CHANGE_BACKGROUND);
   const [filterBackgroundCategory, setFilterBackgroundCategory] = useState<
     string | undefined
   >();
@@ -1049,6 +1052,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     },
     session: {
       background,
+      backgroundAutoChange,
       burgerMenuRef,
       displayLength,
       filterBackgroundCategory,
@@ -1066,6 +1070,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       scale,
       secondsRemaining,
       setBackground,
+      setBackgroundAutoChange,
       setDisplayLength,
       setFilterBackgroundCategory,
       setIsAtBottom,

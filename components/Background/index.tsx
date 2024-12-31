@@ -1,5 +1,3 @@
-// components/Background/Background.tsx
-
 import {
   StyledBackgroundLayerA,
   StyledBackgroundLayerB,
@@ -9,7 +7,12 @@ import { useEffect, useState } from "react";
 
 const Background: React.FC = () => {
   const {
-    session: { background, filterBackgroundCategory, setBackground },
+    session: {
+      background,
+      backgroundAutoChange,
+      filterBackgroundCategory,
+      setBackground,
+    },
     track: { details: trackDetails },
   } = useMixcloud();
 
@@ -21,11 +24,12 @@ const Background: React.FC = () => {
   const [backgroundB, setBackgroundB] = useState(background);
 
   useEffect(() => {
-    // Ensure this effect only runs on the client
-    setHydrated(true);
+    setHydrated(true); // Ensure this effect only runs on the client
   }, []);
 
   useEffect(() => {
+    if (!backgroundAutoChange) return; // Disable auto-change if backgroundAutoChange is false
+
     const setRandomBackground = async (): Promise<void> => {
       try {
         const response = await fetch(
@@ -48,10 +52,10 @@ const Background: React.FC = () => {
     };
 
     setRandomBackground();
-  }, [trackName]);
+  }, [trackName, backgroundAutoChange]);
 
   useEffect(() => {
-    if (!hydrated) return;
+    if (!hydrated || !backgroundAutoChange) return; // Skip transition logic if auto-change is disabled
 
     if (activeBackground === "A") {
       // When Layer A is active, update Layer B and start transition
@@ -66,7 +70,7 @@ const Background: React.FC = () => {
         setActiveBackground("A");
       }, 1500);
     }
-  }, [background, hydrated]);
+  }, [background, hydrated, backgroundAutoChange]);
 
   if (!hydrated) {
     return null; // Avoid rendering on the server to prevent mismatch

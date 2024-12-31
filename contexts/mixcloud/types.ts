@@ -89,6 +89,7 @@ export type MixcloudContextState = {
   };
   session: {
     background: BackgroundExtended | undefined;
+    backgroundAutoChange: boolean;
     burgerMenuRef: React.MutableRefObject<HTMLDivElement | null>;
     displayLength: number;
     filterBackgroundCategory: string | undefined;
@@ -113,6 +114,7 @@ export type MixcloudContextState = {
     setBackground: React.Dispatch<
       React.SetStateAction<BackgroundExtended | undefined>
     >;
+    setBackgroundAutoChange: React.Dispatch<React.SetStateAction<boolean>>;
     setDisplayLength: React.Dispatch<React.SetStateAction<number>>;
     setFilterBackgroundCategory: React.Dispatch<
       React.SetStateAction<string | undefined>
