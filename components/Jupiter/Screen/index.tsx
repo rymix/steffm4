@@ -66,8 +66,14 @@ const JupiterScreen: React.FC = () => {
         setScreenPosition((prevPosition) => {
           const newPosition = prevPosition + 1;
 
-          // Message is guaranteed to exist and be at least "!" so we can proceed
-          if (newPosition === message.length + displayLength) {
+          // Calculate the actual message content length (excluding padding)
+          const actualMessageLength = message.length - (displayLength * 2); // subtract both left and right padding
+          
+          // End the cycle once we've scrolled past the actual content and are showing
+          // displayLength characters of right padding (i.e., screen is full of ! characters)
+          const endPosition = displayLength + actualMessageLength;
+          
+          if (newPosition >= endPosition) {
             // When temporary message finishes, return to appropriate state
             if (messageType === 'temporary') {
               // Return to track message if playing and track exists, otherwise holding message
@@ -78,15 +84,17 @@ const JupiterScreen: React.FC = () => {
                 // eslint-disable-next-line no-use-before-define
                 startHoldingMessage();
               }
+            } else {
+              // For track and holding messages, restart immediately
+              return 0;
             }
-            // Track and holding messages should loop continuously
           }
 
-          return newPosition % (message.length + displayLength);
+          return newPosition;
         });
       }, interval);
     },
-    [clearExistingScreenInterval, playing, trackMessage],
+    [clearExistingScreenInterval, playing, trackMessage, displayLength],
   );
 
   const startHoldingMessage = (): void => {
