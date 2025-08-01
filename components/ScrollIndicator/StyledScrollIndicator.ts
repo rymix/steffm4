@@ -23,13 +23,13 @@ export const StyledScrollIndicator = styled.div`
 `;
 
 export const StyledDownIndicator = styled(KeyboardArrowDownIcon)`
-  font-size: 100px;
+  font-size: 5rem !important;
   position: relative;
   margin-top: -20px;
 `;
 
 export const StyledUpIndicator = styled(KeyboardArrowUpIcon)`
-  font-size: 100px;
+  font-size: 5rem !important;
   position: relative;
   margin-top: -20px;
 `;
