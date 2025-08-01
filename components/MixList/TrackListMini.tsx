@@ -17,7 +17,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { Track } from "db/types";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
-import Highlight from "react-highlight-words";
+import TextHighlight from "components/TextHighlight";
 import { convertTimeToHumanReadable } from "utils/functions";
 
 export const TrackListMini: React.FC<TrackListMiniProps> = ({
@@ -72,14 +72,14 @@ export const TrackListMini: React.FC<TrackListMiniProps> = ({
           </StyledTrackListMiniCoverArt>
           <StyledTrackListMiniInfoBlock key={track.sectionNumber}>
             <StyledTrackListMiniTrackName>
-              <Highlight
+              <TextHighlight
                 searchWords={highlight ? [highlight] : []}
                 autoEscape
                 textToHighlight={track.trackName}
               />
             </StyledTrackListMiniTrackName>
             <StyledTrackListMiniArtistName>
-              <Highlight
+              <TextHighlight
                 searchWords={highlight ? [highlight] : []}
                 autoEscape
                 textToHighlight={track.artistName}
@@ -87,7 +87,7 @@ export const TrackListMini: React.FC<TrackListMiniProps> = ({
             </StyledTrackListMiniArtistName>
             {track.remixArtistName && (
               <StyledTrackListMiniTrackRemixArtistName>
-                <Highlight
+                <TextHighlight
                   searchWords={highlight ? [highlight] : []}
                   autoEscape
                   textToHighlight={track.remixArtistName}
@@ -96,7 +96,7 @@ export const TrackListMini: React.FC<TrackListMiniProps> = ({
             )}
             {track.publisher && (
               <StyledTrackListMiniTrackPublisher>
-                <Highlight
+                <TextHighlight
                   searchWords={highlight ? [highlight] : []}
                   autoEscape
                   textToHighlight={track.publisher}
