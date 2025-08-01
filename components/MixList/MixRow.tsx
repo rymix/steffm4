@@ -23,7 +23,7 @@ import type { MixRowProps } from "components/MixList/types";
 import Share from "components/Share";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useState } from "react";
-import Highlight from "react-highlight-words";
+import TextHighlight from "components/TextHighlight";
 import {
   convertTimeToHumanReadable,
   listenedStatus,
@@ -72,7 +72,7 @@ export const MixRow: React.FC<MixRowProps> = ({ mix, highlight }) => {
         </StyledMixCoverArt>
         <StyledMixInfoBlock onClick={handleExpandToggle}>
           <StyledMixName>
-            <Highlight
+            <TextHighlight
               searchWords={highlight ? [highlight] : []}
               autoEscape
               textToHighlight={mix.name}
@@ -88,7 +88,7 @@ export const MixRow: React.FC<MixRowProps> = ({ mix, highlight }) => {
       </StyledMixRow>
       {isExpanded && (
         <StyledMixNotes>
-          <Highlight
+          <TextHighlight
             searchWords={highlight ? [highlight] : []}
             autoEscape
             textToHighlight={mix.notes || ""}
