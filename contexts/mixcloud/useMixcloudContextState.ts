@@ -224,12 +224,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Screen */
   useEffect(() => {
-    if (playing && mixDetails) {
+    if (mixDetails) {
       const mixMessage = [
-        mixDetails?.name,
-        mixDetails?.notes,
-        mixDetails?.releaseDate,
-        mixDetails?.duration
+        mixDetails.name,
+        mixDetails.notes,
+        mixDetails.releaseDate,
+        mixDetails.duration
           ? convertTimeToHumanReadable(mixDetails.duration, "!")
           : undefined,
       ]
@@ -237,19 +237,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
         .join(" - ");
       setHoldingMessage(mixMessage);
     }
-  }, [mixDetails?.name, playing]);
+  }, [mixDetails?.name, mixDetails?.notes, mixDetails?.releaseDate, mixDetails?.duration]);
 
-  useEffect(() => {
-    const trackMessage = [
-      trackDetails?.trackName,
-      trackDetails?.artistName,
-      trackDetails?.remixArtistName,
-      trackDetails?.publisher,
-    ]
-      .filter(Boolean)
-      .join(" - ");
-    setTemporaryMessage(trackMessage);
-  }, [trackDetails?.trackName]);
+  // Note: We removed the trackMessage logic from here since the Jupiter Screen 
+  // now handles track messages directly using trackDetails
 
   /* Modal */
   const handleCloseModal = (): void => {
@@ -485,17 +476,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const fetchedMixDetails = await fetchMixDetails();
       if (fetchedMixDetails) {
         setMixDetails(fetchedMixDetails);
-        const mixMessage = [
-          fetchedMixDetails.name,
-          fetchedMixDetails.notes,
-          fetchedMixDetails.releaseDate,
-          fetchedMixDetails.duration
-            ? convertTimeToHumanReadable(fetchedMixDetails.duration, "!")
-            : undefined,
-        ]
-          .filter(Boolean)
-          .join(" - ");
-        setHoldingMessage(mixMessage);
+        // holdingMessage will be set by the separate useEffect above
       }
     };
 
