@@ -64,7 +64,9 @@ describe("MixCard Component", () => {
     render(<MixCard />);
 
     expect(screen.getByText("Test Mix Name")).toBeInTheDocument();
-    expect(screen.getByText("This is a test mix with some notes")).toBeInTheDocument();
+    expect(
+      screen.getByText("This is a test mix with some notes"),
+    ).toBeInTheDocument();
     expect(screen.getByText("2024-01-15")).toBeInTheDocument();
     expect(screen.getByText("1h 30m 45s")).toBeInTheDocument();
   });
@@ -86,7 +88,7 @@ describe("MixCard Component", () => {
   });
 
   it("should render category when category prop is true", () => {
-    render(<MixCard category={true} />);
+    render(<MixCard category />);
 
     expect(screen.getByText("House Music")).toBeInTheDocument();
   });
@@ -172,6 +174,8 @@ describe("MixCard Component", () => {
     render(<MixCard />);
 
     expect(screen.getByText("Test Mix Name")).toBeInTheDocument();
-    expect(screen.queryByText("This is a test mix with some notes")).not.toBeInTheDocument();
+    expect(
+      screen.queryByText("This is a test mix with some notes"),
+    ).not.toBeInTheDocument();
   });
 });

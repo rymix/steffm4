@@ -1,11 +1,9 @@
 // components/Admin/AdminMixes.tsx
 
-/* eslint-disable no-alert */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable no-await-in-loop */
 /* eslint-disable unicorn/consistent-function-scoping */
-/* eslint-disable no-restricted-globals */
-/* eslint-disable jsx-a11y/label-has-associated-control */
+
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";
 import {
@@ -158,8 +156,9 @@ const AdminMixes = (): JSX.Element => {
     if (response.status === 200) {
       const blob = new Blob([response.data], { type: response.data.type });
       const link = document.createElement("a");
-      link.href = window.URL.createObjectURL(blob);
+      link.href = globalThis.URL.createObjectURL(blob);
       link.download = `${mixcloudKey}.cue`;
+      // eslint-disable-next-line testing-library/no-node-access
       link.click();
     }
   };

@@ -35,17 +35,17 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
       }
-      
+
       // Light up the LED immediately
       setMomentaryLit(true);
-      
+
       // Set timeout to turn off LED after 1 second
       timeoutRef.current = setTimeout(() => {
         setMomentaryLit(false);
         timeoutRef.current = null;
       }, 1000);
     }
-    
+
     // Call the original onClick handler
     if (onClick) {
       onClick();

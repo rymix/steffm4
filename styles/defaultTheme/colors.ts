@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 const colors = {
   controls: {
     outerDisc: {

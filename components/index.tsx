@@ -62,7 +62,7 @@ const Jupiter: React.FC = () => {
     favourites: { addFavourite, isFavourite, removeFavourite },
     filters: { categories = [], selectedCategory, setSelectedCategory },
     mix: { copySharableLink, favourite },
-    session: { openModal, modalOpen, modalContent },
+    session: { openModal },
     track: { details: trackDetails, sectionNumber: trackSectionNumber },
     widget: { playing, setVolume, volume },
   } = useMixcloud();
@@ -73,7 +73,7 @@ const Jupiter: React.FC = () => {
   // Since modalContent is ReactNode, we can't reliably check component types
   // For now, we'll use a simpler approach - just check if modal is open
   const isListModalOpen = false; // TODO: Implement proper modal type detection
-  const isInfoModalOpen = false; // TODO: Implement proper modal type detection  
+  const isInfoModalOpen = false; // TODO: Implement proper modal type detection
   const isAboutModalOpen = false; // TODO: Implement proper modal type detection
 
   const easterEgg = (): void => {

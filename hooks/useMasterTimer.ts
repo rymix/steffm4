@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from "react";
 
 type TimerCallback = () => void;
 type TimerSubscription = {
@@ -12,7 +12,13 @@ type TimerSubscription = {
  * Master timer hook to consolidate multiple timers into a single setInterval
  * This reduces the number of concurrent timers and improves performance
  */
-export const useMasterTimer = () => {
+export const useMasterTimer = (): {
+  subscribe: (
+    id: string,
+    callback: TimerCallback,
+    interval: number,
+  ) => () => void;
+} => {
   const subscriptions = useRef<Map<string, TimerSubscription>>(new Map());
   const masterTimer = useRef<NodeJS.Timeout | null>(null);
 
@@ -21,10 +27,11 @@ export const useMasterTimer = () => {
 
     masterTimer.current = setInterval(() => {
       const now = Date.now();
-      subscriptions.current.forEach((subscription) => {
-        if (now - subscription.lastRun >= subscription.interval) {
-          subscription.callback();
-          subscription.lastRun = now;
+      subscriptions.current.forEach((sub) => {
+        if (now - sub.lastRun >= sub.interval) {
+          sub.callback();
+          // eslint-disable-next-line no-param-reassign
+          sub.lastRun = now;
         }
       });
     }, 100); // Check every 100ms for better precision
@@ -37,25 +44,28 @@ export const useMasterTimer = () => {
     }
   }, []);
 
-  const subscribe = useCallback((id: string, callback: TimerCallback, interval: number) => {
-    subscriptions.current.set(id, {
-      id,
-      callback,
-      interval,
-      lastRun: Date.now(),
-    });
+  const subscribe = useCallback(
+    (id: string, callback: TimerCallback, interval: number) => {
+      subscriptions.current.set(id, {
+        id,
+        callback,
+        interval,
+        lastRun: Date.now(),
+      });
 
-    if (subscriptions.current.size === 1) {
-      startMasterTimer();
-    }
-
-    return () => {
-      subscriptions.current.delete(id);
-      if (subscriptions.current.size === 0) {
-        stopMasterTimer();
+      if (subscriptions.current.size === 1) {
+        startMasterTimer();
       }
-    };
-  }, [startMasterTimer, stopMasterTimer]);
+
+      return () => {
+        subscriptions.current.delete(id);
+        if (subscriptions.current.size === 0) {
+          stopMasterTimer();
+        }
+      };
+    },
+    [startMasterTimer, stopMasterTimer],
+  );
 
   // Cleanup on unmount
   useEffect(() => {

@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-
 import type { Database } from "db/types";
 import { Low } from "lowdb";
 import { JSONFile } from "lowdb/node";

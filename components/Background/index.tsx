@@ -22,10 +22,10 @@ const Background: React.FC = () => {
   const [activeBackground, setActiveBackground] = useState<"A" | "B">("A");
   const [backgroundA, setBackgroundA] = useState(background);
   const [backgroundB, setBackgroundB] = useState(background);
-  
+
   // Track session state for initial load behavior
   const [isFirstSession, setIsFirstSession] = useState(true);
-  const [firstTrackName, setFirstTrackName] = useState<string | undefined>(undefined);
+  const [firstTrackName, setFirstTrackName] = useState<string | undefined>();
 
   useEffect(() => {
     setHydrated(true); // Ensure this effect only runs on the client
@@ -40,13 +40,13 @@ const Background: React.FC = () => {
         // This is the first track of the session - record it but don't change background
         setFirstTrackName(trackName);
         return;
-      } else if (trackName !== firstTrackName) {
-        // This is the second track - start background changes from now on
-        setIsFirstSession(false);
-      } else {
+      }
+      if (trackName === firstTrackName) {
         // Still the same first track - don't change background
         return;
       }
+      // This is the second track - start background changes from now on
+      setIsFirstSession(false);
     }
 
     // Skip background change if this is still the first session and first track

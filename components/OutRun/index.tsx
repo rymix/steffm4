@@ -58,9 +58,13 @@ export const OutRun: React.FC = () => {
 
   // Global timer that ticks every 250ms using master timer
   useEffect(() => {
-    const unsubscribe = subscribe('outrunTick', () => {
-      setTick((prevTick) => prevTick + 1); // Increment tick
-    }, 250);
+    const unsubscribe = subscribe(
+      "outrunTick",
+      () => {
+        setTick((prevTick) => prevTick + 1); // Increment tick
+      },
+      250,
+    );
 
     return unsubscribe;
   }, [subscribe]);

@@ -10,24 +10,25 @@ const SharedBackgroundStyles = styled.div<StyledBackgroundProps>`
   position: absolute;
   z-index: 1;
 
-  background-color: ${(props) =>
-    props.$background
-      ? props.$background.backgroundCategoryObject?.code === "table"
-        ? "#795141"
-        : "transparent"
-      : "orange"};
+  background-color: ${(props) => {
+    if (!props.$background) return "orange";
+    return props.$background.backgroundCategoryObject?.code === "table"
+      ? "#795141"
+      : "transparent";
+  }};
   background-image: ${(props) =>
     props.$background
       ? `url(/${props.$background.backgroundCategoryObject?.folder}/${props.$background.fileName})`
       : "none"};
-  background-size: ${(props) =>
-    props.$background?.tileType === "stretch"
-      ? "cover"
-      : props.$background?.tileType === "tile"
-        ? props.$background.backgroundCategoryObject?.code === "table"
-          ? "600px"
-          : `${props.$background.width}px ${props.$background.height}px`
-        : "cover"};
+  background-size: ${(props) => {
+    if (props.$background?.tileType === "stretch") return "cover";
+    if (props.$background?.tileType === "tile") {
+      return props.$background.backgroundCategoryObject?.code === "table"
+        ? "600px"
+        : `${props.$background.width}px ${props.$background.height}px`;
+    }
+    return "cover";
+  }};
 
   background-repeat: ${(props) =>
     props.$background?.tileType === "tile" ? "repeat" : "no-repeat"};

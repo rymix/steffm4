@@ -1,6 +1,5 @@
 // components/Admin/AdminDatabase.tsx
 
-/* eslint-disable no-alert */
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";
 import {
@@ -19,13 +18,15 @@ const handleExport = async (): Promise<void> => {
   });
   if (response.status === 200) {
     const blob = new Blob([response.data], { type: response.data.type });
-    const url = window.URL.createObjectURL(blob);
+    const url = globalThis.URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
     a.download = "mixes.json";
+
     document.body.appendChild(a);
+    // eslint-disable-next-line testing-library/no-node-access
     a.click();
-    window.URL.revokeObjectURL(url);
+    globalThis.URL.revokeObjectURL(url);
     a.remove();
   } else {
     console.error("Failed to download the file.");
@@ -47,7 +48,7 @@ const AdminDatabase = (): JSX.Element => {
       return;
     }
 
-    const confirmUpload = window.confirm(
+    const confirmUpload = globalThis.confirm(
       "Are you sure you want to upload this database? This will replace the existing database.",
     );
     if (!confirmUpload) {

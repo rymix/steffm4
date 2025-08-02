@@ -1,8 +1,5 @@
 // components/Admin/AdminTracks.tsx
 
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-alert */
-/* eslint-disable no-restricted-globals */
 /* eslint-disable no-await-in-loop */
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";

@@ -58,15 +58,15 @@ const updateIndividualMixFile = async (
       (track: any) => track.sectionNumber === sectionNumber,
     );
 
-    if (trackIndex >= 0) {
+    if (trackIndex === -1) {
+      console.warn(`Track not found in mix file: ${mixcloudKey}`);
+    } else {
       mixData.tracks[trackIndex] = {
         ...mixData.tracks[trackIndex],
         ...coverArt,
       };
 
       fs.writeFileSync(mixFilePath, JSON.stringify(mixData, null, 2));
-    } else {
-      console.warn(`Track not found in mix file: ${mixcloudKey}`);
     }
   } else {
     console.warn(`Mix file not found for key: ${mixcloudKey}`);

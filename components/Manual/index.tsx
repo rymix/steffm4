@@ -32,10 +32,6 @@ import {
   StyledManualOuterKnob,
   StyledManualOuterKnobWrapper,
 } from "components/Manual/StyledManualKnob";
-import { useMixcloud } from "contexts/mixcloud";
-import React from "react";
-import { VOLUME_AVAILABLE } from "utils/constants";
-
 import {
   StyledManualProgressLed,
   StyledManualProgressLedsItemsWrapper,
@@ -50,6 +46,9 @@ import {
   StyledManualSlider,
   StyledManualSliderWrapper,
 } from "components/Manual/StyledManualSlider";
+import { useMixcloud } from "contexts/mixcloud";
+import React from "react";
+import { VOLUME_AVAILABLE } from "utils/constants";
 
 export const Manual: React.FC = () => {
   const {
@@ -133,7 +132,6 @@ export const Manual: React.FC = () => {
         <StyledManualKnobWrapper>
           <StyledManualOuterKnobWrapper>
             {categories.map((category) => (
-              // eslint-disable-next-line react/no-array-index-key
               <StyledManualKnobMarker
                 key={category.shortName}
                 $x={category.x}

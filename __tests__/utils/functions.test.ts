@@ -1,27 +1,27 @@
+import { Progress } from "contexts/mixcloud/types";
+import { BackgroundCategory, Category, Mix } from "db/types";
 import {
-  convertTimeToSeconds,
   convertTimeToHumanReadable,
-  veryShortName,
+  convertTimeToSeconds,
+  copyToClipboard,
+  countAlphanumeric,
   debounce,
-  pxToNum,
+  getBackgroundCategoryObject,
+  getCategoryIndex,
+  getScaledFontSize,
+  isCategoryObject,
+  listenedStatus,
   mcKeyFormatter,
   mcKeyUnformatter,
   mcKeyUrlFormatter,
   mcWidgetUrlFormatter,
-  copyToClipboard,
-  replaceSpacesWithNbsp,
-  isCategoryObject,
-  selectCoverArt,
-  getBackgroundCategoryObject,
-  listenedStatus,
+  pxToNum,
   removeParentheses,
   removeTextAfterComma,
-  countAlphanumeric,
-  getScaledFontSize,
-  getCategoryIndex,
+  replaceSpacesWithNbsp,
+  selectCoverArt,
+  veryShortName,
 } from "utils/functions";
-import { BackgroundCategory, Category, Mix } from "db/types";
-import { Progress } from "contexts/mixcloud/types";
 
 // Mock navigator.clipboard for clipboard tests
 Object.assign(navigator, {
@@ -129,7 +129,9 @@ describe("Mixcloud Functions", () => {
   describe("mcKeyFormatter", () => {
     it("should format mcKey with rymixxx prefix", () => {
       expect(mcKeyFormatter("test-mix")).toBe("/rymixxx/test-mix/");
-      expect(mcKeyFormatter("/rymixxx/already-formatted/")).toBe("/rymixxx/already-formatted/");
+      expect(mcKeyFormatter("/rymixxx/already-formatted/")).toBe(
+        "/rymixxx/already-formatted/",
+      );
     });
   });
 
@@ -142,14 +144,18 @@ describe("Mixcloud Functions", () => {
 
   describe("mcKeyUrlFormatter", () => {
     it("should create mixcloud URL", () => {
-      expect(mcKeyUrlFormatter("test-mix")).toBe("https://www.mixcloud.com/rymixxx/test-mix/");
+      expect(mcKeyUrlFormatter("test-mix")).toBe(
+        "https://www.mixcloud.com/rymixxx/test-mix/",
+      );
     });
   });
 
   describe("mcWidgetUrlFormatter", () => {
     it("should create widget URL", () => {
       const result = mcWidgetUrlFormatter("test-mix");
-      expect(result).toContain("https://player-widget.mixcloud.com/widget/iframe/");
+      expect(result).toContain(
+        "https://player-widget.mixcloud.com/widget/iframe/",
+      );
       expect(result).toContain("feed=");
     });
   });
@@ -206,8 +212,20 @@ describe("Helper Functions", () => {
 
   describe("getBackgroundCategoryObject", () => {
     const categories: BackgroundCategory[] = [
-      { code: "cat1", name: "Category 1", folder: "folder1", type: "type1", order: 1 },
-      { code: "cat2", name: "Category 2", folder: "folder2", type: "type2", order: 2 },
+      {
+        code: "cat1",
+        name: "Category 1",
+        folder: "folder1",
+        type: "type1",
+        order: 1,
+      },
+      {
+        code: "cat2",
+        name: "Category 2",
+        folder: "folder2",
+        type: "type2",
+        order: 2,
+      },
     ];
 
     it("should find category by code", () => {
@@ -225,7 +243,7 @@ describe("Helper Functions", () => {
     it("should scale font size based on character count", () => {
       expect(getScaledFontSize("ab", 5, 20, 12, 24)).toBe(24); // Below min
       expect(getScaledFontSize("abcdefghijklmnopqrst", 5, 20, 12, 24)).toBe(12); // Above max
-      
+
       // Test middle range
       const midResult = getScaledFontSize("abcdefghijk", 5, 20, 12, 24);
       expect(midResult).toBeGreaterThan(12);
@@ -235,8 +253,22 @@ describe("Helper Functions", () => {
 
   describe("getCategoryIndex", () => {
     const categories: Category[] = [
-      { index: 1, code: "cat1", name: "Category 1", shortName: "C1", x: 0, y: 0 },
-      { index: 2, code: "cat2", name: "Category 2", shortName: "C2", x: 0, y: 0 },
+      {
+        index: 1,
+        code: "cat1",
+        name: "Category 1",
+        shortName: "C1",
+        x: 0,
+        y: 0,
+      },
+      {
+        index: 2,
+        code: "cat2",
+        name: "Category 2",
+        shortName: "C2",
+        x: 0,
+        y: 0,
+      },
     ];
 
     it("should return category index", () => {
@@ -271,7 +303,12 @@ describe("listenedStatus", () => {
 
   const mockProgress: Progress[] = [
     { mcKey: "test-mix", complete: true, currentTime: 3600, duration: 3600 },
-    { mcKey: "partial-mix", complete: false, currentTime: 1800, duration: 3600 },
+    {
+      mcKey: "partial-mix",
+      complete: false,
+      currentTime: 1800,
+      duration: 3600,
+    },
   ];
 
   it("should return 'active' for currently playing mix", () => {
@@ -284,22 +321,26 @@ describe("listenedStatus", () => {
 
   it("should return 'partial' for partially listened mix", () => {
     const partialMix = { ...mockMix, mixcloudKey: "partial-mix" };
-    expect(listenedStatus("other-mix", partialMix, mockProgress)).toBe("partial");
+    expect(listenedStatus("other-mix", partialMix, mockProgress)).toBe(
+      "partial",
+    );
   });
 
   it("should return 'unlistened' for new mix", () => {
     const newMix = { ...mockMix, mixcloudKey: "new-mix" };
-    expect(listenedStatus("other-mix", newMix, mockProgress)).toBe("unlistened");
+    expect(listenedStatus("other-mix", newMix, mockProgress)).toBe(
+      "unlistened",
+    );
   });
 });
 
 describe("copyToClipboard", () => {
   it("should use navigator.clipboard when available", async () => {
-    const mockWriteText = jest.fn().mockResolvedValue(undefined);
+    const mockWriteText = jest.fn().mockResolvedValue();
     Object.assign(navigator, {
       clipboard: { writeText: mockWriteText },
     });
-    Object.assign(window, { isSecureContext: true });
+    Object.assign(globalThis, { isSecureContext: true });
 
     copyToClipboard("test text");
 

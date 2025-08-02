@@ -1,7 +1,5 @@
 // components/Admin/AdminUnknownTracks.tsx
 
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable no-alert */
 /* eslint-disable react/no-array-index-key */
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";

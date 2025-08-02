@@ -4,9 +4,8 @@ import {
   FadingDisk,
   StyledDiskContainer,
 } from "components/Floppy/FloppyDiskStack/StyledFloppyDiskStack";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-
 import { DiskProps, FloppyDiskStackProps } from "components/Floppy/types";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 const floppyColors = [
   "#675d56",
@@ -39,56 +38,58 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
   const [disks, setDisks] = useState<DiskProps[]>([]);
 
   // Create stable notes that only change when track/artist changes
-  const notes = useMemo(() => [
-    label?.trackName ? (
-      <p key="trackName">{label.trackName}</p>
-    ) : (
-      <p key="trackName">Track Name Unavailable</p>
-    ),
-    label?.artistName ? (
-      <p key="artistName">{label.artistName}</p>
-    ) : (
-      <p key="artistName">Artist Name Unavailable</p>
-    ),
-  ], [label?.trackName, label?.artistName]);
+  const notes = useMemo(
+    () => [
+      label?.trackName ? (
+        <p key="trackName">{label.trackName}</p>
+      ) : (
+        <p key="trackName">Track Name Unavailable</p>
+      ),
+      label?.artistName ? (
+        <p key="artistName">{label.artistName}</p>
+      ) : (
+        <p key="artistName">Artist Name Unavailable</p>
+      ),
+    ],
+    [label?.trackName, label?.artistName],
+  );
 
   // Memoize disk creation function
-  const addDisk = useCallback((notes: JSX.Element[]): void => {
-      const diskWidth = 290; // Assuming the disk's width is 290px
-      const labelColor =
-        labelColors[Math.floor(Math.random() * labelColors.length)];
-      const newDisk: DiskProps = {
-        id: Date.now(),
-        notes,
-        startRotate: getRandomOffset(120),
-        endRotate: getRandomOffset(10),
-        finalX: getRandomOffset(10) - 145,
-        finalY: getRandomOffset(10) - 120,
-        startX: Math.random() * diskWidth * 3 - diskWidth, // Random X start position from left to 3x disk width to the right
-        floppyColor:
-          floppyColors[Math.floor(Math.random() * floppyColors.length)],
-        labelColor,
-        labelSecondColor: Math.random() < 0.7 ? labelColor : "#e6e6fa",
-        textColor: textColors[Math.floor(Math.random() * textColors.length)],
-        sliderColor:
-          sliderColors[Math.floor(Math.random() * sliderColors.length)],
-        font: fonts[Math.floor(Math.random() * fonts.length)],
-        randomValues: {
-          fontSize: Math.random() + 1,
-          rotation: Math.floor(Math.random() * 11) - 6,
-          fontSizeMobile: Math.random() * 0.6 + 0.7,
-        },
-      };
+  const addDisk = useCallback((diskNotes: JSX.Element[]): void => {
+    const diskWidth = 290; // Assuming the disk's width is 290px
+    const labelColor =
+      labelColors[Math.floor(Math.random() * labelColors.length)];
+    const newDisk: DiskProps = {
+      id: Date.now(),
+      notes: diskNotes,
+      startRotate: getRandomOffset(120),
+      endRotate: getRandomOffset(10),
+      finalX: getRandomOffset(10) - 145,
+      finalY: getRandomOffset(10) - 120,
+      startX: Math.random() * diskWidth * 3 - diskWidth, // Random X start position from left to 3x disk width to the right
+      floppyColor:
+        floppyColors[Math.floor(Math.random() * floppyColors.length)],
+      labelColor,
+      labelSecondColor: Math.random() < 0.7 ? labelColor : "#e6e6fa",
+      textColor: textColors[Math.floor(Math.random() * textColors.length)],
+      sliderColor:
+        sliderColors[Math.floor(Math.random() * sliderColors.length)],
+      font: fonts[Math.floor(Math.random() * fonts.length)],
+      randomValues: {
+        fontSize: Math.random() + 1,
+        rotation: Math.floor(Math.random() * 11) - 6,
+        fontSizeMobile: Math.random() * 0.6 + 0.7,
+      },
+    };
 
-      setDisks((prevDisks) => {
-        if (prevDisks.length >= 5) {
-          const remainingDisks = prevDisks.slice(1);
-          return [...remainingDisks, newDisk];
-        } else {
-          return [...prevDisks, newDisk];
-        }
-      });
-    }, []);
+    setDisks((prevDisks) => {
+      if (prevDisks.length >= 5) {
+        const remainingDisks = prevDisks.slice(1);
+        return [...remainingDisks, newDisk];
+      }
+      return [...prevDisks, newDisk];
+    });
+  }, []);
 
   // Only add disk when notes actually change (track/artist change)
   useEffect(() => {

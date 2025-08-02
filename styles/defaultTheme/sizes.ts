@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 const sizes = {
   controls: {
     overall: "300px",

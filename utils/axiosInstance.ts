@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     const token =
-      typeof window === "undefined" ? null : localStorage.getItem("token");
+      globalThis.window === undefined ? null : localStorage.getItem("token");
     if (token) {
       // eslint-disable-next-line no-param-reassign
       config.headers.Authorization = `Bearer ${token}`;

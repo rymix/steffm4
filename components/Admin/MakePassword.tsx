@@ -1,6 +1,5 @@
 // components/Admin/MakePassword.tsx
 
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import bcrypt from "bcryptjs";
 import AdminLayout from "components/Admin/AdminLayout";
 import AdminMenu from "components/Admin/AdminMenu";

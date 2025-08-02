@@ -18,11 +18,22 @@ import globals from "globals";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+
 const compat = new FlatCompat({
   baseDirectory: dirname,
   recommendedConfig: js.configs.recommended,
   allConfig: js.configs.all,
 });
+
+// ✅ Manual unicorn plugin integration
+const unicornRecommended = {
+  plugins: {
+    unicorn: fixupPluginRules(unicorn),
+  },
+  rules: {
+    ...unicorn.configs.recommended.rules,
+  },
+};
 
 const config = [
   {
@@ -59,12 +70,13 @@ const config = [
       "plugin:react/recommended",
       "plugin:react-hooks/recommended",
       "plugin:testing-library/react",
-      "plugin:unicorn/recommended",
+      // "plugin:unicorn/recommended", ← Removed because it fails in ESM/FlatConfig
       "prettier",
       "next",
       "next/core-web-vitals",
     ),
   ),
+  unicornRecommended, // ✅ Injected directly
   {
     plugins: {
       "@typescript-eslint": fixupPluginRules(typescriptEslint),
@@ -76,7 +88,7 @@ const config = [
       "simple-import-sort": simpleImportSort,
       sonarjs: fixupPluginRules(sonarjs),
       "testing-library": fixupPluginRules(testingLibrary),
-      unicorn: fixupPluginRules(unicorn),
+      // unicorn already handled above
     },
 
     languageOptions: {
@@ -140,8 +152,8 @@ const config = [
       "react/jsx-no-useless-fragment": "off",
       "react/jsx-props-no-spreading": "off",
       "react/require-default-props": "off",
-      "react/jsx-uses-react": "off", // Disable rule requiring React in scope
-      "react/react-in-jsx-scope": "off", // Disable rule requiring React in scope
+      "react/jsx-uses-react": "off",
+      "react/react-in-jsx-scope": "off",
       "simple-import-sort/exports": "error",
       "simple-import-sort/imports": "error",
       "sonarjs/cognitive-complexity": "off",
@@ -153,6 +165,7 @@ const config = [
       "unicorn/import-style": "off",
       "unicorn/no-array-for-each": "off",
       "unicorn/no-array-reduce": "off",
+      "unicorn/no-array-reverse": "off",
       "unicorn/no-null": "off",
       "unicorn/numeric-separators-style": "off",
       "unicorn/prefer-dom-node-append": "off",
