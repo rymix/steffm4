@@ -101,17 +101,23 @@ export const StyledDown = styled.div<{
 `;
 
 // Notes section inside the bottom part
-export const StyledNotes = styled.div<{ $textColor: string; $font: string }>`
+export const StyledNotes = styled.div<{ 
+  $textColor: string; 
+  $font: string; 
+  $fontSize: number;
+  $rotation: number;
+  $fontSizeMobile: number;
+}>`
   font-family: ${(props) => props.$font};
   margin-left: 15px;
   margin-top: 0px;
   color: ${(props) => props.$textColor};
-  font-size: ${Math.random() + 1}rem;
+  font-size: ${(props) => props.$fontSize}rem;
   line-height: 1.1;
-  transform: rotate(${Math.floor(Math.random() * 11) - 6}deg);
+  transform: rotate(${(props) => props.$rotation}deg);
 
   @media (max-width: 1024px) {
-    font-size: ${Math.random() * 0.6 + 0.7}rem;
+    font-size: ${(props) => props.$fontSizeMobile}rem;
     top: 130px;
     left: 150px;
   }

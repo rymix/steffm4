@@ -5,6 +5,7 @@ export type JupiterButtonProps = {
   labelPosition?: "above" | "below";
   textColor?: string;
   onClick?: () => void;
+  momentary?: boolean; // New prop to indicate momentary button behavior
 };
 
 export type JupiterButtonColors = {

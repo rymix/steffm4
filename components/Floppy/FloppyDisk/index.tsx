@@ -19,6 +19,7 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
   textColor,
   sliderColor,
   font,
+  randomValues,
 }) => {
   const [isHovered, setIsHovered] = useState(false); // Hover state
 
@@ -49,7 +50,13 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
         <StyledFitinha />
       </StyledTop>
       <StyledDown $labelColor={labelColor} $labelSecondColor={labelSecondColor}>
-        <StyledNotes $textColor={textColor} $font={font}>
+        <StyledNotes 
+          $textColor={textColor} 
+          $font={font}
+          $fontSize={randomValues.fontSize}
+          $rotation={randomValues.rotation}
+          $fontSizeMobile={randomValues.fontSizeMobile}
+        >
           {notes}
         </StyledNotes>
       </StyledDown>

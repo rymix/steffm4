@@ -47,6 +47,7 @@ export const StyledUserManualCover = styled.div<StyledUserManualCoverProps>`
 `;
 
 export const StyledUserManualCoverTitle = styled.div`
+  color: rgba(0, 0, 0, 0.8);
   display: block;
   font-family: "Sforzando";
   font-size: 2.6em;

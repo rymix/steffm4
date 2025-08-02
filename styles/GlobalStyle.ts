@@ -16,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
          url('/fonts/Sforzando W00.woff') format('woff');
     font-weight: bold;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   @font-face {
@@ -32,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
     src: url("fonts/DSEG14Classic-Regular.woff2") format("woff2"), url("fonts/DSEG14Classic-Regular.woff") format("woff");
     font-style: normal;
     font-weight: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   @font-face {
