@@ -14,6 +14,7 @@ import {
   StyledOutRunWrapper,
 } from "components/OutRun/StyledOutRun";
 import { useMixcloud } from "contexts/mixcloud";
+import useMasterTimer from "hooks/useMasterTimer";
 import React, { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { DEBUG, GA4 } from "utils/constants";
@@ -24,6 +25,7 @@ import {
 } from "utils/functions";
 
 export const OutRun: React.FC = () => {
+  const { subscribe } = useMasterTimer();
   const [hand, setHand] = React.useState("outrun/hand-none.png");
   const [showHand, setShowHand] = React.useState(false);
   const [handAnimationStartTick, setHandAnimationStartTick] = useState<
@@ -54,14 +56,14 @@ export const OutRun: React.FC = () => {
     hand3: "outrun/hand-3.png",
   };
 
-  // Global timer that ticks every 250ms
+  // Global timer that ticks every 250ms using master timer
   useEffect(() => {
-    const interval = setInterval(() => {
+    const unsubscribe = subscribe('outrunTick', () => {
       setTick((prevTick) => prevTick + 1); // Increment tick
-    }, 250); // Global tick interval
+    }, 250);
 
-    return () => clearInterval(interval);
-  }, []);
+    return unsubscribe;
+  }, [subscribe]);
 
   useEffect(() => {
     if (GA4) {

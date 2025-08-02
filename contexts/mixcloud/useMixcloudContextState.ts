@@ -9,6 +9,7 @@ import type {
 } from "contexts/mixcloud/types";
 import type { BackgroundExtended, Category, Mix, Track } from "db/types";
 import usePersistedState from "hooks/usePersistedState";
+import useMasterTimer from "hooks/useMasterTimer";
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import ReactGA from "react-ga4";
 import themes from "styles/themes";
@@ -33,6 +34,7 @@ import {
 } from "utils/functions";
 
 const useMixcloudContextState = (): MixcloudContextState => {
+  const { subscribe } = useMasterTimer();
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [duration, setDuration] = useState<number>(0);
@@ -77,13 +79,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
   }, [player, playing]);
 
-  // Periodically validate playing state
+  // Periodically validate playing state using master timer
   useEffect(() => {
     if (!player) return;
 
-    const interval = setInterval(validatePlayingState, 1000); // Check every second
-    return () => clearInterval(interval);
-  }, [player, validatePlayingState]);
+    const unsubscribe = subscribe('validatePlayingState', validatePlayingState, 1000);
+    return unsubscribe;
+  }, [player, validatePlayingState, subscribe]);
   const [scale, setScale] = useState<Scale>({ x: 1, y: 1 });
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = usePersistedState<
@@ -113,7 +115,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
   const [secondsRemaining, setSecondsRemaining] = useState<number | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const tooltipTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tooltipFadeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const theme = themes[themeName] || themes.defaultTheme;
 
   /* Screen */
@@ -167,16 +170,27 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Tooltip */
   const showTooltip = (message: string, x: number, y: number): void => {
+    // Clear any existing tooltip timers
+    if (tooltipTimerRef.current) {
+      clearTimeout(tooltipTimerRef.current);
+    }
+    if (tooltipFadeTimerRef.current) {
+      clearTimeout(tooltipFadeTimerRef.current);
+    }
+
     setTooltipMessage(message);
     setTooltipPosition({ x, y });
     setTooltipVisible(true);
     setTooltipFading(true);
-    setTimeout(() => {
+    
+    tooltipTimerRef.current = setTimeout(() => {
       setTooltipFading(false);
-      setTimeout(() => {
+      tooltipFadeTimerRef.current = setTimeout(() => {
         setTooltipVisible(false);
         setTooltipMessage(null);
+        tooltipFadeTimerRef.current = null;
       }, 1000);
+      tooltipTimerRef.current = null;
     }, 2000);
   };
 
@@ -292,34 +306,37 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
 
   /* Timer for Modal auto-close */
-  const startTimer = (timerDuration: number): void => {
+  const startTimer = useCallback((timerDuration: number): void => {
     setSecondsRemaining(timerDuration);
     clearTimeout(timerRef.current || 0);
-    clearInterval(intervalRef.current || 0);
+    
+    // Use master timer for countdown
+    const countdownId = `modalCountdown_${Date.now()}`;
+    let currentSeconds = timerDuration;
+    
+    const unsubscribeCountdown = subscribe(countdownId, () => {
+      currentSeconds -= 1;
+      setSecondsRemaining(currentSeconds);
+      
+      if (currentSeconds <= 0) {
+        handleCloseModal();
+        setSecondsRemaining(null);
+        unsubscribeCountdown();
+      }
+    }, 1000);
 
+    // Main timer to ensure cleanup
     timerRef.current = setTimeout(() => {
       handleCloseModal();
       setSecondsRemaining(null);
-      clearInterval(intervalRef.current || 0);
+      unsubscribeCountdown();
       timerRef.current = null;
     }, timerDuration * 1000);
-
-    intervalRef.current = setInterval(() => {
-      setSecondsRemaining((prev) => {
-        if (prev === null || prev <= 1) {
-          clearInterval(intervalRef.current || 0);
-          return null;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-  };
+  }, [subscribe]);
 
   const stopTimer = (): void => {
     clearTimeout(timerRef.current || 0);
-    clearInterval(intervalRef.current || 0);
     timerRef.current = null;
-    intervalRef.current = null;
     setSecondsRemaining(null);
     handleCloseModal();
   };

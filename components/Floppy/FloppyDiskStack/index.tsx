@@ -4,7 +4,7 @@ import {
   FadingDisk,
   StyledDiskContainer,
 } from "components/Floppy/FloppyDiskStack/StyledFloppyDiskStack";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 import { DiskProps, FloppyDiskStackProps } from "components/Floppy/types";
 
@@ -38,8 +38,22 @@ const getRandomOffset = (amount: number): number => {
 const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
   const [disks, setDisks] = useState<DiskProps[]>([]);
 
-  useEffect(() => {
-    const addDisk = (notes: JSX.Element[]): void => {
+  // Create stable notes that only change when track/artist changes
+  const notes = useMemo(() => [
+    label?.trackName ? (
+      <p key="trackName">{label.trackName}</p>
+    ) : (
+      <p key="trackName">Track Name Unavailable</p>
+    ),
+    label?.artistName ? (
+      <p key="artistName">{label.artistName}</p>
+    ) : (
+      <p key="artistName">Artist Name Unavailable</p>
+    ),
+  ], [label?.trackName, label?.artistName]);
+
+  // Memoize disk creation function
+  const addDisk = useCallback((notes: JSX.Element[]): void => {
       const diskWidth = 290; // Assuming the disk's width is 290px
       const labelColor =
         labelColors[Math.floor(Math.random() * labelColors.length)];
@@ -59,31 +73,30 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
         sliderColor:
           sliderColors[Math.floor(Math.random() * sliderColors.length)],
         font: fonts[Math.floor(Math.random() * fonts.length)],
+        randomValues: {
+          fontSize: Math.random() + 1,
+          rotation: Math.floor(Math.random() * 11) - 6,
+          fontSizeMobile: Math.random() * 0.6 + 0.7,
+        },
       };
 
-      if (disks.length >= 5) {
-        const remainingDisks = disks.slice(1);
-        setDisks([...remainingDisks, newDisk]);
-      } else {
-        setDisks((prevDisks) => [...prevDisks, newDisk]);
-      }
-    };
+      setDisks((prevDisks) => {
+        if (prevDisks.length >= 5) {
+          const remainingDisks = prevDisks.slice(1);
+          return [...remainingDisks, newDisk];
+        } else {
+          return [...prevDisks, newDisk];
+        }
+      });
+    }, []);
 
-    const notes = [
-      label?.trackName ? (
-        <p key="trackName">{label.trackName}</p>
-      ) : (
-        <p key="trackName">Track Name Unavailable</p>
-      ),
-      label?.artistName ? (
-        <p key="artistName">{label.artistName}</p>
-      ) : (
-        <p key="artistName">Artist Name Unavailable</p>
-      ),
-    ];
-
-    addDisk(notes);
-  }, [label]);
+  // Only add disk when notes actually change (track/artist change)
+  useEffect(() => {
+    // Only add disk if we have meaningful content
+    if (label?.trackName || label?.artistName) {
+      addDisk(notes);
+    }
+  }, [notes, addDisk]);
 
   return (
     <StyledDiskContainer>
@@ -107,6 +120,7 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
                 textColor={disk.textColor}
                 sliderColor={disk.sliderColor}
                 font={disk.font}
+                randomValues={disk.randomValues}
               />
             </FadingDisk>
           ) : (
@@ -118,6 +132,7 @@ const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
               textColor={disk.textColor}
               sliderColor={disk.sliderColor}
               font={disk.font}
+              randomValues={disk.randomValues}
             />
           )}
         </AnimatedDisk>
