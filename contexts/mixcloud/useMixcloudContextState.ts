@@ -53,6 +53,33 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [player, setPlayer] = useState<any>();
   const [playerUpdated, setPlayerUpdated] = useState<boolean>(false);
   const [playing, setPlaying] = useState<boolean>(false);
+  
+  // Add a validation function to sync playing state
+  const validatePlayingState = useCallback(async () => {
+    if (!player) return;
+    
+    try {
+      const isPlaying = await player.isPlaying();
+      if (isPlaying !== playing) {
+        console.warn(`Playing state out of sync. UI: ${playing}, Widget: ${isPlaying}. Correcting UI state.`);
+        setPlaying(isPlaying);
+      }
+    } catch (error) {
+      console.error("Error validating playing state:", error);
+    }
+  }, [player, playing]);
+  
+  // Validate playing state when player changes and periodically
+  useEffect(() => {
+    if (!player) return;
+    
+    // Immediate validation when player is set
+    setTimeout(validatePlayingState, 500); // Small delay to let widget stabilize
+    
+    // Periodic validation
+    const interval = setInterval(validatePlayingState, 2000); // Check every 2 seconds
+    return () => clearInterval(interval);
+  }, [player, validatePlayingState]);
   const [scale, setScale] = useState<Scale>({ x: 1, y: 1 });
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = usePersistedState<
@@ -501,42 +528,70 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, [mcKey]);
 
   /* Play / Pause Controls */
-  const handlePlayPause = useCallback(() => {
-    player?.togglePlay();
-    setPlayerUpdated(false);
+  const handlePlayPause = useCallback(async () => {
+    if (!player) return;
+    
+    try {
+      await player.togglePlay();
+      setPlayerUpdated(false);
 
-    if (GA4) {
-      ReactGA.event({
-        category: "Control",
-        action: "Click",
-        label: "Play / Pause",
-      });
+      if (GA4) {
+        ReactGA.event({
+          category: "Control",
+          action: "Click",
+          label: "Play / Pause",
+        });
+      }
+    } catch (error) {
+      console.error("Error in togglePlay:", error);
+      // Reset playing state on error
+      setPlaying(false);
     }
   }, [player, playerUpdated]);
 
-  const handlePlay = useCallback(() => {
-    player?.play();
-    setPlayerUpdated(false);
+  const handlePlay = useCallback(async () => {
+    if (!player) return;
+    
+    console.log("handlePlay called - attempting to play");
+    try {
+      await player.play();
+      setPlayerUpdated(false);
+      // Playing state will be set by the play event listener
 
-    if (GA4) {
-      ReactGA.event({
-        category: "Control",
-        action: "Click",
-        label: "Play",
-      });
+      if (GA4) {
+        ReactGA.event({
+          category: "Control",
+          action: "Click",
+          label: "Play",
+        });
+      }
+    } catch (error) {
+      console.error("Error in play:", error);
+      // Ensure playing state is false if play failed
+      setPlaying(false);
     }
   }, [player, playerUpdated]);
 
-  const handlePause = useCallback(() => {
-    player?.pause();
-    setPlayerUpdated(false);
+  const handlePause = useCallback(async () => {
+    if (!player) return;
+    
+    console.log("handlePause called - attempting to pause");
+    try {
+      await player.pause();
+      setPlayerUpdated(false);
+      // Playing state will be set by the pause event listener
 
-    if (GA4) {
-      ReactGA.event({
-        category: "Control",
-        action: "Click",
-        label: "Stop",
-      });
+      if (GA4) {
+        ReactGA.event({
+          category: "Control",
+          action: "Click",
+          label: "Stop",
+        });
+      }
+    } catch (error) {
+      console.error("Error in pause:", error);
+      // Ensure playing state is false if pause failed
+      setPlaying(false);
     }
   }, [player, playerUpdated]);
 
@@ -598,6 +653,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Load Controls */
   const handleLoad = async (newMcKey?: string): Promise<void> => {
     if (!newMcKey) return;
+    console.log(`Loading new mix: ${newMcKey} (current playing state: ${playing})`);
     setMcKey(mcKeyFormatter(newMcKey));
   };
 

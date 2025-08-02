@@ -46,6 +46,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     const widget = (window as any).Mixcloud.PlayerWidget(iframeRef.current);
 
     setPlayer(null);
+    setPlaying(false); // Reset playing state when new mix loads
     setLoaded(false);
     setShowUnavailable(false);
     setMixProgress(0);
@@ -60,11 +61,13 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
       widget.pause();
 
       widget.events.pause.on(() => {
+        console.log("Mixcloud pause event fired");
         setPlaying(false);
         setLoaded(true);
       });
 
       widget.events.play.on(() => {
+        console.log("Mixcloud play event fired");
         setPlaying(true);
         setLoaded(true);
         timer.current = setTimeout(() => setLoaded(true), 1000);
@@ -92,9 +95,16 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
         setLoaded(false);
         setLoaded(true);
         setShowUnavailable(false);
-        timer.current = setTimeout(() => {
+        timer.current = setTimeout(async () => {
           if (autoPlay === true) {
-            widget.play();
+            try {
+              await widget.play();
+              // Playing state will be set by the play event listener
+            } catch (error) {
+              console.warn("Autoplay blocked by browser:", error);
+              // Don't set playing state if autoplay failed
+              setPlaying(false);
+            }
           }
         }, 200);
       });
