@@ -97,6 +97,7 @@ export type MixcloudContextState = {
     isAtBottom: boolean;
     isMobile: boolean;
     jupiterCaseRef: React.MutableRefObject<HTMLDivElement | null>;
+    keyboardShortcutsEnabled: boolean;
     menuOpen: boolean;
     modalContent: ReactNode | null;
     modalHideChrome: boolean;
@@ -121,6 +122,7 @@ export type MixcloudContextState = {
     >;
     setIsAtBottom: React.Dispatch<React.SetStateAction<boolean>>;
     setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
+    setKeyboardShortcutsEnabled: React.Dispatch<React.SetStateAction<boolean>>;
     setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setModalContent: React.Dispatch<React.SetStateAction<ReactNode | null>>;
     setModalHideChrome: React.Dispatch<React.SetStateAction<boolean>>;

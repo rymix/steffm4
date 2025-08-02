@@ -55,6 +55,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [playerUpdated, setPlayerUpdated] = useState<boolean>(false);
   const [playing, setPlaying] = useState<boolean>(false);
   const [useWidgetLoad, setUseWidgetLoad] = useState<boolean>(false);
+  const [keyboardShortcutsEnabled, setKeyboardShortcutsEnabled] = useState<boolean>(true);
   
   // Add a validation function to sync playing state
   const validatePlayingState = useCallback(async () => {
@@ -211,6 +212,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     sharableKey = sharableKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
     copyToClipboard(`https://stef.fm/${sharableKey}`);
     setTemporaryMessage("Sharable link copied to clipboard");
+    if (DEBUG) console.log("Share button clicked - temporaryMessage set to:", "Sharable link copied to clipboard");
 
     if (GA4) {
       ReactGA.event({
@@ -922,6 +924,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Keypress Listeners */
   const handleKeyPress = useCallback(
     (event: KeyboardEvent) => {
+      // Don't handle shortcuts if they're disabled or if a modal is open
+      if (!keyboardShortcutsEnabled || modalOpen) return;
+      
+      // Don't handle shortcuts if user is typing in an input/textarea/contenteditable
+      const target = event.target as HTMLElement;
+      if (
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.contentEditable === "true" ||
+        target.getAttribute("role") === "textbox"
+      ) {
+        return;
+      }
+      
       switch (event.key) {
         case " ":
         case "k": {
@@ -994,7 +1010,11 @@ const useMixcloudContextState = (): MixcloudContextState => {
       }
     },
     [
-      handlePlayPause,
+      keyboardShortcutsEnabled,
+      modalOpen,
+      playing,
+      handlePlay,
+      handlePause,
       handlePrevious,
       handleNext,
       setVolume,
@@ -1004,8 +1024,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       mcKey,
       addFavourite,
       removeFavourite,
-      openModal,
-      mixDetails,
+      copySharableLink,
       volume,
     ],
   );
@@ -1023,7 +1042,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
 
     return undefined;
-  }, []);
+  }, [handleKeyPress]);
 
   /* Scroll and touch listeners */
   useEffect((): (() => void) => {
@@ -1163,6 +1182,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       isAtBottom,
       isMobile,
       jupiterCaseRef,
+      keyboardShortcutsEnabled,
       menuOpen,
       modalContent,
       modalHideChrome,
@@ -1178,6 +1198,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setFilterBackgroundCategory,
       setIsAtBottom,
       setIsMobile,
+      setKeyboardShortcutsEnabled,
       setMenuOpen,
       setModalContent,
       setModalHideChrome,

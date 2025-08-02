@@ -8,7 +8,7 @@ import { SCREEN_SPEED_HOLDING, SCREEN_SPEED_TEMPORARY } from "utils/constants";
 
 const JupiterScreen: React.FC = () => {
   const {
-    screen: { holdingMessage, temporaryMessage },
+    screen: { holdingMessage, temporaryMessage, setTemporaryMessage },
     session: { displayLength },
     widget: { playing },
     track: { details: trackDetails },
@@ -76,6 +76,8 @@ const JupiterScreen: React.FC = () => {
           if (newPosition >= endPosition) {
             // When temporary message finishes, return to appropriate state
             if (messageType === 'temporary') {
+              // Clear the temporary message so future ones can trigger
+              setTemporaryMessage(undefined);
               // Return to track message if playing and track exists, otherwise holding message
               if (playing && trackMessage) {
                 // eslint-disable-next-line no-use-before-define
@@ -94,7 +96,7 @@ const JupiterScreen: React.FC = () => {
         });
       }, interval);
     },
-    [clearExistingScreenInterval, playing, trackMessage, displayLength],
+    [clearExistingScreenInterval, playing, trackMessage, displayLength, setTemporaryMessage],
   );
 
   const startHoldingMessage = (): void => {
