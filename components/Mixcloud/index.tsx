@@ -1,7 +1,8 @@
 import { StyledMixcloudWidget } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { DEBUG } from "utils/constants";
 
 export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   const { autoPlay = true, children } = props;
@@ -20,12 +21,15 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     },
     widget: {
       iframeRef,
+      player,
       scriptLoaded,
       setLoaded,
       setPlayer,
       setPlayerUpdated,
       setPlaying,
       setScriptLoaded,
+      setUseWidgetLoad,
+      useWidgetLoad,
       widgetUrl,
     },
   } = useMixcloud();
@@ -42,10 +46,17 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
 
   useEffect(() => {
     if (!iframeRef.current || !scriptLoaded || !mcKey) return;
+    
+    // If widget.load() mode is enabled, don't recreate the iframe
+    if (useWidgetLoad && player) {
+      if (DEBUG) console.log("Widget.load() mode enabled - skipping iframe recreation");
+      return;
+    }
 
     const widget = (window as any).Mixcloud.PlayerWidget(iframeRef.current);
 
     setPlayer(null);
+    setPlaying(false); // Reset playing state when new mix loads
     setLoaded(false);
     setShowUnavailable(false);
     setMixProgress(0);
@@ -54,17 +65,19 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setTrackProgressPercent(0);
 
     widget.ready.then(() => {
-      console.log("Widget ready");
+      if (DEBUG) console.log("Widget ready");
       setPlayer(widget);
       setPlayerUpdated(true);
       widget.pause();
 
       widget.events.pause.on(() => {
+        if (DEBUG) console.log("Mixcloud pause event fired - setting UI to paused");
         setPlaying(false);
         setLoaded(true);
       });
 
       widget.events.play.on(() => {
+        if (DEBUG) console.log("Mixcloud play event fired - setting UI to playing");
         setPlaying(true);
         setLoaded(true);
         timer.current = setTimeout(() => setLoaded(true), 1000);
@@ -83,7 +96,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
       });
 
       widget.events.error.on((error: any) => {
-        console.log("Error", error);
+        console.error("Mixcloud widget error:", error);
         setShowUnavailable(true);
         setPlaying(false);
       });
@@ -92,9 +105,21 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
         setLoaded(false);
         setLoaded(true);
         setShowUnavailable(false);
-        timer.current = setTimeout(() => {
+        
+        // Enable widget.load() mode after first successful initialization
+        if (DEBUG) console.log("Enabling widget.load() mode for future mix changes");
+        setUseWidgetLoad(true);
+        
+        timer.current = setTimeout(async () => {
           if (autoPlay === true) {
-            widget.play();
+            try {
+              await widget.play();
+              // Playing state will be set by the play event listener
+            } catch (error) {
+              if (DEBUG) console.warn("Autoplay blocked by browser:", error);
+              // Don't set playing state if autoplay failed
+              setPlaying(false);
+            }
           }
         }, 200);
       });
@@ -106,7 +131,16 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mcKey, scriptLoaded]);
+  }, [mcKey, scriptLoaded, useWidgetLoad, player]);
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (timer.current) {
+        clearTimeout(timer.current);
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -115,7 +149,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
           <StyledMixcloudWidget
             title="mixcloud-widget"
             ref={iframeRef}
-            key={mcKey}
+            key={useWidgetLoad ? "widget-persistent" : mcKey}
             className="mixcloud-widget"
             width="100%"
             height="60"

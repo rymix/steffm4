@@ -126,7 +126,7 @@ const Jupiter: React.FC = () => {
   };
 
   const handleListClick = (): void => {
-    openModal(<MixList />);
+    openModal(<MixList />, undefined, undefined, undefined, true); // Disable shortcuts for search functionality
 
     if (GA4) {
       ReactGA.event({

@@ -22,6 +22,10 @@ const Background: React.FC = () => {
   const [activeBackground, setActiveBackground] = useState<"A" | "B">("A");
   const [backgroundA, setBackgroundA] = useState(background);
   const [backgroundB, setBackgroundB] = useState(background);
+  
+  // Track session state for initial load behavior
+  const [isFirstSession, setIsFirstSession] = useState(true);
+  const [firstTrackName, setFirstTrackName] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     setHydrated(true); // Ensure this effect only runs on the client
@@ -29,6 +33,26 @@ const Background: React.FC = () => {
 
   useEffect(() => {
     if (!backgroundAutoChange) return; // Disable auto-change if backgroundAutoChange is false
+
+    // Handle first track detection
+    if (trackName && isFirstSession) {
+      if (!firstTrackName) {
+        // This is the first track of the session - record it but don't change background
+        setFirstTrackName(trackName);
+        return;
+      } else if (trackName !== firstTrackName) {
+        // This is the second track - start background changes from now on
+        setIsFirstSession(false);
+      } else {
+        // Still the same first track - don't change background
+        return;
+      }
+    }
+
+    // Skip background change if this is still the first session and first track
+    if (isFirstSession) {
+      return;
+    }
 
     const setRandomBackground = async (): Promise<void> => {
       try {
@@ -52,7 +76,7 @@ const Background: React.FC = () => {
     };
 
     setRandomBackground();
-  }, [trackName, backgroundAutoChange]);
+  }, [trackName, backgroundAutoChange, isFirstSession, firstTrackName]);
 
   useEffect(() => {
     if (!hydrated || !backgroundAutoChange) return; // Skip transition logic if auto-change is disabled

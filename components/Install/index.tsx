@@ -1,5 +1,6 @@
 // components/InstallInstructions.tsx
 import React, { useEffect, useState } from "react";
+import { DEBUG } from "utils/constants";
 
 import {
   InstallButton,
@@ -61,9 +62,13 @@ const InstallInstructions: React.FC = () => {
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then((choiceResult: any) => {
         if (choiceResult.outcome === "accepted") {
-          console.log("User accepted the install prompt");
+          if (DEBUG) {
+            console.log("User accepted the install prompt");
+          }
         } else {
-          console.log("User dismissed the install prompt");
+          if (DEBUG) {
+            console.log("User dismissed the install prompt");
+          }
         }
         setDeferredPrompt(null);
         setShowInstallButton(false);

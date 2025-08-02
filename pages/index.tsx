@@ -2,7 +2,7 @@ import Jupiter from "components";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-import { GA4, GOOGLE_TRACKING_ID } from "utils/constants";
+import { DEBUG, GA4, GOOGLE_TRACKING_ID } from "utils/constants";
 
 const Home = (): JSX.Element => {
   const {
@@ -26,18 +26,37 @@ const Home = (): JSX.Element => {
     if (!latestMcKey || hasSeeked || loadLatestProgress <= 60) return;
 
     const attemptSeek = async (): Promise<void> => {
-      if (playing) {
+      // Give more time for widget to be ready for seeking
+      const maxAttempts = 5;
+      let attempts = 0;
+      
+      const trySeek = async (): Promise<void> => {
+        attempts++;
         try {
-          await handleSeek(loadLatestProgress);
-          setHasSeeked(true);
+          const seekSuccessful = await handleSeek(loadLatestProgress);
+          if (seekSuccessful) {
+            setHasSeeked(true);
+            if (DEBUG) console.log(`Seek successful on attempt ${attempts}`);
+          } else if (attempts < maxAttempts) {
+            if (DEBUG) console.log(`Seek failed, attempt ${attempts}/${maxAttempts}, retrying...`);
+            setTimeout(trySeek, 1000);
+          } else {
+            if (DEBUG) console.warn("Seek failed after maximum attempts");
+          }
         } catch (error) {
-          console.error("Error during seek:", error);
+          console.error(`Seek error on attempt ${attempts}:`, error);
+          if (attempts < maxAttempts) {
+            setTimeout(trySeek, 1000);
+          }
         }
-      }
+      };
+
+      // Start seeking attempts after a small delay
+      setTimeout(trySeek, 500);
     };
 
     attemptSeek();
-  }, [playing, latestMcKey, loadLatestProgress, handleSeek, hasSeeked]);
+  }, [latestMcKey, loadLatestProgress, handleSeek, hasSeeked]); // Removed 'playing' dependency
 
   /* Initial load */
   useEffect(() => {

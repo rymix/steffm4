@@ -16,7 +16,7 @@ import {
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-import { GA4 } from "utils/constants";
+import { DEBUG, GA4 } from "utils/constants";
 import {
   getScaledFontSize,
   removeParentheses,
@@ -114,7 +114,9 @@ export const OutRun: React.FC = () => {
 
   // Show hand animation if volume, track or playig changes
   useEffect(() => {
-    console.log("playing, trackName, volume changed");
+    if (DEBUG) {
+      console.log("playing, trackName, volume changed");
+    }
     if (playing) {
       setHandAnimationStartTick(tick); // Record the current tick when playing changes
       setShowHand(true);

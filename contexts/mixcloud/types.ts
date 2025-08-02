@@ -97,6 +97,7 @@ export type MixcloudContextState = {
     isAtBottom: boolean;
     isMobile: boolean;
     jupiterCaseRef: React.MutableRefObject<HTMLDivElement | null>;
+    keyboardShortcutsEnabled: boolean;
     menuOpen: boolean;
     modalContent: ReactNode | null;
     modalHideChrome: boolean;
@@ -108,6 +109,7 @@ export type MixcloudContextState = {
       title?: string | undefined,
       seconds?: number | undefined,
       hideChrome?: boolean,
+      disableShortcuts?: boolean,
     ) => void;
     scale: Scale | null;
     secondsRemaining: number | null;
@@ -121,6 +123,7 @@ export type MixcloudContextState = {
     >;
     setIsAtBottom: React.Dispatch<React.SetStateAction<boolean>>;
     setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
+    setKeyboardShortcutsEnabled: React.Dispatch<React.SetStateAction<boolean>>;
     setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
     setModalContent: React.Dispatch<React.SetStateAction<ReactNode | null>>;
     setModalHideChrome: React.Dispatch<React.SetStateAction<boolean>>;
@@ -163,7 +166,9 @@ export type MixcloudContextState = {
     setPlayerUpdated: React.Dispatch<React.SetStateAction<boolean>>;
     setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
     setScriptLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+    setUseWidgetLoad: React.Dispatch<React.SetStateAction<boolean>>;
     setVolume: React.Dispatch<React.SetStateAction<number>>;
+    useWidgetLoad: boolean;
     volume: number;
     widgetUrl: string;
   };

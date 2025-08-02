@@ -2,7 +2,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import ReactGA from "react-ga4";
-import { GA4, GOOGLE_TRACKING_ID } from "utils/constants";
+import { DEBUG, GA4, GOOGLE_TRACKING_ID } from "utils/constants";
 
 const DynamicRoute = (): null => {
   const router = useRouter();
@@ -18,7 +18,9 @@ const DynamicRoute = (): null => {
     if (mcKey && typeof mcKey === "string") {
       // Remove leading and trailing slashes
       const cleanedMcKey = mcKey.replaceAll(/^\/+|\/+$/g, "");
-      console.log("Redirect mcKey:", cleanedMcKey);
+      if (DEBUG) {
+        console.log("Redirect mcKey:", cleanedMcKey);
+      }
       handleLoad(cleanedMcKey);
 
       // Use replace to avoid adding a new history entry

@@ -30,6 +30,7 @@ import {
   mcKeyUrlFormatter,
   mcWidgetUrlFormatter,
 } from "utils/functions";
+import { DEBUG } from "utils/constants";
 
 const useMixcloudContextState = (): MixcloudContextState => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -53,6 +54,32 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [player, setPlayer] = useState<any>();
   const [playerUpdated, setPlayerUpdated] = useState<boolean>(false);
   const [playing, setPlaying] = useState<boolean>(false);
+  const [useWidgetLoad, setUseWidgetLoad] = useState<boolean>(false);
+  const [keyboardShortcutsEnabled, setKeyboardShortcutsEnabled] = useState<boolean>(true);
+  
+  // Add a validation function to sync playing state
+  const validatePlayingState = useCallback(async () => {
+    if (!player) return;
+    
+    try {
+      const isPaused = await player.getIsPaused();
+      const isPlaying = !isPaused; // Convert paused state to playing state
+      if (isPlaying !== playing) {
+        if (DEBUG) console.warn(`Playing state out of sync. UI: ${playing}, Widget: ${isPlaying} (paused: ${isPaused}). Correcting UI state.`);
+        setPlaying(isPlaying);
+      }
+    } catch (error) {
+      console.error("Error validating playing state:", error);
+    }
+  }, [player, playing]);
+  
+  // Periodically validate playing state
+  useEffect(() => {
+    if (!player) return;
+    
+    const interval = setInterval(validatePlayingState, 2000); // Check every 2 seconds
+    return () => clearInterval(interval);
+  }, [player, validatePlayingState]);
   const [scale, setScale] = useState<Scale>({ x: 1, y: 1 });
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = usePersistedState<
@@ -185,6 +212,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     sharableKey = sharableKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
     copyToClipboard(`https://stef.fm/${sharableKey}`);
     setTemporaryMessage("Sharable link copied to clipboard");
+    if (DEBUG) console.log("Share button clicked - temporaryMessage set to:", "Sharable link copied to clipboard");
 
     if (GA4) {
       ReactGA.event({
@@ -246,6 +274,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const handleCloseModal = (): void => {
     setModalContent(null);
     setModalOpen(false);
+    // Re-enable shortcuts when modal closes (they may have been disabled by the modal)
+    setKeyboardShortcutsEnabled(true);
   };
 
   /* Timer for Modal auto-close */
@@ -287,11 +317,18 @@ const useMixcloudContextState = (): MixcloudContextState => {
       title?: string | undefined,
       seconds?: number | undefined,
       hideChrome?: boolean,
+      disableShortcuts?: boolean,
     ): void => {
       setModalContent(content);
       setModalTitle(title ?? null);
       setModalHideChrome(hideChrome ?? false);
       setModalOpen(true);
+      
+      // Disable shortcuts if requested
+      if (disableShortcuts === true) {
+        setKeyboardShortcutsEnabled(false);
+      }
+      
       if (seconds === undefined) {
         setSecondsRemaining(null);
       } else {
@@ -501,44 +538,100 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, [mcKey]);
 
   /* Play / Pause Controls */
-  const handlePlayPause = useCallback(() => {
-    player?.togglePlay();
-    setPlayerUpdated(false);
+  const handlePlayPause = useCallback(async () => {
+    if (!player) return;
+    
+    try {
+      await player.togglePlay();
+      setPlayerUpdated(false);
 
-    if (GA4) {
-      ReactGA.event({
-        category: "Control",
-        action: "Click",
-        label: "Play / Pause",
-      });
+      if (GA4) {
+        ReactGA.event({
+          category: "Control",
+          action: "Click",
+          label: "Play / Pause",
+        });
+      }
+    } catch (error) {
+      console.error("Error in togglePlay:", error);
+      // Reset playing state on error
+      setPlaying(false);
     }
   }, [player, playerUpdated]);
 
-  const handlePlay = useCallback(() => {
-    player?.play();
-    setPlayerUpdated(false);
+  const handlePlay = useCallback(async () => {
+    if (!player) return;
+    
+    if (DEBUG) console.log("handlePlay called - attempting to play");
+    try {
+      await player.play();
+      if (DEBUG) console.log("player.play() completed successfully");
+      setPlayerUpdated(false);
+      // Playing state will be set by the play event listener
+      // But if event doesn't fire, we need to handle it manually
+      setTimeout(async () => {
+        try {
+          const isPaused = await player.getIsPaused();
+          if (DEBUG) console.log(`Post-play check: widget paused = ${isPaused}, UI playing = ${playing}`);
+          if (!isPaused && !playing) {
+            if (DEBUG) console.log("Play event didn't fire - setting UI state manually");
+            setPlaying(true);
+          }
+        } catch (error) {
+          console.error("Error checking play state:", error);
+        }
+      }, 100);
 
-    if (GA4) {
-      ReactGA.event({
-        category: "Control",
-        action: "Click",
-        label: "Play",
-      });
+      if (GA4) {
+        ReactGA.event({
+          category: "Control",
+          action: "Click",
+          label: "Play",
+        });
+      }
+    } catch (error) {
+      console.error("Error in play:", error);
+      // Ensure playing state is false if play failed
+      setPlaying(false);
     }
-  }, [player, playerUpdated]);
+  }, [player, playerUpdated, playing]);
 
-  const handlePause = useCallback(() => {
-    player?.pause();
-    setPlayerUpdated(false);
+  const handlePause = useCallback(async () => {
+    if (!player) return;
+    
+    if (DEBUG) console.log("handlePause called - attempting to pause");
+    try {
+      await player.pause();
+      if (DEBUG) console.log("player.pause() completed successfully");
+      setPlayerUpdated(false);
+      // Playing state will be set by the pause event listener
+      // But if event doesn't fire, we need to handle it manually
+      setTimeout(async () => {
+        try {
+          const isPaused = await player.getIsPaused();
+          if (DEBUG) console.log(`Post-pause check: widget paused = ${isPaused}, UI playing = ${playing}`);
+          if (isPaused && playing) {
+            if (DEBUG) console.log("Pause event didn't fire - setting UI state manually");
+            setPlaying(false);
+          }
+        } catch (error) {
+          console.error("Error checking pause state:", error);
+        }
+      }, 100);
 
-    if (GA4) {
-      ReactGA.event({
-        category: "Control",
-        action: "Click",
-        label: "Stop",
-      });
+      if (GA4) {
+        ReactGA.event({
+          category: "Control",
+          action: "Click",
+          label: "Stop",
+        });
+      }
+    } catch (error) {
+      console.error("Error in pause:", error);
+      // Ensure playing state is false if pause failed
+      setPlaying(false);
     }
-  }, [player, playerUpdated]);
+  }, [player, playerUpdated, playing]);
 
   const handleSeek = useCallback(
     async (seconds: number) => {
@@ -547,7 +640,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
         if (seekAllowed) {
           setPlayerUpdated(true);
         } else {
-          console.log("Seek was not allowed");
+          if (DEBUG) console.log("Seek was not allowed");
         }
         return seekAllowed;
       } catch (error) {
@@ -598,7 +691,47 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Load Controls */
   const handleLoad = async (newMcKey?: string): Promise<void> => {
     if (!newMcKey) return;
-    setMcKey(mcKeyFormatter(newMcKey));
+    if (DEBUG) console.log(`Loading new mix: ${newMcKey} (current playing state: ${playing})`);
+    
+    // If widget.load is available and widget is initialized, use it
+    if (useWidgetLoad && player) {
+      if (DEBUG) console.log(`Using widget.load() for: ${newMcKey}`);
+      
+      // Reset state before loading new mix
+      setPlaying(false);
+      setLoaded(false);
+      setShowUnavailable(false);
+      setMixProgress(0);
+      setMixProgressPercent(0);
+      setTrackProgress(0);
+      setTrackProgressPercent(0);
+
+      try {
+        // Use widget.load() method with the full Mixcloud URL
+        const mixcloudUrl = `https://www.mixcloud.com${mcKeyFormatter(newMcKey)}`;
+        await player.load(mixcloudUrl, true); // Force autoplay on new loads
+        if (DEBUG) console.log("Widget load completed for:", newMcKey);
+        setMcKey(mcKeyFormatter(newMcKey));
+        setLoaded(true);
+        setShowUnavailable(false);
+        
+        // Since we used autoplay=true, the widget should be playing
+        // Set the UI state to match
+        setPlaying(true);
+      } catch (error) {
+        console.error("Widget load failed:", error);
+        setShowUnavailable(true);
+        setPlaying(false);
+        // Fall back to iframe recreation
+        if (DEBUG) console.log("Falling back to iframe recreation");
+        setUseWidgetLoad(false);
+        setMcKey(mcKeyFormatter(newMcKey));
+      }
+    } else {
+      // Use original iframe recreation approach
+      if (DEBUG) console.log(`Using iframe recreation for: ${newMcKey}`);
+      setMcKey(mcKeyFormatter(newMcKey));
+    }
   };
 
   const handleLoadLatest = async (): Promise<void> => {
@@ -615,7 +748,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   const handleLoadRandomFavourite = async (): Promise<void> => {
     if (favouritesList.length === 0) {
-      console.log("No favourites to load");
+      if (DEBUG) console.log("No favourites to load");
       return;
     }
 
@@ -800,6 +933,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Keypress Listeners */
   const handleKeyPress = useCallback(
     (event: KeyboardEvent) => {
+      // Don't handle shortcuts if they're disabled
+      if (!keyboardShortcutsEnabled) return;
+      
+      // Don't handle shortcuts if user is typing in an input/textarea/contenteditable
+      const target = event.target as HTMLElement;
+      if (
+        target.tagName === "INPUT" ||
+        target.tagName === "TEXTAREA" ||
+        target.contentEditable === "true" ||
+        target.getAttribute("role") === "textbox"
+      ) {
+        return;
+      }
+      
       switch (event.key) {
         case " ":
         case "k": {
@@ -872,7 +1019,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
       }
     },
     [
-      handlePlayPause,
+      keyboardShortcutsEnabled,
+      playing,
+      handlePlay,
+      handlePause,
       handlePrevious,
       handleNext,
       setVolume,
@@ -882,8 +1032,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       mcKey,
       addFavourite,
       removeFavourite,
-      openModal,
-      mixDetails,
+      copySharableLink,
       volume,
     ],
   );
@@ -901,7 +1050,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
 
     return undefined;
-  }, []);
+  }, [handleKeyPress]);
 
   /* Scroll and touch listeners */
   useEffect((): (() => void) => {
@@ -1041,6 +1190,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       isAtBottom,
       isMobile,
       jupiterCaseRef,
+      keyboardShortcutsEnabled,
       menuOpen,
       modalContent,
       modalHideChrome,
@@ -1056,6 +1206,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setFilterBackgroundCategory,
       setIsAtBottom,
       setIsMobile,
+      setKeyboardShortcutsEnabled,
       setMenuOpen,
       setModalContent,
       setModalHideChrome,
@@ -1096,7 +1247,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setPlayerUpdated,
       setPlaying,
       setScriptLoaded,
+      setUseWidgetLoad,
       setVolume,
+      useWidgetLoad,
       volume,
       widgetUrl,
     },
