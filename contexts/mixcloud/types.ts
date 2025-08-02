@@ -109,6 +109,7 @@ export type MixcloudContextState = {
       title?: string | undefined,
       seconds?: number | undefined,
       hideChrome?: boolean,
+      disableShortcuts?: boolean,
     ) => void;
     scale: Scale | null;
     secondsRemaining: number | null;

@@ -274,6 +274,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const handleCloseModal = (): void => {
     setModalContent(null);
     setModalOpen(false);
+    // Re-enable shortcuts when modal closes (they may have been disabled by the modal)
+    setKeyboardShortcutsEnabled(true);
   };
 
   /* Timer for Modal auto-close */
@@ -315,11 +317,18 @@ const useMixcloudContextState = (): MixcloudContextState => {
       title?: string | undefined,
       seconds?: number | undefined,
       hideChrome?: boolean,
+      disableShortcuts?: boolean,
     ): void => {
       setModalContent(content);
       setModalTitle(title ?? null);
       setModalHideChrome(hideChrome ?? false);
       setModalOpen(true);
+      
+      // Disable shortcuts if requested
+      if (disableShortcuts === true) {
+        setKeyboardShortcutsEnabled(false);
+      }
+      
       if (seconds === undefined) {
         setSecondsRemaining(null);
       } else {
@@ -924,8 +933,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Keypress Listeners */
   const handleKeyPress = useCallback(
     (event: KeyboardEvent) => {
-      // Don't handle shortcuts if they're disabled or if a modal is open
-      if (!keyboardShortcutsEnabled || modalOpen) return;
+      // Don't handle shortcuts if they're disabled
+      if (!keyboardShortcutsEnabled) return;
       
       // Don't handle shortcuts if user is typing in an input/textarea/contenteditable
       const target = event.target as HTMLElement;
@@ -1011,7 +1020,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     },
     [
       keyboardShortcutsEnabled,
-      modalOpen,
       playing,
       handlePlay,
       handlePause,
