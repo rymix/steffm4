@@ -2,7 +2,7 @@ import Jupiter from "components";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-import { GA4, GOOGLE_TRACKING_ID } from "utils/constants";
+import { DEBUG, GA4, GOOGLE_TRACKING_ID } from "utils/constants";
 
 const Home = (): JSX.Element => {
   const {
@@ -36,12 +36,12 @@ const Home = (): JSX.Element => {
           const seekSuccessful = await handleSeek(loadLatestProgress);
           if (seekSuccessful) {
             setHasSeeked(true);
-            console.log(`Seek successful on attempt ${attempts}`);
+            if (DEBUG) console.log(`Seek successful on attempt ${attempts}`);
           } else if (attempts < maxAttempts) {
-            console.log(`Seek failed, attempt ${attempts}/${maxAttempts}, retrying...`);
+            if (DEBUG) console.log(`Seek failed, attempt ${attempts}/${maxAttempts}, retrying...`);
             setTimeout(trySeek, 1000);
           } else {
-            console.warn("Seek failed after maximum attempts");
+            if (DEBUG) console.warn("Seek failed after maximum attempts");
           }
         } catch (error) {
           console.error(`Seek error on attempt ${attempts}:`, error);

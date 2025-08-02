@@ -30,6 +30,7 @@ import {
   mcKeyUrlFormatter,
   mcWidgetUrlFormatter,
 } from "utils/functions";
+import { DEBUG } from "utils/constants";
 
 const useMixcloudContextState = (): MixcloudContextState => {
   const [categories, setCategories] = useState<Category[]>([]);
@@ -63,7 +64,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const isPaused = await player.getIsPaused();
       const isPlaying = !isPaused; // Convert paused state to playing state
       if (isPlaying !== playing) {
-        console.warn(`Playing state out of sync. UI: ${playing}, Widget: ${isPlaying} (paused: ${isPaused}). Correcting UI state.`);
+        if (DEBUG) console.warn(`Playing state out of sync. UI: ${playing}, Widget: ${isPlaying} (paused: ${isPaused}). Correcting UI state.`);
         setPlaying(isPlaying);
       }
     } catch (error) {
@@ -550,19 +551,19 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const handlePlay = useCallback(async () => {
     if (!player) return;
     
-    console.log("handlePlay called - attempting to play");
+    if (DEBUG) console.log("handlePlay called - attempting to play");
     try {
       await player.play();
-      console.log("player.play() completed successfully");
+      if (DEBUG) console.log("player.play() completed successfully");
       setPlayerUpdated(false);
       // Playing state will be set by the play event listener
       // But if event doesn't fire, we need to handle it manually
       setTimeout(async () => {
         try {
           const isPaused = await player.getIsPaused();
-          console.log(`Post-play check: widget paused = ${isPaused}, UI playing = ${playing}`);
+          if (DEBUG) console.log(`Post-play check: widget paused = ${isPaused}, UI playing = ${playing}`);
           if (!isPaused && !playing) {
-            console.log("Play event didn't fire - setting UI state manually");
+            if (DEBUG) console.log("Play event didn't fire - setting UI state manually");
             setPlaying(true);
           }
         } catch (error) {
@@ -587,19 +588,19 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const handlePause = useCallback(async () => {
     if (!player) return;
     
-    console.log("handlePause called - attempting to pause");
+    if (DEBUG) console.log("handlePause called - attempting to pause");
     try {
       await player.pause();
-      console.log("player.pause() completed successfully");
+      if (DEBUG) console.log("player.pause() completed successfully");
       setPlayerUpdated(false);
       // Playing state will be set by the pause event listener
       // But if event doesn't fire, we need to handle it manually
       setTimeout(async () => {
         try {
           const isPaused = await player.getIsPaused();
-          console.log(`Post-pause check: widget paused = ${isPaused}, UI playing = ${playing}`);
+          if (DEBUG) console.log(`Post-pause check: widget paused = ${isPaused}, UI playing = ${playing}`);
           if (isPaused && playing) {
-            console.log("Pause event didn't fire - setting UI state manually");
+            if (DEBUG) console.log("Pause event didn't fire - setting UI state manually");
             setPlaying(false);
           }
         } catch (error) {
@@ -628,7 +629,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
         if (seekAllowed) {
           setPlayerUpdated(true);
         } else {
-          console.log("Seek was not allowed");
+          if (DEBUG) console.log("Seek was not allowed");
         }
         return seekAllowed;
       } catch (error) {
@@ -679,11 +680,11 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Load Controls */
   const handleLoad = async (newMcKey?: string): Promise<void> => {
     if (!newMcKey) return;
-    console.log(`Loading new mix: ${newMcKey} (current playing state: ${playing})`);
+    if (DEBUG) console.log(`Loading new mix: ${newMcKey} (current playing state: ${playing})`);
     
     // If widget.load is available and widget is initialized, use it
     if (useWidgetLoad && player) {
-      console.log(`Using widget.load() for: ${newMcKey}`);
+      if (DEBUG) console.log(`Using widget.load() for: ${newMcKey}`);
       
       // Reset state before loading new mix
       setPlaying(false);
@@ -698,7 +699,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
         // Use widget.load() method with the full Mixcloud URL
         const mixcloudUrl = `https://www.mixcloud.com${mcKeyFormatter(newMcKey)}`;
         await player.load(mixcloudUrl, true); // Force autoplay on new loads
-        console.log("Widget load completed for:", newMcKey);
+        if (DEBUG) console.log("Widget load completed for:", newMcKey);
         setMcKey(mcKeyFormatter(newMcKey));
         setLoaded(true);
         setShowUnavailable(false);
@@ -711,13 +712,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
         setShowUnavailable(true);
         setPlaying(false);
         // Fall back to iframe recreation
-        console.log("Falling back to iframe recreation");
+        if (DEBUG) console.log("Falling back to iframe recreation");
         setUseWidgetLoad(false);
         setMcKey(mcKeyFormatter(newMcKey));
       }
     } else {
       // Use original iframe recreation approach
-      console.log(`Using iframe recreation for: ${newMcKey}`);
+      if (DEBUG) console.log(`Using iframe recreation for: ${newMcKey}`);
       setMcKey(mcKeyFormatter(newMcKey));
     }
   };
@@ -736,7 +737,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   const handleLoadRandomFavourite = async (): Promise<void> => {
     if (favouritesList.length === 0) {
-      console.log("No favourites to load");
+      if (DEBUG) console.log("No favourites to load");
       return;
     }
 

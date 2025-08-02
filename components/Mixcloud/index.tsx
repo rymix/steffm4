@@ -2,6 +2,7 @@ import { StyledMixcloudWidget } from "components/Mixcloud/StyledMixcloud";
 import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useRef, useState } from "react";
+import { DEBUG } from "utils/constants";
 
 export const Mixcloud: React.FC<MixcloudProps> = (props) => {
   const { autoPlay = true, children } = props;
@@ -48,7 +49,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     
     // If widget.load() mode is enabled, don't recreate the iframe
     if (useWidgetLoad && player) {
-      console.log("Widget.load() mode enabled - skipping iframe recreation");
+      if (DEBUG) console.log("Widget.load() mode enabled - skipping iframe recreation");
       return;
     }
 
@@ -64,19 +65,19 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     setTrackProgressPercent(0);
 
     widget.ready.then(() => {
-      console.log("Widget ready");
+      if (DEBUG) console.log("Widget ready");
       setPlayer(widget);
       setPlayerUpdated(true);
       widget.pause();
 
       widget.events.pause.on(() => {
-        console.log("Mixcloud pause event fired - setting UI to paused");
+        if (DEBUG) console.log("Mixcloud pause event fired - setting UI to paused");
         setPlaying(false);
         setLoaded(true);
       });
 
       widget.events.play.on(() => {
-        console.log("Mixcloud play event fired - setting UI to playing");
+        if (DEBUG) console.log("Mixcloud play event fired - setting UI to playing");
         setPlaying(true);
         setLoaded(true);
         timer.current = setTimeout(() => setLoaded(true), 1000);
@@ -95,7 +96,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
       });
 
       widget.events.error.on((error: any) => {
-        console.log("Error", error);
+        console.error("Mixcloud widget error:", error);
         setShowUnavailable(true);
         setPlaying(false);
       });
@@ -106,7 +107,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
         setShowUnavailable(false);
         
         // Enable widget.load() mode after first successful initialization
-        console.log("Enabling widget.load() mode for future mix changes");
+        if (DEBUG) console.log("Enabling widget.load() mode for future mix changes");
         setUseWidgetLoad(true);
         
         timer.current = setTimeout(async () => {
@@ -115,7 +116,7 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
               await widget.play();
               // Playing state will be set by the play event listener
             } catch (error) {
-              console.warn("Autoplay blocked by browser:", error);
+              if (DEBUG) console.warn("Autoplay blocked by browser:", error);
               // Don't set playing state if autoplay failed
               setPlaying(false);
             }
