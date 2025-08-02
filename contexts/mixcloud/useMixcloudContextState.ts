@@ -53,15 +53,17 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [player, setPlayer] = useState<any>();
   const [playerUpdated, setPlayerUpdated] = useState<boolean>(false);
   const [playing, setPlaying] = useState<boolean>(false);
+  const [useWidgetLoad, setUseWidgetLoad] = useState<boolean>(false);
   
   // Add a validation function to sync playing state
   const validatePlayingState = useCallback(async () => {
     if (!player) return;
     
     try {
-      const isPlaying = await player.isPlaying();
+      const isPaused = await player.getIsPaused();
+      const isPlaying = !isPaused; // Convert paused state to playing state
       if (isPlaying !== playing) {
-        console.warn(`Playing state out of sync. UI: ${playing}, Widget: ${isPlaying}. Correcting UI state.`);
+        console.warn(`Playing state out of sync. UI: ${playing}, Widget: ${isPlaying} (paused: ${isPaused}). Correcting UI state.`);
         setPlaying(isPlaying);
       }
     } catch (error) {
@@ -69,14 +71,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
   }, [player, playing]);
   
-  // Validate playing state when player changes and periodically
+  // Periodically validate playing state
   useEffect(() => {
     if (!player) return;
     
-    // Immediate validation when player is set
-    setTimeout(validatePlayingState, 500); // Small delay to let widget stabilize
-    
-    // Periodic validation
     const interval = setInterval(validatePlayingState, 2000); // Check every 2 seconds
     return () => clearInterval(interval);
   }, [player, validatePlayingState]);
@@ -555,8 +553,22 @@ const useMixcloudContextState = (): MixcloudContextState => {
     console.log("handlePlay called - attempting to play");
     try {
       await player.play();
+      console.log("player.play() completed successfully");
       setPlayerUpdated(false);
       // Playing state will be set by the play event listener
+      // But if event doesn't fire, we need to handle it manually
+      setTimeout(async () => {
+        try {
+          const isPaused = await player.getIsPaused();
+          console.log(`Post-play check: widget paused = ${isPaused}, UI playing = ${playing}`);
+          if (!isPaused && !playing) {
+            console.log("Play event didn't fire - setting UI state manually");
+            setPlaying(true);
+          }
+        } catch (error) {
+          console.error("Error checking play state:", error);
+        }
+      }, 100);
 
       if (GA4) {
         ReactGA.event({
@@ -570,7 +582,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       // Ensure playing state is false if play failed
       setPlaying(false);
     }
-  }, [player, playerUpdated]);
+  }, [player, playerUpdated, playing]);
 
   const handlePause = useCallback(async () => {
     if (!player) return;
@@ -578,8 +590,22 @@ const useMixcloudContextState = (): MixcloudContextState => {
     console.log("handlePause called - attempting to pause");
     try {
       await player.pause();
+      console.log("player.pause() completed successfully");
       setPlayerUpdated(false);
       // Playing state will be set by the pause event listener
+      // But if event doesn't fire, we need to handle it manually
+      setTimeout(async () => {
+        try {
+          const isPaused = await player.getIsPaused();
+          console.log(`Post-pause check: widget paused = ${isPaused}, UI playing = ${playing}`);
+          if (isPaused && playing) {
+            console.log("Pause event didn't fire - setting UI state manually");
+            setPlaying(false);
+          }
+        } catch (error) {
+          console.error("Error checking pause state:", error);
+        }
+      }, 100);
 
       if (GA4) {
         ReactGA.event({
@@ -593,7 +619,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       // Ensure playing state is false if pause failed
       setPlaying(false);
     }
-  }, [player, playerUpdated]);
+  }, [player, playerUpdated, playing]);
 
   const handleSeek = useCallback(
     async (seconds: number) => {
@@ -654,7 +680,46 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const handleLoad = async (newMcKey?: string): Promise<void> => {
     if (!newMcKey) return;
     console.log(`Loading new mix: ${newMcKey} (current playing state: ${playing})`);
-    setMcKey(mcKeyFormatter(newMcKey));
+    
+    // If widget.load is available and widget is initialized, use it
+    if (useWidgetLoad && player) {
+      console.log(`Using widget.load() for: ${newMcKey}`);
+      
+      // Reset state before loading new mix
+      setPlaying(false);
+      setLoaded(false);
+      setShowUnavailable(false);
+      setMixProgress(0);
+      setMixProgressPercent(0);
+      setTrackProgress(0);
+      setTrackProgressPercent(0);
+
+      try {
+        // Use widget.load() method with the full Mixcloud URL
+        const mixcloudUrl = `https://www.mixcloud.com${mcKeyFormatter(newMcKey)}`;
+        await player.load(mixcloudUrl, true); // Force autoplay on new loads
+        console.log("Widget load completed for:", newMcKey);
+        setMcKey(mcKeyFormatter(newMcKey));
+        setLoaded(true);
+        setShowUnavailable(false);
+        
+        // Since we used autoplay=true, the widget should be playing
+        // Set the UI state to match
+        setPlaying(true);
+      } catch (error) {
+        console.error("Widget load failed:", error);
+        setShowUnavailable(true);
+        setPlaying(false);
+        // Fall back to iframe recreation
+        console.log("Falling back to iframe recreation");
+        setUseWidgetLoad(false);
+        setMcKey(mcKeyFormatter(newMcKey));
+      }
+    } else {
+      // Use original iframe recreation approach
+      console.log(`Using iframe recreation for: ${newMcKey}`);
+      setMcKey(mcKeyFormatter(newMcKey));
+    }
   };
 
   const handleLoadLatest = async (): Promise<void> => {
@@ -1152,7 +1217,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setPlayerUpdated,
       setPlaying,
       setScriptLoaded,
+      setUseWidgetLoad,
       setVolume,
+      useWidgetLoad,
       volume,
       widgetUrl,
     },
