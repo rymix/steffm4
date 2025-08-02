@@ -12,7 +12,14 @@
   "releaseDate": "02 June 2007",
   "uploadedDate": "30 August 2021",
   "shortName": "Special - Bluey on Solar Radio",
-  "tags": ["soul", "r'n'b", "acid jazz", "incognito", "bluey", "special"],
+  "tags": [
+    "soul",
+    "r'n'b",
+    "acid jazz",
+    "incognito",
+    "bluey",
+    "special"
+  ],
   "tracks": [
     {
       "artistName": "Ronnie Laws & Pressure",
@@ -309,7 +316,7 @@
       "remixArtistName": "",
       "sectionNumber": 23,
       "startTime": "1:21:09",
-      "trackName": "Sou Teu Nêgo",
+      "trackName": "Sou Teu Nego",
       "localCoverArtLarge": "/trackart/jair_oliveira_sou_teu_n_go_large.jpg",
       "localCoverArtSmall": "/trackart/jair_oliveira_sou_teu_n_go_small.jpg"
     },

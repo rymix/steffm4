@@ -12,7 +12,13 @@
   "releaseDate": "14 December 2015",
   "uploadedDate": "28 September 2021",
   "shortName": "MPOS - Volume 92",
-  "tags": ["house", "soulful house", "jazzy house", "funky house", "nu disco"],
+  "tags": [
+    "house",
+    "soulful house",
+    "jazzy house",
+    "funky house",
+    "nu disco"
+  ],
   "tracks": [
     {
       "artistName": "Munchies",
@@ -166,7 +172,7 @@
       "remixArtistName": "Honeycomb Old School Mix",
       "sectionNumber": 12,
       "startTime": "55:59",
-      "trackName": "Something For Nothing ",
+      "trackName": "Something For Nothing",
       "localCoverArtLarge": "/trackart/sheree_hicks_something_for_nothing__large.jpg",
       "localCoverArtSmall": "/trackart/sheree_hicks_something_for_nothing__small.jpg"
     },

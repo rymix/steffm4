@@ -1,0 +1,67 @@
+{
+  "summary": {
+    "filesProcessed": 27,
+    "tracksProcessed": 6934,
+    "tracksModified": 54,
+    "timestamp": "2025-08-02T19:21:04.278Z"
+  },
+  "allChanges": [],
+  "timeIssues": [
+    {
+      "mixName": "Adventures in Decent Music - Volume 50",
+      "trackIndex": 4,
+      "trackName": "Shockazulu",
+      "startTime": "18.00",
+      "previousTime": "14:09"
+    },
+    {
+      "mixName": "My Pair of Shoes - Volume 129",
+      "trackIndex": 7,
+      "trackName": "This Aint No Game",
+      "startTime": "34.13",
+      "previousTime": "29:01"
+    },
+    {
+      "mixName": "My Pair of Shoes - Volume 94",
+      "trackIndex": 12,
+      "trackName": "The Great I Am",
+      "startTime": "46:33",
+      "previousTime": "51:28"
+    },
+    {
+      "mixName": "My Pair of Shoes - Volume 98",
+      "trackIndex": 2,
+      "trackName": "Music In The Streets",
+      "startTime": "00:00",
+      "previousTime": "08:35"
+    },
+    {
+      "mixName": "Adventures in Decent Music - Volume 50",
+      "trackIndex": 4,
+      "trackName": "Shockazulu",
+      "startTime": "18.00",
+      "previousTime": "14:09"
+    },
+    {
+      "mixName": "My Pair of Shoes - Volume 129",
+      "trackIndex": 7,
+      "trackName": "This Aint No Game",
+      "startTime": "34.13",
+      "previousTime": "29:01"
+    },
+    {
+      "mixName": "My Pair of Shoes - Volume 94",
+      "trackIndex": 12,
+      "trackName": "The Great I Am",
+      "startTime": "46:33",
+      "previousTime": "51:28"
+    },
+    {
+      "mixName": "My Pair of Shoes - Volume 98",
+      "trackIndex": 2,
+      "trackName": "Music In The Streets",
+      "startTime": "00:00",
+      "previousTime": "08:35"
+    }
+  ]
+}

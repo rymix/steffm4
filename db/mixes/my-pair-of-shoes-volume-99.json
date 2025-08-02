@@ -12,7 +12,12 @@
   "releaseDate": "09 December 2016",
   "uploadedDate": "26 August 2021",
   "shortName": "MPOS - Volume 99",
-  "tags": ["house", "soulful house", "deep house", "funky house"],
+  "tags": [
+    "house",
+    "soulful house",
+    "deep house",
+    "funky house"
+  ],
   "tracks": [
     {
       "artistName": "Turbojazz",
@@ -114,7 +119,7 @@
       "remixArtistName": "Needs Remix",
       "sectionNumber": 8,
       "startTime": "36:06",
-      "trackName": "Kvasten I Hörnet",
+      "trackName": "Kvasten I Hornet",
       "localCoverArtLarge": "/trackart/claes_rosen_kvasten_i_h_rnet_large.jpg",
       "localCoverArtSmall": "/trackart/claes_rosen_kvasten_i_h_rnet_small.jpg"
     },

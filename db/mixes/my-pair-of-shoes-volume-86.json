@@ -12,7 +12,11 @@
   "releaseDate": "28 October 2014",
   "uploadedDate": "30 July 2023",
   "shortName": "MPOS - Volume 86",
-  "tags": ["house", "soulful house", "deep house"],
+  "tags": [
+    "house",
+    "soulful house",
+    "deep house"
+  ],
   "tracks": [
     {
       "artistName": "Jaymo & Andy George ",
@@ -166,7 +170,7 @@
       "remixArtistName": "Opolopo Dub Remix",
       "sectionNumber": 12,
       "startTime": "55:50",
-      "trackName": "Be Free With Your Love ",
+      "trackName": "Be Free With Your Love",
       "localCoverArtLarge": "/trackart/drop_out_orchestra_feat__vinny_vero_be_free_with_your_love__large.jpg",
       "localCoverArtSmall": "/trackart/drop_out_orchestra_feat__vinny_vero_be_free_with_your_love__small.jpg"
     }

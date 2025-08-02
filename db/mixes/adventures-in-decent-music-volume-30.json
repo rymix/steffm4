@@ -12,12 +12,17 @@
   "releaseDate": "August 2012",
   "uploadedDate": "02 October 2023",
   "shortName": "AIDM - Volume 30",
-  "tags": ["disco", "nu-disco", "house", "disco house"],
+  "tags": [
+    "disco",
+    "nu-disco",
+    "house",
+    "disco house"
+  ],
   "tracks": [
     {
       "publisher": "Fettes Brot Schallplatten",
       "startTime": "00:00",
-      "trackName": "Der König Tanzt",
+      "trackName": "Der Konig Tanzt",
       "artistName": "Der König Tanzt",
       "coverArtDate": "2024-07-12T21:44:48.677Z",
       "coverArtLarge": "https://i.discogs.com/EHfdHQ1cU-lkGdL9ZP_jCUxMhGERQvb1dBXTyHxR4Ig/rs:fit/g:sm/q:90/h:593/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM2NjIx/MjMtMTYyMDIxMTMw/My01NTkxLmpwZWc.jpeg",

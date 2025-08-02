@@ -12,7 +12,13 @@
   "releaseDate": "25 May 2017",
   "uploadedDate": "26 July 2021",
   "shortName": "AIDM - Volume 45",
-  "tags": ["soul", "acid jazz", "rare groove", "r'n'b", "funk"],
+  "tags": [
+    "soul",
+    "acid jazz",
+    "rare groove",
+    "r'n'b",
+    "funk"
+  ],
   "tracks": [
     {
       "artistName": "Minnie Riperton",
@@ -140,7 +146,7 @@
       "remixArtistName": "",
       "sectionNumber": 10,
       "startTime": "49:24",
-      "trackName": "I-69",
+      "trackName": "I - 69",
       "localCoverArtLarge": "/trackart/roman_gianarthur_i_69_large.jpg",
       "localCoverArtSmall": "/trackart/roman_gianarthur_i_69_small.jpg"
     },

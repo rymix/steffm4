@@ -12,7 +12,10 @@
   "releaseDate": "December 2007",
   "uploadedDate": "30 November 2024",
   "shortName": "MPOS - Volume 28 - Deep",
-  "tags": ["deep house", "house"],
+  "tags": [
+    "deep house",
+    "house"
+  ],
   "tracks": [
     {
       "publisher": "Columbia",
@@ -56,7 +59,7 @@
     {
       "publisher": "StreetBeat Records",
       "startTime": "15:33",
-      "trackName": "Elektro-Kraut",
+      "trackName": "Elektro - Kraut",
       "artistName": "Beanfield",
       "coverArtDate": "2024-11-30T21:07:01.520Z",
       "coverArtLarge": "https://i.discogs.com/vMi3GFVDOulCKFkFP-LTFwLl-Ulpl4JQufgDO7TE4zc/rs:fit/g:sm/q:90/h:591/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTcwMzQt/MTM1MTgxMDAwMi0y/NDIxLmpwZWc.jpeg",

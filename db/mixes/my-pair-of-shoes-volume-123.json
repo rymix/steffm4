@@ -12,7 +12,12 @@
   "releaseDate": "11 November 2019",
   "uploadedDate": "04 July 2021",
   "shortName": "MPOS - Volume 123",
-  "tags": ["house", "soulful house", "chillout", "jazz funk"],
+  "tags": [
+    "house",
+    "soulful house",
+    "chillout",
+    "jazz funk"
+  ],
   "tracks": [
     {
       "artistName": "Street Choice",
@@ -218,7 +223,7 @@
       "remixArtistName": "Original Mix",
       "sectionNumber": 16,
       "startTime": "1:17:30",
-      "trackName": " No Stoppin'",
+      "trackName": "No Stoppin'",
       "localCoverArtLarge": "/trackart/deejaykul__no_stoppin__large.jpg",
       "localCoverArtSmall": "/trackart/deejaykul__no_stoppin__small.jpg"
     },

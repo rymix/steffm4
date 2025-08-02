@@ -12,7 +12,13 @@
   "releaseDate": "03 December 2016",
   "uploadedDate": "04 August 2021",
   "shortName": "AIDM - Volume 44",
-  "tags": ["house", "soulful house", "nu disco", "r'n'b", "funky house"],
+  "tags": [
+    "house",
+    "soulful house",
+    "nu disco",
+    "r'n'b",
+    "funky house"
+  ],
   "tracks": [
     {
       "artistName": "Juan Laya &  Jorge Montiel feat. Mikie Blak",
@@ -140,7 +146,7 @@
       "remixArtistName": "",
       "sectionNumber": 10,
       "startTime": "57:10",
-      "trackName": "Ain't No Doubt [Original Boogie]",
+      "trackName": "Ain't No Doubt (Original Boogie)",
       "localCoverArtLarge": "/trackart/dr__packer_ain_t_no_doubt__original_boogie__large.jpg",
       "localCoverArtSmall": "/trackart/dr__packer_ain_t_no_doubt__original_boogie__small.jpg"
     },

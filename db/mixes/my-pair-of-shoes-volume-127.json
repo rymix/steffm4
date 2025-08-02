@@ -12,7 +12,13 @@
   "releaseDate": "10 June 2020",
   "uploadedDate": "22 June 2021",
   "shortName": "MPOS - Volume 127",
-  "tags": ["house", "soulful house", "deep house", "funky house", "jazz funk"],
+  "tags": [
+    "house",
+    "soulful house",
+    "deep house",
+    "funky house",
+    "jazz funk"
+  ],
   "tracks": [
     {
       "artistName": "Gin Tonic Orchestra",
@@ -192,7 +198,7 @@
       "remixArtistName": "Terry Hunter Club Mix",
       "sectionNumber": 14,
       "startTime": "1:03:45",
-      "trackName": "Moon Child (The Re-Entry)",
+      "trackName": "Moon Child (The Re - Entry)",
       "localCoverArtLarge": "/trackart/captain_sky_moon_child__the_re_entry__large.jpg",
       "localCoverArtSmall": "/trackart/captain_sky_moon_child__the_re_entry__small.jpg"
     },

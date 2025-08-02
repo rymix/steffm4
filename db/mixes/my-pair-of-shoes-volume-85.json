@@ -12,7 +12,12 @@
   "releaseDate": "06 August 2014",
   "uploadedDate": "01 August 2023",
   "shortName": "MPOS - Volume 85",
-  "tags": ["house", "soulful house", "funky house", "jazzy house"],
+  "tags": [
+    "house",
+    "soulful house",
+    "funky house",
+    "jazzy house"
+  ],
   "tracks": [
     {
       "artistName": "Ad Bourke",
@@ -62,7 +67,7 @@
       "remixArtistName": "Giom Remix",
       "sectionNumber": 4,
       "startTime": "13:03",
-      "trackName": "Everybody Wants Something ",
+      "trackName": "Everybody Wants Something",
       "localCoverArtLarge": "/trackart/akabu_feat__alex_mills_everybody_wants_something__large.jpg",
       "localCoverArtSmall": "/trackart/akabu_feat__alex_mills_everybody_wants_something__small.jpg"
     },

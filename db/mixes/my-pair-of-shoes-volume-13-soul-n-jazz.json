@@ -12,7 +12,11 @@
   "releaseDate": "August 2006",
   "uploadedDate": "9 December 2024",
   "shortName": "MPOS - Volume 14 - Soul 'n' Jazz",
-  "tags": ["house", "soulful house", "jazzy house"],
+  "tags": [
+    "house",
+    "soulful house",
+    "jazzy house"
+  ],
   "tracks": [
     {
       "publisher": "CDr",
@@ -147,7 +151,7 @@
     {
       "publisher": "Mettle Music",
       "startTime": "49:04",
-      "trackName": "Trans-Atlantic Jazz (pt. 1)",
+      "trackName": "Trans - Atlantic Jazz (pt. 1)",
       "artistName": "Deep Solution",
       "coverArtDate": "2024-12-09T21:07:16.586Z",
       "coverArtLarge": "/images/tracklist-placeholder.png",

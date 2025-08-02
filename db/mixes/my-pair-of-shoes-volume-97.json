@@ -12,7 +12,13 @@
   "releaseDate": "27 August 2016",
   "uploadedDate": "29 August 2021",
   "shortName": "MPOS - Volume 97",
-  "tags": ["house", "soulful house", "jazzy house", "jazz funk", "summer"],
+  "tags": [
+    "house",
+    "soulful house",
+    "jazzy house",
+    "jazz funk",
+    "summer"
+  ],
   "tracks": [
     {
       "artistName": "Demuir",
@@ -478,7 +484,7 @@
       "remixArtistName": "Miquifaye Studio Rewerk",
       "sectionNumber": 36,
       "startTime": "2:49:00",
-      "trackName": "Humpty Dumpty ",
+      "trackName": "Humpty Dumpty",
       "localCoverArtLarge": "/trackart/anthony_nicholson___william_kurk_humpty_dumpty__large.jpg",
       "localCoverArtSmall": "/trackart/anthony_nicholson___william_kurk_humpty_dumpty__small.jpg"
     },
