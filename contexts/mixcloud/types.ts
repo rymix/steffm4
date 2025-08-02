@@ -35,7 +35,7 @@ export type MixcloudContextState = {
     handlePlay: () => void;
     handlePlayPause: () => void;
     handlePrevious: () => void;
-    handleSeek: (seconds: number) => void;
+    handleSeek: (seconds: number) => Promise<boolean>;
   };
   favourites: {
     addFavourite: (localMcKey: string) => void;
