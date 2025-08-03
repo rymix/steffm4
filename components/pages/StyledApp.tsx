@@ -1,4 +1,5 @@
 import { MixcloudConsumer } from "contexts/mixcloud";
+import { JSX } from "react";
 import { ThemeProvider } from "styled-components";
 import GlobalStyle from "styles/GlobalStyle";
 import themes from "styles/themes";

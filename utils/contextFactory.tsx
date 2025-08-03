@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, JSX, useContext } from "react";
 
 type ProcessProviderProps = {
   children: React.ReactNode;

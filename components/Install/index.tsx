@@ -5,7 +5,7 @@ import {
   InstructionsList,
   InstructionsText,
 } from "components/Install/StyledInstall";
-import React, { useEffect, useState } from "react";
+import React, { JSX, useEffect, useState } from "react";
 import { DEBUG } from "utils/constants";
 
 const InstallInstructions: React.FC = () => {

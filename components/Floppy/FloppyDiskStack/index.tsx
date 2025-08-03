@@ -5,7 +5,7 @@ import {
   StyledDiskContainer,
 } from "components/Floppy/FloppyDiskStack/StyledFloppyDiskStack";
 import { DiskProps, FloppyDiskStackProps } from "components/Floppy/types";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { JSX, useCallback, useEffect, useMemo, useState } from "react";
 
 const floppyColors = [
   "#675d56",
@@ -34,7 +34,7 @@ const getRandomOffset = (amount: number): number => {
   return Math.random() * (2 * amount) - amount;
 };
 
-const FloppyDiskStack: React.FC<FloppyDiskStackProps> = ({ label }) => {
+const FloppyDiskStack = ({ label }: FloppyDiskStackProps): JSX.Element => {
   const [disks, setDisks] = useState<DiskProps[]>([]);
 
   // Create stable notes that only change when track/artist changes

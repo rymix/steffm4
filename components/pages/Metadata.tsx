@@ -1,6 +1,7 @@
 import { useMixcloud } from "contexts/mixcloud";
 import Head from "next/head";
 import packageJson from "package.json";
+import { JSX } from "react";
 import { DEFAULT_TITLE } from "utils/constants";
 
 const { description } = packageJson;

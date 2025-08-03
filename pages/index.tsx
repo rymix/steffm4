@@ -1,6 +1,6 @@
 import Jupiter from "components";
 import { useMixcloud } from "contexts/mixcloud";
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { DEBUG, GA4, GOOGLE_TRACKING_ID } from "utils/constants";
 
