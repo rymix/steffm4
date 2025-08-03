@@ -42,8 +42,17 @@ export const StyledSlider = styled.div<{
   border-radius: 4.21%; /* 150px of 190px */
   border: 10px solid ${(props) => props.$sliderColor}; /* 10px of 190px */
   border-left-width: 4.25em;
+  font-family: "Sforzando";
+  color: rgba(0, 0, 0, 0.05);
   z-index: 1;
   transition: left 0.2s ease-in-out;
+
+  &::after {
+    content: "fM";
+    position: relative;
+    top: 30%;
+    left: -180%;
+  }
 `;
 
 // Black tape element inside the top part
