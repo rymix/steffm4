@@ -32,15 +32,15 @@ export const StyledMonitor = styled.div`
   border-radius: 3px 3px 0 0;
   position: relative;
 
-  x&::after {
+  &::after {
     content: "";
     position: absolute;
     width: ${monitorWidth * 0.742}px;
     height: ${monitorWidth * 0.531}px;
     background: linear-gradient(
       119.8deg,
-      rgba(131, 134, 140, 1) 0%,
-      rgba(41, 45, 54, 1) 69.96%
+      rgba(131, 134, 140, 0.1) 0%,
+      rgba(41, 45, 54, 0.1) 69.96%
     );
     box-shadow: inset 0 0 4px 4px rgba(0, 0, 0, 0.42);
     border-radius: 2px;

@@ -1,8 +1,6 @@
 {
   "customSyntax": "postcss-styled-syntax",
-  "extends": [
-    "stylelint-config-standard"
-  ],
+  "extends": ["stylelint-config-standard"],
   "plugins": ["stylelint-order"],
   "rules": {
     "annotation-no-unknown": null,
@@ -27,6 +25,9 @@
     "color-function-alias-notation": null,
     "color-function-notation": null,
     "alpha-value-notation": null,
-    "declaration-empty-line-before": null
+    "declaration-empty-line-before": null,
+    "no-empty-source": null,
+    "block-no-empty": null,
+    "declaration-property-value-no-unknown": null
   }
 }

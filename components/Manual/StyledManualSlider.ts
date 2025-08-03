@@ -17,10 +17,6 @@ export const StyledManualSliderWrapper = styled.div`
 export const StyledManualSlider = styled(Slider)<StyledJupiterSliderProps>`
   cursor: default;
 
-  & .MuiSlider-track {
-    display: none;
-  }
-
   & .MuiSlider-thumb {
     width: 30px;
     height: 15px;
@@ -35,6 +31,7 @@ export const StyledManualSlider = styled(Slider)<StyledJupiterSliderProps>`
   }
 
   & .MuiSlider-track {
+    display: none;
     width: 8px;
     background-color: black;
     position: relative;
