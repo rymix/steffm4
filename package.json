@@ -28,7 +28,7 @@
     "*.{js,ts,tsx}": "eslint --fix"
   },
   "resolutions": {
-    "styled-components": "^6.1.6"
+    "styled-components": "^6.1.19"
   },
   "repository": {
     "type": "git",
