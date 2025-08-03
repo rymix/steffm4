@@ -42,7 +42,7 @@ export const StyledJupiterProgressLed = styled.div<StyledJupiterProgressLedProps
 `;
 
 export const StyledJupiterProgressLedsLabels = styled.div`
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.6);
   font-size: 12px;
   position: relative;
   width: 100%;
