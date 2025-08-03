@@ -83,7 +83,23 @@ export const Manual: React.FC = () => {
       <StyledIconSection>
         <StyledWarningIcon /> Warning! The funk is strong. Proceed with caution.
       </StyledIconSection>
-
+      <StyledManualSectionTitle>
+        Mixcloud Status Indicator
+      </StyledManualSectionTitle>
+      <hr />
+      <StyledControl>
+        <StyledManualProgressLedsWrapper>
+          <StyledManualProgressLedsItemsWrapper $displayLength={11}>
+            <StyledManualProgressLed key="mixcloud-indicator" />
+          </StyledManualProgressLedsItemsWrapper>
+        </StyledManualProgressLedsWrapper>
+      </StyledControl>{" "}
+      <p>
+        The <strong>MIXCLOUD STATUS INDICATOR LED</strong> is a light which is
+        connected directly to the Mixcloud music servers by a very long cable.
+        It goes green when the cable is plugged in correctly by the under-paid
+        intern at the other end.
+      </p>
       <StyledManualSectionTitle>Display Screen</StyledManualSectionTitle>
       <hr />
       <StyledControl>
@@ -97,7 +113,6 @@ export const Manual: React.FC = () => {
         most recent mixes and tracks. Occasional messages are displayed when the
         time is right.
       </p>
-
       <StyledManualSectionTitle>Progress Indicator</StyledManualSectionTitle>
       <hr />
       <StyledControl>
@@ -121,7 +136,6 @@ export const Manual: React.FC = () => {
         the current mix. The LEDs light up in sequence to indicate the current
         playhead position proportional to the overall length of the mix.
       </p>
-
       <StyledManualSectionTitle>Select</StyledManualSectionTitle>
       <hr />
       <p>
@@ -198,7 +212,6 @@ export const Manual: React.FC = () => {
           <strong>EVERYTHING</strong> and listen until tomorrow.
         </StyledGridDetail>
       </StyledGrid>
-
       <StyledManualSectionTitle>Control</StyledManualSectionTitle>
       <hr />
       <p>
@@ -265,7 +278,6 @@ export const Manual: React.FC = () => {
           <em>Keypress N</em>
         </StyledGridDetail>
       </StyledGrid>
-
       <StyledManualSectionTitle>Option</StyledManualSectionTitle>
       <hr />
       <p>
@@ -373,7 +385,6 @@ export const Manual: React.FC = () => {
           </StyledIconSection>
         </StyledGridDetail>
       </StyledGrid>
-
       <StyledManualSectionTitle>List Mode</StyledManualSectionTitle>
       <hr />
       <p>
@@ -427,7 +438,6 @@ export const Manual: React.FC = () => {
           order.
         </StyledGridDetail>
       </StyledGrid>
-
       <StyledManualSectionTitle>Menu</StyledManualSectionTitle>
       <hr />
       <p>
@@ -517,7 +527,6 @@ export const Manual: React.FC = () => {
           delectation.
         </StyledGridDetail>
       </StyledGrid>
-
       <StyledManualSectionTitle>Keyboard Shortcuts</StyledManualSectionTitle>
       <hr />
       <p>Press the keys to do the things.</p>
@@ -545,7 +554,6 @@ export const Manual: React.FC = () => {
         <StyledGridHeader />
         <StyledGridDetail />
       </StyledGrid>
-
       <StyledManualSectionTitle>Specifications</StyledManualSectionTitle>
       <hr />
       <StyledGrid>
@@ -604,7 +612,6 @@ export const Manual: React.FC = () => {
           Funky, soulful, groovy, deep and masterful
         </StyledGridDetail>
       </StyledGrid>
-
       <StyledManualSectionTitle>Notes</StyledManualSectionTitle>
       <hr />
       <p>

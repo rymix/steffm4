@@ -23,8 +23,7 @@ export const StyledBottomPanel = styled(StyledPanel)`
 
 export const StyledBottomGrid = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   gap: 2.6em;

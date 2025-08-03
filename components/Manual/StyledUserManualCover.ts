@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export const StyledUserManualCover = styled.div<StyledUserManualCoverProps>`
   cursor: pointer;
-  box-shadow: -5px 8px 10px rgba(0, 0, 0, 0.5);
   position: relative;
   width: 100%;
   height: 100%;
@@ -49,7 +48,7 @@ export const StyledUserManualCover = styled.div<StyledUserManualCoverProps>`
 export const StyledUserManualCoverTitle = styled.div`
   color: rgba(0, 0, 0, 0.8);
   display: block;
-  font-family: "Sforzando";
+  font-family: Sforzando;
   font-size: 2.6em;
   flex-shrink: 0;
 `;

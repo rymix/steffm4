@@ -21,6 +21,15 @@ export const StyledNotebookTop = styled.div`
   height: 15%;
   background: #333;
   border-radius: 5px 5px 0 0;
+  font-family: Sforzando;
+  color: rgba(255, 255, 255, 0.8);
+
+  &::after {
+    content: "fM";
+    position: relative;
+    top: 10px;
+    left: 20px;
+  }
 `;
 
 export const StyledNotebookPaper = styled.div`
@@ -29,7 +38,7 @@ export const StyledNotebookPaper = styled.div`
   background-size: cover;
   background-blend-mode: overlay;
   padding: 1.4em 1em;
-  font-family: "ShadowsIntoLight", cursive;
+  font-family: ShadowsIntoLight, cursive;
   outline: 0;
   position: relative;
   overflow: hidden;

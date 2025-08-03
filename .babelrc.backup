@@ -1,0 +1,40 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@babel/preset-typescript"
+  ],
+  "plugins": [
+    "@emotion/babel-plugin"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "babel-plugin-styled-components",
+          {
+            "displayName": true,
+            "fileName": true,
+            "minify": false,
+            "transpileTemplateLiterals": true,
+            "pure": true
+          }
+        ]
+      ]
+    },
+    "production": {
+      "plugins": [
+        [
+          "babel-plugin-styled-components",
+          {
+            "displayName": false,
+            "fileName": false,
+            "minify": true,
+            "transpileTemplateLiterals": true,
+            "pure": true
+          }
+        ]
+      ]
+    }
+  }
+}

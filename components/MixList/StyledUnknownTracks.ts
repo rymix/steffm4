@@ -9,8 +9,7 @@ export const StyledUnknownTracks = styled.div`
 export const StyledUnknownTrack = styled.div`
   display: grid;
   grid-template-columns: 140px 1fr 30px;
-  justify-items: center;
-  align-items: center;
+  place-items: center center;
   margin-bottom: 10px;
 
   img {
@@ -22,14 +21,14 @@ export const StyledUnknownTrack = styled.div`
 export const StyledUnknownTrackMix = styled.div`
   display: grid;
   grid-template-columns: 140px 1fr;
-  justify-items: center;
-  align-items: center;
+  place-items: center center;
   margin-bottom: 60px;
 
   img {
     border-radius: 50%;
     width: 50px;
   }
+
   div {
     display: flex;
     justify-self: start;

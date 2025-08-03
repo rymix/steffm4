@@ -15,10 +15,6 @@ export const StyledJupiterSliderWrapper = styled.div`
 `;
 
 export const StyledJupiterSlider = styled(Slider)<StyledJupiterSliderProps>`
-  & .MuiSlider-track {
-    display: none;
-  }
-
   & .MuiSlider-thumb {
     width: 30px;
     height: 15px;
@@ -36,6 +32,7 @@ export const StyledJupiterSlider = styled(Slider)<StyledJupiterSliderProps>`
   }
 
   & .MuiSlider-track {
+    display: none;
     width: 8px;
     background-color: black;
     position: relative;

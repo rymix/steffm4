@@ -57,7 +57,7 @@ export const StyledManual = styled.div`
 
 export const StyledManualTitle = styled.div`
   display: block;
-  font-family: "Sforzando";
+  font-family: Sforzando;
   font-size: 92px;
   flex-shrink: 0;
 `;
@@ -70,7 +70,7 @@ export const StyledManualSubTitle = styled.div`
 
 export const StyledManualFooter = styled.div`
   display: block;
-  font-family: "Sforzando";
+  font-family: Sforzando;
   font-size: 64px;
   flex-shrink: 0;
   text-align: right;

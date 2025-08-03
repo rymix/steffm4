@@ -29,20 +29,20 @@ export const StyledMonitor = styled.div`
     rgba(231, 223, 208, 1) 0%,
     rgba(220, 209, 187, 1) 3.75%
   );
-  border-radius: 3px 3px 0px 0px;
+  border-radius: 3px 3px 0 0;
   position: relative;
 
-  x&::after {
+  &::after {
     content: "";
     position: absolute;
     width: ${monitorWidth * 0.742}px;
     height: ${monitorWidth * 0.531}px;
     background: linear-gradient(
       119.8deg,
-      rgba(131, 134, 140, 1) 0%,
-      rgba(41, 45, 54, 1) 69.96%
+      rgba(131, 134, 140, 0.1) 0%,
+      rgba(41, 45, 54, 0.1) 69.96%
     );
-    box-shadow: inset 0px 0px 4px 4px rgba(0, 0, 0, 0.42);
+    box-shadow: inset 0 0 4px 4px rgba(0, 0, 0, 0.42);
     border-radius: 2px;
   }
 
@@ -53,8 +53,8 @@ export const StyledMonitor = styled.div`
     height: ${monitorWidth * 0.581}px;
     background: rgba(220, 209, 187, 1);
     box-shadow:
-      inset 0px 267px 4px -8px rgba(0, 0, 0, 0.25),
-      inset 0px 0px 10px 6px rgba(162, 158, 150, 1);
+      inset 0 267px 4px -8px rgba(0, 0, 0, 0.25),
+      inset 0 0 10px 6px rgba(162, 158, 150, 1);
     filter: blur(0.9px);
   }
 `;
@@ -66,8 +66,8 @@ export const StyledMonitorPanel = styled.div`
   height: 24px;
   background: rgba(220, 209, 187, 1);
   box-shadow:
-    0px 10px 22px rgba(0, 0, 0, 0.25),
-    inset 0px 4px 2px -2px rgba(0, 0, 0, 0.15);
+    0 10px 22px rgba(0, 0, 0, 0.25),
+    inset 0 4px 2px -2px rgba(0, 0, 0, 0.15);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,7 +78,7 @@ export const StyledMonitorPanel = styled.div`
     width: 50%;
     height: 100%;
     background: rgba(220, 209, 187, 1);
-    box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 1);
+    box-shadow: inset 0 0 1px rgba(0, 0, 0, 1);
   }
 `;
 
@@ -95,24 +95,19 @@ export const StyledMonitorStand = styled.div`
     height: 100%;
     background: rgba(220, 209, 187, 1);
     border-radius: 0 0 60px 60px;
-    box-shadow: inset 0px 0px 13px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 13px rgba(0, 0, 0, 0.2);
     transform: translateX(-50%);
   }
 
   &::after {
     content: "";
     position: absolute;
-    background: linear-gradient(
-      121.79deg,
-      rgba(231, 223, 208, 1) 0%,
-      rgba(220, 209, 187, 1) 3.75%
-    );
     border-radius: 2px;
     width: 100%;
     height: 10px;
     top: 100%;
     background: rgba(220, 209, 187, 1);
-    box-shadow: inset 0px 0px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
     transform: translateX(-50%) translateY(-6px);
   }
 `;
@@ -130,7 +125,7 @@ export const StyledLogo = styled.div`
   left: 18px;
   bottom: 2px;
   padding-left: 3.5px;
-  box-shadow: 0 0 2px 0px rgba(151, 145, 129, 1) inset;
+  box-shadow: 0 0 2px 0 rgba(151, 145, 129, 1) inset;
 `;
 
 export const StyledLogoText = styled.p`

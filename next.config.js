@@ -3,7 +3,13 @@ const path = require("path");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compiler: {
-    styledComponents: true,
+    styledComponents: {
+      displayName: process.env.NODE_ENV !== "production",
+      fileName: process.env.NODE_ENV !== "production",
+      minify: process.env.NODE_ENV === "production",
+      transpileTemplateLiterals: true,
+      pure: true,
+    },
   },
   outputFileTracingRoot: path.join(__dirname, "../../"),
   output: "standalone",
