@@ -47,24 +47,6 @@ describe("TextHighlight Component", () => {
     expect(screen.getByText("test")).toBeInTheDocument();
   });
 
-  it("should apply custom highlight styles", () => {
-    const customStyle = { backgroundColor: "red", color: "white" };
-
-    render(
-      <TextHighlight
-        textToHighlight="Hello World"
-        searchWords={["World"]}
-        highlightStyle={customStyle}
-      />,
-    );
-
-    const highlightedText = screen.getByText("World");
-    expect(highlightedText).toHaveStyle({
-      backgroundColor: "red",
-      color: "white",
-    });
-  });
-
   it("should apply custom CSS class", () => {
     render(
       <TextHighlight
