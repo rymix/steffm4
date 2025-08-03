@@ -64,7 +64,6 @@ const config = [
       "eslint:recommended",
       "plugin:import/typescript",
       "plugin:jest/recommended",
-      "plugin:jest-dom/recommended",
       "plugin:@next/next/recommended",
       "plugin:prettier/recommended",
       "plugin:react/recommended",
@@ -143,8 +142,6 @@ const config = [
       "import/no-cycle": "off",
       "import/no-named-as-default": "off",
       "import/prefer-default-export": "off",
-      "jsx-a11y/anchor-is-valid": "off",
-      "jsx-a11y/no-static-element-interactions": "off",
       "no-console": "off",
       "no-unused-vars": [
         "error",
@@ -190,13 +187,6 @@ const config = [
       "unicorn/prefer-string-slice": "off",
       "unicorn/switch-case-braces": "off",
       "unicorn/prevent-abbreviations": "off",
-      "jsx-a11y/label-has-associated-control": [
-        "error",
-        {
-          assert: "htmlFor",
-          depth: 3,
-        },
-      ],
       "no-restricted-globals": "off",
       "no-alert": "off",
     },
