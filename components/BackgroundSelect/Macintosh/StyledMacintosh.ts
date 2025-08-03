@@ -97,7 +97,7 @@ export const StyledLogo = styled.div`
   left: 22px;
   bottom: 22px;
   padding-left: 3.5px;
-  box-shadow: 0 0 2px 0px rgba(151, 145, 129, 1) inset;
+  box-shadow: 0 0 2px 0 rgba(151, 145, 129, 1) inset;
 `;
 
 export const StyledLogoText = styled.p`
@@ -178,7 +178,7 @@ export const StyledInset = styled.div`
   border-radius: 2px;
   box-shadow:
     0 0 2px rgba(201, 195, 163, 1) inset,
-    0 0px 2px 1px rgba(188, 182, 148, 1);
+    0 0 2px 1px rgba(188, 182, 148, 1);
 `;
 
 export const StyledCableContainer = styled.div`

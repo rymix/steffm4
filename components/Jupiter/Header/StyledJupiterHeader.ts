@@ -23,7 +23,7 @@ export const StyledJupiterSlats = styled.div`
 
 export const StyledJupiterTitle = styled.div`
   color: rgba(255, 255, 255, 0.7);
-  font-family: "Sforzando";
+  font-family: Sforzando;
   font-size: 92px;
   margin: 10px 40px;
   width: 300px;

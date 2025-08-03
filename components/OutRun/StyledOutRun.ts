@@ -36,7 +36,7 @@ export const StyledOutRunTextShadowWrapper = styled(StyledOutRunTextWrapper)`
 
 export const StyledOutRunText = styled.div<StyledOutRunTextProps>`
   color: #eebb00;
-  font-family: "Determination";
+  font-family: Determination;
   font-size: ${({ $fontSize }) => $fontSize || 52}px;
   z-index: 2;
 `;

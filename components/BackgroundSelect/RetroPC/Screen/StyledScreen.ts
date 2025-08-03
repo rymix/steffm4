@@ -62,7 +62,7 @@ export const StyledScreenShadow = styled.div`
   left: 0;
   overflow: visible;
   right: 0;
-  box-shadow: inset 0px 0px 4px 4px rgba(0, 0, 0, 0.42);
+  box-shadow: inset 0 0 4px 4px rgba(0, 0, 0, 0.42);
 
   &::after {
     content: "";
