@@ -7,7 +7,8 @@ import styled from "styled-components";
 export const StyledJupiterScreenWrapper = styled.div<StyledJupiterScreenWrapperProps>`
   align-items: center;
   background: rgba(0, 34, 68, 1);
-  background-image: linear-gradient(170deg, #0007, transparent 50%),
+  background-image:
+    linear-gradient(170deg, #0007, transparent 50%),
     linear-gradient(to bottom, transparent, #fff1 95%, #fff4 100%);
   box-shadow:
     inset 5px 5px 5px rgba(0, 0, 0, 0.2),

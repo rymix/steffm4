@@ -210,7 +210,8 @@ export const StyledCableHole = styled.div`
     0 -4px 0.5px -0.5px rgba(25, 25, 25, 0.2) inset,
     -2px 0 0.5px -0.5px rgba(25, 25, 25, 0.2) inset,
     2px 0 0.5px -0.5px rgba(25, 25, 25, 0.2) inset;
-  background-image: linear-gradient(
+  background-image:
+    linear-gradient(
       rgba(132, 133, 128, 1) 20%,
       transparent 20% 80%,
       rgba(132, 133, 128, 1) 80%
