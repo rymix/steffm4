@@ -14,7 +14,7 @@ const Metadata = (): JSX.Element => {
 
   const title =
     trackDetails?.trackName && mixDetails?.name
-      ? `Stef.FM - ${trackDetails.trackName} - ${mixDetails.name}`
+      ? `${trackDetails.trackName} - ${mixDetails.name} - Stef.FM`
       : DEFAULT_TITLE;
 
   return (
