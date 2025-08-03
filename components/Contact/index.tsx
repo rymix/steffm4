@@ -1,4 +1,5 @@
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import {
   StyledContact,
@@ -40,6 +41,14 @@ export const Contact: React.FC = () => {
         </StyledIconWrapper>
         <StyledTextWrapper>
           <span>@stef.fm_music</span>
+        </StyledTextWrapper>
+      </StyledRow>
+      <StyledRow href="https://github.com/rymix/steffm4" target="_blank">
+        <StyledIconWrapper>
+          <GitHubIcon />
+        </StyledIconWrapper>
+        <StyledTextWrapper>
+          <span>GitHub</span>
         </StyledTextWrapper>
       </StyledRow>
     </StyledContact>
