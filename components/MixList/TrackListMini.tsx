@@ -13,11 +13,11 @@ import {
   StyledTrackListMiniTrackStartTime,
 } from "components/MixList/StyledMixList";
 import type { TrackListMiniProps } from "components/MixList/types";
+import TextHighlight from "components/TextHighlight";
 import { useMixcloud } from "contexts/mixcloud";
 import type { Track } from "db/types";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
-import TextHighlight from "components/TextHighlight";
 import { convertTimeToHumanReadable } from "utils/functions";
 
 export const TrackListMini: React.FC<TrackListMiniProps> = ({

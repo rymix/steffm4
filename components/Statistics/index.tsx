@@ -18,7 +18,7 @@ import {
   TopTagCount,
   TopTrackCount,
 } from "components/Statistics/types";
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import { convertTimeToHumanReadable } from "utils/functions";
 
 const Statistics: React.FC = () => {

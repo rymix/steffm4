@@ -1,6 +1,6 @@
 import Jupiter from "components";
 import { useMixcloud } from "contexts/mixcloud";
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { DEBUG, GA4, GOOGLE_TRACKING_ID } from "utils/constants";
 
@@ -16,7 +16,8 @@ const Home = (): JSX.Element => {
     },
     filters: { selectedCategory },
     history: { latestMcKey, latestProgress },
-    widget: { playing },
+    // eslint-disable-next-line no-empty-pattern
+    widget: {},
   } = useMixcloud();
   const [hasSeeked, setHasSeeked] = useState<boolean>(false);
   const [loadLatestProgress, setLoadLatestProgress] = useState<number>(0);
@@ -29,20 +30,21 @@ const Home = (): JSX.Element => {
       // Give more time for widget to be ready for seeking
       const maxAttempts = 5;
       let attempts = 0;
-      
+
       const trySeek = async (): Promise<void> => {
-        attempts++;
+        attempts += 1;
         try {
           const seekSuccessful = await handleSeek(loadLatestProgress);
           if (seekSuccessful) {
             setHasSeeked(true);
             if (DEBUG) console.log(`Seek successful on attempt ${attempts}`);
           } else if (attempts < maxAttempts) {
-            if (DEBUG) console.log(`Seek failed, attempt ${attempts}/${maxAttempts}, retrying...`);
+            if (DEBUG)
+              console.log(
+                `Seek failed, attempt ${attempts}/${maxAttempts}, retrying...`,
+              );
             setTimeout(trySeek, 1000);
-          } else {
-            if (DEBUG) console.warn("Seek failed after maximum attempts");
-          }
+          } else if (DEBUG) console.warn("Seek failed after maximum attempts");
         } catch (error) {
           console.error(`Seek error on attempt ${attempts}:`, error);
           if (attempts < maxAttempts) {

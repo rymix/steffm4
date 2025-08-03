@@ -1,5 +1,6 @@
 import type { DocumentContext, DocumentInitialProps } from "next/document";
 import Document, { Head, Html, Main, NextScript } from "next/document";
+import { JSX } from "react";
 import withStyledComponents from "styles/withStyledComponents";
 import { DEFAULT_LOCALE } from "utils/constants";
 

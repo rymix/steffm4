@@ -15,6 +15,19 @@
   "tags": ["house", "soulful house", "jazzy house", "funky house", "124bpm"],
   "tracks": [
     {
+      "artistName": "Re-Tide",
+      "coverArtDate": "2024-07-12T22:24:48.777Z",
+      "coverArtLarge": "https://i.discogs.com/JYd8NojtoDIzMJFiTBqwUyj86erSdYRdjqNjgGJ_uIg/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgyNTAz/ODMtMTQ1Nzk2MzQ0/Mi01Mzk1LmpwZWc.jpeg",
+      "coverArtSmall": "https://i.discogs.com/K61gL-5LbUSdkJct3SUKU_O-vyAV0PBV2u9NrTso_f4/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgyNTAz/ODMtMTQ1Nzk2MzQ0/Mi01Mzk1LmpwZWc.jpeg",
+      "publisher": "Cut Rec",
+      "remixArtistName": "",
+      "sectionNumber": 1,
+      "startTime": "00:00",
+      "trackName": "Music In The Streets",
+      "localCoverArtLarge": "/trackart/re_tide_music_in_the_streets_large.jpg",
+      "localCoverArtSmall": "/trackart/re_tide_music_in_the_streets_small.jpg"
+    },
+    {
       "artistName": "Cafe 432 feat. Marcelle Duprey",
       "coverArtDate": "2024-07-12T22:24:43.488Z",
       "coverArtLarge": "/images/tracklist-placeholder.png",
@@ -39,19 +52,6 @@
       "trackName": "My Feelin'",
       "localCoverArtLarge": "/trackart/am2pm_my_feelin__large.jpg",
       "localCoverArtSmall": "/trackart/am2pm_my_feelin__small.jpg"
-    },
-    {
-      "artistName": "Re-Tide",
-      "coverArtDate": "2024-07-12T22:24:48.777Z",
-      "coverArtLarge": "https://i.discogs.com/JYd8NojtoDIzMJFiTBqwUyj86erSdYRdjqNjgGJ_uIg/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgyNTAz/ODMtMTQ1Nzk2MzQ0/Mi01Mzk1LmpwZWc.jpeg",
-      "coverArtSmall": "https://i.discogs.com/K61gL-5LbUSdkJct3SUKU_O-vyAV0PBV2u9NrTso_f4/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgyNTAz/ODMtMTQ1Nzk2MzQ0/Mi01Mzk1LmpwZWc.jpeg",
-      "publisher": "Cut Rec",
-      "remixArtistName": "",
-      "sectionNumber": 1,
-      "startTime": "00:00",
-      "trackName": "Music In The Streets",
-      "localCoverArtLarge": "/trackart/re_tide_music_in_the_streets_large.jpg",
-      "localCoverArtSmall": "/trackart/re_tide_music_in_the_streets_small.jpg"
     },
     {
       "artistName": "MoBlack ft. Baba",

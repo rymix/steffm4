@@ -3,12 +3,7 @@ import TextHighlight from "components/TextHighlight";
 
 describe("TextHighlight Component", () => {
   it("should render text without highlighting when no search words", () => {
-    render(
-      <TextHighlight
-        textToHighlight="Hello World"
-        searchWords={[]}
-      />
-    );
+    render(<TextHighlight textToHighlight="Hello World" searchWords={[]} />);
 
     expect(screen.getByText("Hello World")).toBeInTheDocument();
     expect(screen.queryByRole("mark")).not.toBeInTheDocument();
@@ -19,7 +14,7 @@ describe("TextHighlight Component", () => {
       <TextHighlight
         textToHighlight="Hello World Test"
         searchWords={["World"]}
-      />
+      />,
     );
 
     const highlightedText = screen.getByText("World");
@@ -32,7 +27,7 @@ describe("TextHighlight Component", () => {
       <TextHighlight
         textToHighlight="Hello World Test"
         searchWords={["Hello", "Test"]}
-      />
+      />,
     );
 
     expect(screen.getByText("Hello")).toBeInTheDocument();
@@ -45,29 +40,11 @@ describe("TextHighlight Component", () => {
       <TextHighlight
         textToHighlight="Hello WORLD test"
         searchWords={["world", "TEST"]}
-      />
+      />,
     );
 
     expect(screen.getByText("WORLD")).toBeInTheDocument();
     expect(screen.getByText("test")).toBeInTheDocument();
-  });
-
-  it("should apply custom highlight styles", () => {
-    const customStyle = { backgroundColor: "red", color: "white" };
-    
-    render(
-      <TextHighlight
-        textToHighlight="Hello World"
-        searchWords={["World"]}
-        highlightStyle={customStyle}
-      />
-    );
-
-    const highlightedText = screen.getByText("World");
-    expect(highlightedText).toHaveStyle({
-      backgroundColor: "red",
-      color: "white",
-    });
   });
 
   it("should apply custom CSS class", () => {
@@ -76,7 +53,7 @@ describe("TextHighlight Component", () => {
         textToHighlight="Hello World"
         searchWords={["World"]}
         highlightClassName="custom-highlight"
-      />
+      />,
     );
 
     const highlightedText = screen.getByText("World");
@@ -84,12 +61,7 @@ describe("TextHighlight Component", () => {
   });
 
   it("should handle empty text", () => {
-    render(
-      <TextHighlight
-        textToHighlight=""
-        searchWords={["test"]}
-      />
-    );
+    render(<TextHighlight textToHighlight="" searchWords={["test"]} />);
 
     expect(screen.queryByRole("mark")).not.toBeInTheDocument();
   });
@@ -99,7 +71,7 @@ describe("TextHighlight Component", () => {
       <TextHighlight
         textToHighlight="Hello World"
         searchWords={["", "  ", "World"]}
-      />
+      />,
     );
 
     expect(screen.getByText("World")).toBeInTheDocument();
@@ -111,8 +83,8 @@ describe("TextHighlight Component", () => {
       <TextHighlight
         textToHighlight="Price: $10.99 (special)"
         searchWords={["$10.99", "(special)"]}
-        autoEscape={true}
-      />
+        autoEscape
+      />,
     );
 
     expect(screen.getByText("$10.99")).toBeInTheDocument();

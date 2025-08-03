@@ -8,8 +8,8 @@ import type {
   Scale,
 } from "contexts/mixcloud/types";
 import type { BackgroundExtended, Category, Mix, Track } from "db/types";
-import usePersistedState from "hooks/usePersistedState";
 import useMasterTimer from "hooks/useMasterTimer";
+import usePersistedState from "hooks/usePersistedState";
 import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import ReactGA from "react-ga4";
 import themes from "styles/themes";
@@ -81,9 +81,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   // Periodically validate playing state using master timer
   useEffect(() => {
-    if (!player) return;
+    if (!player) return undefined;
 
-    const unsubscribe = subscribe('validatePlayingState', validatePlayingState, 1000);
+    const unsubscribe = subscribe(
+      "validatePlayingState",
+      validatePlayingState,
+      1000,
+    );
     return unsubscribe;
   }, [player, validatePlayingState, subscribe]);
   const [scale, setScale] = useState<Scale>({ x: 1, y: 1 });
@@ -116,7 +120,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [secondsRemaining, setSecondsRemaining] = useState<number | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const tooltipTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const tooltipFadeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tooltipFadeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
   const theme = themes[themeName] || themes.defaultTheme;
 
   /* Screen */
@@ -182,7 +188,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     setTooltipPosition({ x, y });
     setTooltipVisible(true);
     setTooltipFading(true);
-    
+
     tooltipTimerRef.current = setTimeout(() => {
       setTooltipFading(false);
       tooltipFadeTimerRef.current = setTimeout(() => {
@@ -306,33 +312,40 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
 
   /* Timer for Modal auto-close */
-  const startTimer = useCallback((timerDuration: number): void => {
-    setSecondsRemaining(timerDuration);
-    clearTimeout(timerRef.current || 0);
-    
-    // Use master timer for countdown
-    const countdownId = `modalCountdown_${Date.now()}`;
-    let currentSeconds = timerDuration;
-    
-    const unsubscribeCountdown = subscribe(countdownId, () => {
-      currentSeconds -= 1;
-      setSecondsRemaining(currentSeconds);
-      
-      if (currentSeconds <= 0) {
+  const startTimer = useCallback(
+    (timerDuration: number): void => {
+      setSecondsRemaining(timerDuration);
+      clearTimeout(timerRef.current || 0);
+
+      // Use master timer for countdown
+      const countdownId = `modalCountdown_${Date.now()}`;
+      let currentSeconds = timerDuration;
+
+      const unsubscribeCountdown = subscribe(
+        countdownId,
+        () => {
+          currentSeconds -= 1;
+          setSecondsRemaining(currentSeconds);
+
+          if (currentSeconds <= 0) {
+            handleCloseModal();
+            setSecondsRemaining(null);
+            unsubscribeCountdown();
+          }
+        },
+        1000,
+      );
+
+      // Main timer to ensure cleanup
+      timerRef.current = setTimeout(() => {
         handleCloseModal();
         setSecondsRemaining(null);
         unsubscribeCountdown();
-      }
-    }, 1000);
-
-    // Main timer to ensure cleanup
-    timerRef.current = setTimeout(() => {
-      handleCloseModal();
-      setSecondsRemaining(null);
-      unsubscribeCountdown();
-      timerRef.current = null;
-    }, timerDuration * 1000);
-  }, [subscribe]);
+        timerRef.current = null;
+      }, timerDuration * 1000);
+    },
+    [subscribe],
+  );
 
   const stopTimer = (): void => {
     clearTimeout(timerRef.current || 0);
@@ -679,9 +692,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
         const seekAllowed = await player?.seek(seconds);
         if (seekAllowed) {
           setPlayerUpdated(true);
-        } else {
-          if (DEBUG) console.log("Seek was not allowed");
-        }
+        } else if (DEBUG) console.log("Seek was not allowed");
         return seekAllowed;
       } catch (error) {
         console.error("Error in play or seek:", error);
@@ -921,7 +932,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   /* Media Controls */
   useEffect(() => {
     if ("mediaSession" in navigator) {
-      navigator.mediaSession.metadata = new window.MediaMetadata({
+      navigator.mediaSession.metadata = new globalThis.MediaMetadata({
         title: mixDetails?.name || "Unknown Title",
         artist: trackDetails?.artistName || "Unknown Artist",
         album: mixDetails?.notes || "Unknown Album",
@@ -1084,8 +1095,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   useEffect(() => {
     if (
-      typeof window !== "undefined" &&
-      !window.location.pathname.startsWith("/admin")
+      globalThis.window !== undefined &&
+      !globalThis.location.pathname.startsWith("/admin")
     ) {
       document.addEventListener("keydown", handleKeyPress);
 
@@ -1144,18 +1155,18 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     if (modalOpen) {
       window.removeEventListener("wheel", handleScroll);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchmove", handleTouchMove);
+      globalThis.removeEventListener("touchstart", handleTouchStart);
+      globalThis.removeEventListener("touchmove", handleTouchMove);
     } else {
       window.addEventListener("wheel", handleScroll);
-      window.addEventListener("touchstart", handleTouchStart);
-      window.addEventListener("touchmove", handleTouchMove);
+      globalThis.addEventListener("touchstart", handleTouchStart);
+      globalThis.addEventListener("touchmove", handleTouchMove);
     }
 
     return () => {
       window.removeEventListener("wheel", handleScroll);
-      window.removeEventListener("touchstart", handleTouchStart);
-      window.removeEventListener("touchmove", handleTouchMove);
+      globalThis.removeEventListener("touchstart", handleTouchStart);
+      globalThis.removeEventListener("touchmove", handleTouchMove);
     };
   }, [isAtBottom, touchStartY, modalOpen]);
 

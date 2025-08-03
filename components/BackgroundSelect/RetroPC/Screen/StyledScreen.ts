@@ -15,12 +15,15 @@ export const StyledScreen = styled.div<StyledScreenProps>`
     props.$background
       ? `url(/${props.$background.backgroundCategoryObject?.folder}/${props.$background.fileName})`
       : "radial-gradient(rgba(82, 91, 90, 1), rgba(80, 88, 90, 1))"};
-  background-size: ${(props) =>
-    props.$background?.tileType === "stretch"
-      ? "100% auto"
-      : props.$background?.tileType === "tile"
-        ? `${props.$background.width / 3}px ${props.$background.height / 3}px`
-        : "25%"};
+  background-size: ${(props) => {
+    if (props.$background?.tileType === "stretch") return "100% auto";
+    if (props.$background?.tileType === "tile") {
+      return `${props.$background.width / 3}px ${
+        props.$background.height / 3
+      }px`;
+    }
+    return "25%";
+  }};
   background-repeat: ${(props) =>
     props.$background?.tileType === "tile" ? "repeat" : "repeat"};
   background-position: center;

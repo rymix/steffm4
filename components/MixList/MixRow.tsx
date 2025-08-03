@@ -21,9 +21,9 @@ import {
 import TrackListMini from "components/MixList/TrackListMini";
 import type { MixRowProps } from "components/MixList/types";
 import Share from "components/Share";
+import TextHighlight from "components/TextHighlight";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useState } from "react";
-import TextHighlight from "components/TextHighlight";
 import {
   convertTimeToHumanReadable,
   listenedStatus,

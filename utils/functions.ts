@@ -1,7 +1,6 @@
 import { Progress } from "contexts/mixcloud/types";
 import { BackgroundCategory, Category, Mix } from "db/types";
 import { stripUnit } from "polished";
-import { DEBUG } from "utils/constants";
 
 export const convertTimeToSeconds = (timeString: string): number => {
   const parts = timeString.split(":").map((part) => Number.parseInt(part, 10));
@@ -44,7 +43,7 @@ export const veryShortName = (shortName: string): string => {
 };
 
 export const debounce = (
-  func: (...args: any[]) => void,
+  func: (..._args: any[]) => void,
   delay: number,
 ): (() => void) => {
   let inDebounce: ReturnType<typeof setTimeout> | null;
@@ -74,7 +73,7 @@ export const mcWidgetUrlFormatter = (mcKey: string): string =>
   )}`;
 
 export const copyToClipboard = (text: string): void => {
-  if (navigator.clipboard && window.isSecureContext) {
+  if (navigator.clipboard && globalThis.isSecureContext) {
     // navigator.clipboard is available
     navigator.clipboard
       .writeText(text)
@@ -103,6 +102,7 @@ export const copyToClipboard = (text: string): void => {
 
     document.body.appendChild(textArea);
     textArea.focus();
+    // eslint-disable-next-line testing-library/no-node-access
     textArea.select();
 
     try {

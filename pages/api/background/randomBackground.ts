@@ -3,8 +3,8 @@
 import { db, initializeDb } from "db";
 import type { BackgroundExtended } from "db/types";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { getBackgroundCategoryObject } from "utils/functions";
 import { DEBUG } from "utils/constants";
+import { getBackgroundCategoryObject } from "utils/functions";
 
 export default async function handler(
   req: NextApiRequest,

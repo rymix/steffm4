@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import Home from "pages/index";
 import { useMixcloud } from "contexts/mixcloud";
+import Home from "pages/index";
 
 // Mock the context
 jest.mock("contexts/mixcloud", () => ({

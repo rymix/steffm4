@@ -50,8 +50,8 @@ const FloppyDisk: React.FC<FloppyDiskProps> = ({
         <StyledFitinha />
       </StyledTop>
       <StyledDown $labelColor={labelColor} $labelSecondColor={labelSecondColor}>
-        <StyledNotes 
-          $textColor={textColor} 
+        <StyledNotes
+          $textColor={textColor}
           $font={font}
           $fontSize={randomValues.fontSize}
           $rotation={randomValues.rotation}

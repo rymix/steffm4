@@ -101,9 +101,9 @@ export const StyledDown = styled.div<{
 `;
 
 // Notes section inside the bottom part
-export const StyledNotes = styled.div<{ 
-  $textColor: string; 
-  $font: string; 
+export const StyledNotes = styled.div<{
+  $textColor: string;
+  $font: string;
   $fontSize: number;
   $rotation: number;
   $fontSizeMobile: number;

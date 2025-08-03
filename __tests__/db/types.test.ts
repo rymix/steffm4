@@ -1,11 +1,17 @@
-import type { Mix, Track, Category, BackgroundCategory, Background } from "db/types";
+import type {
+  Background,
+  BackgroundCategory,
+  Category,
+  Mix,
+  Track,
+} from "db/types";
 
 describe("Database Types", () => {
   describe("Track type", () => {
     it("should have required properties", () => {
       const track: Track = {
         artistName: "Test Artist",
-        coverArtDate: "2024-01-01", 
+        coverArtDate: "2024-01-01",
         coverArtLarge: "large.jpg",
         coverArtSmall: "small.jpg",
         localCoverArtLarge: "local-large.jpg",
@@ -25,7 +31,7 @@ describe("Database Types", () => {
       const track: Track = {
         artistName: "Test Artist",
         coverArtDate: "2024-01-01",
-        coverArtLarge: "large.jpg", 
+        coverArtLarge: "large.jpg",
         coverArtSmall: "small.jpg",
         localCoverArtLarge: "local-large.jpg",
         localCoverArtSmall: "local-small.jpg",
@@ -63,7 +69,7 @@ describe("Database Types", () => {
         category: "house",
         coverArtDate: "2024-01-01",
         coverArtLarge: "large.jpg",
-        coverArtSmall: "small.jpg", 
+        coverArtSmall: "small.jpg",
         duration: "60:00",
         fileName: "test.mp3",
         listOrder: 1,
@@ -85,7 +91,7 @@ describe("Database Types", () => {
     it("should allow optional notes", () => {
       const mix: Mix = {
         category: "house",
-        coverArtDate: "2024-01-01", 
+        coverArtDate: "2024-01-01",
         coverArtLarge: "large.jpg",
         coverArtSmall: "small.jpg",
         duration: "60:00",

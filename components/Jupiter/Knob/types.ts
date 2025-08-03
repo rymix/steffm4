@@ -6,8 +6,8 @@ export type JupiterKnobProps = {
   max: number;
   degrees: number;
   value: number;
-  onChange: (val: number) => void;
-  onCategoryChange: (val: number) => void;
+  onChange: (_value: number) => void;
+  onCategoryChange: (_value: number) => void;
   label?: string;
   labelPosition?: "above" | "below";
   labelVisible?: boolean;

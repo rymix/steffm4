@@ -1,7 +1,5 @@
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import React from "react";
-
 import {
   StyledContact,
   StyledIconWrapper,
@@ -9,6 +7,7 @@ import {
   StyledTextWrapper,
 } from "components/Contact/StyledContact";
 import Threads from "components/Contact/Threads";
+import React from "react";
 
 export const Contact: React.FC = () => {
   return (

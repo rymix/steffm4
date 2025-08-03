@@ -4,7 +4,7 @@ function usePersistedState<T>(
   key: string,
   defaultValue: T,
 ): [T, React.Dispatch<React.SetStateAction<T>>] {
-  const isBrowser = typeof window !== "undefined";
+  const isBrowser = globalThis.window !== undefined;
 
   const [state, setState] = useState<T>(() => {
     if (!isBrowser) return defaultValue;

@@ -1,5 +1,7 @@
 // components/Floppy/types.ts
 
+import { JSX } from "react";
+
 export type DiskLabel = {
   trackName?: string;
   artistName?: string;

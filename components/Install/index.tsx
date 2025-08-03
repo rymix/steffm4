@@ -1,13 +1,12 @@
 // components/InstallInstructions.tsx
-import React, { useEffect, useState } from "react";
-import { DEBUG } from "utils/constants";
-
 import {
   InstallButton,
   InstallInstructionsWrapper,
   InstructionsList,
   InstructionsText,
 } from "components/Install/StyledInstall";
+import React, { JSX, useEffect, useState } from "react";
+import { DEBUG } from "utils/constants";
 
 const InstallInstructions: React.FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
@@ -21,7 +20,7 @@ const InstallInstructions: React.FC = () => {
   const [userAgent, setUserAgent] = useState("");
 
   useEffect(() => {
-    setUserAgent(window.navigator.userAgent.toLowerCase());
+    setUserAgent(globalThis.navigator.userAgent.toLowerCase());
     const vendor = navigator.vendor?.toLowerCase();
 
     setIsIos(/iphone|ipad|ipod/.test(userAgent));
@@ -37,8 +36,8 @@ const InstallInstructions: React.FC = () => {
     setIsChrome(isChromeBrowser);
 
     setIsStandalone(
-      "standalone" in window.navigator &&
-        (window.navigator as any).standalone === true,
+      "standalone" in globalThis.navigator &&
+        (globalThis.navigator as any).standalone === true,
     );
 
     const handleBeforeInstallPrompt = (e: Event): void => {
@@ -47,10 +46,13 @@ const InstallInstructions: React.FC = () => {
       setShowInstallButton(true);
     };
 
-    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    globalThis.addEventListener(
+      "beforeinstallprompt",
+      handleBeforeInstallPrompt,
+    );
 
     return () => {
-      window.removeEventListener(
+      globalThis.removeEventListener(
         "beforeinstallprompt",
         handleBeforeInstallPrompt,
       );
@@ -65,10 +67,8 @@ const InstallInstructions: React.FC = () => {
           if (DEBUG) {
             console.log("User accepted the install prompt");
           }
-        } else {
-          if (DEBUG) {
-            console.log("User dismissed the install prompt");
-          }
+        } else if (DEBUG) {
+          console.log("User dismissed the install prompt");
         }
         setDeferredPrompt(null);
         setShowInstallButton(false);

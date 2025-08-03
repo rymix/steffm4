@@ -1,22 +1,38 @@
-import handler from "pages/api/categories";
 import { db, initializeDb } from "db";
-import { createMocks } from "node-mocks-http";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { createMocks } from "node-mocks-http";
+import handler from "pages/api/categories";
 
 // Mock the database
 jest.mock("db", () => ({
   db: {
     data: {
       categories: [
-        { index: 1, code: "house", name: "House", shortName: "House", x: 0, y: 0 },
-        { index: 2, code: "techno", name: "Techno", shortName: "Techno", x: 1, y: 0 },
+        {
+          index: 1,
+          code: "house",
+          name: "House",
+          shortName: "House",
+          x: 0,
+          y: 0,
+        },
+        {
+          index: 2,
+          code: "techno",
+          name: "Techno",
+          shortName: "Techno",
+          x: 1,
+          y: 0,
+        },
       ],
     },
   },
   initializeDb: jest.fn(),
 }));
 
-const mockInitializeDb = initializeDb as jest.MockedFunction<typeof initializeDb>;
+const mockInitializeDb = initializeDb as jest.MockedFunction<
+  typeof initializeDb
+>;
 
 describe("/api/categories", () => {
   beforeEach(() => {
@@ -36,11 +52,25 @@ describe("/api/categories", () => {
 
     expect(mockInitializeDb).toHaveBeenCalled();
     expect(res._getStatusCode()).toBe(200);
-    
+
     const jsonData = JSON.parse(res._getData());
     expect(jsonData).toEqual([
-      { index: 1, code: "house", name: "House", shortName: "House", x: 0, y: 0 },
-      { index: 2, code: "techno", name: "Techno", shortName: "Techno", x: 1, y: 0 },
+      {
+        index: 1,
+        code: "house",
+        name: "House",
+        shortName: "House",
+        x: 0,
+        y: 0,
+      },
+      {
+        index: 2,
+        code: "techno",
+        name: "Techno",
+        shortName: "Techno",
+        x: 1,
+        y: 0,
+      },
     ]);
   });
 
