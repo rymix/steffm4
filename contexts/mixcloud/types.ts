@@ -25,23 +25,23 @@ export type MixcloudContextState = {
   controls: {
     fetchLatestMcKey: () => Promise<string>;
     fetchRandomMcKey: () => Promise<string>;
-    fetchRandomMcKeyByCategory: (category: string | null) => Promise<string>;
-    handleLoad: (localMcKey?: string) => void;
+    fetchRandomMcKeyByCategory: (_category: string | null) => Promise<string>;
+    handleLoad: (_localMcKey?: string) => void;
     handleLoadLatest: () => void;
-    handleLoadRandom: (category?: string) => void;
+    handleLoadRandom: (_category?: string) => void;
     handleLoadRandomFavourite: () => void;
     handleNext: () => void;
     handlePause: () => void;
     handlePlay: () => void;
     handlePlayPause: () => void;
     handlePrevious: () => void;
-    handleSeek: (seconds: number) => Promise<boolean>;
+    handleSeek: (_seconds: number) => Promise<boolean>;
   };
   favourites: {
-    addFavourite: (localMcKey: string) => void;
+    addFavourite: (_localMcKey: string) => void;
     favouritesList: Favourite[];
-    isFavourite: (localMcKey: string) => boolean;
-    removeFavourite: (localMcKey: string) => void;
+    isFavourite: (_localMcKey: string) => boolean;
+    removeFavourite: (_localMcKey: string) => void;
     setFavouritesList: React.Dispatch<React.SetStateAction<Favourite[]>>;
   };
   filters: {
@@ -54,7 +54,7 @@ export type MixcloudContextState = {
       React.SetStateAction<string | null | undefined>
     >;
     setSelectedTag: React.Dispatch<React.SetStateAction<string>>;
-    updateSelectedCategory: (index: number) => void;
+    updateSelectedCategory: (_index: number) => void;
   };
   history: {
     latestMcKey: string;
@@ -66,7 +66,7 @@ export type MixcloudContextState = {
   };
   mix: {
     categoryName: string;
-    copySharableLink: (localMix?: Mix) => void;
+    copySharableLink: (_localMix?: Mix) => void;
     duration: number;
     details: Mix | undefined;
     favourite: boolean | undefined;
@@ -105,11 +105,11 @@ export type MixcloudContextState = {
     modalRef: React.MutableRefObject<HTMLDivElement | null>;
     modalTitle: string | null;
     openModal: (
-      content: ReactNode,
-      title?: string | undefined,
-      seconds?: number | undefined,
-      hideChrome?: boolean,
-      disableShortcuts?: boolean,
+      _content: ReactNode,
+      _title?: string | undefined,
+      _seconds?: number | undefined,
+      _hideChrome?: boolean,
+      _disableShortcuts?: boolean,
     ) => void;
     scale: Scale | null;
     secondsRemaining: number | null;
@@ -137,7 +137,7 @@ export type MixcloudContextState = {
       React.SetStateAction<{ x: number; y: number }>
     >;
     setTooltipVisible: React.Dispatch<React.SetStateAction<boolean>>;
-    showTooltip: (message: string, x: number, y: number) => void;
+    showTooltip: (_message: string, _x: number, _y: number) => void;
     tooltipFading: boolean;
     tooltipMessage: string | null;
     tooltipPosition: { x: number; y: number };

@@ -14,9 +14,9 @@ type TimerSubscription = {
  */
 export const useMasterTimer = (): {
   subscribe: (
-    id: string,
-    callback: TimerCallback,
-    interval: number,
+    _id: string,
+    _callback: TimerCallback,
+    _interval: number,
   ) => () => void;
 } => {
   const subscriptions = useRef<Map<string, TimerSubscription>>(new Map());

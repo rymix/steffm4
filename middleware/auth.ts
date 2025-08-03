@@ -1,6 +1,8 @@
 import { verifyToken } from "utils/jwt";
 
-export const authenticate = (handler: (req: any, res: any) => Promise<any>) => {
+export const authenticate = (
+  handler: (_req: any, _res: any) => Promise<any>,
+) => {
   return async (req: any, res: any) => {
     const token = req.headers.authorization?.split(" ")[1];
     if (!token) {

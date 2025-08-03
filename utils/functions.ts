@@ -43,7 +43,7 @@ export const veryShortName = (shortName: string): string => {
 };
 
 export const debounce = (
-  func: (...args: any[]) => void,
+  func: (..._args: any[]) => void,
   delay: number,
 ): (() => void) => {
   let inDebounce: ReturnType<typeof setTimeout> | null;

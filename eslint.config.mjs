@@ -62,8 +62,6 @@ const config = [
       "airbnb",
       "airbnb/hooks",
       "eslint:recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:import/recommended",
       "plugin:import/typescript",
       "plugin:jest/recommended",
       "plugin:jest-dom/recommended",
@@ -72,13 +70,12 @@ const config = [
       "plugin:react/recommended",
       "plugin:react-hooks/recommended",
       "plugin:testing-library/react",
-      // "plugin:unicorn/recommended", ← Removed because it fails in ESM/FlatConfig
       "prettier",
       "next",
       "next/core-web-vitals",
     ),
   ),
-  unicornRecommended, // ✅ Injected directly
+  unicornRecommended,
   {
     plugins: {
       "@typescript-eslint": fixupPluginRules(typescriptEslint),
@@ -90,17 +87,24 @@ const config = [
       "simple-import-sort": simpleImportSort,
       sonarjs: fixupPluginRules(sonarjs),
       "testing-library": fixupPluginRules(testingLibrary),
-      // unicorn already handled above
     },
-
     languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
       globals: {
         ...globals.browser,
         ...globals.jest,
         ...globals.node,
+        React: "readonly",
+        JSX: "readonly",
+        NodeJS: "readonly",
       },
     },
-
+    settings: {
+      react: {
+        version: "detect",
+      },
+    },
     rules: {
       "prettier/prettier": [
         "error",
@@ -124,6 +128,8 @@ const config = [
         "error",
         {
           ignoreRestSiblings: true,
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
         },
       ],
       "import/extensions": [
@@ -140,6 +146,13 @@ const config = [
       "jsx-a11y/anchor-is-valid": "off",
       "jsx-a11y/no-static-element-interactions": "off",
       "no-console": "off",
+      "no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+        },
+      ],
       "no-promise-executor-return": "off",
       "no-underscore-dangle": "off",
       "no-unsafe-optional-chaining": "off",

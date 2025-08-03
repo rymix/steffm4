@@ -6,11 +6,11 @@ type ProcessProviderProps = {
 };
 
 const contextFactory = <T,>(
-  useContextState: (initialMcKey?: string) => T,
+  useContextState: (_initialMcKey?: string) => T,
   ContextComponent?: React.ComponentType,
 ): {
   Consumer: React.Consumer<T>;
-  Provider: (props: ProcessProviderProps) => JSX.Element;
+  Provider: (_props: ProcessProviderProps) => JSX.Element;
   useContext: () => T;
 } => {
   const Context = createContext<T>({} as T);
