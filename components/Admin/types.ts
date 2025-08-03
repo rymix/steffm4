@@ -1,3 +1,3 @@
 export type AdminLayoutProps = {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 };

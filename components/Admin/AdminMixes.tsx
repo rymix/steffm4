@@ -17,6 +17,7 @@ import {
 import { Mix, Track } from "db/types";
 import _ from "lodash";
 import { useRouter } from "next/router";
+import type { JSX } from "react";
 import { useEffect, useState } from "react";
 import axiosInstance from "utils/axiosInstance";
 
@@ -97,7 +98,9 @@ const AdminMixes = (): JSX.Element => {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
   ): void => {
     const { name, value } = e.target;
     setFormData((prevFormData) => {
@@ -115,7 +118,9 @@ const AdminMixes = (): JSX.Element => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     e.preventDefault();
     if (formData) {
       const token = localStorage.getItem("token");

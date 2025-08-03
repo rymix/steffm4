@@ -8,6 +8,7 @@ import {
   StyledAdminWrapper,
 } from "components/Admin/StyledAdmin";
 import { UnknownTrack } from "db/types";
+import type { JSX } from "react";
 import { useEffect, useState } from "react";
 import axiosInstance from "utils/axiosInstance";
 

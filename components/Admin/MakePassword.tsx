@@ -8,6 +8,7 @@ import {
   StyledAdminWrapper,
 } from "components/Admin/StyledAdmin";
 import { useRouter } from "next/router";
+import type { JSX } from "react";
 import { useEffect, useState } from "react";
 
 const MakePassword = (): JSX.Element => {

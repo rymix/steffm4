@@ -3,6 +3,7 @@
 import { StyledAdminButton } from "components/Admin/StyledAdmin";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import type { JSX } from "react";
 
 const AdminMenu = (): JSX.Element => {
   const router = useRouter();

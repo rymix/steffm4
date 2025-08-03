@@ -1,9 +1,10 @@
 import axios from "axios";
-import { AdminLayoutProps } from "components/Admin/types";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 
-const AdminLayout: React.FC<AdminLayoutProps> = ({ children }): JSX.Element => {
+import { AdminLayoutProps } from "./types";
+
+const AdminLayout = ({ children }: AdminLayoutProps): JSX.Element => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 

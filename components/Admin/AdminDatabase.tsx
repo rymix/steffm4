@@ -7,6 +7,7 @@ import {
   StyledAdminHeader,
   StyledAdminWrapper,
 } from "components/Admin/StyledAdmin";
+import type { JSX } from "react";
 import { ChangeEvent, useState } from "react";
 import axiosInstance from "utils/axiosInstance";
 

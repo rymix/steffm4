@@ -12,6 +12,7 @@ import {
 } from "components/Admin/StyledAdmin";
 import { Mix, Track } from "db/types";
 import { useRouter } from "next/router";
+import type { JSX } from "react";
 import { useEffect, useState } from "react";
 import axiosInstance from "utils/axiosInstance";
 
@@ -83,7 +84,9 @@ const AdminTracks = (): JSX.Element => {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
   ): void => {
     const { name, value } = e.target;
     setFormData((prevFormData) => {
@@ -97,7 +100,9 @@ const AdminTracks = (): JSX.Element => {
     });
   };
 
-  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     e.preventDefault();
     if (mix && formData) {
       const updatedTracks =
@@ -122,7 +127,7 @@ const AdminTracks = (): JSX.Element => {
     }
   };
 
-  const updateTrackCoverArt = async (track: Track): Promise<Track> => {
+  const updateTrackCoverArt = async (track: Track): Promise<void> => {
     const token = localStorage.getItem("token");
     try {
       const response = await axiosInstance.post(
