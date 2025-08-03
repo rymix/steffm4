@@ -53,6 +53,8 @@ const config = [
       "utils/libs",
       "**/post-build.js",
       "components/Mr2",
+      "server.js",
+      "components/Admin",
     ],
   },
   ...fixupConfigRules(
