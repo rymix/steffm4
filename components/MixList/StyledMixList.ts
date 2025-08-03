@@ -12,7 +12,8 @@ export const StyledMixRow = styled.div<StyledMixRowProps>`
   border-left: 12px solid transparent;
   display: grid;
   grid-template-columns: 30px 30px 30px 30px 70px 1fr 40px;
-  margin-bottom: 20px;
+  padding: 10px 0;
+  margin-bottom: 10px;
 
   ${(props) =>
     props.$listenedStatus === "active" &&
@@ -37,6 +38,12 @@ export const StyledMixRow = styled.div<StyledMixRowProps>`
     `
       border-left: 12px solid orange;
     `}
+
+  transition: background 0.1s ease-in-out;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
 
   @media screen and (orientation: portrait) and (max-width: 440px) {
     grid-template-columns: 20px 20px 20px 20px 50px 1fr 20px;
