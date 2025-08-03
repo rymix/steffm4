@@ -109,8 +109,8 @@ export const StyledNotes = styled.div<{
   $fontSizeMobile: number;
 }>`
   font-family: ${(props) => props.$font};
-  margin-left: 15px;
-  margin-top: 0px;
+  margin-left: 10px;
+  margin-top: 15px;
   color: ${(props) => props.$textColor};
   font-size: ${(props) => props.$fontSize}rem;
   line-height: 1.1;
