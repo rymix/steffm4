@@ -1,17 +1,10 @@
 import { useMixcloud } from "contexts/mixcloud";
-import React, { useCallback, useEffect, useState } from "react";
-import { DEBUG } from "utils/constants";
+import React, { useEffect } from "react";
 
-interface IsolatedTestProps {
-  localMcKey: string;
-}
-
-export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
-  localMcKey,
-}) => {
+export const MixcloudIsolatedTest: React.FC = () => {
   const {
     mcKey,
-    controls: { handleNext },
+    controls: { handleLoad, handleNext, handlePlay },
     mix: {
       setProgress: setMixProgress,
       setProgressPercent: setMixProgressPercent,
@@ -32,16 +25,12 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
       setPlayerUpdated,
       setPlaying,
       setScriptLoaded,
-      setUseWidgetLoad,
-      useWidgetLoad,
       widgetUrl,
     },
   } = useMixcloud();
 
-  // Local state only - no context integration
-  const [widget, setWidget] = useState<any>(null);
-
-  console.log(`🔄 MixcloudIsolatedTest render - localMcKey: ${localMcKey}`);
+  //  const defaultWidgetUrl = "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=https%3A%2F%2Fwww.mixcloud.com%2Frymixxx%2Fhttps%3A%2F%2Fplayer-widget.mixcloud.com%2Frymixxx%2Fadventures-in-decent-music-volume-1%2F%2F";
+  const defaultWidgetUrl = `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=${encodeURIComponent(`https://player-widget.mixcloud.com/rymixxx/adventures-in-decent-music-volume-1/`)}`;
 
   // Load script once
   useEffect(() => {
@@ -61,7 +50,7 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
 
   // Create widget once when script loads
   useEffect(() => {
-    if (!scriptLoaded || !iframeRef.current || widget) return;
+    if (!scriptLoaded || !iframeRef.current || player) return;
 
     console.log("🎯 Creating widget instance");
     const newWidget = (globalThis as any).Mixcloud.PlayerWidget(
@@ -70,23 +59,28 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
 
     newWidget.ready.then(() => {
       console.log("✅ Widget ready - setting up persistent event listeners");
-      setWidget(newWidget);
+      setPlayer(newWidget);
 
       // Set up persistent event listeners that just log
       newWidget.events.play.on(() => {
         console.log("▶️ PLAY event fired");
+        setPlaying(true);
       });
 
       newWidget.events.pause.on(() => {
         console.log("⏸️ PAUSE event fired");
+        setPlaying(false);
       });
 
       newWidget.events.progress.on((position: number, duration?: number) => {
         console.log(`⏱️ PROGRESS: ${position}s / ${duration}s`);
+        setMixProgress(position);
+        setMixProgressPercent((duration || 0 / position) * 100);
       });
 
       newWidget.events.ended.on(() => {
         console.log("⏹️ ENDED event fired");
+        handleNext();
       });
 
       newWidget.events.error.on((error: any) => {
@@ -96,69 +90,46 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
       // Get initial duration
       newWidget.getDuration().then((dur: number) => {
         console.log(`📏 Initial duration: ${dur}s`);
+        setDuration(dur);
       });
     });
-  }, [scriptLoaded, widget]);
+  }, [scriptLoaded, player]);
 
   // Handle mcKey changes with widget.load()
-  useEffect(() => {
-    if (!widget || !mcKey) return;
+  // useEffect(() => {
+  //   if (!player || !mcKey) return;
 
-    console.log(`🔄 mcKey changed to: ${mcKey} - calling widget.load()`);
-    const mixcloudUrl = `https://www.mixcloud.com${mcKey}`;
+  //   console.log(`🔄 mcKey changed to: ${mcKey} - calling widget.load()`);
+  //   const mixcloudUrl = `https://player-widget.mixcloud.com${mcKey}`;
 
-    widget
-      .load(mixcloudUrl, true)
-      .then(() => {
-        console.log(`✅ widget.load() completed for: ${mcKey}`);
-      })
-      .catch((error: any) => {
-        console.log(`❌ widget.load() failed:`, error);
-      });
-  }, [widget, mcKey]);
+  //   player
+  //     .load(mixcloudUrl, true)
+  //     .then(() => {
+  //       console.log(`✅ widget.load() completed for: ${mcKey}`);
+  //     })
+  //     .catch((error: any) => {
+  //       console.log(`❌ widget.load() failed:`, error);
+  //     });
+  // }, [player, mcKey]);
 
-  // Manual controls for testing
-  // const handlePlay = (): void => {
-  //   if (!widget) return;
-  //   console.log("🎮 Manual play button clicked");
-  //   widget.play();
+  // const handleLoad = (newMcKey: string): void => {
+  //   if (player) {
+  //     const url = `https://player-widget.mixcloud.com${newMcKey}`;
+  //     player
+  //       .load(url, true)
+  //       .then(() => {
+  //         console.log(`✅ widget.load() completed for: ${url}`);
+  //       })
+  //       .catch((error: any) => {
+  //         console.log(`❌ widget.load() failed:`, error);
+  //       });
+  //   }
   // };
 
-  const handlePlay = useCallback(async () => {
-    if (!widget) return;
-
-    try {
-      await widget.play();
-      if (DEBUG) console.log("player.play() completed successfully");
-      setPlayerUpdated(false);
-      // Playing state will be set by the play event listener
-      // But if event doesn't fire, we need to handle it manually
-      setTimeout(async () => {
-        try {
-          const isPaused = await widget.getIsPaused();
-          if (DEBUG)
-            console.log(
-              `Post-play check: widget paused = ${isPaused}, UI playing = ${playing}`,
-            );
-          if (!isPaused && !playing) {
-            if (DEBUG)
-              console.log("Play event didn't fire - setting UI state manually");
-            setPlaying(true);
-          }
-        } catch (error) {
-          console.error("Error checking play state:", error);
-        }
-      }, 100);
-    } catch (error) {
-      console.error("Error in play:", error);
-      setPlaying(false);
-    }
-  }, [widget, playing]);
-
   const handlePause = (): void => {
-    if (!widget) return;
+    if (!player) return;
     console.log("🎮 Manual pause button clicked");
-    widget.pause();
+    player.pause();
   };
 
   // Test mix options
@@ -167,8 +138,6 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
     "/rymixxx/adventures-in-decent-music-volume-2/",
     "/rymixxx/adventures-in-decent-music-volume-3/",
   ];
-
-  const localWidgetUrl = `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=${encodeURIComponent(`https://www.mixcloud.com${mcKey || testMixes[0]}`)}`;
 
   return (
     <div
@@ -182,10 +151,9 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
       <h3>🧪 Isolated Widget Test</h3>
       <p>Current mcKey: {mcKey}</p>
 
-      {/* Render iframe directly in component */}
       <iframe
         ref={iframeRef}
-        src={widgetUrl}
+        src={defaultWidgetUrl}
         width="100%"
         height="60"
         frameBorder="0"
@@ -195,10 +163,10 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
       />
 
       <dl>
+        <dt>defaultWidgetUrl</dt>
+        <dd>{defaultWidgetUrl}</dd>
         <dt>widgetUrl</dt>
         <dd>{widgetUrl}</dd>
-        <dt>localWidgetUrl</dt>
-        <dd>{localWidgetUrl}</dd>
       </dl>
 
       <div style={{ marginTop: "10px" }}>
@@ -221,9 +189,8 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
             key={mix}
             onClick={() => {
               console.log(`🔄 Loading test mix: ${mix}`);
-              if (widget) {
-                const url = `https://www.mixcloud.com${mix}`;
-                widget.load(url, true);
+              if (player) {
+                handleLoad(mix);
               }
             }}
             style={{
@@ -235,16 +202,6 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
             Mix {index + 1}
           </button>
         ))}
-      </div>
-
-      <div style={{ marginTop: "10px", fontSize: "12px" }}>
-        <strong>Watch console for:</strong>
-        <ul>
-          <li>▶️ PLAY events</li>
-          <li>⏸️ PAUSE events</li>
-          <li>⏱️ PROGRESS events</li>
-          <li>Widget ready messages</li>
-        </ul>
       </div>
     </div>
   );

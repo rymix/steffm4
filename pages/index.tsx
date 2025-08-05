@@ -95,7 +95,7 @@ const Home = (): JSX.Element => {
 
   return (
     <>
-      {DEBUG && <MixcloudIsolatedTest mcKey={mcKey} />}
+      {DEBUG && <MixcloudIsolatedTest />}
       <Jupiter />
     </>
   );

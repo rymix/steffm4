@@ -48,7 +48,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
     null,
   );
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [mcKey, setMcKey] = useState<string>("");
+  const [mcKey, setMcKey] = useState<string>(
+    "/rymixxx/adventures-in-decent-music-volume-1/",
+  );
   const [mixDetails, setMixDetails] = useState<Mix | undefined>();
   const [mixes, setMixes] = useState<Mix[]>([]);
   const [mixProgress, setMixProgress] = useState<number>(0);
@@ -56,7 +58,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [player, setPlayer] = useState<any>();
   const [playerUpdated, setPlayerUpdated] = useState<boolean>(false);
   const [playing, setPlaying] = useState<boolean>(false);
-  const [useWidgetLoad, setUseWidgetLoad] = useState<boolean>(false);
   const [keyboardShortcutsEnabled, setKeyboardShortcutsEnabled] =
     useState<boolean>(true);
 
@@ -580,32 +581,11 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchCategoryName();
   }, [mcKey]);
 
-  /* Play / Pause Controls */
-  const handlePlayPause = useCallback(async () => {
-    if (!player) return;
-
-    try {
-      await player.togglePlay();
-      setPlayerUpdated(false);
-
-      if (GA4) {
-        ReactGA.event({
-          category: "Control",
-          action: "Click",
-          label: "Play / Pause",
-        });
-      }
-    } catch (error) {
-      console.error("Error in togglePlay:", error);
-      // Reset playing state on error
-      setPlaying(false);
-    }
-  }, [player, playerUpdated]);
-
+  // Updated August 2025
   const handlePlay = useCallback(async () => {
     if (!player) return;
+    console.log("🎮 Manual play button clicked");
 
-    if (DEBUG) console.log("handlePlay called - attempting to play");
     try {
       await player.play();
       if (DEBUG) console.log("player.play() completed successfully");
@@ -638,13 +618,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       }
     } catch (error) {
       console.error("Error in play:", error);
-      // Ensure playing state is false if play failed
       setPlaying(false);
     }
-  }, [player, playerUpdated, playing]);
+  }, [player, playing]);
 
+  // Updated August 2025
   const handlePause = useCallback(async () => {
     if (!player) return;
+    console.log("🎮 Manual pause button clicked");
 
     if (DEBUG) console.log("handlePause called - attempting to pause");
     try {
@@ -684,7 +665,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       // Ensure playing state is false if pause failed
       setPlaying(false);
     }
-  }, [player, playerUpdated, playing]);
+  }, [player, playing]);
 
   const handleSeek = useCallback(
     async (seconds: number) => {
@@ -747,8 +728,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
         `Loading new mix: ${newMcKey} (current playing state: ${playing})`,
       );
 
-    // If widget.load is available and widget is initialized, use it
-    if (useWidgetLoad && player) {
+    // If widget is initialized, use it
+    if (player) {
       if (DEBUG) console.log(`Using widget.load() for: ${newMcKey}`);
 
       // Reset state before loading new mix
@@ -762,11 +743,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
       try {
         // Use widget.load() method with the full Mixcloud URL
-        const mixcloudUrl = `https://www.mixcloud.com${mcKeyFormatter(
+        const mixcloudUrl = `https://player-widget.mixcloud.com${mcKeyFormatter(
           newMcKey,
         )}`;
         if (DEBUG) console.log(`Calling widget.load(${mixcloudUrl}, true)`);
-        await player.load(mixcloudUrl, true); // Force autoplay on new loads
+
+        player
+          .load(mixcloudUrl, true)
+          .then(() => {
+            console.log(`✅ widget.load() completed for: ${mixcloudUrl}`);
+          })
+          .catch((error: any) => {
+            console.log(`❌ widget.load() failed:`, error);
+          });
+
         if (DEBUG) console.log("widget.load() completed for:", newMcKey);
         setMcKey(mcKeyFormatter(newMcKey));
         setLoaded(true);
@@ -781,13 +771,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
         setPlaying(false);
         // Fall back to iframe recreation
         if (DEBUG) console.log("Falling back to iframe recreation");
-        setUseWidgetLoad(false);
         setMcKey(mcKeyFormatter(newMcKey));
       }
-    } else {
-      // Use original iframe recreation approach
-      if (DEBUG) console.log(`Using iframe recreation for: ${newMcKey}`);
-      setMcKey(mcKeyFormatter(newMcKey));
     }
   };
 
@@ -967,7 +952,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     handlePause,
     handlePrevious,
     handleNext,
-    handlePlayPause,
   ]);
 
   /* Fetch Categories */
@@ -1187,7 +1171,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
       handleNext,
       handlePause,
       handlePlay,
-      handlePlayPause,
       handlePrevious,
       handleSeek,
     },
@@ -1304,9 +1287,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setPlayerUpdated,
       setPlaying,
       setScriptLoaded,
-      setUseWidgetLoad,
       setVolume,
-      useWidgetLoad,
       volume,
       widgetUrl,
     },

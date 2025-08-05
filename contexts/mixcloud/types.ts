@@ -33,7 +33,6 @@ export type MixcloudContextState = {
     handleNext: () => void;
     handlePause: () => void;
     handlePlay: () => void;
-    handlePlayPause: () => void;
     handlePrevious: () => void;
     handleSeek: (_seconds: number) => Promise<boolean>;
   };
@@ -166,9 +165,7 @@ export type MixcloudContextState = {
     setPlayerUpdated: React.Dispatch<React.SetStateAction<boolean>>;
     setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
     setScriptLoaded: React.Dispatch<React.SetStateAction<boolean>>;
-    setUseWidgetLoad: React.Dispatch<React.SetStateAction<boolean>>;
     setVolume: React.Dispatch<React.SetStateAction<number>>;
-    useWidgetLoad: boolean;
     volume: number;
     widgetUrl: string;
   };
