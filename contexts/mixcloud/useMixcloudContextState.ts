@@ -765,8 +765,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
         const mixcloudUrl = `https://www.mixcloud.com${mcKeyFormatter(
           newMcKey,
         )}`;
+        if (DEBUG) console.log(`Calling widget.load(${mixcloudUrl}, true)`);
         await player.load(mixcloudUrl, true); // Force autoplay on new loads
-        if (DEBUG) console.log("Widget load completed for:", newMcKey);
+        if (DEBUG) console.log("widget.load() completed for:", newMcKey);
         setMcKey(mcKeyFormatter(newMcKey));
         setLoaded(true);
         setShowUnavailable(false);
