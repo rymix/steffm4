@@ -1,4 +1,5 @@
 import Jupiter from "components";
+import MixcloudIsolatedTest from "components/MixcloudIsolatedTest";
 import { useMixcloud } from "contexts/mixcloud";
 import { JSX, useEffect, useState } from "react";
 import ReactGA from "react-ga4";
@@ -92,7 +93,12 @@ const Home = (): JSX.Element => {
     }
   }, []);
 
-  return <Jupiter />;
+  return (
+    <>
+      {DEBUG && <MixcloudIsolatedTest mcKey={mcKey} />}
+      <Jupiter />
+    </>
+  );
 };
 
 export default Home;

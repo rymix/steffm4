@@ -1,4 +1,8 @@
+import ScrollIndicator from "components//ScrollIndicator";
 import About from "components/About";
+import Background from "components/Background";
+import BurgerMenu from "components/BurgerMenu";
+import FloppyDiskStack from "components/Floppy/FloppyDiskStack";
 import { DiskLabel } from "components/Floppy/types";
 import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
@@ -12,17 +16,29 @@ import JupiterScreen from "components/Jupiter/Screen";
 import JupiterSlider from "components/Jupiter/Slider";
 import JupiterTitle from "components/Jupiter/Title";
 import JupiterWrapper from "components/Jupiter/Wrapper";
+import UserManualCover from "components/Manual/UserManualCover";
+import Mixcloud from "components/Mixcloud";
 import MixInformation from "components/MixInformation";
 import MixList from "components/MixList";
+import Modal from "components/Modal";
+import Notebook from "components/Notebook";
 import OutRun from "components/OutRun";
+import Overlay from "components/Overlay";
 import {
+  StyledBottomGrid,
+  StyledBottomPanel,
+  StyledChild,
+  StyledChildFloppy,
   StyledColumn,
+  StyledFixedBackground,
+  StyledFixedForeground,
   StyledGridWrapper,
   StyledItem,
   StyledItems,
   StyledScrollContainer,
   StyledTopPanel,
 } from "components/Styled";
+import Tooltip from "components/Tooltip";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
@@ -211,18 +227,18 @@ const Jupiter: React.FC = () => {
 
   return (
     <>
-      {/* <StyledFixedBackground>
+      <StyledFixedBackground>
         <Background />
         {mcKey && <Mixcloud defaultMcKey={mcKey} />}
-      </StyledFixedBackground> */}
+      </StyledFixedBackground>
 
-      {/* <StyledFixedForeground>
+      <StyledFixedForeground>
         <BurgerMenu />
         <Overlay />
         <Modal />
         <Tooltip />
         <ScrollIndicator />
-      </StyledFixedForeground> */}
+      </StyledFixedForeground>
 
       <StyledScrollContainer>
         <StyledTopPanel>
@@ -356,7 +372,7 @@ const Jupiter: React.FC = () => {
             </JupiterCase>
           </JupiterWrapper>
         </StyledTopPanel>
-        {/* <StyledBottomPanel>
+        <StyledBottomPanel>
           <StyledBottomGrid>
             <StyledChild>
               <Notebook />
@@ -368,7 +384,7 @@ const Jupiter: React.FC = () => {
               {trackDetails && <FloppyDiskStack label={diskLabel} />}
             </StyledChildFloppy>
           </StyledBottomGrid>
-        </StyledBottomPanel> */}
+        </StyledBottomPanel>
       </StyledScrollContainer>
     </>
   );
