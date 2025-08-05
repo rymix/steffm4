@@ -1,18 +1,46 @@
+import { useMixcloud } from "contexts/mixcloud";
 import React, { useEffect, useRef, useState } from "react";
 
 interface IsolatedTestProps {
-  mcKey: string;
+  localMcKey: string;
 }
 
 export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
-  mcKey,
+  localMcKey,
 }) => {
+  const {
+    mcKey,
+    controls: { handleNext },
+    mix: {
+      setProgress: setMixProgress,
+      setProgressPercent: setMixProgressPercent,
+      setShowUnavailable,
+      setDuration,
+    },
+    track: {
+      setProgress: setTrackProgress,
+      setProgressPercent: setTrackProgressPercent,
+    },
+    widget: {
+      iframeRef,
+      player,
+      scriptLoaded,
+      setLoaded,
+      setPlayer,
+      setPlayerUpdated,
+      setPlaying,
+      setScriptLoaded,
+      setUseWidgetLoad,
+      useWidgetLoad,
+      widgetUrl,
+    },
+  } = useMixcloud();
+
   // Local state only - no context integration
   const localIframeRef = useRef<HTMLIFrameElement>(null);
   const [widget, setWidget] = useState<any>(null);
-  const [scriptLoaded, setScriptLoaded] = useState(false);
 
-  console.log(`🔄 MixcloudIsolatedTest render - mcKey: ${mcKey}`);
+  console.log(`🔄 MixcloudIsolatedTest render - localMcKey: ${localMcKey}`);
 
   // Load script once
   useEffect(() => {
@@ -32,11 +60,11 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
 
   // Create widget once when script loads
   useEffect(() => {
-    if (!scriptLoaded || !localIframeRef.current || widget) return;
+    if (!scriptLoaded || !iframeRef.current || widget) return;
 
     console.log("🎯 Creating widget instance");
     const newWidget = (globalThis as any).Mixcloud.PlayerWidget(
-      localIframeRef.current,
+      iframeRef.current,
     );
 
     newWidget.ready.then(() => {
@@ -108,7 +136,7 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
     "/rymixxx/adventures-in-decent-music-volume-3/",
   ];
 
-  const widgetUrl = `https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=${encodeURIComponent(`https://www.mixcloud.com${mcKey || testMixes[0]}`)}`;
+  const localWidgetUrl = `https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=${encodeURIComponent(`https://www.mixcloud.com${mcKey || testMixes[0]}`)}`;
 
   return (
     <div
@@ -124,8 +152,8 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
 
       {/* Render iframe directly in component */}
       <iframe
-        ref={localIframeRef}
-        src={widgetUrl}
+        ref={iframeRef}
+        src={localWidgetUrl}
         width="100%"
         height="60"
         frameBorder="0"
