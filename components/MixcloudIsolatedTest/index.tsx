@@ -1,5 +1,6 @@
 import { useMixcloud } from "contexts/mixcloud";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { DEBUG } from "utils/constants";
 
 interface IsolatedTestProps {
   localMcKey: string;
@@ -24,6 +25,7 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
     widget: {
       iframeRef,
       player,
+      playing,
       scriptLoaded,
       setLoaded,
       setPlayer,
@@ -37,7 +39,6 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
   } = useMixcloud();
 
   // Local state only - no context integration
-  const localIframeRef = useRef<HTMLIFrameElement>(null);
   const [widget, setWidget] = useState<any>(null);
 
   console.log(`🔄 MixcloudIsolatedTest render - localMcKey: ${localMcKey}`);
@@ -117,11 +118,42 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
   }, [widget, mcKey]);
 
   // Manual controls for testing
-  const handlePlay = (): void => {
+  // const handlePlay = (): void => {
+  //   if (!widget) return;
+  //   console.log("🎮 Manual play button clicked");
+  //   widget.play();
+  // };
+
+  const handlePlay = useCallback(async () => {
     if (!widget) return;
-    console.log("🎮 Manual play button clicked");
-    widget.play();
-  };
+
+    try {
+      await widget.play();
+      if (DEBUG) console.log("player.play() completed successfully");
+      setPlayerUpdated(false);
+      // Playing state will be set by the play event listener
+      // But if event doesn't fire, we need to handle it manually
+      setTimeout(async () => {
+        try {
+          const isPaused = await widget.getIsPaused();
+          if (DEBUG)
+            console.log(
+              `Post-play check: widget paused = ${isPaused}, UI playing = ${playing}`,
+            );
+          if (!isPaused && !playing) {
+            if (DEBUG)
+              console.log("Play event didn't fire - setting UI state manually");
+            setPlaying(true);
+          }
+        } catch (error) {
+          console.error("Error checking play state:", error);
+        }
+      }, 100);
+    } catch (error) {
+      console.error("Error in play:", error);
+      setPlaying(false);
+    }
+  }, [widget, playing]);
 
   const handlePause = (): void => {
     if (!widget) return;
@@ -136,7 +168,7 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
     "/rymixxx/adventures-in-decent-music-volume-3/",
   ];
 
-  const localWidgetUrl = `https://www.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=${encodeURIComponent(`https://www.mixcloud.com${mcKey || testMixes[0]}`)}`;
+  const localWidgetUrl = `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=${encodeURIComponent(`https://www.mixcloud.com${mcKey || testMixes[0]}`)}`;
 
   return (
     <div
@@ -153,7 +185,7 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
       {/* Render iframe directly in component */}
       <iframe
         ref={iframeRef}
-        src={localWidgetUrl}
+        src={widgetUrl}
         width="100%"
         height="60"
         frameBorder="0"
@@ -161,6 +193,13 @@ export const MixcloudIsolatedTest: React.FC<IsolatedTestProps> = ({
         style={{ border: "1px solid blue" }}
         title="local-mixcloud-iframe"
       />
+
+      <dl>
+        <dt>widgetUrl</dt>
+        <dd>{widgetUrl}</dd>
+        <dt>localWidgetUrl</dt>
+        <dd>{localWidgetUrl}</dd>
+      </dl>
 
       <div style={{ marginTop: "10px" }}>
         <button onClick={handlePlay} type="button">

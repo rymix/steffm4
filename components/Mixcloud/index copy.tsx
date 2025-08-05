@@ -51,7 +51,9 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
     // If widget.load() mode is enabled, don't recreate the iframe
     if (useWidgetLoad && player) {
       if (DEBUG)
-        console.log(`Widget.load() mode enabled - skipping iframe recreation for mcKey: ${mcKey}`);
+        console.log(
+          `Widget.load() mode enabled - skipping iframe recreation for mcKey: ${mcKey}`,
+        );
       return;
     }
 
@@ -95,7 +97,9 @@ export const Mixcloud: React.FC<MixcloudProps> = (props) => {
 
       widget.events.progress.on((position: number, duration?: number) => {
         if (DEBUG) {
-          console.log(`PROGRESS event: position=${position}s, duration=${duration}s`);
+          console.log(
+            `PROGRESS event: position=${position}s, duration=${duration}s`,
+          );
         }
         setMixProgress(position);
         // Update duration from progress event if provided (more reliable for widget.load)
