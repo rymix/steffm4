@@ -1,5 +1,5 @@
 import { useMixcloud } from "contexts/mixcloud";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 export const MixcloudIsolatedTest: React.FC = () => {
   const {
@@ -10,6 +10,8 @@ export const MixcloudIsolatedTest: React.FC = () => {
       setProgressPercent: setMixProgressPercent,
       setShowUnavailable,
       setDuration,
+      duration,
+      progress: mixProgress,
     },
     track: {
       setProgress: setTrackProgress,
@@ -28,6 +30,10 @@ export const MixcloudIsolatedTest: React.FC = () => {
       widgetUrl,
     },
   } = useMixcloud();
+
+  // Track last known duration and progress values for end detection
+  const lastDurationRef = useRef<number>(0);
+  const lastProgressRef = useRef<number>(0);
 
   //  const defaultWidgetUrl = "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=https%3A%2F%2Fwww.mixcloud.com%2Frymixxx%2Fhttps%3A%2F%2Fplayer-widget.mixcloud.com%2Frymixxx%2Fadventures-in-decent-music-volume-1%2F%2F";
   const defaultWidgetUrl = `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=${encodeURIComponent(`https://player-widget.mixcloud.com/rymixxx/adventures-in-decent-music-volume-1/`)}`;
@@ -68,18 +74,87 @@ export const MixcloudIsolatedTest: React.FC = () => {
       });
 
       newWidget.events.pause.on(() => {
-        console.log("⏸️ PAUSE event fired");
+        console.log(
+          `⏸️ PAUSE event fired, duration:${duration}, mixProgress:${mixProgress}`,
+        );
         setPlaying(false);
+
+        // Smart end detection using last known values (since they get reset to 0 on end)
+        const lastDuration = lastDurationRef.current;
+        const lastProgress = lastProgressRef.current;
+
+        console.log(
+          `📊 Last known values - duration:${lastDuration}, progress:${lastProgress}`,
+        );
+
+        // Check if current values are reset (indicating end) but we had valid last values
+        const valuesWereReset = duration === 0 && mixProgress === 0;
+        const hadValidLastValues = lastDuration > 0 && lastProgress > 0;
+
+        if (valuesWereReset && hadValidLastValues) {
+          // Check if we were near the end before reset
+          const remainingTime = lastDuration - lastProgress;
+          const wasNearEnd = remainingTime <= 3; // Slightly more generous threshold
+
+          console.log(
+            `🕐 End detection with last values: ${remainingTime}s remaining (wasNearEnd: ${wasNearEnd})`,
+          );
+
+          if (wasNearEnd) {
+            console.log(
+              "🔚 Mix appears to have ended (values reset) - calling handleNext()",
+            );
+            handleNext();
+            
+            // Wait for new mix to load before trying to play
+            setTimeout(() => {
+              console.log("🎵 Attempting to auto-play next mix");
+              handlePlay();
+            }, 3000); // Give 3 seconds for new mix to load (increased for reliability)
+            
+            // Reset the refs to prevent multiple triggers
+            lastDurationRef.current = 0;
+            lastProgressRef.current = 0;
+          }
+        } else if (duration > 0 && mixProgress > 0) {
+          // Fallback: normal pause detection with current values
+          const remainingTime = duration - mixProgress;
+          const isNearEnd = remainingTime <= 2;
+
+          console.log(
+            `🕐 Normal end detection: ${remainingTime}s remaining (isNearEnd: ${isNearEnd})`,
+          );
+
+          if (isNearEnd) {
+            console.log("🔚 Mix appears to have ended - calling handleNext()");
+            handleNext();
+            
+            // Wait for new mix to load before trying to play
+            setTimeout(() => {
+              console.log("🎵 Attempting to auto-play next mix (fallback)");
+              handlePlay();
+            }, 3000);
+          }
+        }
       });
 
-      newWidget.events.progress.on((position: number, duration?: number) => {
-        console.log(`⏱️ PROGRESS: ${position}s / ${duration}s`);
+      newWidget.events.progress.on((position: number, dur?: number) => {
+        console.log(`⏱️ PROGRESS: ${position}s / ${dur}s`);
         setMixProgress(position);
-        setMixProgressPercent((duration || 0 / position) * 100);
+
+        // Update duration from progress event and calculate percentage
+        if (dur && dur > 0) {
+          setDuration(dur);
+          setMixProgressPercent((position / dur) * 100);
+
+          // Track last known valid values for end detection
+          lastDurationRef.current = dur;
+          lastProgressRef.current = position;
+        }
       });
 
       newWidget.events.ended.on(() => {
-        console.log("⏹️ ENDED event fired");
+        console.log("⏹️ ENDED event fired (this should trigger automatically)");
         handleNext();
       });
 
@@ -150,6 +225,14 @@ export const MixcloudIsolatedTest: React.FC = () => {
     >
       <h3>🧪 Isolated Widget Test</h3>
       <p>Current mcKey: {mcKey}</p>
+      <p>
+        Progress: {mixProgress}s / {duration}s (
+        {((mixProgress / duration) * 100 || 0).toFixed(1)}%)
+      </p>
+      <p>Playing: {playing ? "Yes" : "No"}</p>
+      <p>
+        Last Known: {lastProgressRef.current}s / {lastDurationRef.current}s
+      </p>
 
       <iframe
         ref={iframeRef}
