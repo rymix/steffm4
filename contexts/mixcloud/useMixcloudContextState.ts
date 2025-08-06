@@ -623,13 +623,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, [player, playing]);
 
   // Updated August 2025
-  const handlePause = useCallback(async () => {
+  const handlePause = async (): Promise<void> => {
+    if (!player) return;
+    console.log("🎮 Manual pause button clicked");
+    await player.pause();
+  };
+
+  const handlePause2 = useCallback(async () => {
     if (!player) return;
     console.log("🎮 Manual pause button clicked");
 
-    if (DEBUG) console.log("handlePause called - attempting to pause");
     try {
+      console.log("Before await");
       await player.pause();
+      console.log("After await");
       if (DEBUG) console.log("player.pause() completed successfully");
       setPlayerUpdated(false);
       // Playing state will be set by the pause event listener

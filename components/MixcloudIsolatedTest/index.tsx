@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 export const MixcloudIsolatedTest: React.FC = () => {
   const {
     mcKey,
-    controls: { handleLoad, handleNext, handlePlay },
+    controls: { handleLoad, handleNext, handlePlay, handlePause },
     mix: {
       setProgress: setMixProgress,
       setProgressPercent: setMixProgressPercent,
@@ -30,7 +30,7 @@ export const MixcloudIsolatedTest: React.FC = () => {
   } = useMixcloud();
 
   //  const defaultWidgetUrl = "https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=https%3A%2F%2Fwww.mixcloud.com%2Frymixxx%2Fhttps%3A%2F%2Fplayer-widget.mixcloud.com%2Frymixxx%2Fadventures-in-decent-music-volume-1%2F%2F";
-  const defaultWidgetUrl = `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&autoplay=1&feed=${encodeURIComponent(`https://player-widget.mixcloud.com/rymixxx/adventures-in-decent-music-volume-1/`)}`;
+  const defaultWidgetUrl = `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&hide_artwork=1&hide_tracklist=1&mini=1&autoplay=1&feed=${encodeURIComponent(`https://player-widget.mixcloud.com/rymixxx/adventures-in-decent-music-volume-1/`)}`;
 
   // Load script once
   useEffect(() => {
@@ -72,15 +72,23 @@ export const MixcloudIsolatedTest: React.FC = () => {
         setPlaying(false);
       });
 
-      newWidget.events.progress.on((position: number, duration?: number) => {
-        console.log(`⏱️ PROGRESS: ${position}s / ${duration}s`);
-        setMixProgress(position);
-        setMixProgressPercent((duration || 0 / position) * 100);
-      });
+      newWidget.events.progress.on(
+        async (position: number, duration?: number) => {
+          console.log(`⏱️ PROGRESS: ${position}s / ${duration}s`);
+          setMixProgress(position);
+          setMixProgressPercent((duration || 0 / position) * 100);
 
-      newWidget.events.ended.on(() => {
+          // if (duration && position >= duration - 5) {
+          //   handlePause();
+          //   handleLoad("/rymixxx/adventures-in-decent-music-volume-3/");
+          // }
+        },
+      );
+
+      newWidget.events.ended.on(async () => {
         console.log("⏹️ ENDED event fired");
-        handleNext();
+        await handleLoad("/rymixxx/adventures-in-decent-music-volume-3/");
+        handlePlay();
       });
 
       newWidget.events.error.on((error: any) => {
@@ -126,11 +134,11 @@ export const MixcloudIsolatedTest: React.FC = () => {
   //   }
   // };
 
-  const handlePause = (): void => {
-    if (!player) return;
-    console.log("🎮 Manual pause button clicked");
-    player.pause();
-  };
+  // const handlePause = (): void => {
+  //   if (!player) return;
+  //   console.log("🎮 Manual pause button clicked");
+  //   player.pause();
+  // };
 
   // Test mix options
   const testMixes = [
@@ -174,7 +182,9 @@ export const MixcloudIsolatedTest: React.FC = () => {
           ▶️ Play
         </button>
         <button
-          onClick={handlePause}
+          onClick={async () => {
+            await handlePause();
+          }}
           style={{ marginLeft: "10px" }}
           type="button"
         >
