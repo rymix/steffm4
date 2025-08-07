@@ -55,7 +55,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [mixes, setMixes] = useState<Mix[]>([]);
   const [mixProgress, setMixProgress] = useState<number>(0);
   const [mixProgressPercent, setMixProgressPercent] = useState<number>(0);
-  const [player, setPlayer] = useState<any>();
+  const [player, setPlayer] = useState<any>(null);
   const [playerUpdated, setPlayerUpdated] = useState<boolean>(false);
   const [playing, setPlaying] = useState<boolean>(false);
   const [keyboardShortcutsEnabled, setKeyboardShortcutsEnabled] =
@@ -581,98 +581,37 @@ const useMixcloudContextState = (): MixcloudContextState => {
     fetchCategoryName();
   }, [mcKey]);
 
-  // Updated August 2025
-  const handlePlay = useCallback(async () => {
-    if (!player) return;
-    console.log("🎮 Manual play button clicked");
-
+  // Play current mix
+  const handlePlay = async (): Promise<void> => {
+    if (!player) {
+      console.log("❌ No widget available for play");
+      return;
+    }
+    if (playing) {
+      console.log("▶️ Already playing - no action needed");
+      return;
+    }
+    console.log("▶️ Playing current mix");
     try {
       await player.play();
-      if (DEBUG) console.log("player.play() completed successfully");
-      setPlayerUpdated(false);
-      // Playing state will be set by the play event listener
-      // But if event doesn't fire, we need to handle it manually
-      setTimeout(async () => {
-        try {
-          const isPaused = await player.getIsPaused();
-          if (DEBUG)
-            console.log(
-              `Post-play check: widget paused = ${isPaused}, UI playing = ${playing}`,
-            );
-          if (!isPaused && !playing) {
-            if (DEBUG)
-              console.log("Play event didn't fire - setting UI state manually");
-            setPlaying(true);
-          }
-        } catch (error) {
-          console.error("Error checking play state:", error);
-        }
-      }, 100);
-
-      if (GA4) {
-        ReactGA.event({
-          category: "Control",
-          action: "Click",
-          label: "Play",
-        });
-      }
     } catch (error) {
-      console.error("Error in play:", error);
-      setPlaying(false);
+      console.log(`❌ Play error: ${error}`);
     }
-  }, [player, playing]);
-
-  // Updated August 2025
-  const handlePause = async (): Promise<void> => {
-    if (!player) return;
-    console.log("🎮 Manual pause button clicked");
-    await player.pause();
   };
 
-  const handlePause2 = useCallback(async () => {
-    if (!player) return;
-    console.log("🎮 Manual pause button clicked");
-
-    try {
-      console.log("Before await");
-      await player.pause();
-      console.log("After await");
-      if (DEBUG) console.log("player.pause() completed successfully");
-      setPlayerUpdated(false);
-      // Playing state will be set by the pause event listener
-      // But if event doesn't fire, we need to handle it manually
-      setTimeout(async () => {
-        try {
-          const isPaused = await player.getIsPaused();
-          if (DEBUG)
-            console.log(
-              `Post-pause check: widget paused = ${isPaused}, UI playing = ${playing}`,
-            );
-          if (isPaused && playing) {
-            if (DEBUG)
-              console.log(
-                "Pause event didn't fire - setting UI state manually",
-              );
-            setPlaying(false);
-          }
-        } catch (error) {
-          console.error("Error checking pause state:", error);
-        }
-      }, 100);
-
-      if (GA4) {
-        ReactGA.event({
-          category: "Control",
-          action: "Click",
-          label: "Stop",
-        });
-      }
-    } catch (error) {
-      console.error("Error in pause:", error);
-      // Ensure playing state is false if pause failed
-      setPlaying(false);
+  // Pause current mix
+  const handlePause = async (): Promise<void> => {
+    if (!player) {
+      console.log("❌ No widget available for pause");
+      return;
     }
-  }, [player, playing]);
+    console.log("⏸️ Pausing current mix");
+    try {
+      await player.pause();
+    } catch (error) {
+      console.log(`❌ Pause error: ${error}`);
+    }
+  };
 
   const handleSeek = useCallback(
     async (seconds: number) => {
