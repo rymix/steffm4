@@ -154,8 +154,10 @@ export type MixcloudContextState = {
     setSectionNumber: React.Dispatch<React.SetStateAction<number>>;
   };
   widget: {
+    endedEventRef: React.MutableRefObject<boolean>;
     iframeRef: React.MutableRefObject<HTMLIFrameElement | null>;
     loaded: boolean;
+    pauseTimeoutRef: React.MutableRefObject<NodeJS.Timeout | null>;
     player: any;
     playerUpdated: boolean;
     playing: boolean;
@@ -165,6 +167,7 @@ export type MixcloudContextState = {
     setPlayerUpdated: React.Dispatch<React.SetStateAction<boolean>>;
     setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
     setScriptLoaded: React.Dispatch<React.SetStateAction<boolean>>;
+    setupEventListeners: (_widgetInstance: any) => void;
     setVolume: React.Dispatch<React.SetStateAction<number>>;
     volume: number;
     widgetUrl: string;

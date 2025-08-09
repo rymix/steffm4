@@ -14,13 +14,16 @@ export const MixcloudIsolatedTest: React.FC = () => {
       setProgressPercent: setMixProgressPercent,
     },
     widget: {
+      endedEventRef,
       iframeRef,
+      pauseTimeoutRef,
       playing,
       player,
       scriptLoaded,
       setPlaying,
       setPlayer,
       setScriptLoaded,
+      setupEventListeners,
     },
   } = useMixcloud();
 
@@ -40,10 +43,6 @@ export const MixcloudIsolatedTest: React.FC = () => {
     "/rymixxx/adventures-in-decent-music-volume-9/",
     "/rymixxx/adventures-in-decent-music-volume-10/",
   ];
-
-  // Race condition handling
-  const endedEventRef = useRef<boolean>(false);
-  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Fix hydration mismatch - use static initial mix, randomize in useEffect
   const staticInitialMix = testMixes[0];
@@ -142,60 +141,6 @@ export const MixcloudIsolatedTest: React.FC = () => {
     const nextMix = testMixes[nextIndex];
     console.log(`⏭️ Next: ${currentMixRef.current} → ${nextMix}`);
     changeMix(nextMix, true);
-  };
-
-  // Helper function to set up event listeners on any widget instance
-  const setupEventListeners = (widgetInstance: any): void => {
-    console.log("🔧 Setting up event listeners");
-
-    widgetInstance.events.play.on(() => {
-      console.log("▶️ PLAY event");
-      setPlaying(true);
-      endedEventRef.current = false;
-    });
-
-    widgetInstance.events.pause.on(() => {
-      console.log("⏸️ PAUSE event");
-      setPlaying(false);
-
-      if (pauseTimeoutRef.current) {
-        clearTimeout(pauseTimeoutRef.current);
-      }
-
-      pauseTimeoutRef.current = setTimeout(() => {
-        if (!endedEventRef.current) {
-          console.log("✅ Genuine pause (not end-of-mix)");
-        }
-        pauseTimeoutRef.current = null;
-      }, 500);
-    });
-
-    widgetInstance.events.progress.on((position: number, dur?: number) => {
-      setMixProgress(position);
-      if (dur && dur > 0) {
-        setDuration(dur);
-        setMixProgressPercent((position / dur) * 100);
-      }
-    });
-
-    widgetInstance.events.ended.on(() => {
-      console.log("🎯 ENDED event - auto-advancing");
-      setPlaying(false);
-      endedEventRef.current = true;
-
-      if (pauseTimeoutRef.current) {
-        clearTimeout(pauseTimeoutRef.current);
-        pauseTimeoutRef.current = null;
-      }
-
-      setTimeout(() => {
-        handleNext();
-      }, 500);
-    });
-
-    widgetInstance.events.error.on((error: any) => {
-      console.log(`❌ ERROR: ${JSON.stringify(error)}`);
-    });
   };
 
   // Navigate to previous mix

@@ -35,11 +35,15 @@ import {
 
 const useMixcloudContextState = (): MixcloudContextState => {
   // #region State and ref vars
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const endedEventRef = useRef<boolean>(false);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const { subscribe } = useMasterTimer();
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [duration, setDuration] = useState<number>(0);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
+
   const [isReady, setIsReady] = useState<boolean>(false);
   const jupiterCaseRef = useRef<HTMLDivElement>(null);
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
@@ -521,6 +525,60 @@ const useMixcloudContextState = (): MixcloudContextState => {
   // #region Helpers
   const mcUrl = mcKeyUrlFormatter(mcKey);
   const widgetUrl = mcWidgetUrlFormatter(mcKey);
+
+  // Helper function to set up event listeners on any widget instance
+  const setupEventListeners = (widgetInstance: any): void => {
+    console.log("🔧 Setting up event listeners");
+
+    widgetInstance.events.play.on(() => {
+      console.log("▶️ PLAY event");
+      setPlaying(true);
+      endedEventRef.current = false;
+    });
+
+    widgetInstance.events.pause.on(() => {
+      console.log("⏸️ PAUSE event");
+      setPlaying(false);
+
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current);
+      }
+
+      pauseTimeoutRef.current = setTimeout(() => {
+        if (!endedEventRef.current) {
+          console.log("✅ Genuine pause (not end-of-mix)");
+        }
+        pauseTimeoutRef.current = null;
+      }, 500);
+    });
+
+    widgetInstance.events.progress.on((position: number, dur?: number) => {
+      setMixProgress(position);
+      if (dur && dur > 0) {
+        setDuration(dur);
+        setMixProgressPercent((position / dur) * 100);
+      }
+    });
+
+    widgetInstance.events.ended.on(() => {
+      console.log("🎯 ENDED event - auto-advancing");
+      setPlaying(false);
+      endedEventRef.current = true;
+
+      if (pauseTimeoutRef.current) {
+        clearTimeout(pauseTimeoutRef.current);
+        pauseTimeoutRef.current = null;
+      }
+
+      setTimeout(() => {
+        handleNext();
+      }, 500);
+    });
+
+    widgetInstance.events.error.on((error: any) => {
+      console.log(`❌ ERROR: ${JSON.stringify(error)}`);
+    });
+  };
   // #endregion
 
   // #region Fetch mix data from api
@@ -1238,8 +1296,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setSectionNumber: setTrackSectionNumber,
     },
     widget: {
+      endedEventRef,
       iframeRef,
       loaded,
+      pauseTimeoutRef,
       player,
       playerUpdated,
       playing,
@@ -1249,6 +1309,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setPlayerUpdated,
       setPlaying,
       setScriptLoaded,
+      setupEventListeners,
       setVolume,
       volume,
       widgetUrl,
