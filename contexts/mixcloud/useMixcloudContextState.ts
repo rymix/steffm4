@@ -34,6 +34,7 @@ import {
 } from "utils/functions";
 
 const useMixcloudContextState = (): MixcloudContextState => {
+  // #region State and ref vars
   const { subscribe } = useMasterTimer();
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
@@ -80,17 +81,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
   }, [player, playing]);
 
-  // Periodically validate playing state using master timer
-  useEffect(() => {
-    if (!player) return undefined;
-
-    const unsubscribe = subscribe(
-      "validatePlayingState",
-      validatePlayingState,
-      1000,
-    );
-    return unsubscribe;
-  }, [player, validatePlayingState, subscribe]);
   const [scale, setScale] = useState<Scale>({ x: 1, y: 1 });
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
   const [selectedCategory, setSelectedCategory] = usePersistedState<
@@ -172,10 +162,24 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [isAtBottom, setIsAtBottom] = useState(false);
   const [touchStartY, setTouchStartY] = useState(0); // Store touch start position
   const [swipeDistance, setSwipeDistance] = useState(0);
+  // #endregion
 
-  /* FUNCTIONS -------------------- */
+  // #region Validate playing state
+  // Periodically validate playing state using master timer
+  useEffect(() => {
+    if (!player) return undefined;
 
-  /* Tooltip */
+    const unsubscribe = subscribe(
+      "validatePlayingState",
+      validatePlayingState,
+      1000,
+    );
+    return unsubscribe;
+  }, [player, validatePlayingState, subscribe]);
+
+  // #endregion
+
+  // #region Tooltip
   const showTooltip = (message: string, x: number, y: number): void => {
     // Clear any existing tooltip timers
     if (tooltipTimerRef.current) {
@@ -200,8 +204,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
       tooltipTimerRef.current = null;
     }, 2000);
   };
+  // #endregion
 
-  /* Progress */
+  // #region Progress
   const updateProgressHistory = (
     localMcKey: string,
     seconds: number,
@@ -225,8 +230,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
     setLatestMcKey(mcKey);
     setLatestProgress(mixProgress);
   }, [mixProgress, duration, mcKey]);
+  // #endregion
 
-  /* Sharable Link */
+  // #region Sharable link
   const copySharableLink = (localMix?: Mix): void => {
     let sharableKey = mcKey;
 
@@ -251,8 +257,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
       });
     }
   };
+  // #endregion
 
-  /* Favourites */
+  // #region Favourites
   const addFavourite = (localMcKey: string): void => {
     const newFavouritesList = [
       ...favouritesList,
@@ -278,8 +285,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
   useEffect(() => {
     setMixIsFavourite(isFavourite(mcKey));
   }, [favouritesList]);
+  // #endregion
 
-  /* Screen */
+  // #region Screen
   useEffect(() => {
     if (mixDetails) {
       const mixMessage = [
@@ -300,11 +308,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
     mixDetails?.releaseDate,
     mixDetails?.duration,
   ]);
+  // #endregion
 
-  // Note: We removed the trackMessage logic from here since the Jupiter Screen
-  // now handles track messages directly using trackDetails
-
-  /* Modal */
+  // #region Modal
   const handleCloseModal = (): void => {
     setModalContent(null);
     setModalOpen(false);
@@ -381,8 +387,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
     },
     [],
   );
+  // #endregion
 
-  /* Set isMobile if small screen */
+  // #region Set isMobile if small screen
   useEffect(() => {
     const screenLimits = {
       landscape: [
@@ -480,8 +487,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  // #endregion
 
-  /* Cancel timers and close Modals and Menus */
+  // #region Cancel timers and close Modals and Menus
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
       const target = event.target as Node;
@@ -508,12 +516,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       document.removeEventListener("keydown", handleEscapePress);
     };
   }, [burgerMenuRef, modalRef]);
+  // #endregion
 
-  /* Helpers */
+  // #region Helpers
   const mcUrl = mcKeyUrlFormatter(mcKey);
-
   const widgetUrl = mcWidgetUrlFormatter(mcKey);
+  // #endregion
 
+  // #region Fetch mix data from api
   const fetchRandomMcKey = async (): Promise<string> => {
     const response = await fetch("/api/randomMix");
     const data = await response.json();
@@ -580,8 +590,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     fetchCategoryName();
   }, [mcKey]);
+  // #endregion
 
-  // Play current mix
+  // #region Handlers for mix navigation
   const handlePlay = async (): Promise<void> => {
     if (!player) {
       console.log("❌ No widget available for play");
@@ -599,7 +610,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
   };
 
-  // Pause current mix
   const handlePause = async (): Promise<void> => {
     if (!player) {
       console.log("❌ No widget available for pause");
@@ -629,44 +639,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     [player, playerUpdated],
   );
 
-  /* Volume Controls */
-  useEffect(() => {
-    const updateVolume = async (): Promise<void> => {
-      if (player) {
-        player.setVolume(volume);
-      }
-    };
-
-    updateVolume();
-  }, [player, volume]);
-
-  useEffect(() => {
-    if (volume === 0) {
-      const minVolumeText = [
-        "It's oh so quiet",
-        "The Sound of Silence",
-        "Silent night, holy night",
-        "Don't Stop the Music",
-        "Enjoy the Silence",
-        "So Quiet In Here",
-      ];
-      const randomIndex = Math.floor(Math.random() * minVolumeText.length);
-      setTemporaryMessage(minVolumeText[randomIndex]);
-    } else if (volume === 1) {
-      const maxVolumeText = [
-        "Up to 11",
-        "Let's get loud, let's get loud",
-        "Pump up the volume",
-        "I Love It Loud",
-        "Shout, Shout, Let It All Out",
-        "Bring the Noise",
-      ];
-      const randomIndex = Math.floor(Math.random() * maxVolumeText.length);
-      setTemporaryMessage(maxVolumeText[randomIndex]);
-    }
-  }, [volume]);
-
-  /* Load Controls */
   const handleLoad = async (newMcKey?: string): Promise<void> => {
     if (!newMcKey) return;
     if (DEBUG)
@@ -745,7 +717,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
     handleLoad(randomFavourite.mcKey);
   };
 
-  /* Navigation */
   const handleNext = useCallback(async () => {
     const mixIndex = mixes.findIndex((thisMix) =>
       mcKey.includes(thisMix.mixcloudKey),
@@ -788,8 +759,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
       });
     }
   }, [mcKey, mixes]);
+  // #endregion
 
-  /* Calculate Progress */
+  // #region Calculate Progress
   useEffect(() => {
     const currentTime = Date.now();
 
@@ -860,8 +832,47 @@ const useMixcloudContextState = (): MixcloudContextState => {
     calculateTrackProgress();
     calculateMixProgress();
   }, [mixProgress, mixDetails, duration, lastTrackUpdateTime]);
+  // #endregion
 
-  /* Media Controls */
+  // #region Volume Controls
+  useEffect(() => {
+    const updateVolume = async (): Promise<void> => {
+      if (player) {
+        player.setVolume(volume);
+      }
+    };
+
+    updateVolume();
+  }, [player, volume]);
+
+  useEffect(() => {
+    if (volume === 0) {
+      const minVolumeText = [
+        "It's oh so quiet",
+        "The Sound of Silence",
+        "Silent night, holy night",
+        "Don't Stop the Music",
+        "Enjoy the Silence",
+        "So Quiet In Here",
+      ];
+      const randomIndex = Math.floor(Math.random() * minVolumeText.length);
+      setTemporaryMessage(minVolumeText[randomIndex]);
+    } else if (volume === 1) {
+      const maxVolumeText = [
+        "Up to 11",
+        "Let's get loud, let's get loud",
+        "Pump up the volume",
+        "I Love It Loud",
+        "Shout, Shout, Let It All Out",
+        "Bring the Noise",
+      ];
+      const randomIndex = Math.floor(Math.random() * maxVolumeText.length);
+      setTemporaryMessage(maxVolumeText[randomIndex]);
+    }
+  }, [volume]);
+  // #endregion
+
+  // #region Media Controls for mobiles etc.
   useEffect(() => {
     if ("mediaSession" in navigator) {
       navigator.mediaSession.metadata = new globalThis.MediaMetadata({
@@ -899,8 +910,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
     handlePrevious,
     handleNext,
   ]);
+  // #endregion
 
-  /* Fetch Categories */
+  // #region Fetch Categories
   useEffect(() => {
     const fetchCategories = async (): Promise<void> => {
       try {
@@ -916,8 +928,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     fetchCategories();
   }, []);
+  // #endregion
 
-  /* Keypress Listeners */
+  // #region Keypress Listeners
   const handleKeyPress = useCallback(
     (event: KeyboardEvent) => {
       // Don't handle shortcuts if they're disabled
@@ -1038,8 +1051,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     return undefined;
   }, [handleKeyPress]);
+  // #endregion
 
-  /* Scroll and touch listeners */
+  // #region Scroll and touch listeners
   useEffect((): (() => void) => {
     const handleScroll = (event: WheelEvent): void => {
       if (event.deltaY > 0 && !isAtBottom) {
@@ -1100,7 +1114,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
       globalThis.removeEventListener("touchmove", handleTouchMove);
     };
   }, [isAtBottom, touchStartY, modalOpen]);
+  // #endregion
 
+  // #region Return
   return {
     isReady,
     mcKey,
@@ -1238,6 +1254,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       widgetUrl,
     },
   };
+  // #endregion
 };
 
 export default useMixcloudContextState;
