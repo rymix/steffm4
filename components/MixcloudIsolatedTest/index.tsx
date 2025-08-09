@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 export const MixcloudIsolatedTest: React.FC = () => {
   const {
+    mcKey,
     controls: { handlePause, handlePlay },
     mix: {
       duration,
@@ -14,7 +15,6 @@ export const MixcloudIsolatedTest: React.FC = () => {
       setProgressPercent: setMixProgressPercent,
     },
     widget: {
-      endedEventRef,
       iframeRef,
       pauseTimeoutRef,
       playing,
@@ -229,6 +229,9 @@ export const MixcloudIsolatedTest: React.FC = () => {
           <h3>Current Status:</h3>
           <p>
             <strong>Current Mix:</strong> {currentMix || initialMix}
+          </p>
+          <p>
+            <strong>mcKey:</strong> {mcKey}
           </p>
           <p>
             <strong>Playing:</strong> {playing ? "Yes" : "No"}

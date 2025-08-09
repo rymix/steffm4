@@ -651,6 +651,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   // #endregion
 
   // #region Handlers for mix navigation
+  // Migrated
   const handlePlay = async (): Promise<void> => {
     if (!player) {
       console.log("❌ No widget available for play");
@@ -668,6 +669,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
   };
 
+  // Migrated
   const handlePause = async (): Promise<void> => {
     if (!player) {
       console.log("❌ No widget available for pause");
