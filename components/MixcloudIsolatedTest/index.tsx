@@ -5,13 +5,25 @@ import React, { useEffect, useRef, useState } from "react";
 export const MixcloudIsolatedTest: React.FC = () => {
   const {
     controls: { handlePause, handlePlay },
-    widget: { iframeRef, playing, player, setPlaying, setPlayer },
+    mix: {
+      duration,
+      progress: mixProgress,
+      progressPercent: mixProgressPercent,
+      setDuration,
+      setProgress: setMixProgress,
+      setProgressPercent: setMixProgressPercent,
+    },
+    widget: {
+      iframeRef,
+      playing,
+      player,
+      scriptLoaded,
+      setPlaying,
+      setPlayer,
+      setScriptLoaded,
+    },
   } = useMixcloud();
 
-  const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [progressPercent, setProgressPercent] = useState(0);
   const [currentMix, setCurrentMix] = useState("");
   const [logs, setLogs] = useState<string[]>([]);
 
@@ -61,8 +73,8 @@ export const MixcloudIsolatedTest: React.FC = () => {
     console.log(`🔄 Changing mix to: ${mixKey}`);
 
     // Reset all state
-    setProgress(0);
-    setProgressPercent(0);
+    setMixProgress(0);
+    setMixProgressPercent(0);
     setDuration(0);
     setPlaying(false);
     setCurrentMix(mixKey);
@@ -159,10 +171,10 @@ export const MixcloudIsolatedTest: React.FC = () => {
     });
 
     widgetInstance.events.progress.on((position: number, dur?: number) => {
-      setProgress(position);
+      setMixProgress(position);
       if (dur && dur > 0) {
         setDuration(dur);
-        setProgressPercent((position / dur) * 100);
+        setMixProgressPercent((position / dur) * 100);
       }
     });
 
@@ -277,9 +289,9 @@ export const MixcloudIsolatedTest: React.FC = () => {
             <strong>Playing:</strong> {playing ? "Yes" : "No"}
           </p>
           <p>
-            <strong>Progress:</strong> {progress?.toFixed(1) || "0.0"}s /{" "}
+            <strong>Progress:</strong> {mixProgress?.toFixed(1) || "0.0"}s /{" "}
             {duration?.toFixed(1) || "0.0"}s (
-            {progressPercent?.toFixed(1) || "0.0"}%)
+            {mixProgressPercent?.toFixed(1) || "0.0"}%)
           </p>
           <div
             style={{
@@ -291,7 +303,7 @@ export const MixcloudIsolatedTest: React.FC = () => {
           >
             <div
               style={{
-                width: `${Math.max(0, progressPercent || 0)}%`,
+                width: `${Math.max(0, mixProgressPercent || 0)}%`,
                 height: "100%",
                 backgroundColor: "#4caf50",
                 transition: "width 0.5s",
