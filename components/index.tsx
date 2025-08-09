@@ -2,13 +2,9 @@ import About from "components/About";
 import { DiskLabel } from "components/Floppy/types";
 import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
-import JupiterHeader from "components/Jupiter/Header";
 import JupiterKnob from "components/Jupiter/Knob";
 import JupiterPanel from "components/Jupiter/Panel";
-import JupiterBackPanel from "components/Jupiter/Panel/BackPanel";
 import JupiterFrontPanel from "components/Jupiter/Panel/FrontPanel";
-import JupiterProgressLeds from "components/Jupiter/ProgressLeds";
-import JupiterScreen from "components/Jupiter/Screen";
 import JupiterSlider from "components/Jupiter/Slider";
 import JupiterTitle from "components/Jupiter/Title";
 import JupiterWrapper from "components/Jupiter/Wrapper";
@@ -228,7 +224,7 @@ const Jupiter: React.FC = () => {
         <StyledTopPanel>
           <JupiterWrapper>
             <JupiterCase>
-              <JupiterPanel padding="0" background="rear">
+              {/* <JupiterPanel padding="0" background="rear">
                 <JupiterBackPanel />
               </JupiterPanel>
               <JupiterPanel align="right" padding="12">
@@ -239,7 +235,7 @@ const Jupiter: React.FC = () => {
               </JupiterPanel>
               <JupiterPanel padding="0">
                 <JupiterProgressLeds />
-              </JupiterPanel>
+              </JupiterPanel> */}
               <JupiterPanel padding="12">
                 <StyledGridWrapper>
                   <StyledColumn>
