@@ -799,14 +799,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   // Load random mix (excluding current)
   const handleRandom = async (category?: string): Promise<void> => {
-    console.log("handleRandom");
-
-    if (category && category !== "all") {
-      console.log("yes");
-    } else {
-      console.log("no");
-    }
-
     let randomMix = await (category && category !== "all"
       ? fetchRandomMcKeyByCategory(category)
       : fetchRandomMcKey());
