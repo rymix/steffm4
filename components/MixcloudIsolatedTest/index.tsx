@@ -29,7 +29,6 @@ export const MixcloudIsolatedTest: React.FC = () => {
   } = useMixcloud();
 
   const [currentMix, setCurrentMix] = useState("");
-  const [logs, setLogs] = useState<string[]>([]);
 
   // Test mixes - these are known working Mixcloud URLs
   const testMixes = [
@@ -194,7 +193,9 @@ export const MixcloudIsolatedTest: React.FC = () => {
           </button>
           <button
             type="button"
-            onClick={handleRandom}
+            onClick={() => {
+              handleRandom();
+            }}
             style={{ marginRight: "10px" }}
           >
             🎲 Random
@@ -222,37 +223,6 @@ export const MixcloudIsolatedTest: React.FC = () => {
               </button>
             );
           })}
-        </div>
-
-        <div style={{ marginBottom: "20px" }}>
-          <button type="button" onClick={clearLogs}>
-            🗑️ Clear Logs
-          </button>
-        </div>
-
-        <div>
-          <h3>Event Logs:</h3>
-          <div
-            style={{
-              height: "300px",
-              overflow: "auto",
-              border: "1px solid #ccc",
-              padding: "10px",
-              backgroundColor: "#f9f9f9",
-            }}
-          >
-            {logs.map((log) => {
-              const logId = `${log}-${Math.random()}`;
-              return (
-                <div
-                  key={logId}
-                  style={{ fontSize: "12px", marginBottom: "2px" }}
-                >
-                  {log}
-                </div>
-              );
-            })}
-          </div>
         </div>
       </div>
     </>
