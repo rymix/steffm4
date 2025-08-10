@@ -16,9 +16,6 @@ export const MixcloudIsolatedTest: React.FC = () => {
       duration,
       progress: mixProgress,
       progressPercent: mixProgressPercent,
-      setDuration,
-      setProgress: setMixProgress,
-      setProgressPercent: setMixProgressPercent,
     },
     widget: {
       changeMix,
@@ -27,10 +24,7 @@ export const MixcloudIsolatedTest: React.FC = () => {
       playing,
       player,
       scriptLoaded,
-      setPlaying,
-      setPlayer,
       setScriptLoaded,
-      setupEventListeners,
     },
   } = useMixcloud();
 
