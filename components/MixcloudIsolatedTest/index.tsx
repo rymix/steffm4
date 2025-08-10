@@ -5,7 +5,13 @@ import React, { useEffect, useRef, useState } from "react";
 export const MixcloudIsolatedTest: React.FC = () => {
   const {
     mcKey,
-    controls: { handlePause, handlePlay },
+    controls: {
+      handleNext,
+      handlePause,
+      handlePlay,
+      handlePrevious,
+      handleRandom,
+    },
     mix: {
       duration,
       progress: mixProgress,
@@ -15,6 +21,7 @@ export const MixcloudIsolatedTest: React.FC = () => {
       setProgressPercent: setMixProgressPercent,
     },
     widget: {
+      changeMix,
       iframeRef,
       pauseTimeoutRef,
       playing,
@@ -55,109 +62,6 @@ export const MixcloudIsolatedTest: React.FC = () => {
       ? testMixes.filter((mix) => mix !== excludeMix)
       : testMixes;
     return availableMixes[Math.floor(Math.random() * availableMixes.length)];
-  };
-
-  // =============================================================================
-  // CORE WIDGET FUNCTIONS
-  // =============================================================================
-
-  // General function to change mix - always recreates iframe for maximum reliability
-  // (Declared first as it's called by navigation functions)
-  const changeMix = (mixKey: string, autoplay = true): void => {
-    if (!iframeRef.current) {
-      console.log("❌ No iframe reference - cannot change mix");
-      return;
-    }
-
-    console.log(`🔄 Changing mix to: ${mixKey}`);
-
-    // Reset all state
-    setMixProgress(0);
-    setMixProgressPercent(0);
-    setDuration(0);
-    setPlaying(false);
-    setCurrentMix(mixKey);
-    currentMixRef.current = mixKey;
-
-    // Create new iframe URL
-    const autoplayParam = autoplay ? "&autoplay=1" : "";
-    const newWidgetUrl = `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&hide_artwork=1&hide_tracklist=1&mini=1${autoplayParam}&feed=${encodeURIComponent(`https://www.mixcloud.com${mixKey}`)}`;
-
-    // Update iframe source
-    iframeRef.current.src = newWidgetUrl;
-
-    // Initialize new widget with longer delay for reliability
-    setTimeout(() => {
-      const freshWidget = (globalThis as any).Mixcloud.PlayerWidget(
-        iframeRef.current,
-      );
-
-      freshWidget.ready
-        .then(() => {
-          console.log(`✅ Widget ready for: ${mixKey}`);
-          setPlayer(freshWidget);
-          setupEventListeners(freshWidget);
-
-          // Get duration with retry logic for reliability
-          const getDurationWithRetry = async (retries = 3): Promise<void> => {
-            try {
-              const dur = await freshWidget.getDuration();
-              if (dur && dur > 0) {
-                console.log(`📏 Duration loaded: ${dur}s`);
-                setDuration(dur);
-                if (autoplay) setPlaying(true);
-              } else if (retries > 0) {
-                console.log(
-                  `⏳ Duration not ready, retrying... (${retries} attempts left)`,
-                );
-                setTimeout(() => getDurationWithRetry(retries - 1), 500);
-              } else {
-                console.log(`❌ Failed to get duration after retries`);
-              }
-            } catch (error) {
-              if (retries > 0) {
-                console.log(
-                  `❌ Duration error, retrying... (${retries} attempts left)`,
-                );
-                setTimeout(() => getDurationWithRetry(retries - 1), 500);
-              } else {
-                console.log(`❌ Duration failed after all retries: ${error}`);
-              }
-            }
-          };
-
-          getDurationWithRetry();
-        })
-        .catch((error: any) => {
-          console.log(`❌ Widget ready failed: ${error}`);
-        });
-    }, 1500); // Increased from 1000ms to 1500ms for reliability
-  };
-
-  // Navigate to next mix
-  const handleNext = (): void => {
-    const currentIndex = testMixes.indexOf(currentMixRef.current);
-    const nextIndex = (currentIndex + 1) % testMixes.length;
-    const nextMix = testMixes[nextIndex];
-    console.log(`⏭️ Next: ${currentMixRef.current} → ${nextMix}`);
-    changeMix(nextMix, true);
-  };
-
-  // Navigate to previous mix
-  const handlePrevious = (): void => {
-    const currentIndex = testMixes.indexOf(currentMixRef.current);
-    const previousIndex =
-      currentIndex === 0 ? testMixes.length - 1 : currentIndex - 1;
-    const previousMix = testMixes[previousIndex];
-    console.log(`⏮️ Previous: ${currentMixRef.current} → ${previousMix}`);
-    changeMix(previousMix, true);
-  };
-
-  // Load random mix (excluding current)
-  const handleRandom = (): void => {
-    const randomMix = getRandomMix(currentMixRef.current);
-    console.log(`🎲 Random: ${currentMixRef.current} → ${randomMix}`);
-    changeMix(randomMix, true);
   };
 
   // =============================================================================

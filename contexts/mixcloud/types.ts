@@ -34,6 +34,7 @@ export type MixcloudContextState = {
     handlePause: () => void;
     handlePlay: () => void;
     handlePrevious: () => void;
+    handleRandom: (_category?: string) => Promise<void>;
     handleSeek: (_seconds: number) => Promise<boolean>;
   };
   favourites: {
@@ -154,6 +155,7 @@ export type MixcloudContextState = {
     setSectionNumber: React.Dispatch<React.SetStateAction<number>>;
   };
   widget: {
+    changeMix: (_mixKey: string, _autoplay: boolean) => void;
     endedEventRef: React.MutableRefObject<boolean>;
     iframeRef: React.MutableRefObject<HTMLIFrameElement | null>;
     loaded: boolean;

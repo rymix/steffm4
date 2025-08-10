@@ -43,9 +43,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [duration, setDuration] = useState<number>(0);
-
   const [isReady, setIsReady] = useState<boolean>(false);
-  const jupiterCaseRef = useRef<HTMLDivElement>(null);
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
   );
@@ -65,6 +63,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [playing, setPlaying] = useState<boolean>(false);
   const [keyboardShortcutsEnabled, setKeyboardShortcutsEnabled] =
     useState<boolean>(true);
+
+  const jupiterCaseRef = useRef<HTMLDivElement>(null);
 
   // Add a validation function to sync playing state
   const validatePlayingState = useCallback(async () => {
@@ -581,6 +581,80 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
   // #endregion
 
+  // General function to change mix - always recreates iframe for maximum reliability
+  // (Declared first as it's called by navigation functions)
+  const changeMix = (mixKey: string, autoplay = true): void => {
+    if (!iframeRef.current) {
+      console.log("❌ No iframe reference - cannot change mix");
+      return;
+    }
+
+    console.log(`🔄 Changing mix to: ${mixKey}`);
+
+    // Reset all state
+    setMixProgress(0);
+    setMixProgressPercent(0);
+    setDuration(0);
+    setPlaying(false);
+    // setCurrentMix(mixKey);
+    // currentMixRef.current = mixKey;
+    setMcKey(mixKey);
+
+    // Create new iframe URL
+    const autoplayParam = autoplay ? "&autoplay=1" : "";
+    const newWidgetUrl = `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&hide_artwork=1&hide_tracklist=1&mini=1${autoplayParam}&feed=${encodeURIComponent(`https://www.mixcloud.com${mixKey}`)}`;
+
+    // Update iframe source
+    iframeRef.current.src = newWidgetUrl;
+
+    // Initialize new widget with longer delay for reliability
+    setTimeout(() => {
+      const freshWidget = (globalThis as any).Mixcloud.PlayerWidget(
+        iframeRef.current,
+      );
+
+      freshWidget.ready
+        .then(() => {
+          console.log(`✅ Widget ready for: ${mixKey}`);
+          setPlayer(freshWidget);
+          setupEventListeners(freshWidget);
+
+          // Get duration with retry logic for reliability
+          const getDurationWithRetry = async (retries = 3): Promise<void> => {
+            try {
+              const dur = await freshWidget.getDuration();
+              if (dur && dur > 0) {
+                console.log(`📏 Duration loaded: ${dur}s`);
+                setDuration(dur);
+                if (autoplay) setPlaying(true);
+              } else if (retries > 0) {
+                console.log(
+                  `⏳ Duration not ready, retrying... (${retries} attempts left)`,
+                );
+                setTimeout(() => getDurationWithRetry(retries - 1), 500);
+              } else {
+                console.log(`❌ Failed to get duration after retries`);
+              }
+            } catch (error) {
+              if (retries > 0) {
+                console.log(
+                  `❌ Duration error, retrying... (${retries} attempts left)`,
+                );
+                setTimeout(() => getDurationWithRetry(retries - 1), 500);
+              } else {
+                console.log(`❌ Duration failed after all retries: ${error}`);
+              }
+            }
+          };
+
+          getDurationWithRetry();
+        })
+        .catch((error: any) => {
+          console.log(`❌ Widget ready failed: ${error}`);
+        });
+    }, 1500); // Increased from 1000ms to 1500ms for reliability
+  };
+
   // #region Fetch mix data from api
   const fetchRandomMcKey = async (): Promise<string> => {
     const response = await fetch("/api/randomMix");
@@ -685,140 +759,70 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   const handleSeek = useCallback(
     async (seconds: number) => {
-      try {
-        const seekAllowed = await player?.seek(seconds);
-        if (seekAllowed) {
-          setPlayerUpdated(true);
-        } else if (DEBUG) console.log("Seek was not allowed");
-        return seekAllowed;
-      } catch (error) {
-        console.error("Error in play or seek:", error);
-        return false;
-      }
+      console.log("handleSeek");
     },
     [player, playerUpdated],
   );
 
-  const handleLoad = async (newMcKey?: string): Promise<void> => {
-    if (!newMcKey) return;
-    if (DEBUG)
-      console.log(
-        `Loading new mix: ${newMcKey} (current playing state: ${playing})`,
-      );
-
-    // If widget is initialized, use it
-    if (player) {
-      if (DEBUG) console.log(`Using widget.load() for: ${newMcKey}`);
-
-      // Reset state before loading new mix
-      setPlaying(false);
-      setLoaded(false);
-      setShowUnavailable(false);
-      setMixProgress(0);
-      setMixProgressPercent(0);
-      setTrackProgress(0);
-      setTrackProgressPercent(0);
-
-      try {
-        // Use widget.load() method with the full Mixcloud URL
-        const mixcloudUrl = `https://player-widget.mixcloud.com${mcKeyFormatter(
-          newMcKey,
-        )}`;
-        if (DEBUG) console.log(`Calling widget.load(${mixcloudUrl}, true)`);
-
-        player
-          .load(mixcloudUrl, true)
-          .then(() => {
-            console.log(`✅ widget.load() completed for: ${mixcloudUrl}`);
-          })
-          .catch((error: any) => {
-            console.log(`❌ widget.load() failed:`, error);
-          });
-
-        if (DEBUG) console.log("widget.load() completed for:", newMcKey);
-        setMcKey(mcKeyFormatter(newMcKey));
-        setLoaded(true);
-        setShowUnavailable(false);
-
-        // Since we used autoplay=true, the widget should be playing
-        // Set the UI state to match
-        setPlaying(true);
-      } catch (error) {
-        console.error("Widget load failed:", error);
-        setShowUnavailable(true);
-        setPlaying(false);
-        // Fall back to iframe recreation
-        if (DEBUG) console.log("Falling back to iframe recreation");
-        setMcKey(mcKeyFormatter(newMcKey));
-      }
-    }
-  };
-
-  const handleLoadLatest = async (): Promise<void> => {
-    handleLoad(await fetchLatestMcKey());
-  };
-
-  const handleLoadRandom = async (category?: string): Promise<void> => {
-    if (category && category !== "all") {
-      handleLoad(await fetchRandomMcKeyByCategory(category));
-    } else {
-      handleLoad(await fetchRandomMcKey());
-    }
-  };
-
-  const handleLoadRandomFavourite = async (): Promise<void> => {
-    if (favouritesList.length === 0) {
-      if (DEBUG) console.log("No favourites to load");
-      return;
-    }
-
-    const randomIndex = Math.floor(Math.random() * favouritesList.length);
-    const randomFavourite = favouritesList[randomIndex];
-    handleLoad(randomFavourite.mcKey);
-  };
-
-  const handleNext = useCallback(async () => {
+  // Navigate to next mix
+  const handleNext = async (): Promise<void> => {
     const mixIndex = mixes.findIndex((thisMix) =>
       mcKey.includes(thisMix.mixcloudKey),
     );
 
+    let nextMix;
     if (!mixes || mixes.length === 0 || mixIndex === -1) {
-      handleLoad(await fetchRandomMcKey());
+      nextMix = await fetchRandomMcKey();
     } else {
       const nextIndex = (mixIndex + 1) % mixes.length;
-      handleLoad(mixes[nextIndex].mixcloudKey);
+      nextMix = mixes[nextIndex].mixcloudKey;
     }
 
-    if (GA4) {
-      ReactGA.event({
-        category: "Control",
-        action: "Click",
-        label: "Next",
-      });
-    }
-  }, [mcKey, mixes]);
+    console.log(`⏭️ Next: ${nextMix}`);
+    changeMix(mcKeyFormatter(nextMix), true);
+  };
 
-  const handlePrevious = useCallback(async () => {
+  // Navigate to previous mix
+  const handlePrevious = async (): Promise<void> => {
     const mixIndex = mixes.findIndex((thisMix) =>
       mcKey.includes(thisMix.mixcloudKey),
     );
 
-    if (!mixes || mixes.length === 0 || mixIndex === -1) {
-      handleLoad(await fetchRandomMcKey());
-    } else {
-      handleLoad(
-        mixes[mixIndex === 0 ? mixes.length - 1 : mixIndex - 1].mixcloudKey,
-      );
-    }
+    const previousMix =
+      !mixes || mixes.length === 0 || mixIndex === -1
+        ? await fetchRandomMcKey()
+        : mixes[mixIndex === 0 ? mixes.length - 1 : mixIndex - 1].mixcloudKey;
 
-    if (GA4) {
-      ReactGA.event({
-        category: "Control",
-        action: "Click",
-        label: "Previous",
-      });
-    }
-  }, [mcKey, mixes]);
+    console.log(`⏮️ Previous: ${previousMix}`);
+    changeMix(mcKeyFormatter(previousMix), true);
+  };
+
+  // Load random mix (excluding current)
+  const handleRandom = async (category?: string): Promise<void> => {
+    const randomMix = await (category && category !== "all"
+      ? fetchRandomMcKeyByCategory(category)
+      : fetchRandomMcKey());
+
+    console.log(`🎲 Random: ${randomMix}`);
+    changeMix(randomMix, true);
+  };
+
+  const handleLoad = (): void => {
+    console.log("handleLoad");
+  };
+
+  const handleLoadLatest = (): void => {
+    console.log("handleLoadLatest");
+  };
+
+  const handleLoadRandom = (): void => {
+    console.log("handleLoadRandom");
+  };
+
+  const handleLoadRandomFavourite = (): void => {
+    console.log("handleLoadRandomFavourite");
+  };
+
   // #endregion
 
   // #region Calculate Progress
@@ -1194,6 +1198,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       handlePause,
       handlePlay,
       handlePrevious,
+      handleRandom,
       handleSeek,
     },
     favourites: {
@@ -1298,6 +1303,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setSectionNumber: setTrackSectionNumber,
     },
     widget: {
+      changeMix,
       endedEventRef,
       iframeRef,
       loaded,
