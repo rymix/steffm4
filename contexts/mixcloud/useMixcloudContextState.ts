@@ -618,6 +618,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     // Initialize new widget with longer delay for reliability
     setTimeout(() => {
+      // Check if Mixcloud script is loaded
+      if (!scriptLoaded || !(globalThis as any).Mixcloud?.PlayerWidget) {
+        console.log(
+          "⏳ Mixcloud script not ready yet, skipping widget initialization",
+        );
+        return;
+      }
+
       const freshWidget = (globalThis as any).Mixcloud.PlayerWidget(
         iframeRef.current,
       );
@@ -1019,6 +1027,33 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     fetchCategories();
   }, []);
+  // #endregion
+
+  // #region Script Loading
+  // Load Mixcloud widget script
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://widget.mixcloud.com/media/js/widgetApi.js";
+    script.async = true;
+    script.addEventListener("load", () => {
+      setScriptLoaded(true);
+      console.log("📜 Mixcloud widget script loaded");
+    });
+
+    document.body.appendChild(script);
+
+    return () => {
+      script.remove();
+    };
+  }, []);
+
+  // Re-initialize widget when script loads
+  useEffect(() => {
+    if (scriptLoaded && mcKeyRef.current && iframeRef.current && !player) {
+      console.log("🔄 Script loaded, re-initializing widget");
+      changeMix(mcKeyRef.current, false); // Don't autoplay on script load
+    }
+  }, [scriptLoaded]);
   // #endregion
 
   // #region Initial Load and Seeking
