@@ -51,7 +51,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     null,
   );
   const [loaded, setLoaded] = useState<boolean>(false);
-  const [mcKey, setMcKey] = useState<string>(
+  const mcKeyRef = useRef<string>(
     "/rymixxx/adventures-in-decent-music-volume-1/",
   );
   const [mixDetails, setMixDetails] = useState<Mix | undefined>();
@@ -230,15 +230,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const percentageListened = (mixProgress / duration) * 100;
     const isComplete = percentageListened >= 95;
 
-    updateProgressHistory(mcKey, mixProgress, isComplete);
-    setLatestMcKey(mcKey);
+    updateProgressHistory(mcKeyRef.current, mixProgress, isComplete);
+    setLatestMcKey(mcKeyRef.current);
     setLatestProgress(mixProgress);
-  }, [mixProgress, duration, mcKey]);
+  }, [mixProgress, duration]);
   // #endregion
 
   // #region Sharable link
   const copySharableLink = (localMix?: Mix): void => {
-    let sharableKey = mcKey;
+    let sharableKey = mcKeyRef.current;
 
     if (localMix) {
       sharableKey = localMix.mixcloudKey;
@@ -287,7 +287,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
 
   useEffect(() => {
-    setMixIsFavourite(isFavourite(mcKey));
+    setMixIsFavourite(isFavourite(mcKeyRef.current));
   }, [favouritesList]);
   // #endregion
 
@@ -523,8 +523,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
   // #endregion
 
   // #region Helpers
-  const mcUrl = mcKeyUrlFormatter(mcKey);
-  const widgetUrl = mcWidgetUrlFormatter(mcKey);
+  const mcUrl = mcKeyUrlFormatter(mcKeyRef.current);
+  const widgetUrl = mcWidgetUrlFormatter(mcKeyRef.current);
+
+  // Forward declarations for functions used before definition
+  let handleNext: () => Promise<void>;
+  let fetchMixDetails: (_localMcKey?: string) => Promise<Mix | undefined>;
 
   // Helper function to set up event listeners on any widget instance
   const setupEventListeners = (widgetInstance: any): void => {
@@ -596,9 +600,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
     setMixProgressPercent(0);
     setDuration(0);
     setPlaying(false);
-    // setCurrentMix(mixKey);
-    // currentMixRef.current = mixKey;
-    setMcKey(mixKey);
+    mcKeyRef.current = mixKey;
+
+    // Fetch mix details for the new key
+    fetchMixDetails().then((fetchedMixDetails) => {
+      if (fetchedMixDetails) {
+        setMixDetails(fetchedMixDetails);
+      }
+    });
 
     // Create new iframe URL
     const autoplayParam = autoplay ? "&autoplay=1" : "";
@@ -676,12 +685,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
     return data[0].mixcloudKey;
   };
 
-  const fetchMixDetails = async (
-    localMcKey?: string,
-  ): Promise<Mix | undefined> => {
-    if (!mcKey && !localMcKey) return undefined;
+  fetchMixDetails = async (localMcKey?: string): Promise<Mix | undefined> => {
+    if (!mcKeyRef.current && !localMcKey) return undefined;
 
-    const lookupMcKey = localMcKey || mcKey;
+    const lookupMcKey = localMcKey || mcKeyRef.current;
 
     const response = await fetch(`/api/mix/${mcKeyUnformatter(lookupMcKey)}`);
     const data: Mix = await response.json();
@@ -693,20 +700,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
       categories.find((cat) => cat.index === index)?.code || null;
     setSelectedCategory(category);
   };
-
-  useEffect(() => {
-    const fetchDetails = async (): Promise<void> => {
-      const fetchedMixDetails = await fetchMixDetails();
-      if (fetchedMixDetails) {
-        setMixDetails(fetchedMixDetails);
-        // holdingMessage will be set by the separate useEffect above
-      }
-    };
-
-    if (mcKey) {
-      fetchDetails();
-    }
-  }, [mcKey]);
 
   useEffect(() => {
     const fetchCategoryName = async (): Promise<void> => {
@@ -721,7 +714,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     };
 
     fetchCategoryName();
-  }, [mcKey]);
+  }, [selectedCategory]);
   // #endregion
 
   // #region Handlers for mix navigation
@@ -758,16 +751,16 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
 
   const handleSeek = useCallback(
-    async (seconds: number) => {
+    async (_seconds: number) => {
       console.log("handleSeek");
     },
     [player, playerUpdated],
   );
 
   // Navigate to next mix
-  const handleNext = async (): Promise<void> => {
+  handleNext = async (): Promise<void> => {
     const mixIndex = mixes.findIndex((thisMix) =>
-      mcKey.includes(thisMix.mixcloudKey),
+      mcKeyRef.current.includes(thisMix.mixcloudKey),
     );
 
     let nextMix;
@@ -785,7 +778,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   // Navigate to previous mix
   const handlePrevious = async (): Promise<void> => {
     const mixIndex = mixes.findIndex((thisMix) =>
-      mcKey.includes(thisMix.mixcloudKey),
+      mcKeyRef.current.includes(thisMix.mixcloudKey),
     );
 
     const previousMix =
@@ -1054,9 +1047,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
         case "f": {
           event.preventDefault();
           if (mixIsFavourite) {
-            removeFavourite(mcKey);
+            removeFavourite(mcKeyRef.current);
           } else {
-            addFavourite(mcKey);
+            addFavourite(mcKeyRef.current);
           }
           break;
         }
@@ -1095,7 +1088,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
       handleLoadLatest,
       handleLoadRandom,
       mixIsFavourite,
-      mcKey,
       addFavourite,
       removeFavourite,
       copySharableLink,
@@ -1185,7 +1177,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   // #region Return
   return {
     isReady,
-    mcKey,
+    mcKey: mcKeyRef.current,
     mcUrl,
     setIsReady,
     controls: {

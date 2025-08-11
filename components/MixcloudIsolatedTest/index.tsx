@@ -1,6 +1,6 @@
 import { useMixcloud } from "contexts/mixcloud";
 import Head from "next/head";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export const MixcloudIsolatedTest: React.FC = () => {
   const {
@@ -28,8 +28,6 @@ export const MixcloudIsolatedTest: React.FC = () => {
     },
   } = useMixcloud();
 
-  const [currentMix, setCurrentMix] = useState("");
-
   // Test mixes - these are known working Mixcloud URLs
   const testMixes = [
     "/rymixxx/adventures-in-decent-music-volume-1/",
@@ -47,7 +45,6 @@ export const MixcloudIsolatedTest: React.FC = () => {
   // Fix hydration mismatch - use static initial mix, randomize in useEffect
   const staticInitialMix = testMixes[0];
   const [initialMix, setInitialMix] = useState<string>(staticInitialMix);
-  const currentMixRef = useRef<string>(staticInitialMix);
 
   // Get random initial mix
   const getRandomMix = (excludeMix?: string): string => {
@@ -84,7 +81,6 @@ export const MixcloudIsolatedTest: React.FC = () => {
   useEffect(() => {
     const randomMix = getRandomMix();
     setInitialMix(randomMix);
-    currentMixRef.current = randomMix;
     console.log(`🎲 Selected random initial mix: ${randomMix}`);
   }, []);
 
@@ -95,10 +91,6 @@ export const MixcloudIsolatedTest: React.FC = () => {
     console.log(`🚀 Initializing widget with mix: ${initialMix}`);
     changeMix(initialMix, false); // Don't autoplay on initial load
   }, [scriptLoaded, player, initialMix]);
-
-  const clearLogs = (): void => {
-    setLogs([]);
-  };
 
   const widgetUrl = `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&mini=1&feed=${encodeURIComponent(`https://www.mixcloud.com${initialMix}`)}`;
 
@@ -125,10 +117,7 @@ export const MixcloudIsolatedTest: React.FC = () => {
         <div style={{ marginBottom: "20px" }}>
           <h3>Current Status:</h3>
           <p>
-            <strong>Current Mix:</strong> {currentMix || initialMix}
-          </p>
-          <p>
-            <strong>mcKey:</strong> {mcKey}
+            <strong>Current Mix:</strong> {mcKey || initialMix}
           </p>
           <p>
             <strong>Playing:</strong> {playing ? "Yes" : "No"}
@@ -215,7 +204,7 @@ export const MixcloudIsolatedTest: React.FC = () => {
                   marginRight: "10px",
                   marginBottom: "10px",
                   backgroundColor:
-                    (currentMix || initialMix) === mix ? "#4caf50" : "#f0f0f0",
+                    (mcKey || initialMix) === mix ? "#4caf50" : "#f0f0f0",
                   padding: "5px 10px",
                 }}
               >

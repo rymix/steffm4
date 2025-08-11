@@ -25,6 +25,7 @@ import ReactGA from "react-ga4";
 import { useKonami } from "react-konami-code";
 import { GA4, VOLUME_AVAILABLE } from "utils/constants";
 import { getCategoryIndex } from "utils/functions";
+
 import JupiterHeader from "./Jupiter/Header";
 import JupiterBackPanel from "./Jupiter/Panel/BackPanel";
 import JupiterProgressLeds from "./Jupiter/ProgressLeds";
