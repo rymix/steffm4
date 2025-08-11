@@ -751,8 +751,19 @@ const useMixcloudContextState = (): MixcloudContextState => {
   };
 
   const handleSeek = useCallback(
-    async (_seconds: number) => {
-      console.log("handleSeek");
+    async (seconds: number): Promise<boolean> => {
+      try {
+        const seekAllowed = await player?.seek(seconds);
+        if (seekAllowed) {
+          setPlayerUpdated(true);
+          return true;
+        }
+        if (DEBUG) console.log("Seek was not allowed");
+        return false;
+      } catch (error) {
+        console.error("Error in play or seek:", error);
+        return false;
+      }
     },
     [player, playerUpdated],
   );
@@ -802,20 +813,41 @@ const useMixcloudContextState = (): MixcloudContextState => {
     changeMix(randomMix, true);
   };
 
-  const handleLoad = (): void => {
-    console.log("handleLoad");
+  const handleLoad = (localMcKey?: string): void => {
+    if (!localMcKey) {
+      console.log("❌ No mcKey provided to handleLoad");
+      return;
+    }
+
+    const formattedKey = mcKeyFormatter(localMcKey);
+    console.log(`🎵 Loading mix: ${formattedKey}`);
+    changeMix(formattedKey, true);
   };
 
-  const handleLoadLatest = (): void => {
-    console.log("handleLoadLatest");
+  const handleLoadLatest = async (): Promise<void> => {
+    const fetchedLatestMcKey = await fetchLatestMcKey();
+    handleLoad(fetchedLatestMcKey);
   };
 
-  const handleLoadRandom = (): void => {
-    console.log("handleLoadRandom");
+  const handleLoadRandom = async (category?: string): Promise<void> => {
+    if (category && category !== "all") {
+      const randomMcKey = await fetchRandomMcKeyByCategory(category);
+      handleLoad(randomMcKey);
+    } else {
+      const randomMcKey = await fetchRandomMcKey();
+      handleLoad(randomMcKey);
+    }
   };
 
-  const handleLoadRandomFavourite = (): void => {
-    console.log("handleLoadRandomFavourite");
+  const handleLoadRandomFavourite = async (): Promise<void> => {
+    if (favouritesList.length === 0) {
+      if (DEBUG) console.log("No favourites to load");
+      return;
+    }
+
+    const randomIndex = Math.floor(Math.random() * favouritesList.length);
+    const randomFavourite = favouritesList[randomIndex];
+    handleLoad(randomFavourite.mcKey);
   };
 
   // #endregion
@@ -987,6 +1019,88 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     fetchCategories();
   }, []);
+  // #endregion
+
+  // #region Initial Load and Seeking
+  const [hasSeeked, setHasSeeked] = useState<boolean>(false);
+  const [loadLatestProgress, setLoadLatestProgress] = useState<number>(0);
+
+  // Initial load logic
+  useEffect(() => {
+    setLoadLatestProgress(latestProgress || 0);
+
+    const handleInitialLoad = async (): Promise<void> => {
+      // If mcKey is already set (from ref), load it
+      if (
+        mcKeyRef.current &&
+        mcKeyRef.current !== "/rymixxx/adventures-in-decent-music-volume-1/"
+      ) {
+        handleLoad(mcKeyRef.current);
+      }
+      // Otherwise check for latest progress
+      else if (latestMcKey) {
+        handleLoad(latestMcKey);
+      }
+      // Load based on selected category
+      else if (selectedCategory && selectedCategory === "fav") {
+        await handleLoadRandomFavourite();
+      } else if (selectedCategory && selectedCategory !== "all") {
+        await handleLoadRandom(selectedCategory);
+      }
+      // Default to random
+      else {
+        await handleLoadRandom();
+      }
+    };
+
+    handleInitialLoad();
+    setIsReady(true);
+  }, []); // Only run on mount
+
+  // Seeking logic - restore playback position
+  useEffect(() => {
+    if (
+      !latestMcKey ||
+      hasSeeked ||
+      loadLatestProgress <= 60 ||
+      !player ||
+      !mcKeyRef.current.includes(latestMcKey)
+    )
+      return;
+
+    const attemptSeek = async (): Promise<void> => {
+      const maxAttempts = 5;
+      let attempts = 0;
+
+      const trySeek = async (): Promise<void> => {
+        attempts += 1;
+        try {
+          const seekSuccessful = await handleSeek(loadLatestProgress);
+          if (seekSuccessful) {
+            setHasSeeked(true);
+            if (DEBUG) console.log(`✅ Seek successful on attempt ${attempts}`);
+          } else if (attempts < maxAttempts) {
+            if (DEBUG)
+              console.log(
+                `⏳ Seek failed, attempt ${attempts}/${maxAttempts}, retrying...`,
+              );
+            setTimeout(trySeek, 1000);
+          } else if (DEBUG)
+            console.warn("❌ Seek failed after maximum attempts");
+        } catch (error) {
+          console.error(`❌ Seek error on attempt ${attempts}:`, error);
+          if (attempts < maxAttempts) {
+            setTimeout(trySeek, 1000);
+          }
+        }
+      };
+
+      // Start seeking attempts after a small delay
+      setTimeout(trySeek, 500);
+    };
+
+    attemptSeek();
+  }, [latestMcKey, loadLatestProgress, handleSeek, hasSeeked, player]);
   // #endregion
 
   // #region Keypress Listeners

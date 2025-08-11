@@ -13,6 +13,7 @@ import MixList from "components/MixList";
 import OutRun from "components/OutRun";
 import {
   StyledColumn,
+  StyledFixedForeground,
   StyledGridWrapper,
   StyledItem,
   StyledItems,
@@ -26,10 +27,15 @@ import { useKonami } from "react-konami-code";
 import { GA4, VOLUME_AVAILABLE } from "utils/constants";
 import { getCategoryIndex } from "utils/functions";
 
+import BurgerMenu from "./BurgerMenu";
 import JupiterHeader from "./Jupiter/Header";
 import JupiterBackPanel from "./Jupiter/Panel/BackPanel";
 import JupiterProgressLeds from "./Jupiter/ProgressLeds";
 import JupiterScreen from "./Jupiter/Screen";
+import Modal from "./Modal";
+import Overlay from "./Overlay";
+import ScrollIndicator from "./ScrollIndicator";
+import Tooltip from "./Tooltip";
 
 const Jupiter: React.FC = () => {
   const {
@@ -217,13 +223,13 @@ const Jupiter: React.FC = () => {
         {mcKey && <Mixcloud defaultMcKey={mcKey} />}
       </StyledFixedBackground> */}
 
-      {/* <StyledFixedForeground>
+      <StyledFixedForeground>
         <BurgerMenu />
         <Overlay />
         <Modal />
         <Tooltip />
         <ScrollIndicator />
-      </StyledFixedForeground> */}
+      </StyledFixedForeground>
 
       <StyledScrollContainer>
         <StyledTopPanel>
