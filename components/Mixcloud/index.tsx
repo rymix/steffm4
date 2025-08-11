@@ -1,46 +1,29 @@
-import type { MixcloudProps } from "components/Mixcloud/types";
 import { useMixcloud } from "contexts/mixcloud";
+import React from "react";
 
-export const Mixcloud: React.FC<MixcloudProps> = (props) => {
-  const { autoPlay = true, children } = props;
+import { StyledMixcloudWidget } from "./StyledMixcloud";
 
+export const Mixcloud: React.FC = () => {
   const {
     mcKey,
-    controls: { handleNext },
-    mix: {
-      setProgress: setMixProgress,
-      setProgressPercent: setMixProgressPercent,
-      setShowUnavailable,
-      setDuration,
-    },
-    track: {
-      setProgress: setTrackProgress,
-      setProgressPercent: setTrackProgressPercent,
-    },
-    widget: {
-      iframeRef,
-      player,
-      scriptLoaded,
-      setLoaded,
-      setPlayer,
-      setPlayerUpdated,
-      setPlaying,
-      setScriptLoaded,
-      setUseWidgetLoad,
-      useWidgetLoad,
-      widgetUrl,
-    },
+    widget: { iframeRef, widgetUrl },
   } = useMixcloud();
 
+  // Only render the widget if we have a valid mcKey and widgetUrl
+  if (!mcKey || !widgetUrl) {
+    return null;
+  }
+
   return (
-    <>
-      {mcKey && (
-        <>
-          <div>MIXCLOUD</div>
-          {children}
-        </>
-      )}
-    </>
+    <StyledMixcloudWidget
+      ref={iframeRef}
+      src={widgetUrl}
+      width="100%"
+      height="60"
+      frameBorder="0"
+      allow="autoplay"
+      title="Mixcloud Widget Player"
+    />
   );
 };
 

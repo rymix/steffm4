@@ -40,7 +40,7 @@ import JupiterBackPanel from "./Jupiter/Panel/BackPanel";
 import JupiterProgressLeds from "./Jupiter/ProgressLeds";
 import JupiterScreen from "./Jupiter/Screen";
 import UserManualCover from "./Manual/UserManualCover";
-import MixcloudIsolatedTest from "./MixcloudIsolatedTest";
+import Mixcloud from "./Mixcloud";
 import Modal from "./Modal";
 import Notebook from "./Notebook";
 import Overlay from "./Overlay";
@@ -230,7 +230,7 @@ const Jupiter: React.FC = () => {
     <>
       <StyledFixedBackground>
         <Background />
-        {mcKey && <MixcloudIsolatedTest />}
+        {mcKey && <Mixcloud />}
       </StyledFixedBackground>
 
       <StyledFixedForeground>
