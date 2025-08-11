@@ -54,6 +54,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const mcKeyRef = useRef<string>(
     "/rymixxx/adventures-in-decent-music-volume-1/",
   );
+  const dynamicRouteHandledRef = useRef<boolean>(false);
   const [mixDetails, setMixDetails] = useState<Mix | undefined>();
   const [mixes, setMixes] = useState<Mix[]>([]);
   const [mixProgress, setMixProgress] = useState<number>(0);
@@ -821,14 +822,23 @@ const useMixcloudContextState = (): MixcloudContextState => {
     changeMix(randomMix, true);
   };
 
-  const handleLoad = (localMcKey?: string): void => {
+  const handleLoad = (localMcKey?: string, isDynamicRoute = false): void => {
     if (!localMcKey) {
       console.log("❌ No mcKey provided to handleLoad");
       return;
     }
 
+    if (isDynamicRoute) {
+      dynamicRouteHandledRef.current = true;
+    }
+
     const formattedKey = mcKeyFormatter(localMcKey);
-    console.log(`🎵 Loading mix: ${formattedKey}`);
+    console.log(`🎵 handleLoad called:`, {
+      originalKey: localMcKey,
+      formattedKey,
+      currentMcKeyRef: mcKeyRef.current,
+      isDynamicRoute
+    });
     changeMix(formattedKey, true);
   };
 
@@ -1060,46 +1070,67 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [hasSeeked, setHasSeeked] = useState<boolean>(false);
   const [loadLatestProgress, setLoadLatestProgress] = useState<number>(0);
 
-  // Initial load logic
+  // Initial load logic - delayed to allow dynamic routes to set mcKey
   useEffect(() => {
     setLoadLatestProgress(latestProgress || 0);
 
     const handleInitialLoad = async (): Promise<void> => {
-      // If mcKey is already set (from ref), load it
-      if (
-        mcKeyRef.current &&
-        mcKeyRef.current !== "/rymixxx/adventures-in-decent-music-volume-1/"
-      ) {
-        handleLoad(mcKeyRef.current);
+      // If dynamic route already handled loading, don't override it
+      if (dynamicRouteHandledRef.current) {
+        console.log("🎵 Dynamic route already handled loading, skipping initial load");
+        return;
       }
-      // Otherwise check for latest progress
-      else if (latestMcKey) {
+      
+      // Check for latest progress first
+      if (latestMcKey) {
+        console.log("🎵 Loading latest progress mix:", latestMcKey);
         handleLoad(latestMcKey);
       }
       // Load based on selected category
       else if (selectedCategory && selectedCategory === "fav") {
+        console.log("🎵 Loading random favourite");
         await handleLoadRandomFavourite();
       } else if (selectedCategory && selectedCategory !== "all") {
+        console.log("🎵 Loading random from category:", selectedCategory);
         await handleLoadRandom(selectedCategory);
       }
       // Default to random
       else {
+        console.log("🎵 Loading random mix");
         await handleLoadRandom();
       }
     };
 
-    handleInitialLoad();
-    setIsReady(true);
+    // Delay initial load to allow dynamic route handling to set flag first
+    const timeoutId = setTimeout(() => {
+      handleInitialLoad();
+      setIsReady(true);
+    }, 100); // Small delay to allow dynamic route to execute
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, []); // Only run on mount
 
   // Seeking logic - restore playback position
   useEffect(() => {
+    console.log("🔍 Seeking logic check:", {
+      latestMcKey,
+      hasSeeked,
+      loadLatestProgress,
+      player: !!player,
+      currentMcKey: mcKeyRef.current,
+      formattedCurrent: mcKeyFormatter(mcKeyRef.current),
+      formattedLatest: latestMcKey ? mcKeyFormatter(latestMcKey) : null,
+      shouldSeek: latestMcKey && !hasSeeked && loadLatestProgress > 60 && player && mcKeyFormatter(mcKeyRef.current) === mcKeyFormatter(latestMcKey)
+    });
+    
     if (
       !latestMcKey ||
       hasSeeked ||
       loadLatestProgress <= 60 ||
       !player ||
-      !mcKeyRef.current.includes(latestMcKey)
+      mcKeyFormatter(mcKeyRef.current) !== mcKeyFormatter(latestMcKey)
     )
       return;
 

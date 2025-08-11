@@ -18,10 +18,12 @@ const DynamicRoute = (): null => {
     if (mcKey && typeof mcKey === "string") {
       // Remove leading and trailing slashes
       const cleanedMcKey = mcKey.replaceAll(/^\/+|\/+$/g, "");
-      if (DEBUG) {
-        console.log("Redirect mcKey:", cleanedMcKey);
-      }
-      handleLoad(cleanedMcKey);
+      console.log("🔗 Dynamic route handling:", {
+        originalMcKey: mcKey,
+        cleanedMcKey,
+        DEBUG
+      });
+      handleLoad(cleanedMcKey, true);
 
       // Use replace to avoid adding a new history entry
       router
