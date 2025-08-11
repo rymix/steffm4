@@ -12,7 +12,12 @@ import MixInformation from "components/MixInformation";
 import MixList from "components/MixList";
 import OutRun from "components/OutRun";
 import {
+  StyledBottomGrid,
+  StyledBottomPanel,
+  StyledChild,
+  StyledChildFloppy,
   StyledColumn,
+  StyledFixedBackground,
   StyledFixedForeground,
   StyledGridWrapper,
   StyledItem,
@@ -27,12 +32,17 @@ import { useKonami } from "react-konami-code";
 import { GA4, VOLUME_AVAILABLE } from "utils/constants";
 import { getCategoryIndex } from "utils/functions";
 
+import Background from "./Background";
 import BurgerMenu from "./BurgerMenu";
+import FloppyDiskStack from "./Floppy/FloppyDiskStack";
 import JupiterHeader from "./Jupiter/Header";
 import JupiterBackPanel from "./Jupiter/Panel/BackPanel";
 import JupiterProgressLeds from "./Jupiter/ProgressLeds";
 import JupiterScreen from "./Jupiter/Screen";
+import UserManualCover from "./Manual/UserManualCover";
+import MixcloudIsolatedTest from "./MixcloudIsolatedTest";
 import Modal from "./Modal";
+import Notebook from "./Notebook";
 import Overlay from "./Overlay";
 import ScrollIndicator from "./ScrollIndicator";
 import Tooltip from "./Tooltip";
@@ -218,10 +228,10 @@ const Jupiter: React.FC = () => {
 
   return (
     <>
-      {/* <StyledFixedBackground>
+      <StyledFixedBackground>
         <Background />
-        {mcKey && <Mixcloud defaultMcKey={mcKey} />}
-      </StyledFixedBackground> */}
+        {mcKey && <MixcloudIsolatedTest />}
+      </StyledFixedBackground>
 
       <StyledFixedForeground>
         <BurgerMenu />
@@ -363,7 +373,7 @@ const Jupiter: React.FC = () => {
             </JupiterCase>
           </JupiterWrapper>
         </StyledTopPanel>
-        {/* <StyledBottomPanel>
+        <StyledBottomPanel>
           <StyledBottomGrid>
             <StyledChild>
               <Notebook />
@@ -375,7 +385,7 @@ const Jupiter: React.FC = () => {
               {trackDetails && <FloppyDiskStack label={diskLabel} />}
             </StyledChildFloppy>
           </StyledBottomGrid>
-        </StyledBottomPanel> */}
+        </StyledBottomPanel>
       </StyledScrollContainer>
     </>
   );
