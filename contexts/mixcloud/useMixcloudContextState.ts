@@ -1127,9 +1127,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
         return;
       }
       
-      // Check for latest progress first
-      if (latestMcKey) {
-        console.log("🎵 Loading latest progress mix:", latestMcKey);
+      // Check for latest progress first - only continue if there's meaningful progress
+      if (latestMcKey && latestProgress && latestProgress > 30) {
+        console.log("🎵 Loading latest progress mix with meaningful progress:", latestMcKey, "at", latestProgress, "seconds");
         handleLoad(latestMcKey);
       }
       // Load based on selected category
@@ -1142,7 +1142,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       }
       // Default to random
       else {
-        console.log("🎵 Loading random mix");
+        console.log("🎵 Loading random mix (no meaningful latest progress)");
         await handleLoadRandom();
       }
     };
