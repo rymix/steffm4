@@ -1127,10 +1127,25 @@ const useMixcloudContextState = (): MixcloudContextState => {
         return;
       }
       
-      // Check for latest progress first - only continue if there's meaningful progress
+      // Check for latest progress first - only continue if there's meaningful progress and not nearly complete
       if (latestMcKey && latestProgress && latestProgress > 30) {
-        console.log("🎵 Loading latest progress mix with meaningful progress:", latestMcKey, "at", latestProgress, "seconds");
-        handleLoad(latestMcKey);
+        // Fetch the latest mix details to check duration and completion percentage
+        const latestMixDetails = await fetchMixDetails(latestMcKey);
+        if (latestMixDetails) {
+          const mixDurationSeconds = convertTimeToSeconds(latestMixDetails.duration);
+          const completionPercentage = (latestProgress / mixDurationSeconds) * 100;
+          
+          if (completionPercentage >= 95) {
+            console.log("🎵 Latest mix is 95%+ complete, loading random instead:", latestMcKey, `(${completionPercentage.toFixed(1)}%)`);
+            await handleLoadRandom();
+          } else {
+            console.log("🎵 Loading latest progress mix:", latestMcKey, "at", latestProgress, "seconds", `(${completionPercentage.toFixed(1)}%)`);
+            handleLoad(latestMcKey);
+          }
+        } else {
+          console.log("🎵 Could not fetch latest mix details, loading random instead");
+          await handleLoadRandom();
+        }
       }
       // Load based on selected category
       else if (selectedCategory && selectedCategory === "fav") {
