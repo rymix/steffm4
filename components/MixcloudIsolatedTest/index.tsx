@@ -12,7 +12,7 @@ export const MixcloudIsolatedTest: React.FC = () => {
   // Construct alternative URL if temp route value exists
   let effectiveWidgetUrl = widgetUrl;
   let effectiveMcKey = mcKey;
-  
+
   if (tempRouteValue) {
     const formattedTempKey = mcKeyFormatter(tempRouteValue);
     effectiveWidgetUrl = mcWidgetUrlFormatter(formattedTempKey);

@@ -6,7 +6,10 @@ import { DEBUG, GA4, GOOGLE_TRACKING_ID } from "utils/constants";
 
 const DynamicRoute = (): null => {
   const router = useRouter();
-  const { controls: { setTestValue, setTempRouteValueFromRoute }, testValue } = useMixcloud();
+  const {
+    controls: { setTestValue, setTempRouteValueFromRoute },
+    testValue,
+  } = useMixcloud();
 
   useEffect(() => {
     if (!router.isReady) return; // Wait until router is ready
@@ -16,11 +19,11 @@ const DynamicRoute = (): null => {
     if (mcKey && typeof mcKey === "string") {
       const cleanedMcKey = mcKey.replaceAll(/^\/+|\/+$/g, "");
       const formattedMcKey = `/rymixxx/${cleanedMcKey}/`;
-      
+
       console.log("🎵 SHARE LINK APPROACH - Setting sessionStorage");
       console.log("🎵 Raw mcKey:", cleanedMcKey);
       console.log("🎵 Formatted mcKey:", formattedMcKey);
-      
+
       // Store the formatted mcKey for the hook to pick up on initialization
       sessionStorage.setItem("shareLinkMcKey", formattedMcKey);
       setTestValue(cleanedMcKey);

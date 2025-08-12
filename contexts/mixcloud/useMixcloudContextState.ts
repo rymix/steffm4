@@ -51,12 +51,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
     null,
   );
   const [loaded, setLoaded] = useState<boolean>(false);
-  const mcKeyRef = useRef<string>("/rymixxx/adventures-in-decent-music-volume-1/");
+  const mcKeyRef = useRef<string>(
+    "/rymixxx/adventures-in-decent-music-volume-1/",
+  );
   const wasShareLink = useRef<boolean>(false);
   const dynamicRouteHandledRef = useRef<boolean>(false);
   const testRef = useRef<string>("NOT_SET");
   const [tempRouteValue, setTempRouteValue] = useState<string | null>(null);
-  
+
   const setTestValue = (value: string) => {
     testRef.current = value;
     console.log("🧪 TEST REF SET TO:", value);
@@ -68,7 +70,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       console.trace("🎵 TEMP route value being cleared - stack trace:");
     }
     setTempRouteValue(value);
-    
+
     // Update mcKeyRef when temp value is set
     if (value) {
       const formattedKey = mcKeyFormatter(value);
@@ -544,7 +546,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, [burgerMenuRef, modalRef]);
   // #endregion
 
-  // #region Helpers  
+  // #region Helpers
   const mcUrl = mcKeyUrlFormatter(mcKeyRef.current);
   const widgetUrl = mcWidgetUrlFormatter(mcKeyRef.current);
 
@@ -617,15 +619,22 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     // If temp route value is active, only allow widget initialization, not mix changing
     if (tempRouteValue) {
-      console.log("🎵 Temp route active - initializing widget without changing mix:", tempRouteValue);
+      console.log(
+        "🎵 Temp route active - initializing widget without changing mix:",
+        tempRouteValue,
+      );
       // Skip the mix changing part, just do widget initialization
       setTimeout(() => {
         if (!(globalThis as any).Mixcloud?.PlayerWidget) {
-          console.log("⏳ Mixcloud script not ready yet, skipping widget initialization");
+          console.log(
+            "⏳ Mixcloud script not ready yet, skipping widget initialization",
+          );
           return;
         }
 
-        const freshWidget = (globalThis as any).Mixcloud.PlayerWidget(iframeRef.current);
+        const freshWidget = (globalThis as any).Mixcloud.PlayerWidget(
+          iframeRef.current,
+        );
         freshWidget.ready.then(() => {
           console.log(`✅ Widget ready for temp route: ${tempRouteValue}`);
           setPlayer(freshWidget);
@@ -879,7 +888,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       originalKey: localMcKey,
       formattedKey,
       currentMcKeyRef: mcKeyRef.current,
-      isDynamicRoute
+      isDynamicRoute,
     });
     changeMix(formattedKey, true);
   };
@@ -1101,7 +1110,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   // Re-initialize widget when script loads
   useEffect(() => {
-    if ((globalThis as any).Mixcloud?.PlayerWidget && mcKeyRef.current && iframeRef.current && !player) {
+    if (
+      (globalThis as any).Mixcloud?.PlayerWidget &&
+      mcKeyRef.current &&
+      iframeRef.current &&
+      !player
+    ) {
       console.log("🔄 Script loaded, re-initializing widget");
       changeMix(mcKeyRef.current, false); // Don't autoplay on script load
     }
@@ -1118,32 +1132,52 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     const handleInitialLoad = async (): Promise<void> => {
       // If dynamic route already handled loading OR temp route value exists OR was share link, don't override it
-      if (dynamicRouteHandledRef.current || tempRouteValue || wasShareLink.current) {
+      if (
+        dynamicRouteHandledRef.current ||
+        tempRouteValue ||
+        wasShareLink.current
+      ) {
         console.log("🎵 Skipping initial load", {
           dynamicRouteHandled: dynamicRouteHandledRef.current,
           tempRouteValue,
-          wasShareLink: wasShareLink.current
+          wasShareLink: wasShareLink.current,
         });
         return;
       }
-      
+
       // Check for latest progress first - only continue if there's meaningful progress and not nearly complete
       if (latestMcKey && latestProgress && latestProgress > 30) {
         // Fetch the latest mix details to check duration and completion percentage
         const latestMixDetails = await fetchMixDetails(latestMcKey);
         if (latestMixDetails) {
-          const mixDurationSeconds = convertTimeToSeconds(latestMixDetails.duration);
-          const completionPercentage = (latestProgress / mixDurationSeconds) * 100;
-          
+          const mixDurationSeconds = convertTimeToSeconds(
+            latestMixDetails.duration,
+          );
+          const completionPercentage =
+            (latestProgress / mixDurationSeconds) * 100;
+
           if (completionPercentage >= 95) {
-            console.log("🎵 Latest mix is 95%+ complete, loading random instead:", latestMcKey, `(${completionPercentage.toFixed(1)}%)`);
+            console.log(
+              "🎵 Latest mix is 95%+ complete, loading random instead:",
+              latestMcKey,
+              `(${completionPercentage.toFixed(1)}%)`,
+            );
             await handleLoadRandom();
           } else {
-            console.log("🎵 Loading latest progress mix:", latestMcKey, "at", latestProgress, "seconds", `(${completionPercentage.toFixed(1)}%)`);
+            console.log(
+              "🎵 Loading latest progress mix:",
+              latestMcKey,
+              "at",
+              latestProgress,
+              "seconds",
+              `(${completionPercentage.toFixed(1)}%)`,
+            );
             handleLoad(latestMcKey);
           }
         } else {
-          console.log("🎵 Could not fetch latest mix details, loading random instead");
+          console.log(
+            "🎵 Could not fetch latest mix details, loading random instead",
+          );
           await handleLoadRandom();
         }
       }
@@ -1167,46 +1201,57 @@ const useMixcloudContextState = (): MixcloudContextState => {
       // Re-check sessionStorage in case dynamic route set it after component mounted
       const shareLinkValue = sessionStorage?.getItem("shareLinkMcKey");
       if (shareLinkValue) {
-        console.log("🎵 Found share link during timeout check:", shareLinkValue);
+        console.log(
+          "🎵 Found share link during timeout check:",
+          shareLinkValue,
+        );
         mcKeyRef.current = shareLinkValue;
         wasShareLink.current = true;
         sessionStorage.removeItem("shareLinkMcKey");
-        
+
         // Initialize PlayerWidget for share link after a short delay
         setTimeout(() => {
           console.log("🎵 Checking PlayerWidget initialization conditions:", {
             hasIframe: !!iframeRef.current,
             scriptLoaded,
             hasPlayer: !!player,
-            hasMixcloudAPI: !!(globalThis as any).Mixcloud?.PlayerWidget
+            hasMixcloudAPI: !!(globalThis as any).Mixcloud?.PlayerWidget,
           });
-          
-          if (iframeRef.current && (globalThis as any).Mixcloud?.PlayerWidget && !player) {
+
+          if (
+            iframeRef.current &&
+            (globalThis as any).Mixcloud?.PlayerWidget &&
+            !player
+          ) {
             console.log("🎵 Initializing PlayerWidget for share link");
-            const freshWidget = (globalThis as any).Mixcloud.PlayerWidget(iframeRef.current);
-            freshWidget.ready.then(() => {
-              console.log("✅ PlayerWidget ready for share link");
-              setPlayer(freshWidget);
-              setupEventListeners(freshWidget);
-              setPlaying(true); // Autoplay for share links
-            }).catch((error: any) => {
-              console.error("❌ PlayerWidget initialization failed:", error);
-            });
+            const freshWidget = (globalThis as any).Mixcloud.PlayerWidget(
+              iframeRef.current,
+            );
+            freshWidget.ready
+              .then(() => {
+                console.log("✅ PlayerWidget ready for share link");
+                setPlayer(freshWidget);
+                setupEventListeners(freshWidget);
+                setPlaying(true); // Autoplay for share links
+              })
+              .catch((error: any) => {
+                console.error("❌ PlayerWidget initialization failed:", error);
+              });
           } else {
             console.log("🎵 PlayerWidget initialization conditions not met");
           }
         }, 500);
       }
-      
+
       console.log("🎵 Timeout firing, about to call handleInitialLoad", {
         tempRouteValue,
         dynamicRouteHandled: dynamicRouteHandledRef.current,
         wasShareLink: wasShareLink.current,
-        currentMcKey: mcKeyRef.current
+        currentMcKey: mcKeyRef.current,
       });
       handleInitialLoad();
       setIsReady(true);
-      
+
       // Don't clear temp route value here - let the PlayerWidget initialization handle it
     }, 300); // Longer delay to allow dynamic route to execute and set sessionStorage
 
@@ -1220,9 +1265,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
     console.log("🎵 Checking for share link in sessionStorage...");
     const shareLinkValue = sessionStorage?.getItem("shareLinkMcKey");
     console.log("🎵 SessionStorage shareLinkMcKey:", shareLinkValue);
-    
+
     if (shareLinkValue) {
-      console.log("🎵 Found share link mcKey in sessionStorage:", shareLinkValue);
+      console.log(
+        "🎵 Found share link mcKey in sessionStorage:",
+        shareLinkValue,
+      );
       mcKeyRef.current = shareLinkValue;
       wasShareLink.current = true;
       sessionStorage.removeItem("shareLinkMcKey");
@@ -1235,17 +1283,27 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   // Initialize PlayerWidget when temp route value exists and iframe is ready
   useEffect(() => {
-    if (tempRouteValue && iframeRef.current && (globalThis as any).Mixcloud?.PlayerWidget && !player) {
-      console.log("🎵 Initializing PlayerWidget for temp route value:", tempRouteValue);
-      
+    if (
+      tempRouteValue &&
+      iframeRef.current &&
+      (globalThis as any).Mixcloud?.PlayerWidget &&
+      !player
+    ) {
+      console.log(
+        "🎵 Initializing PlayerWidget for temp route value:",
+        tempRouteValue,
+      );
+
       setTimeout(() => {
-        const freshWidget = (globalThis as any).Mixcloud.PlayerWidget(iframeRef.current);
+        const freshWidget = (globalThis as any).Mixcloud.PlayerWidget(
+          iframeRef.current,
+        );
         freshWidget.ready.then(() => {
           console.log(`✅ Widget ready for temp route: ${tempRouteValue}`);
           setPlayer(freshWidget);
           setupEventListeners(freshWidget);
           setPlaying(true); // Autoplay is on for share links
-          
+
           // Clear temp value after successful initialization
           console.log("🎵 Clearing temp value after successful widget init");
           setTimeout(() => setTempRouteValue(null), 1000);
@@ -1264,9 +1322,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       currentMcKey: mcKeyRef.current,
       formattedCurrent: mcKeyFormatter(mcKeyRef.current),
       formattedLatest: latestMcKey ? mcKeyFormatter(latestMcKey) : null,
-      shouldSeek: latestMcKey && !hasSeeked && loadLatestProgress > 60 && player && mcKeyFormatter(mcKeyRef.current) === mcKeyFormatter(latestMcKey)
+      shouldSeek:
+        latestMcKey &&
+        !hasSeeked &&
+        loadLatestProgress > 60 &&
+        player &&
+        mcKeyFormatter(mcKeyRef.current) === mcKeyFormatter(latestMcKey),
     });
-    
+
     if (
       !latestMcKey ||
       hasSeeked ||
