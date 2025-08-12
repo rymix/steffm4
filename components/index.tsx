@@ -30,7 +30,7 @@ import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { useKonami } from "react-konami-code";
 import { GA4, VOLUME_AVAILABLE } from "utils/constants";
-import { getCategoryIndex } from "utils/functions";
+import { getCategoryIndex, mcKeyFormatter } from "utils/functions";
 
 import Background from "./Background";
 import BurgerMenu from "./BurgerMenu";
@@ -51,6 +51,7 @@ const Jupiter: React.FC = () => {
   const {
     isReady,
     mcKey,
+    testValue,
     controls: {
       handleLoadLatest,
       handleLoadRandom,
@@ -228,6 +229,23 @@ const Jupiter: React.FC = () => {
 
   return (
     <>
+      {/* BASIC TEST DISPLAY */}
+      <div
+        style={{
+          position: "fixed",
+          top: "60px",
+          left: 0,
+          zIndex: 9999,
+          background: "red",
+          color: "white",
+          padding: "10px",
+        }}
+      >
+        <div>🧪 TEST VALUE RAW: {testValue}</div>
+        <div>🧪 TEST VALUE FORMATTER: {mcKeyFormatter(testValue)}</div>
+        <div>🎵 ACTUAL mcKey: {mcKey}</div>
+      </div>
+
       <StyledFixedBackground>
         <Background />
         {mcKey && <Mixcloud />}
