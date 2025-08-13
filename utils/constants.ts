@@ -1,6 +1,6 @@
 import { BackgroundExtended } from "db/types";
 
-export const DEBUG = false;
+export const DEBUG = true;
 export const VOLUME_AVAILABLE = true;
 export const GA4 = false;
 export const AUTO_CHANGE_BACKGROUND = true;

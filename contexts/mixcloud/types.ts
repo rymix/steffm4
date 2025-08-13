@@ -22,19 +22,20 @@ export type MixcloudContextState = {
   mcKey: string;
   mcUrl: string;
   setIsReady: React.Dispatch<React.SetStateAction<boolean>>;
+  tempRouteValue: string | null;
   controls: {
     fetchLatestMcKey: () => Promise<string>;
     fetchRandomMcKey: () => Promise<string>;
     fetchRandomMcKeyByCategory: (_category: string | null) => Promise<string>;
     handleLoad: (_localMcKey?: string) => void;
-    handleLoadLatest: () => void;
-    handleLoadRandom: (_category?: string) => void;
-    handleLoadRandomFavourite: () => void;
+    handleLoadLatest: () => Promise<void>;
+    handleLoadRandom: (_category?: string) => Promise<void>;
+    handleLoadRandomFavourite: () => Promise<void>;
     handleNext: () => void;
     handlePause: () => void;
     handlePlay: () => void;
-    handlePlayPause: () => void;
     handlePrevious: () => void;
+    handleRandom: (_category?: string) => Promise<void>;
     handleSeek: (_seconds: number) => Promise<boolean>;
   };
   favourites: {
@@ -155,8 +156,11 @@ export type MixcloudContextState = {
     setSectionNumber: React.Dispatch<React.SetStateAction<number>>;
   };
   widget: {
+    changeMix: (_mixKey: string, _autoplay: boolean) => void;
+    endedEventRef: React.MutableRefObject<boolean>;
     iframeRef: React.MutableRefObject<HTMLIFrameElement | null>;
     loaded: boolean;
+    pauseTimeoutRef: React.MutableRefObject<NodeJS.Timeout | null>;
     player: any;
     playerUpdated: boolean;
     playing: boolean;
@@ -166,9 +170,8 @@ export type MixcloudContextState = {
     setPlayerUpdated: React.Dispatch<React.SetStateAction<boolean>>;
     setPlaying: React.Dispatch<React.SetStateAction<boolean>>;
     setScriptLoaded: React.Dispatch<React.SetStateAction<boolean>>;
-    setUseWidgetLoad: React.Dispatch<React.SetStateAction<boolean>>;
+    setupEventListeners: (_widgetInstance: any) => void;
     setVolume: React.Dispatch<React.SetStateAction<number>>;
-    useWidgetLoad: boolean;
     volume: number;
     widgetUrl: string;
   };

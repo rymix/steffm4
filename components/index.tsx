@@ -1,29 +1,16 @@
-import ScrollIndicator from "components//ScrollIndicator";
 import About from "components/About";
-import Background from "components/Background";
-import BurgerMenu from "components/BurgerMenu";
-import FloppyDiskStack from "components/Floppy/FloppyDiskStack";
 import { DiskLabel } from "components/Floppy/types";
 import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
-import JupiterHeader from "components/Jupiter/Header";
 import JupiterKnob from "components/Jupiter/Knob";
 import JupiterPanel from "components/Jupiter/Panel";
-import JupiterBackPanel from "components/Jupiter/Panel/BackPanel";
 import JupiterFrontPanel from "components/Jupiter/Panel/FrontPanel";
-import JupiterProgressLeds from "components/Jupiter/ProgressLeds";
-import JupiterScreen from "components/Jupiter/Screen";
 import JupiterSlider from "components/Jupiter/Slider";
 import JupiterTitle from "components/Jupiter/Title";
 import JupiterWrapper from "components/Jupiter/Wrapper";
-import UserManualCover from "components/Manual/UserManualCover";
-import Mixcloud from "components/Mixcloud";
 import MixInformation from "components/MixInformation";
 import MixList from "components/MixList";
-import Modal from "components/Modal";
-import Notebook from "components/Notebook";
 import OutRun from "components/OutRun";
-import Overlay from "components/Overlay";
 import {
   StyledBottomGrid,
   StyledBottomPanel,
@@ -38,13 +25,27 @@ import {
   StyledScrollContainer,
   StyledTopPanel,
 } from "components/Styled";
-import Tooltip from "components/Tooltip";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
 import { useKonami } from "react-konami-code";
 import { GA4, VOLUME_AVAILABLE } from "utils/constants";
 import { getCategoryIndex } from "utils/functions";
+
+import Background from "./Background";
+import BurgerMenu from "./BurgerMenu";
+import FloppyDiskStack from "./Floppy/FloppyDiskStack";
+import JupiterHeader from "./Jupiter/Header";
+import JupiterBackPanel from "./Jupiter/Panel/BackPanel";
+import JupiterProgressLeds from "./Jupiter/ProgressLeds";
+import JupiterScreen from "./Jupiter/Screen";
+import UserManualCover from "./Manual/UserManualCover";
+import Mixcloud from "./Mixcloud";
+import Modal from "./Modal";
+import Notebook from "./Notebook";
+import Overlay from "./Overlay";
+import ScrollIndicator from "./ScrollIndicator";
+import Tooltip from "./Tooltip";
 
 const Jupiter: React.FC = () => {
   const {
@@ -229,7 +230,7 @@ const Jupiter: React.FC = () => {
     <>
       <StyledFixedBackground>
         <Background />
-        {mcKey && <Mixcloud defaultMcKey={mcKey} />}
+        {mcKey && <Mixcloud />}
       </StyledFixedBackground>
 
       <StyledFixedForeground>

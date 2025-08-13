@@ -1,14 +1,10 @@
-import { useMixcloud } from "contexts/mixcloud";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import ReactGA from "react-ga4";
-import { DEBUG, GA4, GOOGLE_TRACKING_ID } from "utils/constants";
+import { GA4, GOOGLE_TRACKING_ID } from "utils/constants";
 
 const DynamicRoute = (): null => {
   const router = useRouter();
-  const {
-    controls: { handleLoad },
-  } = useMixcloud();
 
   useEffect(() => {
     if (!router.isReady) return; // Wait until router is ready
@@ -16,12 +12,15 @@ const DynamicRoute = (): null => {
     const { mcKey } = router.query;
 
     if (mcKey && typeof mcKey === "string") {
-      // Remove leading and trailing slashes
       const cleanedMcKey = mcKey.replaceAll(/^\/+|\/+$/g, "");
-      if (DEBUG) {
-        console.log("Redirect mcKey:", cleanedMcKey);
-      }
-      handleLoad(cleanedMcKey);
+      const formattedMcKey = `/rymixxx/${cleanedMcKey}/`;
+
+      console.log("🎵 SHARE LINK APPROACH - Setting sessionStorage");
+      console.log("🎵 Raw mcKey:", cleanedMcKey);
+      console.log("🎵 Formatted mcKey:", formattedMcKey);
+
+      // Store the formatted mcKey for the hook to pick up on initialization
+      sessionStorage.setItem("shareLinkMcKey", formattedMcKey);
 
       // Use replace to avoid adding a new history entry
       router
@@ -45,7 +44,7 @@ const DynamicRoute = (): null => {
           console.error("Failed to redirect:", error);
         });
     }
-  }, [handleLoad, router.isReady, router.query, router]);
+  }, [router.isReady, router.query.mcKey]); // Only depend on isReady and the mcKey itself
 
   return null;
 };
