@@ -32,10 +32,15 @@ import {
   mcWidgetUrlFormatter,
 } from "utils/functions";
 import { essentialLogger, logger } from "utils/logger";
+import {
+  mobileAutoplayManager,
+  useAutoplayInteractionTracking,
+} from "utils/mobileAutoplayHelper";
 
 const useMixcloudContextState = (): MixcloudContextState => {
   // #region State and ref vars
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const { isMobile } = useAutoplayInteractionTracking();
   const endedEventRef = useRef<boolean>(false);
   const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -113,7 +118,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [modalTitle, setModalTitle] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [themeName, setThemeName] = useState<string>("defaultTheme");
-  const [isMobile, setIsMobile] = useState<boolean>(false);
+  const [isMobileDevice, setIsMobileDevice] = useState<boolean>(false);
   const [secondsRemaining, setSecondsRemaining] = useState<number | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const tooltipTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -423,7 +428,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
         ? screenLimits.portrait
         : screenLimits.landscape;
 
-      setIsMobile(windowWidth <= 768);
+      setIsMobileDevice(windowWidth <= 768);
 
       const jupiterCaseHeight = jupiterCaseRef.current
         ? jupiterCaseRef.current.offsetHeight
@@ -638,7 +643,62 @@ const useMixcloudContextState = (): MixcloudContextState => {
       }
     });
 
-    // Create new iframe URL
+    // Use mobile autoplay helper for better mobile compatibility
+    if (isMobile() && autoplay) {
+      const strategy = mobileAutoplayManager.getRecreationStrategy();
+      logger.widget(`Mobile autoplay strategy:`, strategy);
+
+      mobileAutoplayManager.recreateIframeWithBetterAutoplay(
+        { current: iframeRef.current },
+        mixKey,
+        (freshWidget) => {
+          essentialLogger.widgetReady(`Widget ready: ${mixKey}`);
+          setPlayer(freshWidget);
+          setupEventListeners(freshWidget);
+          if (strategy.shouldAttemptAutoplay) {
+            setPlaying(true);
+          }
+
+          // Get duration with retries
+          const getDurationWithRetry = (retries = 3): void => {
+            setTimeout(async () => {
+              try {
+                const dur = await freshWidget.getDuration();
+                if (dur > 0) {
+                  logger.load(`Duration loaded: ${dur}s`);
+                  setDuration(dur);
+                } else if (retries > 0) {
+                  logger.warning(
+                    `Duration error, retrying... (${retries} attempts left)`,
+                  );
+                  getDurationWithRetry(retries - 1);
+                } else {
+                  logger.warning(`Duration failed after all retries`);
+                }
+              } catch (error) {
+                if (retries > 0) {
+                  logger.warning(
+                    `Duration error, retrying... (${retries} attempts left)`,
+                  );
+                  setTimeout(() => getDurationWithRetry(retries - 1), 500);
+                } else {
+                  essentialLogger.error(
+                    `Duration failed after all retries: ${error}`,
+                  );
+                }
+              }
+            }, 1000);
+          };
+          getDurationWithRetry();
+        },
+        (error) => {
+          essentialLogger.error(`Mobile widget recreation failed: ${error}`);
+        },
+      );
+      return;
+    }
+
+    // Fallback to original approach for desktop or non-autoplay
     const autoplayParam = autoplay ? "&autoplay=1" : "";
     const newWidgetUrl = `https://player-widget.mixcloud.com/widget/iframe/?hide_cover=1&hide_artwork=1&hide_tracklist=1&mini=1${autoplayParam}&feed=${encodeURIComponent(`https://www.mixcloud.com${mixKey}`)}`;
 
@@ -1206,6 +1266,51 @@ const useMixcloudContextState = (): MixcloudContextState => {
                 setPlayer(freshWidget);
                 setupEventListeners(freshWidget);
                 setPlaying(true); // Autoplay for share links
+                
+                // Reset progress states for share link
+                setMixProgress(0);
+                setMixProgressPercent(0);
+                setDuration(0);
+                
+                // Get duration with retries for share link
+                const getDurationWithRetry = async (retries = 3): Promise<void> => {
+                  try {
+                    const dur = await freshWidget.getDuration();
+                    if (dur && dur > 0) {
+                      logger.load(`Share link duration loaded: ${dur}s`);
+                      setDuration(dur);
+                    } else if (retries > 0) {
+                      logger.warning(
+                        `Share link duration not ready, retrying... (${retries} attempts left)`,
+                      );
+                      setTimeout(() => getDurationWithRetry(retries - 1), 500);
+                    } else {
+                      logger.warning(`Share link duration failed after all retries`);
+                    }
+                  } catch (error) {
+                    if (retries > 0) {
+                      logger.warning(
+                        `Share link duration error, retrying... (${retries} attempts left)`,
+                      );
+                      setTimeout(() => getDurationWithRetry(retries - 1), 500);
+                    } else {
+                      essentialLogger.error(
+                        `Share link duration failed after all retries: ${error}`,
+                      );
+                    }
+                  }
+                };
+                
+                getDurationWithRetry();
+                
+                // Fetch mix details for the share link
+                logger.widget("Fetching mix details for share link:", mcKeyRef.current);
+                fetchMixDetails().then((fetchedMixDetails) => {
+                  if (fetchedMixDetails) {
+                    setMixDetails(fetchedMixDetails);
+                    logger.widget("Share link mix details loaded:", fetchedMixDetails.title);
+                  }
+                });
               })
               .catch((error: any) => {
                 essentialLogger.error(
@@ -1609,7 +1714,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       filterBackgroundCategory,
       handleCloseModal,
       isAtBottom,
-      isMobile,
+      isMobile: isMobileDevice,
       jupiterCaseRef,
       keyboardShortcutsEnabled,
       menuOpen,
@@ -1626,7 +1731,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setDisplayLength,
       setFilterBackgroundCategory,
       setIsAtBottom,
-      setIsMobile,
+      setIsMobileDevice,
       setKeyboardShortcutsEnabled,
       setMenuOpen,
       setModalContent,
