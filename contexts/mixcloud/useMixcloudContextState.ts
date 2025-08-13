@@ -59,12 +59,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const testRef = useRef<string>("NOT_SET");
   const [tempRouteValue, setTempRouteValue] = useState<string | null>(null);
 
-  const setTestValue = (value: string) => {
+  const setTestValue = (value: string): void => {
     testRef.current = value;
     console.log("🧪 TEST REF SET TO:", value);
   };
 
-  const setTempRouteValueFromRoute = (value: string | null) => {
+  const setTempRouteValueFromRoute = (value: string | null): void => {
     console.log("🎵 TEMP route value set:", value);
     if (value === null) {
       console.trace("🎵 TEMP route value being cleared - stack trace:");

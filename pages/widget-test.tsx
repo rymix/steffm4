@@ -87,6 +87,7 @@ const WidgetTest: React.FC = () => {
         .then(() => {
           addLog(`✅ Widget ready for: ${mixKey}`);
           setWidget(freshWidget);
+          // eslint-disable-next-line no-use-before-define
           setupEventListeners(freshWidget);
 
           // Get duration with retry logic for reliability

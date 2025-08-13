@@ -1,15 +1,10 @@
-import { useMixcloud } from "contexts/mixcloud";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import ReactGA from "react-ga4";
-import { DEBUG, GA4, GOOGLE_TRACKING_ID } from "utils/constants";
+import { GA4, GOOGLE_TRACKING_ID } from "utils/constants";
 
 const DynamicRoute = (): null => {
   const router = useRouter();
-  const {
-    controls: { setTestValue, setTempRouteValueFromRoute },
-    testValue,
-  } = useMixcloud();
 
   useEffect(() => {
     if (!router.isReady) return; // Wait until router is ready
@@ -26,7 +21,6 @@ const DynamicRoute = (): null => {
 
       // Store the formatted mcKey for the hook to pick up on initialization
       sessionStorage.setItem("shareLinkMcKey", formattedMcKey);
-      setTestValue(cleanedMcKey);
 
       // Use replace to avoid adding a new history entry
       router

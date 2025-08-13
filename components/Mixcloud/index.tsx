@@ -1,5 +1,5 @@
 import { useMixcloud } from "contexts/mixcloud";
-import React, { useEffect } from "react";
+import React from "react";
 import { mcKeyFormatter, mcWidgetUrlFormatter } from "utils/functions";
 
 import { StyledMixcloudWidget } from "./StyledMixcloud";
@@ -9,7 +9,6 @@ export const Mixcloud: React.FC = () => {
     mcKey,
     tempRouteValue,
     widget: { iframeRef, widgetUrl },
-    controls: { setTempRouteValueFromRoute },
   } = useMixcloud();
 
   // Construct alternative URL if temp route value exists

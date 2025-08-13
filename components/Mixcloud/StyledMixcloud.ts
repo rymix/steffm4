@@ -8,6 +8,7 @@ export const StyledMixcloudWidget = styled.iframe`
   position: fixed;
   width: 100%;
   z-index: 1000000000;
+
   /* bottom: 0;
   left: 0;
   height: 60px;
