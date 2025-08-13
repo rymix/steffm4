@@ -1,6 +1,6 @@
 import { BackgroundExtended } from "db/types";
 
-export const DEBUG = true;
+// DEBUG constant moved to utils/logger.ts with querystring override support
 export const VOLUME_AVAILABLE = true;
 export const GA4 = false;
 export const AUTO_CHANGE_BACKGROUND = true;

@@ -15,7 +15,6 @@ import ReactGA from "react-ga4";
 import themes from "styles/themes";
 import {
   AUTO_CHANGE_BACKGROUND,
-  DEBUG,
   DEFAULT_BACKGROUND,
   DEFAULT_MESSAGE,
   DEFAULT_VOLUME,
@@ -32,6 +31,7 @@ import {
   mcKeyUrlFormatter,
   mcWidgetUrlFormatter,
 } from "utils/functions";
+import { essentialLogger, logger } from "utils/logger";
 
 const useMixcloudContextState = (): MixcloudContextState => {
   // #region State and ref vars
@@ -77,14 +77,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const isPaused = await player.getIsPaused();
       const isPlaying = !isPaused; // Convert paused state to playing state
       if (isPlaying !== playing) {
-        if (DEBUG)
-          console.warn(
-            `Playing state out of sync. UI: ${playing}, Widget: ${isPlaying} (paused: ${isPaused}). Correcting UI state.`,
-          );
+        logger.warning(
+          `Playing state out of sync. UI: ${playing}, Widget: ${isPlaying} (paused: ${isPaused}). Correcting UI state.`,
+        );
         setPlaying(isPlaying);
       }
     } catch (error) {
-      console.error("Error validating playing state:", error);
+      essentialLogger.error("Error validating playing state:", error);
     }
   }, [player, playing]);
 
@@ -250,11 +249,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
     sharableKey = sharableKey.replaceAll("/rymixxx/", "").replaceAll("/", "");
     copyToClipboard(`https://stef.fm/${sharableKey}`);
     setTemporaryMessage("Sharable link copied to clipboard");
-    if (DEBUG)
-      console.log(
-        "Share button clicked - temporaryMessage set to:",
-        "Sharable link copied to clipboard",
-      );
+    logger.share(
+      "Share button clicked - temporaryMessage set to: Sharable link copied to clipboard",
+    );
 
     if (GA4) {
       ReactGA.event({
@@ -535,16 +532,16 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   // Helper function to set up event listeners on any widget instance
   const setupEventListeners = (widgetInstance: any): void => {
-    console.log("🔧 Setting up event listeners");
+    logger.setup("Setting up event listeners");
 
     widgetInstance.events.play.on(() => {
-      console.log("▶️ PLAY event");
+      logger.play("PLAY event");
       setPlaying(true);
       endedEventRef.current = false;
     });
 
     widgetInstance.events.pause.on(() => {
-      console.log("⏸️ PAUSE event");
+      logger.pause("PAUSE event");
       setPlaying(false);
 
       if (pauseTimeoutRef.current) {
@@ -553,7 +550,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
       pauseTimeoutRef.current = setTimeout(() => {
         if (!endedEventRef.current) {
-          console.log("✅ Genuine pause (not end-of-mix)");
+          logger.success("Genuine pause (not end-of-mix)");
         }
         pauseTimeoutRef.current = null;
       }, 500);
@@ -568,7 +565,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     });
 
     widgetInstance.events.ended.on(() => {
-      console.log("🎯 ENDED event - auto-advancing");
+      logger.ended("ENDED event - auto-advancing");
       setPlaying(false);
       endedEventRef.current = true;
 
@@ -583,7 +580,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     });
 
     widgetInstance.events.error.on((error: any) => {
-      console.log(`❌ ERROR: ${JSON.stringify(error)}`);
+      essentialLogger.error(`ERROR: ${JSON.stringify(error)}`);
     });
   };
   // #endregion
@@ -592,21 +589,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
   // (Declared first as it's called by navigation functions)
   const changeMix = (mixKey: string, autoplay = true): void => {
     if (!iframeRef.current) {
-      console.log("❌ No iframe reference - cannot change mix");
+      essentialLogger.error("No iframe reference - cannot change mix");
       return;
     }
 
     // If temp route value is active, only allow widget initialization, not mix changing
     if (tempRouteValue) {
-      console.log(
-        "🎵 Temp route active - initializing widget without changing mix:",
-        tempRouteValue,
+      logger.widget(
+        `Temp route active - initializing widget without changing mix: ${tempRouteValue}`,
       );
       // Skip the mix changing part, just do widget initialization
       setTimeout(() => {
         if (!(globalThis as any).Mixcloud?.PlayerWidget) {
-          console.log(
-            "⏳ Mixcloud script not ready yet, skipping widget initialization",
+          logger.widget(
+            "Mixcloud script not ready yet, skipping widget initialization",
           );
           return;
         }
@@ -615,7 +611,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
           iframeRef.current,
         );
         freshWidget.ready.then(() => {
-          console.log(`✅ Widget ready for temp route: ${tempRouteValue}`);
+          essentialLogger.widgetReady(
+            `Widget ready for temp route: ${tempRouteValue}`,
+          );
           setPlayer(freshWidget);
           setupEventListeners(freshWidget);
           setPlaying(autoplay);
@@ -624,7 +622,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       return;
     }
 
-    console.log(`🔄 Changing mix to: ${mixKey}`);
+    logger.widget(`Changing mix to: ${mixKey}`);
 
     // Reset all state
     setMixProgress(0);
@@ -651,8 +649,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
     setTimeout(() => {
       // Check if Mixcloud script is loaded
       if (!(globalThis as any).Mixcloud?.PlayerWidget) {
-        console.log(
-          "⏳ Mixcloud script not ready yet, skipping widget initialization",
+        logger.widget(
+          "Mixcloud script not ready yet, skipping widget initialization",
         );
         return;
       }
@@ -663,7 +661,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
       freshWidget.ready
         .then(() => {
-          console.log(`✅ Widget ready for: ${mixKey}`);
+          essentialLogger.widgetReady(`Widget ready for: ${mixKey}`);
           setPlayer(freshWidget);
           setupEventListeners(freshWidget);
 
@@ -672,25 +670,27 @@ const useMixcloudContextState = (): MixcloudContextState => {
             try {
               const dur = await freshWidget.getDuration();
               if (dur && dur > 0) {
-                console.log(`📏 Duration loaded: ${dur}s`);
+                logger.load(`Duration loaded: ${dur}s`);
                 setDuration(dur);
                 if (autoplay) setPlaying(true);
               } else if (retries > 0) {
-                console.log(
-                  `⏳ Duration not ready, retrying... (${retries} attempts left)`,
+                logger.warning(
+                  `Duration not ready, retrying... (${retries} attempts left)`,
                 );
                 setTimeout(() => getDurationWithRetry(retries - 1), 500);
               } else {
-                console.log(`❌ Failed to get duration after retries`);
+                essentialLogger.error(`Failed to get duration after retries`);
               }
             } catch (error) {
               if (retries > 0) {
-                console.log(
-                  `❌ Duration error, retrying... (${retries} attempts left)`,
+                logger.warning(
+                  `Duration error, retrying... (${retries} attempts left)`,
                 );
                 setTimeout(() => getDurationWithRetry(retries - 1), 500);
               } else {
-                console.log(`❌ Duration failed after all retries: ${error}`);
+                essentialLogger.error(
+                  `Duration failed after all retries: ${error}`,
+                );
               }
             }
           };
@@ -698,7 +698,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
           getDurationWithRetry();
         })
         .catch((error: any) => {
-          console.log(`❌ Widget ready failed: ${error}`);
+          essentialLogger.error(`Widget ready failed: ${error}`);
         });
     }, 1500); // Increased from 1000ms to 1500ms for reliability
   };
@@ -760,32 +760,32 @@ const useMixcloudContextState = (): MixcloudContextState => {
   // Migrated
   const handlePlay = async (): Promise<void> => {
     if (!player) {
-      console.log("❌ No widget available for play");
+      essentialLogger.error("No widget available for play");
       return;
     }
     if (playing) {
-      console.log("▶️ Already playing - no action needed");
+      logger.play("Already playing - no action needed");
       return;
     }
-    console.log("▶️ Playing current mix");
+    logger.play("Playing current mix");
     try {
       await player.play();
     } catch (error) {
-      console.log(`❌ Play error: ${error}`);
+      essentialLogger.error(`Play error: ${error}`);
     }
   };
 
   // Migrated
   const handlePause = async (): Promise<void> => {
     if (!player) {
-      console.log("❌ No widget available for pause");
+      essentialLogger.error("No widget available for pause");
       return;
     }
-    console.log("⏸️ Pausing current mix");
+    logger.pause("Pausing current mix");
     try {
       await player.pause();
     } catch (error) {
-      console.log(`❌ Pause error: ${error}`);
+      essentialLogger.error(`Pause error: ${error}`);
     }
   };
 
@@ -797,10 +797,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
           setPlayerUpdated(true);
           return true;
         }
-        if (DEBUG) console.log("Seek was not allowed");
+        logger.seek("Seek was not allowed");
         return false;
       } catch (error) {
-        console.error("Error in play or seek:", error);
+        essentialLogger.error("Error in play or seek:", error);
         return false;
       }
     },
@@ -821,7 +821,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       nextMix = mixes[nextIndex].mixcloudKey;
     }
 
-    console.log(`⏭️ Next: ${nextMix}`);
+    logger.next(`Next: ${nextMix}`);
     changeMix(mcKeyFormatter(nextMix), true);
   };
 
@@ -836,7 +836,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
         ? await fetchRandomMcKey()
         : mixes[mixIndex === 0 ? mixes.length - 1 : mixIndex - 1].mixcloudKey;
 
-    console.log(`⏮️ Previous: ${previousMix}`);
+    logger.previous(`Previous: ${previousMix}`);
     changeMix(mcKeyFormatter(previousMix), true);
   };
 
@@ -848,13 +848,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
     randomMix = mcKeyFormatter(randomMix);
 
-    console.log(`🎲 Random: ${randomMix}`);
+    logger.random(`Random: ${randomMix}`);
     changeMix(randomMix, true);
   };
 
   const handleLoad = (localMcKey?: string, isDynamicRoute = false): void => {
     if (!localMcKey) {
-      console.log("❌ No mcKey provided to handleLoad");
+      essentialLogger.error("No mcKey provided to handleLoad");
       return;
     }
 
@@ -863,7 +863,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
 
     const formattedKey = mcKeyFormatter(localMcKey);
-    console.log(`🎵 handleLoad called:`, {
+    logger.widget(`handleLoad called:`, {
       originalKey: localMcKey,
       formattedKey,
       currentMcKeyRef: mcKeyRef.current,
@@ -889,7 +889,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   const handleLoadRandomFavourite = async (): Promise<void> => {
     if (favouritesList.length === 0) {
-      if (DEBUG) console.log("No favourites to load");
+      logger.favourite("No favourites to load");
       return;
     }
 
@@ -1061,7 +1061,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
         const categoriesData = await response.json();
         setCategories(categoriesData);
       } catch (error) {
-        console.error(error);
+        essentialLogger.error(error);
       }
     };
 
@@ -1077,7 +1077,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     script.async = true;
     script.addEventListener("load", () => {
       setScriptLoaded(true);
-      console.log("📜 Mixcloud widget script loaded");
+      essentialLogger.scriptLoaded("Mixcloud widget script loaded");
     });
 
     document.body.appendChild(script);
@@ -1095,7 +1095,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       iframeRef.current &&
       !player
     ) {
-      console.log("🔄 Script loaded, re-initializing widget");
+      logger.widget("Script loaded, re-initializing widget");
       changeMix(mcKeyRef.current, false); // Don't autoplay on script load
     }
   }, [scriptLoaded, (globalThis as any).Mixcloud?.PlayerWidget]);
@@ -1116,7 +1116,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
         tempRouteValue ||
         wasShareLink.current
       ) {
-        console.log("🎵 Skipping initial load", {
+        logger.widget("Skipping initial load", {
           dynamicRouteHandled: dynamicRouteHandledRef.current,
           tempRouteValue,
           wasShareLink: wasShareLink.current,
@@ -1136,41 +1136,34 @@ const useMixcloudContextState = (): MixcloudContextState => {
             (latestProgress / mixDurationSeconds) * 100;
 
           if (completionPercentage >= 95) {
-            console.log(
-              "🎵 Latest mix is 95%+ complete, loading random instead:",
-              latestMcKey,
-              `(${completionPercentage.toFixed(1)}%)`,
+            logger.widget(
+              `Latest mix is 95%+ complete, loading random instead: ${latestMcKey} (${completionPercentage.toFixed(1)}%)`,
             );
             await handleLoadRandom();
           } else {
-            console.log(
-              "🎵 Loading latest progress mix:",
-              latestMcKey,
-              "at",
-              latestProgress,
-              "seconds",
-              `(${completionPercentage.toFixed(1)}%)`,
+            logger.widget(
+              `Loading latest progress mix: ${latestMcKey} at ${latestProgress} seconds (${completionPercentage.toFixed(1)}%)`,
             );
             handleLoad(latestMcKey);
           }
         } else {
-          console.log(
-            "🎵 Could not fetch latest mix details, loading random instead",
+          logger.widget(
+            "Could not fetch latest mix details, loading random instead",
           );
           await handleLoadRandom();
         }
       }
       // Load based on selected category
       else if (selectedCategory && selectedCategory === "fav") {
-        console.log("🎵 Loading random favourite");
+        logger.favourite("Loading random favourite");
         await handleLoadRandomFavourite();
       } else if (selectedCategory && selectedCategory !== "all") {
-        console.log("🎵 Loading random from category:", selectedCategory);
+        logger.widget(`Loading random from category: ${selectedCategory}`);
         await handleLoadRandom(selectedCategory);
       }
       // Default to random
       else {
-        console.log("🎵 Loading random mix (no meaningful latest progress)");
+        logger.widget("Loading random mix (no meaningful latest progress)");
         await handleLoadRandom();
       }
     };
@@ -1180,9 +1173,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
       // Re-check sessionStorage in case dynamic route set it after component mounted
       const shareLinkValue = sessionStorage?.getItem("shareLinkMcKey");
       if (shareLinkValue) {
-        console.log(
-          "🎵 Found share link during timeout check:",
-          shareLinkValue,
+        logger.share(
+          `Found share link during timeout check: ${shareLinkValue}`,
         );
         mcKeyRef.current = shareLinkValue;
         wasShareLink.current = true;
@@ -1190,7 +1182,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
         // Initialize PlayerWidget for share link after a short delay
         setTimeout(() => {
-          console.log("🎵 Checking PlayerWidget initialization conditions:", {
+          logger.widget("Checking PlayerWidget initialization conditions:", {
             hasIframe: !!iframeRef.current,
             scriptLoaded,
             hasPlayer: !!player,
@@ -1202,27 +1194,32 @@ const useMixcloudContextState = (): MixcloudContextState => {
             (globalThis as any).Mixcloud?.PlayerWidget &&
             !player
           ) {
-            console.log("🎵 Initializing PlayerWidget for share link");
+            logger.widget("Initializing PlayerWidget for share link");
             const freshWidget = (globalThis as any).Mixcloud.PlayerWidget(
               iframeRef.current,
             );
             freshWidget.ready
               .then(() => {
-                console.log("✅ PlayerWidget ready for share link");
+                essentialLogger.widgetReady(
+                  "PlayerWidget ready for share link",
+                );
                 setPlayer(freshWidget);
                 setupEventListeners(freshWidget);
                 setPlaying(true); // Autoplay for share links
               })
               .catch((error: any) => {
-                console.error("❌ PlayerWidget initialization failed:", error);
+                essentialLogger.error(
+                  "PlayerWidget initialization failed:",
+                  error,
+                );
               });
           } else {
-            console.log("🎵 PlayerWidget initialization conditions not met");
+            logger.widget("PlayerWidget initialization conditions not met");
           }
         }, 500);
       }
 
-      console.log("🎵 Timeout firing, about to call handleInitialLoad", {
+      logger.widget("Timeout firing, about to call handleInitialLoad", {
         tempRouteValue,
         dynamicRouteHandled: dynamicRouteHandledRef.current,
         wasShareLink: wasShareLink.current,
@@ -1241,22 +1238,21 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   // Check for share link on client-side immediately
   useEffect(() => {
-    console.log("🎵 Checking for share link in sessionStorage...");
+    logger.share("Checking for share link in sessionStorage...");
     const shareLinkValue = sessionStorage?.getItem("shareLinkMcKey");
-    console.log("🎵 SessionStorage shareLinkMcKey:", shareLinkValue);
+    logger.share(`SessionStorage shareLinkMcKey: ${shareLinkValue}`);
 
     if (shareLinkValue) {
-      console.log(
-        "🎵 Found share link mcKey in sessionStorage:",
-        shareLinkValue,
+      logger.share(
+        `Found share link mcKey in sessionStorage: ${shareLinkValue}`,
       );
       mcKeyRef.current = shareLinkValue;
       wasShareLink.current = true;
       sessionStorage.removeItem("shareLinkMcKey");
-      console.log("🎵 Updated mcKeyRef.current to:", mcKeyRef.current);
-      console.log("🎵 Set wasShareLink.current to:", wasShareLink.current);
+      logger.share(`Updated mcKeyRef.current to: ${mcKeyRef.current}`);
+      logger.share(`Set wasShareLink.current to: ${wasShareLink.current}`);
     } else {
-      console.log("🎵 No share link found in sessionStorage");
+      logger.share("No share link found in sessionStorage");
     }
   }, []); // Run once on mount
 
@@ -1268,9 +1264,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
       (globalThis as any).Mixcloud?.PlayerWidget &&
       !player
     ) {
-      console.log(
-        "🎵 Initializing PlayerWidget for temp route value:",
-        tempRouteValue,
+      logger.widget(
+        `Initializing PlayerWidget for temp route value: ${tempRouteValue}`,
       );
 
       setTimeout(() => {
@@ -1278,13 +1273,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
           iframeRef.current,
         );
         freshWidget.ready.then(() => {
-          console.log(`✅ Widget ready for temp route: ${tempRouteValue}`);
+          essentialLogger.widgetReady(
+            `Widget ready for temp route: ${tempRouteValue}`,
+          );
           setPlayer(freshWidget);
           setupEventListeners(freshWidget);
           setPlaying(true); // Autoplay is on for share links
 
           // Clear temp value after successful initialization
-          console.log("🎵 Clearing temp value after successful widget init");
+          logger.widget("Clearing temp value after successful widget init");
           setTimeout(() => setTempRouteValue(null), 1000);
         });
       }, 1000);
@@ -1293,7 +1290,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   // Seeking logic - restore playback position
   useEffect(() => {
-    console.log("🔍 Seeking logic check:", {
+    logger.search("Seeking logic check:", {
       latestMcKey,
       hasSeeked,
       loadLatestProgress,
@@ -1328,17 +1325,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
           const seekSuccessful = await handleSeek(loadLatestProgress);
           if (seekSuccessful) {
             setHasSeeked(true);
-            if (DEBUG) console.log(`✅ Seek successful on attempt ${attempts}`);
+            logger.success(`Seek successful on attempt ${attempts}`);
           } else if (attempts < maxAttempts) {
-            if (DEBUG)
-              console.log(
-                `⏳ Seek failed, attempt ${attempts}/${maxAttempts}, retrying...`,
-              );
+            logger.warning(
+              `Seek failed, attempt ${attempts}/${maxAttempts}, retrying...`,
+            );
             setTimeout(trySeek, 1000);
-          } else if (DEBUG)
-            console.warn("❌ Seek failed after maximum attempts");
+          } else logger.warning("Seek failed after maximum attempts");
         } catch (error) {
-          console.error(`❌ Seek error on attempt ${attempts}:`, error);
+          essentialLogger.error(`Seek error on attempt ${attempts}:`, error);
           if (attempts < maxAttempts) {
             setTimeout(trySeek, 1000);
           }

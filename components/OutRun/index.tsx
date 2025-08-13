@@ -17,12 +17,13 @@ import { useMixcloud } from "contexts/mixcloud";
 import useMasterTimer from "hooks/useMasterTimer";
 import React, { useEffect, useState } from "react";
 import ReactGA from "react-ga4";
-import { DEBUG, GA4 } from "utils/constants";
+import { GA4 } from "utils/constants";
 import {
   getScaledFontSize,
   removeParentheses,
   removeTextAfterComma,
 } from "utils/functions";
+import { logger } from "utils/logger";
 
 export const OutRun: React.FC = () => {
   const { subscribe } = useMasterTimer();
@@ -120,9 +121,7 @@ export const OutRun: React.FC = () => {
 
   // Show hand animation if volume, track or playig changes
   useEffect(() => {
-    if (DEBUG) {
-      console.log("playing, trackName, volume changed");
-    }
+    logger.info("Playing, track name, or volume changed");
     if (playing) {
       setHandAnimationStartTick(tick); // Record the current tick when playing changes
       setShowHand(true);

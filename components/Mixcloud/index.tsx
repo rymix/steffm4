@@ -1,6 +1,7 @@
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 import { mcKeyFormatter, mcWidgetUrlFormatter } from "utils/functions";
+import { logger } from "utils/logger";
 
 import { StyledMixcloudWidget } from "./StyledMixcloud";
 
@@ -19,9 +20,9 @@ export const Mixcloud: React.FC = () => {
     const formattedTempKey = mcKeyFormatter(tempRouteValue);
     effectiveWidgetUrl = mcWidgetUrlFormatter(formattedTempKey);
     effectiveMcKey = formattedTempKey;
-    console.log("🎵 MIXCLOUD WIDGET - Using temp route value:", tempRouteValue);
-    console.log("🎵 MIXCLOUD WIDGET - Formatted key:", formattedTempKey);
-    console.log("🎵 MIXCLOUD WIDGET - Alternative URL:", effectiveWidgetUrl);
+    logger.widget("MIXCLOUD WIDGET - Using temp route value:", tempRouteValue);
+    logger.widget("MIXCLOUD WIDGET - Formatted key:", formattedTempKey);
+    logger.widget("MIXCLOUD WIDGET - Alternative URL:", effectiveWidgetUrl);
   }
 
   // Don't auto-clear temp route value here - let it persist until after initial load

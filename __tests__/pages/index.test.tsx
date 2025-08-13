@@ -68,5 +68,4 @@ describe("Home Page", () => {
   it("should render without crashing", () => {
     expect(() => render(<Home />)).not.toThrow();
   });
-
 });
