@@ -56,28 +56,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   );
   const wasShareLink = useRef<boolean>(false);
   const dynamicRouteHandledRef = useRef<boolean>(false);
-  const testRef = useRef<string>("NOT_SET");
   const [tempRouteValue, setTempRouteValue] = useState<string | null>(null);
-
-  const setTestValue = (value: string): void => {
-    testRef.current = value;
-    console.log("🧪 TEST REF SET TO:", value);
-  };
-
-  const setTempRouteValueFromRoute = (value: string | null): void => {
-    console.log("🎵 TEMP route value set:", value);
-    if (value === null) {
-      console.trace("🎵 TEMP route value being cleared - stack trace:");
-    }
-    setTempRouteValue(value);
-
-    // Update mcKeyRef when temp value is set
-    if (value) {
-      const formattedKey = mcKeyFormatter(value);
-      console.log("🎵 Updating mcKeyRef from temp route value:", formattedKey);
-      mcKeyRef.current = formattedKey;
-    }
-  };
   const [mixDetails, setMixDetails] = useState<Mix | undefined>();
   const [mixes, setMixes] = useState<Mix[]>([]);
   const [mixProgress, setMixProgress] = useState<number>(0);
@@ -1563,7 +1542,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   return {
     isReady,
     mcKey: mcKeyRef.current,
-    testValue: testRef.current,
     tempRouteValue,
     mcUrl,
     setIsReady,
@@ -1572,8 +1550,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
       fetchRandomMcKey,
       fetchRandomMcKeyByCategory,
       handleLoad,
-      setTestValue,
-      setTempRouteValueFromRoute,
       handleLoadLatest,
       handleLoadRandom,
       handleLoadRandomFavourite,
