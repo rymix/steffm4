@@ -39,7 +39,7 @@ export const Mixcloud: React.FC = () => {
       width="100%"
       height="60"
       frameBorder="0"
-      allow="autoplay"
+      allow="autoplay; encrypted-media"
       title="Mixcloud Widget Player"
     />
   );
