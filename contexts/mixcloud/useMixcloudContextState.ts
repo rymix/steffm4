@@ -1121,7 +1121,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
         const categoriesData = await response.json();
         setCategories(categoriesData);
       } catch (error) {
-        essentialLogger.error(error);
+        essentialLogger.error("Failed to fetch categories:", error);
       }
     };
 
@@ -1266,14 +1266,16 @@ const useMixcloudContextState = (): MixcloudContextState => {
                 setPlayer(freshWidget);
                 setupEventListeners(freshWidget);
                 setPlaying(true); // Autoplay for share links
-                
+
                 // Reset progress states for share link
                 setMixProgress(0);
                 setMixProgressPercent(0);
                 setDuration(0);
-                
+
                 // Get duration with retries for share link
-                const getDurationWithRetry = async (retries = 3): Promise<void> => {
+                const getDurationWithRetry = async (
+                  retries = 3,
+                ): Promise<void> => {
                   try {
                     const dur = await freshWidget.getDuration();
                     if (dur && dur > 0) {
@@ -1285,7 +1287,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
                       );
                       setTimeout(() => getDurationWithRetry(retries - 1), 500);
                     } else {
-                      logger.warning(`Share link duration failed after all retries`);
+                      logger.warning(
+                        `Share link duration failed after all retries`,
+                      );
                     }
                   } catch (error) {
                     if (retries > 0) {
@@ -1300,15 +1304,21 @@ const useMixcloudContextState = (): MixcloudContextState => {
                     }
                   }
                 };
-                
+
                 getDurationWithRetry();
-                
+
                 // Fetch mix details for the share link
-                logger.widget("Fetching mix details for share link:", mcKeyRef.current);
+                logger.widget(
+                  "Fetching mix details for share link:",
+                  mcKeyRef.current,
+                );
                 fetchMixDetails().then((fetchedMixDetails) => {
                   if (fetchedMixDetails) {
                     setMixDetails(fetchedMixDetails);
-                    logger.widget("Share link mix details loaded:", fetchedMixDetails.title);
+                    logger.widget(
+                      "Share link mix details loaded:",
+                      fetchedMixDetails.name,
+                    );
                   }
                 });
               })
@@ -1731,7 +1741,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setDisplayLength,
       setFilterBackgroundCategory,
       setIsAtBottom,
-      setIsMobileDevice,
+      setIsMobile: setIsMobileDevice,
       setKeyboardShortcutsEnabled,
       setMenuOpen,
       setModalContent,
