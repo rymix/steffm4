@@ -2,6 +2,8 @@ import { Progress } from "contexts/mixcloud/types";
 import { BackgroundCategory, Category, Mix } from "db/types";
 import { stripUnit } from "polished";
 
+import { essentialLogger, logger } from "./logger";
+
 export const convertTimeToSeconds = (timeString: string): number => {
   const parts = timeString.split(":").map((part) => Number.parseInt(part, 10));
   let seconds = 0;
@@ -78,10 +80,10 @@ export const copyToClipboard = (text: string): void => {
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        console.log("Text copied to clipboard");
+        logger.share("Text copied to clipboard");
       })
       .catch((error) => {
-        console.error("Could not copy text:", error);
+        essentialLogger.error("Could not copy text:", error);
       });
   } else {
     // navigator.clipboard not available, fallback to older method
@@ -108,9 +110,9 @@ export const copyToClipboard = (text: string): void => {
     try {
       const successful = document.execCommand("copy");
       const msg = successful ? "successful" : "unsuccessful";
-      console.log(`Fallback: Copying text command was ${msg}`);
+      logger.share(`Fallback: Copying text command was ${msg}`);
     } catch (error) {
-      console.error("Fallback: Oops, unable to copy", error);
+      essentialLogger.error("Fallback: Oops, unable to copy", error);
     }
 
     textArea.remove();

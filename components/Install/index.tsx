@@ -6,7 +6,7 @@ import {
   InstructionsText,
 } from "components/Install/StyledInstall";
 import React, { JSX, useEffect, useState } from "react";
-import { DEBUG } from "utils/constants";
+import { logger } from "utils/logger";
 
 const InstallInstructions: React.FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
@@ -64,11 +64,9 @@ const InstallInstructions: React.FC = () => {
       deferredPrompt.prompt();
       deferredPrompt.userChoice.then((choiceResult: any) => {
         if (choiceResult.outcome === "accepted") {
-          if (DEBUG) {
-            console.log("User accepted the install prompt");
-          }
-        } else if (DEBUG) {
-          console.log("User dismissed the install prompt");
+          logger.info("User accepted the install prompt");
+        } else {
+          logger.info("User dismissed the install prompt");
         }
         setDeferredPrompt(null);
         setShowInstallButton(false);

@@ -31,6 +31,7 @@ import ReactGA from "react-ga4";
 import { useKonami } from "react-konami-code";
 import { GA4, VOLUME_AVAILABLE } from "utils/constants";
 import { getCategoryIndex } from "utils/functions";
+import { useAutoplayInteractionTracking } from "utils/mobileAutoplayHelper";
 
 import Background from "./Background";
 import BurgerMenu from "./BurgerMenu";
@@ -48,6 +49,7 @@ import ScrollIndicator from "./ScrollIndicator";
 import Tooltip from "./Tooltip";
 
 const Jupiter: React.FC = () => {
+  const { trackInteraction } = useAutoplayInteractionTracking();
   const {
     isReady,
     mcKey,
@@ -101,6 +103,9 @@ const Jupiter: React.FC = () => {
   };
 
   const handleKnobChange = (index: number): void => {
+    // Track user interaction for autoplay purposes
+    trackInteraction("knob-change");
+
     const categoryLookup =
       categories.find((cat) => cat.index === index)?.code || "all";
 
@@ -158,6 +163,9 @@ const Jupiter: React.FC = () => {
   };
 
   const handleRandomClick = async (): Promise<void> => {
+    // Track user interaction for autoplay purposes
+    trackInteraction("random-button");
+
     if (selectedCategory === "fav") {
       handleLoadRandomFavourite();
     } else if (selectedCategory) {
@@ -176,6 +184,9 @@ const Jupiter: React.FC = () => {
   };
 
   const handleLatestClick = async (): Promise<void> => {
+    // Track user interaction for autoplay purposes
+    trackInteraction("latest-button");
+
     handleLoadLatest();
 
     if (GA4) {
@@ -185,6 +196,27 @@ const Jupiter: React.FC = () => {
         label: "Latest Mix",
       });
     }
+  };
+
+  // Enhanced media control handlers with interaction tracking
+  const handlePlayWithTracking = (): void => {
+    trackInteraction("play-button");
+    handlePlay();
+  };
+
+  const handlePauseWithTracking = (): void => {
+    trackInteraction("pause-button");
+    handlePause();
+  };
+
+  const handleNextWithTracking = (): void => {
+    trackInteraction("next-button");
+    handleNext();
+  };
+
+  const handlePreviousWithTracking = (): void => {
+    trackInteraction("previous-button");
+    handlePrevious();
   };
 
   const handleFavouriteClick = async (): Promise<void> => {
@@ -285,25 +317,25 @@ const Jupiter: React.FC = () => {
                         <JupiterButton
                           color="red"
                           label="Stop"
-                          onClick={handlePause}
+                          onClick={handlePauseWithTracking}
                           on={playing === false}
                         />
                         <JupiterButton
                           color="green"
                           label="Play"
-                          onClick={handlePlay}
+                          onClick={handlePlayWithTracking}
                           on={playing === true}
                         />
                         <JupiterButton
                           color="cream"
                           label="Prev"
-                          onClick={handlePrevious}
+                          onClick={handlePreviousWithTracking}
                           momentary
                         />
                         <JupiterButton
                           color="cream"
                           label="Next"
-                          onClick={handleNext}
+                          onClick={handleNextWithTracking}
                           momentary
                         />
                         <JupiterButton

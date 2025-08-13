@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import ReactGA from "react-ga4";
 import { GA4, GOOGLE_TRACKING_ID } from "utils/constants";
+import { essentialLogger, logger } from "utils/logger";
 
 const DynamicRoute = (): null => {
   const router = useRouter();
@@ -15,9 +16,9 @@ const DynamicRoute = (): null => {
       const cleanedMcKey = mcKey.replaceAll(/^\/+|\/+$/g, "");
       const formattedMcKey = `/rymixxx/${cleanedMcKey}/`;
 
-      console.log("🎵 SHARE LINK APPROACH - Setting sessionStorage");
-      console.log("🎵 Raw mcKey:", cleanedMcKey);
-      console.log("🎵 Formatted mcKey:", formattedMcKey);
+      logger.share("SHARE LINK APPROACH - Setting sessionStorage");
+      logger.share("Raw mcKey:", cleanedMcKey);
+      logger.share("Formatted mcKey:", formattedMcKey);
 
       // Store the formatted mcKey for the hook to pick up on initialization
       sessionStorage.setItem("shareLinkMcKey", formattedMcKey);
@@ -41,7 +42,7 @@ const DynamicRoute = (): null => {
           }
         })
         .catch((error) => {
-          console.error("Failed to redirect:", error);
+          essentialLogger.error("Failed to redirect:", error);
         });
     }
   }, [router.isReady, router.query.mcKey]); // Only depend on isReady and the mcKey itself
