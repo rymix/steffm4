@@ -10,8 +10,15 @@ import type {
 import type { BackgroundExtended, Category, Mix, Track } from "db/types";
 import useMasterTimer from "hooks/useMasterTimer";
 import usePersistedState from "hooks/usePersistedState";
-import { ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import ReactGA from "react-ga4";
+import MobilePlayButton from "components/MobilePlayButton";
 import themes from "styles/themes";
 import {
   AUTO_CHANGE_BACKGROUND,
@@ -43,6 +50,20 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const { isMobile } = useAutoplayInteractionTracking();
   const endedEventRef = useRef<boolean>(false);
   const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const mobileAutoplayTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const mobileAutoplayDetectionRef = useRef<{
+    isDetecting: boolean;
+    wasPlaying: boolean;
+    hasStartedPlaying: boolean;
+    detectionStartTime: number;
+    shouldShowModal: boolean;
+  }>({
+    isDetecting: false,
+    wasPlaying: false,
+    hasStartedPlaying: false,
+    detectionStartTime: 0,
+    shouldShowModal: false,
+  });
 
   const { subscribe } = useMasterTimer();
   const [categories, setCategories] = useState<Category[]>([]);
@@ -85,12 +106,29 @@ const useMixcloudContextState = (): MixcloudContextState => {
         logger.warning(
           `Playing state out of sync. UI: ${playing}, Widget: ${isPlaying} (paused: ${isPaused}). Correcting UI state.`,
         );
+        
+        // Check for mobile autoplay failure: UI thinks it's playing but widget is paused
+        const detection = mobileAutoplayDetectionRef.current;
+        if (isMobile() && detection.isDetecting && playing && !isPlaying) {
+          logger.warning("Mobile autoplay failure detected via state validation - flagging for modal");
+          
+          // Clear detection timer
+          if (mobileAutoplayTimerRef.current) {
+            clearTimeout(mobileAutoplayTimerRef.current);
+            mobileAutoplayTimerRef.current = null;
+          }
+          
+          // Flag that we should show modal (will be handled by useEffect after modal functions are defined)
+          detection.shouldShowModal = true;
+          detection.isDetecting = false;
+        }
+        
         setPlaying(isPlaying);
       }
     } catch (error) {
       essentialLogger.error("Error validating playing state:", error);
     }
-  }, [player, playing]);
+  }, [player, playing, isMobile]);
 
   const [scale, setScale] = useState<Scale>({ x: 1, y: 1 });
   const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
@@ -187,6 +225,23 @@ const useMixcloudContextState = (): MixcloudContextState => {
     );
     return unsubscribe;
   }, [player, validatePlayingState, subscribe]);
+
+  // #endregion
+
+  // #region Mobile autoplay detection cleanup
+  // (Moved useEffect for mobile autoplay detection to after modal functions are defined)
+
+  // Don't reset mobile autoplay detection on mix key changes - let it complete its monitoring
+  // The detection should continue until the widget is fully loaded and we know the outcome
+
+  // Cleanup mobile autoplay timer on unmount
+  useEffect(() => {
+    return () => {
+      if (mobileAutoplayTimerRef.current) {
+        clearTimeout(mobileAutoplayTimerRef.current);
+      }
+    };
+  }, []);
 
   // #endregion
 
@@ -498,6 +553,35 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, []);
   // #endregion
 
+  // #region Mobile autoplay detection monitoring
+  // Check if we should show the mobile autoplay recovery modal
+  useEffect(() => {
+    const detection = mobileAutoplayDetectionRef.current;
+    if (detection.shouldShowModal) {
+      logger.widget("Showing mobile autoplay recovery modal");
+      
+      openModal(
+        React.createElement(MobilePlayButton, {
+          mixName: mixDetails?.name,
+          onPlay: () => {
+            // Use player directly for maximum reliability
+            if (player) {
+              player.play();
+              setPlaying(true);
+            }
+            handleCloseModal();
+          },
+        }),
+        undefined, // no title
+        undefined, // no timeout
+        true, // hide chrome
+      );
+      
+      detection.shouldShowModal = false;
+    }
+  }, [mobileAutoplayDetectionRef.current.shouldShowModal, mixDetails?.name, openModal, player, setPlaying, handleCloseModal]);
+  // #endregion
+
   // #region Cancel timers and close Modals and Menus
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent): void => {
@@ -633,8 +717,93 @@ const useMixcloudContextState = (): MixcloudContextState => {
     setMixProgress(0);
     setMixProgressPercent(0);
     setDuration(0);
+    const wasPlaying = playing;
     setPlaying(false);
     mcKeyRef.current = mixKey;
+
+    // Clear any existing mobile autoplay timer
+    if (mobileAutoplayTimerRef.current) {
+      clearTimeout(mobileAutoplayTimerRef.current);
+      mobileAutoplayTimerRef.current = null;
+    }
+
+    // Start mobile autoplay detection if was playing on mobile
+    if (isMobile() && wasPlaying && autoplay) {
+      logger.widget("Starting mobile autoplay detection - monitoring for start/stop pattern");
+      
+      // Initialize detection state
+      const detection = mobileAutoplayDetectionRef.current;
+      detection.isDetecting = true;
+      detection.wasPlaying = wasPlaying;
+      detection.hasStartedPlaying = false;
+      detection.detectionStartTime = Date.now();
+
+      // Start polling to detect the "starts then stops" pattern
+      let pollCount = 0;
+      const maxPolls = 15; // Poll for 3 seconds (15 * 200ms)
+      const pollInterval = 200; // Poll every 200ms
+      
+      const pollForAutoplayFailure = () => {
+        pollCount++;
+        const currentTime = Date.now();
+        const elapsed = currentTime - detection.detectionStartTime;
+        
+        if (playing && !detection.hasStartedPlaying) {
+          // Audio started playing - mark it
+          logger.widget("Mobile autoplay detection: Audio started playing");
+          detection.hasStartedPlaying = true;
+        }
+        
+        if (detection.hasStartedPlaying && !playing && elapsed < 3000) {
+          // Audio started then stopped within 3 seconds - autoplay failed!
+          logger.warning("Mobile autoplay failed: Started then stopped within detection window");
+          
+          // Clear polling timer
+          if (mobileAutoplayTimerRef.current) {
+            clearTimeout(mobileAutoplayTimerRef.current);
+            mobileAutoplayTimerRef.current = null;
+          }
+          
+          // Show recovery modal after a brief delay to ensure mix details are available
+          setTimeout(() => {
+            openModal(
+              React.createElement(MobilePlayButton, {
+                mixName: mixDetails?.name,
+                onPlay: () => {
+                  // Use the controls from context to ensure they're defined
+                  if (player) {
+                    player.play();
+                    setPlaying(true);
+                  }
+                  handleCloseModal();
+                },
+              }),
+              undefined, // no title
+              undefined, // no timeout
+              true, // hide chrome
+            );
+          }, 100);
+          
+          detection.isDetecting = false;
+          return;
+        }
+        
+        // Continue polling if we haven't reached max polls and still detecting
+        if (pollCount < maxPolls && detection.isDetecting) {
+          mobileAutoplayTimerRef.current = setTimeout(pollForAutoplayFailure, pollInterval);
+        } else {
+          // Polling complete or detection stopped
+          if (playing) {
+            logger.success("Mobile autoplay succeeded - stable playback detected");
+          }
+          detection.isDetecting = false;
+          mobileAutoplayTimerRef.current = null;
+        }
+      };
+      
+      // Start the polling
+      mobileAutoplayTimerRef.current = setTimeout(pollForAutoplayFailure, pollInterval);
+    }
 
     // Fetch mix details for the new key
     fetchMixDetails().then((fetchedMixDetails) => {
