@@ -1,6 +1,7 @@
 import type {
   JupiterButtonColors,
   StyledJupiterButtonProps,
+  StyledJupiterButtonWrapperProps,
   StyledJupiterLedProps,
 } from "components/Jupiter/Button/types";
 import styled, { css } from "styled-components";
@@ -65,16 +66,27 @@ const getGradientColors = (
   }
 };
 
-export const StyledJupiterButtonWrapper = styled.div`
+export const StyledJupiterButtonWrapper = styled.div<StyledJupiterButtonWrapperProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  height: 128px;
+  justify-content: ${(props) =>
+    props.$size === "huge" ? "center" : "flex-start"};
+  width: ${(props) =>
+    props.$size === "huge"
+      ? "100%"
+      : props.$size === "large"
+        ? "91px"
+        : "128px"};
   width: 54px;
 
   @media screen and (orientation: portrait) and (max-width: 440px) {
-    width: 44px;
+    width: ${(props) =>
+      props.$size === "huge"
+        ? "100%"
+        : props.$size === "large"
+          ? "68px"
+          : "44px"};
   }
 `;
 
@@ -94,8 +106,18 @@ export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
   border-radius: 5px;
   box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.7);
   cursor: pointer;
-  height: 72px;
-  width: 42px;
+  height: ${(props) =>
+    props.$size === "huge"
+      ? "144px"
+      : props.$size === "large"
+        ? "108px"
+        : "72px"};
+  width: ${(props) =>
+    props.$size === "huge"
+      ? "84px"
+      : props.$size === "large"
+        ? "63px"
+        : "42px"};
   overflow: hidden;
   position: relative;
   transition:
@@ -122,18 +144,39 @@ export const StyledJupiterButton = styled.button<StyledJupiterButtonProps>`
 export const StyledJupiterLed = styled.div<StyledJupiterLedProps>`
   background: ${(props) =>
     props.$on || props.$down ? "rgba(255, 18, 49, 1)" : "rgba(111, 0, 0, 1)"};
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: ${(props) =>
+    props.$size === "huge"
+      ? "2px solid rgba(255, 255, 255, 0.4)"
+      : props.$size === "large"
+        ? "1.5px solid rgba(255, 255, 255, 0.4)"
+        : "1px solid rgba(255, 255, 255, 0.4)"};
   border-radius: 50%;
-  height: 12px;
-  left: 12px;
+  height: ${(props) =>
+    props.$size === "huge"
+      ? "24px"
+      : props.$size === "large"
+        ? "18px"
+        : "12px"};
+  left: ${(props) =>
+    props.$size === "huge"
+      ? "26px"
+      : props.$size === "large"
+        ? "19px"
+        : "12px"};
   position: absolute;
-  top: 4px;
+  top: ${(props) =>
+    props.$size === "huge" ? "8px" : props.$size === "large" ? "6px" : "4px"};
   transform: ${(props) => (props.$down ? "scale(0.9)" : "scale(1)")};
   transition:
     background-color 0.1s ease-in-out,
     box-shadow 0.1s ease-in-out,
     transform 0.1s ease-in-out;
-  width: 12px;
+  width: ${(props) =>
+    props.$size === "huge"
+      ? "24px"
+      : props.$size === "large"
+        ? "18px"
+        : "12px"};
 
   &::before {
     background-color: ${(props) =>

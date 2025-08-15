@@ -1,4 +1,5 @@
 import About from "components/About";
+import DrivingMode from "components/DrivingMode";
 import { DiskLabel } from "components/Floppy/types";
 import JupiterButton from "components/Jupiter/Button";
 import JupiterCase from "components/Jupiter/Case";
@@ -54,7 +55,6 @@ const Jupiter: React.FC = () => {
     isReady,
     mcKey,
     controls: {
-      handleLoadLatest,
       handleLoadRandom,
       handleLoadRandomFavourite,
       handlePause,
@@ -183,17 +183,14 @@ const Jupiter: React.FC = () => {
     }
   };
 
-  const handleLatestClick = async (): Promise<void> => {
-    // Track user interaction for autoplay purposes
-    trackInteraction("latest-button");
-
-    handleLoadLatest();
+  const handleDrivingModeClick = (): void => {
+    openModal(<DrivingMode />);
 
     if (GA4) {
       ReactGA.event({
         category: "Option",
         action: "Click",
-        label: "Latest Mix",
+        label: "Driving Mode",
       });
     }
   };
@@ -346,8 +343,8 @@ const Jupiter: React.FC = () => {
                         />
                         <JupiterButton
                           color="blue"
-                          label="Latest"
-                          onClick={handleLatestClick}
+                          label="Car"
+                          onClick={handleDrivingModeClick}
                           momentary
                         />
                       </StyledItem>

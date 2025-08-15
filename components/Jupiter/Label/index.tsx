@@ -9,6 +9,7 @@ const JupiterLabel: React.FC<JupiterLabelProps> = ({
   paddingTop = 0,
   paddingBottom = 0,
   textColor = "white",
+  size = "normal",
 }) => {
   return (
     <StyledJupiterLabelWrapper>
@@ -16,6 +17,7 @@ const JupiterLabel: React.FC<JupiterLabelProps> = ({
         $paddingBottom={paddingBottom}
         $paddingTop={paddingTop}
         $textColor={textColor}
+        $size={size}
       >
         {label}
       </StyledJupiterLabel>
