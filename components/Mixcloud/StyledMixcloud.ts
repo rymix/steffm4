@@ -9,7 +9,7 @@ export const StyledMixcloudWidget = styled.iframe`
   width: 100%;
   z-index: 1000000000; */
 
-  bottom: 0;
+  bottom: -60px;
   left: 0;
   height: 60px;
   opacity: 0;
