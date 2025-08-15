@@ -28,7 +28,7 @@ const MobilePlayButton: React.FC<MobilePlayButtonProps> = ({
         label="Play"
         onClick={onPlay}
         on={playing === true}
-        size="huge"
+        size="large"
         textColor="black"
       />
 

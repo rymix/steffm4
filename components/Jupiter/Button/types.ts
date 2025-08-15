@@ -6,7 +6,7 @@ export type JupiterButtonProps = {
   textColor?: string;
   onClick?: () => void;
   momentary?: boolean; // New prop to indicate momentary button behavior
-  size?: "normal" | "huge";
+  size?: "normal" | "large" | "huge";
 };
 
 export type JupiterButtonColors = {
@@ -17,16 +17,16 @@ export type JupiterButtonColors = {
 };
 
 export type StyledJupiterButtonWrapperProps = {
-  $size?: "normal" | "huge";
+  $size?: "normal" | "large" | "huge";
 };
 
 export type StyledJupiterLedProps = {
   $down?: boolean;
   $on?: boolean;
-  $size?: "normal" | "huge";
+  $size?: "normal" | "large" | "huge";
 };
 
 export type StyledJupiterButtonProps = {
   $color?: "cream" | "yellow" | "orange" | "red" | "green" | "blue";
-  $size?: "normal" | "huge";
+  $size?: "normal" | "large" | "huge";
 };
