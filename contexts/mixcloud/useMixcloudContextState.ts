@@ -754,8 +754,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const maxPolls = 15; // Poll for 3 seconds (15 * 200ms)
       const pollInterval = 200; // Poll every 200ms
 
-      const pollForAutoplayFailure = () => {
-        pollCount++;
+      const pollForAutoplayFailure = (): void => {
+        pollCount += 1;
         const currentTime = Date.now();
         const elapsed = currentTime - detection.detectionStartTime;
 
