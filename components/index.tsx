@@ -346,7 +346,7 @@ const Jupiter: React.FC = () => {
                         />
                         <JupiterButton
                           color="blue"
-                          label="Latest"
+                          label="New"
                           onClick={handleLatestClick}
                           momentary
                         />
