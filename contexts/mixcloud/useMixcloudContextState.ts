@@ -1,7 +1,6 @@
 /* eslint-disable unicorn/consistent-function-scoping */
 /* eslint-disable unicorn/no-useless-undefined */
 
-import Farts from "components/Farts";
 import MobilePlayButton from "components/MobilePlayButton";
 import type {
   Favourite,
@@ -564,7 +563,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       logger.widget("Showing mobile autoplay recovery modal");
 
       openModal(
-        React.createElement(Farts, {
+        React.createElement(MobilePlayButton, {
           mixName: mixDetails?.name,
           onPlay: () => {
             // Use player directly for maximum reliability
@@ -577,7 +576,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
         }),
         undefined, // no title
         undefined, // no timeout
-        true, // hide chrome
+        false, // hide chrome
       );
 
       detection.shouldShowModal = false;

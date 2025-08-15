@@ -4,6 +4,7 @@ export type JupiterLabelProps = {
   paddingTop?: number;
   paddingBottom?: number;
   textColor?: string;
+  size?: "normal" | "huge";
 };
 
 export type StyledJupiterLabelProps = {
@@ -11,4 +12,5 @@ export type StyledJupiterLabelProps = {
   $paddingBottom?: number;
   $paddingTop?: number;
   $textColor?: string;
+  $size?: "normal" | "huge";
 };

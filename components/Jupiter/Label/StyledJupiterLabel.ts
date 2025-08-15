@@ -10,7 +10,7 @@ export const StyledJupiterLabelWrapper = styled.div`
 `;
 
 export const StyledJupiterLabel = styled.div<StyledJupiterLabelProps>`
-  color: rgba(255, 255, 255, 0.8);
+  color: ${(props) => props.$textColor};
   display: flex;
   align-items: ${(props) =>
     props.$labelPosition === "below" ? "flex-start" : "flex-end"};
@@ -20,6 +20,6 @@ export const StyledJupiterLabel = styled.div<StyledJupiterLabelProps>`
   text-align: center;
   padding-bottom: ${(props) => props.$paddingBottom}px;
   padding-top: ${(props) => props.$paddingTop}px;
-  font-size: 14px;
+  font-size: ${(props) => (props.$size === "huge" ? "28px" : "14px")};
   text-transform: uppercase;
 `;
