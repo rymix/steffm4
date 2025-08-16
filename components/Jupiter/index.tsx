@@ -52,13 +52,6 @@ export const Jupiter: React.FC = () => {
   const { trackInteraction } = useAutoplayInteractionTracking();
   const [sliderValue, setSliderValue] = useState<number>(volume * 100);
 
-  // Helper functions to determine if specific modals are open
-  // Since modalContent is ReactNode, we can't reliably check component types
-  // For now, we'll use a simpler approach - just check if modal is open
-  const isListModalOpen = false; // TODO: Implement proper modal type detection
-  const isInfoModalOpen = false; // TODO: Implement proper modal type detection
-  const isAboutModalOpen = false; // TODO: Implement proper modal type detection
-
   const easterEgg = (): void => {
     openModal(<OutRun />, undefined, undefined, true);
   };
@@ -327,19 +320,16 @@ export const Jupiter: React.FC = () => {
                     color="orange"
                     label="Info"
                     onClick={handleInfoClick}
-                    on={isInfoModalOpen}
                   />
                   <JupiterButton
                     color="orange"
                     label="List"
                     onClick={handleListClick}
-                    on={isListModalOpen}
                   />
                   <JupiterButton
                     color="orange"
                     label="About"
                     onClick={handleAboutClick}
-                    on={isAboutModalOpen}
                   />
                   {isReady && VOLUME_AVAILABLE && (
                     <JupiterSlider
