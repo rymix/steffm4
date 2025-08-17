@@ -26,6 +26,8 @@ import ScrollIndicator from "./ScrollIndicator";
 import Tooltip from "./Tooltip";
 
 const StefFmPlayer: React.FC = () => {
+  const [hasMounted, setHasMounted] = useState(false);
+  
   const {
     mcKey,
     themes: { playerTheme },
@@ -40,6 +42,10 @@ const StefFmPlayer: React.FC = () => {
       artistName: trackDetails?.artistName,
     });
   }, [trackSectionNumber, trackDetails?.trackName]);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
 
   return (
     <>
@@ -58,7 +64,7 @@ const StefFmPlayer: React.FC = () => {
 
       <StyledScrollContainer>
         <StyledTopPanel>
-          {playerTheme === "DX7" ? <DX7 /> : <Jupiter />}
+          {hasMounted ? (playerTheme === "DX7" ? <DX7 /> : <Jupiter />) : <Jupiter />}
         </StyledTopPanel>
         <StyledBottomPanel>
           <StyledBottomGrid>
