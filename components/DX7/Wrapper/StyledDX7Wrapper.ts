@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledDX7Wrapper = styled.div`
+export const StyledDx7Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

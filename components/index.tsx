@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 
 import Background from "./Background";
 import BurgerMenu from "./BurgerMenu";
-import DX7 from "./DX7";
+import DX7 from "./Dx7";
 import FloppyDiskStack from "./Floppy/FloppyDiskStack";
 import { DiskLabel } from "./Floppy/types";
 import Jupiter from "./Jupiter";
@@ -27,7 +27,7 @@ import Tooltip from "./Tooltip";
 
 const StefFmPlayer: React.FC = () => {
   const [hasMounted, setHasMounted] = useState(false);
-  
+
   const {
     mcKey,
     themes: { playerTheme },
@@ -64,7 +64,15 @@ const StefFmPlayer: React.FC = () => {
 
       <StyledScrollContainer>
         <StyledTopPanel>
-          {hasMounted ? (playerTheme === "DX7" ? <DX7 /> : <Jupiter />) : <Jupiter />}
+          {hasMounted ? (
+            playerTheme === "DX7" ? (
+              <DX7 />
+            ) : (
+              <Jupiter />
+            )
+          ) : (
+            <Jupiter />
+          )}
         </StyledTopPanel>
         <StyledBottomPanel>
           <StyledBottomGrid>

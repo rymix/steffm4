@@ -1,7 +1,12 @@
-import DX7Wrapper from "./Wrapper";
+import Dx7Header from "./Header";
+import Dx7Wrapper from "./Wrapper";
 
 export const DX7: React.FC = () => {
-  return <DX7Wrapper>farts</DX7Wrapper>;
+  return (
+    <Dx7Wrapper>
+      <Dx7Header />
+    </Dx7Wrapper>
+  );
 };
 
 export default DX7;
