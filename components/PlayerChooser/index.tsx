@@ -1,0 +1,85 @@
+// components/InstallInstructions.tsx
+import ArrowUpward from "@mui/icons-material/ArrowUpward";
+import { useMixcloud } from "contexts/mixcloud";
+import React, { useState } from "react";
+
+import {
+  StyledPlayerChooser,
+  StyledPlayerChooserIndicator,
+  StyledPlayerChooserItem,
+  StyledStefFmDx7Logo,
+  StyledStefFmJupiterLogo,
+} from "./StyledPlayerChooser";
+
+const PlayerChooser: React.FC = () => {
+  const {
+    session: { setModalOpen },
+    themes: { playerTheme, setPlayerTheme },
+  } = useMixcloud();
+
+  const [hoveredItem, setHoveredItem] = useState<"Jupiter" | "DX7" | null>(
+    null,
+  );
+
+  const handlePlayerChooserClick = (
+    event:
+      | React.MouseEvent<HTMLDivElement>
+      | React.KeyboardEvent<HTMLDivElement>,
+    theme: "Jupiter" | "DX7",
+  ): void => {
+    event.preventDefault();
+    setPlayerTheme(theme);
+    setTimeout(() => setModalOpen(false), 500);
+  };
+
+  return (
+    <StyledPlayerChooser>
+      <StyledPlayerChooserItem
+        onClick={(event) => handlePlayerChooserClick(event, "Jupiter")}
+        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+          if (e.key === "Enter" || e.key === " ") {
+            handlePlayerChooserClick(e, "Jupiter");
+          }
+        }}
+        onMouseEnter={() => setHoveredItem("Jupiter")}
+        onMouseLeave={() => setHoveredItem(null)}
+        tabIndex={0}
+        role="button"
+        $isSelected={playerTheme === "Jupiter"}
+      >
+        <StyledStefFmJupiterLogo />
+        <p>Jupiter-8</p>
+        <StyledPlayerChooserIndicator
+          $isSelected={playerTheme === "Jupiter"}
+          $isOtherHovered={hoveredItem === "DX7"}
+        >
+          <ArrowUpward />
+        </StyledPlayerChooserIndicator>
+      </StyledPlayerChooserItem>
+      <StyledPlayerChooserItem
+        onClick={(event) => handlePlayerChooserClick(event, "DX7")}
+        onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
+          if (e.key === "Enter" || e.key === " ") {
+            handlePlayerChooserClick(e, "DX7");
+          }
+        }}
+        onMouseEnter={() => setHoveredItem("DX7")}
+        onMouseLeave={() => setHoveredItem(null)}
+        tabIndex={0}
+        role="button"
+        $isSelected={playerTheme === "DX7"}
+      >
+        <StyledStefFmDx7Logo />
+        <p>DX7</p>
+        <StyledPlayerChooserIndicator
+          $isSelected={playerTheme === "DX7"}
+          $isOtherHovered={hoveredItem === "Jupiter"}
+        >
+          <ArrowUpward />
+        </StyledPlayerChooserIndicator>
+      </StyledPlayerChooserItem>
+    </StyledPlayerChooser>
+  );
+};
+
+export default PlayerChooser;

@@ -13,9 +13,10 @@ import { useEffect, useState } from "react";
 
 import Background from "./Background";
 import BurgerMenu from "./BurgerMenu";
+import DX7 from "./DX7";
 import FloppyDiskStack from "./Floppy/FloppyDiskStack";
 import { DiskLabel } from "./Floppy/types";
-import JupiterDevice from "./Jupiter";
+import Jupiter from "./Jupiter";
 import UserManualCover from "./Manual/UserManualCover";
 import Mixcloud from "./Mixcloud";
 import Modal from "./Modal";
@@ -27,6 +28,7 @@ import Tooltip from "./Tooltip";
 const StefFmPlayer: React.FC = () => {
   const {
     mcKey,
+    themes: { playerTheme },
     track: { details: trackDetails, sectionNumber: trackSectionNumber },
   } = useMixcloud();
 
@@ -56,7 +58,7 @@ const StefFmPlayer: React.FC = () => {
 
       <StyledScrollContainer>
         <StyledTopPanel>
-          <JupiterDevice />
+          {playerTheme === "DX7" ? <DX7 /> : <Jupiter />}
         </StyledTopPanel>
         <StyledBottomPanel>
           <StyledBottomGrid>

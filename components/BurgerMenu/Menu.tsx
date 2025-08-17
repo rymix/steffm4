@@ -5,6 +5,7 @@ import { StyledMenu } from "components/BurgerMenu/StyledBurgerMenu";
 import Contact from "components/Contact";
 import Install from "components/Install";
 import Manual from "components/Manual";
+import PlayerChooser from "components/PlayerChooser";
 import Statistics from "components/Statistics";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
@@ -59,6 +60,14 @@ const Menu: React.FC = () => {
   ): void => {
     event.preventDefault();
     openModal(<Statistics />);
+    setTimeout(() => setMenuOpen(false), 500);
+  };
+
+  const handlePlayerChooserClick = (
+    event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
+  ): void => {
+    event.preventDefault();
+    openModal(<PlayerChooser />);
     setTimeout(() => setMenuOpen(false), 500);
   };
 
@@ -136,6 +145,18 @@ const Menu: React.FC = () => {
           role="button"
         >
           Wallpaper Chooser
+        </li>
+        <li
+          onClick={(event) => handlePlayerChooserClick(event)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handlePlayerChooserClick(e);
+            }
+          }}
+          tabIndex={0}
+          role="button"
+        >
+          Player Chooser
         </li>
       </ul>
     </StyledMenu>

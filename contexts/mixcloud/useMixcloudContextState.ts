@@ -24,6 +24,7 @@ import {
   AUTO_CHANGE_BACKGROUND,
   DEFAULT_BACKGROUND,
   DEFAULT_MESSAGE,
+  DEFAULT_THEME,
   DEFAULT_VOLUME,
   DISPLAY_LENGTH,
   GA4,
@@ -66,6 +67,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
   });
 
   const { subscribe } = useMasterTimer();
+  const [playerTheme, setPlayerTheme] = usePersistedState<"Jupiter" | "DX7">(
+    "playerTheme",
+    DEFAULT_THEME,
+  );
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [duration, setDuration] = useState<number>(0);
@@ -1951,6 +1956,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
       tooltipVisible,
       theme,
       themeName,
+    },
+    themes: {
+      playerTheme,
+      setPlayerTheme,
     },
     track: {
       details: trackDetails,
