@@ -37,30 +37,30 @@ const getGradientColors = (
     }
     case "red": {
       return {
-        light: "rgba(242, 56, 27, 1)",
-        normal: "rgba(222, 50, 18, 1)",
-        dark: "rgba(161, 36, 13, 1)",
+        light: "rgba(236, 128, 125, 1)",
+        normal: "rgba(235, 105, 101, 1)",
+        dark: "rgba(223, 84, 80, 1)",
       };
     }
     case "green": {
       return {
-        light: "rgba(97, 187, 105, 1)",
-        normal: "rgba(89, 166, 71, 1)",
-        dark: "rgba(64, 120, 53, 1)",
+        light: "rgba(131, 222, 207, 1)",
+        normal: "rgba(94, 204, 186, 1)",
+        dark: "rgba(67, 184, 165, 1)",
       };
     }
     case "blue": {
       return {
-        light: "rgba(83, 138, 255, 1)",
-        normal: "rgba(76, 123, 221, 1)",
-        dark: "rgba(55, 89, 164, 1)",
+        light: "rgba(101, 172, 228, 1)",
+        normal: "rgba(76, 156, 219, 1)",
+        dark: "rgba(48, 133, 202, 1)",
       };
     }
     default: {
       return {
-        light: "rgba(252, 246, 209, 1)",
-        normal: "rgba(231, 218, 141, 1)",
-        dark: "rgba(167, 158, 105, 1)",
+        light: "rgba(189, 145, 113, 1)",
+        normal: "rgba(175, 125, 89, 1)",
+        dark: "rgba(157, 102, 62, 1)",
       };
     }
   }
@@ -77,8 +77,7 @@ export const StyledDx7ButtonWrapper = styled.div<StyledDx7ButtonWrapperProps>`
       ? "100%"
       : props.$size === "large"
         ? "91px"
-        : "128px"};
-  width: 54px;
+        : "66px"};
 
   @media screen and (orientation: portrait) and (max-width: 440px) {
     width: ${(props) =>
@@ -96,11 +95,8 @@ export const StyledDx7Button = styled.button<StyledDx7ButtonProps>`
     180deg,
     ${(props) => getGradientColors(props.$color || "cream").light} 0%,
     ${(props) => getGradientColors(props.$color || "cream").normal} 3%,
-    ${(props) => getGradientColors(props.$color || "cream").normal} 30%,
-    ${(props) => getGradientColors(props.$color || "cream").light} 31%,
-    ${(props) => getGradientColors(props.$color || "cream").dark} 35%,
-    ${(props) => getGradientColors(props.$color || "cream").normal} 72%,
-    ${(props) => getGradientColors(props.$color || "cream").normal} 100%
+    ${(props) => getGradientColors(props.$color || "cream").normal} 50%,
+    ${(props) => getGradientColors(props.$color || "cream").dark} 100%
   );
   border: 3px solid rgba(0, 0, 0, 0.7);
   border-radius: 5px;
@@ -108,16 +104,16 @@ export const StyledDx7Button = styled.button<StyledDx7ButtonProps>`
   cursor: pointer;
   height: ${(props) =>
     props.$size === "huge"
-      ? "144px"
+      ? "66px"
       : props.$size === "large"
         ? "108px"
-        : "72px"};
+        : "33px"};
   width: ${(props) =>
     props.$size === "huge"
-      ? "84px"
+      ? "132px"
       : props.$size === "large"
         ? "63px"
-        : "42px"};
+        : "66px"};
   overflow: hidden;
   position: relative;
   transition:
@@ -157,15 +153,11 @@ export const StyledDx7Led = styled.div<StyledDx7LedProps>`
       : props.$size === "large"
         ? "18px"
         : "12px"};
-  left: ${(props) =>
-    props.$size === "huge"
-      ? "26px"
-      : props.$size === "large"
-        ? "19px"
-        : "12px"};
+  right: ${(props) =>
+    props.$size === "huge" ? "26px" : props.$size === "large" ? "19px" : "4px"};
   position: absolute;
   top: ${(props) =>
-    props.$size === "huge" ? "8px" : props.$size === "large" ? "6px" : "4px"};
+    props.$size === "huge" ? "8px" : props.$size === "large" ? "6px" : "8px"};
   transform: ${(props) => (props.$down ? "scale(0.9)" : "scale(1)")};
   transition:
     background-color 0.1s ease-in-out,

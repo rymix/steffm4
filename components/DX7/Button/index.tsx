@@ -63,7 +63,7 @@ const Dx7Button: React.FC<Dx7ButtonProps> = ({
           label={label}
           labelPosition={labelPosition}
           paddingTop={0}
-          paddingBottom={10}
+          paddingBottom={4}
           textColor={textColor}
           size={size}
         />
@@ -83,7 +83,7 @@ const Dx7Button: React.FC<Dx7ButtonProps> = ({
           label={label}
           labelPosition={labelPosition}
           paddingTop={0}
-          paddingBottom={10}
+          paddingBottom={4}
           textColor={textColor}
           size={size}
         />

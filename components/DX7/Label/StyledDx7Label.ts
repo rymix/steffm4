@@ -5,8 +5,8 @@ export const StyledDx7LabelWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   width: 100%;
-  height: 42px;
-  min-height: 42px;
+  height: 32px;
+  min-height: 32px;
 `;
 
 export const StyledDx7Label = styled.div<StyledDx7LabelProps>`
@@ -14,17 +14,18 @@ export const StyledDx7Label = styled.div<StyledDx7LabelProps>`
   display: flex;
   align-items: ${(props) =>
     props.$labelPosition === "below" ? "flex-start" : "flex-end"};
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   height: 100%;
   text-align: center;
   padding-bottom: ${(props) => props.$paddingBottom}px;
   padding-top: ${(props) => props.$paddingTop}px;
+  padding-left: 4px;
   font-size: ${(props) =>
     props.$size === "huge"
-      ? "28px"
+      ? "22px"
       : props.$size === "large"
-        ? "21px"
-        : "14px"};
+        ? "16px"
+        : "10px"};
   text-transform: uppercase;
 `;
