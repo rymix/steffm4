@@ -10,6 +10,7 @@
   "scripts": {
     "build": "next build && node post-build.js",
     "dev": "PORT=3001 next dev",
+    "devpc": "next dev -p 3001",
     "eslint": "node --no-warnings ./node_modules/.bin/eslint .",
     "export": "next export -o _static",
     "prepare": "husky install",
