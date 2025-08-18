@@ -7,7 +7,6 @@ export const StyledDx7Case = styled.div`
   flex-direction: column; /* each direct child = its own row */
   align-items: stretch; /* rows fill full width */
   justify-content: flex-start;
-  gap: 12px; /* optional spacing between rows */
 `;
 
 export const StyledDx7Row = styled.div``;
