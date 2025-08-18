@@ -19,6 +19,7 @@ import type { Track } from "db/types";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { convertTimeToHumanReadable } from "utils/functions";
+import { essentialLogger } from "utils/logger";
 
 export const TrackListMini: React.FC<TrackListMiniProps> = ({
   mix,
@@ -42,7 +43,7 @@ export const TrackListMini: React.FC<TrackListMiniProps> = ({
 
         setTracks(tracksData);
       } catch (error) {
-        console.error(error);
+        essentialLogger.error("Failed to fetch tracks:", error);
       } finally {
         setIsLoading(false);
       }

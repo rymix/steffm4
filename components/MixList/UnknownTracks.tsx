@@ -11,6 +11,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import { UnknownTrack } from "db/types";
 import React, { useEffect, useState } from "react";
 import { convertTimeToSeconds, mcKeyFormatter } from "utils/functions";
+import { essentialLogger } from "utils/logger";
 
 export const UnknownTracks: React.FC = () => {
   const [unknownTracks, setUnknownTracks] = useState<UnknownTrack[]>([]);
@@ -29,7 +30,7 @@ export const UnknownTracks: React.FC = () => {
         const response = await axios.get("/api/unknownTracks");
         setUnknownTracks(response.data);
       } catch (error_) {
-        console.error(error_);
+        essentialLogger.error("Failed to fetch unknown tracks:", error_);
         setError("Failed to fetch unknown tracks.");
       } finally {
         setLoading(false);
@@ -51,7 +52,7 @@ export const UnknownTracks: React.FC = () => {
         const seconds = convertTimeToSeconds(startTime);
         await handleSeek(seconds); // Seek to the track's start time
       } catch (localError) {
-        console.error("Error loading or seeking mix:", localError);
+        essentialLogger.error("Error loading or seeking mix:", localError);
       }
     }
   };

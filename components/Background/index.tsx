@@ -4,6 +4,7 @@ import {
 } from "components/Background/StyledBackground";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
+import { essentialLogger } from "utils/logger";
 
 const Background: React.FC = () => {
   const {
@@ -71,7 +72,7 @@ const Background: React.FC = () => {
         const randomBackground = await response.json();
         setBackground(randomBackground); // Update the state with the fetched background
       } catch (error) {
-        console.error("Error setting random background:", error);
+        essentialLogger.error("Error setting random background:", error);
       }
     };
 

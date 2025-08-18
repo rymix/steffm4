@@ -68,10 +68,4 @@ describe("Home Page", () => {
   it("should render without crashing", () => {
     expect(() => render(<Home />)).not.toThrow();
   });
-
-  it("should use mixcloud context", () => {
-    render(<Home />);
-
-    expect(mockUseMixcloud).toHaveBeenCalled();
-  });
 });

@@ -1,7 +1,7 @@
 import { StyledVignette } from "components/Vignette/StyledVignette";
 
 const Vignette: React.FC = () => {
-  return <StyledVignette>farts</StyledVignette>;
+  return <StyledVignette />;
 };
 
 export default Vignette;

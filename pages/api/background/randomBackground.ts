@@ -3,8 +3,8 @@
 import { db, initializeDb } from "db";
 import type { BackgroundExtended } from "db/types";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { DEBUG } from "utils/constants";
 import { getBackgroundCategoryObject } from "utils/functions";
+import { logger } from "utils/logger";
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,9 +13,7 @@ export default async function handler(
   await initializeDb();
 
   const { backgroundCategory } = req.query;
-  if (DEBUG) {
-    console.log("backgroundCategory", backgroundCategory);
-  }
+  logger.info("backgroundCategory", backgroundCategory);
 
   // Fetch all backgrounds and categories from the database
   let backgrounds = db.data?.backgrounds || [];

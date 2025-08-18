@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import ReactGA from "react-ga4";
 import { GA4, GOOGLE_TRACKING_ID } from "utils/constants";
+import { essentialLogger } from "utils/logger";
 
 const DynamicRoute = (): null => {
   const router = useRouter();
@@ -35,7 +36,7 @@ const DynamicRoute = (): null => {
         }
       })
       .catch((error) => {
-        console.error("Failed to redirect:", error);
+        essentialLogger.error("Failed to redirect:", error);
       });
   }, [handleLoadLatest, router.isReady, router.query, router]);
 

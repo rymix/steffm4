@@ -24,6 +24,7 @@ import type { Category, Mix } from "db/types";
 import _ from "lodash";
 import React, { useEffect, useRef, useState } from "react";
 import { listenedStatus } from "utils/functions";
+import { essentialLogger } from "utils/logger";
 
 export const MixList: React.FC = () => {
   const {
@@ -105,7 +106,7 @@ export const MixList: React.FC = () => {
       const favouriteMixes = await Promise.all(mixPromises);
       return favouriteMixes;
     } catch (error) {
-      console.error(error);
+      essentialLogger.error("Failed to fetch mixes:", error);
       return [];
     }
   };
@@ -136,7 +137,7 @@ export const MixList: React.FC = () => {
         setMixes(mixesData);
       }
     } catch (error) {
-      console.error(error);
+      essentialLogger.error("Failed to fetch mixes:", error);
     } finally {
       setIsLoading(false);
     }
@@ -150,7 +151,7 @@ export const MixList: React.FC = () => {
       const latestMixesData = await response.json();
       setLatestMixes(latestMixesData);
     } catch (error) {
-      console.error(error);
+      essentialLogger.error("Failed to fetch mixes:", error);
     } finally {
       setIsLoading(false);
     }
@@ -164,7 +165,7 @@ export const MixList: React.FC = () => {
       const results = await response.json();
       setSearchResults(results);
     } catch (error) {
-      console.error(error);
+      essentialLogger.error("Failed to fetch mixes:", error);
     } finally {
       setIsLoading(false);
     }

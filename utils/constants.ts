@@ -1,6 +1,6 @@
 import { BackgroundExtended } from "db/types";
 
-export const DEBUG = true;
+// DEBUG constant moved to utils/logger.ts with querystring override support
 export const VOLUME_AVAILABLE = true;
 export const GA4 = false;
 export const AUTO_CHANGE_BACKGROUND = true;
@@ -8,6 +8,7 @@ export const DEFAULT_LOCALE = "en-GB";
 export const DEFAULT_MESSAGE = "Stef FM - Funky House Coming In Your Ears";
 export const DEFAULT_TITLE = "Stef.FM - Funky House Coming In Your Ears";
 export const DEFAULT_VOLUME = 1;
+export const DEFAULT_THEME = "Jupiter";
 export const DISPLAY_LENGTH = 24;
 export const NOISE_BACKGROUND_LOW = `
   data:image/png;base64,

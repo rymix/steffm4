@@ -15,6 +15,7 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
   textColor = "white",
   onClick,
   momentary = false,
+  size = "normal",
 }) => {
   const [down, setDown] = useState<boolean>(false);
   const [momentaryLit, setMomentaryLit] = useState<boolean>(false);
@@ -56,7 +57,7 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
   const ledOn = momentary ? momentaryLit : on;
 
   return (
-    <StyledJupiterButtonWrapper>
+    <StyledJupiterButtonWrapper $size={size}>
       {labelPosition === "above" && (
         <JupiterLabel
           label={label}
@@ -64,16 +65,18 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
           paddingTop={0}
           paddingBottom={10}
           textColor={textColor}
+          size={size}
         />
       )}
       <StyledJupiterButton
         $color={color}
+        $size={size}
         onMouseDown={() => setDown(true)}
         onMouseUp={() => setDown(false)}
         onMouseLeave={() => setDown(false)}
         onClick={handleClick}
       >
-        <StyledJupiterLed $down={down} $on={ledOn} />
+        <StyledJupiterLed $down={down} $on={ledOn} $size={size} />
       </StyledJupiterButton>
       {labelPosition === "below" && (
         <JupiterLabel
@@ -82,6 +85,7 @@ const JupiterButton: React.FC<JupiterButtonProps> = ({
           paddingTop={0}
           paddingBottom={10}
           textColor={textColor}
+          size={size}
         />
       )}
     </StyledJupiterButtonWrapper>

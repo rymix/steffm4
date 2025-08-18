@@ -23,6 +23,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import type { BackgroundCategory, BackgroundExtended } from "db/types";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
+import { essentialLogger } from "utils/logger";
 
 export const BackgroundSelect: React.FC = () => {
   const {
@@ -80,7 +81,7 @@ export const BackgroundSelect: React.FC = () => {
       const categoriesData = await response.json();
       setBackgroundCategories(categoriesData);
     } catch (error) {
-      console.error(error);
+      essentialLogger.error("Failed to fetch background categories:", error);
     }
   };
 
@@ -133,7 +134,7 @@ export const BackgroundSelect: React.FC = () => {
         setBackground(undefined);
       }
     } catch (error) {
-      console.error(error);
+      essentialLogger.error("Failed to fetch background categories:", error);
     } finally {
       setIsLoading(false);
     }
