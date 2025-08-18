@@ -1,3 +1,15 @@
+import Background from "components/Background";
+import BurgerMenu from "components/BurgerMenu";
+import DX7 from "components/Dx7";
+import FloppyDiskStack from "components/Floppy/FloppyDiskStack";
+import { DiskLabel } from "components/Floppy/types";
+import Jupiter from "components/Jupiter";
+import UserManualCover from "components/Manual/UserManualCover";
+import Mixcloud from "components/Mixcloud";
+import Modal from "components/Modal";
+import Notebook from "components/Notebook";
+import Overlay from "components/Overlay";
+import ScrollIndicator from "components/ScrollIndicator";
 import {
   StyledBottomGrid,
   StyledBottomPanel,
@@ -8,22 +20,9 @@ import {
   StyledScrollContainer,
   StyledTopPanel,
 } from "components/Styled";
+import Tooltip from "components/Tooltip";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
-
-import Background from "./Background";
-import BurgerMenu from "./BurgerMenu";
-import DX7 from "./Dx7";
-import FloppyDiskStack from "./Floppy/FloppyDiskStack";
-import { DiskLabel } from "./Floppy/types";
-import Jupiter from "./Jupiter";
-import UserManualCover from "./Manual/UserManualCover";
-import Mixcloud from "./Mixcloud";
-import Modal from "./Modal";
-import Notebook from "./Notebook";
-import Overlay from "./Overlay";
-import ScrollIndicator from "./ScrollIndicator";
-import Tooltip from "./Tooltip";
 
 const StefFmPlayer: React.FC = () => {
   const [hasMounted, setHasMounted] = useState(false);

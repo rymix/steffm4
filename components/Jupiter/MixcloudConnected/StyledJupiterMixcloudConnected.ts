@@ -1,6 +1,5 @@
+import type { StyledJupiterMixcloudConnectedProps } from "components/Jupiter/MixcloudConnected/types";
 import styled from "styled-components";
-
-import type { StyledJupiterMixcloudConnectedProps } from "./types";
 
 export const StyledJupiterMixcloudConnectedWrapper = styled.div`
   top: -20px;

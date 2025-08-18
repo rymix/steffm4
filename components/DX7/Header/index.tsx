@@ -4,7 +4,7 @@ import {
   StyledDx7HeaderMotto,
   StyledDx7HeaderSpacer,
   StyledDx7HeaderTitle,
-} from "./StyledDx7Header";
+} from "components/Dx7/Header/StyledDx7Header";
 
 const Dx7Header: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
-import Dx7Controls from "./Controls";
-import Dx7Header from "./Header";
-import { StyledDx7Case } from "./StyledDx7";
-import Dx7Wrapper from "./Wrapper";
+import Dx7Controls from "components/Dx7/Controls";
+import Dx7Header from "components/Dx7/Header";
+import { StyledDx7Case } from "components/Dx7/StyledDx7";
+import Dx7Wrapper from "components/Dx7/Wrapper";
 
 export const Dx7: React.FC = () => {
   return (

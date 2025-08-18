@@ -1,15 +1,14 @@
 // components/InstallInstructions.tsx
 import ArrowUpward from "@mui/icons-material/ArrowUpward";
-import { useMixcloud } from "contexts/mixcloud";
-import React, { useState } from "react";
-
 import {
   StyledPlayerChooser,
   StyledPlayerChooserIndicator,
   StyledPlayerChooserItem,
   StyledStefFmDx7Logo,
   StyledStefFmJupiterLogo,
-} from "./StyledPlayerChooser";
+} from "components/PlayerChooser/StyledPlayerChooser";
+import { useMixcloud } from "contexts/mixcloud";
+import React, { useState } from "react";
 
 const PlayerChooser: React.FC = () => {
   const {

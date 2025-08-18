@@ -1,5 +1,17 @@
 import About from "components/About";
 import DrivingMode from "components/DrivingMode";
+import JupiterButton from "components/Jupiter/Button";
+import JupiterCase from "components/Jupiter/Case";
+import JupiterHeader from "components/Jupiter/Header";
+import JupiterKnob from "components/Jupiter/Knob";
+import JupiterPanel from "components/Jupiter/Panel";
+import JupiterBackPanel from "components/Jupiter/Panel/BackPanel";
+import JupiterFrontPanel from "components/Jupiter/Panel/FrontPanel";
+import JupiterProgressLeds from "components/Jupiter/ProgressLeds";
+import JupiterScreen from "components/Jupiter/Screen";
+import JupiterSlider from "components/Jupiter/Slider";
+import JupiterTitle from "components/Jupiter/Title";
+import JupiterWrapper from "components/Jupiter/Wrapper";
 import MixInformation from "components/MixInformation";
 import MixList from "components/MixList";
 import OutRun from "components/OutRun";
@@ -16,19 +28,6 @@ import { useKonami } from "react-konami-code";
 import { GA4, VOLUME_AVAILABLE } from "utils/constants";
 import { getCategoryIndex } from "utils/functions";
 import { useAutoplayInteractionTracking } from "utils/mobileAutoplayHelper";
-
-import JupiterButton from "./Button";
-import JupiterCase from "./Case";
-import JupiterHeader from "./Header";
-import JupiterKnob from "./Knob";
-import JupiterPanel from "./Panel";
-import JupiterBackPanel from "./Panel/BackPanel";
-import JupiterFrontPanel from "./Panel/FrontPanel";
-import JupiterProgressLeds from "./ProgressLeds";
-import JupiterScreen from "./Screen";
-import JupiterSlider from "./Slider";
-import JupiterTitle from "./Title";
-import JupiterWrapper from "./Wrapper";
 
 export const Jupiter: React.FC = () => {
   const {

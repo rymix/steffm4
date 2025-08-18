@@ -1,12 +1,11 @@
-import type { Dx7ButtonProps } from "components/Dx7/Button/types";
-import Dx7Label from "components/Dx7/Label";
-import { useCallback, useEffect, useRef, useState } from "react";
-
 import {
   StyledDx7Button,
   StyledDx7ButtonWrapper,
   StyledDx7Led,
-} from "./StyledDx7Button";
+} from "components/Dx7/Button/StyledDx7Button";
+import type { Dx7ButtonProps } from "components/Dx7/Button/types";
+import Dx7Label from "components/Dx7/Label";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const Dx7Button: React.FC<Dx7ButtonProps> = ({
   on = false,

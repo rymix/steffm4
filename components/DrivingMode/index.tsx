@@ -1,13 +1,12 @@
-import JupiterButton from "components/Jupiter/Button";
-import { useMixcloud } from "contexts/mixcloud";
-import React from "react";
-
 import {
   StyledButtonGrid,
   StyledDrivingMode,
   StyledMixTitle,
   StyledSubtitle,
-} from "./StyledDrivingMode";
+} from "components/DrivingMode/StyledDrivingMode";
+import JupiterButton from "components/Jupiter/Button";
+import { useMixcloud } from "contexts/mixcloud";
+import React from "react";
 
 const DrivingMode: React.FC = () => {
   const {
