@@ -18,6 +18,13 @@ class MyDocument extends Document {
           {/* Preload critical custom fonts to prevent FOUC */}
           <link
             rel="preload"
+            href="/fonts/enhanced_dot_digital-7.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="preload"
             href="/fonts/Sforzando W00.woff2"
             as="font"
             type="font/woff2"
