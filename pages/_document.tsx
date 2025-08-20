@@ -18,7 +18,7 @@ class MyDocument extends Document {
           {/* Preload critical custom fonts to prevent FOUC */}
           <link
             rel="preload"
-            href="/fonts/enhanced_dot_digital-7.woff2"
+            href="/fonts/serif-led-board-7.regular.woff2"
             as="font"
             type="font/woff2"
             crossOrigin="anonymous"

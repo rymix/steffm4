@@ -11,9 +11,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
     @font-face {
-    font-family: 'DotDigital7';
-    src: url('/fonts/enhanced_dot_digital-7.woff2') format('woff2'),
-         url('/fonts/enhanced_dot_digital-7.woff') format('woff');
+    font-family: 'LEDBoard7';
+    src: url('/fonts/serif-led-board-7.regular.woff2') format('woff2'),
+         url('/fonts/serif-led-board-7.regular-7.woff') format('woff');
     font-style: normal;
     font-display: block;
   }
