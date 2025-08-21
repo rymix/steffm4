@@ -11,7 +11,7 @@ export const StyledDx7Screen = styled.div`
   text-shadow: 0 0 3px rgba(36, 29, 25, 0.3);
   overflow: hidden; /* hide scaled edges */
 
-  width: 400px;
+  width: 680px;
   height: 80px;
 
   /* ensure content sits above the pseudo background */

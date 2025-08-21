@@ -1218,13 +1218,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
         setTrackProgress(trackProgressSeconds);
         setTrackProgressPercent(localTrackProgressPercent);
         setTrackSectionNumber(tracks[currentTrackIndex].sectionNumber);
-        
+
         // Only update trackDetails if it has actually changed
         const newTrackDetails = tracks[currentTrackIndex];
         if (JSON.stringify(trackDetails) !== JSON.stringify(newTrackDetails)) {
           setTrackDetails(newTrackDetails);
         }
-        
+
         setLastTrackUpdateTime(currentTime);
       }
     };
