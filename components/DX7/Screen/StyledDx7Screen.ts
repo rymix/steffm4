@@ -6,9 +6,13 @@ export const StyledDx7Screen = styled.div`
   color: rgba(36, 29, 25, 0.6);
   font-family: LEDBoard7;
   font-size: 20px;
+  line-height: 1.2;
   padding: 20px;
   text-shadow: 0 0 3px rgba(36, 29, 25, 0.3);
   overflow: hidden; /* hide scaled edges */
+
+  width: 400px;
+  height: 80px;
 
   /* ensure content sits above the pseudo background */
   & > * {
