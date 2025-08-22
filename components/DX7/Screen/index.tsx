@@ -29,16 +29,18 @@ const Dx7Screen: React.FC = () => {
   const lastTrackDetailsRef = useRef<typeof trackDetails | null>(null);
   const rotationIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const animationIntervalRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   // Animation state tracking refs
   const currentOffsetValueRef = useRef<number>(0);
   const nextOffsetValueRef = useRef<number>(0);
   const dualScrollStartedRef = useRef<boolean>(false);
-  const animationStateRef = useRef<"idle" | "scrolling-out" | "dual-scroll">("idle");
+  const animationStateRef = useRef<"idle" | "scrolling-out" | "dual-scroll">(
+    "idle",
+  );
 
   const stepsPx = 5;
   const stringLength = 72;
-  const displayTimeMs = 3000;
+  const displayTimeMs = 7000;
   const displayHeightPx = 80;
   const animationStepMs = 50;
 
@@ -56,7 +58,10 @@ const Dx7Screen: React.FC = () => {
   // Animation functions
   const startScrollAnimation = (nextMsg: string): void => {
     if (animationStateRef.current !== "idle") {
-      DEBUG && console.log(`🔄 Animation blocked - current ref state: ${animationStateRef.current}`);
+      DEBUG &&
+        console.log(
+          `🔄 Animation blocked - current ref state: ${animationStateRef.current}`,
+        );
       return;
     }
 
@@ -81,7 +86,10 @@ const Dx7Screen: React.FC = () => {
 
     const halfwayPoint = -displayHeightPx / 2;
 
-    DEBUG && console.log(`🔄 Starting new animation for message: "${nextMsg.slice(0, 20)}..."`);
+    DEBUG &&
+      console.log(
+        `🔄 Starting new animation for message: "${nextMsg.slice(0, 20)}..."`,
+      );
 
     // Start scroll-out animation (configurable steps)
     animationIntervalRef.current = setInterval(() => {
@@ -90,7 +98,10 @@ const Dx7Screen: React.FC = () => {
       setCurrentOffset(currentOffsetValueRef.current);
 
       // When current message reaches halfway point, start next message
-      if (currentOffsetValueRef.current <= halfwayPoint && !dualScrollStartedRef.current) {
+      if (
+        currentOffsetValueRef.current <= halfwayPoint &&
+        !dualScrollStartedRef.current
+      ) {
         DEBUG &&
           console.log(
             `🔄 Starting dual-scroll at halfway point: ${currentOffsetValueRef.current} <= ${halfwayPoint}`,
@@ -103,34 +114,40 @@ const Dx7Screen: React.FC = () => {
 
       // Animate next message in parallel during dual-scroll phase
       if (dualScrollStartedRef.current) {
-        nextOffsetValueRef.current = Math.max(nextOffsetValueRef.current - stepsPx, 0);
+        nextOffsetValueRef.current = Math.max(
+          nextOffsetValueRef.current - stepsPx,
+          0,
+        );
         setNextOffset(nextOffsetValueRef.current);
         DEBUG &&
-          console.log(`🔄 Next message offset: ${nextOffsetValueRef.current + stepsPx} -> ${nextOffsetValueRef.current}`);
+          console.log(
+            `🔄 Next message offset: ${nextOffsetValueRef.current + stepsPx} -> ${nextOffsetValueRef.current}`,
+          );
       }
 
       // Check completion condition using ref values
-      const currentOffscreen = currentOffsetValueRef.current <= -displayHeightPx;
+      const currentOffscreen =
+        currentOffsetValueRef.current <= -displayHeightPx;
       const nextAtFinal = nextOffsetValueRef.current <= 0;
-      
+
       if (currentOffscreen && nextAtFinal && dualScrollStartedRef.current) {
         DEBUG &&
           console.log(
             `✅ Animation complete - current: ${currentOffsetValueRef.current}, next: ${nextOffsetValueRef.current}`,
           );
-        
+
         // Complete the animation
         setDisplayMessage(nextMsg);
         setAnimationState("idle");
         setCurrentOffset(0);
         setShowNext(false);
-        
+
         // Reset refs for next animation
         currentOffsetValueRef.current = 0;
         nextOffsetValueRef.current = displayHeightPx;
         dualScrollStartedRef.current = false;
         animationStateRef.current = "idle";
-        
+
         if (animationIntervalRef.current) {
           clearInterval(animationIntervalRef.current);
           animationIntervalRef.current = null;
@@ -196,7 +213,7 @@ const Dx7Screen: React.FC = () => {
       setCurrentOffset(0);
       setNextOffset(displayHeightPx);
       setShowNext(false);
-      
+
       // Reset animation state refs
       currentOffsetValueRef.current = 0;
       nextOffsetValueRef.current = displayHeightPx;
