@@ -18,7 +18,7 @@ const overlayStyles = css`
 `;
 
 const getGradientColors = (
-  color: "cream" | "yellow" | "orange" | "red" | "green" | "blue",
+  color: "cream" | "yellow" | "orange" | "red" | "green" | "blue" | "grey",
 ): Omit<Dx7ButtonColors, "color"> => {
   switch (color) {
     case "yellow": {
@@ -56,6 +56,13 @@ const getGradientColors = (
         dark: "rgba(48, 133, 202, 1)",
       };
     }
+    case "grey": {
+      return {
+        light: "rgba(60, 60, 60, 1)",
+        normal: "rgba(55, 55, 55, 1)",
+        dark: "rgba(50, 50, 50, 1)",
+      };
+    }
     default: {
       return {
         light: "rgba(189, 145, 113, 1)",
@@ -77,7 +84,9 @@ export const StyledDx7ButtonWrapper = styled.div<StyledDx7ButtonWrapperProps>`
       ? "100%"
       : props.$size === "large"
         ? "91px"
-        : "66px"};
+        : props.$size === "tiny"
+          ? "44px"
+          : "66px"};
 
   @media screen and (orientation: portrait) and (max-width: 440px) {
     width: ${(props) =>
@@ -85,7 +94,9 @@ export const StyledDx7ButtonWrapper = styled.div<StyledDx7ButtonWrapperProps>`
         ? "100%"
         : props.$size === "large"
           ? "68px"
-          : "44px"};
+          : props.$size === "tiny"
+            ? "32px"
+            : "44px"};
   }
 `;
 
@@ -107,13 +118,17 @@ export const StyledDx7Button = styled.button<StyledDx7ButtonProps>`
       ? "66px"
       : props.$size === "large"
         ? "108px"
-        : "33px"};
+        : props.$size === "tiny"
+          ? "22px"
+          : "33px"};
   width: ${(props) =>
     props.$size === "huge"
       ? "132px"
       : props.$size === "large"
         ? "63px"
-        : "66px"};
+        : props.$size === "tiny"
+          ? "44px"
+          : "66px"};
   overflow: hidden;
   position: relative;
   transition:
@@ -145,19 +160,35 @@ export const StyledDx7Led = styled.div<StyledDx7LedProps>`
       ? "2px solid rgba(255, 255, 255, 0.4)"
       : props.$size === "large"
         ? "1.5px solid rgba(255, 255, 255, 0.4)"
-        : "1px solid rgba(255, 255, 255, 0.4)"};
+        : props.$size === "tiny"
+          ? "0.5px solid rgba(255, 255, 255, 0.4)"
+          : "1px solid rgba(255, 255, 255, 0.4)"};
   border-radius: 50%;
   height: ${(props) =>
     props.$size === "huge"
       ? "24px"
       : props.$size === "large"
         ? "18px"
-        : "12px"};
+        : props.$size === "tiny"
+          ? "8px"
+          : "12px"};
   right: ${(props) =>
-    props.$size === "huge" ? "26px" : props.$size === "large" ? "19px" : "4px"};
+    props.$size === "huge"
+      ? "26px"
+      : props.$size === "large"
+        ? "19px"
+        : props.$size === "tiny"
+          ? "3px"
+          : "4px"};
   position: absolute;
   top: ${(props) =>
-    props.$size === "huge" ? "8px" : props.$size === "large" ? "6px" : "8px"};
+    props.$size === "huge"
+      ? "8px"
+      : props.$size === "large"
+        ? "6px"
+        : props.$size === "tiny"
+          ? "5px"
+          : "8px"};
   transform: ${(props) => (props.$down ? "scale(0.9)" : "scale(1)")};
   transition:
     background-color 0.1s ease-in-out,
@@ -168,7 +199,9 @@ export const StyledDx7Led = styled.div<StyledDx7LedProps>`
       ? "24px"
       : props.$size === "large"
         ? "18px"
-        : "12px"};
+        : props.$size === "tiny"
+          ? "8px"
+          : "12px"};
 
   &::before {
     background-color: ${(props) =>
