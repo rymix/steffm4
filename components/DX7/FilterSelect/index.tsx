@@ -2,10 +2,8 @@
 /* eslint-disable unicorn/no-array-push-push */
 /* eslint-disable no-unused-expressions */
 import Dx7Button from "components/Dx7/Button";
-import {
-  StyledDx7FilterSelect,
-  StyledDx7FilterSelectItem,
-} from "components/Dx7/FilterSelect/StyledDx7FilterSelect";
+import { StyledDx7FilterSelect } from "components/Dx7/FilterSelect/StyledDx7FilterSelect";
+import { StyledDx7Item } from "components/Dx7/Item/StyledDx7Item";
 import { useMixcloud } from "contexts/mixcloud";
 
 const Dx7FilterSelect: React.FC = () => {
@@ -26,7 +24,7 @@ const Dx7FilterSelect: React.FC = () => {
 
   return (
     <StyledDx7FilterSelect>
-      <StyledDx7FilterSelectItem>
+      <StyledDx7Item>
         <Dx7Button
           color="grey"
           label="All"
@@ -36,8 +34,8 @@ const Dx7FilterSelect: React.FC = () => {
           on={selectedCategory === "all"}
           size="tiny"
         />
-      </StyledDx7FilterSelectItem>
-      <StyledDx7FilterSelectItem>
+      </StyledDx7Item>
+      <StyledDx7Item>
         <Dx7Button
           color="grey"
           label="Adv"
@@ -47,8 +45,8 @@ const Dx7FilterSelect: React.FC = () => {
           on={selectedCategory === "aidm"}
           size="tiny"
         />
-      </StyledDx7FilterSelectItem>
-      <StyledDx7FilterSelectItem>
+      </StyledDx7Item>
+      <StyledDx7Item>
         <Dx7Button
           color="grey"
           label="Shoes"
@@ -58,8 +56,8 @@ const Dx7FilterSelect: React.FC = () => {
           on={selectedCategory === "mpos"}
           size="tiny"
         />
-      </StyledDx7FilterSelectItem>
-      <StyledDx7FilterSelectItem>
+      </StyledDx7Item>
+      <StyledDx7Item>
         <Dx7Button
           color="grey"
           label="Cock"
@@ -69,8 +67,8 @@ const Dx7FilterSelect: React.FC = () => {
           on={selectedCategory === "cocksoup"}
           size="tiny"
         />
-      </StyledDx7FilterSelectItem>
-      <StyledDx7FilterSelectItem>
+      </StyledDx7Item>
+      <StyledDx7Item>
         <Dx7Button
           color="grey"
           label="Spec"
@@ -80,8 +78,8 @@ const Dx7FilterSelect: React.FC = () => {
           on={selectedCategory === "special"}
           size="tiny"
         />
-      </StyledDx7FilterSelectItem>
-      <StyledDx7FilterSelectItem>
+      </StyledDx7Item>
+      <StyledDx7Item>
         <Dx7Button
           color="grey"
           label="Fav"
@@ -91,7 +89,7 @@ const Dx7FilterSelect: React.FC = () => {
           on={selectedCategory === "fav"}
           size="tiny"
         />
-      </StyledDx7FilterSelectItem>
+      </StyledDx7Item>
     </StyledDx7FilterSelect>
   );
 };

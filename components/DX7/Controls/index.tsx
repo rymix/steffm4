@@ -1,6 +1,7 @@
 import DrivingMode from "components/DrivingMode";
 import Dx7Button from "components/Dx7/Button";
 import { StyledDx7Controls } from "components/Dx7/Controls/StyledDx7Controls";
+import { StyledDx7Item } from "components/Dx7/Item/StyledDx7Item";
 import { useMixcloud } from "contexts/mixcloud";
 import ReactGA from "react-ga4";
 import { GA4 } from "utils/constants";
@@ -82,42 +83,54 @@ const Dx7Controls: React.FC = () => {
 
   return (
     <StyledDx7Controls>
-      <Dx7Button
-        color="red"
-        label="Stop"
-        onClick={handlePauseWithTracking}
-        on={playing === false}
-      />
-      <Dx7Button
-        color="green"
-        label="Play"
-        onClick={handlePlayWithTracking}
-        on={playing === true}
-      />
-      <Dx7Button
-        color="cream"
-        label="Prev"
-        onClick={handlePreviousWithTracking}
-        momentary
-      />
-      <Dx7Button
-        color="cream"
-        label="Next"
-        onClick={handleNextWithTracking}
-        momentary
-      />
-      <Dx7Button
-        color="blue"
-        label="Rand"
-        onClick={handleRandomClick}
-        momentary
-      />
-      <Dx7Button
-        color="blue"
-        label="Car"
-        onClick={handleDrivingModeClick}
-        momentary
-      />
+      <StyledDx7Item>
+        <Dx7Button
+          color="red"
+          label="Stop"
+          onClick={handlePauseWithTracking}
+          on={playing === false}
+        />
+      </StyledDx7Item>
+      <StyledDx7Item>
+        <Dx7Button
+          color="green"
+          label="Play"
+          onClick={handlePlayWithTracking}
+          on={playing === true}
+        />
+      </StyledDx7Item>
+      <StyledDx7Item>
+        <Dx7Button
+          color="cream"
+          label="Prev"
+          onClick={handlePreviousWithTracking}
+          momentary
+        />
+      </StyledDx7Item>
+      <StyledDx7Item>
+        <Dx7Button
+          color="cream"
+          label="Next"
+          onClick={handleNextWithTracking}
+          momentary
+        />
+      </StyledDx7Item>
+      <StyledDx7Item>
+        <Dx7Button
+          color="blue"
+          label="Rand"
+          onClick={handleRandomClick}
+          momentary
+        />
+      </StyledDx7Item>
+      <StyledDx7Item>
+        <Dx7Button
+          color="blue"
+          label="Car"
+          onClick={handleDrivingModeClick}
+          momentary
+        />
+      </StyledDx7Item>
     </StyledDx7Controls>
   );
 };
