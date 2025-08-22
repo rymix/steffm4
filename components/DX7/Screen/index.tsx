@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable unicorn/no-array-push-push */
 /* eslint-disable no-unused-expressions */
 import { StyledDx7Screen } from "components/Dx7/Screen/StyledDx7Screen";

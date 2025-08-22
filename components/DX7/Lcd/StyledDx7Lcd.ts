@@ -1,6 +1,7 @@
+import type { StyledDx7LcdProps } from "components/Dx7/Lcd/types";
 import styled from "styled-components";
 
-export const StyledDx7LcdWrapper = styled.div`
+export const StyledDx7LcdWrapper = styled.div<StyledDx7LcdProps>`
   align-items: center;
   background: rgba(32, 16, 0, 1);
   background-image:
@@ -19,10 +20,10 @@ export const StyledDx7LcdWrapper = styled.div`
   font-weight: bold;
   height: 90px;
   justify-content: flex-end;
-  width: 150px;
+  width: ${(props) => Math.max(150, props.$characterCount * 30 + 44)}px;
 `;
 
-export const StyledDx7Lcd = styled.div`
+export const StyledDx7Lcd = styled.div<StyledDx7LcdProps>`
   color: rgba(236, 29, 29, 1);
   display: flex;
   justify-content: flex-end;
@@ -30,7 +31,7 @@ export const StyledDx7Lcd = styled.div`
   text-shadow: 0 0 0.25em rgba(207, 0, 0, 1);
 
   &::before {
-    content: "~~~~";
+    content: "${(props) => "~".repeat(props.$characterCount)}";
     display: block;
     opacity: 0.1;
     position: absolute;

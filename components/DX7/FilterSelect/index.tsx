@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable unicorn/no-array-push-push */
-/* eslint-disable no-unused-expressions */
 import Dx7Button from "components/Dx7/Button";
 import { StyledDx7FilterSelect } from "components/Dx7/FilterSelect/StyledDx7FilterSelect";
 import { StyledDx7Item } from "components/Dx7/Item/StyledDx7Item";
