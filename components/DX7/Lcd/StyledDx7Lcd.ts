@@ -20,7 +20,7 @@ export const StyledDx7LcdWrapper = styled.div<StyledDx7LcdProps>`
   font-weight: bold;
   height: 90px;
   justify-content: flex-end;
-  width: ${(props) => Math.max(150, props.$characterCount * 30 + 44)}px;
+  width: ${(props) => Math.max(150, props.$characterCount * 32 + 44)}px;
 `;
 
 export const StyledDx7Lcd = styled.div<StyledDx7LcdProps>`
