@@ -9,8 +9,6 @@ import { useAutoplayInteractionTracking } from "utils/mobileAutoplayHelper";
 
 const Dx7Controls: React.FC = () => {
   const {
-    isReady,
-    mcKey,
     controls: {
       handleLoadRandom,
       handleLoadRandomFavourite,
@@ -19,11 +17,9 @@ const Dx7Controls: React.FC = () => {
       handleNext,
       handlePrevious,
     },
-    favourites: { addFavourite, isFavourite, removeFavourite },
-    filters: { categories = [], selectedCategory, setSelectedCategory },
-    mix: { copySharableLink, favourite },
+    filters: { selectedCategory },
     session: { openModal },
-    widget: { playing, setVolume, volume },
+    widget: { playing },
   } = useMixcloud();
   const { trackInteraction } = useAutoplayInteractionTracking();
 
