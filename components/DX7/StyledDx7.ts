@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledDx7Case = styled.div`
   background: #241d19;
   width: 90%;
+  min-width: 520px;
   display: flex;
   flex-direction: column; /* each direct child = its own row */
   align-items: stretch; /* rows fill full width */

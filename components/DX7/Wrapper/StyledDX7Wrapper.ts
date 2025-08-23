@@ -8,5 +8,7 @@ export const StyledDx7Wrapper = styled.div`
   left: 0;
   top: 0;
   width: 100%;
+  min-width: 520px;
+  overflow-x: auto;
   z-index: 1;
 `;

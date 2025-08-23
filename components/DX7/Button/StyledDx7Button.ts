@@ -88,16 +88,6 @@ export const StyledDx7ButtonWrapper = styled.div<StyledDx7ButtonWrapperProps>`
           ? "44px"
           : "66px"};
 
-  @media screen and (orientation: portrait) and (max-width: 440px) {
-    width: ${(props) =>
-      props.$size === "huge"
-        ? "100%"
-        : props.$size === "large"
-          ? "68px"
-          : props.$size === "tiny"
-            ? "32px"
-            : "44px"};
-  }
 `;
 
 export const StyledDx7Button = styled.button<StyledDx7ButtonProps>`
