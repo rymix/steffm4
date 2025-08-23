@@ -1,7 +1,15 @@
 import { Slider } from "@mui/material";
 import type { StyledDx7SliderProps } from "components/Dx7/Slider/types";
-import Dx7Handle from "public/svg/slider-handle2.png";
+import Dx7Handle from "public/svg/slider-handle4.png";
 import styled from "styled-components";
+
+export const StyledDx7SliderOuter = styled.div`
+  background: rgba(20, 20, 20, 1);
+  border: 2px solid black;
+  display: flex;
+  padding: 9px 9px 5px 0;
+  width: 94px;
+`;
 
 export const StyledDx7SliderWrapper = styled.div`
   display: inline-flex;
@@ -16,7 +24,7 @@ export const StyledDx7SliderWrapper = styled.div`
 
 export const StyledDx7Slider = styled(Slider)<StyledDx7SliderProps>`
   & .MuiSlider-thumb {
-    width: 30px;
+    width: 50px;
     height: 15px;
     border-radius: 1px;
     background: url(${Dx7Handle.src}) no-repeat center center;
@@ -49,35 +57,11 @@ export const StyledDx7Slider = styled(Slider)<StyledDx7SliderProps>`
     &::before {
       content: "";
       position: absolute;
-      left: 50%;
+      left: 100%;
       transform: translateX(-50%);
       width: 28.8px;
       height: 100%;
 
-      background: linear-gradient(
-        to bottom,
-        transparent 0%,
-        ${(props) => props.$lineColor || "black"} 2%,
-        transparent 3%,
-        transparent 15%,
-        ${(props) => props.$lineColor || "black"} 17%,
-        transparent 18%,
-        transparent 31%,
-        ${(props) => props.$lineColor || "black"} 33%,
-        transparent 34%,
-        transparent 48%,
-        ${(props) => props.$lineColor || "black"} 51%,
-        transparent 52%,
-        transparent 65%,
-        ${(props) => props.$lineColor || "black"} 67%,
-        transparent 68%,
-        transparent 81%,
-        ${(props) => props.$lineColor || "black"} 83%,
-        transparent 84%,
-        transparent 96%,
-        ${(props) => props.$lineColor || "black"} 99%,
-        transparent 100%
-      );
       pointerevents: none;
       z-index: -1;
       mix-blend-mode: multiply;
@@ -88,3 +72,51 @@ export const StyledDx7Slider = styled(Slider)<StyledDx7SliderProps>`
     padding: 0 8px;
   }
 `;
+
+export const StyledDx7SliderLines = styled.div`
+  background: orange;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    white 0%,
+    transparent 0.5%,
+    transparent 9%,
+    white 9%,
+    transparent 9.5%,
+    transparent 18%,
+    white 18%,
+    transparent 18.5%,
+    transparent 27%,
+    white 27%,
+    transparent 27.5%,
+    transparent 36%,
+    white 36%,
+    transparent 36.5%,
+    transparent 45%,
+    white 45%,
+    transparent 45.5%,
+    transparent 54%,
+    white 54%,
+    transparent 54.5%,
+    transparent 63%,
+    white 63%,
+    transparent 63.5%,
+    transparent 72%,
+    white 72%,
+    transparent 72.5%,
+    transparent 81%,
+    white 81%,
+    transparent 81.5%,
+    transparent 90%,
+    white 90%,
+    transparent 90.5%,
+    transparent 99%,
+    white 99%,
+    transparent 100%
+  );
+
+  width: 20px;
+  height: 100%;
+`;
+
+export const StyledDx7SliderItem = styled.div``;

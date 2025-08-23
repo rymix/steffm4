@@ -1,5 +1,8 @@
 import {
   StyledDx7Slider,
+  StyledDx7SliderItem,
+  StyledDx7SliderLines,
+  StyledDx7SliderOuter,
   StyledDx7SliderWrapper,
 } from "components/Dx7/Slider/StyledDx7Slider";
 import { Dx7SliderProps } from "components/Dx7/Slider/types";
@@ -22,19 +25,24 @@ const Dx7Slider: React.FC<Dx7SliderProps> = ({
   };
 
   return (
-    <>
-      <StyledDx7SliderWrapper>
-        <StyledDx7Slider
-          aria-label="Volume"
-          orientation={orientation}
-          value={volume}
-          min={0}
-          max={100}
-          $lineColor={lineColor}
-          onChange={handleChange}
-        />
-      </StyledDx7SliderWrapper>
-    </>
+    <StyledDx7SliderOuter>
+      <StyledDx7SliderItem>
+        <StyledDx7SliderWrapper>
+          <StyledDx7Slider
+            aria-label="Volume"
+            orientation={orientation}
+            value={volume}
+            min={0}
+            max={100}
+            $lineColor={lineColor}
+            onChange={handleChange}
+          />
+        </StyledDx7SliderWrapper>
+      </StyledDx7SliderItem>
+      <StyledDx7SliderItem>
+        <StyledDx7SliderLines />
+      </StyledDx7SliderItem>
+    </StyledDx7SliderOuter>
   );
 };
 
