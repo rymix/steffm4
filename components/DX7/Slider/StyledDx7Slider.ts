@@ -1,0 +1,90 @@
+import { Slider } from "@mui/material";
+import type { StyledDx7SliderProps } from "components/Dx7/Slider/types";
+import Dx7Handle from "public/svg/slider-handle2.png";
+import styled from "styled-components";
+
+export const StyledDx7SliderWrapper = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 14px;
+  text-transform: uppercase;
+  height: 128px;
+  width: 54px;
+`;
+
+export const StyledDx7Slider = styled(Slider)<StyledDx7SliderProps>`
+  & .MuiSlider-thumb {
+    width: 30px;
+    height: 15px;
+    border-radius: 1px;
+    background: url(${Dx7Handle.src}) no-repeat center center;
+    background-size: cover;
+    box-shadow: 0 2px 15px -3px rgba(0, 0, 0, 0.9);
+    z-index: 2;
+
+    &:focus,
+    &:hover,
+    &:active {
+      box-shadow: "none";
+    }
+  }
+
+  & .MuiSlider-track {
+    display: none;
+    width: 8px;
+    background-color: black;
+    position: relative;
+    z-index: 1;
+  }
+
+  & .MuiSlider-rail {
+    width: 8px;
+    background-color: black;
+    opacity: 1;
+    position: relative;
+    z-index: 1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 28.8px;
+      height: 100%;
+
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        ${(props) => props.$lineColor || "black"} 2%,
+        transparent 3%,
+        transparent 15%,
+        ${(props) => props.$lineColor || "black"} 17%,
+        transparent 18%,
+        transparent 31%,
+        ${(props) => props.$lineColor || "black"} 33%,
+        transparent 34%,
+        transparent 48%,
+        ${(props) => props.$lineColor || "black"} 51%,
+        transparent 52%,
+        transparent 65%,
+        ${(props) => props.$lineColor || "black"} 67%,
+        transparent 68%,
+        transparent 81%,
+        ${(props) => props.$lineColor || "black"} 83%,
+        transparent 84%,
+        transparent 96%,
+        ${(props) => props.$lineColor || "black"} 99%,
+        transparent 100%
+      );
+      pointerevents: none;
+      z-index: -1;
+      mix-blend-mode: multiply;
+    }
+  }
+
+  & .MuiSlider-root {
+    padding: 0 8px;
+  }
+`;

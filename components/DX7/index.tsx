@@ -6,6 +6,7 @@ import Dx7Header from "components/Dx7/Header";
 import Dx7MixTrackDisplay from "components/Dx7/MixTrackDisplay";
 import Dx7Screen from "components/Dx7/Screen";
 import { StyledDx7Case } from "components/Dx7/StyledDx7";
+import Dx7Volume from "components/Dx7/Volume";
 import Dx7Wrapper from "components/Dx7/Wrapper";
 
 export const Dx7: React.FC = () => {
@@ -15,6 +16,7 @@ export const Dx7: React.FC = () => {
         <Dx7Header />
         <Dx7Controls />
         <Dx7ControlsSecondary />
+        <Dx7Volume />
         <Dx7FilterSelect />
         <Dx7Cartridge />
         <Dx7MixTrackDisplay />
