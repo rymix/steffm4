@@ -8,10 +8,7 @@ import React from "react";
 const Dx7Slider: React.FC<Dx7SliderProps> = ({
   onChange,
   orientation = "vertical",
-  label,
-  labelPosition = "above",
   lineColor = "white",
-  textColor = "white",
   volume = 70,
 }) => {
   const handleChange = (event: Event, value: number | number[]): void => {

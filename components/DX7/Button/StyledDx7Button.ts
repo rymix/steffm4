@@ -87,7 +87,6 @@ export const StyledDx7ButtonWrapper = styled.div<StyledDx7ButtonWrapperProps>`
         : props.$size === "tiny"
           ? "44px"
           : "66px"};
-
 `;
 
 export const StyledDx7Button = styled.button<StyledDx7ButtonProps>`

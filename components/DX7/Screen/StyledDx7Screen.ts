@@ -4,7 +4,7 @@ export const StyledDx7Screen = styled.div`
   position: relative;
   background-color: rgba(210, 238, 10, 1); /* solid base */
   color: rgba(36, 29, 25, 0.6);
-  font-family: LEDBoard7;
+  font-family: "LEDBoard7";
   font-size: 20px;
   line-height: 1.2;
   padding: 20px;
@@ -25,7 +25,7 @@ export const StyledDx7Screen = styled.div`
     content: "";
     position: absolute;
     inset: 0;
-    background-image: url(/images/dx7/dot-matrix-grid3.png);
+    background-image: url("/images/dx7/dot-matrix-grid3.png");
     background-repeat: repeat; /* set to 'repeat' if it's a tile */
     background-position: center;
     opacity: 0.08;

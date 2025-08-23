@@ -45,7 +45,7 @@ export const StyledDx7HeaderMotto = styled.div`
   text-overflow: ellipsis;
   font-size: 10px;
   text-transform: uppercase;
-  font-family: "Microgamma", sans-serif;
+  font-family: Microgamma, sans-serif;
   font-weight: 700;
   padding: 0 0 8px 0;
 `;
