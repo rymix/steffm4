@@ -1,5 +1,6 @@
 import Dx7Cartridge from "components/Dx7/Cartridge";
 import Dx7Controls from "components/Dx7/Controls";
+import Dx7ControlsSecondary from "components/Dx7/ControlsSecondary";
 import Dx7FilterSelect from "components/Dx7/FilterSelect";
 import Dx7Header from "components/Dx7/Header";
 import Dx7MixTrackDisplay from "components/Dx7/MixTrackDisplay";
@@ -13,6 +14,7 @@ export const Dx7: React.FC = () => {
       <StyledDx7Case>
         <Dx7Header />
         <Dx7Controls />
+        <Dx7ControlsSecondary />
         <Dx7FilterSelect />
         <Dx7Cartridge />
         <Dx7MixTrackDisplay />
