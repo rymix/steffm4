@@ -13,14 +13,14 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
   labelPosition = "above",
   lineColor = "white",
   textColor = "white",
-  volume = 70,
+  value = 70,
 }) => {
-  const handleChange = (event: Event, value: number | number[]): void => {
+  const handleChange = (event: Event, localValue: number | number[]): void => {
     if (onChange) {
-      if (Array.isArray(value)) {
-        onChange(value[0]);
+      if (Array.isArray(localValue)) {
+        onChange(localValue[0]);
       } else {
-        onChange(value);
+        onChange(localValue);
       }
     }
   };
@@ -40,7 +40,7 @@ const JupiterSlider: React.FC<JupiterSliderProps> = ({
         <StyledJupiterSlider
           aria-label="Volume"
           orientation={orientation}
-          value={volume}
+          value={value}
           min={0}
           max={100}
           $lineColor={lineColor}
