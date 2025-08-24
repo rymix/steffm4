@@ -719,6 +719,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
           );
           setPlayer(freshWidget);
           setupEventListeners(freshWidget);
+          setLoaded(true);
           setPlaying(autoplay);
         });
       }, 1000);
@@ -850,6 +851,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
           essentialLogger.widgetReady(`Widget ready: ${mixKey}`);
           setPlayer(freshWidget);
           setupEventListeners(freshWidget);
+          setLoaded(true);
           if (strategy.shouldAttemptAutoplay) {
             setPlaying(true);
           }
@@ -919,6 +921,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
           essentialLogger.widgetReady(`Widget ready for: ${mixKey}`);
           setPlayer(freshWidget);
           setupEventListeners(freshWidget);
+          setLoaded(true);
 
           // Get duration with retry logic for reliability
           const getDurationWithRetry = async (retries = 3): Promise<void> => {
@@ -1466,6 +1469,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
                 );
                 setPlayer(freshWidget);
                 setupEventListeners(freshWidget);
+                setLoaded(true);
                 setPlaying(true); // Autoplay for share links
 
                 // Reset progress states for share link
@@ -1594,6 +1598,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
           );
           setPlayer(freshWidget);
           setupEventListeners(freshWidget);
+          setLoaded(true);
           setPlaying(true); // Autoplay is on for share links
 
           // Clear temp value after successful initialization

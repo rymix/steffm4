@@ -3,6 +3,7 @@ import Dx7Controls from "components/Dx7/Controls";
 import Dx7ControlsSecondary from "components/Dx7/ControlsSecondary";
 import Dx7FilterSelect from "components/Dx7/FilterSelect";
 import Dx7Header from "components/Dx7/Header";
+import Dx7MixcloudConnected from "components/Dx7/MixcloudConnected";
 import Dx7MixTrackDisplay from "components/Dx7/MixTrackDisplay";
 import Dx7Screen from "components/Dx7/Screen";
 import { StyledDx7Case } from "components/Dx7/StyledDx7";
@@ -14,6 +15,7 @@ export const Dx7: React.FC = () => {
     <Dx7Wrapper>
       <StyledDx7Case>
         <Dx7Header />
+        <Dx7MixcloudConnected />
         <Dx7Controls />
         <Dx7ControlsSecondary />
         <Dx7Volume />
