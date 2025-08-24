@@ -5,7 +5,8 @@ export type Dx7SliderProps = {
   labelPosition?: "above" | "below";
   lineColor?: string;
   textColor?: string;
-  volume: number;
+  value: number;
+  size?: "tiny" | "normal" | "large" | "huge";
 };
 
 export type StyledDx7SliderProps = {

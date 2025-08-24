@@ -3,15 +3,19 @@ import type { StyledDx7SliderProps } from "components/Dx7/Slider/types";
 import Dx7Handle from "public/svg/slider-handle4.png";
 import styled from "styled-components";
 
-export const StyledDx7SliderOuter = styled.div`
+export const StyledDx7SliderWrapper = styled.div`
+  display: flex;
+`;
+
+export const StyledDx7SliderFrame = styled.div`
   background: rgba(20, 20, 20, 1);
   border: 2px solid black;
   display: flex;
-  padding: 9px 9px 5px 0;
-  width: 94px;
+  padding: 9px 9px 5px 9px;
+  width: 60px;
 `;
 
-export const StyledDx7SliderWrapper = styled.div`
+export const StyledDx7SliderBody = styled.div`
   display: inline-flex;
   flex-direction: column;
   align-items: center;
@@ -37,6 +41,14 @@ export const StyledDx7Slider = styled(Slider)<StyledDx7SliderProps>`
     &:active {
       box-shadow: "none";
     }
+  }
+
+  & .MuiSlider-thumb.Mui-focusVisible,
+  & .MuiSlider-thumb:hover,
+  & .MuiSlider-thumb.Mui-active,
+  & .MuiSlider-thumb:active,
+  & .MuiSlider-thumb:focus-visible {
+    box-shadow: none !important;
   }
 
   & .MuiSlider-track {
@@ -115,8 +127,13 @@ export const StyledDx7SliderLines = styled.div`
     transparent 100%
   );
 
-  width: 20px;
-  height: 100%;
+  width: 12px;
+  height: 128px;
+  margin: 10px 0 0 10px;
 `;
 
-export const StyledDx7SliderItem = styled.div``;
+export const StyledDx7SliderLabels = styled.div`
+  & > * {
+    height: 50%;
+  }
+`;

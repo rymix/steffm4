@@ -20,8 +20,8 @@ const Dx7Volume: React.FC = () => {
     <>
       {isReady && VOLUME_AVAILABLE && (
         <Dx7Slider
-          label="Vol"
-          volume={sliderValue}
+          label="Volume"
+          value={sliderValue}
           onChange={handleSliderChange}
         />
       )}

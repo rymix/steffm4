@@ -4,7 +4,7 @@ export type Dx7LabelProps = {
   paddingTop?: number;
   paddingBottom?: number;
   textColor?: string;
-  size?: "normal" | "large" | "huge";
+  size?: "tiny" | "normal" | "large" | "huge";
 };
 
 export type StyledDx7LabelProps = {
@@ -12,5 +12,5 @@ export type StyledDx7LabelProps = {
   $paddingBottom?: number;
   $paddingTop?: number;
   $textColor?: string;
-  $size?: "normal" | "large" | "huge";
+  $size?: "tiny" | "normal" | "large" | "huge";
 };

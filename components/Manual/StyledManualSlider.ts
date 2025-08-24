@@ -30,6 +30,14 @@ export const StyledManualSlider = styled(Slider)<StyledJupiterSliderProps>`
     }
   }
 
+  & .MuiSlider-thumb.Mui-focusVisible,
+  & .MuiSlider-thumb:hover,
+  & .MuiSlider-thumb.Mui-active,
+  & .MuiSlider-thumb:active,
+  & .MuiSlider-thumb:focus-visible {
+    box-shadow: none !important;
+  }
+
   & .MuiSlider-track {
     display: none;
     width: 8px;
