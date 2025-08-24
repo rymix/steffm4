@@ -333,7 +333,7 @@ export const Jupiter: React.FC = () => {
                   {isReady && VOLUME_AVAILABLE && (
                     <JupiterSlider
                       label="Vol"
-                      volume={sliderValue}
+                      value={sliderValue}
                       onChange={handleSliderChange}
                     />
                   )}
