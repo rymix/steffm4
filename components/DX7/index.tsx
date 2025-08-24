@@ -29,7 +29,6 @@ export const Dx7: React.FC = () => {
               <Dx7Screen />
             </StyledDx7CaseItem>
           </StyledDx7CaseRow>
-          
           {/* Row 2: Volume left, Controls and ControlsSecondary stacked right */}
           <StyledDx7CaseRow>
             <StyledDx7CaseItem flex="1">
