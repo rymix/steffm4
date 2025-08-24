@@ -12,7 +12,7 @@ export const StyledDx7LcdWrapper = styled.div<StyledDx7LcdProps>`
     0 4px 6px rgba(0, 0, 0, 0.1),
     0 1px 3px rgba(0, 0, 0, 0.08);
   border: 2px solid #333;
-  border-radius: 10px;
+  border-radius: 3px;
   padding: 10px;
   display: flex;
   font-family: "dseg14";

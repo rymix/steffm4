@@ -2,6 +2,16 @@ import StefFmDx7Logo from "public/svg/stef-fm-dx7.svg";
 import styled from "styled-components";
 
 export const StyledDx7Header = styled.div`
+  background-image:
+    url("textures/dark-wall.png"),
+    linear-gradient(
+      180deg,
+      #1c1814ff 0%,
+      black 6%,
+      #0d0b09ff 15%,
+      #1c1814ff 97%,
+      black 100%
+    );
   display: flex;
   align-items: flex-end;
   flex-wrap: nowrap; /* keep on one line */

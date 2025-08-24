@@ -1,6 +1,11 @@
 /* eslint-disable unicorn/no-array-push-push */
 /* eslint-disable no-unused-expressions */
-import { StyledDx7Screen } from "components/Dx7/Screen/StyledDx7Screen";
+import {
+  StyledDx7Screen,
+  StyledDx7ScreenBezel,
+  StyledDx7ScreenDebug,
+  StyledDx7ScreenMessage,
+} from "components/Dx7/Screen/StyledDx7Screen";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useRef, useState } from "react";
 import { DEBUG } from "utils/logger";
@@ -270,59 +275,39 @@ const Dx7Screen: React.FC = () => {
   }, []);
 
   return (
-    <StyledDx7Screen>
-      {/* Current message */}
-      <div
-        style={{
-          position: "absolute",
-          top: 20, // Account for padding
-          left: 20, // Account for padding
-          right: 20, // Account for padding
-          transform: `translateY(${currentOffset}px)`,
-          transition: "none",
-          zIndex: animationState === "idle" ? 1 : 2, // Higher during animation
-        }}
-      >
-        {displayMessage}
-      </div>
-
-      {/* Next message (shown during dual-scroll phase) */}
-      {showNext && (
-        <div
+    <StyledDx7ScreenBezel>
+      <StyledDx7Screen>
+        {/* Current message */}
+        <StyledDx7ScreenMessage
           style={{
-            position: "absolute",
-            top: 20, // Account for padding
-            left: 20, // Account for padding
-            right: 20, // Account for padding
-            transform: `translateY(${nextOffset}px)`,
-            transition: "none",
-            zIndex: 3, // Always on top when visible
+            transform: `translateY(${currentOffset}px)`,
+            zIndex: animationState === "idle" ? 1 : 2,
           }}
         >
-          {nextMessage}
-        </div>
-      )}
+          {displayMessage}
+        </StyledDx7ScreenMessage>
 
-      {/* Debug info panel - only shown when DEBUG is true */}
-      {DEBUG && (
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            fontSize: "10px",
-            background: "rgba(255, 0, 0, 0.8)",
-            color: "white",
-            padding: "2px 4px",
-            zIndex: 10,
-            fontFamily: "monospace",
-          }}
-        >
-          {animationState} | C:{currentOffset} | N:{nextOffset} |{" "}
-          {showNext ? "DUAL" : "SINGLE"}
-        </div>
-      )}
-    </StyledDx7Screen>
+        {/* Next message (shown during dual-scroll phase) */}
+        {showNext && (
+          <StyledDx7ScreenMessage
+            style={{
+              transform: `translateY(${nextOffset}px)`,
+              zIndex: 3, // Always on top when visible
+            }}
+          >
+            {nextMessage}
+          </StyledDx7ScreenMessage>
+        )}
+
+        {/* Debug info panel - only shown when DEBUG is true */}
+        {DEBUG && (
+          <StyledDx7ScreenDebug>
+            {animationState} | C:{currentOffset} | N:{nextOffset} |{" "}
+            {showNext ? "DUAL" : "SINGLE"}
+          </StyledDx7ScreenDebug>
+        )}
+      </StyledDx7Screen>
+    </StyledDx7ScreenBezel>
   );
 };
 

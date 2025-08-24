@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+export const StyledDx7ScreenBezel = styled.div`
+  background: rgba(32, 16, 0, 1);
+  background-image:
+    linear-gradient(170deg, #0007, transparent 50%),
+    linear-gradient(to bottom, transparent, #fff1 95%, #fff4 100%);
+  box-shadow:
+    inset 5px 5px 5px rgba(0, 0, 0, 0.2),
+    0 4px 6px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 2px solid #333;
+  border-radius: 3px;
+  padding: 20px;
+  margin: 20px 0;
+`;
+
 export const StyledDx7Screen = styled.div`
   position: relative;
   background-color: rgba(210, 238, 10, 1); /* solid base */
@@ -32,4 +47,24 @@ export const StyledDx7Screen = styled.div`
     pointer-events: none;
     z-index: 0;
   }
+`;
+
+export const StyledDx7ScreenMessage = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  transition: none;
+`;
+
+export const StyledDx7ScreenDebug = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 10px;
+  background: rgba(255, 0, 0, 0.8);
+  color: white;
+  padding: 2px 4px;
+  z-index: 10;
+  font-family: monospace;
 `;
