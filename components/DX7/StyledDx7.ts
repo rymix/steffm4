@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import type { StyledDx7CaseItemProps, StyledDx7CaseRowProps } from "./types";
 
 export const StyledDx7Case = styled.div`
@@ -48,7 +49,7 @@ export const StyledDx7CaseRow = styled.div<StyledDx7CaseRowProps>`
   justify-content: ${(props) => props.justifyContent || "flex-start"};
   align-items: ${(props) => props.alignItems || "stretch"};
   gap: ${(props) => props.gap || "0"};
-  ${(props) => (props.customFlex ? props.customFlex : "")}
+  ${(props) => props.customFlex ?? ""}
 `;
 
 export const StyledDx7CaseItem = styled.div<StyledDx7CaseItemProps>`
@@ -67,5 +68,5 @@ export const StyledDx7CaseItem = styled.div<StyledDx7CaseItemProps>`
   `
       : ""}
 
-  ${(props) => (props.customFlex ? props.customFlex : "")}
+  ${(props) => props.customFlex ?? ""}
 `;
