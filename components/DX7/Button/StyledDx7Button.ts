@@ -1,4 +1,4 @@
-import type {
+import {
   Dx7ButtonColors,
   StyledDx7ButtonProps,
   StyledDx7ButtonWrapperProps,
