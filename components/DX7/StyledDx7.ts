@@ -32,7 +32,8 @@ export const dx7Border = (
 
 export const StyledDx7Case = styled.div`
   width: 90%;
-  min-width: 520px;
+  min-width: 890px;
+  max-width: 1220px;
   display: flex;
   flex-direction: column; /* each direct child = its own row */
   align-items: stretch; /* rows fill full width */
@@ -90,7 +91,7 @@ export const StyledDx7CaseRow = styled.div<StyledDx7CaseRowProps>`
 `;
 
 export const StyledDx7CaseItem = styled.div<StyledDx7CaseItemProps>`
-  sborder: 1px solid grey;
+  sborder: 1px solid green;
   ${(props) => (props.flex ? `flex: ${props.flex};` : "")}
   ${(props) => (props.alignSelf ? `align-self: ${props.alignSelf};` : "")}
 
@@ -106,4 +107,6 @@ export const StyledDx7CaseItem = styled.div<StyledDx7CaseItemProps>`
       : ""}
 
   ${(props) => props.customFlex ?? ""}
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
+  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
 `;

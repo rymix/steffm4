@@ -1,10 +1,7 @@
-import DrivingMode from "components/DrivingMode";
 import Dx7Button from "components/Dx7/Button";
 import { StyledDx7Controls } from "components/Dx7/Controls/StyledDx7Controls";
 import { StyledDx7Item } from "components/Dx7/Item/StyledDx7Item";
 import { useMixcloud } from "contexts/mixcloud";
-import ReactGA from "react-ga4";
-import { GA4 } from "utils/constants";
 import { useAutoplayInteractionTracking } from "utils/mobileAutoplayHelper";
 
 const Dx7Controls: React.FC = () => {
@@ -18,7 +15,6 @@ const Dx7Controls: React.FC = () => {
       handlePrevious,
     },
     filters: { selectedCategory },
-    session: { openModal },
     widget: { playing },
   } = useMixcloud();
   const { trackInteraction } = useAutoplayInteractionTracking();
@@ -54,26 +50,6 @@ const Dx7Controls: React.FC = () => {
       handleLoadRandom(selectedCategory);
     } else {
       handleLoadRandom();
-    }
-
-    if (GA4) {
-      ReactGA.event({
-        category: "Option",
-        action: "Click",
-        label: "Random Mix",
-      });
-    }
-  };
-
-  const handleDrivingModeClick = (): void => {
-    openModal(<DrivingMode />);
-
-    if (GA4) {
-      ReactGA.event({
-        category: "Option",
-        action: "Click",
-        label: "Driving Mode",
-      });
     }
   };
 
@@ -116,14 +92,6 @@ const Dx7Controls: React.FC = () => {
           color="blue"
           label="Random"
           onClick={handleRandomClick}
-          momentary
-        />
-      </StyledDx7Item>
-      <StyledDx7Item>
-        <Dx7Button
-          color="blue"
-          label="Car Mode"
-          onClick={handleDrivingModeClick}
           momentary
         />
       </StyledDx7Item>

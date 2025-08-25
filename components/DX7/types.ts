@@ -32,4 +32,6 @@ export type StyledDx7CaseItemProps = {
   alignItems?: "flex-start" | "flex-end" | "center" | "stretch" | "baseline";
   gap?: string;
   customFlex?: string;
+  margin?: string;
+  padding?: string;
 };

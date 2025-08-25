@@ -37,7 +37,12 @@ export const Dx7: React.FC = () => {
           </StyledDx7CaseRow>
           {/* Row 2: Volume left, Controls and ControlsSecondary stacked right */}
           <StyledDx7CaseRow>
-            <StyledDx7CaseItem layout="vertical" flex="1" alignItems="center">
+            <StyledDx7CaseItem
+              layout="vertical"
+              flex="1"
+              alignItems="center"
+              padding="0 0 20px 0"
+            >
               <Dx7Volume />
             </StyledDx7CaseItem>
             <StyledDx7CaseItem layout="vertical" flex="1" alignItems="center">
@@ -49,11 +54,21 @@ export const Dx7: React.FC = () => {
         <StyledDx7CaseDark>
           {/* Row 3: FilterSelect and Cartridge stacked left, MixTrackDisplay right */}
           <StyledDx7CaseRow>
-            <StyledDx7CaseItem layout="vertical" flex="1" alignItems="center">
+            <StyledDx7CaseItem
+              layout="vertical"
+              flex="1"
+              alignItems="center"
+              padding="20px 0"
+            >
               <Dx7Cartridge />
               <Dx7FilterSelect />
             </StyledDx7CaseItem>
-            <StyledDx7CaseItem layout="vertical" flex="1" alignItems="center">
+            <StyledDx7CaseItem
+              layout="vertical"
+              flex="1"
+              alignItems="center"
+              padding="30px 0 20px 0"
+            >
               <Dx7MixTrackDisplay />
             </StyledDx7CaseItem>
           </StyledDx7CaseRow>

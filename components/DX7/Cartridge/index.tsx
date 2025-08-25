@@ -20,8 +20,10 @@ const Dx7Cartridge: React.FC = () => {
   useEffect(() => {
     const categoryLookup =
       categories.find((cat) => cat.code === selectedCategory)?.name || "All";
+    const categoryDisplayText =
+      categoryLookup === "All" ? "All Mixes" : categoryLookup;
 
-    setDisplaySelectedCategory(categoryLookup);
+    setDisplaySelectedCategory(categoryDisplayText);
   }, [categories, selectedCategory]);
 
   return (
