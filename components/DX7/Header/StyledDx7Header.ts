@@ -7,9 +7,8 @@ export const StyledDx7Header = styled.div`
     url("textures/dark-wall.png"),
     linear-gradient(
       180deg,
-      black 0%,
-      black 1%,
-      white 2%,
+      transparent 0%,
+      white 1%,
       #1c1814ff 3%,
       #0d0b09ff 97%,
       black 100%
