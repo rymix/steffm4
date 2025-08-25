@@ -69,4 +69,10 @@ export const StyledDx7HeaderMotto = styled.div`
 export const StyledDx7HeaderSpacer = styled.div`
   flex: 1 1 auto;
   min-width: 0; /* allow it to shrink if needed */
+  height: 100%;
+  background-image: url("dx7/algorithm.png");
+  background-size: 600px auto;
+  background-repeat: no-repeat;
+  background-position: 10px;
+  opacity: 0.7;
 `;

@@ -24,8 +24,13 @@ export const Dx7: React.FC = () => {
         <Dx7Header />
         <StyledDx7CaseLight>
           {/* Row 1: Single Screen component - center aligned */}
-          <StyledDx7CaseRow justifyContent="center" alignItems="center">
-            <StyledDx7CaseItem>
+          <StyledDx7CaseRow alignItems="center" justifyContent="center">
+            <StyledDx7CaseItem
+              layout="horizontal"
+              flex="1"
+              alignItems="center"
+              justifyContent="center"
+            >
               <Dx7Screen />
               <Dx7ScreenControls />
             </StyledDx7CaseItem>
