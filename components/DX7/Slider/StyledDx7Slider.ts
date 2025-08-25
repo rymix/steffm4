@@ -3,6 +3,8 @@ import type { StyledDx7SliderProps } from "components/Dx7/Slider/types";
 import Dx7Handle from "public/svg/slider-handle4.png";
 import styled from "styled-components";
 
+export const StyledDx7SliderOuter = styled.div``;
+
 export const StyledDx7SliderWrapper = styled.div`
   display: flex;
 `;

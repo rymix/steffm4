@@ -5,6 +5,7 @@ import {
   StyledDx7SliderFrame,
   StyledDx7SliderLabels,
   StyledDx7SliderLines,
+  StyledDx7SliderOuter,
   StyledDx7SliderWrapper,
 } from "components/Dx7/Slider/StyledDx7Slider";
 import { Dx7SliderProps } from "components/Dx7/Slider/types";
@@ -31,7 +32,7 @@ const Dx7Slider: React.FC<Dx7SliderProps> = ({
   };
 
   return (
-    <>
+    <StyledDx7SliderOuter>
       {labelPosition === "above" && (
         <Dx7Label
           label={label}
@@ -86,7 +87,7 @@ const Dx7Slider: React.FC<Dx7SliderProps> = ({
           size={size}
         />
       )}
-    </>
+    </StyledDx7SliderOuter>
   );
 };
 
