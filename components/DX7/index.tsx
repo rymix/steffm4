@@ -3,7 +3,6 @@ import Dx7Controls from "components/Dx7/Controls";
 import Dx7ControlsSecondary from "components/Dx7/ControlsSecondary";
 import Dx7FilterSelect from "components/Dx7/FilterSelect";
 import Dx7Header from "components/Dx7/Header";
-import Dx7MixcloudConnected from "components/Dx7/MixcloudConnected";
 import Dx7MixTrackDisplay from "components/Dx7/MixTrackDisplay";
 import Dx7Screen from "components/Dx7/Screen";
 import Dx7ScreenControls from "components/Dx7/ScreenControls";
@@ -21,7 +20,7 @@ export const Dx7: React.FC = () => {
   return (
     <Dx7Wrapper>
       <StyledDx7Case>
-        <Dx7MixcloudConnected />
+        {/* <Dx7MixcloudConnected /> */}
         <Dx7Header />
         <StyledDx7CaseLight>
           {/* Row 1: Single Screen component - center aligned */}
@@ -46,8 +45,8 @@ export const Dx7: React.FC = () => {
           {/* Row 3: FilterSelect and Cartridge stacked left, MixTrackDisplay right */}
           <StyledDx7CaseRow>
             <StyledDx7CaseItem layout="vertical" flex="1" alignItems="center">
-              <Dx7FilterSelect />
               <Dx7Cartridge />
+              <Dx7FilterSelect />
             </StyledDx7CaseItem>
             <StyledDx7CaseItem layout="vertical" flex="1" alignItems="center">
               <Dx7MixTrackDisplay />

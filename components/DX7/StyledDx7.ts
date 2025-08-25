@@ -2,8 +2,35 @@ import styled from "styled-components";
 
 import type { StyledDx7CaseItemProps, StyledDx7CaseRowProps } from "./types";
 
+export const dx7Border = (
+  horizontalPosition = "left",
+  verticalPosition = "top",
+  height = "100%",
+): string => `
+  &::${horizontalPosition === "left" ? "before" : "after"} {
+    content: "";
+    position: absolute;
+    ${verticalPosition === "top" ? "top: 0;" : "bottom: 0;"}
+    ${horizontalPosition === "left" ? "left: 0;" : "right: 0;"}
+    width: 18px;
+    height: ${height};
+    background:   url("textures/dark-wall.png"),
+      linear-gradient(
+        ${horizontalPosition === "left" ? "90deg" : "270deg"},
+        #1c1814ff 0%,
+        white 4%,
+        #1c1814ff 8%,
+        white 12%,
+        #1c1814ff 16%,
+        white 20%,
+        #1c1814ff 30%,
+        #1c1814ff 80%,
+        black 100%
+    );
+  }
+`;
+
 export const StyledDx7Case = styled.div`
-  /* background: #241d19; */
   width: 90%;
   min-width: 520px;
   display: flex;
@@ -13,6 +40,7 @@ export const StyledDx7Case = styled.div`
 `;
 
 export const StyledDx7CaseDark = styled.div`
+  position: relative;
   background-image:
     url("textures/dark-wall.png"),
     linear-gradient(
@@ -24,10 +52,13 @@ export const StyledDx7CaseDark = styled.div`
       #0d0b09ff 97%,
       black 100%
     );
+
+  ${dx7Border("left", "top", "100%")}
+  ${dx7Border("right", "top", "100%")}
 `;
 
 export const StyledDx7CaseLight = styled.div`
-  /* background: #241d19; */
+  position: relative;
   background-image:
     url("textures/dark-wall.png"),
     linear-gradient(
@@ -40,6 +71,9 @@ export const StyledDx7CaseLight = styled.div`
       #352e2aff 98%,
       black 100%
     );
+
+  ${dx7Border("left", "100%")}
+  ${dx7Border("right", "100%")}
 `;
 
 export const StyledDx7CaseRow = styled.div<StyledDx7CaseRowProps>`

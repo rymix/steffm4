@@ -1,3 +1,4 @@
+import { dx7Border } from "components/Dx7/StyledDx7";
 import StefFmDx7Logo from "public/svg/stef-fm-dx7.svg";
 import styled from "styled-components";
 
@@ -14,10 +15,14 @@ export const StyledDx7Header = styled.div`
       black 100%
     );
   display: flex;
+  position: relative;
   align-items: flex-end;
   flex-wrap: nowrap; /* keep on one line */
   width: 100%;
   height: 100px;
+
+  ${dx7Border("left", "bottom", "97%")}
+  ${dx7Border("right", "bottom", "97%")}
 `;
 
 /* 100px wide */
