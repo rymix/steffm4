@@ -46,7 +46,7 @@ export const StyledDx7HeaderLogo = styled(StefFmDx7Logo)`
   aspect-ratio: 4.2 / 1;
   display: block;
   fill: rgba(255, 255, 255, 0.8);
-  margin: 0 0 20px 30px;
+  margin: 0 0 20px 40px;
   cursor: pointer;
 `;
 
