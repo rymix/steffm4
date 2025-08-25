@@ -17,10 +17,11 @@ export const StyledDx7CaseDark = styled.div`
     url("textures/dark-wall.png"),
     linear-gradient(
       180deg,
-      #1c1814ff 0%,
-      black 6%,
-      #0d0b09ff 15%,
-      #1c1814ff 97%,
+      black 0%,
+      black 1%,
+      white 2%,
+      #1c1814ff 3%,
+      #0d0b09ff 97%,
       black 100%
     );
 `;
@@ -32,10 +33,12 @@ export const StyledDx7CaseLight = styled.div`
     linear-gradient(
       180deg,
       black 0%,
-      #2a2420ff 3%,
+      #2a2420ff 1%,
+      #352e2aff 2%,
+      #2a2420ff 4%,
       #241d19 50%,
-      #352e2aff 99%,
-      #79726dff 100%
+      #352e2aff 98%,
+      black 100%
     );
 `;
 

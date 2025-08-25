@@ -6,10 +6,11 @@ export const StyledDx7Header = styled.div`
     url("textures/dark-wall.png"),
     linear-gradient(
       180deg,
-      #1c1814ff 0%,
-      black 6%,
-      #0d0b09ff 15%,
-      #1c1814ff 97%,
+      black 0%,
+      black 1%,
+      white 2%,
+      #1c1814ff 3%,
+      #0d0b09ff 97%,
       black 100%
     );
   display: flex;
