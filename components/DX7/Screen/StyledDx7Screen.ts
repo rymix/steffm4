@@ -14,6 +14,18 @@ export const StyledDx7ScreenBezel = styled.div`
   border-radius: 3px;
   padding: 20px;
   margin: 20px 0;
+
+  /* Medium breakpoint: 900px - scale down bezel */
+  @media (max-width: 900px) {
+    padding: 15px;
+    margin: 15px 0;
+  }
+
+  /* Small breakpoint: 600px - further scale down bezel */
+  @media (max-width: 600px) {
+    padding: 10px;
+    margin: 10px 0;
+  }
 `;
 
 export const StyledDx7Screen = styled.div<StyledDx7ScreenProps>`
@@ -32,6 +44,23 @@ export const StyledDx7Screen = styled.div<StyledDx7ScreenProps>`
 
   width: 680px;
   height: 80px;
+
+  /* Medium breakpoint: 900px - scale down screen */
+  @media (max-width: 900px) {
+    width: 90vw;
+    max-width: 600px;
+    font-size: 18px;
+    padding: 15px;
+  }
+
+  /* Small breakpoint: 600px - further scale down */
+  @media (max-width: 600px) {
+    width: 95vw;
+    max-width: 400px;
+    font-size: 14px;
+    padding: 10px;
+    height: 60px;
+  }
 
   /* ensure content sits above the pseudo background */
   & > * {
@@ -59,6 +88,20 @@ export const StyledDx7ScreenMessage = styled.div`
   left: 20px;
   right: 20px;
   transition: none;
+
+  /* Medium breakpoint: 900px - adjust message positioning */
+  @media (max-width: 900px) {
+    top: 15px;
+    left: 15px;
+    right: 15px;
+  }
+
+  /* Small breakpoint: 600px - further adjust positioning */
+  @media (max-width: 600px) {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
 `;
 
 export const StyledDx7ScreenDebug = styled.div`

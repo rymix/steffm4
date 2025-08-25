@@ -15,6 +15,18 @@ export const StyledDx7SliderFrame = styled.div`
   display: flex;
   padding: 9px 9px 5px 9px;
   width: 60px;
+
+  /* Medium breakpoint: 900px - slightly smaller slider */
+  @media (max-width: 900px) {
+    width: 55px;
+    padding: 8px 8px 4px 8px;
+  }
+
+  /* Small breakpoint: 600px - compact slider */
+  @media (max-width: 600px) {
+    width: 50px;
+    padding: 6px 6px 3px 6px;
+  }
 `;
 
 export const StyledDx7SliderBody = styled.div`
@@ -26,6 +38,20 @@ export const StyledDx7SliderBody = styled.div`
   text-transform: uppercase;
   height: 128px;
   width: 54px;
+
+  /* Medium breakpoint: 900px - smaller slider body */
+  @media (max-width: 900px) {
+    height: 110px;
+    width: 48px;
+    font-size: 12px;
+  }
+
+  /* Small breakpoint: 600px - compact slider body */
+  @media (max-width: 600px) {
+    height: 90px;
+    width: 42px;
+    font-size: 10px;
+  }
 `;
 
 export const StyledDx7Slider = styled(Slider)<StyledDx7SliderProps>`
@@ -132,6 +158,20 @@ export const StyledDx7SliderLines = styled.div`
   width: 12px;
   height: 128px;
   margin: 10px 0 0 10px;
+
+  /* Medium breakpoint: 900px - smaller slider lines */
+  @media (max-width: 900px) {
+    width: 10px;
+    height: 110px;
+    margin: 8px 0 0 8px;
+  }
+
+  /* Small breakpoint: 600px - compact slider lines */
+  @media (max-width: 600px) {
+    width: 8px;
+    height: 90px;
+    margin: 6px 0 0 6px;
+  }
 `;
 
 export const StyledDx7SliderLabels = styled.div`

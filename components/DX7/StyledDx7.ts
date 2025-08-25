@@ -38,6 +38,18 @@ export const StyledDx7Case = styled.div`
   flex-direction: column; /* each direct child = its own row */
   align-items: stretch; /* rows fill full width */
   justify-content: flex-start;
+
+  /* Medium breakpoint: 900px - vertical stacking, remove min-width */
+  @media (max-width: 900px) {
+    min-width: unset;
+    width: 95%;
+    max-width: none;
+  }
+
+  /* Small breakpoint: 600px - compact layout */
+  @media (max-width: 600px) {
+    width: 98%;
+  }
 `;
 
 export const StyledDx7CaseDark = styled.div`
@@ -88,6 +100,12 @@ export const StyledDx7CaseRow = styled.div<StyledDx7CaseRowProps>`
   align-items: ${(props) => props.alignItems || "stretch"};
   gap: ${(props) => props.gap || "0"};
   ${(props) => props.customFlex ?? ""}
+
+  /* Medium breakpoint: 900px - force all rows to stack vertically */
+  @media (max-width: 900px) {
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 export const StyledDx7CaseItem = styled.div<StyledDx7CaseItemProps>`

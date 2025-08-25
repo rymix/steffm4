@@ -44,10 +44,30 @@ const Dx7Screen: React.FC = () => {
   );
 
   const stepsPx = 5;
-  const stringLength = 72;
   const displayTimeMs = 7000;
   const displayHeightPx = 80;
   const animationStepMs = 50;
+
+  // Responsive string length based on screen width
+  const [stringLength, setStringLength] = useState(72);
+
+  // Update string length based on screen width
+  useEffect(() => {
+    const updateStringLength = (): void => {
+      const width = window.innerWidth;
+      if (width <= 600) {
+        setStringLength(32); // Small screens
+      } else if (width <= 900) {
+        setStringLength(48); // Medium screens
+      } else {
+        setStringLength(72); // Large screens (default)
+      }
+    };
+
+    updateStringLength();
+    window.addEventListener("resize", updateStringLength);
+    return () => window.removeEventListener("resize", updateStringLength);
+  }, []);
 
   // Function to slice message into configurable character chunks
   const sliceMessage = (message: string): string[] => {
@@ -254,7 +274,7 @@ const Dx7Screen: React.FC = () => {
     // Update refs for next comparison
     lastMixDetailsRef.current = mixDetails;
     lastTrackDetailsRef.current = trackDetails;
-  }, [mixDetails, trackDetails, holdingMessage]);
+  }, [mixDetails, trackDetails, holdingMessage, stringLength]);
 
   // Effect to update display message from current slice (only for initial load)
   useEffect(() => {

@@ -15,12 +15,25 @@ import {
 } from "components/Dx7/StyledDx7";
 import Dx7Volume from "components/Dx7/Volume";
 import Dx7Wrapper from "components/Dx7/Wrapper";
+import { useEffect, useState } from "react";
 
 export const Dx7: React.FC = () => {
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = (): void => {
+      setIsSmallScreen(window.innerWidth <= 600);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
   return (
     <Dx7Wrapper>
       <StyledDx7Case>
-        {/* <Dx7MixcloudConnected /> */}
+        {/* Header - always visible but may have reduced algorithm background on small screens */}
         <Dx7Header />
         <StyledDx7CaseLight>
           {/* Row 1: Single Screen component - center aligned */}
@@ -60,7 +73,8 @@ export const Dx7: React.FC = () => {
               alignItems="center"
               padding="20px 0"
             >
-              <Dx7Cartridge />
+              {/* Hide Cartridge on small screens */}
+              {!isSmallScreen && <Dx7Cartridge />}
               <Dx7FilterSelect />
             </StyledDx7CaseItem>
             <StyledDx7CaseItem
