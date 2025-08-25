@@ -59,7 +59,7 @@ const Dx7ControlsSecondary: React.FC = () => {
       <StyledDx7Item>
         <Dx7Button
           color="orange"
-          label="Info"
+          label="Mix Info"
           onClick={handleInfoClick}
           momentary
         />
@@ -67,7 +67,7 @@ const Dx7ControlsSecondary: React.FC = () => {
       <StyledDx7Item>
         <Dx7Button
           color="orange"
-          label="List"
+          label="List All"
           onClick={handleListClick}
           momentary
         />

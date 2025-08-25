@@ -98,7 +98,7 @@ const Dx7Controls: React.FC = () => {
       <StyledDx7Item>
         <Dx7Button
           color="cream"
-          label="Prev"
+          label="Previous"
           onClick={handlePreviousWithTracking}
           momentary
         />
@@ -114,7 +114,7 @@ const Dx7Controls: React.FC = () => {
       <StyledDx7Item>
         <Dx7Button
           color="blue"
-          label="Rand"
+          label="Random"
           onClick={handleRandomClick}
           momentary
         />
@@ -122,7 +122,7 @@ const Dx7Controls: React.FC = () => {
       <StyledDx7Item>
         <Dx7Button
           color="blue"
-          label="Car"
+          label="Car Mode"
           onClick={handleDrivingModeClick}
           momentary
         />
