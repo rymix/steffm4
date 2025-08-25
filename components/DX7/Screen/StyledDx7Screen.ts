@@ -1,3 +1,4 @@
+import { StyledDx7ScreenProps } from "components/Dx7/Screen/types";
 import styled from "styled-components";
 
 export const StyledDx7ScreenBezel = styled.div`
@@ -15,9 +16,11 @@ export const StyledDx7ScreenBezel = styled.div`
   margin: 20px 0;
 `;
 
-export const StyledDx7Screen = styled.div`
+export const StyledDx7Screen = styled.div<StyledDx7ScreenProps>`
   position: relative;
-  background-color: rgba(210, 238, 10, 1); /* solid base */
+  background-color: rgba(210, 238, 10, 1);
+  background-color: ${(props) =>
+    props.$lightOn ? "rgba(210, 238, 10, 1)" : "rgba(74, 84, 77, 1)"};
   color: rgba(36, 29, 25, 0.6);
   font-family: "LEDBoard7";
   font-size: 20px;
@@ -25,6 +28,7 @@ export const StyledDx7Screen = styled.div`
   padding: 20px;
   text-shadow: 0 0 3px rgba(36, 29, 25, 0.3);
   overflow: hidden; /* hide scaled edges */
+  transition: background-color 0.1s ease-in-out;
 
   width: 680px;
   height: 80px;

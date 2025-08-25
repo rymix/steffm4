@@ -155,6 +155,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Session */
   const [displayLength, setDisplayLength] = useState<number>(DISPLAY_LENGTH);
+  const [dx7ScreenLight, setDx7ScreenLight] = useState<boolean>(true);
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -1927,6 +1928,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       backgroundAutoChange,
       burgerMenuRef,
       displayLength,
+      dx7ScreenLight,
       filterBackgroundCategory,
       handleCloseModal,
       isAtBottom,
@@ -1945,6 +1947,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setBackground,
       setBackgroundAutoChange,
       setDisplayLength,
+      setDx7ScreenLight,
       setFilterBackgroundCategory,
       setIsAtBottom,
       setIsMobile: setIsMobileDevice,

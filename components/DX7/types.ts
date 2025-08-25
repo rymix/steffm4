@@ -1,4 +1,4 @@
-export interface StyledDx7CaseRowProps {
+export type StyledDx7CaseRowProps = {
   layout?: "horizontal" | "vertical" | "custom";
   justifyContent?:
     | "flex-start"
@@ -10,9 +10,9 @@ export interface StyledDx7CaseRowProps {
   alignItems?: "flex-start" | "flex-end" | "center" | "stretch" | "baseline";
   gap?: string;
   customFlex?: string;
-}
+};
 
-export interface StyledDx7CaseItemProps {
+export type StyledDx7CaseItemProps = {
   flex?: string;
   alignSelf?:
     | "auto"
@@ -32,4 +32,4 @@ export interface StyledDx7CaseItemProps {
   alignItems?: "flex-start" | "flex-end" | "center" | "stretch" | "baseline";
   gap?: string;
   customFlex?: string;
-}
+};

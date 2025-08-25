@@ -13,6 +13,7 @@ import { DEBUG } from "utils/logger";
 const Dx7Screen: React.FC = () => {
   const {
     screen: { holdingMessage },
+    session: { dx7ScreenLight },
     track: { details: trackDetails },
     mix: { details: mixDetails },
   } = useMixcloud();
@@ -276,7 +277,7 @@ const Dx7Screen: React.FC = () => {
 
   return (
     <StyledDx7ScreenBezel>
-      <StyledDx7Screen>
+      <StyledDx7Screen $lightOn={dx7ScreenLight}>
         {/* Current message */}
         <StyledDx7ScreenMessage
           style={{

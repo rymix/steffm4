@@ -93,6 +93,7 @@ export type MixcloudContextState = {
     backgroundAutoChange: boolean;
     burgerMenuRef: React.MutableRefObject<HTMLDivElement | null>;
     displayLength: number;
+    dx7ScreenLight: boolean;
     filterBackgroundCategory: string | undefined;
     handleCloseModal: () => void;
     isAtBottom: boolean;
@@ -119,6 +120,7 @@ export type MixcloudContextState = {
     >;
     setBackgroundAutoChange: React.Dispatch<React.SetStateAction<boolean>>;
     setDisplayLength: React.Dispatch<React.SetStateAction<number>>;
+    setDx7ScreenLight: React.Dispatch<React.SetStateAction<boolean>>;
     setFilterBackgroundCategory: React.Dispatch<
       React.SetStateAction<string | undefined>
     >;

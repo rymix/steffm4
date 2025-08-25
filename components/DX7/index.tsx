@@ -6,6 +6,7 @@ import Dx7Header from "components/Dx7/Header";
 import Dx7MixcloudConnected from "components/Dx7/MixcloudConnected";
 import Dx7MixTrackDisplay from "components/Dx7/MixTrackDisplay";
 import Dx7Screen from "components/Dx7/Screen";
+import Dx7ScreenControls from "components/Dx7/ScreenControls";
 import {
   StyledDx7Case,
   StyledDx7CaseDark,
@@ -27,6 +28,7 @@ export const Dx7: React.FC = () => {
           <StyledDx7CaseRow justifyContent="center" alignItems="center">
             <StyledDx7CaseItem>
               <Dx7Screen />
+              <Dx7ScreenControls />
             </StyledDx7CaseItem>
           </StyledDx7CaseRow>
           {/* Row 2: Volume left, Controls and ControlsSecondary stacked right */}
