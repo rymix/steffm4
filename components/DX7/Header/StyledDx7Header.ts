@@ -31,8 +31,8 @@ export const StyledDx7Header = styled.div`
     padding: 10px 0;
   }
 
-  /* Small breakpoint: 600px - compact header */
-  @media (max-width: 600px) {
+  /* Small breakpoint: 480px - compact header */
+  @media (max-width: 480px) {
     height: 60px;
     min-height: 60px;
     padding: 5px 0;
@@ -70,8 +70,8 @@ export const StyledDx7HeaderLogo = styled(StefFmDx7Logo)`
     margin: 0 0 15px 20px;
   }
 
-  /* Small breakpoint: 600px - much smaller logo */
-  @media (max-width: 600px) {
+  /* Small breakpoint: 480px - much smaller logo */
+  @media (max-width: 480px) {
     flex: 0 0 150px;
     margin: 0 0 10px 10px;
   }
@@ -99,8 +99,8 @@ export const StyledDx7HeaderMotto = styled.div`
     font-size: 8px;
   }
 
-  /* Small breakpoint: 600px - hide motto to save space */
-  @media (max-width: 600px) {
+  /* Small breakpoint: 480px - hide motto to save space */
+  @media (max-width: 480px) {
     display: none;
   }
 `;
@@ -122,8 +122,8 @@ export const StyledDx7HeaderSpacer = styled.div`
     opacity: 0.5;
   }
 
-  /* Small breakpoint: 600px - hide algorithm background */
-  @media (max-width: 600px) {
+  /* Small breakpoint: 480px - hide algorithm background */
+  @media (max-width: 480px) {
     background-image: none;
   }
 `;

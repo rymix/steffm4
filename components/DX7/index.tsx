@@ -22,7 +22,7 @@ export const Dx7: React.FC = () => {
 
   useEffect(() => {
     const checkScreenSize = (): void => {
-      setIsSmallScreen(window.innerWidth <= 600);
+      setIsSmallScreen(window.innerWidth <= 480);
     };
 
     checkScreenSize();

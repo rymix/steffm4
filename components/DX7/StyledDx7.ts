@@ -42,13 +42,15 @@ export const StyledDx7Case = styled.div`
   /* Medium breakpoint: 900px - vertical stacking, remove min-width */
   @media (max-width: 900px) {
     min-width: unset;
-    width: 95%;
     max-width: none;
+    width: 95%;
   }
 
-  /* Small breakpoint: 600px - compact layout */
-  @media (max-width: 600px) {
-    width: 98%;
+  /* Small breakpoint: 480px - compact layout */
+  @media (max-width: 480px) {
+    min-width: 300px;
+    max-width: 400px;
+    width: 80%;
   }
 `;
 

@@ -30,8 +30,8 @@ export const StyledDx7LcdWrapper = styled.div<StyledDx7LcdProps>`
     width: ${(props) => Math.max(120, props.$characterCount * 26 + 36)}px;
   }
 
-  /* Small breakpoint: 600px - hide LCD displays to save space */
-  @media (max-width: 600px) {
+  /* Small breakpoint: 480px - hide LCD displays to save space */
+  @media (max-width: 480px) {
     display: none;
   }
 `;

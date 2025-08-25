@@ -22,8 +22,8 @@ export const StyledDx7SliderFrame = styled.div`
     padding: 8px 8px 4px 8px;
   }
 
-  /* Small breakpoint: 600px - compact slider */
-  @media (max-width: 600px) {
+  /* Small breakpoint: 480px - compact slider */
+  @media (max-width: 480px) {
     width: 50px;
     padding: 6px 6px 3px 6px;
   }
@@ -46,8 +46,8 @@ export const StyledDx7SliderBody = styled.div`
     font-size: 12px;
   }
 
-  /* Small breakpoint: 600px - compact slider body */
-  @media (max-width: 600px) {
+  /* Small breakpoint: 480px - compact slider body */
+  @media (max-width: 480px) {
     height: 90px;
     width: 42px;
     font-size: 10px;
@@ -166,8 +166,8 @@ export const StyledDx7SliderLines = styled.div`
     margin: 8px 0 0 8px;
   }
 
-  /* Small breakpoint: 600px - compact slider lines */
-  @media (max-width: 600px) {
+  /* Small breakpoint: 480px - compact slider lines */
+  @media (max-width: 480px) {
     width: 8px;
     height: 90px;
     margin: 6px 0 0 6px;
