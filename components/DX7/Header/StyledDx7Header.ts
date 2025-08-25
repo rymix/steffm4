@@ -17,7 +17,7 @@ export const StyledDx7Header = styled.div`
   align-items: flex-end;
   flex-wrap: nowrap; /* keep on one line */
   width: 100%;
-  height: 80px;
+  height: 100px;
 `;
 
 /* 100px wide */
@@ -36,13 +36,13 @@ export const StyledDx7HeaderTitle = styled.div`
 
 /* 300px wide */
 export const StyledDx7HeaderLogo = styled(StefFmDx7Logo)`
-  flex: 0 0 280px; /* fixed 300px column */
+  flex: 0 0 240px; /* fixed 300px column */
   width: 100%; /* SVG fills its column */
   height: auto;
   aspect-ratio: 4.2 / 1;
   display: block;
   fill: rgba(255, 255, 255, 0.8);
-  padding: 0 0 10px 0;
+  margin: 0 0 20px 30px;
   cursor: pointer;
 `;
 
@@ -54,11 +54,11 @@ export const StyledDx7HeaderMotto = styled.div`
   white-space: nowrap;
   overflow: hidden; /* optional */
   text-overflow: ellipsis;
-  font-size: 10px;
+  font-size: 9px;
   text-transform: uppercase;
   font-family: Microgamma, sans-serif;
   font-weight: 700;
-  padding: 0 0 8px 0;
+  padding: 0 0 20px 8px;
 `;
 
 /* takes 100% of remaining space */
