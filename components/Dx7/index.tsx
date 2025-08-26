@@ -9,12 +9,14 @@ import Dx7ScreenControls from "components/Dx7/ScreenControls";
 import {
   StyledDx7Case,
   StyledDx7CaseControlsContainer,
+  StyledDx7CaseControlsRow,
   StyledDx7CaseDark,
   StyledDx7CaseFilterContainer,
+  StyledDx7CaseFilterRow,
   StyledDx7CaseLight,
   StyledDx7CaseMixDisplayContainer,
-  StyledDx7CaseRow,
   StyledDx7CaseScreenContainer,
+  StyledDx7CaseScreenRow,
   StyledDx7CaseVolumeContainer,
 } from "components/Dx7/StyledDx7";
 import { useDeviceOrientation } from "components/Dx7/useDeviceOrientation";
@@ -31,15 +33,15 @@ export const Dx7: React.FC = () => {
         <Dx7Header />
         <StyledDx7CaseLight>
           {/* Row 1: Screen component - responsive layout */}
-          <StyledDx7CaseRow alignItems="center" justifyContent="center">
+          <StyledDx7CaseScreenRow>
             <StyledDx7CaseScreenContainer>
               <Dx7Screen />
               {/* Hide ScreenControls in portrait mode - they'll be moved inside */}
               {!isPortrait && <Dx7ScreenControls />}
             </StyledDx7CaseScreenContainer>
-          </StyledDx7CaseRow>
+          </StyledDx7CaseScreenRow>
           {/* Row 2: Volume vs Controls - adjust flex ratios */}
-          <StyledDx7CaseRow>
+          <StyledDx7CaseControlsRow>
             <StyledDx7CaseControlsContainer>
               <Dx7Controls />
               <Dx7ControlsSecondary />
@@ -53,11 +55,11 @@ export const Dx7: React.FC = () => {
                 </div>
               )}
             </StyledDx7CaseVolumeContainer>
-          </StyledDx7CaseRow>
+          </StyledDx7CaseControlsRow>
         </StyledDx7CaseLight>
         <StyledDx7CaseDark>
           {/* Row 3: FilterSelect and Cartridge stacked left, MixTrackDisplay right */}
-          <StyledDx7CaseRow>
+          <StyledDx7CaseFilterRow>
             <StyledDx7CaseFilterContainer>
               {/* Hide Cartridge on small screens */}
               {!isSmallScreen && <Dx7Cartridge />}
@@ -66,7 +68,7 @@ export const Dx7: React.FC = () => {
             <StyledDx7CaseMixDisplayContainer>
               <Dx7MixTrackDisplay />
             </StyledDx7CaseMixDisplayContainer>
-          </StyledDx7CaseRow>
+          </StyledDx7CaseFilterRow>
         </StyledDx7CaseDark>
       </StyledDx7Case>
     </Dx7Wrapper>

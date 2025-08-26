@@ -1,15 +1,8 @@
-export type StyledDx7CaseRowProps = {
-  layout?: "horizontal" | "vertical" | "custom";
-  justifyContent?:
-    | "flex-start"
-    | "flex-end"
-    | "center"
-    | "space-between"
-    | "space-around"
-    | "space-evenly";
-  alignItems?: "flex-start" | "flex-end" | "center" | "stretch" | "baseline";
-  gap?: string;
-  customFlex?: string;
-};
+// This file previously contained StyledDx7CaseRowProps and StyledDx7CaseItemProps
+// These parameterized component types have been removed and replaced with
+// specific styled components that don't require type props
 
-// Removed StyledDx7CaseItemProps - replaced with specific components
+// Individual component types are now defined in their respective component directories
+// e.g., components/Dx7/Button/types.ts, components/Dx7/Screen/types.ts, etc.
+
+export {};

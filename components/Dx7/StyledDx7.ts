@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import type { StyledDx7CaseRowProps } from "./types";
+// No longer need type imports - using specific styled components
 
 export const dx7Border = (
   horizontalPosition = "left",
@@ -99,17 +99,33 @@ export const StyledDx7CaseLight = styled.div`
   ${dx7Border("right", "100%")}
 `;
 
-export const StyledDx7CaseRow = styled.div<StyledDx7CaseRowProps>`
+// Specific styled row components to replace parameterized StyledDx7CaseRow
+
+// Screen row - centered alignment for screen and controls
+export const StyledDx7CaseScreenRow = styled.div`
   display: flex;
-  flex-direction: ${(props) => {
-    if (props.layout === "vertical") return "column";
-    if (props.layout === "horizontal") return "row";
-    return "row"; // default
-  }};
-  justify-content: ${(props) => props.justifyContent || "flex-start"};
-  align-items: ${(props) => props.alignItems || "stretch"};
-  gap: ${(props) => props.gap || "0"};
-  ${(props) => props.customFlex ?? ""}
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+`;
+
+// Controls row - default row layout for volume and controls
+export const StyledDx7CaseControlsRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 0;
+`;
+
+// Filter row - default row layout for filter/cartridge and mix display
+export const StyledDx7CaseFilterRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 0;
 `;
 
 // Specific styled components to replace parameterized StyledDx7CaseItem
