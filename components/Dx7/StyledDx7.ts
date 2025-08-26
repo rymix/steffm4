@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import type { StyledDx7CaseItemProps, StyledDx7CaseRowProps } from "./types";
+import type { StyledDx7CaseRowProps } from "./types";
 
 export const dx7Border = (
   horizontalPosition = "left",
@@ -141,25 +141,15 @@ export const StyledDx7CaseRow = styled.div<StyledDx7CaseRowProps>`
   }
 `;
 
-export const StyledDx7CaseItem = styled.div<StyledDx7CaseItemProps>`
-  sborder: 1px solid green;
-  ${(props) => (props.flex ? `flex: ${props.flex};` : "")}
-  ${(props) => (props.alignSelf ? `align-self: ${props.alignSelf};` : "")}
+// Specific styled components to replace parameterized StyledDx7CaseItem
 
-  ${(props) =>
-    props.layout
-      ? `
-    display: flex;
-    flex-direction: ${props.layout === "vertical" ? "column" : "row"};
-    ${props.justifyContent ? `justify-content: ${props.justifyContent};` : ""}
-    ${props.alignItems ? `align-items: ${props.alignItems};` : ""}
-    ${props.gap ? `gap: ${props.gap};` : ""}
-  `
-      : ""}
-
-  ${(props) => props.customFlex ?? ""}
-  ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
-  ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
+// Screen container - horizontal layout, centered
+export const StyledDx7CaseScreenContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
 
   /* Mobile breakpoint: ensure items don't overflow */
   @media (max-width: 768px) {
@@ -167,40 +157,83 @@ export const StyledDx7CaseItem = styled.div<StyledDx7CaseItemProps>`
     min-width: 0;
     flex-shrink: 1;
   }
+`;
 
-  /* Mobile portrait: optimize for touch and vertical space */
+// Controls container - vertical layout, responsive flex
+export const StyledDx7CaseControlsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex: 2 1 60%;
+
+  /* Mobile portrait: full width, center alignment */
   @media (max-width: 768px) and (orientation: portrait) {
-    padding: ${(props) => {
-      const currentPadding = props.padding || "0";
-      // Reduce padding but maintain some space
-      return currentPadding.includes("px")
-        ? currentPadding.replace(
-            /\d+px/g,
-            (match) => `${Math.max(5, Number.parseInt(match, 10) * 0.7)}px`,
-          )
-        : "5px";
-    }};
-    margin: ${(props) => {
-      const currentMargin = props.margin || "0";
-      return currentMargin.includes("px")
-        ? currentMargin.replace(
-            /\d+px/g,
-            (match) => `${Math.max(2, Number.parseInt(match, 10) * 0.5)}px`,
-          )
-        : "2px";
-    }};
+    flex: 1;
+    align-items: center;
   }
 
-  /* Mobile landscape: maintain spacing efficiency */
+  /* Mobile landscape: maintain responsive ratio */
   @media (max-width: 768px) and (orientation: landscape) {
-    padding: ${(props) => {
-      const currentPadding = props.padding || "0";
-      return currentPadding.includes("px")
-        ? currentPadding.replace(
-            /\d+px/g,
-            (match) => `${Math.max(3, Number.parseInt(match, 10) * 0.6)}px`,
-          )
-        : "3px";
-    }};
+    flex: 2 1 60%;
+  }
+`;
+
+// Volume container - vertical layout, with padding and screen controls in portrait
+export const StyledDx7CaseVolumeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 0 20px 0;
+  flex: 1 1 40%;
+
+  /* Mobile portrait: auto size, center alignment, reduced padding */
+  @media (max-width: 768px) and (orientation: portrait) {
+    flex: 0 0 auto;
+    align-items: center;
+    padding: 0 0 14px 0;
+  }
+
+  /* Mobile landscape: maintain responsive ratio, reduced padding */
+  @media (max-width: 768px) and (orientation: landscape) {
+    flex: 1 1 40%;
+    padding: 0 0 12px 0;
+  }
+`;
+
+// Filter/Cartridge container - vertical layout, centered, with padding
+export const StyledDx7CaseFilterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 20px 0;
+
+  /* Mobile portrait: reduced padding */
+  @media (max-width: 768px) and (orientation: portrait) {
+    padding: 14px 0;
+  }
+
+  /* Mobile landscape: reduced padding */
+  @media (max-width: 768px) and (orientation: landscape) {
+    padding: 12px 0;
+  }
+`;
+
+// Mix display container - vertical layout, centered, with specific padding
+export const StyledDx7CaseMixDisplayContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  padding: 30px 0 20px 0;
+
+  /* Mobile portrait: reduced padding */
+  @media (max-width: 768px) and (orientation: portrait) {
+    padding: 21px 0 14px 0;
+  }
+
+  /* Mobile landscape: reduced padding */
+  @media (max-width: 768px) and (orientation: landscape) {
+    padding: 18px 0 12px 0;
   }
 `;
