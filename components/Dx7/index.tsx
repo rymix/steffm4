@@ -13,22 +13,12 @@ import {
   StyledDx7CaseLight,
   StyledDx7CaseRow,
 } from "components/Dx7/StyledDx7";
+import { useDeviceOrientation } from "components/Dx7/useDeviceOrientation";
 import Dx7Volume from "components/Dx7/Volume";
 import Dx7Wrapper from "components/Dx7/Wrapper";
-import { useEffect, useState } from "react";
 
 export const Dx7: React.FC = () => {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-  useEffect(() => {
-    const checkScreenSize = (): void => {
-      setIsSmallScreen(window.innerWidth <= 480);
-    };
-
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
+  const { isSmallScreen, isPortrait } = useDeviceOrientation();
 
   return (
     <Dx7Wrapper>
@@ -36,7 +26,7 @@ export const Dx7: React.FC = () => {
         {/* Header - always visible but may have reduced algorithm background on small screens */}
         <Dx7Header />
         <StyledDx7CaseLight>
-          {/* Row 1: Single Screen component - center aligned */}
+          {/* Row 1: Screen component - responsive layout */}
           <StyledDx7CaseRow alignItems="center" justifyContent="center">
             <StyledDx7CaseItem
               layout="horizontal"
@@ -45,22 +35,33 @@ export const Dx7: React.FC = () => {
               justifyContent="center"
             >
               <Dx7Screen />
-              <Dx7ScreenControls />
+              {/* Hide ScreenControls in portrait mode - they'll be moved inside */}
+              {!isPortrait && <Dx7ScreenControls />}
             </StyledDx7CaseItem>
           </StyledDx7CaseRow>
-          {/* Row 2: Volume left, Controls and ControlsSecondary stacked right */}
+          {/* Row 2: Volume vs Controls - adjust flex ratios */}
           <StyledDx7CaseRow>
             <StyledDx7CaseItem
               layout="vertical"
-              flex="1"
-              alignItems="center"
+              flex={isPortrait ? "1" : "2 1 60%"}
+              alignItems="flex-end"
+            >
+              <Dx7Controls />
+              <Dx7ControlsSecondary />
+            </StyledDx7CaseItem>
+            <StyledDx7CaseItem
+              layout="vertical"
+              flex={isPortrait ? "0 0 auto" : "1 1 40%"}
+              alignItems="flex-start"
               padding="0 0 20px 0"
             >
               <Dx7Volume />
-            </StyledDx7CaseItem>
-            <StyledDx7CaseItem layout="vertical" flex="1" alignItems="center">
-              <Dx7Controls />
-              <Dx7ControlsSecondary />
+              {/* In portrait mode, add ScreenControls vertically stacked with Volume */}
+              {isPortrait && (
+                <div style={{ marginTop: "10px" }}>
+                  <Dx7ScreenControls />
+                </div>
+              )}
             </StyledDx7CaseItem>
           </StyledDx7CaseRow>
         </StyledDx7CaseLight>

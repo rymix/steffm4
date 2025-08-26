@@ -52,6 +52,23 @@ export const StyledDx7Case = styled.div`
     max-width: 400px;
     width: 80%;
   }
+
+  /* Mobile portrait: stack everything vertically */
+  @media (max-width: 768px) and (orientation: portrait) {
+    width: 95%;
+    max-width: 380px;
+    min-width: 300px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  /* Mobile landscape: use available width efficiently */
+  @media (max-width: 768px) and (orientation: landscape) {
+    width: 98%;
+    max-width: none;
+    min-width: 300px;
+    padding: 5px;
+  }
 `;
 
 export const StyledDx7CaseDark = styled.div`
@@ -108,6 +125,20 @@ export const StyledDx7CaseRow = styled.div<StyledDx7CaseRowProps>`
     flex-direction: column;
     gap: 10px;
   }
+
+  /* Mobile portrait: optimize for vertical space */
+  @media (max-width: 768px) and (orientation: portrait) {
+    flex-direction: column;
+    gap: 15px;
+    padding: 5px;
+  }
+
+  /* Mobile landscape: try to maintain some horizontal layout where possible */
+  @media (max-width: 768px) and (orientation: landscape) {
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 `;
 
 export const StyledDx7CaseItem = styled.div<StyledDx7CaseItemProps>`
@@ -129,4 +160,47 @@ export const StyledDx7CaseItem = styled.div<StyledDx7CaseItemProps>`
   ${(props) => props.customFlex ?? ""}
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")}
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")}
+
+  /* Mobile breakpoint: ensure items don't overflow */
+  @media (max-width: 768px) {
+    max-width: 100%;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  /* Mobile portrait: optimize for touch and vertical space */
+  @media (max-width: 768px) and (orientation: portrait) {
+    padding: ${(props) => {
+      const currentPadding = props.padding || "0";
+      // Reduce padding but maintain some space
+      return currentPadding.includes("px")
+        ? currentPadding.replace(
+            /\d+px/g,
+            (match) => `${Math.max(5, Number.parseInt(match, 10) * 0.7)}px`,
+          )
+        : "5px";
+    }};
+    margin: ${(props) => {
+      const currentMargin = props.margin || "0";
+      return currentMargin.includes("px")
+        ? currentMargin.replace(
+            /\d+px/g,
+            (match) => `${Math.max(2, Number.parseInt(match, 10) * 0.5)}px`,
+          )
+        : "2px";
+    }};
+  }
+
+  /* Mobile landscape: maintain spacing efficiency */
+  @media (max-width: 768px) and (orientation: landscape) {
+    padding: ${(props) => {
+      const currentPadding = props.padding || "0";
+      return currentPadding.includes("px")
+        ? currentPadding.replace(
+            /\d+px/g,
+            (match) => `${Math.max(3, Number.parseInt(match, 10) * 0.6)}px`,
+          )
+        : "3px";
+    }};
+  }
 `;

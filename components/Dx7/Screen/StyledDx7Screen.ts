@@ -62,6 +62,25 @@ export const StyledDx7Screen = styled.div<StyledDx7ScreenProps>`
     height: 60px;
   }
 
+  /* Mobile portrait: taller screen for 3-line display - stay within container */
+  @media (max-width: 768px) and (orientation: portrait) {
+    width: calc(100% - 40px); /* Stay within container padding */
+    max-width: 300px;
+    height: 120px;
+    font-size: 12px;
+    line-height: 1.3;
+    padding: 12px;
+  }
+
+  /* Mobile landscape: wider but constrained to container */
+  @media (max-width: 768px) and (orientation: landscape) {
+    width: calc(100% - 20px); /* Stay within container padding */
+    max-width: 450px;
+    height: 80px;
+    font-size: 14px;
+    padding: 10px;
+  }
+
   /* ensure content sits above the pseudo background */
   & > * {
     position: relative;
@@ -98,6 +117,20 @@ export const StyledDx7ScreenMessage = styled.div`
 
   /* Small breakpoint: 480px - further adjust positioning */
   @media (max-width: 480px) {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  /* Mobile portrait: adjust for taller screen */
+  @media (max-width: 768px) and (orientation: portrait) {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+  }
+
+  /* Mobile landscape: standard positioning */
+  @media (max-width: 768px) and (orientation: landscape) {
     top: 10px;
     left: 10px;
     right: 10px;

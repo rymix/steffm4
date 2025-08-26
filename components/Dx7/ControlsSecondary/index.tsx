@@ -2,6 +2,7 @@ import About from "components/About";
 import Dx7Button from "components/Dx7/Button";
 import { StyledDx7Controls } from "components/Dx7/Controls/StyledDx7Controls";
 import { StyledDx7Item } from "components/Dx7/Item/StyledDx7Item";
+import { useDeviceOrientation } from "components/Dx7/useDeviceOrientation";
 import MixInformation from "components/MixInformation";
 import MixList from "components/MixList";
 import { useMixcloud } from "contexts/mixcloud";
@@ -13,6 +14,8 @@ const Dx7ControlsSecondary: React.FC = () => {
     mix: { copySharableLink, favourite },
     session: { openModal },
   } = useMixcloud();
+
+  const { isPortrait } = useDeviceOrientation();
 
   const handleFavouriteClick = async (): Promise<void> => {
     if (isFavourite(mcKey)) {
@@ -64,22 +67,27 @@ const Dx7ControlsSecondary: React.FC = () => {
           momentary
         />
       </StyledDx7Item>
-      <StyledDx7Item>
-        <Dx7Button
-          color="orange"
-          label="List All"
-          onClick={handleListClick}
-          momentary
-        />
-      </StyledDx7Item>
-      <StyledDx7Item>
-        <Dx7Button
-          color="orange"
-          label="About"
-          onClick={handleAboutClick}
-          momentary
-        />
-      </StyledDx7Item>
+      {/* Hide List All and About buttons in mobile portrait mode */}
+      {!isPortrait && (
+        <>
+          <StyledDx7Item>
+            <Dx7Button
+              color="orange"
+              label="List All"
+              onClick={handleListClick}
+              momentary
+            />
+          </StyledDx7Item>
+          <StyledDx7Item>
+            <Dx7Button
+              color="orange"
+              label="About"
+              onClick={handleAboutClick}
+              momentary
+            />
+          </StyledDx7Item>
+        </>
+      )}
     </StyledDx7Controls>
   );
 };

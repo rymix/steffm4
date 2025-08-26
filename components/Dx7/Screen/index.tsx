@@ -6,6 +6,7 @@ import {
   StyledDx7ScreenDebug,
   StyledDx7ScreenMessage,
 } from "components/Dx7/Screen/StyledDx7Screen";
+import { useDeviceOrientation } from "components/Dx7/useDeviceOrientation";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useRef, useState } from "react";
 import { DEBUG } from "utils/logger";
@@ -17,6 +18,8 @@ const Dx7Screen: React.FC = () => {
     track: { details: trackDetails },
     mix: { details: mixDetails },
   } = useMixcloud();
+
+  const { isPortrait, isMobile, windowWidth } = useDeviceOrientation();
 
   const [displayMessage, setDisplayMessage] = useState<string>(
     holdingMessage ?? "",
@@ -51,13 +54,16 @@ const Dx7Screen: React.FC = () => {
   // Responsive string length based on screen width
   const [stringLength, setStringLength] = useState(72);
 
-  // Update string length based on screen width
+  // Update string length based on screen width and orientation
   useEffect(() => {
     const updateStringLength = (): void => {
-      const width = window.innerWidth;
-      if (width <= 600) {
-        setStringLength(32); // Small screens
-      } else if (width <= 900) {
+      if (isPortrait && isMobile) {
+        // Portrait mobile: shorter lines but 3 of them - reduced further to fit container
+        setStringLength(20);
+      } else if (isMobile) {
+        // Landscape mobile: medium length - reduced to fit constrained width
+        setStringLength(35);
+      } else if (windowWidth <= 900) {
         setStringLength(48); // Medium screens
       } else {
         setStringLength(72); // Large screens (default)
@@ -65,9 +71,7 @@ const Dx7Screen: React.FC = () => {
     };
 
     updateStringLength();
-    window.addEventListener("resize", updateStringLength);
-    return () => window.removeEventListener("resize", updateStringLength);
-  }, []);
+  }, [isPortrait, isMobile, windowWidth]);
 
   // Function to slice message into configurable character chunks
   const sliceMessage = (message: string): string[] => {
