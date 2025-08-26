@@ -8,6 +8,11 @@ export const StyledDx7CartridgeSlot = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /* Small breakpoint: 480px - compact layout */
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 
 export const StyledDx7Cartridge = styled.div`

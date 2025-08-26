@@ -15,7 +15,7 @@ const Dx7ControlsSecondary: React.FC = () => {
     session: { openModal },
   } = useMixcloud();
 
-  const { isPortrait } = useDeviceOrientation();
+  const { isMobile } = useDeviceOrientation();
 
   const handleFavouriteClick = async (): Promise<void> => {
     if (isFavourite(mcKey)) {
@@ -46,9 +46,10 @@ const Dx7ControlsSecondary: React.FC = () => {
       <StyledDx7Item>
         <Dx7Button
           color="yellow"
-          label="Favourite"
+          label={isMobile.toString()}
           onClick={handleFavouriteClick}
           on={favourite}
+          size={isMobile ? "tiny" : "normal"}
         />
       </StyledDx7Item>
       <StyledDx7Item>
@@ -67,27 +68,22 @@ const Dx7ControlsSecondary: React.FC = () => {
           momentary
         />
       </StyledDx7Item>
-      {/* Hide List All and About buttons in mobile portrait mode */}
-      {!isPortrait && (
-        <>
-          <StyledDx7Item>
-            <Dx7Button
-              color="orange"
-              label="List All"
-              onClick={handleListClick}
-              momentary
-            />
-          </StyledDx7Item>
-          <StyledDx7Item>
-            <Dx7Button
-              color="orange"
-              label="About"
-              onClick={handleAboutClick}
-              momentary
-            />
-          </StyledDx7Item>
-        </>
-      )}
+      <StyledDx7Item>
+        <Dx7Button
+          color="orange"
+          label="List All"
+          onClick={handleListClick}
+          momentary
+        />
+      </StyledDx7Item>
+      <StyledDx7Item>
+        <Dx7Button
+          color="orange"
+          label="About"
+          onClick={handleAboutClick}
+          momentary
+        />
+      </StyledDx7Item>
     </StyledDx7Controls>
   );
 };

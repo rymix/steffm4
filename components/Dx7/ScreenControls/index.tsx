@@ -22,18 +22,18 @@ const Dx7ScreenControls: React.FC = () => {
       <StyledDx7Item>
         <Dx7Button
           color="grey"
-          label="Driving"
-          onClick={handleDrivingModeClick}
-          momentary
+          label="Light"
+          onClick={toggleScreenLight}
+          on={dx7ScreenLight}
           size="tiny"
         />
       </StyledDx7Item>
       <StyledDx7Item>
         <Dx7Button
           color="grey"
-          label="Light"
-          onClick={toggleScreenLight}
-          on={dx7ScreenLight}
+          label="Driving"
+          onClick={handleDrivingModeClick}
+          momentary
           size="tiny"
         />
       </StyledDx7Item>

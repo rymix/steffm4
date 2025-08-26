@@ -150,7 +150,7 @@ export const StyledDx7CaseControlsContainer = styled.div`
 // Volume container - vertical layout, with padding and screen controls in portrait
 export const StyledDx7CaseVolumeContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
   padding: 0 0 20px 0;
   flex: 1 1 40%;
@@ -172,4 +172,8 @@ export const StyledDx7CaseMixDisplayContainer = styled.div`
   align-items: center;
   flex: 1;
   padding: 30px 0 20px 0;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 `;

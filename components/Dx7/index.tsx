@@ -36,8 +36,6 @@ export const Dx7: React.FC = () => {
           <StyledDx7CaseScreenRow>
             <StyledDx7CaseScreenContainer>
               <Dx7Screen />
-              {/* Hide ScreenControls in portrait mode - they'll be moved inside */}
-              {!isPortrait && <Dx7ScreenControls />}
             </StyledDx7CaseScreenContainer>
           </StyledDx7CaseScreenRow>
           {/* Row 2: Volume vs Controls - adjust flex ratios */}
@@ -48,12 +46,7 @@ export const Dx7: React.FC = () => {
             </StyledDx7CaseControlsContainer>
             <StyledDx7CaseVolumeContainer>
               <Dx7Volume />
-              {/* In portrait mode, add ScreenControls vertically stacked with Volume */}
-              {isPortrait && (
-                <div style={{ marginTop: "10px" }}>
-                  <Dx7ScreenControls />
-                </div>
-              )}
+              <Dx7ScreenControls />
             </StyledDx7CaseVolumeContainer>
           </StyledDx7CaseControlsRow>
         </StyledDx7CaseLight>
@@ -61,8 +54,7 @@ export const Dx7: React.FC = () => {
           {/* Row 3: FilterSelect and Cartridge stacked left, MixTrackDisplay right */}
           <StyledDx7CaseFilterRow>
             <StyledDx7CaseFilterContainer>
-              {/* Hide Cartridge on small screens */}
-              {!isSmallScreen && <Dx7Cartridge />}
+              <Dx7Cartridge />
               <Dx7FilterSelect />
             </StyledDx7CaseFilterContainer>
             <StyledDx7CaseMixDisplayContainer>

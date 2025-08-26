@@ -63,6 +63,10 @@ export const StyledDx7HeaderMotto = styled.div`
   font-family: Microgamma, sans-serif;
   font-weight: 700;
   padding: 0 0 20px 8px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 /* takes 100% of remaining space */
@@ -75,4 +79,8 @@ export const StyledDx7HeaderSpacer = styled.div`
   background-repeat: no-repeat;
   background-position: 10px;
   opacity: 0.7;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
