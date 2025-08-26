@@ -89,7 +89,7 @@ export const StyledDx7ButtonWrapper = styled.div<StyledDx7ButtonWrapperProps>`
           : "66px"};
 
   /* Mobile breakpoint: adjust wrapper for touch targets */
-  @media (max-width: 768px) {
+  @media (max-width: 480px) {
     width: ${(props) =>
       props.$size === "huge"
         ? "100%"
@@ -99,11 +99,6 @@ export const StyledDx7ButtonWrapper = styled.div<StyledDx7ButtonWrapperProps>`
             ? "40px"
             : "60px"};
     margin: 2px;
-  }
-
-  /* Mobile portrait: maintain aspect ratio, no custom sizing */
-  @media (max-width: 768px) and (orientation: portrait) {
-    margin: 3px;
   }
 `;
 
@@ -142,56 +137,6 @@ export const StyledDx7Button = styled.button<StyledDx7ButtonProps>`
     background-color 0.1s ease-in-out,
     box-shadow 0.1s ease-in-out,
     transform 0.1s ease-in-out;
-
-  /* Mobile breakpoint: optimize for touch targets (44px minimum) */
-  @media (max-width: 768px) {
-    min-height: 44px;
-    min-width: 44px;
-    height: ${(props) =>
-      props.$size === "huge"
-        ? "60px"
-        : props.$size === "large"
-          ? "90px"
-          : props.$size === "tiny"
-            ? "44px"
-            : "48px"};
-    width: ${(props) =>
-      props.$size === "huge"
-        ? "120px"
-        : props.$size === "large"
-          ? "56px"
-          : props.$size === "tiny"
-            ? "44px"
-            : "60px"};
-    border: 2px solid rgba(0, 0, 0, 0.7);
-  }
-
-  /* Mobile portrait: maintain original aspect ratios */
-  @media (max-width: 768px) and (orientation: portrait) {
-    min-height: 44px;
-    min-width: 44px;
-    /* Keep original proportions but ensure minimum touch target */
-  }
-
-  /* Mobile landscape: maintain usable but compact size */
-  @media (max-width: 768px) and (orientation: landscape) {
-    height: ${(props) =>
-      props.$size === "huge"
-        ? "50px"
-        : props.$size === "large"
-          ? "75px"
-          : props.$size === "tiny"
-            ? "40px"
-            : "44px"};
-    width: ${(props) =>
-      props.$size === "huge"
-        ? "100px"
-        : props.$size === "large"
-          ? "50px"
-          : props.$size === "tiny"
-            ? "40px"
-            : "55px"};
-  }
 
   &:hover {
     &::before {

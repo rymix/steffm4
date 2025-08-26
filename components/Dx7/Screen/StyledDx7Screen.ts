@@ -14,18 +14,6 @@ export const StyledDx7ScreenBezel = styled.div`
   border-radius: 3px;
   padding: 20px;
   margin: 20px 0;
-
-  /* Medium breakpoint: 900px - scale down bezel */
-  @media (max-width: 900px) {
-    padding: 15px;
-    margin: 15px 0;
-  }
-
-  /* Small breakpoint: 480px - further scale down bezel */
-  @media (max-width: 480px) {
-    padding: 10px;
-    margin: 10px 0;
-  }
 `;
 
 export const StyledDx7Screen = styled.div<StyledDx7ScreenProps>`
@@ -44,42 +32,6 @@ export const StyledDx7Screen = styled.div<StyledDx7ScreenProps>`
 
   width: 680px;
   height: 80px;
-
-  /* Medium breakpoint: 900px - scale down screen */
-  @media (max-width: 900px) {
-    width: 90vw;
-    max-width: 600px;
-    font-size: 18px;
-    padding: 15px;
-  }
-
-  /* Small breakpoint: 480px - further scale down */
-  @media (max-width: 480px) {
-    width: 95vw;
-    max-width: 400px;
-    font-size: 14px;
-    padding: 10px;
-    height: 60px;
-  }
-
-  /* Mobile portrait: taller screen for 3-line display - stay within container */
-  @media (max-width: 768px) and (orientation: portrait) {
-    width: calc(100% - 40px); /* Stay within container padding */
-    max-width: 300px;
-    height: 120px;
-    font-size: 12px;
-    line-height: 1.3;
-    padding: 12px;
-  }
-
-  /* Mobile landscape: wider but constrained to container */
-  @media (max-width: 768px) and (orientation: landscape) {
-    width: calc(100% - 20px); /* Stay within container padding */
-    max-width: 450px;
-    height: 80px;
-    font-size: 14px;
-    padding: 10px;
-  }
 
   /* ensure content sits above the pseudo background */
   & > * {
@@ -107,34 +59,6 @@ export const StyledDx7ScreenMessage = styled.div`
   left: 20px;
   right: 20px;
   transition: none;
-
-  /* Medium breakpoint: 900px - adjust message positioning */
-  @media (max-width: 900px) {
-    top: 15px;
-    left: 15px;
-    right: 15px;
-  }
-
-  /* Small breakpoint: 480px - further adjust positioning */
-  @media (max-width: 480px) {
-    top: 10px;
-    left: 10px;
-    right: 10px;
-  }
-
-  /* Mobile portrait: adjust for taller screen */
-  @media (max-width: 768px) and (orientation: portrait) {
-    top: 12px;
-    left: 12px;
-    right: 12px;
-  }
-
-  /* Mobile landscape: standard positioning */
-  @media (max-width: 768px) and (orientation: landscape) {
-    top: 10px;
-    left: 10px;
-    right: 10px;
-  }
 `;
 
 export const StyledDx7ScreenDebug = styled.div`

@@ -22,21 +22,6 @@ export const StyledDx7Header = styled.div`
 
   ${dx7Border("left", "bottom", "97%")}
   ${dx7Border("right", "bottom", "97%")}
-
-  /* Medium breakpoint: 900px - allow wrapping */
-  @media (max-width: 900px) {
-    flex-wrap: wrap;
-    height: auto;
-    min-height: 80px;
-    padding: 10px 0;
-  }
-
-  /* Small breakpoint: 480px - compact header */
-  @media (max-width: 480px) {
-    height: 60px;
-    min-height: 60px;
-    padding: 5px 0;
-  }
 `;
 
 /* 100px wide */
@@ -63,18 +48,6 @@ export const StyledDx7HeaderLogo = styled(StefFmDx7Logo)`
   fill: rgba(255, 255, 255, 0.8);
   margin: 0 0 20px 40px;
   cursor: pointer;
-
-  /* Medium breakpoint: 900px - smaller logo */
-  @media (max-width: 900px) {
-    flex: 0 0 200px;
-    margin: 0 0 15px 20px;
-  }
-
-  /* Small breakpoint: 480px - much smaller logo */
-  @media (max-width: 480px) {
-    flex: 0 0 150px;
-    margin: 0 0 10px 10px;
-  }
 `;
 
 /* 300px wide */
@@ -90,19 +63,6 @@ export const StyledDx7HeaderMotto = styled.div`
   font-family: Microgamma, sans-serif;
   font-weight: 700;
   padding: 0 0 20px 8px;
-
-  /* Medium breakpoint: 900px - smaller motto */
-  @media (max-width: 900px) {
-    flex: 0 0 250px;
-    width: 250px;
-    padding: 0 0 15px 8px;
-    font-size: 8px;
-  }
-
-  /* Small breakpoint: 480px - hide motto to save space */
-  @media (max-width: 480px) {
-    display: none;
-  }
 `;
 
 /* takes 100% of remaining space */
@@ -115,15 +75,4 @@ export const StyledDx7HeaderSpacer = styled.div`
   background-repeat: no-repeat;
   background-position: 10px;
   opacity: 0.7;
-
-  /* Medium breakpoint: 900px - smaller algorithm background */
-  @media (max-width: 900px) {
-    background-size: 400px auto;
-    opacity: 0.5;
-  }
-
-  /* Small breakpoint: 480px - hide algorithm background */
-  @media (max-width: 480px) {
-    background-image: none;
-  }
 `;

@@ -22,15 +22,6 @@ export const StyledDx7LcdWrapper = styled.div<StyledDx7LcdProps>`
   justify-content: flex-end;
   width: ${(props) => Math.max(150, props.$characterCount * 32 + 44)}px;
 
-  /* Medium breakpoint: 900px - smaller LCD */
-  @media (max-width: 900px) {
-    font-size: 32px;
-    height: 70px;
-    padding: 8px;
-    width: ${(props) => Math.max(120, props.$characterCount * 26 + 36)}px;
-  }
-
-  /* Small breakpoint: 480px - hide LCD displays to save space */
   @media (max-width: 480px) {
     display: none;
   }
