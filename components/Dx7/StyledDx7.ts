@@ -117,6 +117,10 @@ export const StyledDx7CaseControlsRow = styled.div`
   justify-content: center;
   align-items: stretch;
   gap: 0;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 // Filter row - default row layout for filter/cartridge and mix display
@@ -148,6 +152,10 @@ export const StyledDx7CaseControlsContainer = styled.div`
   align-items: flex-end;
   padding: 0 20px 0 0;
   flex: 1.3;
+
+  @media (max-width: 900px) {
+    align-items: center;
+  }
 `;
 
 // Volume container - vertical layout, with padding and screen controls in portrait
@@ -155,9 +163,14 @@ export const StyledDx7CaseVolumeContainer = styled.div`
   border: 1px solid green;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   align-items: flex-start;
   padding: 0 0 20px 20px;
   flex: 1;
+
+  @media (max-width: 800px) {
+    justify-content: center;
+  }
 `;
 
 // Volume container - vertical layout, with padding and screen controls in portrait
@@ -178,6 +191,10 @@ export const StyledDx7CaseFilterContainer = styled.div`
   align-items: flex-end;
   flex: 0.8;
   padding: 20px 20px 20px 0;
+
+  @media (max-width: 900px) {
+    align-items: center;
+  }
 `;
 
 export const StyledDx7CaseFilterContainerContents = styled.div`

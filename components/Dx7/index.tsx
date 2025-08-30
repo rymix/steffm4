@@ -25,7 +25,7 @@ import Dx7Volume from "components/Dx7/Volume";
 import Dx7Wrapper from "components/Dx7/Wrapper";
 
 export const Dx7: React.FC = () => {
-  const { isSmallScreen, isPortrait } = useDeviceOrientation();
+  const { isPortrait, isMobile, windowWidth } = useDeviceOrientation();
 
   return (
     <Dx7Wrapper>
@@ -60,9 +60,11 @@ export const Dx7: React.FC = () => {
                 <Dx7FilterSelect />
               </StyledDx7CaseFilterContainerContents>
             </StyledDx7CaseFilterContainer>
-            <StyledDx7CaseMixDisplayContainer>
-              <Dx7MixTrackDisplay />
-            </StyledDx7CaseMixDisplayContainer>
+            {windowWidth > 900 && (
+              <StyledDx7CaseMixDisplayContainer>
+                <Dx7MixTrackDisplay />
+              </StyledDx7CaseMixDisplayContainer>
+            )}
           </StyledDx7CaseFilterRow>
         </StyledDx7CaseDark>
       </StyledDx7Case>

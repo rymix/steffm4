@@ -53,6 +53,7 @@ const Dx7Screen: React.FC = () => {
 
   // Responsive string length based on screen width
   const [stringLength, setStringLength] = useState(72);
+  const [screenWidth, setScreenWidth] = useState(640);
 
   // Update string length based on screen width and orientation
   useEffect(() => {
@@ -63,10 +64,18 @@ const Dx7Screen: React.FC = () => {
       } else if (isMobile) {
         // Landscape mobile: medium length - reduced to fit constrained width
         setStringLength(35);
-      } else if (windowWidth <= 900) {
-        setStringLength(48); // Medium screens
+      } else if (windowWidth <= 520) {
+        setStringLength(28);
+        setScreenWidth(260);
+      } else if (windowWidth <= 670) {
+        setStringLength(44);
+        setScreenWidth(400);
+      } else if (windowWidth <= 870) {
+        setStringLength(58);
+        setScreenWidth(500);
       } else {
         setStringLength(72); // Large screens (default)
+        setScreenWidth(640);
       }
     };
 
@@ -301,7 +310,7 @@ const Dx7Screen: React.FC = () => {
 
   return (
     <StyledDx7ScreenBezel>
-      <StyledDx7Screen $lightOn={dx7ScreenLight}>
+      <StyledDx7Screen $lightOn={dx7ScreenLight} $screenWidth={screenWidth}>
         {/* Current message */}
         <StyledDx7ScreenMessage
           style={{

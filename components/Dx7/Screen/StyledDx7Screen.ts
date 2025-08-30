@@ -30,7 +30,7 @@ export const StyledDx7Screen = styled.div<StyledDx7ScreenProps>`
   overflow: hidden; /* hide scaled edges */
   transition: background-color 0.1s ease-in-out;
 
-  width: 680px;
+  width: ${(props) => `${props.$screenWidth ?? 640}px`};
   height: 80px;
 
   /* ensure content sits above the pseudo background */
