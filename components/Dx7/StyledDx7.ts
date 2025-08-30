@@ -141,28 +141,42 @@ export const StyledDx7CaseScreenContainer = styled.div`
 
 // Controls container - vertical layout, responsive flex
 export const StyledDx7CaseControlsContainer = styled.div`
+  border: 1px solid red;
   display: flex;
   flex-direction: column;
+  flex-wrap: none;
   align-items: flex-end;
   padding: 0 20px 0 0;
-  flex: 12;
+  flex: 1.3;
 `;
 
 // Volume container - vertical layout, with padding and screen controls in portrait
 export const StyledDx7CaseVolumeContainer = styled.div`
+  border: 1px solid green;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   padding: 0 0 20px 20px;
-  flex: 9;
+  flex: 1;
+`;
+
+// Volume container - vertical layout, with padding and screen controls in portrait
+export const StyledDx7CaseScreenControlsContainer = styled.div`
+  border: 1px solid blue;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 0 20px 20px;
+  flex: 1;
 `;
 
 // Filter/Cartridge container - vertical layout, centered, with padding
 export const StyledDx7CaseFilterContainer = styled.div`
+  border: 1px solid orange;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  flex: 25;
+  flex: 0.8;
   padding: 20px 20px 20px 0;
 `;
 
@@ -174,13 +188,10 @@ export const StyledDx7CaseFilterContainerContents = styled.div`
 
 // Mix display container - vertical layout, centered, with specific padding
 export const StyledDx7CaseMixDisplayContainer = styled.div`
+  border: 1px solid yellow;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  flex: 30;
+  flex: 1;
   padding: 30px 0 20px 20px;
-
-  @media (max-width: 900px) {
-    display: none;
-  }
 `;

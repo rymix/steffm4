@@ -134,18 +134,18 @@ export const StyledDx7SliderLines = styled.div`
   margin: 10px 0 0 10px;
 
   /* Medium breakpoint: 900px - smaller slider lines */
-  @media (max-width: 900px) {
+  /* @media (max-width: 900px) {
     width: 10px;
     height: 110px;
     margin: 8px 0 0 8px;
-  }
+  } */
 
   /* Small breakpoint: 480px - compact slider lines */
-  @media (max-width: 480px) {
+  /* @media (max-width: 480px) {
     width: 8px;
     height: 90px;
     margin: 6px 0 0 6px;
-  }
+  } */
 `;
 
 export const StyledDx7SliderLabels = styled.div`
