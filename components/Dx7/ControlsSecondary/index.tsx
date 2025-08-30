@@ -15,7 +15,7 @@ const Dx7ControlsSecondary: React.FC = () => {
     session: { openModal },
   } = useMixcloud();
 
-  const { isMobile } = useDeviceOrientation();
+  const { isMobile, windowWidth } = useDeviceOrientation();
 
   const handleFavouriteClick = async (): Promise<void> => {
     if (isFavourite(mcKey)) {
@@ -46,10 +46,10 @@ const Dx7ControlsSecondary: React.FC = () => {
       <StyledDx7Item>
         <Dx7Button
           color="yellow"
-          label={isMobile.toString()}
+          label={windowWidth <= 480 ? "Fav" : "Favourite"}
           onClick={handleFavouriteClick}
           on={favourite}
-          size={isMobile ? "tiny" : "normal"}
+          size={windowWidth <= 480 ? "tiny" : "normal"}
         />
       </StyledDx7Item>
       <StyledDx7Item>
@@ -58,22 +58,25 @@ const Dx7ControlsSecondary: React.FC = () => {
           label="Share"
           onClick={handleShareClick}
           momentary
+          size={windowWidth <= 480 ? "tiny" : "normal"}
         />
       </StyledDx7Item>
       <StyledDx7Item>
         <Dx7Button
           color="orange"
-          label="Mix Info"
+          label={windowWidth <= 480 ? "Info" : "Mix Info"}
           onClick={handleInfoClick}
           momentary
+          size={windowWidth <= 480 ? "tiny" : "normal"}
         />
       </StyledDx7Item>
       <StyledDx7Item>
         <Dx7Button
           color="orange"
-          label="List All"
+          label={windowWidth <= 480 ? "List" : "List All"}
           onClick={handleListClick}
           momentary
+          size={windowWidth <= 480 ? "tiny" : "normal"}
         />
       </StyledDx7Item>
       <StyledDx7Item>
@@ -82,6 +85,7 @@ const Dx7ControlsSecondary: React.FC = () => {
           label="About"
           onClick={handleAboutClick}
           momentary
+          size={windowWidth <= 480 ? "tiny" : "normal"}
         />
       </StyledDx7Item>
     </StyledDx7Controls>

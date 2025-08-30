@@ -150,7 +150,7 @@ export const StyledDx7CaseControlsContainer = styled.div`
   flex-direction: column;
   flex-wrap: none;
   align-items: flex-end;
-  padding: 0 20px 0 0;
+  padding: 0 20px 20px 0;
   flex: 1.3;
 
   @media (max-width: 900px) {

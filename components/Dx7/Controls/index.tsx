@@ -3,6 +3,7 @@ import { StyledDx7Controls } from "components/Dx7/Controls/StyledDx7Controls";
 import { StyledDx7Item } from "components/Dx7/Item/StyledDx7Item";
 import { useMixcloud } from "contexts/mixcloud";
 import { useAutoplayInteractionTracking } from "utils/mobileAutoplayHelper";
+import { useDeviceOrientation } from "../useDeviceOrientation";
 
 const Dx7Controls: React.FC = () => {
   const {
@@ -17,6 +18,9 @@ const Dx7Controls: React.FC = () => {
     filters: { selectedCategory },
     widget: { playing },
   } = useMixcloud();
+
+  const { isMobile, windowWidth } = useDeviceOrientation();
+
   const { trackInteraction } = useAutoplayInteractionTracking();
 
   // Enhanced media control handlers with interaction tracking
@@ -61,6 +65,7 @@ const Dx7Controls: React.FC = () => {
           label="Stop"
           onClick={handlePauseWithTracking}
           on={playing === false}
+          size={windowWidth <= 480 ? "tiny" : "normal"}
         />
       </StyledDx7Item>
       <StyledDx7Item>
@@ -69,14 +74,16 @@ const Dx7Controls: React.FC = () => {
           label="Play"
           onClick={handlePlayWithTracking}
           on={playing === true}
+          size={windowWidth <= 480 ? "tiny" : "normal"}
         />
       </StyledDx7Item>
       <StyledDx7Item>
         <Dx7Button
           color="cream"
-          label="Previous"
+          label={windowWidth <= 480 ? "Prev" : "Previous"}
           onClick={handlePreviousWithTracking}
           momentary
+          size={windowWidth <= 480 ? "tiny" : "normal"}
         />
       </StyledDx7Item>
       <StyledDx7Item>
@@ -85,14 +92,16 @@ const Dx7Controls: React.FC = () => {
           label="Next"
           onClick={handleNextWithTracking}
           momentary
+          size={windowWidth <= 480 ? "tiny" : "normal"}
         />
       </StyledDx7Item>
       <StyledDx7Item>
         <Dx7Button
           color="blue"
-          label="Random"
+          label={windowWidth <= 480 ? "Rand" : "Random"}
           onClick={handleRandomClick}
           momentary
+          size={windowWidth <= 480 ? "tiny" : "normal"}
         />
       </StyledDx7Item>
     </StyledDx7Controls>

@@ -64,6 +64,9 @@ const Dx7Screen: React.FC = () => {
       } else if (isMobile) {
         // Landscape mobile: medium length - reduced to fit constrained width
         setStringLength(35);
+      } else if (windowWidth <= 420) {
+        setStringLength(18);
+        setScreenWidth(220);
       } else if (windowWidth <= 520) {
         setStringLength(28);
         setScreenWidth(260);
