@@ -12,6 +12,7 @@ import {
   StyledDx7CaseControlsRow,
   StyledDx7CaseDark,
   StyledDx7CaseFilterContainer,
+  StyledDx7CaseFilterContainerContents,
   StyledDx7CaseFilterRow,
   StyledDx7CaseLight,
   StyledDx7CaseMixDisplayContainer,
@@ -54,8 +55,10 @@ export const Dx7: React.FC = () => {
           {/* Row 3: FilterSelect and Cartridge stacked left, MixTrackDisplay right */}
           <StyledDx7CaseFilterRow>
             <StyledDx7CaseFilterContainer>
-              <Dx7Cartridge />
-              <Dx7FilterSelect />
+              <StyledDx7CaseFilterContainerContents>
+                <Dx7Cartridge />
+                <Dx7FilterSelect />
+              </StyledDx7CaseFilterContainerContents>
             </StyledDx7CaseFilterContainer>
             <StyledDx7CaseMixDisplayContainer>
               <Dx7MixTrackDisplay />
