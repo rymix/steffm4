@@ -5,7 +5,8 @@ import styled from "styled-components";
 
 export const StyledDx7SliderOuter = styled.div`
   @media (max-width: 480px) {
-    scale: 0.8;
+    scale: 0.75;
+    margin: -20px 0;
   }
 `;
 
