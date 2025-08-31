@@ -220,7 +220,7 @@ export const StyledDx7CaseScreenContainer = styled.div`
 // Controls container - vertical layout, responsive flex
 export const StyledDx7CaseControlsContainer = styled.div<StyledDx7CaseControlsContainerProps>`
   display: flex;
-  flex-flow: column none;
+  flex-flow: column;
   flex: 1.3;
 
   /* Large screens (>900px) */
