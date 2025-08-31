@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 import type {
   StyledDx7CaseControlsContainerProps,
   StyledDx7CaseFilterContainerProps,
@@ -219,8 +220,7 @@ export const StyledDx7CaseScreenContainer = styled.div`
 // Controls container - vertical layout, responsive flex
 export const StyledDx7CaseControlsContainer = styled.div<StyledDx7CaseControlsContainerProps>`
   display: flex;
-  flex-direction: column;
-  flex-wrap: none;
+  flex-flow: column none;
   flex: 1.3;
 
   /* Large screens (>900px) */

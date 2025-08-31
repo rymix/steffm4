@@ -157,6 +157,7 @@ export const StyledDx7Button = styled.button<StyledDx7ButtonProps>`
   @media (hover: none) and (pointer: coarse) {
     &:active {
       transform: scale(0.95);
+
       &::before {
         background-color: rgba(0, 0, 0, 0.15);
       }

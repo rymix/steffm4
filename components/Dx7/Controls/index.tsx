@@ -3,6 +3,7 @@ import { StyledDx7Controls } from "components/Dx7/Controls/StyledDx7Controls";
 import { StyledDx7Item } from "components/Dx7/Item/StyledDx7Item";
 import { useMixcloud } from "contexts/mixcloud";
 import { useAutoplayInteractionTracking } from "utils/mobileAutoplayHelper";
+
 import { useDeviceOrientation } from "../useDeviceOrientation";
 
 const Dx7Controls: React.FC = () => {
@@ -19,7 +20,7 @@ const Dx7Controls: React.FC = () => {
     widget: { playing },
   } = useMixcloud();
 
-  const { isMobile, windowWidth } = useDeviceOrientation();
+  const { windowWidth } = useDeviceOrientation();
 
   const { trackInteraction } = useAutoplayInteractionTracking();
 

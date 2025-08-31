@@ -4,7 +4,6 @@ import {
   StyledDx7Item,
   StyledDx7ItemGroup,
 } from "components/Dx7/Item/StyledDx7Item";
-import { useDeviceOrientation } from "components/Dx7/useDeviceOrientation";
 import { useMixcloud } from "contexts/mixcloud";
 
 const Dx7FilterSelect: React.FC = () => {
@@ -12,8 +11,6 @@ const Dx7FilterSelect: React.FC = () => {
     controls: { handleLoadRandom, handleLoadRandomFavourite },
     filters: { selectedCategory, setSelectedCategory },
   } = useMixcloud();
-
-  const { isPortrait, isMobile, windowWidth } = useDeviceOrientation();
 
   const handleFilterSelectChange = (newFilter: string): void => {
     if (newFilter === "fav") {

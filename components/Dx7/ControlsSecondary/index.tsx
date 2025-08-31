@@ -15,7 +15,7 @@ const Dx7ControlsSecondary: React.FC = () => {
     session: { openModal },
   } = useMixcloud();
 
-  const { isMobile, windowWidth } = useDeviceOrientation();
+  const { windowWidth } = useDeviceOrientation();
 
   const handleFavouriteClick = async (): Promise<void> => {
     if (isFavourite(mcKey)) {
