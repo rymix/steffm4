@@ -29,7 +29,11 @@ export const Dx7: React.FC = () => {
 
   return (
     <Dx7Wrapper>
-      <StyledDx7Case $windowWidth={windowWidth}>
+      <StyledDx7Case
+        $windowWidth={windowWidth}
+        $isMobile={isMobile}
+        $isPortrait={isPortrait}
+      >
         {/* Header - always visible but may have reduced algorithm background on small screens */}
         <Dx7Header />
         <StyledDx7CaseLight>
@@ -40,12 +44,24 @@ export const Dx7: React.FC = () => {
             </StyledDx7CaseScreenContainer>
           </StyledDx7CaseScreenRow>
           {/* Row 2: Volume vs Controls - adjust flex ratios */}
-          <StyledDx7CaseControlsRow $windowWidth={windowWidth}>
-            <StyledDx7CaseControlsContainer $windowWidth={windowWidth}>
+          <StyledDx7CaseControlsRow
+            $windowWidth={windowWidth}
+            $isMobile={isMobile}
+            $isPortrait={isPortrait}
+          >
+            <StyledDx7CaseControlsContainer
+              $windowWidth={windowWidth}
+              $isMobile={isMobile}
+              $isPortrait={isPortrait}
+            >
               <Dx7Controls />
               <Dx7ControlsSecondary />
             </StyledDx7CaseControlsContainer>
-            <StyledDx7CaseVolumeContainer $windowWidth={windowWidth}>
+            <StyledDx7CaseVolumeContainer
+              $windowWidth={windowWidth}
+              $isMobile={isMobile}
+              $isPortrait={isPortrait}
+            >
               <Dx7Volume />
               <Dx7ScreenControls />
             </StyledDx7CaseVolumeContainer>
@@ -54,7 +70,11 @@ export const Dx7: React.FC = () => {
         <StyledDx7CaseDark>
           {/* Row 3: FilterSelect and Cartridge stacked left, MixTrackDisplay right */}
           <StyledDx7CaseFilterRow>
-            <StyledDx7CaseFilterContainer $windowWidth={windowWidth}>
+            <StyledDx7CaseFilterContainer
+              $windowWidth={windowWidth}
+              $isMobile={isMobile}
+              $isPortrait={isPortrait}
+            >
               <StyledDx7CaseFilterContainerContents>
                 <Dx7Cartridge />
                 <Dx7FilterSelect />

@@ -5,7 +5,37 @@ import Dx7Handle from "public/svg/slider-handle4.png";
 import styled from "styled-components";
 
 export const StyledDx7SliderOuter = styled.div<StyledDx7SliderOuterProps>`
-  scale: ${(props) => (props.$windowWidth && props.$windowWidth <= 480 ? "0.75" : "0.9")};
+  /* Large screens (>480px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 480 &&
+    !props.$isPortrait &&
+    `
+    scale: 0.9;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 480 &&
+    props.$isPortrait &&
+    `
+    scale: 0.9;
+  `}
+
+  /* Small screens (≤480px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 480 &&
+    !props.$isPortrait &&
+    `
+    scale: 0.75;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 480 &&
+    props.$isPortrait &&
+    `
+    scale: 0.75;
+  `}
 `;
 
 export const StyledDx7SliderWrapper = styled.div`

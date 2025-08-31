@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import type {
-  StyledDx7CaseProps,
   StyledDx7CaseControlsContainerProps,
-  StyledDx7CaseVolumeContainerProps,
   StyledDx7CaseFilterContainerProps,
+  StyledDx7CaseProps,
+  StyledDx7CaseVolumeContainerProps,
 } from "./types";
 
 // No longer need type imports - using specific styled components
@@ -38,18 +38,66 @@ export const dx7Border = (
 
 export const StyledDx7Case = styled.div<StyledDx7CaseProps>`
   width: 90%;
-  min-width: ${(props) => (props.$windowWidth && props.$windowWidth <= 900 ? "unset" : "890px")};
-  max-width: ${(props) => (props.$windowWidth && props.$windowWidth <= 900 ? "none" : "1220px")};
   display: flex;
   flex-direction: column; /* each direct child = its own row */
   align-items: stretch; /* rows fill full width */
   justify-content: flex-start;
 
-  ${(props) => props.$windowWidth && props.$windowWidth <= 900 && `
+  /* Large screens (>900px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 900 &&
+    !props.$isPortrait &&
+    `
+    min-width: 890px;
+    max-width: 1220px;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 900 &&
+    props.$isPortrait &&
+    `
+    min-width: 890px;
+    max-width: 1220px;
+  `}
+
+  /* Medium screens (≤900px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 900 &&
+    props.$windowWidth > 480 &&
+    !props.$isPortrait &&
+    `
+    min-width: unset;
+    max-width: none;
+    width: 95%;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 900 &&
+    props.$windowWidth > 480 &&
+    props.$isPortrait &&
+    `
+    min-width: unset;
+    max-width: none;
     width: 95%;
   `}
 
-  ${(props) => props.$windowWidth && props.$windowWidth <= 480 && `
+  /* Small screens (≤480px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 480 &&
+    !props.$isPortrait &&
+    `
+    min-width: 300px;
+    max-width: 400px;
+    width: 80%;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 480 &&
+    props.$isPortrait &&
+    `
     min-width: 300px;
     max-width: 400px;
     width: 80%;
@@ -105,12 +153,47 @@ export const StyledDx7CaseScreenRow = styled.div`
 `;
 
 // Controls row - default row layout for volume and controls
-export const StyledDx7CaseControlsRow = styled.div<{ $windowWidth?: number }>`
+export const StyledDx7CaseControlsRow = styled.div<{
+  $windowWidth?: number;
+  $isMobile?: boolean;
+  $isPortrait?: boolean;
+}>`
   display: flex;
-  flex-direction: ${(props) => (props.$windowWidth && props.$windowWidth <= 800 ? "column" : "row")};
   justify-content: center;
   align-items: stretch;
   gap: 0;
+
+  /* Large screens (>800px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 800 &&
+    !props.$isPortrait &&
+    `
+    flex-direction: row;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 800 &&
+    props.$isPortrait &&
+    `
+    flex-direction: row;
+  `}
+
+  /* Small screens (≤800px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 800 &&
+    !props.$isPortrait &&
+    `
+    flex-direction: column;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 800 &&
+    props.$isPortrait &&
+    `
+    flex-direction: column;
+  `}
 `;
 
 // Filter row - default row layout for filter/cartridge and mix display
@@ -138,19 +221,87 @@ export const StyledDx7CaseControlsContainer = styled.div<StyledDx7CaseControlsCo
   display: flex;
   flex-direction: column;
   flex-wrap: none;
-  align-items: ${(props) => (props.$windowWidth && props.$windowWidth <= 900 ? "center" : "flex-end")};
-  padding: ${(props) => (props.$windowWidth && props.$windowWidth <= 900 ? "0" : "0 20px 20px 0")};
   flex: 1.3;
+
+  /* Large screens (>900px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 900 &&
+    !props.$isPortrait &&
+    `
+    align-items: flex-end;
+    padding: 0 20px 20px 0;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 900 &&
+    props.$isPortrait &&
+    `
+    align-items: flex-end;
+    padding: 0 20px 20px 0;
+  `}
+
+  /* Medium/Small screens (≤900px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 900 &&
+    !props.$isPortrait &&
+    `
+    align-items: center;
+    padding: 0;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 900 &&
+    props.$isPortrait &&
+    `
+    align-items: center;
+    padding: 0;
+  `}
 `;
 
 // Volume container - vertical layout, with padding and screen controls in portrait
 export const StyledDx7CaseVolumeContainer = styled.div<StyledDx7CaseVolumeContainerProps>`
   display: flex;
   flex-direction: row;
-  justify-content: ${(props) => (props.$windowWidth && props.$windowWidth <= 800 ? "center" : "flex-start")};
   align-items: flex-start;
-  padding: ${(props) => (props.$windowWidth && props.$windowWidth <= 800 ? "10px 0 0 0" : "0 0 20px 20px")};
   flex: 1;
+
+  /* Large screens (>800px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 800 &&
+    !props.$isPortrait &&
+    `
+    justify-content: flex-start;
+    padding: 0 0 20px 20px;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 800 &&
+    props.$isPortrait &&
+    `
+    justify-content: flex-start;
+    padding: 0 0 20px 20px;
+  `}
+
+  /* Small screens (≤800px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 800 &&
+    !props.$isPortrait &&
+    `
+    justify-content: center;
+    padding: 10px 0 0 0;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 800 &&
+    props.$isPortrait &&
+    `
+    justify-content: center;
+    padding: 10px 0 0 0;
+  `}
 `;
 
 // Volume container - vertical layout, with padding and screen controls in portrait
@@ -166,9 +317,40 @@ export const StyledDx7CaseScreenControlsContainer = styled.div`
 export const StyledDx7CaseFilterContainer = styled.div<StyledDx7CaseFilterContainerProps>`
   display: flex;
   flex-direction: column;
-  align-items: ${(props) => (props.$windowWidth && props.$windowWidth <= 900 ? "center" : "flex-end")};
   flex: 0.8;
   padding: 20px 20px 20px 0;
+
+  /* Large screens (>900px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 900 &&
+    !props.$isPortrait &&
+    `
+    align-items: flex-end;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 900 &&
+    props.$isPortrait &&
+    `
+    align-items: flex-end;
+  `}
+
+  /* Medium/Small screens (≤900px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 900 &&
+    !props.$isPortrait &&
+    `
+    align-items: center;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 900 &&
+    props.$isPortrait &&
+    `
+    align-items: center;
+  `}
 `;
 
 export const StyledDx7CaseFilterContainerContents = styled.div`

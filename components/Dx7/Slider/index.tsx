@@ -22,8 +22,8 @@ const Dx7Slider: React.FC<Dx7SliderProps> = ({
   size = "normal",
   value = 70,
 }) => {
-  const { windowWidth } = useDeviceOrientation();
-  
+  const { windowWidth, isMobile, isPortrait } = useDeviceOrientation();
+
   const handleChange = (event: Event, localValue: number | number[]): void => {
     if (onChange) {
       if (Array.isArray(localValue)) {
@@ -35,7 +35,11 @@ const Dx7Slider: React.FC<Dx7SliderProps> = ({
   };
 
   return (
-    <StyledDx7SliderOuter $windowWidth={windowWidth}>
+    <StyledDx7SliderOuter
+      $windowWidth={windowWidth}
+      $isMobile={isMobile}
+      $isPortrait={isPortrait}
+    >
       {labelPosition === "above" && (
         <Dx7Label
           label={label}

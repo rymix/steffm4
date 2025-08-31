@@ -44,15 +44,48 @@ export const StyledDx7HeaderTitle = styled.div`
 `;
 
 /* 300px wide */
-export const StyledDx7HeaderLogo = styled(StefFmDx7Logo)<StyledDx7HeaderLogoProps>`
+export const StyledDx7HeaderLogo = styled(
+  StefFmDx7Logo,
+)<StyledDx7HeaderLogoProps>`
   flex: 0 0 240px; /* fixed 300px column */
   width: 100%; /* SVG fills its column */
   height: auto;
   aspect-ratio: 4.2 / 1;
   display: block;
   fill: rgba(255, 255, 255, 0.8);
-  margin: ${(props) => (props.$windowWidth && props.$windowWidth <= 520 ? "auto auto" : "0 0 20px 40px")};
   cursor: pointer;
+
+  /* Large screens (>520px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 520 &&
+    !props.$isPortrait &&
+    `
+    margin: 0 0 20px 40px;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 520 &&
+    props.$isPortrait &&
+    `
+    margin: 0 0 20px 40px;
+  `}
+
+  /* Small screens (≤520px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 520 &&
+    !props.$isPortrait &&
+    `
+    margin: auto auto;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 520 &&
+    props.$isPortrait &&
+    `
+    margin: auto auto;
+  `}
 `;
 
 /* 300px wide */
@@ -68,7 +101,38 @@ export const StyledDx7HeaderMotto = styled.div<StyledDx7HeaderMottoProps>`
   font-family: Microgamma, sans-serif;
   font-weight: 700;
   padding: 0 0 20px 8px;
-  display: ${(props) => (props.$windowWidth && props.$windowWidth <= 520 ? "none" : "block")};
+
+  /* Large screens (>520px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 520 &&
+    !props.$isPortrait &&
+    `
+    display: block;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 520 &&
+    props.$isPortrait &&
+    `
+    display: block;
+  `}
+
+  /* Small screens (≤520px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 520 &&
+    !props.$isPortrait &&
+    `
+    display: none;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 520 &&
+    props.$isPortrait &&
+    `
+    display: none;
+  `}
 `;
 
 /* takes 100% of remaining space */
@@ -81,5 +145,36 @@ export const StyledDx7HeaderSpacer = styled.div<StyledDx7HeaderSpacerProps>`
   background-repeat: no-repeat;
   background-position: 10px;
   opacity: 0.7;
-  display: ${(props) => (props.$windowWidth && props.$windowWidth <= 520 ? "none" : "block")};
+
+  /* Large screens (>520px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 520 &&
+    !props.$isPortrait &&
+    `
+    display: block;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 520 &&
+    props.$isPortrait &&
+    `
+    display: block;
+  `}
+
+  /* Small screens (≤520px) */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 520 &&
+    !props.$isPortrait &&
+    `
+    display: none;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth <= 520 &&
+    props.$isPortrait &&
+    `
+    display: none;
+  `}
 `;
