@@ -145,7 +145,6 @@ export const StyledDx7CaseScreenContainer = styled.div`
 
 // Controls container - vertical layout, responsive flex
 export const StyledDx7CaseControlsContainer = styled.div`
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   flex-wrap: none;
@@ -155,12 +154,12 @@ export const StyledDx7CaseControlsContainer = styled.div`
 
   @media (max-width: 900px) {
     align-items: center;
+    padding: 0;
   }
 `;
 
 // Volume container - vertical layout, with padding and screen controls in portrait
 export const StyledDx7CaseVolumeContainer = styled.div`
-  border: 1px solid green;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -170,12 +169,12 @@ export const StyledDx7CaseVolumeContainer = styled.div`
 
   @media (max-width: 800px) {
     justify-content: center;
+    padding: 10px 0 0 0;
   }
 `;
 
 // Volume container - vertical layout, with padding and screen controls in portrait
 export const StyledDx7CaseScreenControlsContainer = styled.div`
-  border: 1px solid blue;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -185,7 +184,6 @@ export const StyledDx7CaseScreenControlsContainer = styled.div`
 
 // Filter/Cartridge container - vertical layout, centered, with padding
 export const StyledDx7CaseFilterContainer = styled.div`
-  border: 1px solid orange;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -205,7 +203,6 @@ export const StyledDx7CaseFilterContainerContents = styled.div`
 
 // Mix display container - vertical layout, centered, with specific padding
 export const StyledDx7CaseMixDisplayContainer = styled.div`
-  border: 1px solid yellow;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

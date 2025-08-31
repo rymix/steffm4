@@ -48,6 +48,10 @@ export const StyledDx7HeaderLogo = styled(StefFmDx7Logo)`
   fill: rgba(255, 255, 255, 0.8);
   margin: 0 0 20px 40px;
   cursor: pointer;
+
+  @media (max-width: 520px) {
+    margin: auto auto;
+  }
 `;
 
 /* 300px wide */
@@ -64,9 +68,9 @@ export const StyledDx7HeaderMotto = styled.div`
   font-weight: 700;
   padding: 0 0 20px 8px;
 
-  /* @media (max-width: 768px) {
+  @media (max-width: 520px) {
     display: none;
-  } */
+  }
 `;
 
 /* takes 100% of remaining space */
@@ -80,7 +84,7 @@ export const StyledDx7HeaderSpacer = styled.div`
   background-position: 10px;
   opacity: 0.7;
 
-  /* @media (max-width: 768px) {
+  @media (max-width: 520px) {
     display: none;
-  } */
+  }
 `;

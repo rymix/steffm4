@@ -4,9 +4,10 @@ import Dx7Handle from "public/svg/slider-handle4.png";
 import styled from "styled-components";
 
 export const StyledDx7SliderOuter = styled.div`
+  scale: 0.9;
+
   @media (max-width: 480px) {
     scale: 0.75;
-    margin: -20px 0;
   }
 `;
 

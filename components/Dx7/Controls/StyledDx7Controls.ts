@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const StyledDx7Controls = styled.div`
   display: flex;
-  smin-width: 480px;
   flex-shrink: 0;
   flex-wrap: wrap;
   justify-content: center;
