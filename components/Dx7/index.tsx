@@ -29,7 +29,7 @@ export const Dx7: React.FC = () => {
 
   return (
     <Dx7Wrapper>
-      <StyledDx7Case>
+      <StyledDx7Case $windowWidth={windowWidth}>
         {/* Header - always visible but may have reduced algorithm background on small screens */}
         <Dx7Header />
         <StyledDx7CaseLight>
@@ -40,12 +40,12 @@ export const Dx7: React.FC = () => {
             </StyledDx7CaseScreenContainer>
           </StyledDx7CaseScreenRow>
           {/* Row 2: Volume vs Controls - adjust flex ratios */}
-          <StyledDx7CaseControlsRow>
-            <StyledDx7CaseControlsContainer>
+          <StyledDx7CaseControlsRow $windowWidth={windowWidth}>
+            <StyledDx7CaseControlsContainer $windowWidth={windowWidth}>
               <Dx7Controls />
               <Dx7ControlsSecondary />
             </StyledDx7CaseControlsContainer>
-            <StyledDx7CaseVolumeContainer>
+            <StyledDx7CaseVolumeContainer $windowWidth={windowWidth}>
               <Dx7Volume />
               <Dx7ScreenControls />
             </StyledDx7CaseVolumeContainer>
@@ -54,7 +54,7 @@ export const Dx7: React.FC = () => {
         <StyledDx7CaseDark>
           {/* Row 3: FilterSelect and Cartridge stacked left, MixTrackDisplay right */}
           <StyledDx7CaseFilterRow>
-            <StyledDx7CaseFilterContainer>
+            <StyledDx7CaseFilterContainer $windowWidth={windowWidth}>
               <StyledDx7CaseFilterContainerContents>
                 <Dx7Cartridge />
                 <Dx7FilterSelect />

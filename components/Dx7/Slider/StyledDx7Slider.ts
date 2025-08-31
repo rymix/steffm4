@@ -1,14 +1,11 @@
 import { Slider } from "@mui/material";
 import type { StyledDx7SliderProps } from "components/Dx7/Slider/types";
+import type { StyledDx7SliderOuterProps } from "components/Dx7/types";
 import Dx7Handle from "public/svg/slider-handle4.png";
 import styled from "styled-components";
 
-export const StyledDx7SliderOuter = styled.div`
-  scale: 0.9;
-
-  @media (max-width: 480px) {
-    scale: 0.75;
-  }
+export const StyledDx7SliderOuter = styled.div<StyledDx7SliderOuterProps>`
+  scale: ${(props) => (props.$windowWidth && props.$windowWidth <= 480 ? "0.75" : "0.9")};
 `;
 
 export const StyledDx7SliderWrapper = styled.div`

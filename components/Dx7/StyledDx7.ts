@@ -1,4 +1,10 @@
 import styled from "styled-components";
+import type {
+  StyledDx7CaseProps,
+  StyledDx7CaseControlsContainerProps,
+  StyledDx7CaseVolumeContainerProps,
+  StyledDx7CaseFilterContainerProps,
+} from "./types";
 
 // No longer need type imports - using specific styled components
 
@@ -30,36 +36,24 @@ export const dx7Border = (
   }
 `;
 
-export const StyledDx7Case = styled.div`
+export const StyledDx7Case = styled.div<StyledDx7CaseProps>`
   width: 90%;
-  min-width: 890px;
-  max-width: 1220px;
+  min-width: ${(props) => (props.$windowWidth && props.$windowWidth <= 900 ? "unset" : "890px")};
+  max-width: ${(props) => (props.$windowWidth && props.$windowWidth <= 900 ? "none" : "1220px")};
   display: flex;
   flex-direction: column; /* each direct child = its own row */
   align-items: stretch; /* rows fill full width */
   justify-content: flex-start;
 
-  /* Medium breakpoint: 900px - vertical stacking, remove min-width */
-  @media (max-width: 900px) {
-    min-width: unset;
-    max-width: none;
+  ${(props) => props.$windowWidth && props.$windowWidth <= 900 && `
     width: 95%;
-  }
+  `}
 
-  /* Small breakpoint: 480px - compact layout */
-  @media (max-width: 480px) {
+  ${(props) => props.$windowWidth && props.$windowWidth <= 480 && `
     min-width: 300px;
     max-width: 400px;
     width: 80%;
-  }
-
-  /* Mobile portrait: stack everything vertically */
-  @media (max-width: 768px) and (orientation: portrait) {
-  }
-
-  /* Mobile landscape: use available width efficiently */
-  @media (max-width: 768px) and (orientation: landscape) {
-  }
+  `}
 `;
 
 export const StyledDx7CaseDark = styled.div`
@@ -111,16 +105,12 @@ export const StyledDx7CaseScreenRow = styled.div`
 `;
 
 // Controls row - default row layout for volume and controls
-export const StyledDx7CaseControlsRow = styled.div`
+export const StyledDx7CaseControlsRow = styled.div<{ $windowWidth?: number }>`
   display: flex;
-  flex-direction: row;
+  flex-direction: ${(props) => (props.$windowWidth && props.$windowWidth <= 800 ? "column" : "row")};
   justify-content: center;
   align-items: stretch;
   gap: 0;
-
-  @media (max-width: 800px) {
-    flex-direction: column;
-  }
 `;
 
 // Filter row - default row layout for filter/cartridge and mix display
@@ -144,33 +134,23 @@ export const StyledDx7CaseScreenContainer = styled.div`
 `;
 
 // Controls container - vertical layout, responsive flex
-export const StyledDx7CaseControlsContainer = styled.div`
+export const StyledDx7CaseControlsContainer = styled.div<StyledDx7CaseControlsContainerProps>`
   display: flex;
   flex-direction: column;
   flex-wrap: none;
-  align-items: flex-end;
-  padding: 0 20px 20px 0;
+  align-items: ${(props) => (props.$windowWidth && props.$windowWidth <= 900 ? "center" : "flex-end")};
+  padding: ${(props) => (props.$windowWidth && props.$windowWidth <= 900 ? "0" : "0 20px 20px 0")};
   flex: 1.3;
-
-  @media (max-width: 900px) {
-    align-items: center;
-    padding: 0;
-  }
 `;
 
 // Volume container - vertical layout, with padding and screen controls in portrait
-export const StyledDx7CaseVolumeContainer = styled.div`
+export const StyledDx7CaseVolumeContainer = styled.div<StyledDx7CaseVolumeContainerProps>`
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: ${(props) => (props.$windowWidth && props.$windowWidth <= 800 ? "center" : "flex-start")};
   align-items: flex-start;
-  padding: 0 0 20px 20px;
+  padding: ${(props) => (props.$windowWidth && props.$windowWidth <= 800 ? "10px 0 0 0" : "0 0 20px 20px")};
   flex: 1;
-
-  @media (max-width: 800px) {
-    justify-content: center;
-    padding: 10px 0 0 0;
-  }
 `;
 
 // Volume container - vertical layout, with padding and screen controls in portrait
@@ -183,16 +163,12 @@ export const StyledDx7CaseScreenControlsContainer = styled.div`
 `;
 
 // Filter/Cartridge container - vertical layout, centered, with padding
-export const StyledDx7CaseFilterContainer = styled.div`
+export const StyledDx7CaseFilterContainer = styled.div<StyledDx7CaseFilterContainerProps>`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: ${(props) => (props.$windowWidth && props.$windowWidth <= 900 ? "center" : "flex-end")};
   flex: 0.8;
   padding: 20px 20px 20px 0;
-
-  @media (max-width: 900px) {
-    align-items: center;
-  }
 `;
 
 export const StyledDx7CaseFilterContainerContents = styled.div`

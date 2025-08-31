@@ -4,16 +4,19 @@ import {
   StyledDx7HeaderMotto,
   StyledDx7HeaderSpacer,
 } from "components/Dx7/Header/StyledDx7Header";
+import { useDeviceOrientation } from "components/Dx7/useDeviceOrientation";
 
 const Dx7Header: React.FC = () => {
+  const { windowWidth } = useDeviceOrientation();
+
   return (
     <StyledDx7Header>
       {/* <StyledDx7HeaderTitle>Yeeha</StyledDx7HeaderTitle> */}
-      <StyledDx7HeaderLogo />
-      <StyledDx7HeaderMotto>
+      <StyledDx7HeaderLogo $windowWidth={windowWidth} />
+      <StyledDx7HeaderMotto $windowWidth={windowWidth}>
         Funky House Coming In Your Ears
       </StyledDx7HeaderMotto>
-      <StyledDx7HeaderSpacer />
+      <StyledDx7HeaderSpacer $windowWidth={windowWidth} />
     </StyledDx7Header>
   );
 };

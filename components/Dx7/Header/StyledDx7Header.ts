@@ -1,4 +1,9 @@
 import { dx7Border } from "components/Dx7/StyledDx7";
+import type {
+  StyledDx7HeaderLogoProps,
+  StyledDx7HeaderMottoProps,
+  StyledDx7HeaderSpacerProps,
+} from "components/Dx7/types";
 import StefFmDx7Logo from "public/svg/stef-fm-dx7.svg";
 import styled from "styled-components";
 
@@ -39,23 +44,19 @@ export const StyledDx7HeaderTitle = styled.div`
 `;
 
 /* 300px wide */
-export const StyledDx7HeaderLogo = styled(StefFmDx7Logo)`
+export const StyledDx7HeaderLogo = styled(StefFmDx7Logo)<StyledDx7HeaderLogoProps>`
   flex: 0 0 240px; /* fixed 300px column */
   width: 100%; /* SVG fills its column */
   height: auto;
   aspect-ratio: 4.2 / 1;
   display: block;
   fill: rgba(255, 255, 255, 0.8);
-  margin: 0 0 20px 40px;
+  margin: ${(props) => (props.$windowWidth && props.$windowWidth <= 520 ? "auto auto" : "0 0 20px 40px")};
   cursor: pointer;
-
-  @media (max-width: 520px) {
-    margin: auto auto;
-  }
 `;
 
 /* 300px wide */
-export const StyledDx7HeaderMotto = styled.div`
+export const StyledDx7HeaderMotto = styled.div<StyledDx7HeaderMottoProps>`
   color: rgba(255, 255, 255, 0.8);
   flex: 0 0 300px; /* fixed 300px column */
   width: 300px;
@@ -67,14 +68,11 @@ export const StyledDx7HeaderMotto = styled.div`
   font-family: Microgamma, sans-serif;
   font-weight: 700;
   padding: 0 0 20px 8px;
-
-  @media (max-width: 520px) {
-    display: none;
-  }
+  display: ${(props) => (props.$windowWidth && props.$windowWidth <= 520 ? "none" : "block")};
 `;
 
 /* takes 100% of remaining space */
-export const StyledDx7HeaderSpacer = styled.div`
+export const StyledDx7HeaderSpacer = styled.div<StyledDx7HeaderSpacerProps>`
   flex: 1 1 auto;
   min-width: 0; /* allow it to shrink if needed */
   height: 100%;
@@ -83,8 +81,5 @@ export const StyledDx7HeaderSpacer = styled.div`
   background-repeat: no-repeat;
   background-position: 10px;
   opacity: 0.7;
-
-  @media (max-width: 520px) {
-    display: none;
-  }
+  display: ${(props) => (props.$windowWidth && props.$windowWidth <= 520 ? "none" : "block")};
 `;

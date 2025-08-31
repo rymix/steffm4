@@ -9,6 +9,7 @@ import {
   StyledDx7SliderWrapper,
 } from "components/Dx7/Slider/StyledDx7Slider";
 import { Dx7SliderProps } from "components/Dx7/Slider/types";
+import { useDeviceOrientation } from "components/Dx7/useDeviceOrientation";
 import React from "react";
 
 const Dx7Slider: React.FC<Dx7SliderProps> = ({
@@ -21,6 +22,8 @@ const Dx7Slider: React.FC<Dx7SliderProps> = ({
   size = "normal",
   value = 70,
 }) => {
+  const { windowWidth } = useDeviceOrientation();
+  
   const handleChange = (event: Event, localValue: number | number[]): void => {
     if (onChange) {
       if (Array.isArray(localValue)) {
@@ -32,7 +35,7 @@ const Dx7Slider: React.FC<Dx7SliderProps> = ({
   };
 
   return (
-    <StyledDx7SliderOuter>
+    <StyledDx7SliderOuter $windowWidth={windowWidth}>
       {labelPosition === "above" && (
         <Dx7Label
           label={label}
