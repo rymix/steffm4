@@ -164,11 +164,12 @@ export const StyledDx7CaseControlsRow = styled.div<{
   align-items: stretch;
   gap: 0;
 
-  /* Large screens (>800px) */
+  /* Large screens (>800px) NOT mobile */
   ${(props) =>
     props.$windowWidth &&
     props.$windowWidth > 800 &&
     !props.$isPortrait &&
+    !props.$isMobile &&
     `
     flex-direction: row;
   `}
@@ -176,8 +177,27 @@ export const StyledDx7CaseControlsRow = styled.div<{
     props.$windowWidth &&
     props.$windowWidth > 800 &&
     props.$isPortrait &&
+    !props.$isMobile &&
     `
     flex-direction: row;
+  `}
+
+  /* Large screens (>800px) IS mobile */
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 800 &&
+    !props.$isPortrait &&
+    props.$isMobile &&
+    `
+    scale: 0.5;
+  `}
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 800 &&
+    props.$isPortrait &&
+    props.$isMobile &&
+    `
+    scale: 0.5;
   `}
 
   /* Small screens (≤800px) */

@@ -25,7 +25,8 @@ import Dx7Volume from "components/Dx7/Volume";
 import Dx7Wrapper from "components/Dx7/Wrapper";
 
 export const Dx7: React.FC = () => {
-  const { isPortrait, isMobile, windowWidth } = useDeviceOrientation();
+  const { isLandscape, isPortrait, isMobile, windowWidth } =
+    useDeviceOrientation();
 
   return (
     <Dx7Wrapper>
@@ -64,6 +65,18 @@ export const Dx7: React.FC = () => {
             >
               <Dx7Volume />
               <Dx7ScreenControls />
+              <div>
+                <dl>
+                  <dt>isMobile</dt>
+                  <dd>{isMobile.toString()}</dd>
+                  <dt>isPortrait</dt>
+                  <dd>{isPortrait.toString()}</dd>
+                  <dt>isLandscape</dt>
+                  <dd>{isLandscape.toString()}</dd>
+                  <dt>windowWidth</dt>
+                  <dd>{windowWidth}</dd>
+                </dl>
+              </div>
             </StyledDx7CaseVolumeContainer>
           </StyledDx7CaseControlsRow>
         </StyledDx7CaseLight>
