@@ -67,7 +67,9 @@ export const useDeviceOrientation = (): DeviceOrientationState => {
         height < 450 && isLandscapeOrientation
       );
       const isTallWideModeCalculation = !!(
-        height < 650 && isLandscapeOrientation
+        height < 650 &&
+        height >= 450 &&
+        isLandscapeOrientation
       );
 
       // Improved mobile detection using multiple methods
