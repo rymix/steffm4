@@ -5,6 +5,8 @@ export interface DeviceOrientationState {
   isMobile: boolean;
   isPortrait: boolean;
   isLandscape: boolean;
+  isSkinnyWideMode: boolean;
+  isTallWideMode: boolean;
   windowWidth: number;
   windowHeight: number;
 }
@@ -16,6 +18,8 @@ export const useDeviceOrientation = (): DeviceOrientationState => {
       isMobile: false,
       isPortrait: false,
       isLandscape: false,
+      isSkinnyWideMode: false,
+      isTallWideMode: false,
       windowWidth: 0,
       windowHeight: 0,
     });
@@ -59,6 +63,12 @@ export const useDeviceOrientation = (): DeviceOrientationState => {
       const height = window.innerHeight;
       const isPortraitOrientation = height > width;
       const isLandscapeOrientation = width > height;
+      const isSkinnyWideModeCalculation = !!(
+        height < 450 && isLandscapeOrientation
+      );
+      const isTallWideModeCalculation = !!(
+        height < 650 && isLandscapeOrientation
+      );
 
       // Improved mobile detection using multiple methods
       const isMobileDevice = detectMobileDevice();
@@ -67,8 +77,10 @@ export const useDeviceOrientation = (): DeviceOrientationState => {
       setOrientationState({
         isSmallScreen: isSmallScreenDevice,
         isMobile: isMobileDevice,
-        isPortrait: isMobileDevice && isPortraitOrientation,
-        isLandscape: isMobileDevice && isLandscapeOrientation,
+        isPortrait: isPortraitOrientation,
+        isLandscape: isLandscapeOrientation,
+        isSkinnyWideMode: isSkinnyWideModeCalculation,
+        isTallWideMode: isTallWideModeCalculation,
         windowWidth: width,
         windowHeight: height,
       });

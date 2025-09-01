@@ -189,7 +189,7 @@ export const StyledDx7CaseControlsRow = styled.div<{
     !props.$isPortrait &&
     props.$isMobile &&
     `
-    scale: 0.5;
+    scale: 1;
   `}
   ${(props) =>
     props.$windowWidth &&
