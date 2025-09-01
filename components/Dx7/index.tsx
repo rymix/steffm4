@@ -20,7 +20,7 @@ import {
   StyledDx7CaseScreenRow,
   StyledDx7CaseVolumeContainer,
 } from "components/Dx7/StyledDx7";
-import { useDeviceOrientation } from "components/Dx7/useDeviceOrientation";
+import { useDeviceOrientation } from "hooks/useDeviceOrientation";
 import Dx7Volume from "components/Dx7/Volume";
 import Dx7Wrapper from "components/Dx7/Wrapper";
 

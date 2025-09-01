@@ -9,7 +9,7 @@ import {
   StyledDx7SliderWrapper,
 } from "components/Dx7/Slider/StyledDx7Slider";
 import { Dx7SliderProps } from "components/Dx7/Slider/types";
-import { useDeviceOrientation } from "components/Dx7/useDeviceOrientation";
+import { useDeviceOrientation } from "hooks/useDeviceOrientation";
 import React from "react";
 
 const Dx7Slider: React.FC<Dx7SliderProps> = ({

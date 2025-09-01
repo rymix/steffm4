@@ -4,7 +4,7 @@ import {
   StyledDx7HeaderMotto,
   StyledDx7HeaderSpacer,
 } from "components/Dx7/Header/StyledDx7Header";
-import { useDeviceOrientation } from "components/Dx7/useDeviceOrientation";
+import { useDeviceOrientation } from "hooks/useDeviceOrientation";
 
 const Dx7Header: React.FC = () => {
   const { windowWidth, isMobile, isPortrait } = useDeviceOrientation();
