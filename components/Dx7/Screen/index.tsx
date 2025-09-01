@@ -6,8 +6,8 @@ import {
   StyledDx7ScreenDebug,
   StyledDx7ScreenMessage,
 } from "components/Dx7/Screen/StyledDx7Screen";
-import { useDeviceOrientation } from "components/Dx7/useDeviceOrientation";
 import { useMixcloud } from "contexts/mixcloud";
+import { useDeviceOrientation } from "hooks/useDeviceOrientation";
 import { useEffect, useRef, useState } from "react";
 import { DEBUG } from "utils/logger";
 

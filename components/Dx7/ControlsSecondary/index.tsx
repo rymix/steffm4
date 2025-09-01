@@ -2,10 +2,10 @@ import About from "components/About";
 import Dx7Button from "components/Dx7/Button";
 import { StyledDx7Controls } from "components/Dx7/Controls/StyledDx7Controls";
 import { StyledDx7Item } from "components/Dx7/Item/StyledDx7Item";
-import { useDeviceOrientation } from "components/Dx7/useDeviceOrientation";
 import MixInformation from "components/MixInformation";
 import MixList from "components/MixList";
 import { useMixcloud } from "contexts/mixcloud";
+import { useDeviceOrientation } from "hooks/useDeviceOrientation";
 
 const Dx7ControlsSecondary: React.FC = () => {
   const {
