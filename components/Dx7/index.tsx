@@ -24,6 +24,85 @@ import Dx7Volume from "components/Dx7/Volume";
 import Dx7Wrapper from "components/Dx7/Wrapper";
 import { useDeviceOrientation } from "hooks/useDeviceOrientation";
 
+const Dx7CaseLight: React.FC = () => {
+  const { isPortrait, isMobile, windowWidth } = useDeviceOrientation();
+
+  return (
+    <StyledDx7CaseLight>
+      {/* Row 1: Screen component - responsive layout */}
+      <StyledDx7CaseScreenRow>
+        <StyledDx7CaseScreenContainer>
+          <Dx7Screen />
+        </StyledDx7CaseScreenContainer>
+      </StyledDx7CaseScreenRow>
+      {/* Row 2: Volume vs Controls - adjust flex ratios */}
+      <StyledDx7CaseControlsRow
+        $windowWidth={windowWidth}
+        $isMobile={isMobile}
+        $isPortrait={isPortrait}
+      >
+        <StyledDx7CaseControlsContainer
+          $windowWidth={windowWidth}
+          $isMobile={isMobile}
+          $isPortrait={isPortrait}
+        >
+          <Dx7Controls />
+          <Dx7ControlsSecondary />
+        </StyledDx7CaseControlsContainer>
+        <StyledDx7CaseVolumeContainer
+          $windowWidth={windowWidth}
+          $isMobile={isMobile}
+          $isPortrait={isPortrait}
+        >
+          <Dx7Volume />
+          <Dx7ScreenControls />
+          {/* <div>
+                <dl>
+                  <dt>isMobile</dt>
+                  <dd>{isMobile.toString()}</dd>
+                  <dt>isPortrait</dt>
+                  <dd>{isPortrait.toString()}</dd>
+                  <dt>isLandscape</dt>
+                  <dd>{isLandscape.toString()}</dd>
+                  <dt>isSkinnyWideMode</dt>
+                  <dd>{isSkinnyWideMode.toString()}</dd>
+                  <dt>isTallWideMode</dt>
+                  <dd>{isTallWideMode.toString()}</dd>
+                </dl>
+              </div> */}
+        </StyledDx7CaseVolumeContainer>
+      </StyledDx7CaseControlsRow>
+    </StyledDx7CaseLight>
+  );
+};
+
+const Dx7CaseDark: React.FC = () => {
+  const { isPortrait, isMobile, windowWidth } = useDeviceOrientation();
+
+  return (
+    <StyledDx7CaseDark>
+      {/* Row 3: FilterSelect and Cartridge stacked left, MixTrackDisplay right */}
+      <StyledDx7CaseFilterRow>
+        <StyledDx7CaseFilterContainer
+          $windowWidth={windowWidth}
+          $isMobile={isMobile}
+          $isPortrait={isPortrait}
+        >
+          <StyledDx7CaseFilterContainerContents>
+            <Dx7Cartridge />
+            <Dx7FilterSelect />
+          </StyledDx7CaseFilterContainerContents>
+        </StyledDx7CaseFilterContainer>
+        {windowWidth > 900 && (
+          <StyledDx7CaseMixDisplayContainer>
+            <Dx7MixTrackDisplay />
+          </StyledDx7CaseMixDisplayContainer>
+        )}
+      </StyledDx7CaseFilterRow>
+    </StyledDx7CaseDark>
+  );
+};
+
 export const Dx7: React.FC = () => {
   const {
     isLandscape,
@@ -43,71 +122,8 @@ export const Dx7: React.FC = () => {
       >
         {/* Header - always visible but may have reduced algorithm background on small screens */}
         <Dx7Header />
-        <StyledDx7CaseLight>
-          {/* Row 1: Screen component - responsive layout */}
-          <StyledDx7CaseScreenRow>
-            <StyledDx7CaseScreenContainer>
-              <Dx7Screen />
-            </StyledDx7CaseScreenContainer>
-          </StyledDx7CaseScreenRow>
-          {/* Row 2: Volume vs Controls - adjust flex ratios */}
-          <StyledDx7CaseControlsRow
-            $windowWidth={windowWidth}
-            $isMobile={isMobile}
-            $isPortrait={isPortrait}
-          >
-            <StyledDx7CaseControlsContainer
-              $windowWidth={windowWidth}
-              $isMobile={isMobile}
-              $isPortrait={isPortrait}
-            >
-              <Dx7Controls />
-              <Dx7ControlsSecondary />
-            </StyledDx7CaseControlsContainer>
-            <StyledDx7CaseVolumeContainer
-              $windowWidth={windowWidth}
-              $isMobile={isMobile}
-              $isPortrait={isPortrait}
-            >
-              <Dx7Volume />
-              <Dx7ScreenControls />
-              <div>
-                <dl>
-                  <dt>isMobile</dt>
-                  <dd>{isMobile.toString()}</dd>
-                  <dt>isPortrait</dt>
-                  <dd>{isPortrait.toString()}</dd>
-                  <dt>isLandscape</dt>
-                  <dd>{isLandscape.toString()}</dd>
-                  <dt>isSkinnyWideMode</dt>
-                  <dd>{isSkinnyWideMode.toString()}</dd>
-                  <dt>isTallWideMode</dt>
-                  <dd>{isTallWideMode.toString()}</dd>
-                </dl>
-              </div>
-            </StyledDx7CaseVolumeContainer>
-          </StyledDx7CaseControlsRow>
-        </StyledDx7CaseLight>
-        <StyledDx7CaseDark>
-          {/* Row 3: FilterSelect and Cartridge stacked left, MixTrackDisplay right */}
-          <StyledDx7CaseFilterRow>
-            <StyledDx7CaseFilterContainer
-              $windowWidth={windowWidth}
-              $isMobile={isMobile}
-              $isPortrait={isPortrait}
-            >
-              <StyledDx7CaseFilterContainerContents>
-                <Dx7Cartridge />
-                <Dx7FilterSelect />
-              </StyledDx7CaseFilterContainerContents>
-            </StyledDx7CaseFilterContainer>
-            {windowWidth > 900 && (
-              <StyledDx7CaseMixDisplayContainer>
-                <Dx7MixTrackDisplay />
-              </StyledDx7CaseMixDisplayContainer>
-            )}
-          </StyledDx7CaseFilterRow>
-        </StyledDx7CaseDark>
+        <Dx7CaseLight />
+        {!isSkinnyWideMode && !isTallWideMode && <Dx7CaseDark />}
       </StyledDx7Case>
     </Dx7Wrapper>
   );
