@@ -4,4 +4,5 @@ export type Dx7ItemProps = {
 
 export type StyledDx7ItemGroupProps = {
   $alignment?: "left" | "right";
+  $forceStack?: boolean;
 };

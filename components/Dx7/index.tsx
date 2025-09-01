@@ -25,7 +25,13 @@ import Dx7Wrapper from "components/Dx7/Wrapper";
 import { useDeviceOrientation } from "hooks/useDeviceOrientation";
 
 const Dx7CaseLight: React.FC = () => {
-  const { isPortrait, isMobile, windowWidth } = useDeviceOrientation();
+  const {
+    isPortrait,
+    isMobile,
+    isSkinnyWideMode,
+    isTallWideMode,
+    windowWidth,
+  } = useDeviceOrientation();
 
   return (
     <StyledDx7CaseLight>
@@ -55,21 +61,11 @@ const Dx7CaseLight: React.FC = () => {
           $isPortrait={isPortrait}
         >
           <Dx7Volume />
-          <Dx7ScreenControls />
-          {/* <div>
-                <dl>
-                  <dt>isMobile</dt>
-                  <dd>{isMobile.toString()}</dd>
-                  <dt>isPortrait</dt>
-                  <dd>{isPortrait.toString()}</dd>
-                  <dt>isLandscape</dt>
-                  <dd>{isLandscape.toString()}</dd>
-                  <dt>isSkinnyWideMode</dt>
-                  <dd>{isSkinnyWideMode.toString()}</dd>
-                  <dt>isTallWideMode</dt>
-                  <dd>{isTallWideMode.toString()}</dd>
-                </dl>
-              </div> */}
+          {isSkinnyWideMode || isTallWideMode ? (
+            <Dx7FilterSelect />
+          ) : (
+            <Dx7ScreenControls />
+          )}
         </StyledDx7CaseVolumeContainer>
       </StyledDx7CaseControlsRow>
     </StyledDx7CaseLight>
@@ -105,7 +101,6 @@ const Dx7CaseDark: React.FC = () => {
 
 export const Dx7: React.FC = () => {
   const {
-    isLandscape,
     isPortrait,
     isMobile,
     isSkinnyWideMode,
