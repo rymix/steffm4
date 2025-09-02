@@ -7,8 +7,7 @@ import {
   StyledDx7ScreenMessage,
 } from "components/Dx7/Screen/StyledDx7Screen";
 import { useMixcloud } from "contexts/mixcloud";
-import { useDeviceOrientation } from "hooks/useDeviceOrientation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { DEBUG } from "utils/logger";
 
 const Dx7Screen: React.FC = () => {
@@ -19,7 +18,16 @@ const Dx7Screen: React.FC = () => {
     mix: { details: mixDetails },
   } = useMixcloud();
 
-  const { isPortrait, isMobile, windowWidth } = useDeviceOrientation();
+  // Direct viewport state for reliable orientation detection
+  const [viewportState, setViewportState] = useState({
+    width: typeof window !== "undefined" ? window.innerWidth : 0,
+    height: typeof window !== "undefined" ? window.innerHeight : 0,
+    isPortrait:
+      typeof window !== "undefined"
+        ? window.innerHeight > window.innerWidth
+        : false,
+    isMobile: false,
+  });
 
   const [displayMessage, setDisplayMessage] = useState<string>(
     holdingMessage ?? "",
@@ -55,26 +63,104 @@ const Dx7Screen: React.FC = () => {
   const [stringLength, setStringLength] = useState(72);
   const [screenWidth, setScreenWidth] = useState(640);
 
+  // Direct viewport monitoring effect
+  useLayoutEffect(() => {
+    const detectMobile = (): boolean => {
+      if (
+        "userAgentData" in navigator &&
+        (navigator as any).userAgentData?.mobile
+      ) {
+        return true;
+      }
+      const hasTouchCapability =
+        "ontouchstart" in globalThis || navigator.maxTouchPoints > 0;
+      const hasSmallScreen = window.innerWidth <= 1024;
+      const mobileUserAgentPattern =
+        /Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|webOS/i;
+      const isMobileUserAgent = mobileUserAgentPattern.test(
+        navigator.userAgent,
+      );
+      const isMobileMediaQuery = globalThis.matchMedia(
+        "(max-width: 1024px) and (hover: none)",
+      ).matches;
+
+      return (
+        isMobileUserAgent ||
+        (hasTouchCapability && hasSmallScreen) ||
+        isMobileMediaQuery
+      );
+    };
+
+    const updateViewportState = (): void => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const isPortrait = height > width;
+      const isMobile = detectMobile();
+
+      console.log("Viewport update:", { width, height, isPortrait, isMobile });
+
+      setViewportState({
+        width,
+        height,
+        isPortrait,
+        isMobile,
+      });
+    };
+
+    updateViewportState();
+
+    // Listen to all possible viewport change events with longer timeout for orientation
+    const handleOrientationChange = () => {
+      setTimeout(updateViewportState, 200);
+    };
+
+    window.addEventListener("resize", updateViewportState);
+    window.addEventListener("orientationchange", handleOrientationChange);
+    screen?.orientation?.addEventListener?.("change", handleOrientationChange);
+
+    return () => {
+      window.removeEventListener("resize", updateViewportState);
+      window.removeEventListener("orientationchange", handleOrientationChange);
+      screen?.orientation?.removeEventListener?.(
+        "change",
+        handleOrientationChange,
+      );
+    };
+  }, []);
+
   // Update string length based on screen width and orientation
   useEffect(() => {
     const updateStringLength = (): void => {
-      if (isPortrait && isMobile) {
+      const { width, isPortrait, isMobile } = viewportState;
+
+      console.log("Updating dimensions:", {
+        width,
+        isPortrait,
+        isMobile,
+        currentStringLength: stringLength,
+        currentScreenWidth: screenWidth,
+      });
+
+      // Width-based breakpoints take precedence over mobile/orientation detection
+      if (width <= 420) {
+        setStringLength(18);
+        setScreenWidth(220);
+      } else if (width <= 520) {
+        setStringLength(28);
+        setScreenWidth(280);
+      } else if (width <= 670) {
+        setStringLength(44);
+        setScreenWidth(400);
+      } else if (width <= 870) {
+        setStringLength(58);
+        setScreenWidth(500);
+      } else if (isPortrait && isMobile) {
         // Portrait mobile: shorter lines but 3 of them - reduced further to fit container
         setStringLength(20);
+        setScreenWidth(300);
       } else if (isMobile) {
         // Landscape mobile: medium length - reduced to fit constrained width
         setStringLength(35);
-      } else if (windowWidth <= 420) {
-        setStringLength(18);
-        setScreenWidth(220);
-      } else if (windowWidth <= 520) {
-        setStringLength(28);
-        setScreenWidth(260);
-      } else if (windowWidth <= 670) {
-        setStringLength(44);
-        setScreenWidth(400);
-      } else if (windowWidth <= 870) {
-        setStringLength(58);
         setScreenWidth(500);
       } else {
         setStringLength(72); // Large screens (default)
@@ -83,7 +169,7 @@ const Dx7Screen: React.FC = () => {
     };
 
     updateStringLength();
-  }, [isPortrait, isMobile, windowWidth]);
+  }, [viewportState]);
 
   // Function to slice message into configurable character chunks
   const sliceMessage = (message: string): string[] => {
