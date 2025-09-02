@@ -1,13 +1,10 @@
-import styled from "styled-components";
-
-import type {
+import {
   StyledDx7CaseControlsContainerProps,
   StyledDx7CaseFilterContainerProps,
   StyledDx7CaseProps,
   StyledDx7CaseVolumeContainerProps,
-} from "./types";
-
-// No longer need type imports - using specific styled components
+} from "components/Dx7/types";
+import styled from "styled-components";
 
 export const dx7Border = (
   horizontalPosition = "left",

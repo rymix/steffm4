@@ -6,6 +6,7 @@
 // e.g., components/Dx7/Button/types.ts, components/Dx7/Screen/types.ts, etc.
 
 // Types for styled components that need responsive props
+
 export interface StyledDx7CaseProps {
   $windowWidth?: number;
   $isMobile?: boolean;
@@ -53,5 +54,3 @@ export interface StyledDx7SliderOuterProps {
   $isMobile?: boolean;
   $isPortrait?: boolean;
 }
-
-export {};
