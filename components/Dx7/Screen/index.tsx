@@ -141,31 +141,44 @@ const Dx7Screen: React.FC = () => {
         currentScreenWidth: screenWidth,
       });
 
-      // Width-based breakpoints take precedence over mobile/orientation detection
-      if (width <= 420) {
-        setStringLength(18);
-        setScreenWidth(220);
-      } else if (width <= 520) {
-        setStringLength(28);
-        setScreenWidth(280);
-      } else if (width <= 670) {
-        setStringLength(44);
-        setScreenWidth(400);
-      } else if (width <= 870) {
-        setStringLength(58);
-        setScreenWidth(500);
-      } else if (isPortrait && isMobile) {
-        // Portrait mobile: shorter lines but 3 of them - reduced further to fit container
-        setStringLength(20);
-        setScreenWidth(300);
-      } else if (isMobile) {
-        // Landscape mobile: medium length - reduced to fit constrained width
-        setStringLength(35);
-        setScreenWidth(500);
-      } else {
-        setStringLength(72); // Large screens (default)
-        setScreenWidth(640);
-      }
+      // Proportional sizing based on viewport width
+      // Case width range: 300px (min) to 720px+ (max)
+      // Screen width range: 220px (min) to 640px (max)
+
+      const sizeRatio = 0.8; // Adjust this value to make Screen smaller (0.7) or larger (0.9)
+      const stringRatio = 0.75; // Adjust this value to make string length shorter (0.6) or longer (0.8)
+
+      const minCaseWidth = 300;
+      const maxCaseWidth = 720;
+      const minScreenWidth = 220 * sizeRatio;
+      const maxScreenWidth = 640 * sizeRatio;
+
+      // Clamp viewport width to case width range
+      const clampedWidth = Math.max(
+        minCaseWidth,
+        Math.min(width, maxCaseWidth),
+      );
+
+      // Calculate proportional screen width
+      const widthRatio =
+        (clampedWidth - minCaseWidth) / (maxCaseWidth - minCaseWidth);
+      const calculatedScreenWidth = Math.round(
+        minScreenWidth + widthRatio * (maxScreenWidth - minScreenWidth),
+      );
+
+      // Calculate proportional string length (18 at 220px, 72 at 640px)
+      const minStringLength = 18 * stringRatio;
+      const maxStringLength = 72 * stringRatio;
+      const screenWidthRatio =
+        (calculatedScreenWidth - minScreenWidth) /
+        (maxScreenWidth - minScreenWidth);
+      const calculatedStringLength = Math.round(
+        minStringLength +
+          screenWidthRatio * (maxStringLength - minStringLength),
+      );
+
+      setScreenWidth(calculatedScreenWidth);
+      setStringLength(calculatedStringLength);
     };
 
     updateStringLength();
