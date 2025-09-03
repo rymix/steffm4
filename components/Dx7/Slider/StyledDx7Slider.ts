@@ -12,6 +12,7 @@ export const StyledDx7SliderOuter = styled.div<StyledDx7SliderOuterProps>`
     !props.$isPortrait &&
     `
     scale: 0.8;
+    margin-top: -20px;
   `}
   ${(props) =>
     props.$windowWidth &&
@@ -19,6 +20,7 @@ export const StyledDx7SliderOuter = styled.div<StyledDx7SliderOuterProps>`
     props.$isPortrait &&
     `
     scale: 0.8;
+    margin-top: -20px;
   `}
 
   /* Small screens (≤480px) */
@@ -28,6 +30,7 @@ export const StyledDx7SliderOuter = styled.div<StyledDx7SliderOuterProps>`
     !props.$isPortrait &&
     `
     scale: 0.75;
+    margin-top: -20px;
   `}
   ${(props) =>
     props.$windowWidth &&
@@ -35,6 +38,7 @@ export const StyledDx7SliderOuter = styled.div<StyledDx7SliderOuterProps>`
     props.$isPortrait &&
     `
     scale: 0.75;
+    margin-top: -20px;
   `}
 `;
 
