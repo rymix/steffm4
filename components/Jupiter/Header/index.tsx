@@ -3,12 +3,14 @@ import {
   StyledJupiterSlats,
   StyledJupiterTitle,
 } from "components/Jupiter/Header/StyledJupiterHeader";
-import JupiterMixcloudConnected from "components/MixcloudConnected";
+import MixcloudConnected from "components/MixcloudConnected";
 
 const JupiterHeader: React.FC = () => {
   return (
     <StyledJupiterHeaderWrapper>
-      <JupiterMixcloudConnected />
+      <MixcloudConnected
+        style={{ top: "-20px", left: "10px", position: "relative" }}
+      />
       <StyledJupiterSlats />
       <StyledJupiterTitle>Stef.fM</StyledJupiterTitle>
     </StyledJupiterHeaderWrapper>

@@ -4,6 +4,7 @@ import {
   StyledDx7HeaderMotto,
   StyledDx7HeaderSpacer,
 } from "components/Dx7/Header/StyledDx7Header";
+import MixcloudConnected from "components/MixcloudConnected";
 import { useDeviceOrientation } from "hooks/useDeviceOrientation";
 
 const Dx7Header: React.FC = () => {
@@ -12,6 +13,10 @@ const Dx7Header: React.FC = () => {
   return (
     <StyledDx7Header>
       {/* <StyledDx7HeaderTitle>Yeeha</StyledDx7HeaderTitle> */}
+      <MixcloudConnected
+        style={{ top: "-64px", left: "24px", position: "relative" }}
+      />
+
       <StyledDx7HeaderLogo
         $windowWidth={windowWidth}
         $isMobile={isMobile}

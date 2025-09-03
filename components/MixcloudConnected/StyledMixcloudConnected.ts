@@ -1,13 +1,9 @@
-import type { StyledDx7MixcloudConnectedProps } from "components/Dx7/MixcloudConnected/types";
+import type { StyledMixcloudConnectedProps } from "components/MixcloudConnected/types";
 import styled from "styled-components";
 
-export const StyledDx7MixcloudConnectedWrapper = styled.div`
-  top: -20px;
-  left: 10px;
-  position: relative;
-`;
+export const StyledMixcloudConnectedWrapper = styled.div``;
 
-export const StyledDx7MixcloudConnected = styled.div<StyledDx7MixcloudConnectedProps>`
+export const StyledMixcloudConnected = styled.div<StyledMixcloudConnectedProps>`
   width: 10px;
   height: 10px;
   margin: 0 1px 0 0;
