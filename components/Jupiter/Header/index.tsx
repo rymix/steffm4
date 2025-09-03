@@ -3,7 +3,7 @@ import {
   StyledJupiterSlats,
   StyledJupiterTitle,
 } from "components/Jupiter/Header/StyledJupiterHeader";
-import JupiterMixcloudConnected from "components/Jupiter/MixcloudConnected";
+import JupiterMixcloudConnected from "components/MixcloudConnected";
 
 const JupiterHeader: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
 import {
   StyledJupiterMixcloudConnected,
   StyledJupiterMixcloudConnectedWrapper,
-} from "components/Jupiter/MixcloudConnected/StyledJupiterMixcloudConnected";
+} from "components/MixcloudConnected/StyledJupiterMixcloudConnected";
 import { useMixcloud } from "contexts/mixcloud";
 import { useMemo } from "react";
 
