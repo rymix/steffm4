@@ -5,9 +5,9 @@ import type formats from "styles/defaultTheme/formats";
 import type sizes from "styles/defaultTheme/sizes";
 
 declare module "styled-components" {
-  export type DefaultTheme = {
+  export interface DefaultTheme {
     colors: typeof colors;
     formats: typeof formats;
     sizes: typeof sizes;
-  };
+  }
 }

@@ -1,3 +1,6 @@
+/* eslint-disable unicorn/prefer-global-this */
+/* eslint-disable unicorn/no-negated-condition */
+/* eslint-disable unicorn/no-typeof-undefined */
 /* eslint-disable unicorn/no-array-push-push */
 /* eslint-disable no-unused-expressions */
 import {
@@ -20,10 +23,10 @@ const Dx7Screen: React.FC = () => {
 
   // Direct viewport state for reliable orientation detection
   const [viewportState, setViewportState] = useState({
-    width: typeof window !== "undefined" ? window.innerWidth : 0,
-    height: typeof window !== "undefined" ? window.innerHeight : 0,
+    width: typeof globalThis.window !== "undefined" ? window.innerWidth : 0,
+    height: typeof globalThis.window !== "undefined" ? window.innerHeight : 0,
     isPortrait:
-      typeof window !== "undefined"
+      typeof globalThis.window !== "undefined"
         ? window.innerHeight > window.innerWidth
         : false,
     isMobile: false,
@@ -110,7 +113,7 @@ const Dx7Screen: React.FC = () => {
     updateViewportState();
 
     // Listen to all possible viewport change events with longer timeout for orientation
-    const handleOrientationChange = () => {
+    const handleOrientationChange = (): void => {
       setTimeout(updateViewportState, 200);
     };
 
