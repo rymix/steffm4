@@ -1,8 +1,8 @@
 export type FilterSelectProps = {};
 
-export interface StyledDx7FilterSelectProps {
+export type StyledDx7FilterSelectProps = {
   $windowWidth?: number;
   $isMobile?: boolean;
   $isPortrait?: boolean;
   $forceStack?: boolean;
-}
+};

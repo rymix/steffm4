@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export interface DeviceOrientationState {
+export type DeviceOrientationState = {
   isSmallScreen: boolean;
   isMobile: boolean;
   isPortrait: boolean;
@@ -9,7 +9,7 @@ export interface DeviceOrientationState {
   isTallWideMode: boolean;
   windowWidth: number;
   windowHeight: number;
-}
+};
 
 export const useDeviceOrientation = (): DeviceOrientationState => {
   const [orientationState, setOrientationState] =

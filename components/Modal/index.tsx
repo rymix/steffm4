@@ -10,9 +10,9 @@ import {
 import { useMixcloud } from "contexts/mixcloud";
 
 // Adding hideChrome as a prop and defaulting to false
-interface ModalProps {
+type ModalProps = {
   hideChrome?: boolean;
-}
+};
 
 const Modal: React.FC<ModalProps> = () => {
   const {

@@ -3,10 +3,10 @@ import { StyledMobilePlayButton } from "components/MobilePlayButton/StyledMobile
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 
-interface MobilePlayButtonProps {
+type MobilePlayButtonProps = {
   mixName?: string;
   onPlay: () => void;
-}
+};
 
 const MobilePlayButton: React.FC<MobilePlayButtonProps> = ({
   mixName,

@@ -11,14 +11,14 @@ export const StyledDx7SliderOuter = styled.div<StyledDx7SliderOuterProps>`
     props.$windowWidth > 480 &&
     !props.$isPortrait &&
     `
-    scale: 0.9;
+    scale: 0.8;
   `}
   ${(props) =>
     props.$windowWidth &&
     props.$windowWidth > 480 &&
     props.$isPortrait &&
     `
-    scale: 0.9;
+    scale: 0.8;
   `}
 
   /* Small screens (≤480px) */

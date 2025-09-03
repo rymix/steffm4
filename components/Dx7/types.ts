@@ -7,50 +7,50 @@
 
 // Types for styled components that need responsive props
 
-export interface StyledDx7CaseProps {
+export type StyledDx7CaseProps = {
   $windowWidth?: number;
   $isMobile?: boolean;
   $isPortrait?: boolean;
-}
+};
 
-export interface StyledDx7CaseControlsContainerProps {
+export type StyledDx7CaseControlsContainerProps = {
   $windowWidth?: number;
   $isMobile?: boolean;
   $isPortrait?: boolean;
-}
+};
 
-export interface StyledDx7CaseVolumeContainerProps {
+export type StyledDx7CaseVolumeContainerProps = {
   $windowWidth?: number;
   $isMobile?: boolean;
   $isPortrait?: boolean;
-}
+};
 
-export interface StyledDx7CaseFilterContainerProps {
+export type StyledDx7CaseFilterContainerProps = {
   $windowWidth?: number;
   $isMobile?: boolean;
   $isPortrait?: boolean;
-}
+};
 
-export interface StyledDx7HeaderLogoProps {
+export type StyledDx7HeaderLogoProps = {
   $windowWidth?: number;
   $isMobile?: boolean;
   $isPortrait?: boolean;
-}
+};
 
-export interface StyledDx7HeaderMottoProps {
+export type StyledDx7HeaderMottoProps = {
   $windowWidth?: number;
   $isMobile?: boolean;
   $isPortrait?: boolean;
-}
+};
 
-export interface StyledDx7HeaderSpacerProps {
+export type StyledDx7HeaderSpacerProps = {
   $windowWidth?: number;
   $isMobile?: boolean;
   $isPortrait?: boolean;
-}
+};
 
-export interface StyledDx7SliderOuterProps {
+export type StyledDx7SliderOuterProps = {
   $windowWidth?: number;
   $isMobile?: boolean;
   $isPortrait?: boolean;
-}
+};
