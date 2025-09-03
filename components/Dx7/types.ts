@@ -7,50 +7,24 @@
 
 // Types for styled components that need responsive props
 
-export type StyledDx7CaseProps = {
+export type BaseDimensionsProps = {
   $windowWidth?: number;
   $isMobile?: boolean;
   $isPortrait?: boolean;
 };
 
-export type StyledDx7CaseControlsContainerProps = {
-  $windowWidth?: number;
-  $isMobile?: boolean;
-  $isPortrait?: boolean;
-};
+export type StyledDx7CaseProps = BaseDimensionsProps;
 
-export type StyledDx7CaseVolumeContainerProps = {
-  $windowWidth?: number;
-  $isMobile?: boolean;
-  $isPortrait?: boolean;
-};
+export type StyledDx7CaseControlsContainerProps = BaseDimensionsProps;
 
-export type StyledDx7CaseFilterContainerProps = {
-  $windowWidth?: number;
-  $isMobile?: boolean;
-  $isPortrait?: boolean;
-};
+export type StyledDx7CaseVolumeContainerProps = BaseDimensionsProps;
 
-export type StyledDx7HeaderLogoProps = {
-  $windowWidth?: number;
-  $isMobile?: boolean;
-  $isPortrait?: boolean;
-};
+export type StyledDx7CaseFilterContainerProps = BaseDimensionsProps;
 
-export type StyledDx7HeaderMottoProps = {
-  $windowWidth?: number;
-  $isMobile?: boolean;
-  $isPortrait?: boolean;
-};
+export type StyledDx7HeaderLogoProps = BaseDimensionsProps;
 
-export type StyledDx7HeaderSpacerProps = {
-  $windowWidth?: number;
-  $isMobile?: boolean;
-  $isPortrait?: boolean;
-};
+export type StyledDx7HeaderMottoProps = BaseDimensionsProps;
 
-export type StyledDx7SliderOuterProps = {
-  $windowWidth?: number;
-  $isMobile?: boolean;
-  $isPortrait?: boolean;
-};
+export type StyledDx7HeaderSpacerProps = BaseDimensionsProps;
+
+export type StyledDx7SliderOuterProps = BaseDimensionsProps;
