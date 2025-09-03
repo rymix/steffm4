@@ -1,13 +1,13 @@
 import React from "react";
 
-interface TextHighlightProps {
+type TextHighlightProps = {
   textToHighlight: string;
   searchWords: string[];
   autoEscape?: boolean;
   highlightClassName?: string;
   highlightStyle?: React.CSSProperties;
   className?: string;
-}
+};
 
 const TextHighlight: React.FC<TextHighlightProps> = ({
   textToHighlight,

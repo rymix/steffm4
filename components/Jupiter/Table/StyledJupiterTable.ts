@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const StyledJupiterTable = styled.div`
   align-items: center;
-  background: green;
   display: flex;
   height: 100vh;
   justify-content: center;

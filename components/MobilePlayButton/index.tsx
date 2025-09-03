@@ -1,13 +1,12 @@
 import JupiterButton from "components/Jupiter/Button";
+import { StyledMobilePlayButton } from "components/MobilePlayButton/StyledMobilePlayButton";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 
-import { StyledMobilePlayButton } from "./StyledMobilePlayButton";
-
-interface MobilePlayButtonProps {
+type MobilePlayButtonProps = {
   mixName?: string;
   onPlay: () => void;
-}
+};
 
 const MobilePlayButton: React.FC<MobilePlayButtonProps> = ({
   mixName,

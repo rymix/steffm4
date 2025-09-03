@@ -1,8 +1,7 @@
 import { Progress } from "contexts/mixcloud/types";
 import { BackgroundCategory, Category, Mix } from "db/types";
 import { stripUnit } from "polished";
-
-import { essentialLogger, logger } from "./logger";
+import { essentialLogger, logger } from "utils/logger";
 
 export const convertTimeToSeconds = (timeString: string): number => {
   const parts = timeString.split(":").map((part) => Number.parseInt(part, 10));

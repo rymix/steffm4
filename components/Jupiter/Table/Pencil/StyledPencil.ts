@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 const StyledPencil = styled.div`
-  background: green;
   background: url("/table/pencil2.png") no-repeat;
   background-size: 150px 550px;
   bottom: 20px;

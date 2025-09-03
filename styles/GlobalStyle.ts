@@ -7,7 +7,15 @@ const GlobalStyle = createGlobalStyle`
          url('/fonts/Microgramma W01 Bold Extended.woff') format('woff');
     font-weight: bold;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
+  }
+
+    @font-face {
+    font-family: 'LEDBoard7';
+    src: url('/fonts/serif-led-board-7.regular.woff2') format('woff2'),
+         url('/fonts/serif-led-board-7.regular-7.woff') format('woff');
+    font-style: normal;
+    font-display: block;
   }
 
   @font-face {
@@ -24,7 +32,7 @@ const GlobalStyle = createGlobalStyle`
     src: url("fonts/DSEG7Classic-Regular.woff2") format("woff2"), url("fonts/DSEG7Classic-Regular.woff") format("woff");
     font-style: normal;
     font-weight: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   @font-face {
@@ -41,7 +49,7 @@ const GlobalStyle = createGlobalStyle`
          url('/fonts/Caveat-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   @font-face {
@@ -50,7 +58,7 @@ const GlobalStyle = createGlobalStyle`
          url('/fonts/IndieFlower-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   @font-face {
@@ -59,7 +67,7 @@ const GlobalStyle = createGlobalStyle`
          url('/fonts/ShadowsIntoLightTwo-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   @font-face {
@@ -68,7 +76,7 @@ const GlobalStyle = createGlobalStyle`
          url('/fonts/GloriaHallelujah-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   @font-face {
@@ -77,7 +85,7 @@ const GlobalStyle = createGlobalStyle`
          url('/fonts/Determination-Sans-Web-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    font-display: swap;
+    font-display: block;
   }
 
   html,

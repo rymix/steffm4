@@ -1,9 +1,8 @@
+import { StyledMixcloudWidget } from "components/Mixcloud/StyledMixcloud";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
 import { mcKeyFormatter, mcWidgetUrlFormatter } from "utils/functions";
 import { logger } from "utils/logger";
-
-import { StyledMixcloudWidget } from "./StyledMixcloud";
 
 export const Mixcloud: React.FC = () => {
   const {

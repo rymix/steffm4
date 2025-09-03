@@ -77,8 +77,7 @@ export const StyledJupiterButtonWrapper = styled.div<StyledJupiterButtonWrapperP
       ? "100%"
       : props.$size === "large"
         ? "91px"
-        : "128px"};
-  width: 54px;
+        : "50px"};
 
   @media screen and (orientation: portrait) and (max-width: 440px) {
     width: ${(props) =>

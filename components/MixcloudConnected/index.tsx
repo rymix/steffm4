@@ -1,11 +1,12 @@
 import {
-  StyledJupiterMixcloudConnected,
-  StyledJupiterMixcloudConnectedWrapper,
-} from "components/Jupiter/MixcloudConnected/StyledJupiterMixcloudConnected";
+  StyledMixcloudConnected,
+  StyledMixcloudConnectedWrapper,
+} from "components/MixcloudConnected/StyledMixcloudConnected";
+import type { MixcloudConnectedProps } from "components/MixcloudConnected/types";
 import { useMixcloud } from "contexts/mixcloud";
 import { useMemo } from "react";
 
-const JupiterMixcloudConnected: React.FC = () => {
+const MixcloudConnected: React.FC<MixcloudConnectedProps> = ({ style }) => {
   const {
     isReady,
     widget: { loaded, scriptLoaded, player },
@@ -25,10 +26,10 @@ const JupiterMixcloudConnected: React.FC = () => {
   }, [isReady, loaded, scriptLoaded, player]);
 
   return (
-    <StyledJupiterMixcloudConnectedWrapper>
-      <StyledJupiterMixcloudConnected $connected={isConnected} />
-    </StyledJupiterMixcloudConnectedWrapper>
+    <StyledMixcloudConnectedWrapper style={style}>
+      <StyledMixcloudConnected $connected={isConnected} />
+    </StyledMixcloudConnectedWrapper>
   );
 };
 
-export default JupiterMixcloudConnected;
+export default MixcloudConnected;

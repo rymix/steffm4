@@ -24,6 +24,7 @@ import {
   AUTO_CHANGE_BACKGROUND,
   DEFAULT_BACKGROUND,
   DEFAULT_MESSAGE,
+  DEFAULT_THEME,
   DEFAULT_VOLUME,
   DISPLAY_LENGTH,
   GA4,
@@ -66,6 +67,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
   });
 
   const { subscribe } = useMasterTimer();
+  const [playerTheme, setPlayerTheme] = usePersistedState<"Jupiter" | "Dx7">(
+    "playerTheme",
+    DEFAULT_THEME,
+  );
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
   const [duration, setDuration] = useState<number>(0);
@@ -150,6 +155,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
   /* Session */
   const [displayLength, setDisplayLength] = useState<number>(DISPLAY_LENGTH);
+  const [dx7ScreenLight, setDx7ScreenLight] = useState<boolean>(true);
   const burgerMenuRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
@@ -714,6 +720,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
           );
           setPlayer(freshWidget);
           setupEventListeners(freshWidget);
+          setLoaded(true);
           setPlaying(autoplay);
         });
       }, 1000);
@@ -845,6 +852,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
           essentialLogger.widgetReady(`Widget ready: ${mixKey}`);
           setPlayer(freshWidget);
           setupEventListeners(freshWidget);
+          setLoaded(true);
           if (strategy.shouldAttemptAutoplay) {
             setPlaying(true);
           }
@@ -914,6 +922,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
           essentialLogger.widgetReady(`Widget ready for: ${mixKey}`);
           setPlayer(freshWidget);
           setupEventListeners(freshWidget);
+          setLoaded(true);
 
           // Get duration with retry logic for reliability
           const getDurationWithRetry = async (retries = 3): Promise<void> => {
@@ -1213,7 +1222,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
         setTrackProgress(trackProgressSeconds);
         setTrackProgressPercent(localTrackProgressPercent);
         setTrackSectionNumber(tracks[currentTrackIndex].sectionNumber);
-        setTrackDetails(tracks[currentTrackIndex]);
+
+        // Only update trackDetails if it has actually changed
+        const newTrackDetails = tracks[currentTrackIndex];
+        if (JSON.stringify(trackDetails) !== JSON.stringify(newTrackDetails)) {
+          setTrackDetails(newTrackDetails);
+        }
+
         setLastTrackUpdateTime(currentTime);
       }
     };
@@ -1455,6 +1470,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
                 );
                 setPlayer(freshWidget);
                 setupEventListeners(freshWidget);
+                setLoaded(true);
                 setPlaying(true); // Autoplay for share links
 
                 // Reset progress states for share link
@@ -1583,6 +1599,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
           );
           setPlayer(freshWidget);
           setupEventListeners(freshWidget);
+          setLoaded(true);
           setPlaying(true); // Autoplay is on for share links
 
           // Clear temp value after successful initialization
@@ -1911,6 +1928,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       backgroundAutoChange,
       burgerMenuRef,
       displayLength,
+      dx7ScreenLight,
       filterBackgroundCategory,
       handleCloseModal,
       isAtBottom,
@@ -1929,6 +1947,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setBackground,
       setBackgroundAutoChange,
       setDisplayLength,
+      setDx7ScreenLight,
       setFilterBackgroundCategory,
       setIsAtBottom,
       setIsMobile: setIsMobileDevice,
@@ -1951,6 +1970,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
       tooltipVisible,
       theme,
       themeName,
+    },
+    themes: {
+      playerTheme,
+      setPlayerTheme,
     },
     track: {
       details: trackDetails,

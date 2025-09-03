@@ -3,11 +3,11 @@
  * Utilities to improve autoplay behavior on mobile devices across iframe reloads
  */
 
-export interface UserActivationState {
+export type UserActivationState = {
   hasActivation: boolean;
   lastInteractionTime: number;
   interactionType: string;
-}
+};
 
 class MobileAutoplayManager {
   private userActivationState: UserActivationState = {
