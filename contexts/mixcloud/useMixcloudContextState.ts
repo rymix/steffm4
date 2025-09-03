@@ -67,7 +67,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
   });
 
   const { subscribe } = useMasterTimer();
-  const [playerTheme, setPlayerTheme] = usePersistedState<"Jupiter" | "DX7">(
+  const [playerTheme, setPlayerTheme] = usePersistedState<"Jupiter" | "Dx7">(
     "playerTheme",
     DEFAULT_THEME,
   );

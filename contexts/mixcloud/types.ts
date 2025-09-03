@@ -149,8 +149,8 @@ export type MixcloudContextState = {
     themeName: string;
   };
   themes: {
-    playerTheme: "Jupiter" | "DX7";
-    setPlayerTheme: React.Dispatch<React.SetStateAction<"Jupiter" | "DX7">>;
+    playerTheme: "Jupiter" | "Dx7";
+    setPlayerTheme: React.Dispatch<React.SetStateAction<"Jupiter" | "Dx7">>;
   };
   track: {
     details: Track | undefined;

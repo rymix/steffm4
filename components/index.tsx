@@ -1,6 +1,6 @@
 import Background from "components/Background";
 import BurgerMenu from "components/BurgerMenu";
-import DX7 from "components/Dx7";
+import Dx7 from "components/Dx7";
 import FloppyDiskStack from "components/Floppy/FloppyDiskStack";
 import { DiskLabel } from "components/Floppy/types";
 import Jupiter from "components/Jupiter";
@@ -64,8 +64,8 @@ const StefFmPlayer: React.FC = () => {
       <StyledScrollContainer>
         <StyledTopPanel>
           {hasMounted ? (
-            playerTheme === "DX7" ? (
-              <DX7 />
+            playerTheme === "Dx7" ? (
+              <Dx7 />
             ) : (
               <Jupiter />
             )

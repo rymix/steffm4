@@ -17,7 +17,7 @@ const DrivingMode: React.FC = () => {
     themes: { playerTheme },
   } = useMixcloud();
 
-  const isDx7Theme = playerTheme === "DX7";
+  const isDx7Theme = playerTheme === "Dx7";
   const ButtonComponent = isDx7Theme ? Dx7Button : JupiterButton;
   const buttonSize = isDx7Theme ? "huge" : "large";
 

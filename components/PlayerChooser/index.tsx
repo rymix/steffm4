@@ -16,7 +16,7 @@ const PlayerChooser: React.FC = () => {
     themes: { playerTheme, setPlayerTheme },
   } = useMixcloud();
 
-  const [hoveredItem, setHoveredItem] = useState<"Jupiter" | "DX7" | null>(
+  const [hoveredItem, setHoveredItem] = useState<"Jupiter" | "Dx7" | null>(
     null,
   );
 
@@ -24,7 +24,7 @@ const PlayerChooser: React.FC = () => {
     event:
       | React.MouseEvent<HTMLDivElement>
       | React.KeyboardEvent<HTMLDivElement>,
-    theme: "Jupiter" | "DX7",
+    theme: "Jupiter" | "Dx7",
   ): void => {
     event.preventDefault();
     setPlayerTheme(theme);
@@ -50,28 +50,28 @@ const PlayerChooser: React.FC = () => {
         <p>Jupiter-8</p>
         <StyledPlayerChooserIndicator
           $isSelected={playerTheme === "Jupiter"}
-          $isOtherHovered={hoveredItem === "DX7"}
+          $isOtherHovered={hoveredItem === "Dx7"}
         >
           <ArrowUpward />
         </StyledPlayerChooserIndicator>
       </StyledPlayerChooserItem>
       <StyledPlayerChooserItem
-        onClick={(event) => handlePlayerChooserClick(event, "DX7")}
+        onClick={(event) => handlePlayerChooserClick(event, "Dx7")}
         onKeyDown={(e: React.KeyboardEvent<HTMLDivElement>) => {
           if (e.key === "Enter" || e.key === " ") {
-            handlePlayerChooserClick(e, "DX7");
+            handlePlayerChooserClick(e, "Dx7");
           }
         }}
-        onMouseEnter={() => setHoveredItem("DX7")}
+        onMouseEnter={() => setHoveredItem("Dx7")}
         onMouseLeave={() => setHoveredItem(null)}
         tabIndex={0}
         role="button"
-        $isSelected={playerTheme === "DX7"}
+        $isSelected={playerTheme === "Dx7"}
       >
         <StyledStefFmDx7Logo />
         <p>DX7</p>
         <StyledPlayerChooserIndicator
-          $isSelected={playerTheme === "DX7"}
+          $isSelected={playerTheme === "Dx7"}
           $isOtherHovered={hoveredItem === "Jupiter"}
         >
           <ArrowUpward />
