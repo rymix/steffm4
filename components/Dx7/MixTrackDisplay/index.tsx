@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const Dx7MixTrackDisplay: React.FC = () => {
   const {
-    mix: { details: mixDetails },
+    mix: { details: mixDetails, progressPercent },
     track: { sectionNumber },
   } = useMixcloud();
 
@@ -13,7 +13,15 @@ const Dx7MixTrackDisplay: React.FC = () => {
     useState("!!!");
   const [displaySelectedTrackNumber, setDisplaySelectedTrackNumber] =
     useState("!!");
-  const [displayText, setDisplayText] = useState("!!!-!!");
+  const [displayMixProgressPercentage, setDisplayMixProgressPercentage] =
+    useState("!!!");
+  const [displayText, setDisplayText] = useState("!!!!-!!!-!!-!!!");
+
+  useEffect(() => {
+    setDisplayMixProgressPercentage(
+      `${Math.round(progressPercent).toString()}%`,
+    );
+  }, [progressPercent]);
 
   useEffect(() => {
     console.log("mixDetails.category:", JSON.stringify(mixDetails?.category));
@@ -52,15 +60,16 @@ const Dx7MixTrackDisplay: React.FC = () => {
   }, [sectionNumber]);
 
   useEffect(() => {
-    const newDisplayText = `${displayMixCategory}-${displaySelectedMixNumber}-${displaySelectedTrackNumber}`;
+    const newDisplayText = `${displayMixCategory}-${displaySelectedMixNumber}-${displaySelectedTrackNumber}-${displayMixProgressPercentage}`;
     setDisplayText(newDisplayText);
   }, [
     displayMixCategory,
     displaySelectedMixNumber,
     displaySelectedTrackNumber,
+    displayMixProgressPercentage,
   ]);
 
-  return <Dx7Lcd characterCount={11} displayText={displayText} />;
+  return <Dx7Lcd characterCount={15} displayText={displayText} />;
 };
 
 export default Dx7MixTrackDisplay;

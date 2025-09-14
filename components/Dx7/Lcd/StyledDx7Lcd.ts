@@ -16,11 +16,11 @@ export const StyledDx7LcdWrapper = styled.div<StyledDx7LcdProps>`
   padding: 10px;
   display: flex;
   font-family: "dseg14";
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
   height: 90px;
   justify-content: flex-end;
-  width: ${(props) => Math.max(150, props.$characterCount * 32 + 44)}px;
+  width: ${(props) => Math.max(150, props.$characterCount * 25 + 30)}px;
 
   @media (max-width: 480px) {
     display: none;

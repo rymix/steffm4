@@ -3,6 +3,7 @@ import {
   StyledDrivingMode,
   StyledMixTitle,
   StyledSubtitle,
+  StyledTrackTitle,
 } from "components/DrivingMode/StyledDrivingMode";
 import Dx7Button from "components/Dx7/Button";
 import JupiterButton from "components/Jupiter/Button";
@@ -14,6 +15,7 @@ const DrivingMode: React.FC = () => {
     widget: { playing },
     controls: { handlePlay, handlePause, handleNext, handlePrevious },
     mix: { details: mixDetails },
+    track: { details: trackDetails },
     themes: { playerTheme },
   } = useMixcloud();
 
@@ -24,6 +26,11 @@ const DrivingMode: React.FC = () => {
   return (
     <StyledDrivingMode>
       <StyledMixTitle>{mixDetails?.name || "Loading..."}</StyledMixTitle>
+      <StyledTrackTitle>
+        {trackDetails?.trackName
+          ? `${trackDetails?.trackName} - ${trackDetails?.artistName}`
+          : "Loading..."}
+      </StyledTrackTitle>
 
       <StyledButtonGrid>
         <ButtonComponent

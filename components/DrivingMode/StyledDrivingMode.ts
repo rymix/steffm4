@@ -1,6 +1,18 @@
 import styled from "styled-components";
 
 export const StyledMixTitle = styled.h2`
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+  line-height: 1.2;
+
+  @media screen and (orientation: landscape) and (max-height: 500px) {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+`;
+
+export const StyledTrackTitle = styled.h2`
   margin-bottom: 40px;
   font-size: 24px;
   text-align: center;
