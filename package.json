@@ -73,7 +73,8 @@
     "react-konami-code": "^2.3.0",
     "react-material-symbols": "^4.4.0",
     "styled-components": "^6.1.19",
-    "stylelint-config-recommended": "^17.0.0"
+    "stylelint-config-recommended": "^17.0.0",
+    "use-sound": "^5.0.0"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.28.0",

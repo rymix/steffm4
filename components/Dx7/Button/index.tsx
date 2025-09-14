@@ -6,6 +6,7 @@ import {
 import type { Dx7ButtonProps } from "components/Dx7/Button/types";
 import Dx7Label from "components/Dx7/Label";
 import { useCallback, useEffect, useRef, useState } from "react";
+import useSound from "use-sound";
 
 const Dx7Button: React.FC<Dx7ButtonProps> = ({
   on = false,
@@ -20,6 +21,12 @@ const Dx7Button: React.FC<Dx7ButtonProps> = ({
   const [down, setDown] = useState<boolean>(false);
   const [momentaryLit, setMomentaryLit] = useState<boolean>(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const [playClickUp] = useSound("/audio/click-up.mp3", {
+    volume: 0.3,
+  });
+  const [playClickDown] = useSound("/audio/click-down.mp3", {
+    volume: 0.2,
+  });
 
   // Cleanup timeout on unmount
   useEffect(() => {
@@ -53,6 +60,16 @@ const Dx7Button: React.FC<Dx7ButtonProps> = ({
     }
   }, [momentary, onClick]);
 
+  const handleClickDown = (): void => {
+    setDown(true);
+    playClickDown();
+  };
+
+  const handleClickUp = (): void => {
+    setDown(false);
+    playClickUp();
+  };
+
   // Determine if LED should be lit
   const ledOn = momentary ? momentaryLit : on;
 
@@ -71,8 +88,8 @@ const Dx7Button: React.FC<Dx7ButtonProps> = ({
       <StyledDx7Button
         $color={color}
         $size={size}
-        onMouseDown={() => setDown(true)}
-        onMouseUp={() => setDown(false)}
+        onMouseDown={handleClickDown}
+        onMouseUp={handleClickUp}
         onMouseLeave={() => setDown(false)}
         onClick={handleClick}
       >
