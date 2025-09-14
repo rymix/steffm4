@@ -178,15 +178,20 @@ export const StyledDx7HeaderSpacer = styled.div<StyledDx7HeaderSpacerProps>`
     display: none;
   `}
 
+  ${(props) =>
+    props.$windowWidth &&
+    props.$windowWidth > 767 &&
+    `
     &::after {
-    content: "";
-    position: absolute;
-    top: 14px;
-    right: 18px;
-    width: 1px;
-    height: 73px;
-    background: rgba(255, 255, 255, 0.5);
-    pointer-events: none;
-    z-index: 2;
-  }
+      content: "";
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      width: 1px;
+      height: 73px;
+      background: rgba(255, 255, 255, 0.5);
+      pointer-events: none;
+      z-index: 2;
+    }
+  `}
 `;
