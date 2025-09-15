@@ -14,7 +14,7 @@ import useSound from "use-sound";
 
 const Menu: React.FC = () => {
   const {
-    session: { enableAudio, menuOpen, openModal, setMenuOpen },
+    session: { enableAudio, menuOpen, openModal, setEnableAudio, setMenuOpen },
   } = useMixcloud();
 
   const [playMenuHover] = useSound("/audio/tap.mp3", {
@@ -83,6 +83,13 @@ const Menu: React.FC = () => {
     event.preventDefault();
     openModal(<MixList />, undefined, undefined, undefined, true);
     setTimeout(() => setMenuOpen(false), 500);
+  };
+
+  const handleEnableAudioClick = (
+    event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
+  ): void => {
+    event.preventDefault();
+    setEnableAudio(!enableAudio);
   };
 
   return (
@@ -207,6 +214,21 @@ const Menu: React.FC = () => {
           role="button"
         >
           List All Mixes
+        </li>
+        <li
+          onClick={(event) => handleEnableAudioClick(event)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleEnableAudioClick(e);
+            }
+          }}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
+          tabIndex={0}
+          role="button"
+        >
+          {enableAudio ? "Disable SFX" : "Enable SFX"}
         </li>
       </ul>
     </StyledMenu>
