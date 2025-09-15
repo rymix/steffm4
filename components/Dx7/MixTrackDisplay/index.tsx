@@ -19,7 +19,7 @@ const Dx7MixTrackDisplay: React.FC = () => {
 
   useEffect(() => {
     setDisplayMixProgressPercentage(
-      `${Math.round(progressPercent).toString()}%`,
+      `${Math.round(progressPercent).toString().padStart(2, "0")}%`,
     );
   }, [progressPercent]);
 
