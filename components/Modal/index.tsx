@@ -31,7 +31,7 @@ const Modal: React.FC<ModalProps> = () => {
   const [playClickUp] = useSound("/audio/click-up.mp3", {
     volume: 0.5,
   });
-  const [playSwishOpen] = useSound("/audio/swish-open.mp3", {
+  const [playModalOpen] = useSound("/audio/swish-open.mp3", {
     volume: 0.5,
   });
   const [playSwishClose] = useSound("/audio/swish-close2.mp3", {
@@ -40,9 +40,9 @@ const Modal: React.FC<ModalProps> = () => {
 
   useEffect(() => {
     if (modalOpen) {
-      playSwishOpen();
+      playModalOpen();
     }
-  }, [modalOpen, playSwishOpen]);
+  }, [modalOpen, playModalOpen]);
 
   return (
     <StyledModal $open={modalOpen} $hideChrome={modalHideChrome} ref={modalRef}>
