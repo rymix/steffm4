@@ -10,6 +10,9 @@ const Burger: React.FC = () => {
   const [playMenuOpen] = useSound("/audio/swish-open.mp3", {
     volume: 0.5,
   });
+  const [playBurgerHover] = useSound("/audio/tap.mp3", {
+    volume: 0.5,
+  });
 
   return (
     <StyledBurger
@@ -18,6 +21,7 @@ const Burger: React.FC = () => {
         setMenuOpen(!menuOpen);
         playMenuOpen();
       }}
+      onMouseEnter={() => playBurgerHover()}
     >
       <div />
       <div />

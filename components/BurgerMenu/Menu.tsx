@@ -10,11 +10,16 @@ import PlayerChooser from "components/PlayerChooser";
 import Statistics from "components/Statistics";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
+import useSound from "use-sound";
 
 const Menu: React.FC = () => {
   const {
     session: { menuOpen, openModal, setMenuOpen },
   } = useMixcloud();
+
+  const [playMenuHover] = useSound("/audio/tap.mp3", {
+    volume: 0.5,
+  });
 
   const handleBackgroundClick = (
     event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
@@ -90,6 +95,7 @@ const Menu: React.FC = () => {
               handleAboutClick(e);
             }
           }}
+          onMouseEnter={() => playMenuHover()}
           tabIndex={0}
           role="button"
         >
@@ -102,6 +108,7 @@ const Menu: React.FC = () => {
               handleContactClick(e);
             }
           }}
+          onMouseEnter={() => playMenuHover()}
           tabIndex={0}
           role="button"
         >
@@ -114,6 +121,7 @@ const Menu: React.FC = () => {
               handleManualClick(e);
             }
           }}
+          onMouseEnter={() => playMenuHover()}
           tabIndex={0}
           role="button"
         >
@@ -126,6 +134,7 @@ const Menu: React.FC = () => {
               handleInstallClick(e);
             }
           }}
+          onMouseEnter={() => playMenuHover()}
           tabIndex={0}
           role="button"
         >
@@ -138,6 +147,7 @@ const Menu: React.FC = () => {
               handleStatisticsClick(e);
             }
           }}
+          onMouseEnter={() => playMenuHover()}
           tabIndex={0}
           role="button"
         >
@@ -150,6 +160,7 @@ const Menu: React.FC = () => {
               handleBackgroundClick(e);
             }
           }}
+          onMouseEnter={() => playMenuHover()}
           tabIndex={0}
           role="button"
         >
@@ -162,6 +173,7 @@ const Menu: React.FC = () => {
               handlePlayerChooserClick(e);
             }
           }}
+          onMouseEnter={() => playMenuHover()}
           tabIndex={0}
           role="button"
         >
@@ -174,6 +186,7 @@ const Menu: React.FC = () => {
               handleMixListClick(e);
             }
           }}
+          onMouseEnter={() => playMenuHover()}
           tabIndex={0}
           role="button"
         >
