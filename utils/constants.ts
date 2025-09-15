@@ -9,6 +9,7 @@ export const DEFAULT_MESSAGE = "Stef FM - Funky House Coming In Your Ears";
 export const DEFAULT_TITLE = "Stef.FM - Funky House Coming In Your Ears";
 export const DEFAULT_VOLUME = 1;
 export const DEFAULT_THEME = "Dx7";
+export const DEFAULT_ENABLE_AUDIO = true;
 export const DISPLAY_LENGTH = 24;
 export const NOISE_BACKGROUND_LOW = `
   data:image/png;base64,

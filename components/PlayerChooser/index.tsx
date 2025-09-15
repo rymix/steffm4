@@ -13,11 +13,11 @@ import useSound from "use-sound";
 
 const PlayerChooser: React.FC = () => {
   const {
-    session: { setModalOpen },
+    session: { enableAudio, setModalOpen },
     themes: { playerTheme, setPlayerTheme },
   } = useMixcloud();
 
-  const [playSwishClose2] = useSound("/audio/swish-close2.mp3", {
+  const [playModalClose] = useSound("/audio/swish-close2.mp3", {
     volume: 0.5,
   });
 
@@ -35,7 +35,7 @@ const PlayerChooser: React.FC = () => {
     setPlayerTheme(theme);
     setTimeout(() => {
       setModalOpen(false);
-      playSwishClose2();
+      playModalClose();
     }, 500);
   };
 

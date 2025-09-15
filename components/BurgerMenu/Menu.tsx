@@ -14,7 +14,7 @@ import useSound from "use-sound";
 
 const Menu: React.FC = () => {
   const {
-    session: { menuOpen, openModal, setMenuOpen },
+    session: { enableAudio, menuOpen, openModal, setMenuOpen },
   } = useMixcloud();
 
   const [playMenuHover] = useSound("/audio/tap.mp3", {
@@ -95,7 +95,9 @@ const Menu: React.FC = () => {
               handleAboutClick(e);
             }
           }}
-          onMouseEnter={() => playMenuHover()}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
           tabIndex={0}
           role="button"
         >
@@ -108,7 +110,9 @@ const Menu: React.FC = () => {
               handleContactClick(e);
             }
           }}
-          onMouseEnter={() => playMenuHover()}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
           tabIndex={0}
           role="button"
         >
@@ -121,7 +125,9 @@ const Menu: React.FC = () => {
               handleManualClick(e);
             }
           }}
-          onMouseEnter={() => playMenuHover()}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
           tabIndex={0}
           role="button"
         >
@@ -134,7 +140,9 @@ const Menu: React.FC = () => {
               handleInstallClick(e);
             }
           }}
-          onMouseEnter={() => playMenuHover()}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
           tabIndex={0}
           role="button"
         >
@@ -147,7 +155,9 @@ const Menu: React.FC = () => {
               handleStatisticsClick(e);
             }
           }}
-          onMouseEnter={() => playMenuHover()}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
           tabIndex={0}
           role="button"
         >
@@ -160,7 +170,9 @@ const Menu: React.FC = () => {
               handleBackgroundClick(e);
             }
           }}
-          onMouseEnter={() => playMenuHover()}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
           tabIndex={0}
           role="button"
         >
@@ -173,7 +185,9 @@ const Menu: React.FC = () => {
               handlePlayerChooserClick(e);
             }
           }}
-          onMouseEnter={() => playMenuHover()}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
           tabIndex={0}
           role="button"
         >
@@ -186,7 +200,9 @@ const Menu: React.FC = () => {
               handleMixListClick(e);
             }
           }}
-          onMouseEnter={() => playMenuHover()}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
           tabIndex={0}
           role="button"
         >

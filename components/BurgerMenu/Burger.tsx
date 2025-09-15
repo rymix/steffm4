@@ -4,7 +4,7 @@ import useSound from "use-sound";
 
 const Burger: React.FC = () => {
   const {
-    session: { menuOpen, setMenuOpen },
+    session: { enableAudio, menuOpen, setMenuOpen },
   } = useMixcloud();
 
   const [playMenuOpen] = useSound("/audio/swish-open.mp3", {
@@ -19,9 +19,11 @@ const Burger: React.FC = () => {
       $open={menuOpen}
       onClick={() => {
         setMenuOpen(!menuOpen);
-        playMenuOpen();
+        enableAudio && playMenuOpen();
       }}
-      onMouseEnter={() => playBurgerHover()}
+      onMouseEnter={() => {
+        enableAudio && playBurgerHover();
+      }}
     >
       <div />
       <div />

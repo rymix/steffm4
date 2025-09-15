@@ -18,6 +18,7 @@ type ModalProps = {
 const Modal: React.FC<ModalProps> = () => {
   const {
     session: {
+      enableAudio,
       handleCloseModal,
       modalHideChrome,
       modalOpen,
@@ -56,8 +57,12 @@ const Modal: React.FC<ModalProps> = () => {
           )}
           <StyledCloseLink
             onClick={handleCloseModal}
-            onMouseDown={() => playClickUp()}
-            onMouseUp={() => playSwishClose()}
+            onMouseDown={() => {
+              enableAudio && playClickUp();
+            }}
+            onMouseUp={() => {
+              enableAudio && playSwishClose();
+            }}
           />
         </StyledModalHeader>
       )}
@@ -67,8 +72,12 @@ const Modal: React.FC<ModalProps> = () => {
         {modalHideChrome && (
           <StyledCloseLink
             onClick={handleCloseModal}
-            onMouseDown={() => playClickUp()}
-            onMouseUp={() => playSwishClose()}
+            onMouseDown={() => {
+              enableAudio && playClickUp();
+            }}
+            onMouseUp={() => {
+              enableAudio && playSwishClose();
+            }}
             style={{ position: "absolute", top: "10px", right: "10px" }}
           />
         )}

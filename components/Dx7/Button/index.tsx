@@ -5,6 +5,7 @@ import {
 } from "components/Dx7/Button/StyledDx7Button";
 import type { Dx7ButtonProps } from "components/Dx7/Button/types";
 import Dx7Label from "components/Dx7/Label";
+import { useMixcloud } from "contexts/mixcloud";
 import { useCallback, useEffect, useRef, useState } from "react";
 import useSound from "use-sound";
 
@@ -18,6 +19,9 @@ const Dx7Button: React.FC<Dx7ButtonProps> = ({
   momentary = false,
   size = "normal",
 }) => {
+  const {
+    session: { enableAudio },
+  } = useMixcloud();
   const [down, setDown] = useState<boolean>(false);
   const [momentaryLit, setMomentaryLit] = useState<boolean>(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -62,12 +66,12 @@ const Dx7Button: React.FC<Dx7ButtonProps> = ({
 
   const handleClickDown = (): void => {
     setDown(true);
-    playClickDown();
+    enableAudio && playClickDown();
   };
 
   const handleClickUp = (): void => {
     setDown(false);
-    playClickUp();
+    enableAudio && playClickUp();
   };
 
   // Determine if LED should be lit

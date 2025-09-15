@@ -24,6 +24,7 @@ import useSound from "use-sound";
 import {
   AUTO_CHANGE_BACKGROUND,
   DEFAULT_BACKGROUND,
+  DEFAULT_ENABLE_AUDIO,
   DEFAULT_MESSAGE,
   DEFAULT_THEME,
   DEFAULT_VOLUME,
@@ -159,6 +160,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [volume, setVolume] = usePersistedState<number>(
     "volume",
     DEFAULT_VOLUME,
+  );
+  const [enableAudio, setEnableAudio] = usePersistedState<boolean>(
+    "enableAudio",
+    DEFAULT_ENABLE_AUDIO,
   );
 
   /* Session */
@@ -615,12 +620,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
         burgerMenuRef.current &&
         !burgerMenuRef.current.contains(target)
       ) {
-        playMenuClose();
+        enableAudio && playMenuClose();
         setMenuOpen(false);
       }
 
       if (modalOpen && modalRef.current && !modalRef.current.contains(target)) {
-        playModalClose();
+        enableAudio && playModalClose();
         stopTimer();
       }
     };
@@ -628,7 +633,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const handleEscapePress = (event: KeyboardEvent): void => {
       if (event.key === "Escape") {
         if (modalOpen) {
-          playModalClose();
+          enableAudio && playModalClose();
         }
         stopTimer();
       }
@@ -1959,6 +1964,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       burgerMenuRef,
       displayLength,
       dx7ScreenLight,
+      enableAudio,
       filterBackgroundCategory,
       handleCloseModal,
       isAtBottom,
@@ -1978,6 +1984,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setBackgroundAutoChange,
       setDisplayLength,
       setDx7ScreenLight,
+      setEnableAudio,
       setFilterBackgroundCategory,
       setIsAtBottom,
       setIsMobile: setIsMobileDevice,
