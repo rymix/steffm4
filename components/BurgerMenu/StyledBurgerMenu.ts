@@ -70,6 +70,7 @@ export const StyledMenu = styled.nav<StyledMenuProps>`
   height: 100vh;
   justify-content: flex-start;
   left: 0;
+  overflow-y: auto;
   padding: 6rem 2rem;
   position: fixed;
   text-align: left;

@@ -106,6 +106,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [playMenuClose] = useSound("/audio/swish-close2.mp3", {
     volume: 0.5,
   });
+  const [playScreenTransition] = useSound("/audio/swish-close.mp3", {
+    volume: 0.1,
+  });
 
   const jupiterCaseRef = useRef<HTMLDivElement>(null);
 
@@ -1831,12 +1834,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
   useEffect((): (() => void) => {
     const handleScroll = (event: WheelEvent): void => {
       if (event.deltaY > 0 && !isAtBottom) {
+        enableAudio && playScreenTransition();
         setIsAtBottom(true);
         window.scrollTo({
           top: window.innerHeight,
           behavior: "smooth",
         });
       } else if (event.deltaY < 0 && isAtBottom) {
+        enableAudio && playScreenTransition();
         setIsAtBottom(false);
         window.scrollTo({
           top: 0,
@@ -1858,12 +1863,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const sensitivity = 30; // Adjust sensitivity here
 
       if (swipeDistance > sensitivity && !isAtBottom) {
+        enableAudio && playScreenTransition();
         setIsAtBottom(true);
         window.scrollTo({
           top: window.innerHeight,
           behavior: "smooth",
         });
       } else if (swipeDistance < -sensitivity && isAtBottom) {
+        enableAudio && playScreenTransition();
         setIsAtBottom(false);
         window.scrollTo({
           top: 0,
@@ -1872,7 +1879,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
       }
     };
 
-    if (modalOpen) {
+    // Disable SPA scrolling when modal or menu is open
+    if (modalOpen || menuOpen) {
       window.removeEventListener("wheel", handleScroll);
       globalThis.removeEventListener("touchstart", handleTouchStart);
       globalThis.removeEventListener("touchmove", handleTouchMove);
@@ -1887,7 +1895,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       globalThis.removeEventListener("touchstart", handleTouchStart);
       globalThis.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [isAtBottom, touchStartY, modalOpen]);
+  }, [
+    isAtBottom,
+    touchStartY,
+    modalOpen,
+    menuOpen,
+    enableAudio,
+    playScreenTransition,
+  ]);
   // #endregion
 
   // #region Return
