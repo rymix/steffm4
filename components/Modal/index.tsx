@@ -8,7 +8,8 @@ import {
   StyledModalTitle,
 } from "components/Modal/StyledModal";
 import { useMixcloud } from "contexts/mixcloud";
-
+import { useEffect } from "react";
+import useSound from "use-sound";
 // Adding hideChrome as a prop and defaulting to false
 type ModalProps = {
   hideChrome?: boolean;
@@ -27,6 +28,20 @@ const Modal: React.FC<ModalProps> = () => {
     },
   } = useMixcloud();
 
+  const [playClickUp] = useSound("/audio/click-up.mp3", {
+    volume: 0.5,
+  });
+  const [playSwishOpen] = useSound("/audio/swish-open.mp3", {
+    volume: 0.5,
+  });
+  const [playSwishClose2] = useSound("/audio/swish-close2.mp3", {
+    volume: 0.5,
+  });
+
+  useEffect(() => {
+    playSwishOpen();
+  }, []);
+
   return (
     <StyledModal $open={modalOpen} $hideChrome={modalHideChrome} ref={modalRef}>
       {!modalHideChrome && (
@@ -37,7 +52,11 @@ const Modal: React.FC<ModalProps> = () => {
               <Countdown seconds={secondsRemaining} />
             </StyledCountdown>
           )}
-          <StyledCloseLink onClick={handleCloseModal} />
+          <StyledCloseLink
+            onClick={handleCloseModal}
+            onMouseDown={playClickUp}
+            onMouseUp={playSwishClose2}
+          />
         </StyledModalHeader>
       )}
 
@@ -46,6 +65,8 @@ const Modal: React.FC<ModalProps> = () => {
         {modalHideChrome && (
           <StyledCloseLink
             onClick={handleCloseModal}
+            onMouseDown={playClickDown}
+            onMouseUp={playSwishClose2}
             style={{ position: "absolute", top: "10px", right: "10px" }}
           />
         )}
