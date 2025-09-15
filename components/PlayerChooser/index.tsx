@@ -9,12 +9,17 @@ import {
 } from "components/PlayerChooser/StyledPlayerChooser";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useState } from "react";
+import useSound from "use-sound";
 
 const PlayerChooser: React.FC = () => {
   const {
     session: { setModalOpen },
     themes: { playerTheme, setPlayerTheme },
   } = useMixcloud();
+
+  const [playModalClose] = useSound("/audio/swish-close2.mp3", {
+    volume: 0.5,
+  });
 
   const [hoveredItem, setHoveredItem] = useState<"Jupiter" | "Dx7" | null>(
     null,
@@ -28,7 +33,10 @@ const PlayerChooser: React.FC = () => {
   ): void => {
     event.preventDefault();
     setPlayerTheme(theme);
-    setTimeout(() => setModalOpen(false), 500);
+    setTimeout(() => {
+      setModalOpen(false);
+      playModalClose();
+    }, 500);
   };
 
   return (

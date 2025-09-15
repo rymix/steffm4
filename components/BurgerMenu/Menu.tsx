@@ -10,11 +10,16 @@ import PlayerChooser from "components/PlayerChooser";
 import Statistics from "components/Statistics";
 import { useMixcloud } from "contexts/mixcloud";
 import React from "react";
+import useSound from "use-sound";
 
 const Menu: React.FC = () => {
   const {
-    session: { menuOpen, openModal, setMenuOpen },
+    session: { enableAudio, menuOpen, openModal, setEnableAudio, setMenuOpen },
   } = useMixcloud();
+
+  const [playMenuHover] = useSound("/audio/tap.mp3", {
+    volume: 0.5,
+  });
 
   const handleBackgroundClick = (
     event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
@@ -80,6 +85,13 @@ const Menu: React.FC = () => {
     setTimeout(() => setMenuOpen(false), 500);
   };
 
+  const handleEnableAudioClick = (
+    event: React.MouseEvent<HTMLLIElement> | React.KeyboardEvent<HTMLLIElement>,
+  ): void => {
+    event.preventDefault();
+    setEnableAudio(!enableAudio);
+  };
+
   return (
     <StyledMenu $open={menuOpen}>
       <ul>
@@ -89,6 +101,9 @@ const Menu: React.FC = () => {
             if (e.key === "Enter" || e.key === " ") {
               handleAboutClick(e);
             }
+          }}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
           }}
           tabIndex={0}
           role="button"
@@ -102,6 +117,9 @@ const Menu: React.FC = () => {
               handleContactClick(e);
             }
           }}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
           tabIndex={0}
           role="button"
         >
@@ -113,6 +131,9 @@ const Menu: React.FC = () => {
             if (e.key === "Enter" || e.key === " ") {
               handleManualClick(e);
             }
+          }}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
           }}
           tabIndex={0}
           role="button"
@@ -126,6 +147,9 @@ const Menu: React.FC = () => {
               handleInstallClick(e);
             }
           }}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
           tabIndex={0}
           role="button"
         >
@@ -137,6 +161,9 @@ const Menu: React.FC = () => {
             if (e.key === "Enter" || e.key === " ") {
               handleStatisticsClick(e);
             }
+          }}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
           }}
           tabIndex={0}
           role="button"
@@ -150,6 +177,9 @@ const Menu: React.FC = () => {
               handleBackgroundClick(e);
             }
           }}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
           tabIndex={0}
           role="button"
         >
@@ -161,6 +191,9 @@ const Menu: React.FC = () => {
             if (e.key === "Enter" || e.key === " ") {
               handlePlayerChooserClick(e);
             }
+          }}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
           }}
           tabIndex={0}
           role="button"
@@ -174,10 +207,28 @@ const Menu: React.FC = () => {
               handleMixListClick(e);
             }
           }}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
           tabIndex={0}
           role="button"
         >
           List All Mixes
+        </li>
+        <li
+          onClick={(event) => handleEnableAudioClick(event)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleEnableAudioClick(e);
+            }
+          }}
+          onMouseEnter={() => {
+            enableAudio && playMenuHover();
+          }}
+          tabIndex={0}
+          role="button"
+        >
+          {enableAudio ? "Disable SFX" : "Enable SFX"}
         </li>
       </ul>
     </StyledMenu>

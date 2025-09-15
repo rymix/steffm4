@@ -20,9 +20,11 @@ import React, {
 } from "react";
 import ReactGA from "react-ga4";
 import themes from "styles/themes";
+import useSound from "use-sound";
 import {
   AUTO_CHANGE_BACKGROUND,
   DEFAULT_BACKGROUND,
+  DEFAULT_ENABLE_AUDIO,
   DEFAULT_MESSAGE,
   DEFAULT_THEME,
   DEFAULT_VOLUME,
@@ -98,6 +100,16 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [keyboardShortcutsEnabled, setKeyboardShortcutsEnabled] =
     useState<boolean>(true);
 
+  const [playModalClose] = useSound("/audio/swish-close2.mp3", {
+    volume: 0.5,
+  });
+  const [playMenuClose] = useSound("/audio/swish-close2.mp3", {
+    volume: 0.5,
+  });
+  const [playScreenTransition] = useSound("/audio/swish-close.mp3", {
+    volume: 0.1,
+  });
+
   const jupiterCaseRef = useRef<HTMLDivElement>(null);
 
   // Add a validation function to sync playing state
@@ -151,6 +163,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [volume, setVolume] = usePersistedState<number>(
     "volume",
     DEFAULT_VOLUME,
+  );
+  const [enableAudio, setEnableAudio] = usePersistedState<boolean>(
+    "enableAudio",
+    DEFAULT_ENABLE_AUDIO,
   );
 
   /* Session */
@@ -602,17 +618,26 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const handleClickOutside = (event: MouseEvent): void => {
       const target = event.target as Node;
 
-      if (burgerMenuRef.current && !burgerMenuRef.current.contains(target)) {
+      if (
+        menuOpen &&
+        burgerMenuRef.current &&
+        !burgerMenuRef.current.contains(target)
+      ) {
+        enableAudio && playMenuClose();
         setMenuOpen(false);
       }
 
-      if (modalRef.current && !modalRef.current.contains(target)) {
+      if (modalOpen && modalRef.current && !modalRef.current.contains(target)) {
+        enableAudio && playModalClose();
         stopTimer();
       }
     };
 
     const handleEscapePress = (event: KeyboardEvent): void => {
       if (event.key === "Escape") {
+        if (modalOpen) {
+          enableAudio && playModalClose();
+        }
         stopTimer();
       }
     };
@@ -623,7 +648,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleEscapePress);
     };
-  }, [burgerMenuRef, modalRef]);
+  }, [
+    burgerMenuRef,
+    modalRef,
+    playModalClose,
+    playMenuClose,
+    modalOpen,
+    menuOpen,
+  ]);
   // #endregion
 
   // #region Helpers
@@ -1242,7 +1274,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
   useEffect(() => {
     const updateVolume = async (): Promise<void> => {
       if (player) {
-        player.setVolume(volume);
+        // Mixcloud widget might not handle volume=0 properly, use a very small value instead
+        const validVolume =
+          volume === 0 ? 0.001 : Math.max(0, Math.min(1, Number(volume)));
+        logger.info(
+          `Setting widget volume to: ${validVolume} (original: ${volume})`,
+        );
+        player.setVolume(validVolume);
       }
     };
 
@@ -1796,12 +1834,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
   useEffect((): (() => void) => {
     const handleScroll = (event: WheelEvent): void => {
       if (event.deltaY > 0 && !isAtBottom) {
+        enableAudio && playScreenTransition();
         setIsAtBottom(true);
         window.scrollTo({
           top: window.innerHeight,
           behavior: "smooth",
         });
       } else if (event.deltaY < 0 && isAtBottom) {
+        enableAudio && playScreenTransition();
         setIsAtBottom(false);
         window.scrollTo({
           top: 0,
@@ -1823,12 +1863,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       const sensitivity = 30; // Adjust sensitivity here
 
       if (swipeDistance > sensitivity && !isAtBottom) {
+        enableAudio && playScreenTransition();
         setIsAtBottom(true);
         window.scrollTo({
           top: window.innerHeight,
           behavior: "smooth",
         });
       } else if (swipeDistance < -sensitivity && isAtBottom) {
+        enableAudio && playScreenTransition();
         setIsAtBottom(false);
         window.scrollTo({
           top: 0,
@@ -1837,7 +1879,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
       }
     };
 
-    if (modalOpen) {
+    // Disable SPA scrolling when modal or menu is open
+    if (modalOpen || menuOpen) {
       window.removeEventListener("wheel", handleScroll);
       globalThis.removeEventListener("touchstart", handleTouchStart);
       globalThis.removeEventListener("touchmove", handleTouchMove);
@@ -1852,7 +1895,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       globalThis.removeEventListener("touchstart", handleTouchStart);
       globalThis.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [isAtBottom, touchStartY, modalOpen]);
+  }, [
+    isAtBottom,
+    touchStartY,
+    modalOpen,
+    menuOpen,
+    enableAudio,
+    playScreenTransition,
+  ]);
   // #endregion
 
   // #region Return
@@ -1929,6 +1979,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       burgerMenuRef,
       displayLength,
       dx7ScreenLight,
+      enableAudio,
       filterBackgroundCategory,
       handleCloseModal,
       isAtBottom,
@@ -1948,6 +1999,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setBackgroundAutoChange,
       setDisplayLength,
       setDx7ScreenLight,
+      setEnableAudio,
       setFilterBackgroundCategory,
       setIsAtBottom,
       setIsMobile: setIsMobileDevice,
