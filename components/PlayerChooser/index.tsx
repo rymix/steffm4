@@ -13,7 +13,7 @@ import useSound from "use-sound";
 
 const PlayerChooser: React.FC = () => {
   const {
-    session: { enableAudio, setModalOpen },
+    session: { setModalOpen },
     themes: { playerTheme, setPlayerTheme },
   } = useMixcloud();
 

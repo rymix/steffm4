@@ -2,7 +2,6 @@
 /* eslint-disable unicorn/no-negated-condition */
 /* eslint-disable unicorn/no-typeof-undefined */
 /* eslint-disable unicorn/no-array-push-push */
-/* eslint-disable no-unused-expressions */
 import {
   StyledDx7Screen,
   StyledDx7ScreenBezel,
