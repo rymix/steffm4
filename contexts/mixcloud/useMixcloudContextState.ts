@@ -1266,7 +1266,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
   useEffect(() => {
     const updateVolume = async (): Promise<void> => {
       if (player) {
-        player.setVolume(volume);
+        // Mixcloud widget might not handle volume=0 properly, use a very small value instead
+        const validVolume = volume === 0 ? 0.001 : Math.max(0, Math.min(1, Number(volume)));
+        logger.info(`Setting widget volume to: ${validVolume} (original: ${volume})`);
+        player.setVolume(validVolume);
       }
     };
 
