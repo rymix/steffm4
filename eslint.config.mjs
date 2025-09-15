@@ -190,6 +190,7 @@ const config = [
       "unicorn/prevent-abbreviations": "off",
       "no-restricted-globals": "off",
       "no-alert": "off",
+      "no-unused-expressions": "off",
     },
   },
 ];
