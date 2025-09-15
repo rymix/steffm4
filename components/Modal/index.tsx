@@ -34,13 +34,15 @@ const Modal: React.FC<ModalProps> = () => {
   const [playSwishOpen] = useSound("/audio/swish-open.mp3", {
     volume: 0.5,
   });
-  const [playSwishClose2] = useSound("/audio/swish-close2.mp3", {
+  const [playSwishClose] = useSound("/audio/swish-close2.mp3", {
     volume: 0.5,
   });
 
   useEffect(() => {
-    playSwishOpen();
-  }, []);
+    if (modalOpen) {
+      playSwishOpen();
+    }
+  }, [modalOpen, playSwishOpen]);
 
   return (
     <StyledModal $open={modalOpen} $hideChrome={modalHideChrome} ref={modalRef}>
@@ -54,8 +56,8 @@ const Modal: React.FC<ModalProps> = () => {
           )}
           <StyledCloseLink
             onClick={handleCloseModal}
-            onMouseDown={playClickUp}
-            onMouseUp={playSwishClose2}
+            onMouseDown={() => playClickUp()}
+            onMouseUp={() => playSwishClose()}
           />
         </StyledModalHeader>
       )}
@@ -65,8 +67,8 @@ const Modal: React.FC<ModalProps> = () => {
         {modalHideChrome && (
           <StyledCloseLink
             onClick={handleCloseModal}
-            onMouseDown={playClickDown}
-            onMouseUp={playSwishClose2}
+            onMouseDown={() => playClickUp()}
+            onMouseUp={() => playSwishClose()}
             style={{ position: "absolute", top: "10px", right: "10px" }}
           />
         )}

@@ -20,6 +20,7 @@ import React, {
 } from "react";
 import ReactGA from "react-ga4";
 import themes from "styles/themes";
+import useSound from "use-sound";
 import {
   AUTO_CHANGE_BACKGROUND,
   DEFAULT_BACKGROUND,
@@ -97,6 +98,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [playing, setPlaying] = useState<boolean>(false);
   const [keyboardShortcutsEnabled, setKeyboardShortcutsEnabled] =
     useState<boolean>(true);
+
+  const [playModalClose] = useSound("/audio/swish-close2.mp3", {
+    volume: 0.5,
+  });
+  const [playMenuClose] = useSound("/audio/swish-close.mp3", {
+    volume: 0.5,
+  });
 
   const jupiterCaseRef = useRef<HTMLDivElement>(null);
 
@@ -602,17 +610,26 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const handleClickOutside = (event: MouseEvent): void => {
       const target = event.target as Node;
 
-      if (burgerMenuRef.current && !burgerMenuRef.current.contains(target)) {
+      if (
+        menuOpen &&
+        burgerMenuRef.current &&
+        !burgerMenuRef.current.contains(target)
+      ) {
+        playMenuClose();
         setMenuOpen(false);
       }
 
-      if (modalRef.current && !modalRef.current.contains(target)) {
+      if (modalOpen && modalRef.current && !modalRef.current.contains(target)) {
+        playModalClose();
         stopTimer();
       }
     };
 
     const handleEscapePress = (event: KeyboardEvent): void => {
       if (event.key === "Escape") {
+        if (modalOpen) {
+          playModalClose();
+        }
         stopTimer();
       }
     };
@@ -623,7 +640,14 @@ const useMixcloudContextState = (): MixcloudContextState => {
       document.removeEventListener("mousedown", handleClickOutside);
       document.removeEventListener("keydown", handleEscapePress);
     };
-  }, [burgerMenuRef, modalRef]);
+  }, [
+    burgerMenuRef,
+    modalRef,
+    playModalClose,
+    playMenuClose,
+    modalOpen,
+    menuOpen,
+  ]);
   // #endregion
 
   // #region Helpers
