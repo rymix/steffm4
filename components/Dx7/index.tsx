@@ -22,6 +22,7 @@ import {
 } from "components/Dx7/StyledDx7";
 import Dx7Volume from "components/Dx7/Volume";
 import Dx7Wrapper from "components/Dx7/Wrapper";
+import JupiterBackPanel from "components/Jupiter/Panel/BackPanel";
 import { useDeviceOrientation } from "hooks/useDeviceOrientation";
 
 const Dx7CaseLight: React.FC = () => {
@@ -99,6 +100,16 @@ const Dx7CaseDark: React.FC = () => {
   );
 };
 
+const Dx7CaseBackPanel: React.FC = () => {
+  const { isPortrait, isMobile, windowWidth } = useDeviceOrientation();
+
+  return (
+    <StyledDx7CaseDark>
+      <JupiterBackPanel />
+    </StyledDx7CaseDark>
+  );
+};
+
 export const Dx7: React.FC = () => {
   const {
     isPortrait,
@@ -116,6 +127,7 @@ export const Dx7: React.FC = () => {
         $isPortrait={isPortrait}
       >
         {/* Header - always visible but may have reduced algorithm background on small screens */}
+        <Dx7CaseBackPanel />
         <Dx7Header />
         <Dx7CaseLight />
         {!isSkinnyWideMode && !isTallWideMode && <Dx7CaseDark />}
