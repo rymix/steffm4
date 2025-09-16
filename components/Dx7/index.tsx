@@ -1,3 +1,4 @@
+import Dx7BackPanel from "components/Dx7/BackPanel";
 import Dx7Cartridge from "components/Dx7/Cartridge";
 import Dx7Controls from "components/Dx7/Controls";
 import Dx7ControlsSecondary from "components/Dx7/ControlsSecondary";
@@ -8,6 +9,7 @@ import Dx7Screen from "components/Dx7/Screen";
 import Dx7ScreenControls from "components/Dx7/ScreenControls";
 import {
   StyledDx7Case,
+  StyledDx7CaseBorder,
   StyledDx7CaseControlsContainer,
   StyledDx7CaseControlsRow,
   StyledDx7CaseDark,
@@ -16,13 +18,13 @@ import {
   StyledDx7CaseFilterRow,
   StyledDx7CaseLight,
   StyledDx7CaseMixDisplayContainer,
+  StyledDx7CaseRearPanel,
   StyledDx7CaseScreenContainer,
   StyledDx7CaseScreenRow,
   StyledDx7CaseVolumeContainer,
 } from "components/Dx7/StyledDx7";
 import Dx7Volume from "components/Dx7/Volume";
 import Dx7Wrapper from "components/Dx7/Wrapper";
-import JupiterBackPanel from "components/Jupiter/Panel/BackPanel";
 import { useDeviceOrientation } from "hooks/useDeviceOrientation";
 
 const Dx7CaseLight: React.FC = () => {
@@ -101,11 +103,13 @@ const Dx7CaseDark: React.FC = () => {
 };
 
 const Dx7CaseBackPanel: React.FC = () => {
-  const { isPortrait, isMobile, windowWidth } = useDeviceOrientation();
-
   return (
-    <StyledDx7CaseDark>
-      <JupiterBackPanel />
+    <StyledDx7CaseDark $background="rear">
+      <StyledDx7CaseRearPanel>
+        <StyledDx7CaseBorder $position="left" />
+        <Dx7BackPanel />
+        <StyledDx7CaseBorder $position="right" />
+      </StyledDx7CaseRearPanel>
     </StyledDx7CaseDark>
   );
 };
