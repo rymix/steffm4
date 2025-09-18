@@ -6,3 +6,7 @@ export type StyledDx7ItemGroupProps = {
   $alignment?: "left" | "right";
   $forceStack?: boolean;
 };
+
+export type StyledDx7BackPanelPowerButtonProps = {
+  $isConnected?: boolean;
+};
