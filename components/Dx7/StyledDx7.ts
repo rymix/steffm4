@@ -1,5 +1,6 @@
 import {
   StyledDx7CaseControlsContainerProps,
+  StyledDx7CaseDarkProps,
   StyledDx7CaseFilterContainerProps,
   StyledDx7CaseProps,
   StyledDx7CaseVolumeContainerProps,
@@ -102,8 +103,20 @@ export const StyledDx7Case = styled.div<StyledDx7CaseProps>`
   `}
 `;
 
-export const StyledDx7CaseDark = styled.div`
+export const StyledDx7CaseDark = styled.div<StyledDx7CaseDarkProps>`
   position: relative;
+
+  /* Apply perspective as wrapper when background is "rear", otherwise use normal borders */
+  ${({ $background }) =>
+    $background === "rear"
+      ? `
+    perspective: 100px;
+    display: flex;
+  `
+      : `
+    ${dx7Border("left", "top", "100%")}
+    ${dx7Border("right", "top", "100%")}
+
   background-image:
     url("textures/dark-wall.png"),
     linear-gradient(
@@ -114,10 +127,7 @@ export const StyledDx7CaseDark = styled.div`
       #1c1814ff 3%,
       #0d0b09ff 97%,
       black 100%
-    );
-
-  ${dx7Border("left", "top", "100%")}
-  ${dx7Border("right", "top", "100%")}
+    );    `}
 `;
 
 export const StyledDx7CaseLight = styled.div`
@@ -383,4 +393,30 @@ export const StyledDx7CaseMixDisplayContainer = styled.div`
   align-items: flex-start;
   flex: 1;
   padding: 30px 0 20px 20px;
+`;
+
+export const StyledDx7CaseRearPanel = styled.div`
+  display: flex;
+  width: 100%;
+  transform: rotateX(10deg);
+  transform-origin: bottom;
+`;
+
+export const StyledDx7CaseBorder = styled.div<{ $position: "left" | "right" }>`
+  width: 18px;
+  height: 100%;
+  background:
+    url("textures/dark-wall.png"),
+    linear-gradient(
+      ${({ $position }) => ($position === "left" ? "90deg" : "270deg")},
+      #1c1814ff 0%,
+      white 4%,
+      #1c1814ff 8%,
+      white 12%,
+      #1c1814ff 16%,
+      white 20%,
+      #1c1814ff 30%,
+      #1c1814ff 80%,
+      black 100%
+    );
 `;

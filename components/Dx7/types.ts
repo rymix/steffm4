@@ -28,3 +28,7 @@ export type StyledDx7HeaderMottoProps = BaseDimensionsProps;
 export type StyledDx7HeaderSpacerProps = BaseDimensionsProps;
 
 export type StyledDx7SliderOuterProps = BaseDimensionsProps;
+
+export type StyledDx7CaseDarkProps = {
+  $background?: string;
+};

@@ -1,3 +1,4 @@
+import Dx7BackPanel from "components/Dx7/BackPanel";
 import Dx7Cartridge from "components/Dx7/Cartridge";
 import Dx7Controls from "components/Dx7/Controls";
 import Dx7ControlsSecondary from "components/Dx7/ControlsSecondary";
@@ -8,6 +9,7 @@ import Dx7Screen from "components/Dx7/Screen";
 import Dx7ScreenControls from "components/Dx7/ScreenControls";
 import {
   StyledDx7Case,
+  StyledDx7CaseBorder,
   StyledDx7CaseControlsContainer,
   StyledDx7CaseControlsRow,
   StyledDx7CaseDark,
@@ -16,6 +18,7 @@ import {
   StyledDx7CaseFilterRow,
   StyledDx7CaseLight,
   StyledDx7CaseMixDisplayContainer,
+  StyledDx7CaseRearPanel,
   StyledDx7CaseScreenContainer,
   StyledDx7CaseScreenRow,
   StyledDx7CaseVolumeContainer,
@@ -99,6 +102,18 @@ const Dx7CaseDark: React.FC = () => {
   );
 };
 
+const Dx7CaseBackPanel: React.FC = () => {
+  return (
+    <StyledDx7CaseDark $background="rear">
+      <StyledDx7CaseRearPanel>
+        <StyledDx7CaseBorder $position="left" />
+        <Dx7BackPanel />
+        <StyledDx7CaseBorder $position="right" />
+      </StyledDx7CaseRearPanel>
+    </StyledDx7CaseDark>
+  );
+};
+
 export const Dx7: React.FC = () => {
   const {
     isPortrait,
@@ -116,6 +131,7 @@ export const Dx7: React.FC = () => {
         $isPortrait={isPortrait}
       >
         {/* Header - always visible but may have reduced algorithm background on small screens */}
+        <Dx7CaseBackPanel />
         <Dx7Header />
         <Dx7CaseLight />
         {!isSkinnyWideMode && !isTallWideMode && <Dx7CaseDark />}
