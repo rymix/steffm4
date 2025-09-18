@@ -302,12 +302,11 @@ describe("listenedStatus", () => {
   };
 
   const mockProgress: Progress[] = [
-    { mcKey: "test-mix", complete: true, currentTime: 3600, duration: 3600 },
+    { mcKey: "test-mix", complete: true, seconds: 3600 },
     {
       mcKey: "partial-mix",
       complete: false,
-      currentTime: 1800,
-      duration: 3600,
+      seconds: 1800,
     },
   ];
 
@@ -336,7 +335,7 @@ describe("listenedStatus", () => {
 
 describe("copyToClipboard", () => {
   it("should use navigator.clipboard when available", async () => {
-    const mockWriteText = jest.fn().mockResolvedValue();
+    const mockWriteText = jest.fn().mockResolvedValue(undefined);
     Object.assign(navigator, {
       clipboard: { writeText: mockWriteText },
     });
