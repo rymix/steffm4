@@ -27,6 +27,8 @@ import Dx7Volume from "components/Dx7/Volume";
 import Dx7Wrapper from "components/Dx7/Wrapper";
 import { useDeviceOrientation } from "hooks/useDeviceOrientation";
 
+import Dx7BottomPanel from "./BottomPanel";
+
 const Dx7CaseLight: React.FC = () => {
   const {
     isPortrait,
@@ -114,6 +116,18 @@ const Dx7CaseBackPanel: React.FC = () => {
   );
 };
 
+const Dx7CaseBottomPanel: React.FC = () => {
+  return (
+    <StyledDx7CaseDark $background="bottom">
+      <StyledDx7CaseRearPanel $isBottom>
+        <StyledDx7CaseBorder $position="left" />
+        <Dx7BottomPanel />
+        <StyledDx7CaseBorder $position="right" />
+      </StyledDx7CaseRearPanel>
+    </StyledDx7CaseDark>
+  );
+};
+
 export const Dx7: React.FC = () => {
   const {
     isPortrait,
@@ -135,6 +149,7 @@ export const Dx7: React.FC = () => {
         <Dx7Header />
         <Dx7CaseLight />
         {!isSkinnyWideMode && !isTallWideMode && <Dx7CaseDark />}
+        <Dx7CaseBottomPanel />
       </StyledDx7Case>
     </Dx7Wrapper>
   );

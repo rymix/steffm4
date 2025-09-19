@@ -106,28 +106,34 @@ export const StyledDx7Case = styled.div<StyledDx7CaseProps>`
 export const StyledDx7CaseDark = styled.div<StyledDx7CaseDarkProps>`
   position: relative;
 
-  /* Apply perspective as wrapper when background is "rear", otherwise use normal borders */
+  /* Apply perspective: 100px if "rear", -100px if "bottom", otherwise use normal borders */
   ${({ $background }) =>
     $background === "rear"
       ? `
     perspective: 100px;
     display: flex;
   `
-      : `
+      : $background === "bottom"
+        ? `
+    perspective: 100px;
+    display: flex;
+  `
+        : `
     ${dx7Border("left", "top", "100%")}
     ${dx7Border("right", "top", "100%")}
 
-  background-image:
-    url("textures/dark-wall.png"),
-    linear-gradient(
-      180deg,
-      black 0%,
-      black 1%,
-      white 2%,
-      #1c1814ff 3%,
-      #0d0b09ff 97%,
-      black 100%
-    );    `}
+    background-image:
+      url("textures/dark-wall.png"),
+      linear-gradient(
+        180deg,
+        black 0%,
+        black 1%,
+        white 2%,
+        #1c1814ff 3%,
+        #0d0b09ff 97%,
+        black 100%
+      );
+  `}
 `;
 
 export const StyledDx7CaseLight = styled.div`
@@ -395,11 +401,12 @@ export const StyledDx7CaseMixDisplayContainer = styled.div`
   padding: 30px 0 20px 20px;
 `;
 
-export const StyledDx7CaseRearPanel = styled.div`
+export const StyledDx7CaseRearPanel = styled.div<{ $isBottom?: boolean }>`
   display: flex;
   width: 100%;
-  transform: rotateX(10deg);
-  transform-origin: bottom;
+  transform: ${({ $isBottom }) =>
+    $isBottom ? "rotateX(-20deg)" : "rotateX(10deg)"};
+  transform-origin: ${({ $isBottom }) => ($isBottom ? "top" : "bottom")};
 `;
 
 export const StyledDx7CaseBorder = styled.div<{ $position: "left" | "right" }>`

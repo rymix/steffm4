@@ -5,6 +5,7 @@ import MobilePlayButton from "components/MobilePlayButton";
 import type {
   Favourite,
   MixcloudContextState,
+  MobileAutoplayDetection,
   Progress,
   Scale,
 } from "contexts/mixcloud/types";
@@ -48,58 +49,190 @@ import {
 } from "utils/mobileAutoplayHelper";
 
 const useMixcloudContextState = (): MixcloudContextState => {
-  // #region State and ref vars
+  // ================================================================
+  // REFS AND IMMUTABLE STATE
+  // ================================================================
+
+  // #region Core Refs
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const { isMobile } = useAutoplayInteractionTracking();
-  const endedEventRef = useRef<boolean>(false);
+  const mcKeyRef = useRef<string>(
+    "/rymixxx/adventures-in-decent-music-volume-1/",
+  );
+  const wasShareLink = useRef<boolean>(false);
+  const dynamicRouteHandledRef = useRef<boolean>(false);
+  const jupiterCaseRef = useRef<HTMLDivElement>(null);
+  const burgerMenuRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  // #endregion
+
+  // #region Timer and Timeout Refs
   const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const mobileAutoplayTimerRef = useRef<NodeJS.Timeout | null>(null);
-  const mobileAutoplayDetectionRef = useRef<{
-    isDetecting: boolean;
-    wasPlaying: boolean;
-    hasStartedPlaying: boolean;
-    detectionStartTime: number;
-    shouldShowModal: boolean;
-  }>({
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tooltipTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const tooltipFadeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null,
+  );
+  // #endregion
+
+  // #region Event and Detection Refs
+  const endedEventRef = useRef<boolean>(false);
+  const mobileAutoplayDetectionRef = useRef<MobileAutoplayDetection>({
     isDetecting: false,
     wasPlaying: false,
     hasStartedPlaying: false,
     detectionStartTime: 0,
     shouldShowModal: false,
   });
+  // #endregion
 
+  // #region External Hooks
+  const { isMobile } = useAutoplayInteractionTracking();
   const { subscribe } = useMasterTimer();
+  // #endregion
+
+  // ================================================================
+  // PERSISTED STATE (localStorage)
+  // ================================================================
+
+  // #region User Preferences
   const [playerTheme, setPlayerTheme] = usePersistedState<"Jupiter" | "Dx7">(
     "playerTheme",
     DEFAULT_THEME,
   );
+  const [volume, setVolume] = usePersistedState<number>(
+    "volume",
+    DEFAULT_VOLUME,
+  );
+  const [enableAudio, setEnableAudio] = usePersistedState<boolean>(
+    "enableAudio",
+    DEFAULT_ENABLE_AUDIO,
+  );
+  const [selectedCategory, setSelectedCategory] = usePersistedState<
+    string | null | undefined
+  >("selectedCategory", null);
+  // #endregion
+
+  // #region Background Settings
+  const [background, setBackground] = usePersistedState<
+    BackgroundExtended | undefined
+  >("background", DEFAULT_BACKGROUND);
+  const [backgroundAutoChange, setBackgroundAutoChange] =
+    usePersistedState<boolean>("backgroundAutoChange", AUTO_CHANGE_BACKGROUND);
+  // #endregion
+
+  // #region Favorites and History
+  const [favouritesList, setFavouritesList] = usePersistedState<Favourite[]>(
+    "favourites",
+    [],
+  );
+  const [latestMcKey, setLatestMcKey] = usePersistedState<string>(
+    "latestMcKey",
+    "",
+  );
+  const [latestProgress, setLatestProgress] = usePersistedState<number>(
+    "latestProgress",
+    0,
+  );
+  const [progress, setProgress] = usePersistedState<Progress[]>("progress", []);
+  // #endregion
+
+  // ================================================================
+  // MIXCLOUD WIDGET STATE
+  // ================================================================
+
+  // #region Widget Core State
+  const [isReady, setIsReady] = useState<boolean>(false);
+  const [loaded, setLoaded] = useState<boolean>(false);
+  const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
+  const [player, setPlayer] = useState<any>(null);
+  const [playerUpdated, setPlayerUpdated] = useState<boolean>(false);
+  const [playing, setPlaying] = useState<boolean>(false);
+  const [tempRouteValue, setTempRouteValue] = useState<string | null>(null);
+  // #endregion
+
+  // #region Mix and Track State
+  const [mixDetails, setMixDetails] = useState<Mix | undefined>();
+  const [mixProgress, setMixProgress] = useState<number>(0);
+  const [mixProgressPercent, setMixProgressPercent] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
+  const [trackDetails, setTrackDetails] = useState<Track | undefined>();
+  const [trackProgress, setTrackProgress] = useState<number>(0);
+  const [trackProgressPercent, setTrackProgressPercent] = useState<number>(0);
+  const [trackSectionNumber, setTrackSectionNumber] = useState<number>(0);
+  // #endregion
+
+  // #region Categories and Filtering
   const [categories, setCategories] = useState<Category[]>([]);
   const [categoryName, setCategoryName] = useState<string>("");
-  const [duration, setDuration] = useState<number>(0);
-  const [isReady, setIsReady] = useState<boolean>(false);
+  const [mixes, setMixes] = useState<Mix[]>([]);
+  const [selectedTag, setSelectedTag] = useState<string>("");
+  const [showUnavailable, setShowUnavailable] = useState<boolean>(false);
+  const [mixIsFavourite, setMixIsFavourite] = useState<boolean>(false);
+  const [filterBackgroundCategory, setFilterBackgroundCategory] = useState<
+    string | undefined
+  >();
+  // #endregion
+
+  // #region Progress Timing
   const [lastMixUpdateTime, setLastMixUpdateTime] = useState<number | null>(
     null,
   );
   const [lastTrackUpdateTime, setLastTrackUpdateTime] = useState<number | null>(
     null,
   );
-  const [loaded, setLoaded] = useState<boolean>(false);
-  const mcKeyRef = useRef<string>(
-    "/rymixxx/adventures-in-decent-music-volume-1/",
-  );
-  const wasShareLink = useRef<boolean>(false);
-  const dynamicRouteHandledRef = useRef<boolean>(false);
-  const [tempRouteValue, setTempRouteValue] = useState<string | null>(null);
-  const [mixDetails, setMixDetails] = useState<Mix | undefined>();
-  const [mixes, setMixes] = useState<Mix[]>([]);
-  const [mixProgress, setMixProgress] = useState<number>(0);
-  const [mixProgressPercent, setMixProgressPercent] = useState<number>(0);
-  const [player, setPlayer] = useState<any>(null);
-  const [playerUpdated, setPlayerUpdated] = useState<boolean>(false);
-  const [playing, setPlaying] = useState<boolean>(false);
+  // #endregion
+
+  // ================================================================
+  // UI AND SESSION STATE
+  // ================================================================
+
+  // #region Modal State
+  const [modalContent, setModalContent] = useState<ReactNode>(null);
+  const [modalTitle, setModalTitle] = useState<string | null>(null);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [modalHideChrome, setModalHideChrome] = useState<boolean>(false);
+  const [secondsRemaining, setSecondsRemaining] = useState<number | null>(null);
+  // #endregion
+
+  // #region Menu and Navigation State
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [keyboardShortcutsEnabled, setKeyboardShortcutsEnabled] =
     useState<boolean>(true);
+  // #endregion
 
+  // #region Theme and Display State
+  const [scale, setScale] = useState<Scale>({ x: 1, y: 1 });
+  const [displayLength, setDisplayLength] = useState<number>(DISPLAY_LENGTH);
+  const [dx7ScreenLight, setDx7ScreenLight] = useState<boolean>(true);
+  const [themeName, setThemeName] = useState<string>("defaultTheme");
+  const theme = themes[themeName] || themes.defaultTheme;
+  const [isMobileDevice, setIsMobileDevice] = useState<boolean>(false);
+  // #endregion
+
+  // #region Screen Messages State
+  const [holdingMessage, setHoldingMessage] = useState<string | undefined>(
+    DEFAULT_MESSAGE,
+  );
+  const [temporaryMessage, setTemporaryMessage] = useState<
+    string | undefined
+  >();
+  // #endregion
+
+  // #region Tooltip State
+  const [tooltipMessage, setTooltipMessage] = useState<string | null>(null);
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const [tooltipFading, setTooltipFading] = useState(false);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+  // #endregion
+
+  // #region Scroll and Touch State
+  const [isAtBottom, setIsAtBottom] = useState(false);
+  const [touchStartY, setTouchStartY] = useState(0);
+  const [swipeDistance, setSwipeDistance] = useState(0);
+  // #endregion
+
+  // #region Sound Effects Hooks
   const [playModalClose] = useSound("/audio/swish-close2.mp3", {
     volume: 0.5,
   });
@@ -109,10 +242,19 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [playScreenTransition] = useSound("/audio/swish-close.mp3", {
     volume: 0.1,
   });
+  // #endregion
 
-  const jupiterCaseRef = useRef<HTMLDivElement>(null);
+  // #region Seeking State (for initial load logic)
+  const [hasSeeked, setHasSeeked] = useState<boolean>(false);
+  const [loadLatestProgress, setLoadLatestProgress] = useState<number>(0);
+  // #endregion
 
-  // Add a validation function to sync playing state
+  // ================================================================
+  // UTILITY FUNCTIONS
+  // ================================================================
+
+  // #region State Validation Functions
+  // Function to validate and sync playing state between UI and Mixcloud widget
   const validatePlayingState = useCallback(async () => {
     if (!player) return;
 
@@ -148,94 +290,11 @@ const useMixcloudContextState = (): MixcloudContextState => {
       essentialLogger.error("Error validating playing state:", error);
     }
   }, [player, playing, isMobile]);
-
-  const [scale, setScale] = useState<Scale>({ x: 1, y: 1 });
-  const [scriptLoaded, setScriptLoaded] = useState<boolean>(false);
-  const [selectedCategory, setSelectedCategory] = usePersistedState<
-    string | null | undefined
-  >("selectedCategory", null);
-  const [selectedTag, setSelectedTag] = useState<string>("");
-  const [showUnavailable, setShowUnavailable] = useState<boolean>(false);
-  const [trackDetails, setTrackDetails] = useState<Track | undefined>();
-  const [trackProgress, setTrackProgress] = useState<number>(0);
-  const [trackProgressPercent, setTrackProgressPercent] = useState<number>(0);
-  const [trackSectionNumber, setTrackSectionNumber] = useState<number>(0);
-  const [volume, setVolume] = usePersistedState<number>(
-    "volume",
-    DEFAULT_VOLUME,
-  );
-  const [enableAudio, setEnableAudio] = usePersistedState<boolean>(
-    "enableAudio",
-    DEFAULT_ENABLE_AUDIO,
-  );
-
-  /* Session */
-  const [displayLength, setDisplayLength] = useState<number>(DISPLAY_LENGTH);
-  const [dx7ScreenLight, setDx7ScreenLight] = useState<boolean>(true);
-  const burgerMenuRef = useRef<HTMLDivElement>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
-  const [modalHideChrome, setModalHideChrome] = useState<boolean>(false);
-  const [modalContent, setModalContent] = useState<ReactNode>(null);
-  const [modalTitle, setModalTitle] = useState<string | null>(null);
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const [themeName, setThemeName] = useState<string>("defaultTheme");
-  const [isMobileDevice, setIsMobileDevice] = useState<boolean>(false);
-  const [secondsRemaining, setSecondsRemaining] = useState<number | null>(null);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const tooltipTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const tooltipFadeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(
-    null,
-  );
-  const theme = themes[themeName] || themes.defaultTheme;
-
-  /* Screen */
-  const [holdingMessage, setHoldingMessage] = useState<string | undefined>(
-    DEFAULT_MESSAGE,
-  );
-  const [temporaryMessage, setTemporaryMessage] = useState<
-    string | undefined
-  >();
-
-  /* Favourites */
-  const [favouritesList, setFavouritesList] = usePersistedState<Favourite[]>(
-    "favourites",
-    [],
-  );
-  const [mixIsFavourite, setMixIsFavourite] = useState<boolean>(false);
-
-  /* Progress */
-  const [latestMcKey, setLatestMcKey] = usePersistedState<string>(
-    "latestMcKey",
-    "",
-  );
-  const [latestProgress, setLatestProgress] = usePersistedState<number>(
-    "latestProgress",
-    0,
-  );
-  const [progress, setProgress] = usePersistedState<Progress[]>("progress", []);
-
-  /* Background */
-  const [background, setBackground] = usePersistedState<
-    BackgroundExtended | undefined
-  >("background", DEFAULT_BACKGROUND);
-  const [backgroundAutoChange, setBackgroundAutoChange] =
-    usePersistedState<boolean>("backgroundAutoChange", AUTO_CHANGE_BACKGROUND);
-  const [filterBackgroundCategory, setFilterBackgroundCategory] = useState<
-    string | undefined
-  >();
-
-  /* Tooltip */
-  const [tooltipMessage, setTooltipMessage] = useState<string | null>(null);
-  const [tooltipVisible, setTooltipVisible] = useState(false);
-  const [tooltipFading, setTooltipFading] = useState(false);
-  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
-
-  /* Scroller */
-  const [isAtBottom, setIsAtBottom] = useState(false);
-  const [touchStartY, setTouchStartY] = useState(0); // Store touch start position
-  const [swipeDistance, setSwipeDistance] = useState(0);
   // #endregion
+
+  // ================================================================
+  // EFFECTS AND LIFECYCLE MANAGEMENT
+  // ================================================================
 
   // #region Validate playing state
   // Periodically validate playing state using master timer
@@ -658,15 +717,21 @@ const useMixcloudContextState = (): MixcloudContextState => {
   ]);
   // #endregion
 
-  // #region Helpers
+  // ================================================================
+  // CORE HELPER FUNCTIONS AND SETUP
+  // ================================================================
+
+  // #region URL Formatters and Forward Declarations
   const mcUrl = mcKeyUrlFormatter(mcKeyRef.current);
   const widgetUrl = mcWidgetUrlFormatter(mcKeyRef.current);
 
   // Forward declarations for functions used before definition
-  let handleNext: () => Promise<void>;
   let fetchMixDetails: (_localMcKey?: string) => Promise<Mix | undefined>;
+  let handleNext: () => Promise<void>;
+  // #endregion
 
-  // Helper function to set up event listeners on any widget instance
+  // #region Mixcloud Widget Event Listeners
+  // Set up event listeners for Mixcloud widget events (play, pause, progress, ended, error)
   const setupEventListeners = (widgetInstance: any): void => {
     logger.setup("Setting up event listeners");
 
@@ -1047,8 +1112,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
   }, [selectedCategory]);
   // #endregion
 
-  // #region Handlers for mix navigation
-  // Migrated
+  // ================================================================
+  // MIXCLOUD PLAYER CONTROL HANDLERS
+  // ================================================================
+
+  // #region Playback Controls
+  // Handle play action with error handling and state validation
   const handlePlay = async (): Promise<void> => {
     if (!player) {
       essentialLogger.error("No widget available for play");
@@ -1066,7 +1135,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
   };
 
-  // Migrated
+  // Handle pause action with error handling
   const handlePause = async (): Promise<void> => {
     if (!player) {
       essentialLogger.error("No widget available for pause");
@@ -1080,6 +1149,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     }
   };
 
+  // Handle seek action with validation and error handling
   const handleSeek = useCallback(
     async (seconds: number): Promise<boolean> => {
       try {
@@ -1097,8 +1167,10 @@ const useMixcloudContextState = (): MixcloudContextState => {
     },
     [player, playerUpdated],
   );
+  // #endregion
 
-  // Navigate to next mix
+  // #region Mix Navigation Controls
+  // Navigate to the next mix in the current playlist or load random mix
   handleNext = async (): Promise<void> => {
     const mixIndex = mixes.findIndex((thisMix) =>
       mcKeyRef.current.includes(thisMix.mixcloudKey),
@@ -1116,7 +1188,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     changeMix(mcKeyFormatter(nextMix), true);
   };
 
-  // Navigate to previous mix
+  // Navigate to the previous mix in the current playlist or load random mix
   const handlePrevious = async (): Promise<void> => {
     const mixIndex = mixes.findIndex((thisMix) =>
       mcKeyRef.current.includes(thisMix.mixcloudKey),
@@ -1125,13 +1197,15 @@ const useMixcloudContextState = (): MixcloudContextState => {
     const previousMix =
       !mixes || mixes.length === 0 || mixIndex === -1
         ? await fetchRandomMcKey()
-        : mixes[mixIndex === 0 ? mixes.length - 1 : mixIndex - 1].mixcloudKey;
+        : mixes[mixIndex - 1 < 0 ? mixes.length - 1 : mixIndex - 1].mixcloudKey;
 
     logger.previous(`Previous: ${previousMix}`);
     changeMix(mcKeyFormatter(previousMix), true);
   };
+  // #endregion
 
-  // Load random mix (excluding current)
+  // #region Mix Loading Functions
+  // Load a random mix, optionally filtered by category
   const handleRandom = async (category?: string): Promise<void> => {
     let randomMix = await (category && category !== "all"
       ? fetchRandomMcKeyByCategory(category)
@@ -1143,6 +1217,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
     changeMix(randomMix, true);
   };
 
+  // Load a specific mix by mcKey with optional dynamic route handling
   const handleLoad = (localMcKey?: string, isDynamicRoute = false): void => {
     if (!localMcKey) {
       essentialLogger.error("No mcKey provided to handleLoad");
@@ -1163,11 +1238,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
     changeMix(formattedKey, true);
   };
 
+  // Load the latest mix from the API
   const handleLoadLatest = async (): Promise<void> => {
     const fetchedLatestMcKey = await fetchLatestMcKey();
     handleLoad(fetchedLatestMcKey);
   };
 
+  // Load a random mix with optional category filtering
   const handleLoadRandom = async (category?: string): Promise<void> => {
     if (category && category !== "all") {
       const randomMcKey = await fetchRandomMcKeyByCategory(category);
@@ -1405,9 +1482,6 @@ const useMixcloudContextState = (): MixcloudContextState => {
   // #endregion
 
   // #region Initial Load and Seeking
-  const [hasSeeked, setHasSeeked] = useState<boolean>(false);
-  const [loadLatestProgress, setLoadLatestProgress] = useState<number>(0);
-
   // Initial load logic - delayed to allow dynamic routes to set mcKey
   useEffect(() => {
     setLoadLatestProgress(latestProgress || 0);
@@ -1905,7 +1979,12 @@ const useMixcloudContextState = (): MixcloudContextState => {
   ]);
   // #endregion
 
-  // #region Return
+  // ================================================================
+  // HOOK RETURN VALUE
+  // ================================================================
+
+  // #region Context State Export
+  // Return the complete MixcloudContextState object with all handlers, state, and refs
   return {
     isReady,
     mcKey: mcKeyRef.current,
