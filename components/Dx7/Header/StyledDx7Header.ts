@@ -181,6 +181,7 @@ export const StyledDx7HeaderSpacer = styled.div<StyledDx7HeaderSpacerProps>`
   ${(props) =>
     props.$windowWidth &&
     props.$windowWidth > 767 &&
+    props.$windowWidth < 1366 &&
     `
     &::after {
       content: "";

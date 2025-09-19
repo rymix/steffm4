@@ -21,12 +21,6 @@ export type StyledDx7CaseVolumeContainerProps = BaseDimensionsProps;
 
 export type StyledDx7CaseFilterContainerProps = BaseDimensionsProps;
 
-export type StyledDx7HeaderLogoProps = BaseDimensionsProps;
-
-export type StyledDx7HeaderMottoProps = BaseDimensionsProps;
-
-export type StyledDx7HeaderSpacerProps = BaseDimensionsProps;
-
 export type StyledDx7SliderOuterProps = BaseDimensionsProps;
 
 export type StyledDx7CaseDarkProps = {
