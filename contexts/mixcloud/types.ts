@@ -17,6 +17,14 @@ export type Scale = {
   y: number;
 };
 
+export type MobileAutoplayDetection = {
+  isDetecting: boolean;
+  wasPlaying: boolean;
+  hasStartedPlaying: boolean;
+  detectionStartTime: number;
+  shouldShowModal: boolean;
+};
+
 export type MixcloudContextState = {
   isReady: boolean;
   mcKey: string;

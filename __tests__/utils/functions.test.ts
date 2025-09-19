@@ -335,7 +335,7 @@ describe("listenedStatus", () => {
 
 describe("copyToClipboard", () => {
   it("should use navigator.clipboard when available", async () => {
-    const mockWriteText = jest.fn().mockResolvedValue(undefined);
+    const mockWriteText = jest.fn().mockResolvedValue();
     Object.assign(navigator, {
       clipboard: { writeText: mockWriteText },
     });
