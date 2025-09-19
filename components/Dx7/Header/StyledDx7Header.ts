@@ -1,9 +1,9 @@
-import { dx7Border } from "components/Dx7/StyledDx7";
 import type {
   StyledDx7HeaderLogoProps,
   StyledDx7HeaderMottoProps,
   StyledDx7HeaderSpacerProps,
-} from "components/Dx7/types";
+} from "components/Dx7/Header/types";
+import { dx7Border } from "components/Dx7/StyledDx7";
 import StefFmDx7Logo from "public/svg/stef-fm-dx7.svg";
 import styled from "styled-components";
 
