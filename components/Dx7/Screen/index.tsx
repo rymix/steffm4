@@ -9,33 +9,20 @@ import {
   StyledDx7ScreenMessage,
 } from "components/Dx7/Screen/StyledDx7Screen";
 import { useMixcloud } from "contexts/mixcloud";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { DEBUG } from "utils/logger";
 
 const Dx7Screen: React.FC = () => {
   const {
-    screen: { holdingMessage },
     session: { dx7ScreenLight },
-    track: { details: trackDetails },
-    mix: { details: mixDetails },
   } = useMixcloud();
 
-  // Direct viewport state for reliable orientation detection
-  const [viewportState, setViewportState] = useState({
-    width: typeof globalThis.window !== "undefined" ? window.innerWidth : 0,
-    height: typeof globalThis.window !== "undefined" ? window.innerHeight : 0,
-    isPortrait:
-      typeof globalThis.window !== "undefined"
-        ? window.innerHeight > window.innerWidth
-        : false,
-    isMobile: false,
-  });
+  // Simple test messages
+  const testMessages = ["Hello World", "Hello World 2"];
 
-  const [displayMessage, setDisplayMessage] = useState<string>(
-    holdingMessage ?? "",
-  );
-  const [currentSliceIndex, setCurrentSliceIndex] = useState<number>(0);
-  const [messageSlices, setMessageSlices] = useState<string[]>([]);
+  // Animation and display state
+  const [displayMessage, setDisplayMessage] = useState<string>(testMessages[0]);
+  const [currentMessageIndex, setCurrentMessageIndex] = useState<number>(0);
   const [nextMessage, setNextMessage] = useState<string>("");
   const [animationState, setAnimationState] = useState<
     "idle" | "scrolling-out" | "dual-scroll"
@@ -43,12 +30,10 @@ const Dx7Screen: React.FC = () => {
   const [currentOffset, setCurrentOffset] = useState<number>(0);
   const [nextOffset, setNextOffset] = useState<number>(0);
   const [showNext, setShowNext] = useState<boolean>(false);
-  const lastMixDetailsRef = useRef<typeof mixDetails | null>(null);
-  const lastTrackDetailsRef = useRef<typeof trackDetails | null>(null);
+
+  // Animation refs
   const rotationIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const animationIntervalRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Animation state tracking refs
   const currentOffsetValueRef = useRef<number>(0);
   const nextOffsetValueRef = useRef<number>(0);
   const dualScrollStartedRef = useRef<boolean>(false);
@@ -56,220 +41,14 @@ const Dx7Screen: React.FC = () => {
     "idle",
   );
 
+  // Animation constants
   const stepsPx = 5;
   const displayTimeMs = 7000;
   const displayHeightPx = 80;
   const animationStepMs = 50;
+  const screenWidth = 640; // Fixed width for now
 
-  // Responsive characters per line for word-wrapping algorithm
-  const [charsPerLine, setCharsPerLine] = useState(42);
-  const [screenWidth, setScreenWidth] = useState(640);
-
-  // Direct viewport monitoring effect
-  useLayoutEffect(() => {
-    const detectMobile = (): boolean => {
-      if (
-        "userAgentData" in navigator &&
-        (navigator as any).userAgentData?.mobile
-      ) {
-        return true;
-      }
-      const hasTouchCapability =
-        "ontouchstart" in globalThis || navigator.maxTouchPoints > 0;
-      const hasSmallScreen = window.innerWidth <= 1024;
-      const mobileUserAgentPattern =
-        /Mobile|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|webOS/i;
-      const isMobileUserAgent = mobileUserAgentPattern.test(
-        navigator.userAgent,
-      );
-      const isMobileMediaQuery = globalThis.matchMedia(
-        "(max-width: 1024px) and (hover: none)",
-      ).matches;
-
-      return (
-        isMobileUserAgent ||
-        (hasTouchCapability && hasSmallScreen) ||
-        isMobileMediaQuery
-      );
-    };
-
-    const updateViewportState = (): void => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      const isPortrait = height > width;
-      const isMobile = detectMobile();
-
-      console.log("Viewport update:", { width, height, isPortrait, isMobile });
-
-      setViewportState({
-        width,
-        height,
-        isPortrait,
-        isMobile,
-      });
-    };
-
-    updateViewportState();
-
-    // Listen to all possible viewport change events with longer timeout for orientation
-    const handleOrientationChange = (): void => {
-      setTimeout(updateViewportState, 200);
-    };
-
-    window.addEventListener("resize", updateViewportState);
-    window.addEventListener("orientationchange", handleOrientationChange);
-    screen?.orientation?.addEventListener?.("change", handleOrientationChange);
-
-    return () => {
-      window.removeEventListener("resize", updateViewportState);
-      window.removeEventListener("orientationchange", handleOrientationChange);
-      screen?.orientation?.removeEventListener?.(
-        "change",
-        handleOrientationChange,
-      );
-    };
-  }, []);
-
-  // Update string length based on screen width and orientation
-  useEffect(() => {
-    const updateStringLength = (): void => {
-      const { width, isPortrait, isMobile } = viewportState;
-
-      console.log("Updating dimensions:", {
-        width,
-        isPortrait,
-        isMobile,
-        currentCharsPerLine: charsPerLine,
-        currentScreenWidth: screenWidth,
-      });
-
-      // Proportional sizing based on viewport width
-      // Case width range: 300px (min) to 720px+ (max)
-      // Screen width range: 220px (min) to 640px (max)
-
-      const sizeRatio = 0.8; // Adjust this value to make Screen smaller (0.7) or larger (0.9)
-
-      const minCaseWidth = 300;
-      const maxCaseWidth = 720;
-      const minScreenWidth = 220 * sizeRatio;
-      const maxScreenWidth = 640 * sizeRatio;
-
-      // Clamp viewport width to case width range
-      const clampedWidth = Math.max(
-        minCaseWidth,
-        Math.min(width, maxCaseWidth),
-      );
-
-      // Calculate proportional screen width
-      const widthRatio =
-        (clampedWidth - minCaseWidth) / (maxCaseWidth - minCaseWidth);
-      const calculatedScreenWidth = Math.round(
-        minScreenWidth + widthRatio * (maxScreenWidth - minScreenWidth),
-      );
-
-      // Calculate characters per line for word-wrapping algorithm
-      // 12 chars per line at min screen width, 42 chars per line at max screen width
-      const minCharsPerLine = 12;
-      const maxCharsPerLine = 42;
-      const screenWidthRatio =
-        (calculatedScreenWidth - minScreenWidth) /
-        (maxScreenWidth - minScreenWidth);
-
-      const calculatedCharsPerLine = Math.round(
-        minCharsPerLine +
-          screenWidthRatio * (maxCharsPerLine - minCharsPerLine),
-      );
-
-      setScreenWidth(calculatedScreenWidth);
-      setCharsPerLine(calculatedCharsPerLine);
-    };
-
-    updateStringLength();
-  }, [viewportState]);
-
-  // Function to wrap message into 2-row pages using word boundaries
-  const wrapMessageToPages = (message: string): string[] => {
-    if (!message.trim()) return [""];
-
-    const words = message.split(" ");
-    const pages: string[] = [];
-    let currentPage = "";
-    let currentLine = "";
-    let linesInCurrentPage = 0;
-
-    words.forEach((word) => {
-      // Handle extra-long words that need to be split
-      if (word.length > charsPerLine) {
-        // First, finish current line/page if there's content
-        if (currentLine) {
-          if (linesInCurrentPage === 0) {
-            currentPage = currentLine;
-            linesInCurrentPage = 1;
-            currentLine = "";
-          } else {
-            // Complete current page with 2 lines
-            currentPage += `\n${currentLine}`;
-            pages.push(currentPage);
-            currentPage = "";
-            currentLine = "";
-            linesInCurrentPage = 0;
-          }
-        }
-
-        // Split the long word into chunks
-        for (let i = 0; i < word.length; i += charsPerLine) {
-          const chunk = word.slice(i, i + charsPerLine);
-
-          if (linesInCurrentPage === 0) {
-            currentLine = chunk;
-            linesInCurrentPage = 1;
-          } else if (linesInCurrentPage === 1) {
-            currentPage = `${currentLine}\n${chunk}`;
-            pages.push(currentPage);
-            currentPage = "";
-            currentLine = "";
-            linesInCurrentPage = 0;
-          }
-        }
-      } else {
-        // Normal word processing
-        const testLine = currentLine ? `${currentLine} ${word}` : word;
-
-        if (testLine.length <= charsPerLine) {
-          // Word fits on current line
-          currentLine = testLine;
-        } else if (linesInCurrentPage === 0) {
-          // Move to second line of current page
-          currentPage = currentLine;
-          currentLine = word;
-          linesInCurrentPage = 1;
-        } else {
-          // Page is full, start new page
-          currentPage += `\n${currentLine}`;
-          pages.push(currentPage);
-          currentPage = "";
-          currentLine = word;
-          linesInCurrentPage = 0;
-        }
-      }
-    });
-
-    // Handle remaining content
-    if (currentLine) {
-      if (linesInCurrentPage === 0) {
-        pages.push(currentLine);
-      } else {
-        currentPage += `\n${currentLine}`;
-        pages.push(currentPage);
-      }
-    } else if (currentPage) {
-      pages.push(currentPage);
-    }
-
-    return pages.length > 0 ? pages : [""];
-  };
-
-  // Animation functions
+  // Animation function
   const startScrollAnimation = (nextMsg: string): void => {
     if (animationStateRef.current !== "idle") {
       DEBUG &&
@@ -279,7 +58,7 @@ const Dx7Screen: React.FC = () => {
       return;
     }
 
-    // Force clear any existing intervals with extra safety
+    // Force clear any existing intervals
     if (animationIntervalRef.current) {
       DEBUG && console.log(`🔄 Clearing existing animation interval`);
       clearInterval(animationIntervalRef.current);
@@ -305,7 +84,7 @@ const Dx7Screen: React.FC = () => {
         `🔄 Starting new animation for message: "${nextMsg.slice(0, 20)}..."`,
       );
 
-    // Start scroll-out animation (configurable steps)
+    // Start scroll-out animation
     animationIntervalRef.current = setInterval(() => {
       // Update current offset
       currentOffsetValueRef.current -= stepsPx;
@@ -339,7 +118,7 @@ const Dx7Screen: React.FC = () => {
           );
       }
 
-      // Check completion condition using ref values
+      // Check completion condition
       const currentOffscreen =
         currentOffsetValueRef.current <= -displayHeightPx;
       const nextAtFinal = nextOffsetValueRef.current <= 0;
@@ -370,110 +149,17 @@ const Dx7Screen: React.FC = () => {
     }, animationStepMs);
   };
 
-  // Function to build the appropriate message based on context
-  const buildMessage = (): string => {
-    // If no mix or track details, show holding message
-    if (!mixDetails || !trackDetails) {
-      return holdingMessage ?? "";
-    }
-
-    const parts: string[] = [];
-
-    // Check if this is a mix change (both mix and track changed)
-    const mixChanged = lastMixDetailsRef.current?.name !== mixDetails.name;
-    const trackChanged =
-      lastTrackDetailsRef.current?.trackName !== trackDetails.trackName;
-
-    if (mixChanged && trackChanged) {
-      // Format for first track of new mix
-      parts.push(mixDetails.name);
-      if (mixDetails.notes) parts.push(mixDetails.notes);
-      parts.push(trackDetails.trackName);
-      parts.push(trackDetails.artistName);
-      if (trackDetails.remixArtistName)
-        parts.push(trackDetails.remixArtistName);
-      if (trackDetails.publisher) parts.push(trackDetails.publisher);
-    } else if (trackChanged && !mixChanged) {
-      // Format for tracks 2+ of same mix
-      parts.push(trackDetails.trackName);
-      parts.push(trackDetails.artistName);
-      if (trackDetails.remixArtistName)
-        parts.push(trackDetails.remixArtistName);
-      if (trackDetails.publisher) parts.push(trackDetails.publisher);
-      parts.push(mixDetails.name);
-      if (mixDetails.notes) parts.push(mixDetails.notes);
-    } else {
-      // No change, return current message
-      return messageSlices.length > 0
-        ? messageSlices.join("")
-        : (holdingMessage ?? "");
-    }
-
-    return parts.filter(Boolean).join(" - ");
-  };
-
-  // Effect to handle message building and word-wrapping
+  // Start pagination between test messages
   useEffect(() => {
-    const newMessage = buildMessage();
-    const newSlices = wrapMessageToPages(newMessage);
+    rotationIntervalRef.current = setInterval(() => {
+      setCurrentMessageIndex((prev) => {
+        const nextIndex = (prev + 1) % testMessages.length;
+        const nextMsg = testMessages[nextIndex];
+        startScrollAnimation(nextMsg);
+        return nextIndex;
+      });
+    }, displayTimeMs);
 
-    // Only update if message actually changed
-    if (JSON.stringify(newSlices) !== JSON.stringify(messageSlices)) {
-      setMessageSlices(newSlices);
-      setCurrentSliceIndex(0);
-
-      // Reset all animation states when message changes
-      setAnimationState("idle");
-      setCurrentOffset(0);
-      setNextOffset(displayHeightPx);
-      setShowNext(false);
-
-      // Reset animation state refs
-      currentOffsetValueRef.current = 0;
-      nextOffsetValueRef.current = displayHeightPx;
-      dualScrollStartedRef.current = false;
-      animationStateRef.current = "idle";
-
-      // Clear existing intervals
-      if (rotationIntervalRef.current) {
-        clearInterval(rotationIntervalRef.current);
-        rotationIntervalRef.current = null;
-      }
-      if (animationIntervalRef.current) {
-        clearInterval(animationIntervalRef.current);
-        animationIntervalRef.current = null;
-      }
-
-      DEBUG && console.log(`🔄 Message changed, animation states reset`);
-
-      // Start rotation if multiple slices
-      if (newSlices.length > 1) {
-        rotationIntervalRef.current = setInterval(() => {
-          setCurrentSliceIndex((prev) => {
-            const nextIndex = (prev + 1) % newSlices.length;
-            const nextSlice = newSlices[nextIndex];
-            // Start animation to next slice
-            startScrollAnimation(nextSlice);
-            return nextIndex;
-          });
-        }, displayTimeMs);
-      }
-    }
-
-    // Update refs for next comparison
-    lastMixDetailsRef.current = mixDetails;
-    lastTrackDetailsRef.current = trackDetails;
-  }, [mixDetails, trackDetails, holdingMessage, charsPerLine]);
-
-  // Effect to update display message from current slice (only for initial load)
-  useEffect(() => {
-    if (messageSlices.length > 0 && animationState === "idle") {
-      setDisplayMessage(messageSlices[currentSliceIndex] || "");
-    }
-  }, [currentSliceIndex, messageSlices, animationState]);
-
-  // Cleanup intervals on unmount
-  useEffect(() => {
     return () => {
       if (rotationIntervalRef.current) {
         clearInterval(rotationIntervalRef.current);
