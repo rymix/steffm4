@@ -61,8 +61,8 @@ const Dx7Screen: React.FC = () => {
   const displayHeightPx = 80;
   const animationStepMs = 50;
 
-  // Responsive string length based on screen width (2 rows per page)
-  const [stringLength, setStringLength] = useState(84);
+  // Responsive characters per line for word-wrapping algorithm
+  const [charsPerLine, setCharsPerLine] = useState(42);
   const [screenWidth, setScreenWidth] = useState(640);
 
   // Direct viewport monitoring effect
@@ -139,7 +139,7 @@ const Dx7Screen: React.FC = () => {
         width,
         isPortrait,
         isMobile,
-        currentStringLength: stringLength,
+        currentCharsPerLine: charsPerLine,
         currentScreenWidth: screenWidth,
       });
 
@@ -167,40 +167,106 @@ const Dx7Screen: React.FC = () => {
         minScreenWidth + widthRatio * (maxScreenWidth - minScreenWidth),
       );
 
-      // Calculate conservative string length for 2-row display
-      // Use a more conservative approach to prevent 3-line overflow at intermediate sizes
-      // 12 chars/row × 2 rows = 24 chars per page (min)
-      // 42 chars/row × 2 rows = 84 chars per page (max)
-      const minStringLength = 24;
-      const maxStringLength = 84;
+      // Calculate characters per line for word-wrapping algorithm
+      // 12 chars per line at min screen width, 42 chars per line at max screen width
+      const minCharsPerLine = 12;
+      const maxCharsPerLine = 42;
       const screenWidthRatio =
         (calculatedScreenWidth - minScreenWidth) /
         (maxScreenWidth - minScreenWidth);
 
-      // Apply a conservative curve - use squared function to bias toward smaller character counts
-      // This gives more conservative estimates at intermediate sizes to prevent 3-line overflow
-      const conservativeRatio = screenWidthRatio * screenWidthRatio;
-      const calculatedStringLength = Math.round(
-        minStringLength +
-          conservativeRatio * (maxStringLength - minStringLength),
+      const calculatedCharsPerLine = Math.round(
+        minCharsPerLine +
+          screenWidthRatio * (maxCharsPerLine - minCharsPerLine),
       );
 
       setScreenWidth(calculatedScreenWidth);
-      setStringLength(calculatedStringLength);
+      setCharsPerLine(calculatedCharsPerLine);
     };
 
     updateStringLength();
   }, [viewportState]);
 
-  // Function to slice message into configurable character chunks
-  const sliceMessage = (message: string): string[] => {
-    if (message.length <= stringLength) return [message];
+  // Function to wrap message into 2-row pages using word boundaries
+  const wrapMessageToPages = (message: string): string[] => {
+    if (!message.trim()) return [""];
 
-    const slices: string[] = [];
-    for (let i = 0; i < message.length; i += stringLength) {
-      slices.push(message.slice(i, i + stringLength));
+    const words = message.split(" ");
+    const pages: string[] = [];
+    let currentPage = "";
+    let currentLine = "";
+    let linesInCurrentPage = 0;
+
+    words.forEach((word) => {
+      // Handle extra-long words that need to be split
+      if (word.length > charsPerLine) {
+        // First, finish current line/page if there's content
+        if (currentLine) {
+          if (linesInCurrentPage === 0) {
+            currentPage = currentLine;
+            linesInCurrentPage = 1;
+            currentLine = "";
+          } else {
+            // Complete current page with 2 lines
+            currentPage += `\n${currentLine}`;
+            pages.push(currentPage);
+            currentPage = "";
+            currentLine = "";
+            linesInCurrentPage = 0;
+          }
+        }
+
+        // Split the long word into chunks
+        for (let i = 0; i < word.length; i += charsPerLine) {
+          const chunk = word.slice(i, i + charsPerLine);
+
+          if (linesInCurrentPage === 0) {
+            currentLine = chunk;
+            linesInCurrentPage = 1;
+          } else if (linesInCurrentPage === 1) {
+            currentPage = `${currentLine}\n${chunk}`;
+            pages.push(currentPage);
+            currentPage = "";
+            currentLine = "";
+            linesInCurrentPage = 0;
+          }
+        }
+      } else {
+        // Normal word processing
+        const testLine = currentLine ? `${currentLine} ${word}` : word;
+
+        if (testLine.length <= charsPerLine) {
+          // Word fits on current line
+          currentLine = testLine;
+        } else if (linesInCurrentPage === 0) {
+          // Move to second line of current page
+          currentPage = currentLine;
+          currentLine = word;
+          linesInCurrentPage = 1;
+        } else {
+          // Page is full, start new page
+          currentPage += `\n${currentLine}`;
+          pages.push(currentPage);
+          currentPage = "";
+          currentLine = word;
+          linesInCurrentPage = 0;
+        }
+      }
+    });
+
+    // Handle remaining content
+    if (currentLine) {
+      if (linesInCurrentPage === 0) {
+        pages.push(currentLine);
+      } else {
+        currentPage += `\n${currentLine}`;
+        pages.push(currentPage);
+      }
+    } else if (currentPage) {
+      pages.push(currentPage);
     }
-    return slices;
+
+    return pages.length > 0 ? pages : [""];
   };
 
   // Animation functions
@@ -346,10 +412,10 @@ const Dx7Screen: React.FC = () => {
     return parts.filter(Boolean).join(" - ");
   };
 
-  // Effect to handle message building and slicing
+  // Effect to handle message building and word-wrapping
   useEffect(() => {
     const newMessage = buildMessage();
-    const newSlices = sliceMessage(newMessage);
+    const newSlices = wrapMessageToPages(newMessage);
 
     // Only update if message actually changed
     if (JSON.stringify(newSlices) !== JSON.stringify(messageSlices)) {
@@ -397,7 +463,7 @@ const Dx7Screen: React.FC = () => {
     // Update refs for next comparison
     lastMixDetailsRef.current = mixDetails;
     lastTrackDetailsRef.current = trackDetails;
-  }, [mixDetails, trackDetails, holdingMessage, stringLength]);
+  }, [mixDetails, trackDetails, holdingMessage, charsPerLine]);
 
   // Effect to update display message from current slice (only for initial load)
   useEffect(() => {

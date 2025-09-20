@@ -59,6 +59,7 @@ export const StyledDx7ScreenMessage = styled.div`
   left: 20px;
   right: 20px;
   transition: none;
+  white-space: pre-line; /* Preserve line breaks from \n characters */
 `;
 
 export const StyledDx7ScreenDebug = styled.div`
