@@ -88,6 +88,15 @@ const GlobalStyle = createGlobalStyle`
     font-display: block;
   }
 
+    @font-face {
+    font-family: 'Repetition';
+    src: url('/fonts/repetition.woff2') format('woff2'),
+         url('/fonts/repetition.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+
   html,
   *,
   *::before,

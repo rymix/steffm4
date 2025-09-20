@@ -61,8 +61,8 @@ const Dx7Screen: React.FC = () => {
   const displayHeightPx = 80;
   const animationStepMs = 50;
 
-  // Responsive string length based on screen width
-  const [stringLength, setStringLength] = useState(72);
+  // Responsive string length based on screen width (2 rows per page)
+  const [stringLength, setStringLength] = useState(84);
   const [screenWidth, setScreenWidth] = useState(640);
 
   // Direct viewport monitoring effect
@@ -148,7 +148,6 @@ const Dx7Screen: React.FC = () => {
       // Screen width range: 220px (min) to 640px (max)
 
       const sizeRatio = 0.8; // Adjust this value to make Screen smaller (0.7) or larger (0.9)
-      const stringRatio = 0.75; // Adjust this value to make string length shorter (0.6) or longer (0.8)
 
       const minCaseWidth = 300;
       const maxCaseWidth = 720;
@@ -168,15 +167,22 @@ const Dx7Screen: React.FC = () => {
         minScreenWidth + widthRatio * (maxScreenWidth - minScreenWidth),
       );
 
-      // Calculate proportional string length (18 at 220px, 72 at 640px)
-      const minStringLength = 18 * stringRatio;
-      const maxStringLength = 72 * stringRatio;
+      // Calculate conservative string length for 2-row display
+      // Use a more conservative approach to prevent 3-line overflow at intermediate sizes
+      // 12 chars/row × 2 rows = 24 chars per page (min)
+      // 42 chars/row × 2 rows = 84 chars per page (max)
+      const minStringLength = 24;
+      const maxStringLength = 84;
       const screenWidthRatio =
         (calculatedScreenWidth - minScreenWidth) /
         (maxScreenWidth - minScreenWidth);
+
+      // Apply a conservative curve - use squared function to bias toward smaller character counts
+      // This gives more conservative estimates at intermediate sizes to prevent 3-line overflow
+      const conservativeRatio = screenWidthRatio * screenWidthRatio;
       const calculatedStringLength = Math.round(
         minStringLength +
-          screenWidthRatio * (maxStringLength - minStringLength),
+          conservativeRatio * (maxStringLength - minStringLength),
       );
 
       setScreenWidth(calculatedScreenWidth);
