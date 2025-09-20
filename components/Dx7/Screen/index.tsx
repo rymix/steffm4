@@ -10,19 +10,24 @@ import {
 } from "components/Dx7/Screen/StyledDx7Screen";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useRef, useState } from "react";
+import { convertTimeToHumanReadable } from "utils/functions";
 import { DEBUG } from "utils/logger";
 
 const Dx7Screen: React.FC = () => {
   const {
+    mix: { details: mixDetails },
+    track: { details: trackDetails },
     session: { dx7ScreenLight },
   } = useMixcloud();
 
-  // Simple test messages
-  const testMessages = ["Hello World", "Hello World 2"];
+  // State for screen messages
+  const [screenMessages, setScreenMessages] = useState<string[]>([]);
 
   // Animation and display state
-  const [displayMessage, setDisplayMessage] = useState<string>(testMessages[0]);
-  const [currentMessageIndex, setCurrentMessageIndex] = useState<number>(0);
+  const [displayMessage, setDisplayMessage] = useState<string>(
+    screenMessages.length > 0 ? screenMessages[0] : "No content",
+  );
+  const [currentScreenIndex, setCurrentScreenIndex] = useState<number>(0);
   const [nextMessage, setNextMessage] = useState<string>("");
   const [animationState, setAnimationState] = useState<
     "idle" | "scrolling-out" | "dual-scroll"
@@ -47,6 +52,152 @@ const Dx7Screen: React.FC = () => {
   const displayHeightPx = 80;
   const animationStepMs = 50;
   const screenWidth = 640; // Fixed width for now
+
+  // Effect to build messages whenever mixDetails or trackDetails changes
+  useEffect(() => {
+    console.log("🔄 Building messages from mix/track details");
+
+    // Reset screen index when source data changes
+    setCurrentScreenIndex(0);
+
+    // Clear existing intervals when rebuilding
+    if (rotationIntervalRef.current) {
+      clearInterval(rotationIntervalRef.current);
+      rotationIntervalRef.current = null;
+    }
+
+    // Build messageTrack with conditional delimiters
+    const messageTrackParts: string[] = [];
+    if (trackDetails?.trackName) messageTrackParts.push(trackDetails.trackName);
+    if (trackDetails?.artistName)
+      messageTrackParts.push(trackDetails.artistName);
+    if (trackDetails?.publisher) messageTrackParts.push(trackDetails.publisher);
+    if (trackDetails?.remixArtistName)
+      messageTrackParts.push(trackDetails.remixArtistName);
+    const messageTrack = messageTrackParts.join(" - ");
+
+    // Build messageMix with conditional delimiters
+    const messageMixParts: string[] = [];
+    if (mixDetails?.name) messageMixParts.push(mixDetails.name);
+    if (mixDetails?.duration) {
+      messageMixParts.push(convertTimeToHumanReadable(mixDetails.duration));
+    }
+    const messageMix = messageMixParts.join(" - ");
+
+    // messageNotes only has a value if notes parameter is present
+    const messageNotes = mixDetails?.notes || "";
+
+    // Method to create indexed array of strings with word wrapping
+    const createMessageArray = (maxCharsPerItem: number): string[] => {
+      const sourceMessages = [messageTrack, messageMix, messageNotes];
+      
+      console.log("📝 Source messages:", {
+        messageTrack: `"${messageTrack}" (${messageTrack.length} chars)`,
+        messageMix: `"${messageMix}" (${messageMix.length} chars)`,
+        messageNotes: `"${messageNotes}" (${messageNotes.length} chars)`,
+        maxCharsPerItem,
+      });
+      
+      const result: string[] = [];
+
+      sourceMessages.forEach((message, messageIndex) => {
+        if (!message) return; // Skip empty messages
+
+        const words = message.split(" ");
+        let currentItem = "";
+
+        words.forEach((word) => {
+          // Check if word exceeds max character count
+          if (word.length > maxCharsPerItem) {
+            // If we have content in currentItem, save it first (trimmed)
+            if (currentItem.trim()) {
+              result.push(currentItem.trim());
+              currentItem = "";
+            }
+
+            // Split the long word into chunks
+            for (let i = 0; i < word.length; i += maxCharsPerItem) {
+              const chunk = word.slice(i, i + maxCharsPerItem);
+              result.push(chunk);
+            }
+          } else {
+            // Calculate what the item would be if we add this word
+            const testItem = currentItem ? `${currentItem} ${word}` : word;
+            const trimmedTestItem = testItem.trim();
+
+            console.log("🔍 Word fitting debug:", {
+              currentItem: `"${currentItem}"`,
+              word: `"${word}"`,
+              testItem: `"${testItem}"`,
+              trimmedTestItem: `"${trimmedTestItem}"`,
+              trimmedLength: trimmedTestItem.length,
+              maxChars: maxCharsPerItem,
+              fits: trimmedTestItem.length <= maxCharsPerItem,
+            });
+
+            // Check if the TRIMMED version fits (don't count trailing spaces)
+            if (trimmedTestItem.length <= maxCharsPerItem) {
+              currentItem = testItem;
+            } else {
+              // Current item is full, save it (trimmed) and start new item with this word
+              if (currentItem.trim()) {
+                result.push(currentItem.trim());
+              }
+              currentItem = word;
+            }
+          }
+        });
+
+        // Save any remaining content in currentItem
+        if (currentItem.trim()) {
+          result.push(currentItem.trim());
+        }
+
+        // Add separator between message types (but not after the last message)
+        if (messageIndex < sourceMessages.length - 1) {
+          result.push(""); // Empty string as separator
+        }
+      });
+
+      return result;
+    };
+
+    // Method to create screen messages from array (2 lines per screen message)
+    const createScreenMessages = (array: string[]): string[] => {
+      const result: string[] = [];
+
+      for (let i = 0; i < array.length; i += 2) {
+        const line1 = array[i] || "";
+        const line2 = array[i + 1] || "";
+
+        // Join with newline if both lines exist, otherwise just use the single line
+        const screenMessage = line2 ? `${line1}\n${line2}` : line1;
+        result.push(screenMessage);
+      }
+
+      return result;
+    };
+
+    // Create the message array and filter out empty strings
+    const messageArray = createMessageArray(42);
+    const filteredMessageArray = messageArray.filter(
+      (item) => item.trim().length > 0,
+    );
+    const newScreenMessages = createScreenMessages(filteredMessageArray);
+
+    console.log("🔄 Created screen messages:", {
+      originalArrayLength: messageArray.length,
+      filteredArrayLength: filteredMessageArray.length,
+      screenMessagesLength: newScreenMessages.length,
+      sampleMessage: newScreenMessages[0]?.substring(0, 50) || "",
+    });
+
+    // Update state
+    setScreenMessages(newScreenMessages);
+    setDisplayMessage(
+      newScreenMessages.length > 0 ? newScreenMessages[0] : "No content",
+    );
+  }, [mixDetails, trackDetails]);
 
   // Animation function
   const startScrollAnimation = (nextMsg: string): void => {
@@ -113,6 +264,7 @@ const Dx7Screen: React.FC = () => {
         );
         setNextOffset(nextOffsetValueRef.current);
         DEBUG &&
+          1 === 2 &&
           console.log(
             `🔄 Next message offset: ${nextOffsetValueRef.current + stepsPx} -> ${nextOffsetValueRef.current}`,
           );
@@ -149,12 +301,28 @@ const Dx7Screen: React.FC = () => {
     }, animationStepMs);
   };
 
-  // Start pagination between test messages
+  // Start pagination between screen messages
   useEffect(() => {
+    // Only start pagination if we have screen messages
+    if (screenMessages.length <= 1) {
+      // Clear any existing interval if we have 0 or 1 messages
+      if (rotationIntervalRef.current) {
+        clearInterval(rotationIntervalRef.current);
+        rotationIntervalRef.current = null;
+      }
+      return;
+    }
+
+    console.log(
+      "🔄 Starting pagination with",
+      screenMessages.length,
+      "screen messages",
+    );
+
     rotationIntervalRef.current = setInterval(() => {
-      setCurrentMessageIndex((prev) => {
-        const nextIndex = (prev + 1) % testMessages.length;
-        const nextMsg = testMessages[nextIndex];
+      setCurrentScreenIndex((prev) => {
+        const nextIndex = (prev + 1) % screenMessages.length;
+        const nextMsg = screenMessages[nextIndex];
         startScrollAnimation(nextMsg);
         return nextIndex;
       });
@@ -163,12 +331,14 @@ const Dx7Screen: React.FC = () => {
     return () => {
       if (rotationIntervalRef.current) {
         clearInterval(rotationIntervalRef.current);
+        rotationIntervalRef.current = null;
       }
       if (animationIntervalRef.current) {
         clearInterval(animationIntervalRef.current);
+        animationIntervalRef.current = null;
       }
     };
-  }, []);
+  }, [screenMessages]); // Depend on screenMessages so it restarts when messages change
 
   return (
     <StyledDx7ScreenBezel>
