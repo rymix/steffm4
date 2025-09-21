@@ -1,4 +1,4 @@
-import { PorcupineWorker } from "@picovoice/porcupine-web";
+import { PorcupineWorker, BuiltInKeyword } from "@picovoice/porcupine-web";
 import { WebVoiceProcessor } from "@picovoice/web-voice-processor";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
@@ -10,8 +10,8 @@ interface VoiceControlProps {
   handlePause: () => void;
   handlePlay: () => void;
   handlePrevious: () => void;
-  porcupineAccessKey: string; // Your Picovoice access key
-  wakeWordModelPath: string; // Path to your "Hey Stef" .ppn file
+  porcupineAccessKey: string;
+  wakeWordModelPath: string;
 }
 
 interface CommandMapping {
@@ -20,6 +20,46 @@ interface CommandMapping {
   synonyms: string[];
   handler: () => void;
 }
+
+// Helper function for string similarity calculation
+const calculateLevenshteinDistance = (str1: string, str2: string): number => {
+  const matrix: number[][] = Array.from({ length: str2.length + 1 })
+    .fill(0)
+    .map(() => Array.from({ length: str1.length + 1 }).fill(0)) as number[][];
+
+  for (let i = 0; i <= str1.length; i += 1) matrix[0][i] = i;
+  for (let j = 0; j <= str2.length; j += 1) matrix[j][0] = j;
+
+  for (let j = 1; j <= str2.length; j += 1) {
+    for (let i = 1; i <= str1.length; i += 1) {
+      const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
+      matrix[j][i] = Math.min(
+        matrix[j][i - 1] + 1,
+        matrix[j - 1][i] + 1,
+        matrix[j - 1][i - 1] + cost,
+      );
+    }
+  }
+
+  return matrix[str2.length][str1.length];
+};
+
+// Helper function for fuzzy string matching
+const isStringSimilar = (
+  str1: string,
+  str2: string,
+  threshold = 0.7,
+): boolean => {
+  if (str1 === str2) return true;
+
+  const longer = str1.length > str2.length ? str1 : str2;
+  const shorter = str1.length > str2.length ? str2 : str1;
+
+  if (longer.length === 0) return true;
+
+  const distance = calculateLevenshteinDistance(longer, shorter);
+  return (longer.length - distance) / longer.length >= threshold;
+};
 
 const VoiceControl: React.FC<VoiceControlProps> = ({
   handleLoadLatest,
@@ -89,38 +129,75 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
     },
   ];
 
+  // Function to reset command listening state
+  const resetCommandListening = useCallback((): void => {
+    setIsListening(false);
+    setIsWakeWordActive(false);
+    setStatus("wake-listening");
+
+    if (commandTimeoutRef.current) {
+      clearTimeout(commandTimeoutRef.current);
+      commandTimeoutRef.current = null;
+    }
+
+    if (speechRecognitionRef.current) {
+      try {
+        speechRecognitionRef.current.abort();
+      } catch {
+        // Ignore errors when aborting
+      }
+    }
+  }, []);
+
+  // Function to start command listening
+  const startCommandListening = useCallback((): void => {
+    if (!speechRecognitionRef.current) return;
+
+    setIsListening(true);
+    setStatus("command-listening");
+
+    try {
+      speechRecognitionRef.current.start();
+
+      // Set timeout for command listening
+      commandTimeoutRef.current = setTimeout(() => {
+        resetCommandListening();
+      }, 5000); // 5 second timeout
+    } catch (error) {
+      console.error("Failed to start speech recognition:", error);
+      resetCommandListening();
+    }
+  }, [resetCommandListening]);
+
   // AI-powered command analysis function
   const analyzeCommand = useCallback(
     (transcript: string): (() => void) | null => {
       const cleanTranscript = transcript.toLowerCase().trim();
       const words = cleanTranscript.split(/\s+/);
 
-      let bestMatch: CommandMapping | null = null;
-      let bestScore = 0;
-
-      for (const mapping of commandMappings) {
+      // Find the best matching command by scoring
+      const scoredMappings = commandMappings.map((mapping) => {
         let score = 0;
 
         // Check for primary keywords (higher weight)
-        for (const keyword of mapping.keywords) {
+        mapping.keywords.forEach((keyword) => {
           if (words.includes(keyword) || cleanTranscript.includes(keyword)) {
             score += 3;
           }
-
           // Fuzzy matching for slight variations
-          for (const word of words) {
+          words.forEach((word) => {
             if (isStringSimilar(word, keyword)) {
               score += 2;
             }
-          }
-        }
+          });
+        });
 
         // Check for context synonyms (lower weight)
-        for (const synonym of mapping.synonyms) {
+        mapping.synonyms.forEach((synonym) => {
           if (words.includes(synonym) || cleanTranscript.includes(synonym)) {
             score += 1;
           }
-        }
+        });
 
         // Bonus for intent-specific patterns
         if (
@@ -144,186 +221,26 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
           score += 1;
         }
 
-        if (score > bestScore) {
-          bestScore = score;
-          bestMatch = mapping;
-        }
-      }
+        return { mapping, score };
+      });
+
+      // Find the highest scoring mapping
+      const bestMatch = scoredMappings.reduce(
+        (best, current) => (current.score > best.score ? current : best),
+        { mapping: null as CommandMapping | null, score: 0 },
+      );
 
       // Require minimum confidence threshold
-      return bestScore >= 2 ? bestMatch?.handler || null : null;
+      return bestMatch.score >= 2 && bestMatch.mapping
+        ? bestMatch.mapping.handler
+        : null;
     },
     [commandMappings],
   );
 
-  // Simple string similarity for fuzzy matching
-  const isStringSimilar = (
-    str1: string,
-    str2: string,
-    threshold = 0.7,
-  ): boolean => {
-    if (str1 === str2) return true;
-
-    const longer = str1.length > str2.length ? str1 : str2;
-    const shorter = str1.length > str2.length ? str2 : str1;
-
-    if (longer.length === 0) return true;
-
-    const distance = levenshteinDistance(longer, shorter);
-    return (longer.length - distance) / longer.length >= threshold;
-  };
-
-  // Levenshtein distance for fuzzy matching
-  const levenshteinDistance = (str1: string, str2: string): number => {
-    const matrix = Array(str2.length + 1)
-      .fill(null)
-      .map(() => Array(str1.length + 1).fill(null));
-
-    for (let i = 0; i <= str1.length; i++) matrix[0][i] = i;
-    for (let j = 0; j <= str2.length; j++) matrix[j][0] = j;
-
-    for (let j = 1; j <= str2.length; j++) {
-      for (let i = 1; i <= str1.length; i++) {
-        const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
-        matrix[j][i] = Math.min(
-          matrix[j][i - 1] + 1,
-          matrix[j - 1][i] + 1,
-          matrix[j - 1][i - 1] + cost,
-        );
-      }
-    }
-
-    return matrix[str2.length][str1.length];
-  };
-
-  // Initialize Porcupine wake word detection
-  useEffect(() => {
-    const initializePorcupine = async () => {
-      try {
-        setStatus("wake-listening");
-
-        const porcupineWorker = await PorcupineWorker.create(
-          porcupineAccessKey,
-          [
-            {
-              publicPath: wakeWordModelPath,
-              label: "hey-stef",
-            },
-          ],
-          (_detection) => {
-            console.log("Wake word detected!");
-            setIsWakeWordActive(true);
-            startCommandListening();
-          },
-          { publicPath: wakeWordModelPath }
-        );
-
-        // Subscribe to WebVoiceProcessor for microphone input
-        await WebVoiceProcessor.subscribe(porcupineWorker);
-        
-        porcupineWorkerRef.current = porcupineWorker;
-      } catch (error) {
-        console.error("Failed to initialize Porcupine:", error);
-        setStatus("idle");
-      }
-    };
-
-    initializePorcupine();
-
-    return () => {
-      if (porcupineWorkerRef.current) {
-        WebVoiceProcessor.unsubscribe(porcupineWorkerRef.current);
-        porcupineWorkerRef.current.release();
-        porcupineWorkerRef.current.terminate();
-      }
-    };
-  }, [porcupineAccessKey, wakeWordModelPath]);
-
-  // Initialize Speech Recognition
-  useEffect(() => {
-    if (
-      !("webkitSpeechRecognition" in window) &&
-      !("SpeechRecognition" in window)
-    ) {
-      console.error("Speech recognition not supported");
-      return;
-    }
-
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-
-    recognition.continuous = false;
-    recognition.interimResults = false;
-    recognition.lang = "en-US";
-    recognition.maxAlternatives = 1;
-
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      setLastCommand(transcript);
-      processVoiceCommand(transcript);
-    };
-
-    recognition.onerror = (event) => {
-      console.error("Speech recognition error:", event.error);
-      resetCommandListening();
-    };
-
-    recognition.onend = () => {
-      if (isListening) {
-        resetCommandListening();
-      }
-    };
-
-    speechRecognitionRef.current = recognition;
-
-    return () => {
-      if (speechRecognitionRef.current) {
-        speechRecognitionRef.current.abort();
-      }
-    };
-  }, [isListening]);
-
-  const startCommandListening = useCallback(() => {
-    if (!speechRecognitionRef.current) return;
-
-    setIsListening(true);
-    setStatus("command-listening");
-
-    try {
-      speechRecognitionRef.current.start();
-
-      // Set timeout for command listening
-      commandTimeoutRef.current = setTimeout(() => {
-        resetCommandListening();
-      }, 5000); // 5 second timeout
-    } catch (error) {
-      console.error("Failed to start speech recognition:", error);
-      resetCommandListening();
-    }
-  }, []);
-
-  const resetCommandListening = useCallback(() => {
-    setIsListening(false);
-    setIsWakeWordActive(false);
-    setStatus("wake-listening");
-
-    if (commandTimeoutRef.current) {
-      clearTimeout(commandTimeoutRef.current);
-      commandTimeoutRef.current = null;
-    }
-
-    if (speechRecognitionRef.current) {
-      try {
-        speechRecognitionRef.current.abort();
-      } catch (error) {
-        // Ignore errors when aborting
-      }
-    }
-  }, []);
-
+  // Function to process voice commands
   const processVoiceCommand = useCallback(
-    (transcript: string) => {
+    (transcript: string): void => {
       setStatus("processing");
 
       const handler = analyzeCommand(transcript);
@@ -343,12 +260,106 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
     [analyzeCommand, resetCommandListening],
   );
 
-  const getStatusMessage = () => {
+  // Initialize Porcupine wake word detection
+  useEffect(() => {
+    const initializePorcupine = async (): Promise<void> => {
+      try {
+        console.log("Starting Porcupine initialization...");
+        console.log("Access key:", porcupineAccessKey ? "Present" : "Missing");
+        console.log("Using built-in model with Computer keyword");
+        
+        setStatus("wake-listening");
+
+        const porcupineWorker = await PorcupineWorker.create(
+          porcupineAccessKey,
+          [{ builtin: BuiltInKeyword.Computer, sensitivity: 0.5 }],
+          (detection) => {
+            console.log(`Wake word detected: ${detection.label}`);
+            setIsWakeWordActive(true);
+            startCommandListening();
+          }
+        );
+
+        console.log("Porcupine worker created successfully");
+
+        // Subscribe to WebVoiceProcessor for microphone input
+        await WebVoiceProcessor.subscribe(porcupineWorker);
+
+        console.log("WebVoiceProcessor subscribed successfully");
+        
+        porcupineWorkerRef.current = porcupineWorker;
+        
+        console.log("Porcupine initialization complete");
+      } catch (error) {
+        console.error("Failed to initialize Porcupine:", error);
+        setStatus("idle");
+      }
+    };
+
+    initializePorcupine();
+
+    return () => {
+      if (porcupineWorkerRef.current) {
+        WebVoiceProcessor.unsubscribe(porcupineWorkerRef.current);
+        porcupineWorkerRef.current.release();
+        porcupineWorkerRef.current.terminate();
+      }
+    };
+  }, [porcupineAccessKey, wakeWordModelPath, startCommandListening]);
+
+  // Initialize Speech Recognition
+  useEffect(() => {
+    if (
+      !("webkitSpeechRecognition" in globalThis) &&
+      !("SpeechRecognition" in globalThis)
+    ) {
+      console.error("Speech recognition not supported");
+      return;
+    }
+
+    const SpeechRecognition =
+      (globalThis as any).SpeechRecognition ||
+      (globalThis as any).webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+
+    recognition.continuous = false;
+    recognition.interimResults = false;
+    recognition.lang = "en-US";
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = (event: any) => {
+      const { transcript } = event.results[0][0];
+      setLastCommand(transcript);
+      processVoiceCommand(transcript);
+    };
+
+    recognition.addEventListener("error", (event: any) => {
+      console.error("Speech recognition error:", event.error);
+      resetCommandListening();
+    });
+
+    recognition.onend = () => {
+      if (isListening) {
+        resetCommandListening();
+      }
+    };
+
+    speechRecognitionRef.current = recognition;
+
+    // eslint-disable-next-line consistent-return
+    return () => {
+      if (speechRecognitionRef.current) {
+        speechRecognitionRef.current.abort();
+      }
+    };
+  }, [isListening, processVoiceCommand, resetCommandListening]);
+
+  const getStatusMessage = (): string => {
     switch (status) {
       case "wake-listening":
-        return 'Listening for "Hey Stef"...';
+        return 'Listening for "Computer"...';
       case "command-listening":
-        return "Say your command...";
+        return "Wake word detected! Say your command...";
       case "processing":
         return "Processing command...";
       default:
@@ -356,7 +367,7 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
     }
   };
 
-  const getStatusColor = () => {
+  const getStatusColor = (): string => {
     switch (status) {
       case "wake-listening":
         return "#4ade80"; // green
@@ -370,7 +381,15 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
   };
 
   return (
-    <div className="voice-control-widget">
+    <div
+      className="voice-control-widget"
+      style={{
+        position: "fixed",
+        top: "10px",
+        right: "10px",
+        zIndex: 9999,
+      }}
+    >
       <div
         className="status-indicator"
         style={{
@@ -379,8 +398,11 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
           gap: "8px",
           padding: "12px",
           borderRadius: "8px",
-          backgroundColor: "rgba(0,0,0,0.1)",
+          backgroundColor: "rgba(0,0,0,0.8)",
           border: `2px solid ${getStatusColor()}`,
+          color: "white",
+          fontSize: "12px",
+          minWidth: "200px",
         }}
       >
         <div
@@ -389,7 +411,7 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
             height: "12px",
             borderRadius: "50%",
             backgroundColor: getStatusColor(),
-            animation: status !== "idle" ? "pulse 1.5s infinite" : "none",
+            animation: status === "idle" ? "none" : "pulse 1.5s infinite",
           }}
         />
         <span style={{ fontSize: "14px", fontWeight: "500" }}>
@@ -398,8 +420,17 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
       </div>
 
       {lastCommand && (
-        <div style={{ marginTop: "8px", fontSize: "12px", color: "#6b7280" }}>
-          Last command: "{lastCommand}"
+        <div
+          style={{
+            marginTop: "8px",
+            fontSize: "12px",
+            color: "#6b7280",
+            backgroundColor: "rgba(0,0,0,0.8)",
+            padding: "8px",
+            borderRadius: "8px",
+          }}
+        >
+          Last command: &quot;{lastCommand}&quot;
         </div>
       )}
 

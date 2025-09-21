@@ -21,9 +21,13 @@ import {
   StyledTopPanel,
 } from "components/Styled";
 import Tooltip from "components/Tooltip";
-import Voice from "components/Voice";
+import dynamic from "next/dynamic";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
+
+const Voice = dynamic(() => import("components/Voice"), {
+  ssr: false,
+});
 
 const StefFmPlayer: React.FC = () => {
   const [hasMounted, setHasMounted] = useState(false);

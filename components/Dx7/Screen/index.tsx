@@ -17,6 +17,8 @@ const Dx7Screen: React.FC = () => {
     screen: { isResizing, screenComponentWidth, screenComponentCharsPerLine },
   } = useMixcloud();
 
+  const SUPERDEBUG = false;
+
   // State for screen messages
   const [screenMessages, setScreenMessages] = useState<string[]>([]);
 
@@ -71,7 +73,9 @@ const Dx7Screen: React.FC = () => {
 
   // Effect to build messages whenever mixDetails or trackDetails changes
   useEffect(() => {
-    DEBUG && console.log("🔄 Building messages from mix/track details");
+    DEBUG &&
+      SUPERDEBUG &&
+      console.log("🔄 Building messages from mix/track details");
 
     // Reset screen index when source data changes
     setCurrentScreenIndex(0);
@@ -108,6 +112,7 @@ const Dx7Screen: React.FC = () => {
       const sourceMessages = [messageTrack, messageMix, messageNotes];
 
       DEBUG &&
+        SUPERDEBUG &&
         console.log("📝 Source messages:", {
           messageTrack: `"${messageTrack}" (${messageTrack.length} chars)`,
           messageMix: `"${messageMix}" (${messageMix.length} chars)`,
@@ -195,6 +200,7 @@ const Dx7Screen: React.FC = () => {
     const newScreenMessages = createScreenMessages(filteredMessageArray);
 
     DEBUG &&
+      SUPERDEBUG &&
       console.log("🔄 Created screen messages:", {
         originalArrayLength: messageArray.length,
         filteredArrayLength: filteredMessageArray.length,
@@ -221,6 +227,7 @@ const Dx7Screen: React.FC = () => {
   const startScrollAnimation = (nextMsg: string): void => {
     if (animationStateRef.current !== "idle") {
       DEBUG &&
+        SUPERDEBUG &&
         console.log(
           `🔄 Animation blocked - current ref state: ${animationStateRef.current}`,
         );
@@ -229,7 +236,9 @@ const Dx7Screen: React.FC = () => {
 
     // Force clear any existing intervals
     if (animationIntervalRef.current) {
-      DEBUG && console.log(`🔄 Clearing existing animation interval`);
+      DEBUG &&
+        SUPERDEBUG &&
+        console.log(`🔄 Clearing existing animation interval`);
       clearInterval(animationIntervalRef.current);
       animationIntervalRef.current = null;
     }
@@ -249,6 +258,7 @@ const Dx7Screen: React.FC = () => {
     const halfwayPoint = -displayHeightPx / 2;
 
     DEBUG &&
+      SUPERDEBUG &&
       console.log(
         `🔄 Starting new animation for message: "${nextMsg.slice(0, 20)}..."`,
       );
@@ -265,6 +275,7 @@ const Dx7Screen: React.FC = () => {
         !dualScrollStartedRef.current
       ) {
         DEBUG &&
+          SUPERDEBUG &&
           console.log(
             `🔄 Starting dual-scroll at halfway point: ${currentOffsetValueRef.current} <= ${halfwayPoint}`,
           );
@@ -282,6 +293,7 @@ const Dx7Screen: React.FC = () => {
         );
         setNextOffset(nextOffsetValueRef.current);
         DEBUG &&
+          SUPERDEBUG &&
           console.log(
             `🔄 Next message offset: ${nextOffsetValueRef.current + stepsPx} -> ${nextOffsetValueRef.current}`,
           );
@@ -294,6 +306,7 @@ const Dx7Screen: React.FC = () => {
 
       if (currentOffscreen && nextAtFinal && dualScrollStartedRef.current) {
         DEBUG &&
+          SUPERDEBUG &&
           console.log(
             `✅ Animation complete - current: ${currentOffsetValueRef.current}, next: ${nextOffsetValueRef.current}`,
           );
@@ -323,6 +336,7 @@ const Dx7Screen: React.FC = () => {
     // Only start pagination if we have screen messages
     if (screenMessages.length > 1) {
       DEBUG &&
+        SUPERDEBUG &&
         console.log(
           "🔄 Starting pagination with",
           screenMessages.length,
@@ -384,7 +398,7 @@ const Dx7Screen: React.FC = () => {
         )}
 
         {/* Debug info panel - only shown when DEBUG is true */}
-        {DEBUG && (
+        {DEBUG && SUPERDEBUG && (
           <StyledDx7ScreenDebug>
             {animationState} | C:{currentOffset} | N:{nextOffset} |{" "}
             {showNext ? "DUAL" : "SINGLE"}
