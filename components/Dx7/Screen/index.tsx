@@ -45,9 +45,29 @@ const Dx7Screen: React.FC = () => {
 
   // Animation constants
   const stepsPx = 5;
-  const displayTimeMs = 7000;
   const displayHeightPx = 80;
   const animationStepMs = 50;
+
+  // Animation state variables
+  const [displayTimeMs, setDisplayTimeMs] = useState<number>(7000);
+
+  // Dynamic display time based on character count
+  useEffect(() => {
+    let newDisplayTime: number;
+
+    if (screenComponentCharsPerLine >= 42) {
+      newDisplayTime = 7000;
+    } else if (screenComponentCharsPerLine <= 12) {
+      newDisplayTime = 3000;
+    } else {
+      // Calculate proportional value between 12 and 42
+      // Range: 12-42 (30 total), Time range: 3000-7000 (4000ms difference)
+      const normalizedValue = (screenComponentCharsPerLine - 12) / (42 - 12);
+      newDisplayTime = Math.round(3000 + normalizedValue * 4000);
+    }
+
+    setDisplayTimeMs(newDisplayTime);
+  }, [screenComponentCharsPerLine]);
 
   // Effect to build messages whenever mixDetails or trackDetails changes
   useEffect(() => {

@@ -595,9 +595,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
       // Calculate characters per line based on 7.5% of screen component width or 5% on tiny screens
       const calculatedCharsPerLine =
-        calculatedScreenComponentWidth <= 190
-          ? Math.round(calculatedScreenComponentWidth * 0.05)
-          : Math.round(calculatedScreenComponentWidth * 0.072);
+        calculatedScreenComponentWidth <= 200
+          ? 10
+          : Math.round(calculatedScreenComponentWidth * 0.075);
 
       // Enforce minimum/maximum character limits for usability
       const finalCharsPerLine = Math.max(
