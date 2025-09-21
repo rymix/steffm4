@@ -42,7 +42,7 @@ import {
   mcKeyUrlFormatter,
   mcWidgetUrlFormatter,
 } from "utils/functions";
-import { essentialLogger, logger } from "utils/logger";
+import { DEBUG, essentialLogger, logger } from "utils/logger";
 import {
   mobileAutoplayManager,
   useAutoplayInteractionTracking,
@@ -217,6 +217,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
   const [temporaryMessage, setTemporaryMessage] = useState<
     string | undefined
   >();
+  // #endregion
+
+  // #region Responsive Screen Component State
+  const [isResizing, setIsResizing] = useState<boolean>(false);
+  const [screenComponentWidth, setScreenComponentWidth] = useState<number>(640);
+  const [screenComponentCharsPerLine, setScreenComponentCharsPerLine] =
+    useState<number>(42);
   // #endregion
 
   // #region Tooltip State
@@ -558,6 +565,8 @@ const useMixcloudContextState = (): MixcloudContextState => {
     };
 
     const handleResize = (): void => {
+      setIsResizing(true);
+
       const windowWidth = window.innerWidth;
       const windowHeight = window.innerHeight;
       const isPortrait = windowHeight > windowWidth;
@@ -567,6 +576,45 @@ const useMixcloudContextState = (): MixcloudContextState => {
         : screenLimits.landscape;
 
       setIsMobileDevice(windowWidth <= 768);
+
+      // Calculate screen component width based on Dx7 responsive breakpoints
+      let calculatedScreenComponentWidth: number;
+
+      if (windowWidth > 900) {
+        // Large screens: min-width: 890px; max-width: 1220px;
+        const clampedWidth = Math.max(890, Math.min(windowWidth * 0.9, 1220));
+        calculatedScreenComponentWidth = clampedWidth * 0.52; // Screen is ~52% of Dx7 case width
+      } else if (windowWidth > 480) {
+        // Medium screens: width: 95%
+        calculatedScreenComponentWidth = windowWidth * 0.95 * 0.52;
+      } else {
+        // Small screens: min-width: 300px; max-width: 400px; width: 80%
+        const clampedWidth = Math.max(300, Math.min(windowWidth * 0.8, 400));
+        calculatedScreenComponentWidth = clampedWidth * 0.52;
+      }
+
+      // Calculate characters per line based on 7.5% of screen component width or 5% on tiny screens
+      const calculatedCharsPerLine =
+        calculatedScreenComponentWidth <= 200
+          ? 10
+          : Math.round(calculatedScreenComponentWidth * 0.075);
+
+      // Enforce minimum/maximum character limits for usability
+      const finalCharsPerLine = Math.max(
+        10,
+        Math.min(calculatedCharsPerLine, 50),
+      );
+
+      DEBUG &&
+        console.log("🔄 Screen component resize calculation:", {
+          windowWidth,
+          calculatedScreenComponentWidth,
+          calculatedCharsPerLine,
+          finalCharsPerLine,
+        });
+
+      setScreenComponentWidth(calculatedScreenComponentWidth);
+      setScreenComponentCharsPerLine(finalCharsPerLine);
 
       const jupiterCaseHeight = jupiterCaseRef.current
         ? jupiterCaseRef.current.offsetHeight
@@ -623,6 +671,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
           }
         }
       }
+
+      // Clear resize flag after a short delay
+      setTimeout(() => setIsResizing(false), 150);
     };
 
     window.addEventListener("resize", handleResize);
@@ -2051,6 +2102,9 @@ const useMixcloudContextState = (): MixcloudContextState => {
       setHoldingMessage,
       setTemporaryMessage,
       temporaryMessage,
+      isResizing,
+      screenComponentWidth,
+      screenComponentCharsPerLine,
     },
     session: {
       background,
