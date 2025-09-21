@@ -51,7 +51,7 @@ const Dx7Screen: React.FC = () => {
 
   // Effect to build messages whenever mixDetails or trackDetails changes
   useEffect(() => {
-    console.log("🔄 Building messages from mix/track details");
+    DEBUG && console.log("🔄 Building messages from mix/track details");
 
     // Reset screen index when source data changes
     setCurrentScreenIndex(0);
@@ -87,14 +87,15 @@ const Dx7Screen: React.FC = () => {
     const createMessageArray = (maxCharsPerItem: number): string[] => {
       const sourceMessages = [messageTrack, messageMix, messageNotes];
 
-      console.log("📝 Source messages:", {
-        messageTrack: `"${messageTrack}" (${messageTrack.length} chars)`,
-        messageMix: `"${messageMix}" (${messageMix.length} chars)`,
-        messageNotes: `"${messageNotes}" (${messageNotes.length} chars)`,
-        maxCharsPerItem,
-        screenComponentWidth,
-        isResizing,
-      });
+      DEBUG &&
+        console.log("📝 Source messages:", {
+          messageTrack: `"${messageTrack}" (${messageTrack.length} chars)`,
+          messageMix: `"${messageMix}" (${messageMix.length} chars)`,
+          messageNotes: `"${messageNotes}" (${messageNotes.length} chars)`,
+          maxCharsPerItem,
+          screenComponentWidth,
+          isResizing,
+        });
 
       const result: string[] = [];
 
@@ -173,15 +174,16 @@ const Dx7Screen: React.FC = () => {
     );
     const newScreenMessages = createScreenMessages(filteredMessageArray);
 
-    console.log("🔄 Created screen messages:", {
-      originalArrayLength: messageArray.length,
-      filteredArrayLength: filteredMessageArray.length,
-      screenMessagesLength: newScreenMessages.length,
-      charsPerLine: screenComponentCharsPerLine,
-      screenWidth: screenComponentWidth,
-      isResizing,
-      sampleMessage: newScreenMessages[0]?.substring(0, 50) || "",
-    });
+    DEBUG &&
+      console.log("🔄 Created screen messages:", {
+        originalArrayLength: messageArray.length,
+        filteredArrayLength: filteredMessageArray.length,
+        screenMessagesLength: newScreenMessages.length,
+        charsPerLine: screenComponentCharsPerLine,
+        screenWidth: screenComponentWidth,
+        isResizing,
+        sampleMessage: newScreenMessages[0]?.substring(0, 50) || "",
+      });
 
     // Update state
     setScreenMessages(newScreenMessages);
@@ -300,11 +302,12 @@ const Dx7Screen: React.FC = () => {
   useEffect(() => {
     // Only start pagination if we have screen messages
     if (screenMessages.length > 1) {
-      console.log(
-        "🔄 Starting pagination with",
-        screenMessages.length,
-        "screen messages",
-      );
+      DEBUG &&
+        console.log(
+          "🔄 Starting pagination with",
+          screenMessages.length,
+          "screen messages",
+        );
 
       rotationIntervalRef.current = setInterval(() => {
         setCurrentScreenIndex((prev) => {

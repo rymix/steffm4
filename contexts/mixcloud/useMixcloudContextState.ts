@@ -42,7 +42,7 @@ import {
   mcKeyUrlFormatter,
   mcWidgetUrlFormatter,
 } from "utils/functions";
-import { essentialLogger, logger } from "utils/logger";
+import { DEBUG, essentialLogger, logger } from "utils/logger";
 import {
   mobileAutoplayManager,
   useAutoplayInteractionTracking,
@@ -605,12 +605,13 @@ const useMixcloudContextState = (): MixcloudContextState => {
         Math.min(calculatedCharsPerLine, 50),
       );
 
-      console.log("🔄 Screen component resize calculation:", {
-        windowWidth,
-        calculatedScreenComponentWidth,
-        calculatedCharsPerLine,
-        finalCharsPerLine,
-      });
+      DEBUG &&
+        console.log("🔄 Screen component resize calculation:", {
+          windowWidth,
+          calculatedScreenComponentWidth,
+          calculatedCharsPerLine,
+          finalCharsPerLine,
+        });
 
       setScreenComponentWidth(calculatedScreenComponentWidth);
       setScreenComponentCharsPerLine(finalCharsPerLine);

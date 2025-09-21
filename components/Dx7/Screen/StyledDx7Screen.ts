@@ -55,7 +55,7 @@ export const StyledDx7Screen = styled.div<StyledDx7ScreenProps>`
 
 export const StyledDx7ScreenMessage = styled.div`
   position: absolute;
-  top: 0;
+  top: 16px;
   left: 20px;
   right: 20px;
   transition: none;
