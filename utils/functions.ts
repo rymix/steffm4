@@ -103,7 +103,7 @@ export const copyToClipboard = (text: string): void => {
 
     document.body.appendChild(textArea);
     textArea.focus();
-    // eslint-disable-next-line testing-library/no-node-access
+
     textArea.select();
 
     try {

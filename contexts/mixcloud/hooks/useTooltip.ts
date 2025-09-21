@@ -3,7 +3,7 @@ import { useRef, useState } from "react";
 /**
  * Hook for managing tooltip display and behavior
  */
-export const useTooltip = (): TooltipState => {
+export const useTooltip = () => {
   // ================================================================
   // STATE
   // ================================================================

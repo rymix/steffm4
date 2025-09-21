@@ -21,6 +21,7 @@ import {
   StyledTopPanel,
 } from "components/Styled";
 import Tooltip from "components/Tooltip";
+import Voice from "components/Voice";
 import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useState } from "react";
 
@@ -59,6 +60,7 @@ const StefFmPlayer: React.FC = () => {
         <Modal />
         <Tooltip />
         <ScrollIndicator />
+        <Voice />
       </StyledFixedForeground>
 
       <StyledScrollContainer>

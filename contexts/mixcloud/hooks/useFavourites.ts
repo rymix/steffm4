@@ -5,9 +5,7 @@ import type { MixcloudCoreState } from "./useMixcloudCore";
 /**
  * Hook for managing user favourites
  */
-export const useFavourites = (
-  coreState: MixcloudCoreState,
-): FavouritesState => {
+export const useFavourites = (coreState: MixcloudCoreState) => {
   const { preferences, data } = coreState;
 
   // Check if a mix is a favourite

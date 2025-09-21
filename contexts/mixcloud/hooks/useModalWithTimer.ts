@@ -5,9 +5,7 @@ import type { MixcloudCoreState } from "./useMixcloudCore";
 /**
  * Hook for managing modal state with auto-close timer functionality
  */
-export const useModalWithTimer = (
-  coreState: MixcloudCoreState,
-): ModalWithTimerState => {
+export const useModalWithTimer = (coreState: MixcloudCoreState) => {
   const { refs, preferences } = coreState;
 
   // ================================================================

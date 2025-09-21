@@ -40,9 +40,7 @@ const detectMobileDevice = (): boolean => {
 /**
  * Hook for managing responsive design and screen calculations
  */
-export const useResponsiveDesign = (
-  coreState: MixcloudCoreState,
-): ResponsiveDesignState => {
+export const useResponsiveDesign = (coreState: MixcloudCoreState) => {
   const { refs } = coreState;
 
   // ================================================================

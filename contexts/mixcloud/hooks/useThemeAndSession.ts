@@ -7,9 +7,7 @@ import type { MixcloudCoreState } from "./useMixcloudCore";
 /**
  * Hook for managing theme and session-related functionality
  */
-export const useThemeAndSession = (
-  coreState: MixcloudCoreState,
-): ThemeAndSessionState => {
+export const useThemeAndSession = (coreState: MixcloudCoreState) => {
   const { preferences, data } = coreState;
 
   // ================================================================

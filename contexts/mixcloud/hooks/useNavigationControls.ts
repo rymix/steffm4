@@ -15,7 +15,7 @@ export const useNavigationControls = (
   loadMix: (_mcKey: string) => void,
   fetchRandomMcKey: (_category: string | null) => Promise<string>,
   fetchLatestMcKey: () => Promise<string>,
-): NavigationControlsState => {
+) => {
   const { preferences, filters } = coreState;
 
   // ================================================================

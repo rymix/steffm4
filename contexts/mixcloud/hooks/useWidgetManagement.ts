@@ -20,7 +20,7 @@ export const useWidgetManagement = (
   api: MixcloudAPIState,
   modal: ModalWithTimerState,
   handleNext: () => void,
-): WidgetManagementState => {
+) => {
   const { refs, widget, data, core } = coreState;
   const { isMobile } = useAutoplayInteractionTracking();
 

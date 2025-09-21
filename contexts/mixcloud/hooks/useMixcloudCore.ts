@@ -17,7 +17,7 @@ import {
  * Core shared state hook for Mixcloud functionality
  * Contains essential shared state that other hooks depend on
  */
-export const useMixcloudCore = (): MixcloudCoreState => {
+export const useMixcloudCore = () => {
   // ================================================================
   // REFS AND IMMUTABLE STATE
   // ================================================================

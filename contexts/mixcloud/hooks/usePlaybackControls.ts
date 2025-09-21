@@ -7,9 +7,7 @@ import type { MixcloudCoreState } from "./useMixcloudCore";
 /**
  * Hook for managing playback controls (play, pause, seek, volume)
  */
-export const usePlaybackControls = (
-  coreState: MixcloudCoreState,
-): PlaybackControlsState => {
+export const usePlaybackControls = (coreState: MixcloudCoreState) => {
   const { widget, preferences, refs, data } = coreState;
 
   // ================================================================

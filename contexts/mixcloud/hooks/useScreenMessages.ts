@@ -4,7 +4,7 @@ import { DEFAULT_MESSAGE } from "utils/constants";
 /**
  * Hook for managing screen messages (holding and temporary messages)
  */
-export const useScreenMessages = (): ScreenMessagesState => {
+export const useScreenMessages = () => {
   // ================================================================
   // STATE
   // ================================================================

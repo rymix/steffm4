@@ -7,9 +7,7 @@ import type { MixcloudCoreState } from "./useMixcloudCore";
 /**
  * Hook for managing Mixcloud API calls and data fetching
  */
-export const useMixcloudAPI = (
-  coreState: MixcloudCoreState,
-): MixcloudAPIState => {
+export const useMixcloudAPI = (coreState: MixcloudCoreState) => {
   const { filters } = coreState;
 
   // ================================================================

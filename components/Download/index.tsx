@@ -22,7 +22,7 @@ export const Download: React.FC<DownloadProps> = () => {
     anchor.download = ""; // Optional: specify a filename if needed
 
     document.body.appendChild(anchor); // Append to DOM to ensure it works in all browsers
-    // eslint-disable-next-line testing-library/no-node-access
+
     anchor.click();
 
     document.body.removeChild(anchor); // Clean up
