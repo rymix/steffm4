@@ -601,7 +601,7 @@ const useMixcloudContextState = (): MixcloudContextState => {
 
       // Enforce minimum/maximum character limits for usability
       const finalCharsPerLine = Math.max(
-        12,
+        10,
         Math.min(calculatedCharsPerLine, 50),
       );
 
