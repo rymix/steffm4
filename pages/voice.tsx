@@ -1,8 +1,8 @@
-import StefFmPlayer from "components";
+import PorcupineTest from "components/Porcupine";
 import { JSX } from "react";
 
 const Home = (): JSX.Element => {
-  return <StefFmPlayer />;
+  return <PorcupineTest />;
 };
 
 export default Home;
