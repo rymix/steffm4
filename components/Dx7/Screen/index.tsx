@@ -1,7 +1,3 @@
-/* eslint-disable unicorn/prefer-global-this */
-/* eslint-disable unicorn/no-negated-condition */
-/* eslint-disable unicorn/no-typeof-undefined */
-/* eslint-disable unicorn/no-array-push-push */
 import {
   StyledDx7Screen,
   StyledDx7ScreenBezel,
@@ -18,6 +14,7 @@ const Dx7Screen: React.FC = () => {
     mix: { details: mixDetails },
     track: { details: trackDetails },
     session: { dx7ScreenLight },
+    screen: { isResizing, screenComponentWidth, screenComponentCharsPerLine },
   } = useMixcloud();
 
   // State for screen messages
@@ -27,7 +24,7 @@ const Dx7Screen: React.FC = () => {
   const [displayMessage, setDisplayMessage] = useState<string>(
     screenMessages.length > 0 ? screenMessages[0] : "No content",
   );
-  const [currentScreenIndex, setCurrentScreenIndex] = useState<number>(0);
+  const [_currentScreenIndex, setCurrentScreenIndex] = useState<number>(0);
   const [nextMessage, setNextMessage] = useState<string>("");
   const [animationState, setAnimationState] = useState<
     "idle" | "scrolling-out" | "dual-scroll"
@@ -51,7 +48,6 @@ const Dx7Screen: React.FC = () => {
   const displayTimeMs = 7000;
   const displayHeightPx = 80;
   const animationStepMs = 50;
-  const screenWidth = 640; // Fixed width for now
 
   // Effect to build messages whenever mixDetails or trackDetails changes
   useEffect(() => {
@@ -90,14 +86,16 @@ const Dx7Screen: React.FC = () => {
     // Method to create indexed array of strings with word wrapping
     const createMessageArray = (maxCharsPerItem: number): string[] => {
       const sourceMessages = [messageTrack, messageMix, messageNotes];
-      
+
       console.log("📝 Source messages:", {
         messageTrack: `"${messageTrack}" (${messageTrack.length} chars)`,
         messageMix: `"${messageMix}" (${messageMix.length} chars)`,
         messageNotes: `"${messageNotes}" (${messageNotes.length} chars)`,
         maxCharsPerItem,
+        screenComponentWidth,
+        isResizing,
       });
-      
+
       const result: string[] = [];
 
       sourceMessages.forEach((message, messageIndex) => {
@@ -124,16 +122,6 @@ const Dx7Screen: React.FC = () => {
             // Calculate what the item would be if we add this word
             const testItem = currentItem ? `${currentItem} ${word}` : word;
             const trimmedTestItem = testItem.trim();
-
-            console.log("🔍 Word fitting debug:", {
-              currentItem: `"${currentItem}"`,
-              word: `"${word}"`,
-              testItem: `"${testItem}"`,
-              trimmedTestItem: `"${trimmedTestItem}"`,
-              trimmedLength: trimmedTestItem.length,
-              maxChars: maxCharsPerItem,
-              fits: trimmedTestItem.length <= maxCharsPerItem,
-            });
 
             // Check if the TRIMMED version fits (don't count trailing spaces)
             if (trimmedTestItem.length <= maxCharsPerItem) {
@@ -178,8 +166,8 @@ const Dx7Screen: React.FC = () => {
       return result;
     };
 
-    // Create the message array and filter out empty strings
-    const messageArray = createMessageArray(42);
+    // Create the message array and filter out empty strings using dynamic character limit
+    const messageArray = createMessageArray(screenComponentCharsPerLine);
     const filteredMessageArray = messageArray.filter(
       (item) => item.trim().length > 0,
     );
@@ -189,6 +177,9 @@ const Dx7Screen: React.FC = () => {
       originalArrayLength: messageArray.length,
       filteredArrayLength: filteredMessageArray.length,
       screenMessagesLength: newScreenMessages.length,
+      charsPerLine: screenComponentCharsPerLine,
+      screenWidth: screenComponentWidth,
+      isResizing,
       sampleMessage: newScreenMessages[0]?.substring(0, 50) || "",
     });
 
@@ -197,7 +188,12 @@ const Dx7Screen: React.FC = () => {
     setDisplayMessage(
       newScreenMessages.length > 0 ? newScreenMessages[0] : "No content",
     );
-  }, [mixDetails, trackDetails]);
+  }, [
+    mixDetails,
+    trackDetails,
+    screenComponentCharsPerLine,
+    screenComponentWidth,
+  ]);
 
   // Animation function
   const startScrollAnimation = (nextMsg: string): void => {
@@ -264,7 +260,6 @@ const Dx7Screen: React.FC = () => {
         );
         setNextOffset(nextOffsetValueRef.current);
         DEBUG &&
-          1 === 2 &&
           console.log(
             `🔄 Next message offset: ${nextOffsetValueRef.current + stepsPx} -> ${nextOffsetValueRef.current}`,
           );
@@ -304,29 +299,26 @@ const Dx7Screen: React.FC = () => {
   // Start pagination between screen messages
   useEffect(() => {
     // Only start pagination if we have screen messages
-    if (screenMessages.length <= 1) {
+    if (screenMessages.length > 1) {
+      console.log(
+        "🔄 Starting pagination with",
+        screenMessages.length,
+        "screen messages",
+      );
+
+      rotationIntervalRef.current = setInterval(() => {
+        setCurrentScreenIndex((prev) => {
+          const nextIndex = (prev + 1) % screenMessages.length;
+          const nextMsg = screenMessages[nextIndex];
+          startScrollAnimation(nextMsg);
+          return nextIndex;
+        });
+      }, displayTimeMs);
+    } else if (rotationIntervalRef.current) {
       // Clear any existing interval if we have 0 or 1 messages
-      if (rotationIntervalRef.current) {
-        clearInterval(rotationIntervalRef.current);
-        rotationIntervalRef.current = null;
-      }
-      return;
+      clearInterval(rotationIntervalRef.current);
+      rotationIntervalRef.current = null;
     }
-
-    console.log(
-      "🔄 Starting pagination with",
-      screenMessages.length,
-      "screen messages",
-    );
-
-    rotationIntervalRef.current = setInterval(() => {
-      setCurrentScreenIndex((prev) => {
-        const nextIndex = (prev + 1) % screenMessages.length;
-        const nextMsg = screenMessages[nextIndex];
-        startScrollAnimation(nextMsg);
-        return nextIndex;
-      });
-    }, displayTimeMs);
 
     return () => {
       if (rotationIntervalRef.current) {
@@ -342,7 +334,10 @@ const Dx7Screen: React.FC = () => {
 
   return (
     <StyledDx7ScreenBezel>
-      <StyledDx7Screen $lightOn={dx7ScreenLight} $screenWidth={screenWidth}>
+      <StyledDx7Screen
+        $lightOn={dx7ScreenLight}
+        $screenWidth={screenComponentWidth}
+      >
         {/* Current message */}
         <StyledDx7ScreenMessage
           style={{

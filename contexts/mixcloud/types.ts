@@ -95,6 +95,9 @@ export type MixcloudContextState = {
       React.SetStateAction<string | undefined>
     >;
     temporaryMessage: string | undefined;
+    isResizing: boolean;
+    screenComponentWidth: number;
+    screenComponentCharsPerLine: number;
   };
   session: {
     background: BackgroundExtended | undefined;
