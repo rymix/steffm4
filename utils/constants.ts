@@ -42,3 +42,5 @@ export const DEFAULT_BACKGROUND: BackgroundExtended = {
   },
 };
 export const STORAGE_PREFIX = "https://steffm.blob.core.windows.net/steffm/";
+export const PICOVOICE_KEY =
+  "MxooLir5tEfehnurWbvN+CJt/uxsazpZZfi21s8bQeHfc1Xsg3thnw==";

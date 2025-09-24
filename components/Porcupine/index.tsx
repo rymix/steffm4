@@ -1,9 +1,14 @@
 import { usePorcupine } from "@picovoice/porcupine-react";
 import { BuiltInKeyword, PorcupineKeyword } from "@picovoice/porcupine-web";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { PICOVOICE_KEY } from "utils/constants";
 
-import porcupineKeywords from "./lib/porcupineKeywords.js";
-import porcupineModel from "./lib/porcupineModel.js";
+const porcupineModel = {
+  publicPath: "voicemodels/porcupine_params.pv",
+  customWritePath: "3.0.0_porcupine_params.pv",
+};
+
+const porcupineKeywords = [];
 
 if (
   porcupineKeywords.length === 0 &&
@@ -11,8 +16,13 @@ if (
 ) {
   for (const k in BuiltInKeyword) {
     // @ts-ignore
+    console.log("k", k);
     porcupineKeywords.push({ builtin: k });
   }
+  console.log(
+    "--------------------------------------porcupineKeywords",
+    porcupineKeywords,
+  );
 }
 
 export const Porcupine: React.FC = () => {
@@ -34,13 +44,13 @@ export const Porcupine: React.FC = () => {
     release,
   } = usePorcupine();
 
-  const initEngine = useCallback(async () => {
-    if (accessKeyRef.current.length === 0) {
-      return;
-    }
+  console.log("farts");
 
-    await init(accessKeyRef.current, [keyword], porcupineModel);
-  }, [init, keyword]);
+  useEffect(() => {
+    console.log("----------------------keyword", keyword);
+
+    init(PICOVOICE_KEY, [keyword], porcupineModel);
+  }, []);
 
   const setSelectedKeyword = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selected = e.target.value;
@@ -55,11 +65,10 @@ export const Porcupine: React.FC = () => {
   useEffect(() => {
     const changeKeyword = async (): Promise<void> => {
       await release();
-      await initEngine();
     };
 
     changeKeyword();
-  }, [initEngine, release]);
+  }, [release]);
 
   useEffect(() => {
     if (keywordDetection !== null) {
@@ -70,23 +79,6 @@ export const Porcupine: React.FC = () => {
   return (
     <div className="voice-widget">
       <h2>VoiceWidget</h2>
-      <h3>
-        <label>
-          AccessKey obtained from{" "}
-          <a href="https://console.picovoice.ai/">Picovoice Console</a>:{" "}
-          MxooLir5tEfehnurWbvN+CJt/uxsazpZZfi21s8bQeHfc1Xsg3thnw==
-          <input
-            type="text"
-            name="accessKey"
-            onChange={(e) => {
-              accessKeyRef.current = e.target.value;
-            }}
-          />
-          <button className="init-button" onClick={() => initEngine()}>
-            Init Porcupine
-          </button>
-        </label>
-      </h3>
       <h3>Loaded: {JSON.stringify(isLoaded)}</h3>
       <h3>Listening: {JSON.stringify(isListening)}</h3>
       <h3>Error: {JSON.stringify(error !== null)}</h3>
