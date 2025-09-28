@@ -1,6 +1,4 @@
-const porcupineKeywords = [
-
-];
+const porcupineKeywords = [];
 
 (function () {
   if (typeof module !== "undefined" && typeof module.exports !== "undefined")

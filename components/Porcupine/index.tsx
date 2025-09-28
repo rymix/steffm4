@@ -10,6 +10,11 @@ const porcupineModel = {
 
 const defaultKeyword = { builtin: "Alexa" } as PorcupineKeyword;
 
+const customKeyword = {
+  publicPath: "/voicemodels/Hey-Steph_en_wasm_v3_0_0.ppn",
+  label: "Hey Stef",
+};
+
 export const Porcupine: React.FC = () => {
   const [keywordDetections, setKeywordDetections] = useState<string[]>([]);
 
@@ -25,7 +30,7 @@ export const Porcupine: React.FC = () => {
   } = usePorcupine();
 
   useEffect(() => {
-    init(PICOVOICE_KEY, [defaultKeyword], porcupineModel);
+    init(PICOVOICE_KEY, [customKeyword], porcupineModel);
   }, []);
 
   useEffect(() => {
