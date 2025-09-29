@@ -43,6 +43,13 @@ export const LogEmoji = {
   // User actions
   SHARE: "🔗", // Sharing functionality
   FAVOURITE: "⭐", // Favourite operations
+
+  // Voice operations
+  VOICE: "🎤", // Voice control operations
+  WAKE: "👂", // Wake word detection
+  COMMAND: "💬", // Command recognition
+  SPEECH: "🗣️", // Speech API events
+  MATCH: "🎯", // Command matching
 } as const;
 
 type LogLevel = "log" | "warn" | "error" | "info";
@@ -85,6 +92,11 @@ export const logger = {
   search: createLogger(LogEmoji.SEARCH),
   share: createLogger(LogEmoji.SHARE),
   favourite: createLogger(LogEmoji.FAVOURITE),
+  voice: createLogger(LogEmoji.VOICE),
+  wake: createLogger(LogEmoji.WAKE),
+  command: createLogger(LogEmoji.COMMAND),
+  speech: createLogger(LogEmoji.SPEECH),
+  match: createLogger(LogEmoji.MATCH),
 };
 
 // Essential loggers (always show, even when DEBUG is false)

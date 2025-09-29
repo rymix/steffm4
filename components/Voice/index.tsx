@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const Voice: React.FC = () => {
   const [isClient, setIsClient] = useState(false);
-  
+
   const {
     controls: {
       handleLoadLatest,
