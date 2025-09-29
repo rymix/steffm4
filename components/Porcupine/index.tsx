@@ -1,5 +1,4 @@
 import { usePorcupine } from "@picovoice/porcupine-react";
-import { PorcupineKeyword } from "@picovoice/porcupine-web";
 import React, { useEffect, useState } from "react";
 import { PICOVOICE_KEY } from "utils/constants";
 
@@ -8,7 +7,7 @@ const porcupineModel = {
   customWritePath: "3.0.0_porcupine_params.pv",
 };
 
-const defaultKeyword = { builtin: "Alexa" } as PorcupineKeyword;
+// const defaultKeyword = { builtin: "Alexa" } as PorcupineKeyword;
 
 const customKeyword = {
   publicPath: "/voicemodels/Hey-Steph_en_wasm_v3_0_0.ppn",
@@ -18,28 +17,12 @@ const customKeyword = {
 export const Porcupine: React.FC = () => {
   const [keywordDetections, setKeywordDetections] = useState<string[]>([]);
 
-  const {
-    keywordDetection,
-    isLoaded,
-    isListening,
-    error,
-    init,
-    start,
-    stop,
-    release,
-  } = usePorcupine();
+  const { keywordDetection, isLoaded, isListening, error, init, start, stop } =
+    usePorcupine();
 
   useEffect(() => {
     init(PICOVOICE_KEY, [customKeyword], porcupineModel);
   }, []);
-
-  useEffect(() => {
-    const changeKeyword = async (): Promise<void> => {
-      await release();
-    };
-
-    changeKeyword();
-  }, [release]);
 
   useEffect(() => {
     if (keywordDetection !== null) {
@@ -67,13 +50,6 @@ export const Porcupine: React.FC = () => {
         type="button"
       >
         Stop
-      </button>
-      <button
-        onClick={() => release()}
-        disabled={error !== null || !isLoaded}
-        type="button"
-      >
-        Release
       </button>
       <h3>Keyword Detections:</h3>
       {keywordDetections.length > 0 && (
