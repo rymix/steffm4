@@ -22,7 +22,7 @@ export const StyledDx7Screen = styled.div<StyledDx7ScreenProps>`
   background-color: ${(props) =>
     props.$lightOn ? "rgba(210, 238, 10, 1)" : "rgba(74, 84, 77, 1)"};
   color: rgba(36, 29, 25, 0.6);
-  font-family: "Repetition";
+  font-family: Repetition;
   font-size: 20px;
   line-height: 1.2;
   padding: 20px;

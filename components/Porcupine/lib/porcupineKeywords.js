@@ -1,7 +1,7 @@
-/* eslint-disable unicorn/no-typeof-undefined */
+/* eslint-disable func-names */
 const porcupineKeywords = [];
 
 (function () {
-  if (typeof module !== "undefined" && typeof module.exports !== "undefined")
+  if (typeof module !== "undefined" && module.exports !== undefined)
     module.exports = porcupineKeywords;
 })();
