@@ -4,6 +4,6 @@ const porcupineModel = {
 };
 
 (function () {
-  if (typeof module !== "undefined" && typeof module.exports !== "undefined")
+  if (typeof module !== "undefined" && module.exports !== undefined)
     module.exports = porcupineModel;
 })();

@@ -7,6 +7,7 @@ import {
   useAutoplayInteractionTracking,
 } from "utils/mobileAutoplayHelper";
 
+import type { WidgetManagementReturn } from "../types";
 import type { MixcloudAPIState } from "./useMixcloudAPI";
 import type { MixcloudCoreState } from "./useMixcloudCore";
 import type { ModalWithTimerState } from "./useModalWithTimer";
@@ -20,7 +21,7 @@ export const useWidgetManagement = (
   api: MixcloudAPIState,
   modal: ModalWithTimerState,
   handleNext: () => void,
-) => {
+): WidgetManagementReturn => {
   const { refs, widget, data, core } = coreState;
   const { isMobile } = useAutoplayInteractionTracking();
 

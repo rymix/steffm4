@@ -1,4 +1,4 @@
-import type { Scale } from "contexts/mixcloud/types";
+import type { ResponsiveDesignReturn, Scale } from "contexts/mixcloud/types";
 import { useEffect, useState } from "react";
 import { DISPLAY_LENGTH } from "utils/constants";
 import { DEBUG } from "utils/logger";
@@ -40,7 +40,9 @@ const detectMobileDevice = (): boolean => {
 /**
  * Hook for managing responsive design and screen calculations
  */
-export const useResponsiveDesign = (coreState: MixcloudCoreState) => {
+export const useResponsiveDesign = (
+  coreState: MixcloudCoreState,
+): ResponsiveDesignReturn => {
   const { refs } = coreState;
 
   // ================================================================

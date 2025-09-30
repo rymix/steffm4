@@ -2,12 +2,15 @@ import type { Mix } from "db/types";
 import themes from "styles/themes";
 import { copyToClipboard } from "utils/functions";
 
+import type { ThemeAndSessionReturn } from "../types";
 import type { MixcloudCoreState } from "./useMixcloudCore";
 
 /**
  * Hook for managing theme and session-related functionality
  */
-export const useThemeAndSession = (coreState: MixcloudCoreState) => {
+export const useThemeAndSession = (
+  coreState: MixcloudCoreState,
+): ThemeAndSessionReturn => {
   const { preferences, data } = coreState;
 
   // ================================================================

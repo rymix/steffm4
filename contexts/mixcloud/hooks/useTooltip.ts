@@ -1,9 +1,11 @@
 import { useRef, useState } from "react";
 
+import type { TooltipReturn } from "../types";
+
 /**
  * Hook for managing tooltip display and behavior
  */
-export const useTooltip = () => {
+export const useTooltip = (): TooltipReturn => {
   // ================================================================
   // STATE
   // ================================================================

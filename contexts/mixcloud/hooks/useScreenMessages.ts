@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { DEFAULT_MESSAGE } from "utils/constants";
 
+import type { ScreenMessagesReturn } from "../types";
+
 /**
  * Hook for managing screen messages (holding and temporary messages)
  */
-export const useScreenMessages = () => {
+export const useScreenMessages = (): ScreenMessagesReturn => {
   // ================================================================
   // STATE
   // ================================================================

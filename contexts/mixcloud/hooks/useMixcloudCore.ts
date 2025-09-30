@@ -17,6 +17,7 @@ import {
  * Core shared state hook for Mixcloud functionality
  * Contains essential shared state that other hooks depend on
  */
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const useMixcloudCore = () => {
   // ================================================================
   // REFS AND IMMUTABLE STATE

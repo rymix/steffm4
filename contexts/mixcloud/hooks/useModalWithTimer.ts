@@ -1,11 +1,14 @@
 import { ReactNode, useCallback, useState } from "react";
 
+import type { ModalWithTimerReturn } from "../types";
 import type { MixcloudCoreState } from "./useMixcloudCore";
 
 /**
  * Hook for managing modal state with auto-close timer functionality
  */
-export const useModalWithTimer = (coreState: MixcloudCoreState) => {
+export const useModalWithTimer = (
+  coreState: MixcloudCoreState,
+): ModalWithTimerReturn => {
   const { refs, preferences } = coreState;
 
   // ================================================================

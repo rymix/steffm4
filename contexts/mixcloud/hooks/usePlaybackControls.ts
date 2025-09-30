@@ -2,12 +2,15 @@ import { useCallback } from "react";
 import useSound from "use-sound";
 import { logger } from "utils/logger";
 
+import type { PlaybackControlsReturn } from "../types";
 import type { MixcloudCoreState } from "./useMixcloudCore";
 
 /**
  * Hook for managing playback controls (play, pause, seek, volume)
  */
-export const usePlaybackControls = (coreState: MixcloudCoreState) => {
+export const usePlaybackControls = (
+  coreState: MixcloudCoreState,
+): PlaybackControlsReturn => {
   const { widget, preferences, refs, data } = coreState;
 
   // ================================================================

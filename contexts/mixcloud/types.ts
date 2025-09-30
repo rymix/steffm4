@@ -25,6 +25,167 @@ export type MobileAutoplayDetection = {
   shouldShowModal: boolean;
 };
 
+// Hook return types for individual hooks
+export type PlaybackControlsReturn = {
+  // Actions
+  handlePlay: () => void;
+  handlePause: () => void;
+  handleSeek: (_seconds: number) => Promise<boolean>;
+  handleVolumeChange: (_newVolume: number) => void;
+  togglePlayPause: () => void;
+  // State
+  playing: boolean;
+  volume: number;
+  loaded: boolean;
+};
+
+export type NavigationControlsReturn = {
+  // Actions
+  handleNext: () => void;
+  handlePrevious: () => void;
+  handleRandom: (_category?: string) => Promise<void>;
+  handleLoadLatest: () => Promise<void>;
+  handleLoadRandomFavourite: () => Promise<void>;
+  updateSelectedCategory: (_index: number) => void;
+  // State
+  selectedCategory: string | null | undefined;
+  categories: Category[] | undefined;
+};
+
+export type MixcloudAPIReturn = {
+  // API functions
+  fetchRandomMcKey: () => Promise<string>;
+  fetchRandomMcKeyByCategory: (_category: string | null) => Promise<string>;
+  fetchLatestMcKey: () => Promise<string>;
+  fetchMixDetails: (_mcKey: string) => Promise<Mix>;
+  fetchCategories: () => Promise<Category[]>;
+  fetchMixes: () => Promise<Mix[]>;
+  // State
+  categories: Category[] | undefined;
+  mixes: Mix[];
+};
+
+export type FavouritesReturn = {
+  favouritesList: Favourite[];
+  isFavourite: (_mcKey: string) => boolean;
+  addFavourite: (_mcKey: string) => void;
+  removeFavourite: (_mcKey: string) => void;
+  getRandomFavouriteMcKey: () => Promise<string>;
+  setFavouritesList: React.Dispatch<React.SetStateAction<Favourite[]>>;
+  mixIsFavourite: boolean;
+};
+
+export type ResponsiveDesignReturn = {
+  scale: Scale;
+  setScale: React.Dispatch<React.SetStateAction<Scale>>;
+  displayLength: number;
+  setDisplayLength: React.Dispatch<React.SetStateAction<number>>;
+  isMobileDevice: boolean;
+  setIsMobileDevice: React.Dispatch<React.SetStateAction<boolean>>;
+  isAtBottom: boolean;
+  setIsAtBottom: React.Dispatch<React.SetStateAction<boolean>>;
+  touchStartY: number;
+  setTouchStartY: React.Dispatch<React.SetStateAction<number>>;
+  swipeDistance: number;
+  setSwipeDistance: React.Dispatch<React.SetStateAction<number>>;
+  screen: {
+    isResizing: boolean;
+    screenComponentWidth: number;
+    screenComponentCharsPerLine: number;
+  };
+  detectMobileDevice: () => boolean;
+  handleResize: () => void;
+};
+
+export type ScreenMessagesReturn = {
+  temporaryMessage: string | undefined;
+  holdingMessage: string | undefined;
+  setTemporaryMessage: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setHoldingMessage: React.Dispatch<React.SetStateAction<string | undefined>>;
+};
+
+export type ThemeAndSessionReturn = {
+  theme: DefaultTheme;
+  themeName: string;
+  setThemeName: React.Dispatch<React.SetStateAction<string>>;
+  playerTheme: "Jupiter" | "Dx7";
+  setPlayerTheme: React.Dispatch<React.SetStateAction<"Jupiter" | "Dx7">>;
+  background: BackgroundExtended | undefined;
+  setBackground: React.Dispatch<
+    React.SetStateAction<BackgroundExtended | undefined>
+  >;
+  backgroundAutoChange: boolean;
+  setBackgroundAutoChange: React.Dispatch<React.SetStateAction<boolean>>;
+  filterBackgroundCategory: string | undefined;
+  setFilterBackgroundCategory: React.Dispatch<
+    React.SetStateAction<string | undefined>
+  >;
+  displayLength: number;
+  dx7ScreenLight: boolean;
+  setDx7ScreenLight: React.Dispatch<React.SetStateAction<boolean>>;
+  enableAudio: boolean;
+  setEnableAudio: React.Dispatch<React.SetStateAction<boolean>>;
+  keyboardShortcutsEnabled: boolean;
+  setKeyboardShortcutsEnabled: React.Dispatch<React.SetStateAction<boolean>>;
+  copySharableLink: (_localMix?: Mix) => void;
+  categoryName: string;
+};
+
+export type TooltipReturn = {
+  tooltipMessage: string | null;
+  setTooltipMessage: React.Dispatch<React.SetStateAction<string | null>>;
+  tooltipVisible: boolean;
+  setTooltipVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  tooltipFading: boolean;
+  setTooltipFading: React.Dispatch<React.SetStateAction<boolean>>;
+  tooltipPosition: { x: number; y: number };
+  setTooltipPosition: React.Dispatch<
+    React.SetStateAction<{ x: number; y: number }>
+  >;
+  showTooltip: (_message: string, _x: number, _y: number) => void;
+  hideTooltip: () => void;
+  cleanup: () => void;
+  refs: {
+    tooltipTimer: React.MutableRefObject<ReturnType<typeof setTimeout> | null>;
+    tooltipFadeTimer: React.MutableRefObject<ReturnType<
+      typeof setTimeout
+    > | null>;
+  };
+};
+
+export type ModalWithTimerReturn = {
+  modalContent: ReactNode | null;
+  setModalContent: React.Dispatch<React.SetStateAction<ReactNode | null>>;
+  modalOpen: boolean;
+  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  modalTitle: string | null;
+  setModalTitle: React.Dispatch<React.SetStateAction<string | null>>;
+  modalHideChrome: boolean;
+  setModalHideChrome: React.Dispatch<React.SetStateAction<boolean>>;
+  secondsRemaining: number | null;
+  setSecondsRemaining: React.Dispatch<React.SetStateAction<number | null>>;
+  menuOpen: boolean;
+  setMenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  openModal: (
+    _content: ReactNode,
+    _title?: string,
+    _seconds?: number,
+    _hideChrome?: boolean,
+    _disableShortcuts?: boolean,
+  ) => void;
+  handleCloseModal: () => void;
+  startTimer: (_seconds: number) => void;
+  stopTimer: () => void;
+};
+
+export type WidgetManagementReturn = {
+  changeMix: (_mixKey: string, _autoplay?: boolean) => void;
+  setupEventListeners: (_widgetInstance: any) => void;
+  handleLoad: (_localMcKey?: string, _isDynamicRoute?: boolean) => void;
+  mobileAutoplayTimerRef: React.MutableRefObject<NodeJS.Timeout | null>;
+  mobileAutoplayDetectionRef: React.MutableRefObject<MobileAutoplayDetection>;
+};
+
 export type MixcloudContextState = {
   isReady: boolean;
   mcKey: string;

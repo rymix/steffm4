@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import useSound from "use-sound";
 import { logger } from "utils/logger";
 
+import type { NavigationControlsReturn } from "../types";
 import type { FavouritesState } from "./useFavourites";
 import type { MixcloudCoreState } from "./useMixcloudCore";
 
@@ -15,7 +16,7 @@ export const useNavigationControls = (
   loadMix: (_mcKey: string) => void,
   fetchRandomMcKey: (_category: string | null) => Promise<string>,
   fetchLatestMcKey: () => Promise<string>,
-) => {
+): NavigationControlsReturn => {
   const { preferences, filters } = coreState;
 
   // ================================================================

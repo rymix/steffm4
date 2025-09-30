@@ -2,12 +2,15 @@ import type { Category, Mix } from "db/types";
 import { useCallback, useEffect } from "react";
 import { logger } from "utils/logger";
 
+import type { MixcloudAPIReturn } from "../types";
 import type { MixcloudCoreState } from "./useMixcloudCore";
 
 /**
  * Hook for managing Mixcloud API calls and data fetching
  */
-export const useMixcloudAPI = (coreState: MixcloudCoreState) => {
+export const useMixcloudAPI = (
+  coreState: MixcloudCoreState,
+): MixcloudAPIReturn => {
   const { filters } = coreState;
 
   // ================================================================

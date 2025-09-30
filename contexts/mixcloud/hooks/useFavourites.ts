@@ -1,17 +1,19 @@
-import type { Favourite } from "contexts/mixcloud/types";
+import type { Favourite, FavouritesReturn } from "contexts/mixcloud/types";
 
 import type { MixcloudCoreState } from "./useMixcloudCore";
 
 /**
  * Hook for managing user favourites
  */
-export const useFavourites = (coreState: MixcloudCoreState) => {
+export const useFavourites = (
+  coreState: MixcloudCoreState,
+): FavouritesReturn => {
   const { preferences, data } = coreState;
 
   // Check if a mix is a favourite
   const isFavourite = (localMcKey: string): boolean => {
     return preferences.favouritesList.some(
-      (favourite) => favourite.mcKey === localMcKey,
+      (favourite: Favourite) => favourite.mcKey === localMcKey,
     );
   };
 
@@ -29,7 +31,7 @@ export const useFavourites = (coreState: MixcloudCoreState) => {
   // Remove a mix from favourites
   const removeFavourite = (localMcKey: string): void => {
     const updatedFavourites = preferences.favouritesList.filter(
-      (favourite) => favourite.mcKey !== localMcKey,
+      (favourite: Favourite) => favourite.mcKey !== localMcKey,
     );
     preferences.setFavouritesList(updatedFavourites);
   };
