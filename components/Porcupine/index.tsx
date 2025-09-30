@@ -1,6 +1,6 @@
 /* eslint-disable unicorn/prefer-global-this */
 import { usePorcupine } from "@picovoice/porcupine-react";
-import { VoiceCommandMapping } from "components/Voice/types";
+import { VoiceCommandMapping } from "components/Porcupine/types";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { PICOVOICE_KEY } from "utils/constants";
