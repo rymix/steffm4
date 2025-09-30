@@ -29,33 +29,33 @@ declare global {
 
     stop(): void;
 
-    onaudioend: ((this: SpeechRecognition, ev: Event) => any) | null;
+    onaudioend: ((_this: SpeechRecognition, _ev: Event) => any) | null;
 
-    onaudiostart: ((this: SpeechRecognition, ev: Event) => any) | null;
+    onaudiostart: ((_this: SpeechRecognition, _ev: Event) => any) | null;
 
-    onend: ((this: SpeechRecognition, ev: Event) => any) | null;
+    onend: ((_this: SpeechRecognition, _ev: Event) => any) | null;
 
     onerror:
-      | ((this: SpeechRecognition, ev: SpeechRecognitionErrorEvent) => any)
+      | ((_this: SpeechRecognition, _ev: SpeechRecognitionErrorEvent) => any)
       | null;
 
     onnomatch:
-      | ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => any)
+      | ((_this: SpeechRecognition, _ev: SpeechRecognitionEvent) => any)
       | null;
 
     onresult:
-      | ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => any)
+      | ((_this: SpeechRecognition, _ev: SpeechRecognitionEvent) => any)
       | null;
 
-    onsoundend: ((this: SpeechRecognition, ev: Event) => any) | null;
+    onsoundend: ((_this: SpeechRecognition, _ev: Event) => any) | null;
 
-    onsoundstart: ((this: SpeechRecognition, ev: Event) => any) | null;
+    onsoundstart: ((_this: SpeechRecognition, _ev: Event) => any) | null;
 
-    onspeechend: ((this: SpeechRecognition, ev: Event) => any) | null;
+    onspeechend: ((_this: SpeechRecognition, _ev: Event) => any) | null;
 
-    onspeechstart: ((this: SpeechRecognition, ev: Event) => any) | null;
+    onspeechstart: ((_this: SpeechRecognition, _ev: Event) => any) | null;
 
-    onstart: ((this: SpeechRecognition, ev: Event) => any) | null;
+    onstart: ((_this: SpeechRecognition, _ev: Event) => any) | null;
   }
 
   interface SpeechRecognitionEvent extends Event {
@@ -65,14 +65,14 @@ declare global {
 
   interface SpeechRecognitionResultList {
     readonly length: number;
-    item(index: number): SpeechRecognitionResult;
+    item(_index: number): SpeechRecognitionResult;
     [index: number]: SpeechRecognitionResult;
   }
 
   interface SpeechRecognitionResult {
     readonly isFinal: boolean;
     readonly length: number;
-    item(index: number): SpeechRecognitionAlternative;
+    item(_index: number): SpeechRecognitionAlternative;
     [index: number]: SpeechRecognitionAlternative;
   }
 
@@ -88,10 +88,10 @@ declare global {
 
   interface SpeechGrammarList {
     readonly length: number;
-    item(index: number): SpeechGrammar;
+    item(_index: number): SpeechGrammar;
     [index: number]: SpeechGrammar;
-    addFromString(string: string, weight?: number): void;
-    addFromURI(src: string, weight?: number): void;
+    addFromString(_string: string, _weight?: number): void;
+    addFromURI(_src: string, _weight?: number): void;
   }
 
   interface SpeechGrammar {
