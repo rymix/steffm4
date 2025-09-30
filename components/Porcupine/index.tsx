@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-global-this */
 import { usePorcupine } from "@picovoice/porcupine-react";
 import { VoiceCommandMapping } from "components/Voice/types";
 import { useMixcloud } from "contexts/mixcloud";
@@ -17,6 +18,29 @@ const customKeyword = {
 
 const commandTimeout = 5000;
 const silenceTimeout = 1500;
+
+// Levenshtein distance for fuzzy matching
+const levenshteinDistance = (str1: string, str2: string): number => {
+  const matrix: number[][] = Array.from({ length: str2.length + 1 }, () =>
+    Array.from({ length: str1.length + 1 }, () => 0),
+  );
+
+  for (let i = 0; i <= str1.length; i += 1) matrix[0][i] = i;
+  for (let j = 0; j <= str2.length; j += 1) matrix[j][0] = j;
+
+  for (let j = 1; j <= str2.length; j += 1) {
+    for (let i = 1; i <= str1.length; i += 1) {
+      const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
+      matrix[j][i] = Math.min(
+        matrix[j][i - 1] + 1,
+        matrix[j - 1][i] + 1,
+        matrix[j - 1][i - 1] + cost,
+      );
+    }
+  }
+
+  return matrix[str2.length][str1.length];
+};
 
 type VoiceStatus =
   | "idle"
@@ -58,7 +82,7 @@ export const Porcupine: React.FC = () => {
     usePorcupine();
 
   // Helper function to add debug info
-  const addDebugInfo = (info: string) => {
+  const addDebugInfo = (info: string): void => {
     if (DEBUG) {
       setDebugInfo((prev) => [
         ...prev.slice(-9),
@@ -138,29 +162,6 @@ export const Porcupine: React.FC = () => {
     return similarity >= threshold;
   };
 
-  // Levenshtein distance for fuzzy matching
-  const levenshteinDistance = (str1: string, str2: string): number => {
-    const matrix = Array(str2.length + 1)
-      .fill(null)
-      .map(() => Array(str1.length + 1).fill(null));
-
-    for (let i = 0; i <= str1.length; i++) matrix[0][i] = i;
-    for (let j = 0; j <= str2.length; j++) matrix[j][0] = j;
-
-    for (let j = 1; j <= str2.length; j++) {
-      for (let i = 1; i <= str1.length; i++) {
-        const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
-        matrix[j][i] = Math.min(
-          matrix[j][i - 1] + 1,
-          matrix[j - 1][i] + 1,
-          matrix[j - 1][i - 1] + cost,
-        );
-      }
-    }
-
-    return matrix[str2.length][str1.length];
-  };
-
   // Define resetCommandListening first (before other functions that use it)
   const resetCommandListening = useCallback(() => {
     logger.command("🔄 Resetting command listening");
@@ -189,11 +190,11 @@ export const Porcupine: React.FC = () => {
       try {
         speechRecognitionRef.current.stop(); // Use stop() instead of abort()
         logger.speech("🛑 Speech recognition stopped");
-      } catch (error) {
+      } catch {
         try {
           speechRecognitionRef.current.abort();
           logger.speech("🛑 Speech recognition aborted (fallback)");
-        } catch (abortError) {
+        } catch {
           logger.speech("⚠️ Error stopping speech recognition (ignored)");
         }
       }
@@ -215,12 +216,12 @@ export const Porcupine: React.FC = () => {
       let bestScore = 0;
       const scores: { intent: string; score: number; details: string }[] = [];
 
-      for (const mapping of voiceCommandMappings) {
+      voiceCommandMappings.forEach((mapping) => {
         let score = 0;
-        let scoreDetails: string[] = [];
+        const scoreDetails: string[] = [];
 
         // Check for primary keywords (higher weight)
-        for (const keyword of mapping.keywords) {
+        mapping.keywords.forEach((keyword) => {
           if (words.includes(keyword)) {
             score += 3;
             scoreDetails.push(`exact match: "${keyword}" (+3)`);
@@ -236,7 +237,7 @@ export const Porcupine: React.FC = () => {
           }
 
           // Fuzzy matching for slight variations
-          for (const word of words) {
+          words.forEach((word) => {
             if (word !== keyword && isStringSimilar(word, keyword)) {
               score += 2;
               scoreDetails.push(`fuzzy: "${word}"~"${keyword}" (+2)`);
@@ -244,11 +245,11 @@ export const Porcupine: React.FC = () => {
                 `🔄 Fuzzy match: "${word}" ~ "${keyword}" in intent "${mapping.intent}"`,
               );
             }
-          }
-        }
+          });
+        });
 
         // Check for context synonyms (lower weight)
-        for (const synonym of mapping.synonyms) {
+        mapping.synonyms.forEach((synonym) => {
           if (words.includes(synonym)) {
             score += 1;
             scoreDetails.push(`synonym: "${synonym}" (+1)`);
@@ -262,7 +263,7 @@ export const Porcupine: React.FC = () => {
               `📝 Contains synonym: "${synonym}" in intent "${mapping.intent}"`,
             );
           }
-        }
+        });
 
         // Bonus for intent-specific patterns
         if (
@@ -302,7 +303,7 @@ export const Porcupine: React.FC = () => {
           bestScore = score;
           bestMatch = mapping;
         }
-      }
+      });
 
       // Log all scores
       logger.command("Scoring results:");
@@ -316,21 +317,30 @@ export const Porcupine: React.FC = () => {
         });
 
       // Require minimum confidence threshold
-      if (bestScore >= 2) {
+      if (bestScore >= 2 && bestMatch !== null) {
+        const match = bestMatch as VoiceCommandMapping;
         logger.success(
-          `🎉 Best match: "${bestMatch?.intent}" with score ${bestScore}`,
+          `🎉 Best match: "${match.intent}" with score ${bestScore}`,
         );
-        addDebugInfo(`Match: ${bestMatch?.intent} (score: ${bestScore})`);
-        return bestMatch?.handler || null;
-      } else {
-        logger.warning(
-          `⚠️ No match found (best score: ${bestScore}, threshold: 2)`,
-        );
-        addDebugInfo(`No match (best score: ${bestScore})`);
-        return null;
+        addDebugInfo(`Match: ${match.intent} (score: ${bestScore})`);
+        return match.handler || null;
       }
+
+      logger.warning(
+        `⚠️ No match found (best score: ${bestScore}, threshold: 2)`,
+      );
+      addDebugInfo(`No match (best score: ${bestScore})`);
+      return null;
     },
-    [voiceCommandMappings],
+    [
+      handleNext,
+      handlePrevious,
+      handlePlay,
+      handlePause,
+      handleLoadLatest,
+      handleLoadRandom,
+      handleLoadRandomFavourite,
+    ],
   );
 
   const processVoiceCommand = useCallback(
@@ -351,7 +361,7 @@ export const Porcupine: React.FC = () => {
         try {
           speechRecognitionRef.current.stop();
           logger.speech("🛑 Stopped recognition before executing command");
-        } catch (e) {
+        } catch {
           logger.speech("⚠️ Error stopping recognition (ignored)");
         }
       }
@@ -435,12 +445,14 @@ export const Porcupine: React.FC = () => {
         } else if (recognitionActiveRef.current) {
           logger.speech("⚠️ Recognition already active, skipping start()");
         }
-      } catch (error: any) {
-        if (error.message && error.message.includes("already started")) {
+      } catch (error_: any) {
+        if (error_.message && error_.message.includes("already started")) {
           logger.speech("⚠️ Speech recognition already running");
         } else {
-          essentialLogger.error(`Failed to start speech recognition: ${error}`);
-          addDebugInfo(`Start error: ${error}`);
+          essentialLogger.error(
+            `Failed to start speech recognition: ${error_}`,
+          );
+          addDebugInfo(`Start error: ${error_}`);
           resetCommandListening();
         }
       }
@@ -483,217 +495,237 @@ export const Porcupine: React.FC = () => {
 
   // Initialize Speech Recognition (only once on mount)
   useEffect(() => {
+    let recognition: any = null;
+
     if (
-      !("webkitSpeechRecognition" in window) &&
-      !("SpeechRecognition" in window)
+      window === undefined ||
+      (!("webkitSpeechRecognition" in window) &&
+        !("SpeechRecognition" in window))
     ) {
-      essentialLogger.error("Speech recognition not supported in this browser");
-      return;
-    }
-
-    logger.speech("🔧 Initializing Web Speech API");
-
-    const SpeechRecognition =
-      window.SpeechRecognition || window.webkitSpeechRecognition;
-    const recognition = new SpeechRecognition();
-
-    recognition.continuous = true; // Keep listening until we stop it
-    recognition.interimResults = true; // Get interim results to detect pauses
-    recognition.lang = "en-GB"; // British English
-    recognition.maxAlternatives = 3; // Get multiple alternatives for better debugging
-
-    recognition.onstart = () => {
-      recognitionActiveRef.current = true;
-      logger.speech("🟢 Speech recognition started");
-      addDebugInfo("Speech recognition started");
-    };
-
-    recognition.onspeechstart = () => {
-      logger.speech("🗣️ Speech detected");
-      addDebugInfo("Speech detected");
-    };
-
-    recognition.onspeechend = () => {
-      logger.speech("🔇 Speech ended");
-      addDebugInfo("Speech ended");
-    };
-
-    recognition.onnomatch = () => {
-      logger.speech("❓ No speech match");
-      addDebugInfo("No speech match");
-    };
-
-    recognition.onresult = (event) => {
-      // Check refs directly each time the handler is called
-      const currentlyListening = isCommandListeningRef.current;
-      const currentlyProcessing = isProcessingRef.current;
-
-      logger.speech(
-        `📊 State check - processing: ${currentlyProcessing}, listening: ${currentlyListening}`,
-      );
-
-      // Don't process results if we're already processing or not listening
-      if (currentlyProcessing || !currentlyListening) {
-        logger.speech(
-          `⏭️ Ignoring result - processing: ${currentlyProcessing}, listening: ${currentlyListening}`,
+      if (window !== undefined) {
+        essentialLogger.error(
+          "Speech recognition not supported in this browser",
         );
-        // Log what we're ignoring for debugging
-        if (event.results.length > 0 && event.results[event.resultIndex]) {
-          const ignoredText = event.results[event.resultIndex][0].transcript;
-          logger.speech(`   Ignored text: "${ignoredText}"`);
-        }
-        return;
       }
+    } else {
+      logger.speech("🔧 Initializing Web Speech API");
 
-      logger.speech(
-        `📝 Got result event. Results length: ${event.results.length}`,
-      );
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
 
-      // Clear any existing silence timeout
-      if (silenceTimeoutRef.current) {
-        clearTimeout(silenceTimeoutRef.current);
-        logger.speech("⏱️ Cleared silence timeout");
-      }
+      recognition.continuous = true; // Keep listening until we stop it
+      recognition.interimResults = true; // Get interim results to detect pauses
+      recognition.lang = "en-GB"; // British English
+      recognition.maxAlternatives = 3; // Get multiple alternatives for better debugging
 
-      // Process results
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        const result = event.results[i];
-        const transcript = result[0].transcript;
-        const confidence = result[0].confidence;
+      recognition.onstart = () => {
+        recognitionActiveRef.current = true;
+        logger.speech("🟢 Speech recognition started");
+        addDebugInfo("Speech recognition started");
+      };
 
-        if (result.isFinal) {
-          transcriptRef.current.final += transcript + " ";
-          transcriptRef.current.last = transcriptRef.current.final.trim();
+      recognition.onspeechstart = () => {
+        logger.speech("🗣️ Speech detected");
+        addDebugInfo("Speech detected");
+      };
 
+      recognition.onspeechend = () => {
+        logger.speech("🔇 Speech ended");
+        addDebugInfo("Speech ended");
+      };
+
+      recognition.onnomatch = () => {
+        logger.speech("❓ No speech match");
+        addDebugInfo("No speech match");
+      };
+
+      recognition.onresult = (event: any) => {
+        // Check refs directly each time the handler is called
+        const currentlyListening = isCommandListeningRef.current;
+        const currentlyProcessing = isProcessingRef.current;
+
+        logger.speech(
+          `📊 State check - processing: ${currentlyProcessing}, listening: ${currentlyListening}`,
+        );
+
+        // Don't process results if we're already processing or not listening
+        if (currentlyProcessing || !currentlyListening) {
           logger.speech(
-            `✅ Final result: "${transcript}" (confidence: ${confidence?.toFixed(2) || "N/A"})`,
+            `⏭️ Ignoring result - processing: ${currentlyProcessing}, listening: ${currentlyListening}`,
           );
-          addDebugInfo(`Final: "${transcript}"`);
-
-          // Log alternatives if in debug mode
-          if (DEBUG && result.length > 1) {
-            for (let j = 1; j < Math.min(result.length, 3); j++) {
-              logger.speech(
-                `  Alternative ${j}: "${result[j].transcript}" (${result[j].confidence?.toFixed(2) || "N/A"})`,
-              );
-            }
+          // Log what we're ignoring for debugging
+          if (event.results.length > 0 && event.results[event.resultIndex]) {
+            const ignoredText = event.results[event.resultIndex][0].transcript;
+            logger.speech(`   Ignored text: "${ignoredText}"`);
           }
+          return;
+        }
 
-          setLastCommand(transcriptRef.current.last);
+        logger.speech(
+          `📝 Got result event. Results length: ${event.results.length}`,
+        );
 
-          // Start 3-second silence timer after final result
-          logger.speech(
-            `⏱️ Starting ${silenceTimeout / 1000}-second silence timer`,
-          );
-          silenceTimeoutRef.current = setTimeout(() => {
-            // Check refs again inside the timeout
-            if (!isProcessingRef.current && isCommandListeningRef.current) {
-              logger.speech("⏰ Silence timeout reached");
-              if (transcriptRef.current.last) {
-                logger.command(
-                  `🎯 Processing final command: "${transcriptRef.current.last}"`,
+        // Clear any existing silence timeout
+        if (silenceTimeoutRef.current) {
+          clearTimeout(silenceTimeoutRef.current);
+          logger.speech("⏱️ Cleared silence timeout");
+        }
+
+        // Process results
+        for (let i = event.resultIndex; i < event.results.length; i += 1) {
+          const result = event.results[i];
+          const { transcript } = result[0];
+          const { confidence } = result[0];
+
+          if (result.isFinal) {
+            transcriptRef.current.final += `${transcript} `;
+            transcriptRef.current.last = transcriptRef.current.final.trim();
+
+            logger.speech(
+              `✅ Final result: "${transcript}" (confidence: ${confidence?.toFixed(2) || "N/A"})`,
+            );
+            addDebugInfo(`Final: "${transcript}"`);
+
+            // Log alternatives if in debug mode
+            if (DEBUG && result.length > 1) {
+              for (let j = 1; j < Math.min(result.length, 3); j += 1) {
+                logger.speech(
+                  `  Alternative ${j}: "${result[j].transcript}" (${result[j].confidence?.toFixed(2) || "N/A"})`,
                 );
-                processVoiceCommand(transcriptRef.current.last);
-              } else {
-                logger.warning("⚠️ No transcript to process");
-                resetCommandListening();
               }
-            } else {
-              logger.speech(
-                `⏰ Silence timeout reached but skipping - processing: ${isProcessingRef.current}, listening: ${isCommandListeningRef.current}`,
-              );
             }
-          }, silenceTimeout);
-        } else {
-          logger.speech(`💭 Interim result: "${transcript}"`);
-          addDebugInfo(`Interim: "${transcript}"`);
-        }
-      }
-    };
 
-    recognition.onerror = (event) => {
-      if (event.error === "no-speech") {
-        logger.speech("🔇 No speech detected");
-        addDebugInfo("No speech detected");
-        // Don't reset on no-speech, let it keep trying
-      } else if (event.error === "audio-capture") {
-        essentialLogger.error("🎙️ Microphone error: Cannot capture audio");
-        addDebugInfo("Microphone error");
-        resetCommandListening();
-      } else if (event.error === "not-allowed") {
-        essentialLogger.error("🚫 Microphone permission denied");
-        addDebugInfo("Mic permission denied");
-        resetCommandListening();
-      } else if (event.error === "aborted") {
-        logger.speech("🛑 Recognition aborted");
-        addDebugInfo("Recognition aborted");
-      } else {
-        essentialLogger.error(`Speech recognition error: ${event.error}`);
-        addDebugInfo(`Error: ${event.error}`);
-        if (event.error !== "aborted") {
-          resetCommandListening();
-        }
-      }
-    };
+            setLastCommand(transcriptRef.current.last);
 
-    let restartAttempts = 0;
-    const maxRestartAttempts = 3;
-
-    recognition.onend = () => {
-      recognitionActiveRef.current = false;
-      logger.speech("🔴 Speech recognition ended");
-      addDebugInfo("Speech recognition ended");
-
-      if (isCommandListeningRef.current) {
-        // Recognition stopped unexpectedly, restart if still within timeout
-        if (commandTimeoutRef.current && restartAttempts < maxRestartAttempts) {
-          restartAttempts++;
-          logger.speech(
-            `🔄 Restarting speech recognition (attempt ${restartAttempts}/${maxRestartAttempts})`,
-          );
-          addDebugInfo(`Restarting (attempt ${restartAttempts})`);
-
-          // Add a small delay before restarting
-          setTimeout(() => {
-            try {
-              if (
-                speechRecognitionRef.current &&
-                isCommandListeningRef.current &&
-                !recognitionActiveRef.current
-              ) {
-                speechRecognitionRef.current.start();
-                logger.speech("✅ Restart successful");
-              }
-            } catch (e: any) {
-              if (e.message && e.message.includes("already started")) {
-                logger.speech("⚠️ Recognition already running");
-              } else {
-                logger.warning(`⚠️ Failed to restart: ${e.message || e}`);
-                if (restartAttempts >= maxRestartAttempts) {
+            // Start 3-second silence timer after final result
+            logger.speech(
+              `⏱️ Starting ${silenceTimeout / 1000}-second silence timer`,
+            );
+            silenceTimeoutRef.current = setTimeout(() => {
+              // Check refs again inside the timeout
+              if (!isProcessingRef.current && isCommandListeningRef.current) {
+                logger.speech("⏰ Silence timeout reached");
+                if (transcriptRef.current.last) {
+                  logger.command(
+                    `🎯 Processing final command: "${transcriptRef.current.last}"`,
+                  );
+                  processVoiceCommand(transcriptRef.current.last);
+                } else {
+                  logger.warning("⚠️ No transcript to process");
                   resetCommandListening();
                 }
+              } else {
+                logger.speech(
+                  `⏰ Silence timeout reached but skipping - processing: ${isProcessingRef.current}, listening: ${isCommandListeningRef.current}`,
+                );
               }
-            }
-          }, 200); // 200ms delay before restart
-        } else {
-          if (restartAttempts >= maxRestartAttempts) {
-            logger.warning(
-              `⚠️ Max restart attempts (${maxRestartAttempts}) reached`,
-            );
-            addDebugInfo("Max restarts reached");
+            }, silenceTimeout);
           } else {
-            logger.speech("⏰ Command timeout expired, not restarting");
+            logger.speech(`💭 Interim result: "${transcript}"`);
+            addDebugInfo(`Interim: "${transcript}"`);
           }
-          resetCommandListening();
         }
-      } else {
-        // Reset restart counter when not listening
-        restartAttempts = 0;
-      }
-    };
+      };
 
-    speechRecognitionRef.current = recognition;
-    logger.speech("✅ Speech recognition initialized");
+      recognition.addEventListener("error", (event: any) => {
+        switch (event.error) {
+          case "no-speech":
+            logger.speech("🔇 No speech detected");
+            addDebugInfo("No speech detected");
+            // Don't reset on no-speech, let it keep trying
+            break;
+          case "audio-capture":
+            essentialLogger.error("🎙️ Microphone error: Cannot capture audio");
+            addDebugInfo("Microphone error");
+            resetCommandListening();
+            break;
+          case "not-allowed":
+            essentialLogger.error("🚫 Microphone permission denied");
+            addDebugInfo("Mic permission denied");
+            resetCommandListening();
+            break;
+          case "aborted":
+            logger.speech("🛑 Recognition aborted");
+            addDebugInfo("Recognition aborted");
+            break;
+          default:
+            essentialLogger.error(`Speech recognition error: ${event.error}`);
+            addDebugInfo(`Error: ${event.error}`);
+            if (event.error !== "aborted") {
+              resetCommandListening();
+            }
+            break;
+        }
+      });
+
+      let restartAttempts = 0;
+      const maxRestartAttempts = 3;
+
+      recognition.onend = () => {
+        recognitionActiveRef.current = false;
+        logger.speech("🔴 Speech recognition ended");
+        addDebugInfo("Speech recognition ended");
+
+        if (isCommandListeningRef.current) {
+          // Recognition stopped unexpectedly, restart if still within timeout
+          if (
+            commandTimeoutRef.current &&
+            restartAttempts < maxRestartAttempts
+          ) {
+            restartAttempts += 1;
+            logger.speech(
+              `🔄 Restarting speech recognition (attempt ${restartAttempts}/${maxRestartAttempts})`,
+            );
+            addDebugInfo(`Restarting (attempt ${restartAttempts})`);
+
+            // Add a small delay before restarting
+            setTimeout(() => {
+              try {
+                if (
+                  speechRecognitionRef.current &&
+                  isCommandListeningRef.current &&
+                  !recognitionActiveRef.current
+                ) {
+                  speechRecognitionRef.current.start();
+                  logger.speech("✅ Restart successful");
+                }
+              } catch (error_: any) {
+                if (
+                  error_.message &&
+                  error_.message.includes("already started")
+                ) {
+                  logger.speech("⚠️ Recognition already running");
+                } else {
+                  logger.warning(
+                    `⚠️ Failed to restart: ${error_.message || error_}`,
+                  );
+                  if (restartAttempts >= maxRestartAttempts) {
+                    resetCommandListening();
+                  }
+                }
+              }
+            }, 200); // 200ms delay before restart
+          } else {
+            if (restartAttempts >= maxRestartAttempts) {
+              logger.warning(
+                `⚠️ Max restart attempts (${maxRestartAttempts}) reached`,
+              );
+              addDebugInfo("Max restarts reached");
+            } else {
+              logger.speech("⏰ Command timeout expired, not restarting");
+            }
+            resetCommandListening();
+          }
+        } else {
+          // Reset restart counter when not listening
+          restartAttempts = 0;
+        }
+      };
+
+      speechRecognitionRef.current = recognition;
+      logger.speech("✅ Speech recognition initialized");
+    }
 
     return () => {
       if (speechRecognitionRef.current && recognitionActiveRef.current) {
@@ -704,7 +736,7 @@ export const Porcupine: React.FC = () => {
   }, []); // Empty dependency array - only run once on mount
 
   // Test function to manually trigger command listening
-  const testCommandListening = async () => {
+  const testCommandListening = async (): Promise<void> => {
     logger.voice("🧪 TEST: Manually triggering command listening");
 
     // Reset transcripts before starting
@@ -721,8 +753,11 @@ export const Porcupine: React.FC = () => {
         // Stop the stream immediately after checking
         stream.getTracks().forEach((track) => track.stop());
         startCommandListening();
-      } catch (err) {
-        essentialLogger.error("🚫 Microphone permission denied or error:", err);
+      } catch (error_) {
+        essentialLogger.error(
+          "🚫 Microphone permission denied or error:",
+          error_,
+        );
         addDebugInfo("Mic permission failed");
       }
     } else {
@@ -730,7 +765,7 @@ export const Porcupine: React.FC = () => {
     }
   };
 
-  const getStatusMessage = () => {
+  const getStatusMessage = (): string => {
     switch (status) {
       case "idle":
         return "Voice control inactive";
@@ -745,7 +780,7 @@ export const Porcupine: React.FC = () => {
     }
   };
 
-  const getStatusColour = () => {
+  const getStatusColour = (): string => {
     switch (status) {
       case "wake-listening":
         return "#4ade80"; // green
@@ -779,7 +814,7 @@ export const Porcupine: React.FC = () => {
             height: "12px",
             borderRadius: "50%",
             backgroundColor: getStatusColour(),
-            animation: status !== "idle" ? "pulse 1.5s infinite" : "none",
+            animation: status === "idle" ? "none" : "pulse 1.5s infinite",
           }}
         />
         <span style={{ fontSize: "14px", fontWeight: "500" }}>
@@ -838,7 +873,7 @@ export const Porcupine: React.FC = () => {
             borderRadius: "4px",
           }}
         >
-          <strong>Last command:</strong> "{lastCommand}"
+          <strong>Last command:</strong> &quot;{lastCommand}&quot;
         </div>
       )}
 
@@ -853,9 +888,9 @@ export const Porcupine: React.FC = () => {
           }}
         >
           <strong>Debug Log:</strong>
-          {debugInfo.map((info, index) => (
+          {debugInfo.map((info) => (
             <div
-              key={index}
+              key={info}
               style={{ fontFamily: "monospace", marginTop: "2px" }}
             >
               {info}
@@ -868,8 +903,8 @@ export const Porcupine: React.FC = () => {
         <>
           <h3>Wake Word Detections:</h3>
           <ul>
-            {keywordDetections.map((label: string, index: number) => (
-              <li key={index}>{label}</li>
+            {keywordDetections.map((label: string) => (
+              <li key={`${label}-${Math.random()}`}>{label}</li>
             ))}
           </ul>
         </>

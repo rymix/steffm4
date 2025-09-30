@@ -267,7 +267,7 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
         console.log("Starting Porcupine initialization...");
         console.log("Access key:", porcupineAccessKey ? "Present" : "Missing");
         console.log("Using built-in model with Computer keyword");
-        
+
         setStatus("wake-listening");
 
         const porcupineWorker = await PorcupineWorker.create(
@@ -277,7 +277,7 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
             console.log(`Wake word detected: ${detection.label}`);
             setIsWakeWordActive(true);
             startCommandListening();
-          }
+          },
         );
 
         console.log("Porcupine worker created successfully");
@@ -286,9 +286,9 @@ const VoiceControl: React.FC<VoiceControlProps> = ({
         await WebVoiceProcessor.subscribe(porcupineWorker);
 
         console.log("WebVoiceProcessor subscribed successfully");
-        
+
         porcupineWorkerRef.current = porcupineWorker;
-        
+
         console.log("Porcupine initialization complete");
       } catch (error) {
         console.error("Failed to initialize Porcupine:", error);
