@@ -1,6 +1,7 @@
 /* eslint-disable unicorn/prefer-global-this */
 import { usePorcupine } from "@picovoice/porcupine-react";
-import { VoiceCommandMapping } from "components/Porcupine/types";
+import { levenshteinDistance } from "components/Porcupine/lib/levenshteinDistance";
+import { VoiceCommandMapping, VoiceStatus } from "components/Porcupine/types";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { PICOVOICE_KEY } from "utils/constants";
@@ -19,35 +20,6 @@ const customKeyword = {
 const commandTimeout = 5000;
 const silenceTimeout = 1500;
 
-// Levenshtein distance for fuzzy matching
-const levenshteinDistance = (str1: string, str2: string): number => {
-  const matrix: number[][] = Array.from({ length: str2.length + 1 }, () =>
-    Array.from({ length: str1.length + 1 }, () => 0),
-  );
-
-  for (let i = 0; i <= str1.length; i += 1) matrix[0][i] = i;
-  for (let j = 0; j <= str2.length; j += 1) matrix[j][0] = j;
-
-  for (let j = 1; j <= str2.length; j += 1) {
-    for (let i = 1; i <= str1.length; i += 1) {
-      const cost = str1[i - 1] === str2[j - 1] ? 0 : 1;
-      matrix[j][i] = Math.min(
-        matrix[j][i - 1] + 1,
-        matrix[j - 1][i] + 1,
-        matrix[j - 1][i - 1] + cost,
-      );
-    }
-  }
-
-  return matrix[str2.length][str1.length];
-};
-
-type VoiceStatus =
-  | "idle"
-  | "wake-listening"
-  | "command-listening"
-  | "processing";
-
 export const Porcupine: React.FC = () => {
   const {
     controls: {
@@ -59,6 +31,7 @@ export const Porcupine: React.FC = () => {
       handlePlay,
       handlePrevious,
     },
+    filters: { setSelectedCategory },
   } = useMixcloud();
 
   const [keywordDetections, setKeywordDetections] = useState<string[]>([]);
@@ -89,6 +62,16 @@ export const Porcupine: React.FC = () => {
         `${new Date().toLocaleTimeString()}: ${info}`,
       ]);
     }
+  };
+
+  const handleFilterSelectChange = (newFilter: string): void => {
+    if (newFilter === "fav") {
+      handleLoadRandomFavourite();
+    } else {
+      handleLoadRandom(newFilter);
+    }
+
+    setSelectedCategory(newFilter);
   };
 
   // Define command mappings with flexible keyword matching
@@ -134,6 +117,77 @@ export const Porcupine: React.FC = () => {
       keywords: ["favourite", "favorite", "liked", "loved"],
       synonyms: ["random", "shuffle", "load", "play", "get"],
       handler: handleLoadRandomFavourite,
+    },
+    {
+      intent: "filter_select_aidm",
+      keywords: [
+        "adventure",
+        "adventures",
+        "aidm",
+        "adventures in decent music",
+      ],
+      synonyms: [
+        "select",
+        "switch to",
+        "select category",
+        "switch category to",
+      ],
+      handler: () => handleFilterSelectChange("aidm"),
+    },
+    {
+      intent: "filter_select_mpos",
+      keywords: ["shoes", "mpos", "my pair of shoes"],
+      synonyms: [
+        "select",
+        "switch to",
+        "select category",
+        "switch category to",
+      ],
+      handler: () => handleFilterSelectChange("shoes"),
+    },
+    {
+      intent: "filter_select_special",
+      keywords: ["special", "specials"],
+      synonyms: [
+        "select",
+        "switch to",
+        "select category",
+        "switch category to",
+      ],
+      handler: () => handleFilterSelectChange("special"),
+    },
+    {
+      intent: "filter_select_cocksoup",
+      keywords: ["cock", "cocksoup", "cock soup"],
+      synonyms: [
+        "select",
+        "switch to",
+        "select category",
+        "switch category to",
+      ],
+      handler: () => handleFilterSelectChange("cocksoup"),
+    },
+    {
+      intent: "filter_select_fav",
+      keywords: ["fav", "favorite", "favorites"],
+      synonyms: [
+        "select",
+        "switch to",
+        "select category",
+        "switch category to",
+      ],
+      handler: () => handleFilterSelectChange("fav"),
+    },
+    {
+      intent: "filter_select_all",
+      keywords: ["all", "all mixes"],
+      synonyms: [
+        "select",
+        "switch to",
+        "select category",
+        "switch category to",
+      ],
+      handler: () => handleFilterSelectChange("all"),
     },
   ];
 
