@@ -41,6 +41,8 @@ export const Porcupine: React.FC = () => {
   const [debugInfo, setDebugInfo] = useState<string[]>([]);
 
   const speechRecognitionRef = useRef<SpeechRecognition | null>(null);
+  const lastWakeWordTimeRef = useRef<number>(0);
+  const wakeWordCooldownRef = useRef<NodeJS.Timeout | null>(null);
   const commandTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const silenceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const recognitionActiveRef = useRef<boolean>(false);
@@ -58,7 +60,7 @@ export const Porcupine: React.FC = () => {
   const addDebugInfo = (info: string): void => {
     if (DEBUG) {
       setDebugInfo((prev) => [
-        ...prev.slice(-9),
+        ...prev.slice(-100),
         `${new Date().toLocaleTimeString()}: ${info}`,
       ]);
     }
@@ -223,7 +225,25 @@ export const Porcupine: React.FC = () => {
     isCommandListeningRef.current = false; // Update ref
     isProcessingRef.current = false;
     recognitionActiveRef.current = false;
-    setStatus(isListening ? "wake-listening" : "idle");
+    
+    // Set a 3-second cooldown period before allowing wake word detection
+    logger.wake("⏳ Starting 3-second wake word cooldown");
+    addDebugInfo("Wake word cooldown started");
+    
+    wakeWordCooldownRef.current = setTimeout(() => {
+      logger.wake("✅ Wake word cooldown complete, restarting detection");
+      addDebugInfo("Wake word cooldown complete");
+      
+      // Restart Porcupine wake word detection if it was stopped
+      if (!isListening && isLoaded) {
+        logger.wake("🔄 Restarting wake word detection");
+        start();
+      }
+      
+      wakeWordCooldownRef.current = null;
+    }, 3000); // 3 second cooldown
+    
+    setStatus("idle"); // Set to idle during cooldown
     addDebugInfo("Reset to wake listening");
 
     // Clear all timeouts
@@ -238,6 +258,8 @@ export const Porcupine: React.FC = () => {
       silenceTimeoutRef.current = null;
       logger.command("⏹️ Cleared silence timeout");
     }
+    
+    // Don't clear wake word cooldown - let it complete naturally
 
     // Stop speech recognition more forcefully
     if (speechRecognitionRef.current) {
@@ -253,7 +275,7 @@ export const Porcupine: React.FC = () => {
         }
       }
     }
-  }, [isListening]);
+  }, [isListening, isLoaded, start]);
 
   // AI-powered command analysis function
   const analyzeCommand = useCallback(
@@ -410,6 +432,11 @@ export const Porcupine: React.FC = () => {
       setStatus("processing");
       addDebugInfo(`Processing: "${transcript}"`);
 
+      // IMMEDIATELY stop command listening to prevent restart
+      setIsCommandListening(false);
+      isCommandListeningRef.current = false;
+      logger.command("🚫 Command listening disabled immediately");
+
       // Stop recognition immediately to prevent further input
       if (speechRecognitionRef.current && recognitionActiveRef.current) {
         try {
@@ -457,6 +484,12 @@ export const Porcupine: React.FC = () => {
     logger.command(
       `📊 Setting refs - before: listening=${isCommandListeningRef.current}, processing=${isProcessingRef.current}`,
     );
+
+    // Stop Porcupine wake word detection during command listening
+    if (isListening) {
+      logger.wake("⏸️ Temporarily stopping wake word detection");
+      stop();
+    }
 
     setIsCommandListening(true);
     isCommandListeningRef.current = true; // Update ref
@@ -511,7 +544,7 @@ export const Porcupine: React.FC = () => {
         }
       }
     }, 100); // 100ms delay
-  }, [isCommandListening, resetCommandListening]);
+  }, [isCommandListening, resetCommandListening, isListening, stop]);
 
   // Initialize Porcupine
   useEffect(() => {
@@ -533,6 +566,39 @@ export const Porcupine: React.FC = () => {
   // Handle wake word detection
   useEffect(() => {
     if (keywordDetection !== null) {
+      const now = Date.now();
+      const timeSinceLastWakeWord = now - lastWakeWordTimeRef.current;
+      
+      // FIRST: Block ALL wake word detections during cooldown period
+      if (wakeWordCooldownRef.current !== null) {
+        logger.wake(
+          `🚫 Ignoring wake word during cooldown: "${keywordDetection.label}"`,
+        );
+        addDebugInfo(`Wake word ignored (cooldown): "${keywordDetection.label}"`);
+        return;
+      }
+      
+      // Prevent wake word detection during command listening or processing
+      if (isCommandListening || isProcessingRef.current) {
+        logger.wake(
+          `🚫 Ignoring wake word during command session: "${keywordDetection.label}"`,
+        );
+        addDebugInfo(`Wake word ignored (busy): "${keywordDetection.label}"`);
+        return;
+      }
+
+      // Debounce rapid wake word detections (ignore if less than 2 seconds since last)
+      if (timeSinceLastWakeWord < 2000) {
+        logger.wake(
+          `🚫 Ignoring rapid wake word detection: "${keywordDetection.label}" (${timeSinceLastWakeWord}ms ago)`,
+        );
+        addDebugInfo(
+          `Wake word debounced: "${keywordDetection.label}" (${timeSinceLastWakeWord}ms)`,
+        );
+        return;
+      }
+
+      lastWakeWordTimeRef.current = now;
       setKeywordDetections((oldVal) => [...oldVal, keywordDetection.label]);
       logger.wake(`🎉 Wake word detected: "${keywordDetection.label}"`);
       addDebugInfo(`Wake word detected: "${keywordDetection.label}"`);
@@ -545,7 +611,7 @@ export const Porcupine: React.FC = () => {
 
       startCommandListening();
     }
-  }, [keywordDetection, startCommandListening]);
+  }, [keywordDetection, startCommandListening, isCommandListening]);
 
   // Initialize Speech Recognition (only once on mount)
   useEffect(() => {
@@ -721,7 +787,8 @@ export const Porcupine: React.FC = () => {
         logger.speech("🔴 Speech recognition ended");
         addDebugInfo("Speech recognition ended");
 
-        if (isCommandListeningRef.current) {
+        // Check if we should restart (only if actively listening and not processing)
+        if (isCommandListeningRef.current && !isProcessingRef.current) {
           // Recognition stopped unexpectedly, restart if still within timeout
           if (
             commandTimeoutRef.current &&
@@ -739,6 +806,7 @@ export const Porcupine: React.FC = () => {
                 if (
                   speechRecognitionRef.current &&
                   isCommandListeningRef.current &&
+                  !isProcessingRef.current &&
                   !recognitionActiveRef.current
                 ) {
                   speechRecognitionRef.current.start();
@@ -772,8 +840,12 @@ export const Porcupine: React.FC = () => {
             resetCommandListening();
           }
         } else {
-          // Reset restart counter when not listening
+          // Reset restart counter when not listening or when processing
           restartAttempts = 0;
+          if (isProcessingRef.current) {
+            logger.speech("🚫 Not restarting - command is being processed");
+            addDebugInfo("Recognition ended during processing");
+          }
         }
       };
 
