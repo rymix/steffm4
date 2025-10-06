@@ -1,9 +1,16 @@
 // components/Floppy/FloppyDisk/
 
+import {
+  StyledDownProps,
+  StyledFloppyProps,
+  StyledNotesProps,
+  StyledSliderProps,
+  StyledTopProps,
+} from "components/Floppy/FloppyDisk/types";
 import styled from "styled-components";
 
 // Main Floppy Disk Container
-export const StyledFloppy = styled.div<{ $floppyColor: string }>`
+export const StyledFloppy = styled.div<StyledFloppyProps>`
   width: 100%; /* 290px of 290px */
   height: 100%; /* 290px of 290px */
   background-color: ${(props) => props.$floppyColor};
@@ -15,7 +22,7 @@ export const StyledFloppy = styled.div<{ $floppyColor: string }>`
 `;
 
 // Top part of the floppy
-export const StyledTop = styled.div<{ $floppyColor: string }>`
+export const StyledTop = styled.div<StyledTopProps>`
   width: 65.51%; /* 190px of 290px */
   height: 34.48%; /* 100px of 290px */
   background-color: ${(props) => props.$floppyColor};
@@ -29,10 +36,7 @@ export const StyledTop = styled.div<{ $floppyColor: string }>`
 `;
 
 // Slider element
-export const StyledSlider = styled.div<{
-  $sliderColor: string;
-  $hovered: boolean;
-}>`
+export const StyledSlider = styled.div<StyledSliderProps>`
   width: 78.95%; /* 150px of 190px */
   height: 100%;
   position: absolute;
@@ -67,10 +71,7 @@ export const StyledFitinha = styled.div`
 `;
 
 // Bottom part of the floppy where the notes are displayed
-export const StyledDown = styled.div<{
-  $labelColor: string;
-  $labelSecondColor: string;
-}>`
+export const StyledDown = styled.div<StyledDownProps>`
   width: 77.59%; /* 225px of 290px */
   height: 62.07%; /* 180px of 290px */
   border-left: 2px solid rgba(0, 0, 0, 0.2);
@@ -110,13 +111,7 @@ export const StyledDown = styled.div<{
 `;
 
 // Notes section inside the bottom part
-export const StyledNotes = styled.div<{
-  $textColor: string;
-  $font: string;
-  $fontSize: number;
-  $rotation: number;
-  $fontSizeMobile: number;
-}>`
+export const StyledNotes = styled.div<StyledNotesProps>`
   font-family: ${(props) => props.$font};
   margin-left: 10px;
   margin-top: 15px;

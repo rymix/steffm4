@@ -2,6 +2,8 @@ import type { BackgroundExtended, Category, Mix, Track } from "db/types";
 import type { ReactNode } from "react";
 import type { DefaultTheme } from "styled-components";
 
+export type XY = { x: number; y: number };
+
 export type Favourite = {
   mcKey: string;
 };
@@ -139,9 +141,7 @@ export type TooltipReturn = {
   tooltipFading: boolean;
   setTooltipFading: React.Dispatch<React.SetStateAction<boolean>>;
   tooltipPosition: { x: number; y: number };
-  setTooltipPosition: React.Dispatch<
-    React.SetStateAction<{ x: number; y: number }>
-  >;
+  setTooltipPosition: React.Dispatch<React.SetStateAction<XY>>;
   showTooltip: (_message: string, _x: number, _y: number) => void;
   hideTooltip: () => void;
   cleanup: () => void;
@@ -310,9 +310,7 @@ export type MixcloudContextState = {
     setThemeName: React.Dispatch<React.SetStateAction<string>>;
     setTooltipFading: React.Dispatch<React.SetStateAction<boolean>>;
     setTooltipMessage: React.Dispatch<React.SetStateAction<string | null>>;
-    setTooltipPosition: React.Dispatch<
-      React.SetStateAction<{ x: number; y: number }>
-    >;
+    setTooltipPosition: React.Dispatch<React.SetStateAction<XY>>;
     setTooltipVisible: React.Dispatch<React.SetStateAction<boolean>>;
     showTooltip: (_message: string, _x: number, _y: number) => void;
     tooltipFading: boolean;

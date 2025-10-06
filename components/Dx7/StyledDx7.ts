@@ -1,8 +1,11 @@
 import {
+  StyledDx7CaseBorderProps,
   StyledDx7CaseControlsContainerProps,
+  StyledDx7CaseControlsRowProps,
   StyledDx7CaseDarkProps,
   StyledDx7CaseFilterContainerProps,
   StyledDx7CaseProps,
+  StyledDx7CaseRearPanelProps,
   StyledDx7CaseVolumeContainerProps,
 } from "components/Dx7/types";
 import styled from "styled-components";
@@ -167,11 +170,7 @@ export const StyledDx7CaseScreenRow = styled.div`
 `;
 
 // Controls row - default row layout for volume and controls
-export const StyledDx7CaseControlsRow = styled.div<{
-  $windowWidth?: number;
-  $isMobile?: boolean;
-  $isPortrait?: boolean;
-}>`
+export const StyledDx7CaseControlsRow = styled.div<StyledDx7CaseControlsRowProps>`
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -401,7 +400,7 @@ export const StyledDx7CaseMixDisplayContainer = styled.div`
   padding: 30px 0 20px 20px;
 `;
 
-export const StyledDx7CaseRearPanel = styled.div<{ $isBottom?: boolean }>`
+export const StyledDx7CaseRearPanel = styled.div<StyledDx7CaseRearPanelProps>`
   display: flex;
   width: 100%;
   transform: ${({ $isBottom }) =>
@@ -409,7 +408,7 @@ export const StyledDx7CaseRearPanel = styled.div<{ $isBottom?: boolean }>`
   transform-origin: ${({ $isBottom }) => ($isBottom ? "top" : "bottom")};
 `;
 
-export const StyledDx7CaseBorder = styled.div<{ $position: "left" | "right" }>`
+export const StyledDx7CaseBorder = styled.div<StyledDx7CaseBorderProps>`
   width: 18px;
   height: 100%;
   background:

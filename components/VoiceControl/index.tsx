@@ -10,6 +10,7 @@ import {
   StyledVoiceControlStatusMessage,
 } from "components/VoiceControl/StyledVoiceControl";
 import {
+  transcriptRefProps,
   VoiceCommandMapping,
   VoiceStatus,
 } from "components/VoiceControl/types";
@@ -62,7 +63,7 @@ export const Porcupine: React.FC = () => {
   const recognitionActiveRef = useRef<boolean>(false);
   const isProcessingRef = useRef<boolean>(false);
   const isCommandListeningRef = useRef<boolean>(false); // Add ref for command listening state
-  const transcriptRef = useRef<{ final: string; last: string }>({
+  const transcriptRef = useRef<transcriptRefProps>({
     final: "",
     last: "",
   });

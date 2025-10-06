@@ -1,8 +1,12 @@
+import {
+  StyledPlayerChooserIndicatorProps,
+  StyledPlayerChooserItemProps,
+} from "components/PlayerChooser/types";
 import StefFmDx7Logo from "public/svg/stef-fm-dx7.svg";
 import StefFmRolandLogo from "public/svg/stef-fm-roland.svg";
 import styled from "styled-components";
 
-export const StyledPlayerChooserItem = styled.div<{ $isSelected: boolean }>`
+export const StyledPlayerChooserItem = styled.div<StyledPlayerChooserItemProps>`
   flex: 0 0 50%;
   max-width: 50%;
   min-height: 200px;
@@ -27,10 +31,7 @@ export const StyledPlayerChooserItem = styled.div<{ $isSelected: boolean }>`
   }
 `;
 
-export const StyledPlayerChooserIndicator = styled.div<{
-  $isSelected: boolean;
-  $isOtherHovered: boolean;
-}>`
+export const StyledPlayerChooserIndicator = styled.div<StyledPlayerChooserIndicatorProps>`
   margin-top: 1em;
   opacity: ${({ $isSelected, $isOtherHovered }) => {
     if ($isOtherHovered && $isSelected) return 0.3;

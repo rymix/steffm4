@@ -1,5 +1,8 @@
 import CloseIcon from "@mui/icons-material/Close";
-import { StyledModalProps } from "components/Modal/types";
+import {
+  StyledModalContentProps,
+  StyledModalProps,
+} from "components/Modal/types";
 import styled from "styled-components";
 
 export const StyledModal = styled.div<StyledModalProps>`
@@ -80,7 +83,7 @@ export const StyledCountdown = styled.div`
   color: ${({ theme }) => theme.colors.modal.countdown};
 `;
 
-export const StyledModalContent = styled.div<{ $hideChrome?: boolean }>`
+export const StyledModalContent = styled.div<StyledModalContentProps>`
   overflow: hidden;
   overflow-y: scroll;
   position: relative;

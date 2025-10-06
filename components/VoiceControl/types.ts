@@ -20,3 +20,5 @@ export type StyledVoiceControlStatusProps = {
     | "processing"
     | undefined;
 };
+
+export type transcriptRefProps = { final: string; last: string };

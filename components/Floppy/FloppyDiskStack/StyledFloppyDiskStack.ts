@@ -1,5 +1,6 @@
 // components/Floppy/FloppyDiskStack/StyledFloppyDiskStack.ts
 
+import { AnimatedDiskProps } from "components/Floppy/FloppyDiskStack/types";
 import styled, { keyframes } from "styled-components";
 
 // Container for the disk stack
@@ -38,14 +39,7 @@ const fadeOut = keyframes`
 `;
 
 // Styled component for the animated disk
-export const AnimatedDisk = styled.div<{
-  $index: number;
-  $startRotate: number;
-  $endRotate: number;
-  $finalX: number;
-  $finalY: number;
-  $startX: number;
-}>`
+export const AnimatedDisk = styled.div<AnimatedDiskProps>`
   position: absolute;
   top: 150px;
   left: 150px;

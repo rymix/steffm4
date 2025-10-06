@@ -26,3 +26,13 @@ export type StyledDx7SliderOuterProps = BaseDimensionsProps;
 export type StyledDx7CaseDarkProps = {
   $background?: string;
 };
+
+export type StyledDx7CaseControlsRowProps = {
+  $windowWidth?: number;
+  $isMobile?: boolean;
+  $isPortrait?: boolean;
+};
+
+export type StyledDx7CaseRearPanelProps = { $isBottom?: boolean };
+
+export type StyledDx7CaseBorderProps = { $position: "left" | "right" };
