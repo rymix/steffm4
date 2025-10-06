@@ -1,7 +1,18 @@
 /* eslint-disable unicorn/prefer-global-this */
 import { usePorcupine } from "@picovoice/porcupine-react";
-import { levenshteinDistance } from "components/Porcupine/lib/levenshteinDistance";
-import { VoiceCommandMapping, VoiceStatus } from "components/Porcupine/types";
+import { levenshteinDistance } from "components/VoiceControl/lib/levenshteinDistance";
+import {
+  StyledVoiceControlControls,
+  StyledVoiceControlErrorMessage,
+  StyledVoiceControlModeIndicator,
+  StyledVoiceControlStatus,
+  StyledVoiceControlStatusIcon,
+  StyledVoiceControlStatusMessage,
+} from "components/VoiceControl/StyledVoiceControl";
+import {
+  VoiceCommandMapping,
+  VoiceStatus,
+} from "components/VoiceControl/types";
 import { useMixcloud } from "contexts/mixcloud";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { PICOVOICE_KEY } from "utils/constants";
@@ -19,6 +30,8 @@ const customKeyword = {
 
 const commandTimeout = 5000;
 const silenceTimeout = 1500;
+
+const HIDEME = true;
 
 export const Porcupine: React.FC = () => {
   const {
@@ -226,38 +239,44 @@ export const Porcupine: React.FC = () => {
     isCommandListeningRef.current = false; // Update ref
     isProcessingRef.current = false;
     recognitionActiveRef.current = false;
-    
+
     // Set a 3-second cooldown period before allowing wake word detection
     logger.wake("⏳ Starting 3-second wake word cooldown");
     addDebugInfo("Wake word cooldown started");
-    
+
     wakeWordCooldownRef.current = setTimeout(() => {
       try {
         logger.wake("✅ Wake word cooldown complete, restarting detection");
-        logger.wake(`🔍 Restart conditions - isLoaded: ${isLoaded}, error: ${error}`);
+        logger.wake(
+          `🔍 Restart conditions - isLoaded: ${isLoaded}, error: ${error}`,
+        );
         addDebugInfo("Wake word cooldown complete");
-        
+
         // If Porcupine is still loaded, just set up for next wake word detection
         if (isLoaded && !error) {
-          logger.wake("✅ Porcupine still loaded, preparing for next wake word");
+          logger.wake(
+            "✅ Porcupine still loaded, preparing for next wake word",
+          );
           justRestartedRef.current = true; // Flag to ignore immediate detections
           setStatus("wake-listening");
           addDebugInfo("Back to wake listening");
-          
+
           // Clear the restart flag after a delay to ignore immediate detections
           setTimeout(() => {
             justRestartedRef.current = false;
             logger.wake("🔓 Ready for new wake word detections");
           }, 1000); // 1 second grace period
         } else {
-          logger.wake(`⚠️ Cannot restart - isLoaded: ${isLoaded}, error: ${error}`);
+          logger.wake(
+            `⚠️ Cannot restart - isLoaded: ${isLoaded}, error: ${error}`,
+          );
           addDebugInfo(`Cannot restart - loaded: ${isLoaded}, error: ${error}`);
-          
+
           // If Porcupine became unloaded, re-initialize it
           if (!isLoaded && !error) {
             logger.wake("🔄 Re-initializing Porcupine (was unloaded)");
             addDebugInfo("Re-initializing Porcupine");
-            
+
             try {
               init(PICOVOICE_KEY, [customKeyword], porcupineModel);
               logger.wake("📞 init() called successfully");
@@ -266,26 +285,34 @@ export const Porcupine: React.FC = () => {
               setStatus("idle");
               return;
             }
-            
+
             // Wait longer for initialization then start, with multiple checks
-            const checkInitialization = (attempts = 0) => {
+            const checkInitialization = (attempts = 0): void => {
               setTimeout(() => {
-                logger.wake(`🔍 Re-init check ${attempts + 1}: isLoaded=${isLoaded}, error=${error}`);
-                
+                logger.wake(
+                  `🔍 Re-init check ${attempts + 1}: isLoaded=${isLoaded}, error=${error}`,
+                );
+
                 if (isLoaded) {
-                  logger.wake("✅ Porcupine re-initialized, starting detection");
+                  logger.wake(
+                    "✅ Porcupine re-initialized, starting detection",
+                  );
                   try {
                     start();
                     setStatus("wake-listening");
                     addDebugInfo("Porcupine restarted after re-init");
                     logger.wake("🎉 Re-initialization complete and listening");
                   } catch (startError) {
-                    logger.wake(`❌ Error starting after re-init: ${startError}`);
+                    logger.wake(
+                      `❌ Error starting after re-init: ${startError}`,
+                    );
                     setStatus("idle");
                   }
                 } else if (attempts < 4) {
                   // Retry up to 5 times (5 seconds total)
-                  logger.wake(`⏳ Still initializing, will retry (attempt ${attempts + 1}/5)`);
+                  logger.wake(
+                    `⏳ Still initializing, will retry (attempt ${attempts + 1}/5)`,
+                  );
                   checkInitialization(attempts + 1);
                 } else {
                   logger.wake("❌ Re-initialization failed after 5 attempts");
@@ -294,14 +321,14 @@ export const Porcupine: React.FC = () => {
                 }
               }, 1000); // Check every second
             };
-            
+
             checkInitialization();
           } else {
             // Fallback: set status to idle if we can't restart
             setStatus("idle");
           }
         }
-        
+
         wakeWordCooldownRef.current = null;
       } catch (cooldownError) {
         logger.wake(`❌ Error in cooldown completion: ${cooldownError}`);
@@ -309,7 +336,7 @@ export const Porcupine: React.FC = () => {
         wakeWordCooldownRef.current = null;
       }
     }, 3000); // 3 second cooldown
-    
+
     setStatus("idle"); // Set to idle during cooldown
     addDebugInfo("Reset to wake listening");
 
@@ -325,7 +352,7 @@ export const Porcupine: React.FC = () => {
       silenceTimeoutRef.current = null;
       logger.command("⏹️ Cleared silence timeout");
     }
-    
+
     // Don't clear wake word cooldown - let it complete naturally
 
     // Stop speech recognition more forcefully
@@ -518,17 +545,23 @@ export const Porcupine: React.FC = () => {
 
       if (handler) {
         logger.success(`✅ Executing command for: "${transcript}"`);
-        logger.command(`🔍 Before handler: isLoaded=${isLoaded}, isListening=${isListening}`);
+        logger.command(
+          `🔍 Before handler: isLoaded=${isLoaded}, isListening=${isListening}`,
+        );
         addDebugInfo(`Executing command`);
         essentialLogger.widgetReady(`Voice command executed: "${transcript}"`);
-        
+
         handler();
-        
+
         // Check Porcupine state immediately after handler execution
         setTimeout(() => {
-          logger.command(`🔍 After handler: isLoaded=${isLoaded}, isListening=${isListening}`);
+          logger.command(
+            `🔍 After handler: isLoaded=${isLoaded}, isListening=${isListening}`,
+          );
           if (!isLoaded) {
-            logger.command(`❌ CRITICAL: Handler execution caused Porcupine to unload!`);
+            logger.command(
+              `❌ CRITICAL: Handler execution caused Porcupine to unload!`,
+            );
           }
         }, 10);
       } else {
@@ -563,7 +596,9 @@ export const Porcupine: React.FC = () => {
     );
 
     // Don't stop Porcupine - just rely on state-based blocking
-    logger.wake("⏸️ Keeping Porcupine running, using state-based wake word blocking");
+    logger.wake(
+      "⏸️ Keeping Porcupine running, using state-based wake word blocking",
+    );
 
     setIsCommandListening(true);
     isCommandListeningRef.current = true; // Update ref
@@ -633,7 +668,7 @@ export const Porcupine: React.FC = () => {
       logger.wake("⏸️ Skipping status update during cooldown");
       return;
     }
-    
+
     if (isListening && !isCommandListening) {
       setStatus("wake-listening");
       logger.wake("👂 Wake word listening active");
@@ -648,25 +683,29 @@ export const Porcupine: React.FC = () => {
     if (keywordDetection !== null) {
       const now = Date.now();
       const timeSinceLastWakeWord = now - lastWakeWordTimeRef.current;
-      
+
       // FIRST: Block ALL wake word detections during cooldown period
       if (wakeWordCooldownRef.current !== null) {
         logger.wake(
           `🚫 Ignoring wake word during cooldown: "${keywordDetection.label}"`,
         );
-        addDebugInfo(`Wake word ignored (cooldown): "${keywordDetection.label}"`);
+        addDebugInfo(
+          `Wake word ignored (cooldown): "${keywordDetection.label}"`,
+        );
         return;
       }
-      
+
       // SECOND: Block wake word detections immediately after restart
       if (justRestartedRef.current) {
         logger.wake(
           `🚫 Ignoring wake word after restart: "${keywordDetection.label}"`,
         );
-        addDebugInfo(`Wake word ignored (just restarted): "${keywordDetection.label}"`);
+        addDebugInfo(
+          `Wake word ignored (just restarted): "${keywordDetection.label}"`,
+        );
         return;
       }
-      
+
       // Prevent wake word detection during command listening or processing
       if (isCommandListening || isProcessingRef.current) {
         logger.wake(
@@ -819,14 +858,20 @@ export const Porcupine: React.FC = () => {
                   logger.command(
                     `🎯 Processing final command: "${transcriptRef.current.last}"`,
                   );
-                  logger.command(`🔍 SILENCE: Before processVoiceCommand: isLoaded=${isLoaded}, isListening=${isListening}`);
+                  logger.command(
+                    `🔍 SILENCE: Before processVoiceCommand: isLoaded=${isLoaded}, isListening=${isListening}`,
+                  );
                   processVoiceCommand(transcriptRef.current.last);
-                  
+
                   // Check Porcupine state after command processing
                   setTimeout(() => {
-                    logger.command(`🔍 SILENCE: After processVoiceCommand: isLoaded=${isLoaded}, isListening=${isListening}`);
+                    logger.command(
+                      `🔍 SILENCE: After processVoiceCommand: isLoaded=${isLoaded}, isListening=${isListening}`,
+                    );
                     if (!isLoaded) {
-                      logger.command(`❌ CRITICAL: processVoiceCommand caused Porcupine to unload!`);
+                      logger.command(
+                        `❌ CRITICAL: processVoiceCommand caused Porcupine to unload!`,
+                      );
                     }
                   }, 50);
                 } else {
@@ -1004,63 +1049,30 @@ export const Porcupine: React.FC = () => {
     }
   };
 
-  const getStatusColour = (): string => {
-    switch (status) {
-      case "wake-listening":
-        return "#4ade80"; // green
-      case "command-listening":
-        return "#f59e0b"; // amber
-      case "processing":
-        return "#3b82f6"; // blue
-      default:
-        return "#6b7280"; // grey
-    }
-  };
-
   return (
     <div className="voice-widget">
-      <div
-        className="status-indicator"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          padding: "12px",
-          borderRadius: "8px",
-          backgroundColor: "rgba(0,0,0,0.1)",
-          border: `2px solid ${getStatusColour()}`,
-          marginBottom: "16px",
-        }}
-      >
-        <div
-          style={{
-            width: "12px",
-            height: "12px",
-            borderRadius: "50%",
-            backgroundColor: getStatusColour(),
-            animation: status === "idle" ? "none" : "pulse 1.5s infinite",
-          }}
-        />
-        <span style={{ fontSize: "14px", fontWeight: "500" }}>
+      <StyledVoiceControlStatus $status={status}>
+        <StyledVoiceControlStatusIcon $status={status} />
+        <StyledVoiceControlStatusMessage>
           {getStatusMessage()}
-        </span>
-      </div>
+        </StyledVoiceControlStatusMessage>
+      </StyledVoiceControlStatus>
 
-      <div style={{ marginBottom: "12px" }}>
+      <StyledVoiceControlModeIndicator>
         <strong>Loaded:</strong> {JSON.stringify(isLoaded)}
         {" | "}
         <strong>Wake Listening:</strong> {JSON.stringify(isListening)}
         {" | "}
         <strong>Command Listening:</strong> {JSON.stringify(isCommandListening)}
-      </div>
+      </StyledVoiceControlModeIndicator>
 
       {error && (
-        <p className="error-message" style={{ color: "red" }}>
+        <StyledVoiceControlErrorMessage>
           {error.toString()}
-        </p>
+        </StyledVoiceControlErrorMessage>
       )}
 
-      <div style={{ marginBottom: "12px" }}>
+      <StyledVoiceControlControls style={{ marginBottom: "12px" }}>
         <button
           onClick={() => start()}
           disabled={error !== null || !isLoaded || isListening}
@@ -1086,7 +1098,7 @@ export const Porcupine: React.FC = () => {
             🧪 Test Command Listen
           </button>
         )}
-      </div>
+      </StyledVoiceControlControls>
 
       {lastCommand && (
         <div
@@ -1101,7 +1113,7 @@ export const Porcupine: React.FC = () => {
         </div>
       )}
 
-      {DEBUG && debugInfo.length > 0 && (
+      {!HIDEME && DEBUG && debugInfo.length > 0 && (
         <div
           style={{
             marginTop: "12px",
@@ -1114,6 +1126,7 @@ export const Porcupine: React.FC = () => {
           <strong>Debug Log:</strong>
           {debugInfo.map((info, index) => (
             <div
+              // eslint-disable-next-line react/no-array-index-key
               key={`debug-${index}-${info.slice(0, 10)}`}
               style={{ fontFamily: "monospace", marginTop: "2px" }}
             >
@@ -1133,18 +1146,6 @@ export const Porcupine: React.FC = () => {
           </ul>
         </>
       )}
-
-      <style jsx>{`
-        @keyframes pulse {
-          0%,
-          100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
-          }
-        }
-      `}</style>
     </div>
   );
 };

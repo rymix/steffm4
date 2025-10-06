@@ -11,3 +11,12 @@ export type VoiceStatus =
   | "wake-listening"
   | "command-listening"
   | "processing";
+
+export type StyledVoiceControlStatusProps = {
+  $status?:
+    | "idle"
+    | "wake-listening"
+    | "command-listening"
+    | "processing"
+    | undefined;
+};

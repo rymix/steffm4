@@ -1,4 +1,4 @@
-import PorcupineTest from "components/Porcupine";
+import PorcupineTest from "components/VoiceControl";
 import { JSX } from "react";
 
 const Home = (): JSX.Element => {
