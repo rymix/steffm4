@@ -8,6 +8,7 @@ import { useMixcloud } from "contexts/mixcloud";
 import { useEffect, useRef, useState } from "react";
 import { convertTimeToHumanReadable } from "utils/functions";
 import { DEBUG } from "utils/logger";
+import Dx7Voice from "../Voice";
 
 const Dx7Screen: React.FC = () => {
   const {
@@ -405,6 +406,7 @@ const Dx7Screen: React.FC = () => {
           </StyledDx7ScreenDebug>
         )}
       </StyledDx7Screen>
+      <Dx7Voice />
     </StyledDx7ScreenBezel>
   );
 };
