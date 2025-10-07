@@ -1,4 +1,5 @@
 import { StyledDx7VoiceLed } from "components/Dx7/Voice/StyledDx7Voice";
+
 import Dx7Label from "../Label";
 
 const Dx7Voice: React.FC = () => {
